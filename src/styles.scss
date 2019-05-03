@@ -2,3 +2,18 @@
 //@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 @import "~bootstrap/scss/bootstrap-grid";
+
+::selection {
+  background-color: #7b1fa2;
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
