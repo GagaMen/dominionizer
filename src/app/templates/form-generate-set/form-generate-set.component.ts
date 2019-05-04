@@ -9,54 +9,48 @@ import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn} from '@angu
 // https://coryrylan.com/blog/creating-a-dynamic-checkbox-list-in-angular
 export class FormGenerateSetComponent implements OnInit {
   form: FormGroup;
-  extensions = [];
+  extensions = [
+    { id: 1, name: 'Basisspiel' },
+    { id: 2, name: 'Basisspiel 2. Edition' },
+    { id: 3, name: 'Die Intrige' },
+    { id: 4, name: 'Seaside' },
+    { id: 5, name: 'Die Alchemisten' },
+    { id: 6, name: 'Blütezeit' },
+    { id: 7, name: 'Reiche Ernte' },
+    { id: 8, name: 'Hinterland' },
+    { id: 9, name: 'Dark Ages' },
+    { id: 10, name: 'Die Gilden' },
+    { id: 11, name: 'Abenteuer' },
+    { id: 12, name: 'Empires' },
+    { id: 13, name: 'Nocturne' }
+  ];
 
   constructor(private formBuilder: FormBuilder) {
+    const extensionControls = this.extensions.map(control => new FormControl(false));
+    const selectAllControl = new FormControl(false);
+
     this.form = this.formBuilder.group({
-      extensions: new FormArray([], this.minSelectedSwitches(1))
-    });
-
-    this.extensions = FormGenerateSetComponent.getExtensions();
-    this.addSwitches();
-  }
-
-  static getExtensions() {
-    return [
-      { id: 1, name: 'Basisspiel' },
-      { id: 2, name: 'Basisspiel 2. Edition' },
-      { id: 3, name: 'Die Intrige' },
-      { id: 4, name: 'Seaside' },
-      { id: 5, name: 'Die Alchemisten' },
-      { id: 6, name: 'Blütezeit' },
-      { id: 7, name: 'Reiche Ernte' },
-      { id: 8, name: 'Hinterland' },
-      { id: 9, name: 'Dark Ages' },
-      { id: 10, name: 'Die Gilden' },
-      { id: 11, name: 'Abenteuer' },
-      { id: 12, name: 'Empires' },
-      { id: 13, name: 'Nocturne' }
-    ];
+      extensions: new FormArray(extensionControls),
+      selectAll: selectAllControl
+    })
   }
 
   ngOnInit() {
+    this.onChange()
   }
 
-  private minSelectedSwitches(min = 1) {
-    const validator: ValidatorFn = (formArray: FormArray) => {
-      const totalSelected = formArray.controls
-        .map(control => control.value)
-        .reduce((prev, next) => next ? prev + next : prev, 0);
+  onChange(): void {
+    this.form.get('selectAll').valueChanges.subscribe(bool => {
+      this.form
+        .get('extensions')
+        .patchValue(Array(this.extensions.length).fill(bool), { emitEvent: false });
+    });
 
-      return totalSelected >= min ? null : { required: true };
-    };
-
-    return validator;
-  }
-
-  private addSwitches() {
-    this.extensions.map((_, i) => {
-      const control = new FormControl(i === 0);
-      (this.form.controls.extensions as FormArray).push(control);
+    this.form.get('extensions').valueChanges.subscribe(val => {
+        const allSelected = val.every(bool => bool);
+        if (this.form.get('selectAll').value != allSelected) {
+          this.form.get('selectAll').patchValue(allSelected, { emitEvent: false });
+        }
     });
   }
 
