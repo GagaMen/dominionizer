@@ -5,7 +5,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FormGenerateSetComponent } from './form-generate-set/form-generate-set.component';
-import { MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, MatFormFieldModule, MatSelectModule, MatSlideToggleModule, MatCardModule, MatDividerModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, MatFormFieldModule, MatSelectModule, MatSlideToggleModule, MatCardModule, MatDividerModule, MatStepperModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSlideToggleModule,
     MatCardModule,
     MatDividerModule,
+    MatStepperModule,
     CoreRoutingModule
   ],
   exports: [
