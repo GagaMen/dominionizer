@@ -4,7 +4,12 @@
       <mat-card-title formArrayName="extensions">welche Erweiterungen sollen berücksichtigt werden?</mat-card-title>
       <mat-card-content>
         <div class="row">
-          <div class="col-sm-12 col-md-6" *ngFor="let extension of form.controls.extensions.controls; let i = index">
+          <div class="col-12">
+            <mat-slide-toggle formControlName="selectAll">
+              Select/Unselect all
+            </mat-slide-toggle>
+          </div>
+          <div class="col-sm-12 col-md-6" formArrayName="extensions" *ngFor="let extension of form.controls.extensions.controls; let i = index">
             <mat-slide-toggle [formControlName]="i">
               {{ extensions[i].name }}
             </mat-slide-toggle>
