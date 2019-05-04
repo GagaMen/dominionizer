@@ -9,7 +9,8 @@ import {
   MatMenuModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDividerModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatSelectModule,
     MatSlideToggleModule,
     MatCardModule,
+    MatDividerModule,
     ReactiveFormsModule
   ],
   providers: [],

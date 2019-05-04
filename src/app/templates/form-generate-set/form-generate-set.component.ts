@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-generate-set',
   templateUrl: './form-generate-set.component.html',
   styleUrls: ['./form-generate-set.component.scss']
 })
-// https://coryrylan.com/blog/creating-a-dynamic-checkbox-list-in-angular
+
 export class FormGenerateSetComponent implements OnInit {
   form: FormGroup;
   extensions = [
