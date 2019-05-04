@@ -27,6 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDividerModule,
     CoreRoutingModule
+  ],
+  exports: [
+    HeaderComponent,
   ]
 })
 export class CoreModule { }
