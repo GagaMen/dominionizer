@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 
 export class FormGenerateSetComponent implements OnInit {
-  form: FormGroup;
+  firstStep: FormGroup;
+  secondStep: FormGroup;
   extensions = [
     { id: 1, name: 'Basisspiel' },
     { id: 2, name: 'Basisspiel 2. Edition' },
@@ -29,7 +30,7 @@ export class FormGenerateSetComponent implements OnInit {
     const extensionControls = this.extensions.map(control => new FormControl(false));
     const selectAllControl = new FormControl(false);
 
-    this.form = this.formBuilder.group({
+    this.firstStep = this.formBuilder.group({
       extensions: new FormArray(extensionControls),
       selectAll: selectAllControl
     })
@@ -40,16 +41,16 @@ export class FormGenerateSetComponent implements OnInit {
   }
 
   onChange(): void {
-    this.form.get('selectAll').valueChanges.subscribe(bool => {
-      this.form
+    this.firstStep.get('selectAll').valueChanges.subscribe(bool => {
+      this.firstStep
         .get('extensions')
         .patchValue(Array(this.extensions.length).fill(bool), { emitEvent: false });
     });
 
-    this.form.get('extensions').valueChanges.subscribe(val => {
+    this.firstStep.get('extensions').valueChanges.subscribe(val => {
         const allSelected = val.every(bool => bool);
-        if (this.form.get('selectAll').value != allSelected) {
-          this.form.get('selectAll').patchValue(allSelected, { emitEvent: false });
+        if (this.firstStep.get('selectAll').value != allSelected) {
+          this.firstStep.get('selectAll').patchValue(allSelected, { emitEvent: false });
         }
     });
   }
