@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './core/home/home.component';
+import { GenerateSetFormComponent } from './core/generate-set-form/generate-set-form.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: GenerateSetFormComponent},
   // TODO: Redirect to PageNotFoundComponent when existent
-  {path: '**', component: HomeComponent},
+  {path: '**', component: GenerateSetFormComponent},
 ];
 
 @NgModule({
