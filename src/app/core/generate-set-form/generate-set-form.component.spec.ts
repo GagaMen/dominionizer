@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormGenerateSetComponent } from './form-generate-set.component';
+import { GenerateSetFormComponent } from './generate-set-form.component';
 
-describe('FormGenerateSetComponent', () => {
-  let component: FormGenerateSetComponent;
-  let fixture: ComponentFixture<FormGenerateSetComponent>;
+describe('GenerateSetFormComponent', () => {
+  let component: GenerateSetFormComponent;
+  let fixture: ComponentFixture<GenerateSetFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormGenerateSetComponent ]
+      declarations: [ GenerateSetFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormGenerateSetComponent);
+    fixture = TestBed.createComponent(GenerateSetFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,12 +2,12 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-generate-set',
-  templateUrl: './form-generate-set.component.html',
-  styleUrls: ['./form-generate-set.component.scss']
+  selector: 'app-generate-set-form',
+  templateUrl: './generate-set-form.component.html',
+  styleUrls: ['./generate-set-form.component.scss']
 })
 
-export class FormGenerateSetComponent implements OnInit {
+export class GenerateSetFormComponent implements OnInit {
   firstStep: FormGroup;
   secondStep: FormGroup;
   extensions = [
