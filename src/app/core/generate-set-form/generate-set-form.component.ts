@@ -1,10 +1,14 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-generate-set-form',
   templateUrl: './generate-set-form.component.html',
-  styleUrls: ['./generate-set-form.component.scss']
+  styleUrls: ['./generate-set-form.component.scss'],
+  providers: [
+    { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
+  ]
 })
 
 export class GenerateSetFormComponent implements OnInit {
@@ -27,11 +31,11 @@ export class GenerateSetFormComponent implements OnInit {
   ];
 
   constructor(private formBuilder: FormBuilder) {
-    const extensionControls = this.extensions.map(control => new FormControl(false));
+    const extensionControls = this.extensions.map(() => new FormControl(false));
     const selectAllControl = new FormControl(false);
 
     this.firstStep = this.formBuilder.group({
-      extensions: new FormArray(extensionControls),
+      extensions: new FormArray(extensionControls, this.validateMinSelect),
       selectAll: selectAllControl
     });
 
@@ -64,4 +68,10 @@ export class GenerateSetFormComponent implements OnInit {
   }
 
   submit() { }
+
+  private validateMinSelect(control: FormArray): ValidationErrors | null {
+    const controlValues = Object.values(control.value);
+    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
+    return result ? null : { 'minSelect': { value: control.value } };
+  }
 }

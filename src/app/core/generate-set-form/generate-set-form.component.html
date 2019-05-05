@@ -1,14 +1,14 @@
 <h1>Stelle dein Set zusammen:</h1>
 <mat-vertical-stepper>
-  <mat-step>
+  <mat-step [stepControl]="firstStep" errorMessage="Wähle mindestens eine Erweiterung aus.">
     <form [formGroup]="firstStep">
       <ng-template matStepLabel>Welche Erweiterungen sollen berücksichtigt werden?</ng-template>
       <mat-slide-toggle formControlName="selectAll">
         Alle auswählen/abwählen
       </mat-slide-toggle>
       <mat-divider></mat-divider>
-      <div class="extensions">
-        <ng-container formArrayName="extensions" *ngFor="let extension of firstStep.controls.extensions.controls; let i = index">
+      <div formArrayName="extensions" class="extensions">
+        <ng-container *ngFor="let extension of firstStep.controls.extensions.controls; let i = index">
           <mat-slide-toggle [formControlName]="i">
             {{ extensions[i].name }}
           </mat-slide-toggle>
@@ -19,7 +19,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step>
+  <mat-step [stepControl]="secondStep">
     <form [formGroup]="secondStep">
       <ng-template matStepLabel>Spiel-Optionen</ng-template>
       <mat-slide-toggle>
