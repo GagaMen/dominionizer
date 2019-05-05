@@ -33,7 +33,15 @@ export class FormGenerateSetComponent implements OnInit {
     this.firstStep = this.formBuilder.group({
       extensions: new FormArray(extensionControls),
       selectAll: selectAllControl
-    })
+    });
+
+    this.secondStep = this.formBuilder.group({
+      events: new FormControl(false),
+      eventCount: new FormControl(1),
+      landmarks: new FormControl(false),
+      landmarkCount: new FormControl(1),
+      reactionOnAttack: new FormControl(false),
+    });
   }
 
   ngOnInit() {
