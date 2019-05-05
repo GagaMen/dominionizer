@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
+import { AppBarComponent } from './app-bar/app-bar.component';
 import { FormGenerateSetComponent } from './form-generate-set/form-generate-set.component';
 import { MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, MatFormFieldModule, MatSelectModule, MatSlideToggleModule, MatCardModule, MatDividerModule, MatStepperModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent,
+    AppBarComponent,
     FormGenerateSetComponent,
   ],
   imports: [
@@ -30,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CoreRoutingModule
   ],
   exports: [
-    HeaderComponent,
+    AppBarComponent,
   ]
 })
 export class CoreModule { }
