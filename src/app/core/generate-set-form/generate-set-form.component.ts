@@ -35,7 +35,7 @@ export class GenerateSetFormComponent implements OnInit {
     const selectAllControl = new FormControl(false);
 
     this.firstStep = this.formBuilder.group({
-      extensions: new FormArray(extensionControls, this.validateMinSelect),
+      extensions: new FormArray(extensionControls, GenerateSetFormComponent.validateMinSelect),
       selectAll: selectAllControl
     });
 
@@ -48,8 +48,14 @@ export class GenerateSetFormComponent implements OnInit {
     });
   }
 
+  private static validateMinSelect(control: FormArray): ValidationErrors | null {
+    const controlValues = Object.values(control.value);
+    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
+    return result ? null : { minSelect: { value: control.value } };
+  }
+
   ngOnInit() {
-    this.onChange()
+    this.onChange();
   }
 
   onChange(): void {
@@ -61,17 +67,11 @@ export class GenerateSetFormComponent implements OnInit {
 
     this.firstStep.get('extensions').valueChanges.subscribe(val => {
         const allSelected = val.every(bool => bool);
-        if (this.firstStep.get('selectAll').value != allSelected) {
+        if (this.firstStep.get('selectAll').value !== allSelected) {
           this.firstStep.get('selectAll').patchValue(allSelected, { emitEvent: false });
         }
     });
   }
 
   submit() { }
-
-  private validateMinSelect(control: FormArray): ValidationErrors | null {
-    const controlValues = Object.values(control.value);
-    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
-    return result ? null : { 'minSelect': { value: control.value } };
-  }
 }
