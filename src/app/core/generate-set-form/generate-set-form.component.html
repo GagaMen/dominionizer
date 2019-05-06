@@ -1,0 +1,54 @@
+<h1>Stelle dein Set zusammen:</h1>
+<mat-vertical-stepper>
+  <mat-step [stepControl]="firstStep" errorMessage="Wähle mindestens eine Erweiterung aus.">
+    <form [formGroup]="firstStep">
+      <ng-template matStepLabel>Welche Erweiterungen sollen berücksichtigt werden?</ng-template>
+      <mat-slide-toggle formControlName="selectAll">
+        Alle auswählen/abwählen
+      </mat-slide-toggle>
+      <mat-divider></mat-divider>
+      <div formArrayName="extensions" class="extensions">
+        <ng-container *ngFor="let extension of firstStep.controls.extensions.controls; let i = index">
+          <mat-slide-toggle [formControlName]="i">
+            {{ extensions[i].name }}
+          </mat-slide-toggle>
+        </ng-container>
+      </div>
+      <div class="form-actions">
+        <button mat-raised-button matStepperNext color="primary">Weiter</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondStep">
+    <form [formGroup]="secondStep">
+      <ng-template matStepLabel>Spiel-Optionen</ng-template>
+      <mat-slide-toggle>
+        Ereignisse
+      </mat-slide-toggle>
+      <mat-form-field>
+        <mat-select placeholder="Anzahl">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle>
+        Landmarken
+      </mat-slide-toggle>
+      <mat-form-field>
+        <mat-select placeholder="Anzahl">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle>
+        Reaktionskarte bei einer Angriffskarte erzwingen
+      </mat-slide-toggle>
+    </form>
+  </mat-step>
+</mat-vertical-stepper>
