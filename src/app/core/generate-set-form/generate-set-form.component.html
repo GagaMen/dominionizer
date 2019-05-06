@@ -2,15 +2,23 @@
 <mat-vertical-stepper>
   <mat-step [stepControl]="firstStep" errorMessage="Wähle mindestens eine Erweiterung aus.">
     <form [formGroup]="firstStep">
-      <ng-template matStepLabel>Welche Erweiterungen sollen berücksichtigt werden?</ng-template>
+      <ng-template matStepLabel>
+        <span class="white-space-normal">
+          Welche Erweiterungen sollen berücksichtigt werden?
+        </span>
+      </ng-template>
       <mat-slide-toggle formControlName="selectAll">
-        Alle auswählen/abwählen
+        <span class="white-space-normal">
+          Alle auswählen/abwählen
+        </span>
       </mat-slide-toggle>
       <mat-divider></mat-divider>
       <div formArrayName="extensions" class="extensions">
         <ng-container *ngFor="let extension of firstStep.controls.extensions.controls; let i = index">
           <mat-slide-toggle [formControlName]="i">
-            {{ extensions[i].name }}
+            <span class="white-space-normal">
+              {{ extensions[i].name }}
+            </span>
           </mat-slide-toggle>
         </ng-container>
       </div>
@@ -21,9 +29,15 @@
   </mat-step>
   <mat-step [stepControl]="secondStep">
     <form [formGroup]="secondStep">
-      <ng-template matStepLabel>Spiel-Optionen</ng-template>
+      <ng-template matStepLabel>
+        <span class="white-space-normal">
+          Spiel-Optionen
+        </span>
+      </ng-template>
       <mat-slide-toggle>
-        Ereignisse
+        <span class="white-space-normal">
+          Ereignisse
+        </span>
       </mat-slide-toggle>
       <mat-form-field>
         <mat-select placeholder="Anzahl">
@@ -35,7 +49,9 @@
         </mat-select>
       </mat-form-field>
       <mat-slide-toggle>
-        Landmarken
+        <span class="white-space-normal">
+          Landmarken
+        </span>
       </mat-slide-toggle>
       <mat-form-field>
         <mat-select placeholder="Anzahl">
@@ -47,7 +63,9 @@
         </mat-select>
       </mat-form-field>
       <mat-slide-toggle>
-        Reaktionskarte bei einer Angriffskarte erzwingen
+        <span class="white-space-normal">
+          Reaktionskarte bei einer Angriffskarte erzwingen
+        </span>
       </mat-slide-toggle>
     </form>
   </mat-step>

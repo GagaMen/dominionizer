@@ -1,0 +1,17 @@
+mat-divider {
+  margin: 0.5rem 0;
+}
+
+.extensions {
+  mat-slide-toggle {
+    display: block;
+
+    + mat-slide-toggle {
+      margin-top: 0.1rem;
+    }
+  }
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
