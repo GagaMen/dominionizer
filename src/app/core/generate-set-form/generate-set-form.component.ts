@@ -29,23 +29,23 @@ export class GenerateSetFormComponent implements OnInit {
     { id: 12, name: 'Empires' },
     { id: 13, name: 'Nocturne' }
   ];
-  showEventCountControl;
-  showLandmarkCountControl;
+  showEventCountControl: boolean;
+  showLandmarkCountControl: boolean;
 
   constructor(private formBuilder: FormBuilder) {
-    const extensionControls = this.extensions.map(() => new FormControl(false));
-    const selectAllControl = new FormControl(false);
-
     this.firstStep = this.formBuilder.group({
-      extensions: new FormArray(extensionControls, GenerateSetFormComponent.validateMinSelect),
-      selectAll: selectAllControl
+      extensions: new FormArray(
+        this.extensions.map(() => new FormControl(false)),
+        GenerateSetFormComponent.validateMinSelect
+      ),
+      selectAll: new FormControl(false),
     });
 
     this.secondStep = this.formBuilder.group({
       events: new FormControl(false),
-      eventCount: new FormControl({ value: 1, disabled: true, show: false }),
+      eventCount: new FormControl(1),
       landmarks: new FormControl(false),
-      landmarkCount: new FormControl({ value: 1, disabled: true, show: false }),
+      landmarkCount: new FormControl(1),
       reactionOnAttack: new FormControl(false),
     });
 
@@ -78,19 +78,11 @@ export class GenerateSetFormComponent implements OnInit {
     });
 
     this.secondStep.get('events').valueChanges.subscribe(bool => {
-      if (bool) {
-        this.secondStep.get('eventCount').enable();
-      } else {
-        this.secondStep.get('eventCount').disable();
-      }
+      this.showEventCountControl = bool;
     });
 
     this.secondStep.get('landmarks').valueChanges.subscribe(bool => {
-      if (bool) {
-        this.secondStep.get('landmarkCount').enable();
-      } else {
-        this.secondStep.get('landmarkCount').disable();
-      }
+      this.showLandmarkCountControl = bool;
     });
   }
 

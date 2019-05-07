@@ -39,21 +39,21 @@
           Ereignisse
         </span>
       </mat-slide-toggle>
-        <mat-form-field>
-          <mat-select formControlName="eventCount" placeholder="Anzahl">
-            <mat-option value="1">1</mat-option>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="3">3</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="5">5</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-form-field *ngIf="showEventCountControl">
+        <mat-select formControlName="eventCount" placeholder="Anzahl">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-slide-toggle formControlName="landmarks">
         <span class="white-space-normal">
           Landmarken
         </span>
       </mat-slide-toggle>
-      <mat-form-field>
+      <mat-form-field *ngIf="showLandmarkCountControl">
         <mat-select formControlName="landmarkCount" placeholder="Anzahl">
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
