@@ -29,8 +29,6 @@ export class GenerateSetFormComponent implements OnInit {
     { id: 12, name: 'Empires' },
     { id: 13, name: 'Nocturne' }
   ];
-  showEventCountControl: boolean;
-  showLandmarkCountControl: boolean;
 
   constructor(private formBuilder: FormBuilder) {
     this.firstStep = this.formBuilder.group({
@@ -48,9 +46,6 @@ export class GenerateSetFormComponent implements OnInit {
       landmarkCount: new FormControl(1),
       reactionOnAttack: new FormControl(false),
     });
-
-    this.showEventCountControl = false;
-    this.showLandmarkCountControl = false;
   }
 
   private static validateMinSelect(control: FormArray): ValidationErrors | null {
@@ -75,14 +70,6 @@ export class GenerateSetFormComponent implements OnInit {
         if (this.firstStep.get('selectAll').value !== allSelected) {
           this.firstStep.get('selectAll').patchValue(allSelected, { emitEvent: false });
         }
-    });
-
-    this.secondStep.get('events').valueChanges.subscribe(bool => {
-      this.showEventCountControl = bool;
-    });
-
-    this.secondStep.get('landmarks').valueChanges.subscribe(bool => {
-      this.showLandmarkCountControl = bool;
     });
   }
 

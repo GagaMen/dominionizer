@@ -34,12 +34,12 @@
           Spiel-Optionen
         </span>
       </ng-template>
-      <mat-slide-toggle formControlName="events">
+      <mat-slide-toggle #events formControlName="events">
         <span class="white-space-normal">
           Ereignisse
         </span>
       </mat-slide-toggle>
-      <mat-form-field *ngIf="showEventCountControl">
+      <mat-form-field *ngIf="events.checked">
         <mat-select formControlName="eventCount" placeholder="Anzahl">
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
@@ -48,12 +48,12 @@
           <mat-option value="5">5</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-slide-toggle formControlName="landmarks">
+      <mat-slide-toggle #landmarks formControlName="landmarks">
         <span class="white-space-normal">
           Landmarken
         </span>
       </mat-slide-toggle>
-      <mat-form-field *ngIf="showLandmarkCountControl">
+      <mat-form-field *ngIf="landmarks.checked">
         <mat-select formControlName="landmarkCount" placeholder="Anzahl">
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
