@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild(MatSidenav) private sidenav: MatSidenav;
+
   title = 'dominionizer';
+
+  onSidenavToggle(): void {
+    this.sidenav.toggle();
+  }
 }
