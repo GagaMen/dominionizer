@@ -1,0 +1,15 @@
+[
+  { "id": 1, "name": "Basisspiel" },
+  { "id": 2, "name": "Basisspiel 2. Edition" },
+  { "id": 3, "name": "Die Intrige" },
+  { "id": 4, "name": "Seaside" },
+  { "id": 5, "name": "Die Alchemisten" },
+  { "id": 6, "name": "Blütezeit" },
+  { "id": 7, "name": "Reiche Ernte" },
+  { "id": 8, "name": "Hinterland" },
+  { "id": 9, "name": "Dark Ages" },
+  { "id": 10, "name": "Die Gilden" },
+  { "id": 11, "name": "Abenteuer" },
+  { "id": 12, "name": "Empires" },
+  { "id": 13, "name": "Nocturne" }
+]
