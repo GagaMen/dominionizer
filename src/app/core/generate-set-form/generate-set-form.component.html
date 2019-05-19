@@ -1,7 +1,7 @@
 <h1>Stelle dein Set zusammen:</h1>
 <mat-vertical-stepper>
   <mat-step [stepControl]="firstStep" errorMessage="Wähle mindestens eine Erweiterung aus.">
-    <form [formGroup]="firstStep">
+    <form *ngIf="firstStep" [formGroup]="firstStep">
       <ng-template matStepLabel>
         <span class="white-space-normal">
           Welche Erweiterungen sollen berücksichtigt werden?
@@ -14,10 +14,10 @@
       </mat-slide-toggle>
       <mat-divider></mat-divider>
       <div formArrayName="extensions" class="extensions">
-        <ng-container *ngFor="let extension of firstStep.controls.extensions.controls; let i = index">
+        <ng-container *ngFor="let extension of extensions; let i = index">
           <mat-slide-toggle [formControlName]="i">
             <span class="white-space-normal">
-              {{ extensions[i].name }}
+              {{ extension.name }}
             </span>
           </mat-slide-toggle>
         </ng-container>
@@ -28,7 +28,7 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondStep">
-    <form [formGroup]="secondStep">
+    <form *ngIf="secondStep" [formGroup]="secondStep">
       <ng-template matStepLabel>
         <span class="white-space-normal">
           Spiel-Optionen

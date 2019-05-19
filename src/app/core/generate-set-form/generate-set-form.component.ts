@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { DataService } from '../services/data.service';
+import { Extension } from '../models/extension';
 
 @Component({
   selector: 'app-generate-set-form',
@@ -12,33 +14,37 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 })
 
 export class GenerateSetFormComponent implements OnInit {
-  firstStep: FormGroup;
-  secondStep: FormGroup;
-  extensions = [
-    { id: 1, name: 'Basisspiel' },
-    { id: 2, name: 'Basisspiel 2. Edition' },
-    { id: 3, name: 'Die Intrige' },
-    { id: 4, name: 'Seaside' },
-    { id: 5, name: 'Die Alchemisten' },
-    { id: 6, name: 'Blütezeit' },
-    { id: 7, name: 'Reiche Ernte' },
-    { id: 8, name: 'Hinterland' },
-    { id: 9, name: 'Dark Ages' },
-    { id: 10, name: 'Die Gilden' },
-    { id: 11, name: 'Abenteuer' },
-    { id: 12, name: 'Empires' },
-    { id: 13, name: 'Nocturne' }
-  ];
+  firstStep: FormGroup = null;
+  secondStep: FormGroup = null;
+  extensions: Extension[];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.firstStep = this.formBuilder.group({
-      extensions: new FormArray(
-        this.extensions.map(() => new FormControl(false)),
-        GenerateSetFormComponent.validateMinSelect
-      ),
-      selectAll: new FormControl(false),
+  constructor(private dataService: DataService, private formBuilder: FormBuilder) {}
+
+  private static validateMinSelect(control: FormArray): ValidationErrors | null {
+    const controlValues = Object.values(control.value);
+    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
+    return result ? null : { minSelect: { value: control.value } };
+  }
+
+  ngOnInit() {
+    this.dataService.extensions().subscribe((extensions: Extension[]) => {
+      this.extensions = extensions;
+
+      this.buildFirstStep(extensions);
+      this.buildSecondStep();
+      this.onChange();
     });
 
+  }
+
+  private buildFirstStep(extensions: Extension[]) {
+    this.firstStep = this.formBuilder.group({
+      extensions: new FormArray(extensions.map(() => new FormControl(false)), GenerateSetFormComponent.validateMinSelect),
+      selectAll: new FormControl(false),
+    });
+  }
+
+  private buildSecondStep() {
     this.secondStep = this.formBuilder.group({
       events: new FormControl(false),
       eventCount: new FormControl(1),
@@ -48,21 +54,10 @@ export class GenerateSetFormComponent implements OnInit {
     });
   }
 
-  private static validateMinSelect(control: FormArray): ValidationErrors | null {
-    const controlValues = Object.values(control.value);
-    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
-    return result ? null : { minSelect: { value: control.value } };
-  }
-
-  ngOnInit() {
-    this.onChange();
-  }
-
   onChange(): void {
     this.firstStep.get('selectAll').valueChanges.subscribe(bool => {
-      this.firstStep
-        .get('extensions')
-        .patchValue(Array(this.extensions.length).fill(bool), { emitEvent: false });
+      const extensions = this.firstStep.get('extensions') as FormArray;
+      extensions.patchValue(Array(extensions.length).fill(bool), { emitEvent: false });
     });
 
     this.firstStep.get('extensions').valueChanges.subscribe(val => {
