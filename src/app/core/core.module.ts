@@ -17,11 +17,13 @@ import {
   MatStepperModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
     AppBarComponent,
     GenerateSetFormComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,
