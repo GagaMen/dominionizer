@@ -4,6 +4,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { DataService } from '../services/data.service';
 import { Extension } from '../models/extension';
 import { Router } from '@angular/router';
+import { Configuration } from '../models/configuration';
+import { Options } from '../models/options';
 
 @Component({
   selector: 'app-generate-set-form',
@@ -70,6 +72,18 @@ export class GenerateSetFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['result']);
+    this.router.navigate(['result'], { state: this.determineConfiguration()});
+  }
+
+  private determineConfiguration(): Configuration {
+    return { extensions: this.determineExtensions(), options: this.determineOptions() };
+  }
+
+  private determineExtensions(): Extension[] {
+    return this.extensions.filter((extension: Extension, index: number) => this.firstStep.get('extensions').value[index]);
+  }
+
+  private determineOptions(): Options {
+    return this.secondStep.value;
   }
 }

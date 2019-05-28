@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Configuration } from '../models/configuration';
 
 @Component({
   selector: 'app-generate-set-result',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./generate-set-result.component.scss']
 })
 export class GenerateSetResultComponent implements OnInit {
+  configuration: Configuration;
 
-  constructor() { }
+  constructor() {
+    this.configuration = history.state;
+   }
 
   ngOnInit() {
   }
