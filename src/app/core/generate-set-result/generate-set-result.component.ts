@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Configuration } from '../models/configuration';
+import { Observable } from 'rxjs';
+import { Card } from '../models/card';
+import { ShuffleService } from '../services/shuffle.service';
 
 @Component({
   selector: 'app-generate-set-result',
@@ -8,10 +10,11 @@ import { Configuration } from '../models/configuration';
   styleUrls: ['./generate-set-result.component.scss']
 })
 export class GenerateSetResultComponent implements OnInit {
-  configuration: Configuration;
+  cards: Observable<Card[]>;
 
-  constructor() {
-    this.configuration = history.state;
+  constructor(private shuffleService: ShuffleService) {
+    const configuration: Configuration = history.state;
+    this.cards = this.shuffleService.shuffle(configuration);
    }
 
   ngOnInit() {
