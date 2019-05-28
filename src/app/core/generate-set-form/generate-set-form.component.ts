@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors } from
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { DataService } from '../services/data.service';
 import { Extension } from '../models/extension';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-generate-set-form',
@@ -18,7 +19,7 @@ export class GenerateSetFormComponent implements OnInit {
   secondStep: FormGroup = null;
   extensions: Extension[];
 
-  constructor(private dataService: DataService, private formBuilder: FormBuilder) {}
+  constructor(private dataService: DataService, private formBuilder: FormBuilder, private router: Router) {}
 
   private static validateMinSelect(control: FormArray): ValidationErrors | null {
     const controlValues = Object.values(control.value);
@@ -68,5 +69,7 @@ export class GenerateSetFormComponent implements OnInit {
     });
   }
 
-  submit() { }
+  onSubmit() {
+    this.router.navigate(['result']);
+  }
 }

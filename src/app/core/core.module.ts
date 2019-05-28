@@ -19,6 +19,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { CardListComponent } from './card-list/card-list.component';
+import { GenerateSetResultComponent } from './generate-set-result/generate-set-result.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CardListComponent } from './card-list/card-list.component';
     GenerateSetFormComponent,
     CardComponent,
     CardListComponent,
+    GenerateSetResultComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 <h1>Stelle dein Set zusammen:</h1>
-<mat-vertical-stepper>
+<mat-vertical-stepper #stepper>
   <mat-step [stepControl]="firstStep" errorMessage="Wähle mindestens eine Erweiterung aus.">
-    <form *ngIf="firstStep" [formGroup]="firstStep">
+    <form *ngIf="firstStep" [formGroup]="firstStep" (ngSubmit)="stepper.next()">
       <ng-template matStepLabel>
         <span class="white-space-normal">
           Welche Erweiterungen sollen berücksichtigt werden?
@@ -23,12 +23,12 @@
         </ng-container>
       </div>
       <div class="form-actions">
-        <button mat-raised-button matStepperNext color="primary">Weiter</button>
+        <button mat-raised-button matStepperNext color="primary" type="submit">Weiter</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondStep">
-    <form *ngIf="secondStep" [formGroup]="secondStep">
+    <form *ngIf="secondStep" [formGroup]="secondStep" (ngSubmit)="onSubmit()">
       <ng-template matStepLabel>
         <span class="white-space-normal">
           Spiel-Optionen
@@ -67,6 +67,10 @@
           Reaktionskarte bei einer Angriffskarte erzwingen
         </span>
       </mat-slide-toggle>
-    </form>
+      <div class="form-actions">
+        <button mat-button matStepperPrevious color="secondary">Zurück</button>
+        <button mat-raised-button color="primary" type="submit">Generieren</button>
+      </div>
+</form>
   </mat-step>
 </mat-vertical-stepper>
