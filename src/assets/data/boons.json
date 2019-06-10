@@ -1,0 +1,14 @@
+[
+  { "id": 3001, "name": "Geschenk der Erde", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3002, "name": "Geschenk des Feldes", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3003, "name": "Geschenk des Feuers", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3004, "name": "Geschenk des Waldes", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3005, "name": "Geschenk des Mondes", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3006, "name": "Geschenk des Berges", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3007, "name": "Geschenk des Flusses", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3008, "name": "Geschenk des Meeres", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3009, "name": "Geschenk des Himmels", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3010, "name": "Geschenk der Sonne", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3011, "name": "Geschenk des Sumpfes", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] },
+  { "id": 3012, "name": "Geschenk des Windes", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Boon"] }
+]
