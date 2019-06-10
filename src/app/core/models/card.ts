@@ -7,7 +7,7 @@ export interface Card {
     description: string;
     extension: Extension;
     types: CardType[];
-    cost: number;
+    cost?: number;
     debt?: number;
     points?: number;
     money?: number;
