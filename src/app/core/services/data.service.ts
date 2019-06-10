@@ -18,4 +18,24 @@ export class DataService {
   cards(): Observable<Card[]> {
     return this.http.get<Card[]>('/assets/data/cards.json');
   }
+
+  events(): Observable<Card[]> {
+    return this.http.get<Card[]>('/assets/data/events.json');
+  }
+
+  landmarks(): Observable<Card[]> {
+    return this.http.get<Card[]>('/assets/data/landmarks.json');
+  }
+
+  boons(): Observable<Card[]> {
+    return this.http.get<Card[]>('/assets/data/boons.json');
+  }
+
+  hexes(): Observable<Card[]> {
+    return this.http.get<Card[]>('/assets/data/hexes.json');
+  }
+
+  states(): Observable<Card[]> {
+    return this.http.get<Card[]>('/assets/data/states.json');
+  }
 }
