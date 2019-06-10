@@ -1,0 +1,7 @@
+[
+  { "id": 5001, "name": "Getäuscht", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["State"] },
+  { "id": 5002, "name": "Neidisch", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["State"] },
+  { "id": 5003, "name": "Elendig", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["State"] },
+  { "id": 5004, "name": "Doppelt Elendig", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["State"] },
+  { "id": 5005, "name": "Im Wald Verirrt", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["State"] }
+]

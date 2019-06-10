@@ -1,0 +1,23 @@
+[
+  { "id": 2001, "name": "Aquädukt", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2002, "name": "Arena", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2003, "name": "Badehaus", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2004, "name": "Basilika", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2005, "name": "Bollwerk", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2006, "name": "Brunnen", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2007, "name": "Entweihter Schrein", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2008, "name": "Gebirgspass", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2009, "name": "Grabmal", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2010, "name": "Kolonnaden", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2011, "name": "Labyrinth", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2012, "name": "Mauer", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2013, "name": "Museum", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2014, "name": "Obelisk", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2015, "name": "Palast", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2016, "name": "Obstgarten", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2017, "name": "Räuberfestung", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2018, "name": "Schlachtfeld", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2019, "name": "Triumphbogen", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2020, "name": "Turm", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] },
+  { "id": 2021, "name": "Wolfsbau", "description": "", "extension": { "id": 12, "name": "Empires" }, "types": ["Landmark"] }
+]
