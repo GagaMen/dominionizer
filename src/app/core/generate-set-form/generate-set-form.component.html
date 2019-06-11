@@ -62,6 +62,48 @@
           <mat-option value="5">5</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-slide-toggle #boons formControlName="boons">
+        <span class="white-space-normal">
+          Gaben
+        </span>
+      </mat-slide-toggle>
+      <mat-form-field *ngIf="boons.checked">
+        <mat-select formControlName="boonCount" placeholder="Anzahl">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle #hexes formControlName="hexes">
+        <span class="white-space-normal">
+          Plagen
+        </span>
+      </mat-slide-toggle>
+      <mat-form-field *ngIf="hexes.checked">
+        <mat-select formControlName="hexCount" placeholder="Anzahl">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle #states formControlName="states">
+        <span class="white-space-normal">
+          Zustände
+        </span>
+      </mat-slide-toggle>
+      <mat-form-field *ngIf="states.checked">
+        <mat-select formControlName="stateCount" placeholder="Anzahl">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+          <mat-option value="4">4</mat-option>
+          <mat-option value="5">5</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-slide-toggle formControlName="reactionOnAttack">
         <span class="white-space-normal">
           Reaktionskarte bei einer Angriffskarte erzwingen
