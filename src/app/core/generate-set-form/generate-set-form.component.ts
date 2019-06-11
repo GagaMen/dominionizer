@@ -53,6 +53,12 @@ export class GenerateSetFormComponent implements OnInit {
       eventCount: new FormControl(1),
       landmarks: new FormControl(false),
       landmarkCount: new FormControl(1),
+      boons: new FormControl(false),
+      boonCount: new FormControl(1),
+      hexes: new FormControl(false),
+      hexCount: new FormControl(1),
+      states: new FormControl(false),
+      stateCount: new FormControl(1),
       reactionOnAttack: new FormControl(false),
     });
   }
