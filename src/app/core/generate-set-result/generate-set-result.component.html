@@ -1,1 +1,6 @@
-<app-card-list [cardList]="cards | async"></app-card-list>
+<h2>Cards:</h2>
+<app-card-list [cardList]="cards$ | async"></app-card-list>
+<ng-container *ngIf="events$ | async as events">
+  <h2>Events:</h2>
+  <app-card-list [cardList]="events"></app-card-list>
+</ng-container>
