@@ -9,20 +9,20 @@ import { ShuffleService } from '../services/shuffle.service';
   templateUrl: './generate-set-result.component.html',
   styleUrls: ['./generate-set-result.component.scss']
 })
-export class GenerateSetResultComponent implements OnInit {
+export class GenerateSetResultComponent {
+  private configuration: Configuration = history.state;
   cards$: Observable<Card[]>;
   events$: Observable<Card[]>;
 
   constructor(private shuffleService: ShuffleService) {
-    const configuration: Configuration = history.state;
-    this.cards$ = this.shuffleService.shuffleCards(configuration);
-
-    if (configuration.options.events) {
-      this.events$ = this.shuffleService.shuffelEvents(configuration);
-    }
+    this.shuffle();
    }
 
-  ngOnInit() {
-  }
+   shuffle(): void {
+    this.cards$ = this.shuffleService.shuffleCards(this.configuration);
 
+    if (this.configuration.options.events) {
+      this.events$ = this.shuffleService.shuffelEvents(this.configuration);
+    }
+   }
 }

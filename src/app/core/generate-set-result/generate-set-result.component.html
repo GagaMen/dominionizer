@@ -1,3 +1,4 @@
+<button mat-button (click)="shuffle()">Reshuffle</button>
 <h2>Cards:</h2>
 <app-card-list [cardList]="cards$ | async"></app-card-list>
 <ng-container *ngIf="events$ | async as events">
