@@ -10,11 +10,16 @@ import { ShuffleService } from '../services/shuffle.service';
   styleUrls: ['./generate-set-result.component.scss']
 })
 export class GenerateSetResultComponent implements OnInit {
-  cards: Observable<Card[]>;
+  cards$: Observable<Card[]>;
+  events$: Observable<Card[]>;
 
   constructor(private shuffleService: ShuffleService) {
     const configuration: Configuration = history.state;
-    this.cards = this.shuffleService.shuffle(configuration);
+    this.cards$ = this.shuffleService.shuffleCards(configuration);
+
+    if (configuration.options.events) {
+      this.events$ = this.shuffleService.shuffelEvents(configuration);
+    }
    }
 
   ngOnInit() {
