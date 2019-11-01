@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Configuration } from '../models/configuration';
-import { Observable } from 'rxjs';
-import { Card } from '../models/card';
+import { Observable, Subject, forkJoin, iif, of, BehaviorSubject } from 'rxjs';
 import { ShuffleService } from '../services/shuffle.service';
+import { SetResult } from '../models/set-result';
+import { exhaustMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-generate-set-result',
@@ -11,18 +12,25 @@ import { ShuffleService } from '../services/shuffle.service';
 })
 export class GenerateSetResultComponent {
   private configuration: Configuration = history.state;
-  cards$: Observable<Card[]>;
-  events$: Observable<Card[]>;
+  private shuffleSubject: Subject<any> = new BehaviorSubject({});
+  setResult$: Observable<SetResult>;
 
   constructor(private shuffleService: ShuffleService) {
-    this.shuffle();
-   }
+    const singleSetResult$ = forkJoin({
+      cards: this.shuffleService.shuffleCards(this.configuration),
+      events: iif(
+        () => this.configuration.options.events,
+        this.shuffleService.shuffelEvents(this.configuration),
+        of(null)
+      ),
+    });
 
-   shuffle(): void {
-    this.cards$ = this.shuffleService.shuffleCards(this.configuration);
+    this.setResult$ = this.shuffleSubject.pipe(
+      exhaustMap(() => singleSetResult$)
+    );
+  }
 
-    if (this.configuration.options.events) {
-      this.events$ = this.shuffleService.shuffelEvents(this.configuration);
-    }
-   }
+  shuffle(): void {
+  this.shuffleSubject.next();
+  }
 }
