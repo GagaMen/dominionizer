@@ -6,6 +6,7 @@ import { Extension } from '../models/extension';
 import { Router } from '@angular/router';
 import { Configuration } from '../models/configuration';
 import { Options } from '../models/options';
+import { ShuffleService } from '../services/shuffle.service';
 
 @Component({
   selector: 'app-generate-set-form',
@@ -21,7 +22,12 @@ export class GenerateSetFormComponent implements OnInit {
   secondStep: FormGroup = null;
   extensions: Extension[];
 
-  constructor(private dataService: DataService, private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private shuffleService: ShuffleService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   private static validateMinSelect(control: FormArray): ValidationErrors | null {
     const controlValues = Object.values(control.value);
@@ -78,7 +84,8 @@ export class GenerateSetFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['result'], { state: this.determineConfiguration()});
+    this.shuffleService.configuration = this.determineConfiguration();
+    this.router.navigate(['result']);
   }
 
   private determineConfiguration(): Configuration {

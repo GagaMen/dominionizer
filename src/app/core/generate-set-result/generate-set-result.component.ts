@@ -11,36 +11,36 @@ import { exhaustMap } from 'rxjs/operators';
   styleUrls: ['./generate-set-result.component.scss']
 })
 export class GenerateSetResultComponent {
-  private configuration: Configuration = history.state;
+  private configuration: Configuration = this.shuffleService.configuration;
   private shuffleSubject: Subject<any> = new BehaviorSubject({});
   setResult$: Observable<SetResult>;
 
   constructor(private shuffleService: ShuffleService) {
     const singleSetResult$ = forkJoin({
-      cards: this.shuffleService.shuffleCards(this.configuration),
+      cards: this.shuffleService.shuffleCards(),
       events: iif(
         () => this.configuration.options.events,
-        this.shuffleService.shuffleEvents(this.configuration),
+        this.shuffleService.shuffleEvents(),
         of(null)
       ),
       landmarks: iif(
         () => this.configuration.options.landmarks,
-        this.shuffleService.shuffleLandmarks(this.configuration),
+        this.shuffleService.shuffleLandmarks(),
         of(null)
       ),
       boons: iif(
         () => this.configuration.options.landmarks,
-        this.shuffleService.shuffleBoons(this.configuration),
+        this.shuffleService.shuffleBoons(),
         of(null)
       ),
       hexes: iif(
         () => this.configuration.options.landmarks,
-        this.shuffleService.shuffleHexes(this.configuration),
+        this.shuffleService.shuffleHexes(),
         of(null)
       ),
       states: iif(
         () => this.configuration.options.landmarks,
-        this.shuffleService.shuffleStates(this.configuration),
+        this.shuffleService.shuffleStates(),
         of(null)
       ),
     });
