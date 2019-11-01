@@ -7,4 +7,24 @@
       <h2>Events:</h2>
       <app-card-list [cardList]="setResult.events"></app-card-list>
   </ng-container>
+
+  <ng-container *ngIf="setResult.landmarks">
+      <h2>Landmarks:</h2>
+      <app-card-list [cardList]="setResult.landmarks"></app-card-list>
+  </ng-container>
+
+  <ng-container *ngIf="setResult.boons">
+      <h2>Boons:</h2>
+      <app-card-list [cardList]="setResult.boons"></app-card-list>
+  </ng-container>
+
+  <ng-container *ngIf="setResult.hexes">
+      <h2>Hexes:</h2>
+      <app-card-list [cardList]="setResult.hexes"></app-card-list>
+  </ng-container>
+
+  <ng-container *ngIf="setResult.states">
+      <h2>States:</h2>
+      <app-card-list [cardList]="setResult.states"></app-card-list>
+  </ng-container>
 </ng-container>

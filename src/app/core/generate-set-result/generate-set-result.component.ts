@@ -20,7 +20,27 @@ export class GenerateSetResultComponent {
       cards: this.shuffleService.shuffleCards(this.configuration),
       events: iif(
         () => this.configuration.options.events,
-        this.shuffleService.shuffelEvents(this.configuration),
+        this.shuffleService.shuffleEvents(this.configuration),
+        of(null)
+      ),
+      landmarks: iif(
+        () => this.configuration.options.landmarks,
+        this.shuffleService.shuffleLandmarks(this.configuration),
+        of(null)
+      ),
+      boons: iif(
+        () => this.configuration.options.landmarks,
+        this.shuffleService.shuffleBoons(this.configuration),
+        of(null)
+      ),
+      hexes: iif(
+        () => this.configuration.options.landmarks,
+        this.shuffleService.shuffleHexes(this.configuration),
+        of(null)
+      ),
+      states: iif(
+        () => this.configuration.options.landmarks,
+        this.shuffleService.shuffleStates(this.configuration),
         of(null)
       ),
     });

@@ -1,3 +1,4 @@
+import { Configuration } from './../models/configuration';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { Card } from '../models/card';
@@ -24,12 +25,48 @@ export class ShuffleService {
     );
   }
 
-  shuffelEvents(configuration: Configuration): Observable<Card[]> {
+  shuffleEvents(configuration: Configuration): Observable<Card[]> {
     this.configuration = configuration;
 
     return this.dataService.events().pipe(
       map((cards: Card[]) => this.filterByExtensions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, configuration.options.eventCount))
+    );
+  }
+
+  shuffleLandmarks(configuration: Configuration): Observable<Card[]> {
+    this.configuration = configuration;
+
+    return this.dataService.events().pipe(
+      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.pickRandom(cards, configuration.options.landmarkCount))
+    );
+  }
+
+  shuffleBoons(configuration: Configuration): Observable<Card[]> {
+    this.configuration = configuration;
+
+    return this.dataService.events().pipe(
+      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.pickRandom(cards, configuration.options.boonCount))
+    );
+  }
+
+  shuffleHexes(configuration: Configuration): Observable<Card[]> {
+    this.configuration = configuration;
+
+    return this.dataService.events().pipe(
+      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.pickRandom(cards, configuration.options.hexCount))
+    );
+  }
+
+  shuffleStates(configuration: Configuration): Observable<Card[]> {
+    this.configuration = configuration;
+
+    return this.dataService.events().pipe(
+      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.pickRandom(cards, configuration.options.stateCount))
     );
   }
 
