@@ -1,6 +1,6 @@
 import { Card } from './card';
 
-export interface SetResult {
+export interface Set {
     cards: Card[];
     events: Card[];
     landmarks: Card[];
