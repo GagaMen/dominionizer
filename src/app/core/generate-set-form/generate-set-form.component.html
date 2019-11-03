@@ -35,35 +35,45 @@
         </span>
       </ng-template>
 
-      <div class="special-cards-label">
-        <label>Ereignisse</label>
-        <span>{{ events.value }}</span>
-      </div>
-      <mat-slider #events formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
+      <ng-container *ngIf="shouldEventsBeShown$ | async">
+        <div class="special-cards-label">
+          <label>Ereignisse</label>
+          <span>{{ events.value }}</span>
+        </div>
+        <mat-slider #events formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
+      </ng-container>
 
-      <div class="special-cards-label">
-        <label>Landmarken</label>
-        <span>{{ landmarks.value }}</span>
-      </div>
-      <mat-slider #landmarks formControlName="landmarks" min="0" max="5" tickInterval="1"></mat-slider>
+      <ng-container *ngIf="shouldLandmarksBeShown$ | async">
+        <div class="special-cards-label">
+          <label>Landmarken</label>
+          <span>{{ landmarks.value }}</span>
+        </div>
+        <mat-slider #landmarks formControlName="landmarks" min="0" max="5" tickInterval="1"></mat-slider>
+      </ng-container>
 
-      <div class="special-cards-label">
-        <label>Gaben</label>
-        <span>{{ boons.value }}</span>
-      </div>
-      <mat-slider #boons formControlName="boons" min="0" max="5" tickInterval="1"></mat-slider>
+      <ng-container *ngIf="shouldBoonsBeShown$ | async">
+        <div class="special-cards-label">
+          <label>Gaben</label>
+          <span>{{ boons.value }}</span>
+        </div>
+        <mat-slider #boons formControlName="boons" min="0" max="5" tickInterval="1"></mat-slider>
+      </ng-container>
 
-      <div class="special-cards-label">
-        <label>Plagen</label>
-        <span>{{ hexes.value }}</span>
-      </div>
-      <mat-slider #hexes formControlName="hexes" min="0" max="5" tickInterval="1"></mat-slider>
+      <ng-container *ngIf="shouldHexesBeShown$ | async">
+        <div class="special-cards-label">
+          <label>Plagen</label>
+          <span>{{ hexes.value }}</span>
+        </div>
+        <mat-slider #hexes formControlName="hexes" min="0" max="5" tickInterval="1"></mat-slider>
+      </ng-container>
 
-      <div class="special-cards-label">
-        <label>Zustände</label>
-        <span>{{ states.value }}</span>
-      </div>
-      <mat-slider #states formControlName="states" min="0" max="5" tickInterval="1"></mat-slider>
+      <ng-container *ngIf="shouldStatesBeShown$ | async">
+        <div class="special-cards-label">
+          <label>Zustände</label>
+          <span>{{ states.value }}</span>
+        </div>
+        <mat-slider #states formControlName="states" min="0" max="5" tickInterval="1"></mat-slider>
+      </ng-container>
 
       <mat-slide-toggle formControlName="reactionOnAttack">
         <span class="white-space-normal">

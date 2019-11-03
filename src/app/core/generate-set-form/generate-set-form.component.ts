@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { Configuration } from '../models/configuration';
 import { Options } from '../models/options';
 import { ShuffleService } from '../services/shuffle.service';
+import { Observable, combineLatest } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-generate-set-form',
@@ -16,11 +18,15 @@ import { ShuffleService } from '../services/shuffle.service';
     { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
   ]
 })
-
 export class GenerateSetFormComponent implements OnInit {
   firstStep: FormGroup = null;
   secondStep: FormGroup = null;
   extensions: Extension[];
+  shouldEventsBeShown$: Observable<boolean>;
+  shouldLandmarksBeShown$: Observable<boolean>;
+  shouldBoonsBeShown$: Observable<boolean>;
+  shouldHexesBeShown$: Observable<boolean>;
+  shouldStatesBeShown$: Observable<boolean>;
 
   constructor(
     private dataService: DataService,
@@ -42,6 +48,22 @@ export class GenerateSetFormComponent implements OnInit {
       this.buildFirstStep(extensions);
       this.buildSecondStep();
       this.onChange();
+
+      // TODO: PLLLSSS REFACTOR THIS SHIT
+      const extensionControls = this.firstStep.get('extensions') as FormArray;
+
+      this.shouldEventsBeShown$ = combineLatest(
+        extensionControls.get('10').valueChanges.pipe(startWith(extensionControls.get('10').value)),
+        extensionControls.get('11').valueChanges.pipe(startWith(extensionControls.get('11').value))
+      ).pipe(
+        map(([adventures, empires]) => adventures || empires)
+      );
+
+      this.shouldLandmarksBeShown$ = extensionControls.get('11').valueChanges.pipe(startWith(extensionControls.get('11').value));
+
+      this.shouldBoonsBeShown$ = extensionControls.get('12').valueChanges.pipe(startWith(extensionControls.get('12').value));
+      this.shouldHexesBeShown$ = this.shouldBoonsBeShown$;
+      this.shouldStatesBeShown$ = this.shouldBoonsBeShown$
     });
 
   }
@@ -83,6 +105,8 @@ export class GenerateSetFormComponent implements OnInit {
     this.router.navigate(['result']);
   }
 
+  // TODO: Should be correct inconsistent configuration state
+  //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
   private determineConfiguration(): Configuration {
     return { extensions: this.determineExtensions(), options: this.determineOptions() };
   }
