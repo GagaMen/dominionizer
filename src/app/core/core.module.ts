@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -37,6 +38,7 @@ import { GenerateSetResultComponent } from './generate-set-result/generate-set-r
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatSliderModule,
     MatCardModule,
     MatDividerModule,
     MatStepperModule,

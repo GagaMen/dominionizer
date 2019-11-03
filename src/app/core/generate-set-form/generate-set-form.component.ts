@@ -55,16 +55,11 @@ export class GenerateSetFormComponent implements OnInit {
 
   private buildSecondStep() {
     this.secondStep = this.formBuilder.group({
-      events: new FormControl(false),
-      eventCount: new FormControl(1),
-      landmarks: new FormControl(false),
-      landmarkCount: new FormControl(1),
-      boons: new FormControl(false),
-      boonCount: new FormControl(1),
-      hexes: new FormControl(false),
-      hexCount: new FormControl(1),
-      states: new FormControl(false),
-      stateCount: new FormControl(1),
+      events: new FormControl(0),
+      landmarks: new FormControl(0),
+      boons: new FormControl(0),
+      hexes: new FormControl(0),
+      states: new FormControl(0),
       reactionOnAttack: new FormControl(false),
     });
   }
