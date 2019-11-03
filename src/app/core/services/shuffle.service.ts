@@ -28,7 +28,7 @@ export class ShuffleService {
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.events)
     ));
 
-    return iif(() => this.configuration.options.events > 0, events$, of(null));
+    return iif(() => this.configuration.options.events > 0, events$, of([]));
   }
 
   shuffleLandmarks(): Observable<Card[]> {
@@ -37,7 +37,7 @@ export class ShuffleService {
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.landmarks)
     ));
 
-    return iif(() => this.configuration.options.landmarks > 0, landmarks$, of(null));
+    return iif(() => this.configuration.options.landmarks > 0, landmarks$, of([]));
   }
 
   shuffleBoons(): Observable<Card[]> {
@@ -46,7 +46,7 @@ export class ShuffleService {
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.boons)
     ));
 
-    return iif(() => this.configuration.options.boons > 0, boons$, of(null));
+    return iif(() => this.configuration.options.boons > 0, boons$, of([]));
   }
 
   shuffleHexes(): Observable<Card[]> {
@@ -55,7 +55,7 @@ export class ShuffleService {
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.hexes)
     ));
 
-    return iif(() => this.configuration.options.hexes > 0, hexes$, of(null));
+    return iif(() => this.configuration.options.hexes > 0, hexes$, of([]));
   }
 
   shuffleStates(): Observable<Card[]> {
@@ -64,7 +64,7 @@ export class ShuffleService {
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.states)
     ));
 
-    return iif(() => this.configuration.options.states > 0, states$, of(null));
+    return iif(() => this.configuration.options.states > 0, states$, of([]));
   }
 
   pickRandom(cards: Card[], amount: number): Card[] {

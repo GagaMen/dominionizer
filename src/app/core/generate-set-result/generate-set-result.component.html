@@ -3,27 +3,27 @@
   <h2>Cards:</h2>
   <app-card-list [cardList]="setResult.cards"></app-card-list>
 
-  <ng-container *ngIf="setResult.events">
+  <ng-container *ngIf="setResult.events.length > 0">
       <h2>Events:</h2>
       <app-card-list [cardList]="setResult.events"></app-card-list>
   </ng-container>
 
-  <ng-container *ngIf="setResult.landmarks">
+  <ng-container *ngIf="setResult.landmarks.length > 0">
       <h2>Landmarks:</h2>
       <app-card-list [cardList]="setResult.landmarks"></app-card-list>
   </ng-container>
 
-  <ng-container *ngIf="setResult.boons">
+  <ng-container *ngIf="setResult.boons.length > 0">
       <h2>Boons:</h2>
       <app-card-list [cardList]="setResult.boons"></app-card-list>
   </ng-container>
 
-  <ng-container *ngIf="setResult.hexes">
+  <ng-container *ngIf="setResult.hexes.length > 0">
       <h2>Hexes:</h2>
       <app-card-list [cardList]="setResult.hexes"></app-card-list>
   </ng-container>
 
-  <ng-container *ngIf="setResult.states">
+  <ng-container *ngIf="setResult.states.length > 0">
       <h2>States:</h2>
       <app-card-list [cardList]="setResult.states"></app-card-list>
   </ng-container>
