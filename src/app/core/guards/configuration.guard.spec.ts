@@ -2,7 +2,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 
 import { ConfigurationGuard } from './configuration.guard';
 
-describe('ConfigurationGuard', () => {
+xdescribe('ConfigurationGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ConfigurationGuard]
