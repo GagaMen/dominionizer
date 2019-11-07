@@ -1,14 +1,14 @@
 [
-  { "id": 4001, "name": "Schlechtes Omen", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4002, "name": "Täuschung", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4003, "name": "Neid", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4004, "name": "Hungersnot", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4005, "name": "Furcht", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4006, "name": "Gier", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4007, "name": "Spuk", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4008, "name": "Heuschrecken", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4009, "name": "Elend", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4010, "name": "Seuche", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4011, "name": "Armut", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] },
-  { "id": 4012, "name": "Krieg", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": ["Hex"] }
+  { "id": 4001, "name": "Schlechtes Omen", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4002, "name": "Täuschung", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4003, "name": "Neid", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4004, "name": "Hungersnot", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4005, "name": "Furcht", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4006, "name": "Gier", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4007, "name": "Spuk", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4008, "name": "Heuschrecken", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4009, "name": "Elend", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4010, "name": "Seuche", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4011, "name": "Armut", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] },
+  { "id": 4012, "name": "Krieg", "description": "", "extension": { "id": 13, "name": "Nocturne" }, "types": [13] }
 ]
