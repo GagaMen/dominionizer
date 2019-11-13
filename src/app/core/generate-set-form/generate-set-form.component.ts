@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
 import { Configuration } from '../models/configuration';
 import { Options } from '../models/options';
 import { ShuffleService } from '../services/shuffle.service';
-import { Observable, combineLatest } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ConfigurationService } from '../services/configuration.service';
+import { CardType } from '../models/card-type';
 
 @Component({
   selector: 'app-generate-set-form',
@@ -22,13 +23,14 @@ export class GenerateSetFormComponent implements OnInit {
   firstStep: FormGroup = null;
   secondStep: FormGroup = null;
   extensions: Extension[];
-  shouldEventsBeShown$: Observable<boolean>;
-  shouldLandmarksBeShown$: Observable<boolean>;
-  shouldBoonsBeShown$: Observable<boolean>;
-  shouldHexesBeShown$: Observable<boolean>;
-  shouldStatesBeShown$: Observable<boolean>;
+  areEventsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Event);
+  areLandmarksAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Landmark);
+  areBoonsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Boon);
+  areHexesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Hex);
+  areStatesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.State);
 
   constructor(
+    public configurationService: ConfigurationService,
     private dataService: DataService,
     private shuffleService: ShuffleService,
     private formBuilder: FormBuilder,
@@ -48,24 +50,7 @@ export class GenerateSetFormComponent implements OnInit {
       this.buildFirstStep(extensions);
       this.buildSecondStep();
       this.onChange();
-
-      // TODO: PLLLSSS REFACTOR THIS SHIT
-      const extensionControls = this.firstStep.get('extensions') as FormArray;
-
-      this.shouldEventsBeShown$ = combineLatest(
-        extensionControls.get('10').valueChanges.pipe(startWith(extensionControls.get('10').value)),
-        extensionControls.get('11').valueChanges.pipe(startWith(extensionControls.get('11').value))
-      ).pipe(
-        map(([adventures, empires]) => adventures || empires)
-      );
-
-      this.shouldLandmarksBeShown$ = extensionControls.get('11').valueChanges.pipe(startWith(extensionControls.get('11').value));
-
-      this.shouldBoonsBeShown$ = extensionControls.get('12').valueChanges.pipe(startWith(extensionControls.get('12').value));
-      this.shouldHexesBeShown$ = this.shouldBoonsBeShown$;
-      this.shouldStatesBeShown$ = this.shouldBoonsBeShown$
     });
-
   }
 
   private buildFirstStep(extensions: Extension[]) {
@@ -97,6 +82,11 @@ export class GenerateSetFormComponent implements OnInit {
         if (this.firstStep.get('selectAll').value !== allSelected) {
           this.firstStep.get('selectAll').patchValue(allSelected, { emitEvent: false });
         }
+    });
+
+    this.firstStep.get('extensions').valueChanges.subscribe((extensionStates: boolean[]) => {
+      const enabledExtensions = this.extensions.filter((_, index: number) => extensionStates[index] === true);
+      this.configurationService.updateExtensions(enabledExtensions);
     });
   }
 
