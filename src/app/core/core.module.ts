@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { AppBarComponent } from './app-bar/app-bar.component';
-import { GenerateSetFormComponent } from './generate-set-form/generate-set-form.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -23,7 +23,7 @@ import { GenerateSetResultComponent } from './generate-set-result/generate-set-r
 @NgModule({
   declarations: [
     AppBarComponent,
-    GenerateSetFormComponent,
+    ConfigurationComponent,
     CardComponent,
     CardListComponent,
     GenerateSetResultComponent,

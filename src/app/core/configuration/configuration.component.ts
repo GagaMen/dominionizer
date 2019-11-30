@@ -12,14 +12,14 @@ import { ConfigurationService } from '../services/configuration.service';
 import { CardType } from '../models/card-type';
 
 @Component({
-  selector: 'app-generate-set-form',
-  templateUrl: './generate-set-form.component.html',
-  styleUrls: ['./generate-set-form.component.scss'],
+  selector: 'app-configuration',
+  templateUrl: './configuration.component.html',
+  styleUrls: ['./configuration.component.scss'],
   providers: [
     { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
   ]
 })
-export class GenerateSetFormComponent implements OnInit {
+export class ConfigurationComponent implements OnInit {
   firstStep: FormGroup = null;
   secondStep: FormGroup = null;
   extensions: Extension[];
@@ -55,7 +55,7 @@ export class GenerateSetFormComponent implements OnInit {
 
   private buildFirstStep(extensions: Extension[]) {
     this.firstStep = this.formBuilder.group({
-      extensions: new FormArray(extensions.map(() => new FormControl(false)), GenerateSetFormComponent.validateMinSelect),
+      extensions: new FormArray(extensions.map(() => new FormControl(false)), ConfigurationComponent.validateMinSelect),
       selectAll: new FormControl(false),
     });
   }

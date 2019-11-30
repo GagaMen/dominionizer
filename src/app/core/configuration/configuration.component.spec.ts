@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenerateSetFormComponent } from './generate-set-form.component';
+import { ConfigurationComponent } from './configuration.component';
 
-xdescribe('GenerateSetFormComponent', () => {
-  let component: GenerateSetFormComponent;
-  let fixture: ComponentFixture<GenerateSetFormComponent>;
+xdescribe('ConfigurationComponent', () => {
+  let component: ConfigurationComponent;
+  let fixture: ComponentFixture<ConfigurationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GenerateSetFormComponent ]
+      declarations: [ ConfigurationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GenerateSetFormComponent);
+    fixture = TestBed.createComponent(ConfigurationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
