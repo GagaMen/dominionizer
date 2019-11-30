@@ -1,11 +1,11 @@
-import { Extension } from './extension';
+import { Expansion } from './expansion';
 import { CardType } from './card-type';
 
 export interface Card {
     id: number;
     name: string;
     description: string;
-    extension: Extension;
+    expansion: Expansion;
     types: CardType[];
     cost?: number;
     debt?: number;

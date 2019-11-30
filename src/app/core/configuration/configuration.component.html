@@ -13,11 +13,11 @@
         </span>
       </mat-slide-toggle>
       <mat-divider></mat-divider>
-      <div formArrayName="extensions" class="extensions">
-        <ng-container *ngFor="let extension of extensions; let i = index">
+      <div formArrayName="expansions" class="expansions">
+        <ng-container *ngFor="let expansion of expansions; let i = index">
           <mat-slide-toggle [formControlName]="i">
             <span class="white-space-normal">
-              {{ extension.name }}
+              {{ expansion.name }}
             </span>
           </mat-slide-toggle>
         </ng-container>

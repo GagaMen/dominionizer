@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { DataService } from '../services/data.service';
-import { Extension } from '../models/extension';
+import { Expansion } from '../models/expansion';
 import { Router } from '@angular/router';
 import { Configuration } from '../models/configuration';
 import { Options } from '../models/options';
@@ -22,7 +22,7 @@ import { CardType } from '../models/card-type';
 export class ConfigurationComponent implements OnInit {
   firstStep: FormGroup = null;
   secondStep: FormGroup = null;
-  extensions: Extension[];
+  expansions: Expansion[];
   areEventsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Event);
   areLandmarksAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Landmark);
   areBoonsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Boon);
@@ -44,18 +44,18 @@ export class ConfigurationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.extensions().subscribe((extensions: Extension[]) => {
-      this.extensions = extensions;
+    this.dataService.expansions().subscribe((expansions: Expansion[]) => {
+      this.expansions = expansions;
 
-      this.buildFirstStep(extensions);
+      this.buildFirstStep(expansions);
       this.buildSecondStep();
       this.onChange();
     });
   }
 
-  private buildFirstStep(extensions: Extension[]) {
+  private buildFirstStep(expansions: Expansion[]) {
     this.firstStep = this.formBuilder.group({
-      extensions: new FormArray(extensions.map(() => new FormControl(false)), ConfigurationComponent.validateMinSelect),
+      expansions: new FormArray(expansions.map(() => new FormControl(false)), ConfigurationComponent.validateMinSelect),
       selectAll: new FormControl(false),
     });
   }
@@ -72,20 +72,20 @@ export class ConfigurationComponent implements OnInit {
 
   onChange(): void {
     this.firstStep.get('selectAll').valueChanges.subscribe(bool => {
-      const extensions = this.firstStep.get('extensions') as FormArray;
-      extensions.patchValue(Array(extensions.length).fill(bool), { emitEvent: false });
+      const expansions = this.firstStep.get('expansions') as FormArray;
+      expansions.patchValue(Array(expansions.length).fill(bool), { emitEvent: false });
     });
 
-    this.firstStep.get('extensions').valueChanges.subscribe(val => {
+    this.firstStep.get('expansions').valueChanges.subscribe(val => {
         const allSelected = val.every(bool => bool);
         if (this.firstStep.get('selectAll').value !== allSelected) {
           this.firstStep.get('selectAll').patchValue(allSelected, { emitEvent: false });
         }
     });
 
-    this.firstStep.get('extensions').valueChanges.subscribe((extensionStates: boolean[]) => {
-      const enabledExtensions = this.extensions.filter((_, index: number) => extensionStates[index] === true);
-      this.configurationService.updateExtensions(enabledExtensions);
+    this.firstStep.get('expansions').valueChanges.subscribe((expansionStates: boolean[]) => {
+      const enabledExpansions = this.expansions.filter((_, index: number) => expansionStates[index] === true);
+      this.configurationService.updateExpansions(enabledExpansions);
     });
   }
 
@@ -97,11 +97,11 @@ export class ConfigurationComponent implements OnInit {
   // TODO: Should be correct inconsistent configuration state
   //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
   private determineConfiguration(): Configuration {
-    return { extensions: this.determineExtensions(), options: this.determineOptions() };
+    return { expansions: this.determineExpansions(), options: this.determineOptions() };
   }
 
-  private determineExtensions(): Extension[] {
-    return this.extensions.filter((extension: Extension, index: number) => this.firstStep.get('extensions').value[index]);
+  private determineExpansions(): Expansion[] {
+    return this.expansions.filter((expansion: Expansion, index: number) => this.firstStep.get('expansions').value[index]);
   }
 
   private determineOptions(): Options {

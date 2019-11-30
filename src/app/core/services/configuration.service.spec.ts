@@ -4,7 +4,7 @@ import { ConfigurationService } from './configuration.service';
 import { CardService } from './card.service';
 import { Configuration } from '../models/configuration';
 import { cold } from 'jasmine-marbles';
-import { Extension } from '../models/extension';
+import { Expansion } from '../models/expansion';
 import { Card } from '../models/card';
 import { CardType } from '../models/card-type';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ describe('ConfigurationService', () => {
   let configurationService: ConfigurationService;
   let cardServiceSpy: jasmine.SpyObj<CardService>;
   const defaultConfiguration: Configuration = {
-    extensions: [],
+    expansions: [],
     options: {
       events: 0,
       landmarks: 0,
@@ -22,15 +22,15 @@ describe('ConfigurationService', () => {
       states: 0,
     },
   };
-  const defaultTestExtension: Extension = {
+  const defaultTestExpansion: Expansion = {
     id: 1,
-    name: 'Default Test Extension',
+    name: 'Default Test Expansion',
   };
   const defaultTestCard: Card = {
     id: 1,
     name: 'Default Test Card',
     description: '',
-    extension: defaultTestExtension,
+    expansion: defaultTestExpansion,
     types: [CardType.Action],
   };
 
@@ -59,14 +59,14 @@ describe('ConfigurationService', () => {
     });
   });
 
-  describe('updateExtensions', () => {
-    it('should update configuration.extensions', () => {
-      const extensions: Extension[] = [defaultTestExtension];
+  describe('updateExpansions', () => {
+    it('should update configuration.expansions', () => {
+      const expansions: Expansion[] = [defaultTestExpansion];
       const expected$: Observable<Configuration> =
-        cold('a', { a: { ...defaultConfiguration, extensions: extensions }});
+        cold('a', { a: { ...defaultConfiguration, expansions: expansions }});
       configurationService = TestBed.get(ConfigurationService);
 
-      configurationService.updateExtensions(extensions);
+      configurationService.updateExpansions(expansions);
       const actual$ = configurationService.configuration$;
 
       expect(actual$).toBeObservable(expected$);
@@ -74,33 +74,33 @@ describe('ConfigurationService', () => {
   });
 
   describe('isCardTypeAvailable', () => {
-    it('with enabled extension has card with given card type should return true', () => {
+    it('with enabled expansion has card with given card type should return true', () => {
       const cardType: CardType = CardType.Event;
-      const enabledExtension: Extension = defaultTestExtension;
-      // card.extension is assigned with copy of enabledExtension because cards include their own
-      // extension objects
-      const card: Card = { ...defaultTestCard, extension: {...enabledExtension}, types: [cardType] };
+      const enabledExpansion: Expansion = defaultTestExpansion;
+      // card.expansion is assigned with copy of enabledExpansion because cards include their own
+      // expansion objects
+      const card: Card = { ...defaultTestCard, expansion: {...enabledExpansion}, types: [cardType] };
       const cards$: Observable<Card[]> = cold('a', { a: [card] });
       cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
       const expected$ = cold('a', { a: true });
       configurationService = TestBed.get(ConfigurationService);
-      configurationService.updateExtensions([enabledExtension]);
+      configurationService.updateExpansions([enabledExpansion]);
 
       const actual$ = configurationService.isCardTypeAvailable(cardType);
 
       expect(actual$).toBeObservable(expected$);
     });
 
-    it('with enabled extension has no card with given card type should return false', () => {
+    it('with enabled expansion has no card with given card type should return false', () => {
       const cardType: CardType = CardType.Event;
-      const enabledExtension: Extension = defaultTestExtension;
-      const disabledExtension: Extension = { ...defaultTestExtension, id: 2 };
-      const card: Card = { ...defaultTestCard, extension: disabledExtension, types: [cardType] };
+      const enabledExpansion: Expansion = defaultTestExpansion;
+      const disabledExpansion: Expansion = { ...defaultTestExpansion, id: 2 };
+      const card: Card = { ...defaultTestCard, expansion: disabledExpansion, types: [cardType] };
       const cards$: Observable<Card[]> = cold('a', { a: [card] });
       cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
       const expected$ = cold('a', { a: false });
       configurationService = TestBed.get(ConfigurationService);
-      configurationService.updateExtensions([enabledExtension]);
+      configurationService.updateExpansions([enabledExpansion]);
 
       const actual$ = configurationService.isCardTypeAvailable(cardType);
 

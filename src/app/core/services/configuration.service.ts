@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
-import { Extension } from '../models/extension';
+import { Expansion } from '../models/expansion';
 import { map } from 'rxjs/operators';
 import { CardType } from '../models/card-type';
 import { CardService } from './card.service';
@@ -12,7 +12,7 @@ import { Card } from '../models/card';
 })
 export class ConfigurationService {
   private configurationSubject = new BehaviorSubject<Configuration>({
-    extensions: [],
+    expansions: [],
     options: {
       events: 0,
       landmarks: 0,
@@ -24,28 +24,28 @@ export class ConfigurationService {
 
   readonly configuration$: Observable<Configuration> = this.configurationSubject.asObservable();
 
-  private readonly enabledExtensions$: Observable<Extension[]> = this.configuration$.pipe(
-    map((configuration: Configuration) => configuration.extensions),
+  private readonly enabledExpansions$: Observable<Expansion[]> = this.configuration$.pipe(
+    map((configuration: Configuration) => configuration.expansions),
   );
 
   constructor(private cardService: CardService) { }
 
-  updateExtensions(extensions: Extension[]): void {
+  updateExpansions(expansions: Expansion[]): void {
     const configuration = this.configurationSubject.value;
-    configuration.extensions = extensions;
+    configuration.expansions = expansions;
     this.configurationSubject.next(configuration);
   }
 
   isCardTypeAvailable(type: CardType): Observable<boolean> {
    return combineLatest(
       this.cardService.findByCardType(type),
-      this.enabledExtensions$
+      this.enabledExpansions$
     ).pipe(
-      map(([cardsOfType, enabledExtensions]: [Card[], Extension[]]) => {
-        const extensionIds = new Set<number>();
-        enabledExtensions.forEach((extension: Extension) => extensionIds.add(extension.id));
+      map(([cardsOfType, enabledExpansions]: [Card[], Expansion[]]) => {
+        const expansionIds = new Set<number>();
+        enabledExpansions.forEach((expansion: Expansion) => expansionIds.add(expansion.id));
 
-        return cardsOfType.some((card: Card) => extensionIds.has(card.extension.id));
+        return cardsOfType.some((card: Card) => expansionIds.has(card.expansion.id));
       }),
     );
   }

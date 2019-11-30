@@ -5,7 +5,7 @@ import { Card } from '../models/card';
 import { Observable, of, iif } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as math from 'mathjs';
-import { Extension } from '../models/extension';
+import { Expansion } from '../models/expansion';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +17,14 @@ export class ShuffleService {
 
   shuffleCards(): Observable<Card[]> {
     return this.dataService.cards().pipe(
-      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, 10))
     );
   }
 
   shuffleEvents(): Observable<Card[]> {
     const events$ = this.dataService.events().pipe(
-      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.events)
     ));
 
@@ -33,7 +33,7 @@ export class ShuffleService {
 
   shuffleLandmarks(): Observable<Card[]> {
     const landmarks$ = this.dataService.landmarks().pipe(
-      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.landmarks)
     ));
 
@@ -42,7 +42,7 @@ export class ShuffleService {
 
   shuffleBoons(): Observable<Card[]> {
     const boons$ = this.dataService.boons().pipe(
-      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.boons)
     ));
 
@@ -51,7 +51,7 @@ export class ShuffleService {
 
   shuffleHexes(): Observable<Card[]> {
     const hexes$ = this.dataService.hexes().pipe(
-      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.hexes)
     ));
 
@@ -60,7 +60,7 @@ export class ShuffleService {
 
   shuffleStates(): Observable<Card[]> {
     const states$ = this.dataService.states().pipe(
-      map((cards: Card[]) => this.filterByExtensions(cards)),
+      map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandom(cards, this.configuration.options.states)
     ));
 
@@ -72,9 +72,9 @@ export class ShuffleService {
     return pickedCardIds.map((cardId: number) => cards.find((card: Card) => card.id === cardId));
   }
 
-  filterByExtensions(cards: Card[]): Card[] {
+  filterByExpansions(cards: Card[]): Card[] {
     return cards.filter((card: Card) =>
-      this.configuration.extensions.map((extension: Extension) => extension.id).includes(card.extension.id)
+      this.configuration.expansions.map((expansion: Expansion) => expansion.id).includes(card.expansion.id)
     );
   }
 }

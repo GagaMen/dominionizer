@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Extension } from '../models/extension';
+import { Expansion } from '../models/expansion';
 import { Card } from '../models/card';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  extensions(): Observable<Extension[]> {
-    return this.http.get<Extension[]>('/assets/data/extensions.json');
+  expansions(): Observable<Expansion[]> {
+    return this.http.get<Expansion[]>('/assets/data/expansions.json');
   }
 
   cards(): Observable<Card[]> {

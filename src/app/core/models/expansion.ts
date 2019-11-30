@@ -1,4 +1,4 @@
-export interface Extension {
+export interface Expansion {
   id: number;
   name: string;
 }
