@@ -67,7 +67,6 @@ export class GenerateSetFormComponent implements OnInit {
       boons: new FormControl(0),
       hexes: new FormControl(0),
       states: new FormControl(0),
-      reactionOnAttack: new FormControl(false),
     });
   }
 

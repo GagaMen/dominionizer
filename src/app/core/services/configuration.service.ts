@@ -19,7 +19,6 @@ export class ConfigurationService {
       boons: 0,
       hexes: 0,
       states: 0,
-      reactionOnAttack: false
     }
   });
 

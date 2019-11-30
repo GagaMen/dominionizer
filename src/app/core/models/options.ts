@@ -4,5 +4,4 @@ export interface Options {
   boons: number;
   hexes: number;
   states: number;
-  reactionOnAttack: boolean;
 }
