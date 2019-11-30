@@ -1,31 +1,12 @@
 <h1>Stelle dein Set zusammen:</h1>
 <mat-vertical-stepper #stepper>
-  <mat-step [stepControl]="firstStep" errorMessage="Wähle mindestens eine Erweiterung aus.">
-    <form *ngIf="firstStep" [formGroup]="firstStep" (ngSubmit)="stepper.next()">
-      <ng-template matStepLabel>
-        <span class="white-space-normal">
-          Welche Erweiterungen sollen berücksichtigt werden?
-        </span>
-      </ng-template>
-      <mat-slide-toggle formControlName="selectAll">
-        <span class="white-space-normal">
-          Alle auswählen/abwählen
-        </span>
-      </mat-slide-toggle>
-      <mat-divider></mat-divider>
-      <div formArrayName="expansions" class="expansions">
-        <ng-container *ngFor="let expansion of expansions; let i = index">
-          <mat-slide-toggle [formControlName]="i">
-            <span class="white-space-normal">
-              {{ expansion.name }}
-            </span>
-          </mat-slide-toggle>
-        </ng-container>
-      </div>
-      <div class="form-actions">
-        <button mat-raised-button matStepperNext color="primary" type="submit">Weiter</button>
-      </div>
-    </form>
+  <mat-step [stepControl]="expansionSelect.formGroup" errorMessage="Wähle mindestens eine Erweiterung aus.">
+    <ng-template matStepLabel>
+      <span class="white-space-normal">
+        Welche Erweiterungen sollen berücksichtigt werden?
+      </span>
+    </ng-template>
+    <app-expansion-select #expansionSelect (submit)="stepper.next()"></app-expansion-select>
   </mat-step>
   <mat-step [stepControl]="secondStep">
     <form *ngIf="secondStep" [formGroup]="secondStep" (ngSubmit)="onSubmit()">

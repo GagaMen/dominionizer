@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { GenerateSetResultComponent } from './generate-set-result/generate-set-result.component';
+import { ExpansionSelectComponent } from './expansion-select/expansion-select.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GenerateSetResultComponent } from './generate-set-result/generate-set-r
     CardComponent,
     CardListComponent,
     GenerateSetResultComponent,
+    ExpansionSelectComponent,
   ],
   imports: [
     CommonModule,
