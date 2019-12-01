@@ -1,3 +1,4 @@
+import { Options } from './../models/options';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ConfigurationService } from '../services/configuration.service';
@@ -38,6 +39,16 @@ export class SpecialCardSelectComponent {
   // TODO: Should be correct inconsistent configuration state
   //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
   onNgSubmit() {
+    const specialCardStates = this.formGroup.value;
+    const options: Options = {
+      events: specialCardStates.events,
+      landmarks: specialCardStates.landmarks,
+      boons: specialCardStates.boons,
+      hexes: specialCardStates.hexes,
+      states: specialCardStates.states
+    };
+    this.configurationService.updateOptions(options);
+
     this.submit.emit();
   }
 }

@@ -51,14 +51,13 @@ export class ExpansionSelectComponent {
           this.formGroup.get('selectAll').patchValue(allSelected, { emitEvent: false });
         }
     });
-
-    this.formGroup.get('expansions').valueChanges.subscribe((expansionStates: boolean[]) => {
-      const enabledExpansions = this.expansions.filter((_, index: number) => expansionStates[index] === true);
-      this.configurationService.updateExpansions(enabledExpansions);
-    });
   }
 
   onNgSubmit(): void {
+    const expansionStates = this.formGroup.value;
+    const enabledExpansions = this.expansions.filter((_, index: number) => expansionStates.expansions[index] === true);
+    this.configurationService.updateExpansions(enabledExpansions);
+
     this.submit.emit();
   }
 }

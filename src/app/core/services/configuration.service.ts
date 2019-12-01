@@ -1,3 +1,4 @@
+import { Options } from './../models/options';
 import { Injectable } from '@angular/core';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
@@ -33,6 +34,12 @@ export class ConfigurationService {
   updateExpansions(expansions: Expansion[]): void {
     const configuration = this.configurationSubject.value;
     configuration.expansions = expansions;
+    this.configurationSubject.next(configuration);
+  }
+
+  updateOptions(options: Options): void {
+    const configuration = this.configurationSubject.value;
+    configuration.options = options;
     this.configurationSubject.next(configuration);
   }
 
