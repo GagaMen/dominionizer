@@ -26,17 +26,17 @@ export class ExpansionSelectComponent {
     });
   }
 
+  private static validateMinSelect(control: FormArray): ValidationErrors | null {
+    const controlValues = Object.values(control.value);
+    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
+    return result ? null : { minSelect: { value: control.value } };
+  }
+
   private buildFormGroup() {
     this.formGroup = this.formBuilder.group({
       expansions: new FormArray(this.expansions.map(() => new FormControl(false)), ExpansionSelectComponent.validateMinSelect),
       selectAll: new FormControl(false),
     });
-  }
-
-  private static validateMinSelect(control: FormArray): ValidationErrors | null {
-    const controlValues = Object.values(control.value);
-    const result = controlValues.reduce((previousValue: boolean, currentValue: boolean) => previousValue || currentValue);
-    return result ? null : { minSelect: { value: control.value } };
   }
 
   initializeToggleBehaviour(): void {
