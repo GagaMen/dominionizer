@@ -1,0 +1,46 @@
+<form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
+    <ng-container *ngIf="areEventsAvailable$ | async">
+        <div class="special-cards-label">
+        <label>Ereignisse</label>
+        <span>{{ events.value }}</span>
+        </div>
+        <mat-slider #events formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
+    </ng-container>
+
+    <ng-container *ngIf="areLandmarksAvailable$ | async">
+        <div class="special-cards-label">
+        <label>Landmarken</label>
+        <span>{{ landmarks.value }}</span>
+        </div>
+        <mat-slider #landmarks formControlName="landmarks" min="0" max="5" tickInterval="1"></mat-slider>
+    </ng-container>
+
+    <ng-container *ngIf="areBoonsAvailable$ | async">
+        <div class="special-cards-label">
+        <label>Gaben</label>
+        <span>{{ boons.value }}</span>
+        </div>
+        <mat-slider #boons formControlName="boons" min="0" max="5" tickInterval="1"></mat-slider>
+    </ng-container>
+
+    <ng-container *ngIf="areHexesAvailable$ | async">
+        <div class="special-cards-label">
+        <label>Plagen</label>
+        <span>{{ hexes.value }}</span>
+        </div>
+        <mat-slider #hexes formControlName="hexes" min="0" max="5" tickInterval="1"></mat-slider>
+    </ng-container>
+
+    <ng-container *ngIf="areStatesAvailable$ | async">
+        <div class="special-cards-label">
+        <label>Zustände</label>
+        <span>{{ states.value }}</span>
+        </div>
+        <mat-slider #states formControlName="states" min="0" max="5" tickInterval="1"></mat-slider>
+    </ng-container>
+
+    <div class="form-actions">
+        <button mat-button matStepperPrevious color="secondary">Zurück</button>
+        <button mat-raised-button color="primary" type="submit">Generieren</button>
+    </div>
+</form>

@@ -20,6 +20,7 @@ import { CardComponent } from './card/card.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { GenerateSetResultComponent } from './generate-set-result/generate-set-result.component';
 import { ExpansionSelectComponent } from './expansion-select/expansion-select.component';
+import { SpecialCardSelectComponent } from './special-card-select/special-card-select.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ExpansionSelectComponent } from './expansion-select/expansion-select.co
     CardListComponent,
     GenerateSetResultComponent,
     ExpansionSelectComponent,
+    SpecialCardSelectComponent,
   ],
   imports: [
     CommonModule,
