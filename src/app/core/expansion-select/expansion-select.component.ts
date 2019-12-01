@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, ValidationErrors } from '@angular/forms';
 import { Expansion } from '../models/expansion';
 import { ConfigurationService } from '../services/configuration.service';
@@ -9,7 +9,7 @@ import { DataService } from '../services/data.service';
   templateUrl: './expansion-select.component.html',
   styleUrls: ['./expansion-select.component.scss']
 })
-export class ExpansionSelectComponent implements OnInit {
+export class ExpansionSelectComponent {
   @Output() submit: EventEmitter<any> = new EventEmitter();
   expansions: Expansion[] = [];
   formGroup: FormGroup = null;
@@ -18,9 +18,7 @@ export class ExpansionSelectComponent implements OnInit {
     private configurationService: ConfigurationService,
     private dataService: DataService,
     private formBuilder: FormBuilder
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.dataService.expansions().subscribe((expansions: Expansion[]) => {
       this.expansions = expansions;
       this.buildFormGroup();
