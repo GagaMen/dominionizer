@@ -1,3 +1,4 @@
+import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
@@ -13,7 +14,14 @@ import { Expansion } from '../models/expansion';
 export class ShuffleService {
   configuration: Configuration;
 
-  constructor(private dataService: DataService ) { }
+  constructor(
+    private dataService: DataService,
+    private configurationService: ConfigurationService
+  ) {
+    this.configurationService.configuration$.subscribe(
+      (configuration: Configuration) => this.configuration = configuration
+    );
+  }
 
   shuffleCards(): Observable<Card[]> {
     return this.dataService.cards().pipe(
