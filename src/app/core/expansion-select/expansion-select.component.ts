@@ -39,7 +39,7 @@ export class ExpansionSelectComponent {
     });
   }
 
-  initializeToggleBehaviour(): void {
+  private initializeToggleBehaviour(): void {
     this.formGroup.get('selectAll').valueChanges.subscribe(bool => {
       const expansions = this.formGroup.get('expansions') as FormArray;
       expansions.patchValue(Array(expansions.length).fill(bool), { emitEvent: false });
