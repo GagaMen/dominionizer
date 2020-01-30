@@ -20,7 +20,8 @@ export class ConfigurationService {
       boons: 0,
       hexes: 0,
       states: 0,
-    }
+    },
+    costDistribution: new Map<number, number>(),
   });
 
   readonly configuration$: Observable<Configuration> = this.configurationSubject.asObservable();

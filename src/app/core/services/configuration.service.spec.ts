@@ -21,6 +21,7 @@ describe('ConfigurationService', () => {
       hexes: 0,
       states: 0,
     },
+    costDistribution: new Map<number, number>(),
   };
   const defaultTestExpansion: Expansion = {
     id: 1,
