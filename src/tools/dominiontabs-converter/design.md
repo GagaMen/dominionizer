@@ -37,6 +37,7 @@ Divider generator for the card game Dominion and its expansions. http://domtabs.
 - `debtcost`
   - amount of debts to buy the card
   - string
+  - optional
   - --> `debt`
 - `randomizer`
   - card has a randomizer card (blue border)
