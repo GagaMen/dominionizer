@@ -1,6 +1,6 @@
 export enum CardType {
     Action = 1,
-    Artefact,
+    Artifact,
     Attack,
     Boon,
     Castle,
