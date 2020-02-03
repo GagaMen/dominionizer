@@ -23,15 +23,19 @@ describe('ConfigurationService', () => {
     },
     costDistribution: new Map<number, number>(),
   };
-  const defaultTestExpansion: Expansion = {
+  const enabledTestExpansion: Expansion = {
     id: 1,
-    name: 'Default Test Expansion',
+    name: 'Enabled Test Expansion',
+  };
+  const disabledTestExpansion: Expansion = {
+    id: 2,
+    name: 'Disabled Test Expansion',
   };
   const defaultTestCard: Card = {
     id: 1,
     name: 'Default Test Card',
     description: '',
-    expansion: defaultTestExpansion,
+    expansions: [disabledTestExpansion, enabledTestExpansion],
     types: [CardType.Action],
   };
 
@@ -62,7 +66,7 @@ describe('ConfigurationService', () => {
 
   describe('updateExpansions', () => {
     it('should update configuration.expansions', () => {
-      const expansions: Expansion[] = [defaultTestExpansion];
+      const expansions: Expansion[] = [enabledTestExpansion];
       const expected$: Observable<Configuration> =
         cold('a', { a: { ...defaultConfiguration, expansions: expansions }});
       configurationService = TestBed.get(ConfigurationService);
@@ -77,15 +81,12 @@ describe('ConfigurationService', () => {
   describe('isCardTypeAvailable', () => {
     it('with enabled expansion has card with given card type should return true', () => {
       const cardType: CardType = CardType.Event;
-      const enabledExpansion: Expansion = defaultTestExpansion;
-      // card.expansion is assigned with copy of enabledExpansion because cards include their own
-      // expansion objects
-      const card: Card = { ...defaultTestCard, expansion: {...enabledExpansion}, types: [cardType] };
+      const card: Card = { ...defaultTestCard, expansions: [disabledTestExpansion, enabledTestExpansion], types: [cardType] };
       const cards$: Observable<Card[]> = cold('a', { a: [card] });
       cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
       const expected$ = cold('a', { a: true });
       configurationService = TestBed.get(ConfigurationService);
-      configurationService.updateExpansions([enabledExpansion]);
+      configurationService.updateExpansions([enabledTestExpansion]);
 
       const actual$ = configurationService.isCardTypeAvailable(cardType);
 
@@ -94,14 +95,12 @@ describe('ConfigurationService', () => {
 
     it('with enabled expansion has no card with given card type should return false', () => {
       const cardType: CardType = CardType.Event;
-      const enabledExpansion: Expansion = defaultTestExpansion;
-      const disabledExpansion: Expansion = { ...defaultTestExpansion, id: 2 };
-      const card: Card = { ...defaultTestCard, expansion: disabledExpansion, types: [cardType] };
+      const card: Card = { ...defaultTestCard, expansions: [disabledTestExpansion], types: [cardType] };
       const cards$: Observable<Card[]> = cold('a', { a: [card] });
       cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
       const expected$ = cold('a', { a: false });
       configurationService = TestBed.get(ConfigurationService);
-      configurationService.updateExpansions([enabledExpansion]);
+      configurationService.updateExpansions([enabledTestExpansion]);
 
       const actual$ = configurationService.isCardTypeAvailable(cardType);
 

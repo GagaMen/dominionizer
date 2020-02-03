@@ -17,15 +17,19 @@ describe('ShuffleService', () => {
   let configurationServiceSpy: SpyObj<ConfigurationService>;
   let mathJsServiceSpy: SpyObj<MathJsService>;
 
-  const defaultTestExpansion: Expansion = {
+  const enabledTestExpansion: Expansion = {
     id: 1,
-    name: 'Default Test Expansion',
+    name: 'Enabled Test Expansion',
+  };
+  const disabledTestExpansion: Expansion = {
+    id: 2,
+    name: 'Disabled Test Expansion',
   };
   const firstTestCard: Card = {
     id: 1,
     name: 'First Test Card',
     description: '',
-    expansion: defaultTestExpansion,
+    expansions: [disabledTestExpansion, enabledTestExpansion],
     types: [CardType.Action],
     cost: 4,
   };
@@ -33,7 +37,7 @@ describe('ShuffleService', () => {
     id: 2,
     name: 'Second Test Card',
     description: '',
-    expansion: defaultTestExpansion,
+    expansions: [enabledTestExpansion],
     types: [CardType.Action],
     cost: 5,
   };
@@ -41,12 +45,12 @@ describe('ShuffleService', () => {
     id: 3,
     name: 'Third Test Card',
     description: '',
-    expansion: defaultTestExpansion,
+    expansions: [enabledTestExpansion],
     types: [CardType.Action],
     cost: 5,
   };
   const defaultConfiguration: Configuration = {
-    expansions: [defaultTestExpansion],
+    expansions: [enabledTestExpansion],
     options: {
       events: 0,
       landmarks: 0,

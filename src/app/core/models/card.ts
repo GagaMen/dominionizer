@@ -5,7 +5,7 @@ export interface Card {
     id: number;
     name: string;
     description: string;
-    expansion: Expansion;
+    expansions: Expansion[];
     types: CardType[];
     cost?: number;
     debt?: number;

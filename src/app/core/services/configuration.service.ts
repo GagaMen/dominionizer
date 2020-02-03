@@ -50,10 +50,14 @@ export class ConfigurationService {
       this.enabledExpansions$
     ).pipe(
       map(([cardsOfType, enabledExpansions]: [Card[], Expansion[]]) => {
+        // TODO: intermediate step, that determines the expansion ids, can be deleted when it is
+        //       ensured that expansion objects exist only once in the whole app
         const expansionIds = new Set<number>();
         enabledExpansions.forEach((expansion: Expansion) => expansionIds.add(expansion.id));
 
-        return cardsOfType.some((card: Card) => expansionIds.has(card.expansion.id));
+        return cardsOfType.some((card: Card) =>
+          card.expansions.some((expansion: Expansion) => expansionIds.has(expansion.id))
+        );
       }),
     );
   }
