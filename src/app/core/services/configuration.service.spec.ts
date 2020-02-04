@@ -34,7 +34,6 @@ describe('ConfigurationService', () => {
   const defaultTestCard: Card = {
     id: 1,
     name: 'Default Test Card',
-    description: '',
     expansions: [disabledTestExpansion, enabledTestExpansion],
     types: [CardType.Action],
   };

@@ -4,7 +4,7 @@ import { CardType } from './card-type';
 export interface Card {
     id: number;
     name: string;
-    description: string;
+    description?: string;
     expansions: Expansion[];
     types: CardType[];
     cost?: number;

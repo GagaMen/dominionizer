@@ -28,7 +28,6 @@ describe('ShuffleService', () => {
   const firstTestCard: Card = {
     id: 1,
     name: 'First Test Card',
-    description: '',
     expansions: [disabledTestExpansion, enabledTestExpansion],
     types: [CardType.Action],
     cost: 4,
@@ -36,7 +35,6 @@ describe('ShuffleService', () => {
   const secondTestCard: Card = {
     id: 2,
     name: 'Second Test Card',
-    description: '',
     expansions: [enabledTestExpansion],
     types: [CardType.Action],
     cost: 5,
@@ -44,7 +42,6 @@ describe('ShuffleService', () => {
   const thirdTestCard: Card = {
     id: 3,
     name: 'Third Test Card',
-    description: '',
     expansions: [enabledTestExpansion],
     types: [CardType.Action],
     cost: 5,
