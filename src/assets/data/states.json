@@ -1,7 +1,0 @@
-[
-  { "id": 5001, "name": "Getäuscht", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [25] },
-  { "id": 5002, "name": "Neidisch", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [25] },
-  { "id": 5003, "name": "Elendig", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [25] },
-  { "id": 5004, "name": "Doppelt Elendig", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [25] },
-  { "id": 5005, "name": "Im Wald Verirrt", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [25] }
-]

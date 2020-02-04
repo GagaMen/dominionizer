@@ -1,368 +1,2662 @@
 [
-  { "id": 1, "name": "Burggraben", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1, 20], "costs": 2 },
-  { "id": 2, "name": "Kapelle", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 2 },
-  { "id": 3, "name": "Keller", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 2 },
-  { "id": 4, "name": "Dorf", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 3 },
-  { "id": 5, "name": "Holzfäller", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 3 },
-  { "id": 6, "name": "Kanzler", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 3 },
-  { "id": 7, "name": "Werkstatt", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 3 },
-  { "id": 8, "name": "Bürokrat", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1, 3], "costs": 4 },
-  { "id": 9, "name": "Dieb", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1, 3], "costs": 4 },
-  { "id": 10, "name": "Festmahl", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 4 },
-  { "id": 11, "name": "Geldverleiher", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 4 },
-  { "id": 12, "name": "Miliz", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1, 3], "costs": 4 },
-  { "id": 13, "name": "Schmiede", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 4 },
-  { "id": 14, "name": "Spion", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1, 3], "costs": 4 },
-  { "id": 15, "name": "Thronsaal", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 4 },
-  { "id": 16, "name": "Umbau", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 4 },
-  { "id": 17, "name": "Gärten", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [28], "costs": 4 },
-  { "id": 18, "name": "Bibliothek", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 5 },
-  { "id": 19, "name": "Hexe", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1, 3], "costs": 5 },
-  { "id": 20, "name": "Jahrmarkt", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 5 },
-  { "id": 21, "name": "Laboratorium", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 5 },
-  { "id": 22, "name": "Markt", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 5 },
-  { "id": 23, "name": "Mine", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 5 },
-  { "id": 24, "name": "Ratsversammlung", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs": 5 },
-  { "id": 25, "name": "Abenteurer", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [1], "costs":  6},
-
-  { "id": 26, "name": "Burggraben", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1, 20], "costs": 2 },
-  { "id": 27, "name": "Kapelle", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 2 },
-  { "id": 28, "name": "Keller", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 2 },
-  { "id": 29, "name": "Dorf", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 3 },
-  { "id": 30, "name": "Händlerin", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 3 },
-  { "id": 31, "name": "Vasall", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 3 },
-  { "id": 32, "name": "Vorbotin", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 3 },
-  { "id": 33, "name": "Werkstatt", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 3 },
-  { "id": 34, "name": "Bürokrat", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1, 3], "costs": 4 },
-  { "id": 35, "name": "Geldverleiher", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 4 },
-  { "id": 36, "name": "Miliz", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1, 3], "costs": 4 },
-  { "id": 37, "name": "Schmiede", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 4 },
-  { "id": 38, "name": "Thronsaal", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 4 },
-  { "id": 39, "name": "Umbau", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 4 },
-  { "id": 40, "name": "Gärten", "description": "", "expansion": { "id": 1, "name": "Basisspiel" }, "types": [28], "costs": 4 },
-  { "id": 41, "name": "Wilddiebin", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 4 },
-  { "id": 42, "name": "Banditin", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1, 3], "costs": 5 },
-  { "id": 43, "name": "Bibliothek", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 44, "name": "Hexe", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1, 3], "costs": 5 },
-  { "id": 45, "name": "Jahrmarkt", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 46, "name": "Laboratorium", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 47, "name": "Markt", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 48, "name": "Mine", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 49, "name": "Ratsversammlung", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 50, "name": "Torwächterin", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 5 },
-  { "id": 51, "name": "Töpferei", "description": "", "expansion": { "id": 2, "name": "Basisspiel 2. Edition" }, "types": [1], "costs": 6 },
-
-  { "id": 52, "name": "Burghof", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 2 },
-  { "id": 53, "name": "Geheimkammer", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 20], "costs": 2 },
-  { "id": 54, "name": "Handlanger", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 2 },
-  { "id": 55, "name": "Armenviertel", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 3 },
-  { "id": 56, "name": "Große Halle", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 28], "costs": 3 },
-  { "id": 57, "name": "Maskerade", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 3 },
-  { "id": 58, "name": "Trickser", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 3], "costs": 3 },
-  { "id": 59, "name": "Verwalter", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 3 },
-  { "id": 60, "name": "Wunschbrunnen", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 3 },
-  { "id": 61, "name": "Baron", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 4 },
-  { "id": 62, "name": "Bergwerk", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 4 },
-  { "id": 63, "name": "Brücke", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 4 },
-  { "id": 64, "name": "Eisenhütte", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 4 },
-  { "id": 65, "name": "Kupferschmiede", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 4 },
-  { "id": 66, "name": "Späher", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 28], "costs": 4 },
-  { "id": 67, "name": "Verschwörer", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 4 },
-  { "id": 68, "name": "Anbau", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 5 },
-  { "id": 69, "name": "Handelsposten", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 5 },
-  { "id": 70, "name": "Herzog", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [28], "costs": 5 },
-  { "id": 71, "name": "Kerkermeister", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 3], "costs": 5 },
-  { "id": 72, "name": "Lakai", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 3], "costs": 5 },
-  { "id": 73, "name": "Saboteur", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 3], "costs": 5 },
-  { "id": 74, "name": "Tribut", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1], "costs": 5 },
-  { "id": 75, "name": "Adlige", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [1, 28], "costs": 6 },
-  { "id": 76, "name": "Harem", "description": "", "expansion": { "id": 3, "name": "Die Intrige" }, "types": [27, 28], "costs": 6 },
-
-  { "id": 77, "name": "Eingeborenendorf", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 2 },
-  { "id": 78, "name": "Embargo", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 2 },
-  { "id": 79, "name": "Hafen", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 2 },
-  { "id": 80, "name": "Leuchtturm", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 2 },
-  { "id": 81, "name": "Perlentaucher", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 2 },
-  { "id": 82, "name": "Ausguck", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 3 },
-  { "id": 83, "name": "Botschafter", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 3], "costs": 3 },
-  { "id": 84, "name": "Fischerdorf", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 3 },
-  { "id": 85, "name": "Lagerhaus", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 3 },
-  { "id": 86, "name": "Schmuggler", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 3 },
-  { "id": 87, "name": "Beutelschneider", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 3], "costs": 4 },
-  { "id": 88, "name": "Insel", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 28], "costs": 4 },
-  { "id": 89, "name": "Karawane", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 4 },
-  { "id": 90, "name": "Müllverwerter", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 4 },
-  { "id": 91, "name": "Navigator", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 4 },
-  { "id": 92, "name": "Piratenschiff", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 3], "costs": 4 },
-  { "id": 93, "name": "Schatzkarte", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 4 },
-  { "id": 94, "name": "Seehexe", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 3], "costs": 4 },
-  { "id": 95, "name": "Aussenposten", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 5 },
-  { "id": 96, "name": "Bazar", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 5 },
-  { "id": 97, "name": "Entdecker", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 5 },
-  { "id": 98, "name": "Geisterschiff", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 3], "costs": 5 },
-  { "id": 99, "name": "Handelsschiff", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 5 },
-  { "id": 100, "name": "Schatzkammer", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1], "costs": 5 },
-  { "id": 101, "name": "Taktiker", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 5 },
-  { "id": 102, "name": "Werft", "description": "", "expansion": { "id": 4, "name": "Seaside" }, "types": [1, 8], "costs": 5 },
-
-  { "id": 103, "name": "Weinberg", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [27, 18], "costs": 0, "potion": true },
-  { "id": 104, "name": "Verwandlung", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1, 18], "costs": 0, "potion": true },
-  { "id": 105, "name": "Kräuterkundiger", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1, 18], "costs": 0 },
-  { "id": 106, "name": "Apotheker", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1, 18], "costs": 0, "potion": true },
-  { "id": 107, "name": "Universität", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1, 18], "costs": 0, "potion": true },
-  { "id": 108, "name": "Vision", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1], "costs": 2, "potion": true },
-  { "id": 109, "name": "Alchemist", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1], "costs": 3, "potion": true },
-  { "id": 110, "name": "Stein der Weisen", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1, 3], "costs": 3, "potion": true },
-  { "id": 111, "name": "Vertrauter", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1], "costs": 4, "potion": true },
-  { "id": 112, "name": "Lehrling", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1, 3], "costs": 4 },
-  { "id": 113, "name": "Besessenheit", "description": "", "expansion": { "id": 5, "name": "Die Alchemisten" }, "types": [1], "costs": 4, "potion": true },
-
-  { "id": 114, "name": "Lohn", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 3 },
-  { "id": 115, "name": "Wachturm", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1, 20], "costs": 3 },
-  { "id": 116, "name": "Arbeiterdorf", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 4 },
-  { "id": 117, "name": "Bischof", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 4 },
-  { "id": 118, "name": "Denkmal", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 4 },
-  { "id": 119, "name": "Steinbruch", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 4 },
-  { "id": 120, "name": "Talisman", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 4 },
-  { "id": 121, "name": "Abenteuer", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 5 },
-  { "id": 122, "name": "Gesindel", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1, 3], "costs": 5 },
-  { "id": 123, "name": "Gewölbe", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 5 },
-  { "id": 124, "name": "Königliches Siegel", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 5 },
-  { "id": 125, "name": "Leihhaus", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 5 },
-  { "id": 126, "name": "Münzer", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 5 },
-  { "id": 127, "name": "Quacksalber", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1, 3], "costs": 5 },
-  { "id": 128, "name": "Schmuggelware", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 5 },
-  { "id": 129, "name": "Stadt", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 5 },
-  { "id": 130, "name": "Hort", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 6 },
-  { "id": 131, "name": "Grosser Markt", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 6 },
-  { "id": 132, "name": "Halsabschneider", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1, 3], "costs": 6 },
-  { "id": 133, "name": "Ausbau", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 7 },
-  { "id": 134, "name": "Bank", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [27], "costs": 7 },
-  { "id": 135, "name": "Königshof", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 7 },
-  { "id": 136, "name": "Kunstschmiede", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 7 },
-  { "id": 137, "name": "Hausierer", "description": "", "expansion": { "id": 6, "name": "Blütezeit" }, "types": [1], "costs": 8 },
-
-  { "id": 138, "name": "Diadem", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [27, 18], "costs": 0 },
-  { "id": 139, "name": "Ein Sack voll Gold", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 18], "costs": 0 },
-  { "id": 140, "name": "Gefolge", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 3, 18], "costs": 0 },
-  { "id": 141, "name": "Prinzessin", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 18], "costs": 0 },
-  { "id": 142, "name": "Streitross", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 18], "costs": 0 },
-  { "id": 143, "name": "Weiler", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 2 },
-  { "id": 144, "name": "Menagerie", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 3 },
-  { "id": 145, "name": "Wahrsagerin", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 3], "costs": 3 },
-  { "id": 146, "name": "Bauerndorf", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 4 },
-  { "id": 147, "name": "Junge Hexe", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 3], "costs": 4 },
-  { "id": 148, "name": "Nachbau", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 4 },
-  { "id": 149, "name": "Pferdehändler", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 20], "costs": 4 },
-  { "id": 150, "name": "Turnier", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 4 },
-  { "id": 151, "name": "Ernte", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 5 },
-  { "id": 152, "name": "Füllhorn", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [27], "costs": 5 },
-  { "id": 153, "name": "Harlekin", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1, 3], "costs": 5 },
-  { "id": 154, "name": "Treibjagd", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [1], "costs": 5 },
-  { "id": 155, "name": "Festplatz", "description": "", "expansion": { "id": 7, "name": "Reiche Ernte" }, "types": [28], "costs": 6 },
-
-  { "id": 156, "name": "Herzogin", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 2 },
-  { "id": 157, "name": "Wegkreuzung", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 2 },
-  { "id": 158, "name": "Katzengold", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [27, 20], "costs": 2 },
-  { "id": 159, "name": "Aufbau", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 3 },
-  { "id": 160, "name": "Komplott", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 3 },
-  { "id": 161, "name": "Oase", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 3 },
-  { "id": 162, "name": "Orakel", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1, 3], "costs": 3 },
-  { "id": 163, "name": "Tunnel", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [28, 20], "costs": 3 },
-  { "id": 164, "name": "Edler Räuber", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1, 3], "costs": 4 },
-  { "id": 165, "name": "Fahrender Händler", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1, 20], "costs": 4 },
-  { "id": 166, "name": "Gewürzhändler", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 4 },
-  { "id": 167, "name": "Lebenskünstler", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 4 },
-  { "id": 168, "name": "Nomadencamp", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 4 },
-  { "id": 169, "name": "Seidenstraße", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [28], "costs": 4 },
-  { "id": 170, "name": "Botschaft", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 171, "name": "Feilscher", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 172, "name": "Fernstraße", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 173, "name": "Gasthaus", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 174, "name": "Kartograph", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 175, "name": "Mandarin", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 176, "name": "Markgraf", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1, 3], "costs": 5 },
-  { "id": 177, "name": "Stallungen", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 5 },
-  { "id": 178, "name": "Blutzoll", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [27], "costs": 5 },
-  { "id": 179, "name": "Schatztruhe", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [27], "costs": 5 },
-  { "id": 180, "name": "Grenzdorf", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [1], "costs": 6 },
-  { "id": 181, "name": "Fruchtbares Land", "description": "", "expansion": { "id": 8, "name": "Hinterland" }, "types": [28], "costs": 6 },
-
-  { "id": 182, "name": "Beute", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [27], "costs": 0 },
-  { "id": 183, "name": "Söldner", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 3], "costs": 0 },
-  { "id": 184, "name": "Verrückter", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 0 },
-  { "id": 185, "name": "Armenhaus", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 1 },
-  { "id": 186, "name": "Bettler", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 20], "costs": 2 },
-  { "id": 187, "name": "Knappe", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 2 },
-  { "id": 188, "name": "Landstreicher", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 2 },
-  { "id": 189, "name": "Eremit", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 3 },
-  { "id": 190, "name": "Gassenjunge", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 3], "costs": 3 },
-  { "id": 191, "name": "Lagerraum", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 3 },
-  { "id": 192, "name": "Marktplatz", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 20], "costs": 3 },
-  { "id": 193, "name": "Mundraub", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 3 },
-  { "id": 194, "name": "Weiser", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 3 },
-  { "id": 195, "name": "Barde", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 196, "name": "Eisenhändler", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 197, "name": "Festung", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 198, "name": "Lehen", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [28], "costs": 4 },
-  { "id": 199, "name": "Leichenkarren", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 16], "costs": 4 },
-  { "id": 200, "name": "Lumpensammler", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 201, "name": "Marodeur", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 3, 16], "costs": 4 },
-  { "id": 202, "name": "Ratten", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 203, "name": "Prozession", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 204, "name": "Waffenkammer", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 4 },
-  { "id": 205, "name": "Banditenlager", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 206, "name": "Falschgeld", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [27], "costs": 5 },
-  { "id": 207, "name": "Grabräuber", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 208, "name": "Graf", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 209, "name": "Katakomben", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 210, "name": "Kultist", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 3, 16], "costs": 5 },
-  { "id": 211, "name": "Medium", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 212, "name": "Neubau", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 213, "name": "Raubzug", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 3], "costs": 5 },
-  { "id": 214, "name": "Schrotthändler", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 215, "name": "Schurke", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1, 3], "costs": 5 },
-  { "id": 216, "name": "Vogelfreie", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 5 },
-  { "id": 217, "name": "Altar", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 6 },
-  { "id": 218, "name": "Jagdgründe", "description": "", "expansion": { "id": 9, "name": "Dark Ages" }, "types": [1], "costs": 6 },
-
-  { "id": 219, "name": "Leuchtenmacher", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 2 },
-  { "id": 220, "name": "Steinmetz", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 2 },
-  { "id": 221, "name": "Arzt", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 3 },
-  { "id": 222, "name": "Meisterstück", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 3 },
-  { "id": 223, "name": "Berater", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 4 },
-  { "id": 224, "name": "Platz", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 4 },
-  { "id": 225, "name": "Steuereintreiber", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1, 3], "costs": 4 },
-  { "id": 226, "name": "Herold", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 4 },
-  { "id": 227, "name": "Bäcker", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 5 },
-  { "id": 228, "name": "Kaufmannsgilde", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 5 },
-  { "id": 229, "name": "Metzger", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 5 },
-  { "id": 230, "name": "Wahrsager", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1, 3], "costs": 5 },
-  { "id": 231, "name": "Wandergeselle", "description": "", "expansion": { "id": 10, "name": "Die Gilden" }, "types": [1], "costs": 5 },
-
-  { "id": 232, "name": "Königliche Münzen", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [27, 21], "costs": 2 },
-  { "id": 233, "name": "Rattenfänger", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21], "costs": 2 },
-  { "id": 234, "name": "Zerstörung", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 2 },
-  { "id": 235, "name": "Amulett", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 8], "costs": 3 },
-  { "id": 236, "name": "Ausrüstung", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 8], "costs": 3 },
-  { "id": 237, "name": "Karawanenwächter", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 8, 20], "costs": 3 },
-  { "id": 238, "name": "Kundschafter", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21], "costs": 3 },
-  { "id": 239, "name": "Verlies", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 8], "costs": 3 },
-  { "id": 240, "name": "Duplikat", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21], "costs": 4 },
-  { "id": 241, "name": "Elster", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 4 },
-  { "id": 242, "name": "Geizhals", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 4 },
-  { "id": 243, "name": "Hafenstadt", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 4 },
-  { "id": 244, "name": "Kurier", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 4 },
-  { "id": 245, "name": "Transformation", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21], "costs": 4 },
-  { "id": 246, "name": "Wildhüter", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 4 },
-  { "id": 247, "name": "Brückentroll", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 3, 8], "costs": 5 },
-  { "id": 248, "name": "Ferne Lande", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21, 28], "costs": 5 },
-  { "id": 249, "name": "Geisterwald", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 3, 8], "costs": 5 },
-  { "id": 250, "name": "Geschichtenerzähler", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 5 },
-  { "id": 251, "name": "Kunsthandwerker", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 5 },
-  { "id": 252, "name": "Königliche Kutsche", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21], "costs": 5 },
-  { "id": 253, "name": "Relikt", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [27, 3], "costs": 5 },
-  { "id": 254, "name": "Riese", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 3], "costs": 5 },
-  { "id": 255, "name": "Schatz", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [27], "costs": 5 },
-  { "id": 256, "name": "Sumpfhexe", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 3, 8], "costs": 5 },
-  { "id": 257, "name": "Verlorene Stadt", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1], "costs": 5 },
-  { "id": 258, "name": "Weinhändler", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 21], "costs": 5 },
-  { "id": 259, "name": "Gefolgsmann", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 8], "costs": 6 },
-
-  { "id": 260, "name": "Feldlager", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 2 },
-  { "id": 261, "name": "Patrizier", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 2 },
-  { "id": 262, "name": "Siedler", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 2 },
-  { "id": 263, "name": "Bauernmarkt", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 11], "costs": 3 },
-  { "id": 264, "name": "Gladiator", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 3 },
-  { "id": 265, "name": "Katapult", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 3], "costs": 3 },
-  { "id": 266, "name": "Wagenrennen", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 3 },
-  { "id": 267, "name": "Zauberin", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 3, 8], "costs": 3 },
-  { "id": 268, "name": "Felsen", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [27], "costs": 4 },
-  { "id": 269, "name": "Opfer", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 4 },
-  { "id": 270, "name": "Tempel", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 11], "costs": 4 },
-  { "id": 271, "name": "Villa", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 4 },
-  { "id": 272, "name": "Archiv", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 8], "costs": 5 },
-  { "id": 273, "name": "Diebesgut", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [27], "costs": 5 },
-  { "id": 274, "name": "Emsiges Dorf", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 5 },
-  { "id": 275, "name": "Forum", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 5 },
-  { "id": 276, "name": "Gärtnerin", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 5 },
-  { "id": 277, "name": "Handelsplatz", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 5 },
-  { "id": 278, "name": "Krone", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 27], "costs": 5 },
-  { "id": 279, "name": "Legionär", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 3], "costs": 5 },
-  { "id": 280, "name": "Vermögen", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [27], "costs": 5 },
-  { "id": 281, "name": "Wilde Jagd", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 11], "costs": 5 },
-  { "id": 282, "name": "Zauber", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [27], "costs": 5 },
-  { "id": 283, "name": "Ingenieurin", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "debt": 4 },
-  { "id": 284, "name": "Königlicher Schmied", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "debt": 8 },
-  { "id": 285, "name": "Lehnsherr", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "debt": 8 },
-  { "id": 286, "name": "Reichtum", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1], "costs": 8, "debt": 8 },
-  { "id": 287, "name": "Bescheidenes Schloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [27, 28, 5], "costs": 3 },
-  { "id": 288, "name": "Verfallendes Schloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [28, 5], "costs": 4 },
-  { "id": 289, "name": "Kleines Schloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 28, 5], "costs": 5 },
-  { "id": 290, "name": "Spukschloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [28, 5], "costs": 6 },
-  { "id": 291, "name": "Reiches Schloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [1, 28, 5], "costs": 7 },
-  { "id": 292, "name": "Ausgedehntes Schloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [28, 5], "costs": 8 },
-  { "id": 293, "name": "Prunkchloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [28, 5], "costs": 9 },
-  { "id": 294, "name": "Königsschloss", "description": "", "expansion": { "id": 12, "name": "Empires" }, "types": [28, 5], "costs": 10 },
-
-  { "id": 295, "name": "Wunsch", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1], "costs": 0 },
-  { "id": 296, "name": "Wunderlampe", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 12], "costs": 0 },
-  { "id": 297, "name": "Zauberspiegel", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 12], "costs": 0 },
-  { "id": 298, "name": "Irrlicht", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 24], "costs": 0 },
-  { "id": 299, "name": "Druidin", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 2 },
-  { "id": 300, "name": "Fährtensucher", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 2 },
-  { "id": 301, "name": "Fee", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 2 },
-  { "id": 302, "name": "Getreuer Hund", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 20], "costs": 2 },
-  { "id": 303, "name": "Kloster", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 2 },
-  { "id": 304, "name": "Wächterin", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8], "costs": 2 },
-  { "id": 305, "name": "Fledermaus", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 2 },
-  { "id": 306, "name": "Beutel", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 12], "costs": 2 },
-  { "id": 307, "name": "Weideland", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 28, 12], "costs": 2 },
-  { "id": 308, "name": "Ziege", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 12], "costs": 2 },
-  { "id": 309, "name": "Teufelchen", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 24], "costs": 2 },
-  { "id": 310, "name": "Kloster", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 3 },
-  { "id": 311, "name": "Geheime Höhle", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 8], "costs": 3 },
-  { "id": 312, "name": "Geisterstadt", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8], "costs": 3 },
-  { "id": 313, "name": "Kobold", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 7], "costs": 3 },
-  { "id": 314, "name": "Nachtwache", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 3 },
-  { "id": 315, "name": "Narr", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 3 },
-  { "id": 316, "name": "Wechselbalg", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 3 },
-  { "id": 317, "name": "Zombie-Lehrling", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 29], "costs": 3 },
-  { "id": 318, "name": "Zombie-Maurer", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 29], "costs": 3 },
-  { "id": 319, "name": "Zombie-Spion", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 29], "costs": 3 },
-  { "id": 320, "name": "Attentäter", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 3, 7], "costs": 4 },
-  { "id": 321, "name": "Exorzistin", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 4 },
-  { "id": 322, "name": "Friedhof", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [28], "costs": 4 },
-  { "id": 323, "name": "Konklave", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1], "costs": 4 },
-  { "id": 324, "name": "Minnesängerin", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 4 },
-  { "id": 325, "name": "Schäferin", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1], "costs": 4 },
-  { "id": 326, "name": "Seliges Dorf", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 4 },
-  { "id": 327, "name": "Teufelswerkstatt", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17], "costs": 4 },
-  { "id": 328, "name": "Totenbeschwörer", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1], "costs": 4 },
-  { "id": 329, "name": "Glückstaler", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 12], "costs": 4 },
-  { "id": 330, "name": "Verfluchtes Gold", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 12], "costs": 4 },
-  { "id": 331, "name": "Geist", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8, 24], "costs": 4 },
-  { "id": 332, "name": "Folterknecht", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 3, 7], "costs": 5 },
-  { "id": 333, "name": "Götze", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [27, 3, 10], "costs": 5 },
-  { "id": 334, "name": "Heiliger Hain", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 10], "costs": 5 },
-  { "id": 335, "name": "Krypta", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8], "costs": 5 },
-  { "id": 336, "name": "Puka", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1], "costs": 5 },
-  { "id": 337, "name": "Schuster", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8], "costs": 5 },
-  { "id": 338, "name": "Sündenpfuhl", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8], "costs": 5 },
-  { "id": 339, "name": "Tragischer Held", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1], "costs": 5 },
-  { "id": 340, "name": "Vampirin", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 3, 7], "costs": 5 },
-  { "id": 341, "name": "Verfluchtes Dorf", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 7], "costs": 5 },
-  { "id": 342, "name": "Werwolf", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [1, 17, 3, 7], "costs": 5 },
-  { "id": 343, "name": "Plünderer", "description": "", "expansion": { "id": 13, "name": "Nocturne" }, "types": [17, 8, 3], "costs": 6 },
-
-  { "id": 344, "name": "Page", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 2 },
-  { "id": 345, "name": "Schatzsucher", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 3 },
-  { "id": 346, "name": "Krieger", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 4 },
-  { "id": 347, "name": "Held", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 5 },
-  { "id": 348, "name": "Champion", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 6 },
-  { "id": 349, "name": "Kleinbauer", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 2 },
-  { "id": 350, "name": "Soldat", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 3 },
-  { "id": 351, "name": "Flüchtling", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 4 },
-  { "id": 352, "name": "Schüler", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 5 },
-  { "id": 353, "name": "Lehrer", "description": "", "expansion": { "id": 11, "name": "Abenteuer" }, "types": [1, 26], "costs": 6 }
+  { "id": 1, "name": "Alms", "expansions": [12], "types": [9], "cost": 0 },
+  { "id": 2, "name": "Amulet", "expansions": [12], "types": [1, 8], "cost": 3 },
+  { "id": 3, "name": "Artificer", "expansions": [12], "types": [1], "cost": 5 },
+  { "id": 4, "name": "Ball", "expansions": [12], "types": [9], "cost": 5 },
+  { "id": 5, "name": "Bonfire", "expansions": [12], "types": [9], "cost": 3 },
+  { "id": 6, "name": "Borrow", "expansions": [12], "types": [9], "cost": 0 },
+  {
+    "id": 7,
+    "name": "Bridge Troll",
+    "expansions": [12],
+    "types": [1, 3, 8],
+    "cost": 5
+  },
+  {
+    "id": 8,
+    "name": "Caravan Guard",
+    "expansions": [12],
+    "types": [1, 8, 20],
+    "cost": 3
+  },
+  {
+    "id": 9,
+    "name": "Champion",
+    "expansions": [12],
+    "types": [1, 8],
+    "cost": 6
+  },
+  {
+    "id": 10,
+    "name": "Coin of the Realm",
+    "expansions": [12],
+    "types": [27, 21],
+    "cost": 2
+  },
+  {
+    "id": 11,
+    "name": "Disciple",
+    "expansions": [12],
+    "types": [1, 26],
+    "cost": 5
+  },
+  {
+    "id": 12,
+    "name": "Distant Lands",
+    "expansions": [12],
+    "types": [1, 21, 28],
+    "cost": 5
+  },
+  {
+    "id": 13,
+    "name": "Dungeon",
+    "expansions": [12],
+    "types": [1, 8],
+    "cost": 3
+  },
+  {
+    "id": 14,
+    "name": "Duplicate",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 4
+  },
+  {
+    "id": 15,
+    "name": "Expedition",
+    "expansions": [12],
+    "types": [9],
+    "cost": 3
+  },
+  { "id": 16, "name": "Ferry", "expansions": [12], "types": [9], "cost": 3 },
+  {
+    "id": 17,
+    "name": "Fugitive",
+    "expansions": [12],
+    "types": [1, 26],
+    "cost": 4
+  },
+  { "id": 18, "name": "Gear", "expansions": [12], "types": [1, 8], "cost": 3 },
+  { "id": 19, "name": "Giant", "expansions": [12], "types": [1, 3], "cost": 5 },
+  {
+    "id": 20,
+    "name": "Guide",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 3
+  },
+  {
+    "id": 21,
+    "name": "Haunted Woods",
+    "expansions": [12],
+    "types": [1, 3, 8],
+    "cost": 5
+  },
+  { "id": 22, "name": "Hero", "expansions": [12], "types": [1, 26], "cost": 5 },
+  {
+    "id": 23,
+    "name": "Hireling",
+    "expansions": [12],
+    "types": [1, 8],
+    "cost": 6
+  },
+  {
+    "id": 24,
+    "name": "Inheritance",
+    "expansions": [12],
+    "types": [9],
+    "cost": 7
+  },
+  {
+    "id": 25,
+    "name": "Lost Arts",
+    "expansions": [12],
+    "types": [9],
+    "cost": 6
+  },
+  {
+    "id": 26,
+    "name": "Lost City",
+    "expansions": [12],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 27, "name": "Magpie", "expansions": [12], "types": [1], "cost": 4 },
+  {
+    "id": 28,
+    "name": "Messenger",
+    "expansions": [12],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 29, "name": "Miser", "expansions": [12], "types": [1], "cost": 4 },
+  { "id": 30, "name": "Mission", "expansions": [12], "types": [9], "cost": 4 },
+  { "id": 31, "name": "Page", "expansions": [12], "types": [1, 26], "cost": 2 },
+  {
+    "id": 32,
+    "name": "Pathfinding",
+    "expansions": [12],
+    "types": [9],
+    "cost": 8
+  },
+  {
+    "id": 33,
+    "name": "Peasant",
+    "expansions": [12],
+    "types": [1, 26],
+    "cost": 2
+  },
+  {
+    "id": 34,
+    "name": "Pilgrimage",
+    "expansions": [12],
+    "types": [9],
+    "cost": 4
+  },
+  { "id": 35, "name": "Plan", "expansions": [12], "types": [9], "cost": 3 },
+  { "id": 36, "name": "Port", "expansions": [12], "types": [1], "cost": 4 },
+  { "id": 37, "name": "Quest", "expansions": [12], "types": [9], "cost": 0 },
+  { "id": 38, "name": "Raid", "expansions": [12], "types": [9], "cost": 5 },
+  { "id": 39, "name": "Ranger", "expansions": [12], "types": [1], "cost": 4 },
+  {
+    "id": 40,
+    "name": "Ratcatcher",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 2
+  },
+  { "id": 41, "name": "Raze", "expansions": [12], "types": [1], "cost": 2 },
+  {
+    "id": 42,
+    "name": "Relic",
+    "expansions": [12],
+    "types": [27, 3],
+    "cost": 5
+  },
+  {
+    "id": 43,
+    "name": "Royal Carriage",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 5
+  },
+  { "id": 44, "name": "Save", "expansions": [12], "types": [9], "cost": 1 },
+  {
+    "id": 45,
+    "name": "Scouting Party",
+    "expansions": [12],
+    "types": [9],
+    "cost": 2
+  },
+  { "id": 46, "name": "Seaway", "expansions": [12], "types": [9], "cost": 5 },
+  {
+    "id": 47,
+    "name": "Soldier",
+    "expansions": [12],
+    "types": [1, 3, 26],
+    "cost": 3
+  },
+  {
+    "id": 48,
+    "name": "Storyteller",
+    "expansions": [12],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 49,
+    "name": "Swamp Hag",
+    "expansions": [12],
+    "types": [1, 3, 8],
+    "cost": 5
+  },
+  {
+    "id": 50,
+    "name": "Teacher",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 6
+  },
+  { "id": 51, "name": "Trade", "expansions": [12], "types": [9], "cost": 5 },
+  { "id": 52, "name": "Training", "expansions": [12], "types": [9], "cost": 6 },
+  {
+    "id": 53,
+    "name": "Transmogrify",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 4
+  },
+  {
+    "id": 54,
+    "name": "Travelling Fair",
+    "expansions": [12],
+    "types": [9],
+    "cost": 2
+  },
+  {
+    "id": 55,
+    "name": "Treasure Hunter",
+    "expansions": [12],
+    "types": [1, 26],
+    "cost": 3
+  },
+  {
+    "id": 56,
+    "name": "Treasure Trove",
+    "expansions": [12],
+    "types": [27],
+    "cost": 5
+  },
+  {
+    "id": 57,
+    "name": "Warrior",
+    "expansions": [12],
+    "types": [1, 3, 26],
+    "cost": 4
+  },
+  {
+    "id": 58,
+    "name": "Wine Merchant",
+    "expansions": [12],
+    "types": [1, 21],
+    "cost": 5
+  },
+  {
+    "id": 59,
+    "name": "Alchemist",
+    "expansions": [6],
+    "types": [1],
+    "cost": 3,
+    "potion": true
+  },
+  {
+    "id": 60,
+    "name": "Apothecary",
+    "expansions": [6],
+    "types": [1],
+    "cost": 2,
+    "potion": true
+  },
+  {
+    "id": 61,
+    "name": "Apprentice",
+    "expansions": [6],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 62,
+    "name": "Familiar",
+    "expansions": [6],
+    "types": [1, 3],
+    "cost": 3,
+    "potion": true
+  },
+  {
+    "id": 63,
+    "name": "Golem",
+    "expansions": [6],
+    "types": [1],
+    "cost": 4,
+    "potion": true
+  },
+  { "id": 64, "name": "Herbalist", "expansions": [6], "types": [1], "cost": 2 },
+  {
+    "id": 65,
+    "name": "Philosopher's Stone",
+    "expansions": [6],
+    "types": [27],
+    "cost": 3,
+    "potion": true
+  },
+  {
+    "id": 66,
+    "name": "Possession",
+    "expansions": [6],
+    "types": [1],
+    "cost": 6,
+    "potion": true
+  },
+  {
+    "id": 67,
+    "name": "Scrying Pool",
+    "expansions": [6],
+    "types": [1, 3],
+    "cost": 2,
+    "potion": true
+  },
+  {
+    "id": 68,
+    "name": "Transmute",
+    "expansions": [6],
+    "types": [1],
+    "cost": null,
+    "potion": true
+  },
+  {
+    "id": 69,
+    "name": "University",
+    "expansions": [6],
+    "types": [1],
+    "cost": 2,
+    "potion": true
+  },
+  {
+    "id": 70,
+    "name": "Vineyard",
+    "expansions": [6],
+    "types": [28],
+    "cost": null,
+    "potion": true
+  },
+  {
+    "id": 71,
+    "name": "Grey Mustang",
+    "expansions": [null],
+    "types": [1, 28],
+    "cost": 4
+  },
+  {
+    "id": 72,
+    "name": "Rabbits",
+    "expansions": [null],
+    "types": [1, 3],
+    "cost": 3
+  },
+  {
+    "id": 73,
+    "name": "Yard Dog",
+    "expansions": [null],
+    "types": [1, 20],
+    "cost": 2
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+    "id": 74,
+    "name": "Bag of Gold",
+    "expansions": [8],
+    "types": [1, 18],
+    "cost": 0
+  },
+  {
+    "id": 75,
+    "name": "Diadem",
+    "expansions": [8],
+    "types": [27, 18],
+    "cost": 0
+  },
+  {
+    "id": 76,
+    "name": "Fairgrounds",
+    "expansions": [8],
+    "types": [28],
+    "cost": 6
+  },
+  {
+    "id": 77,
+    "name": "Farming Village",
+    "expansions": [8],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 78,
+    "name": "Followers",
+    "expansions": [8],
+    "types": [1, 3, 18],
+    "cost": 0
+  },
+  {
+    "id": 79,
+    "name": "Fortune Teller",
+    "expansions": [8],
+    "types": [1, 3],
+    "cost": 3
+  },
+  { "id": 80, "name": "Hamlet", "expansions": [8], "types": [1], "cost": 2 },
+  { "id": 81, "name": "Harvest", "expansions": [8], "types": [1], "cost": 5 },
+  {
+    "id": 82,
+    "name": "Horn of Plenty",
+    "expansions": [8],
+    "types": [27],
+    "cost": 5
+  },
+  {
+    "id": 83,
+    "name": "Horse Traders",
+    "expansions": [8],
+    "types": [1, 20],
+    "cost": 4
+  },
+  {
+    "id": 84,
+    "name": "Hunting Party",
+    "expansions": [8],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 85, "name": "Jester", "expansions": [8], "types": [1, 3], "cost": 5 },
+  { "id": 86, "name": "Menagerie", "expansions": [8], "types": [1], "cost": 3 },
+  {
+    "id": 87,
+    "name": "Princess",
+    "expansions": [8],
+    "types": [1, 18],
+    "cost": 0
+  },
+  { "id": 88, "name": "Remake", "expansions": [8], "types": [1], "cost": 4 },
+  {
+    "id": 89,
+    "name": "Tournament",
+    "expansions": [8],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 90,
+    "name": "Trusty Steed",
+    "expansions": [8],
+    "types": [1, 18],
+    "cost": 0
+  },
+  {
+    "id": 91,
+    "name": "Young Witch",
+    "expansions": [8],
+    "types": [1, 3],
+    "cost": 4
+  },
+  { "id": 92, "name": "Altar", "expansions": [10], "types": [1], "cost": 6 },
+  { "id": 93, "name": "Armory", "expansions": [10], "types": [1], "cost": 4 },
+  {
+    "id": 94,
+    "name": "Band of Misfits",
+    "expansions": [10],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 95,
+    "name": "Bandit Camp",
+    "expansions": [10],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 96,
+    "name": "Beggar",
+    "expansions": [10],
+    "types": [1, 20],
+    "cost": 2
+  },
+  {
+    "id": 97,
+    "name": "Catacombs",
+    "expansions": [10],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 98, "name": "Count", "expansions": [10], "types": [1], "cost": 5 },
+  {
+    "id": 99,
+    "name": "Counterfeit",
+    "expansions": [10],
+    "types": [27],
+    "cost": 5
+  },
+  {
+    "id": 100,
+    "name": "Cultist",
+    "expansions": [10],
+    "types": [1, 3, 16],
+    "cost": 5
+  },
+  {
+    "id": 101,
+    "name": "Death Cart",
+    "expansions": [10],
+    "types": [1, 16],
+    "cost": 4
+  },
+  { "id": 102, "name": "Feodum", "expansions": [10], "types": [28], "cost": 4 },
+  { "id": 103, "name": "Forager", "expansions": [10], "types": [1], "cost": 3 },
+  {
+    "id": 104,
+    "name": "Fortress",
+    "expansions": [10],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 105,
+    "name": "Graverobber",
+    "expansions": [10],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 106, "name": "Hermit", "expansions": [10], "types": [1], "cost": 3 },
+  {
+    "id": 107,
+    "name": "Hovel",
+    "expansions": [10],
+    "types": [20, 23],
+    "cost": 1
+  },
+  {
+    "id": 108,
+    "name": "Hunting Grounds",
+    "expansions": [10],
+    "types": [1],
+    "cost": 6
+  },
+  {
+    "id": 109,
+    "name": "Ironmonger",
+    "expansions": [10],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 110,
+    "name": "Junk Dealer",
+    "expansions": [10],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 111, "name": "Knights", "expansions": [10], "types": [1], "cost": 5 },
+  { "id": 112, "name": "Madman", "expansions": [10], "types": [1], "cost": 0 },
+  {
+    "id": 113,
+    "name": "Marauder",
+    "expansions": [10],
+    "types": [1, 3, 16],
+    "cost": 4
+  },
+  {
+    "id": 114,
+    "name": "Market Square",
+    "expansions": [10],
+    "types": [1, 20],
+    "cost": 3
+  },
+  {
+    "id": 115,
+    "name": "Mercenary",
+    "expansions": [10],
+    "types": [1, 3],
+    "cost": 0
+  },
+  { "id": 116, "name": "Mystic", "expansions": [10], "types": [1], "cost": 5 },
+  {
+    "id": 117,
+    "name": "Necropolis",
+    "expansions": [10],
+    "types": [1, 23],
+    "cost": 1
+  },
+  {
+    "id": 118,
+    "name": "Overgrown Estate",
+    "expansions": [10],
+    "types": [28, 23],
+    "cost": 1
+  },
+  {
+    "id": 119,
+    "name": "Pillage",
+    "expansions": [10],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 120,
+    "name": "Poor House",
+    "expansions": [10],
+    "types": [1],
+    "cost": 1
+  },
+  {
+    "id": 121,
+    "name": "Procession",
+    "expansions": [10],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 122, "name": "Rats", "expansions": [10], "types": [1], "cost": 4 },
+  { "id": 123, "name": "Rebuild", "expansions": [10], "types": [1], "cost": 5 },
+  {
+    "id": 124,
+    "name": "Rogue",
+    "expansions": [10],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 125,
+    "name": "Ruins",
+    "expansions": [10],
+    "types": [1, 22],
+    "cost": 0
+  },
+  { "id": 126, "name": "Sage", "expansions": [10], "types": [1], "cost": 3 },
+  {
+    "id": 127,
+    "name": "Scavenger",
+    "expansions": [10],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 128, "name": "Spoils", "expansions": [10], "types": [27], "cost": 0 },
+  { "id": 129, "name": "Squire", "expansions": [10], "types": [1], "cost": 2 },
+  {
+    "id": 130,
+    "name": "Storeroom",
+    "expansions": [10],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 131,
+    "name": "Urchin",
+    "expansions": [10],
+    "types": [1, 3],
+    "cost": 3
+  },
+  { "id": 132, "name": "Vagrant", "expansions": [10], "types": [1], "cost": 2 },
+  {
+    "id": 133,
+    "name": "Wandering Minstrel",
+    "expansions": [10],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 134,
+    "name": "Adventurer",
+    "expansions": [1],
+    "types": [1],
+    "cost": 6
+  },
+  {
+    "id": 135,
+    "name": "Chancellor",
+    "expansions": [1],
+    "types": [1],
+    "cost": 3
+  },
+  { "id": 136, "name": "Feast", "expansions": [1], "types": [1], "cost": 4 },
+  { "id": 137, "name": "Spy", "expansions": [1], "types": [1, 3], "cost": 4 },
+  { "id": 138, "name": "Thief", "expansions": [1], "types": [1, 3], "cost": 4 },
+  {
+    "id": 139,
+    "name": "Woodcutter",
+    "expansions": [1],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 140,
+    "name": "Bureaucrat",
+    "expansions": [1, 2],
+    "types": [1, 3],
+    "cost": 4
+  },
+  {
+    "id": 141,
+    "name": "Cellar",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 142,
+    "name": "Chapel",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 143,
+    "name": "Council Room",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 144,
+    "name": "Festival",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 145,
+    "name": "Gardens",
+    "expansions": [1, 2],
+    "types": [28],
+    "cost": 4
+  },
+  {
+    "id": 146,
+    "name": "Laboratory",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 147,
+    "name": "Library",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 148,
+    "name": "Market",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 149,
+    "name": "Militia",
+    "expansions": [1, 2],
+    "types": [1, 3],
+    "cost": 4
+  },
+  { "id": 150, "name": "Mine", "expansions": [1, 2], "types": [1], "cost": 5 },
+  {
+    "id": 151,
+    "name": "Moat",
+    "expansions": [1, 2],
+    "types": [1, 20],
+    "cost": 2
+  },
+  {
+    "id": 152,
+    "name": "Moneylender",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 153,
+    "name": "Remodel",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 154,
+    "name": "Smithy",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 155,
+    "name": "Throne Room",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 156,
+    "name": "Village",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 157,
+    "name": "Witch",
+    "expansions": [1, 2],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 158,
+    "name": "Workshop",
+    "expansions": [1, 2],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 159,
+    "name": "Artisan",
+    "expansions": [2, null],
+    "types": [1],
+    "cost": 6
+  },
+  {
+    "id": 160,
+    "name": "Bandit",
+    "expansions": [2, null],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 161,
+    "name": "Harbinger",
+    "expansions": [2, null],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 162,
+    "name": "Merchant",
+    "expansions": [2, null],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 163,
+    "name": "Poacher",
+    "expansions": [2, null],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 164,
+    "name": "Sentry",
+    "expansions": [2, null],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 165,
+    "name": "Vassal",
+    "expansions": [2, null],
+    "types": [1],
+    "cost": 3
+  },
+  { "id": 166, "name": "Advance", "expansions": [13], "types": [9], "cost": 0 },
+  {
+    "id": 167,
+    "name": "Annex",
+    "expansions": [13],
+    "types": [9],
+    "cost": 0,
+    "debt": 8
+  },
+  {
+    "id": 168,
+    "name": "Aqueduct",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 169,
+    "name": "Archive",
+    "expansions": [13],
+    "types": [1, 8],
+    "cost": 5
+  },
+  {
+    "id": 170,
+    "name": "Arena",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 171,
+    "name": "Bandit Fort",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  { "id": 172, "name": "Banquet", "expansions": [13], "types": [9], "cost": 3 },
+  {
+    "id": 173,
+    "name": "Basilica",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 174,
+    "name": "Baths",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 175,
+    "name": "Battlefield",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 176,
+    "name": "Bustling Village",
+    "expansions": [13],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 177,
+    "name": "Capital",
+    "expansions": [13],
+    "types": [27],
+    "cost": 5
+  },
+  {
+    "id": 178,
+    "name": "Castles",
+    "expansions": [13],
+    "types": [28, 5],
+    "cost": 3
+  },
+  {
+    "id": 179,
+    "name": "Catapult",
+    "expansions": [13],
+    "types": [1, 3],
+    "cost": 3
+  },
+  {
+    "id": 180,
+    "name": "Chariot Race",
+    "expansions": [13],
+    "types": [1],
+    "cost": 3
+  },
+  { "id": 181, "name": "Charm", "expansions": [13], "types": [27], "cost": 5 },
+  {
+    "id": 182,
+    "name": "City Quarter",
+    "expansions": [13],
+    "types": [1],
+    "cost": 0,
+    "debt": 8
+  },
+  {
+    "id": 183,
+    "name": "Colonnade",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 184,
+    "name": "Conquest",
+    "expansions": [13],
+    "types": [9],
+    "cost": 6
+  },
+  {
+    "id": 185,
+    "name": "Crown",
+    "expansions": [13],
+    "types": [1, 27],
+    "cost": 5
+  },
+  {
+    "id": 186,
+    "name": "Defiled Shrine",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  { "id": 187, "name": "Delve", "expansions": [13], "types": [9], "cost": 2 },
+  {
+    "id": 188,
+    "name": "Dominate",
+    "expansions": [13],
+    "types": [9],
+    "cost": 14
+  },
+  {
+    "id": 189,
+    "name": "Donate",
+    "expansions": [13],
+    "types": [9],
+    "cost": 0,
+    "debt": 8
+  },
+  {
+    "id": 190,
+    "name": "Emporium",
+    "expansions": [13],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 191,
+    "name": "Encampment",
+    "expansions": [13],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 192,
+    "name": "Enchantress",
+    "expansions": [13],
+    "types": [1, 3, 8],
+    "cost": 3
+  },
+  {
+    "id": 193,
+    "name": "Engineer",
+    "expansions": [13],
+    "types": [1],
+    "cost": 0,
+    "debt": 4
+  },
+  {
+    "id": 194,
+    "name": "Farmers' Market",
+    "expansions": [13],
+    "types": [1, 11],
+    "cost": 3
+  },
+  {
+    "id": 195,
+    "name": "Fortune",
+    "expansions": [13],
+    "types": [27],
+    "cost": 8,
+    "debt": 8
+  },
+  { "id": 196, "name": "Forum", "expansions": [13], "types": [1], "cost": 5 },
+  {
+    "id": 197,
+    "name": "Fountain",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 198,
+    "name": "Gladiator",
+    "expansions": [13],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 199,
+    "name": "Groundskeeper",
+    "expansions": [13],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 200,
+    "name": "Keep",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 201,
+    "name": "Labyrinth",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 202,
+    "name": "Legionary",
+    "expansions": [13],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 203,
+    "name": "Mountain Pass",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 204,
+    "name": "Museum",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 205,
+    "name": "Obelisk",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 206,
+    "name": "Orchard",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 207,
+    "name": "Overlord",
+    "expansions": [13],
+    "types": [1],
+    "cost": 0,
+    "debt": 8
+  },
+  {
+    "id": 208,
+    "name": "Palace",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 209,
+    "name": "Patrician",
+    "expansions": [13],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 210,
+    "name": "Plunder",
+    "expansions": [13],
+    "types": [27],
+    "cost": 5
+  },
+  { "id": 211, "name": "Ritual", "expansions": [13], "types": [9], "cost": 4 },
+  { "id": 212, "name": "Rocks", "expansions": [13], "types": [27], "cost": 4 },
+  {
+    "id": 213,
+    "name": "Royal Blacksmith",
+    "expansions": [13],
+    "types": [1],
+    "cost": 0,
+    "debt": 8
+  },
+  {
+    "id": 214,
+    "name": "Sacrifice",
+    "expansions": [13],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 215,
+    "name": "Salt the Earth",
+    "expansions": [13],
+    "types": [9],
+    "cost": 4
+  },
+  {
+    "id": 216,
+    "name": "Settlers",
+    "expansions": [13],
+    "types": [1],
+    "cost": 2
+  },
+  { "id": 217, "name": "Tax", "expansions": [13], "types": [9], "cost": 2 },
+  {
+    "id": 218,
+    "name": "Temple",
+    "expansions": [13],
+    "types": [1, 11],
+    "cost": 4
+  },
+  {
+    "id": 219,
+    "name": "Tomb",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 220,
+    "name": "Tower",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 221,
+    "name": "Triumph",
+    "expansions": [13],
+    "types": [9],
+    "cost": 0,
+    "debt": 5
+  },
+  {
+    "id": 222,
+    "name": "Triumphal Arch",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  { "id": 223, "name": "Villa", "expansions": [13], "types": [1], "cost": 4 },
+  {
+    "id": 224,
+    "name": "Wall",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  {
+    "id": 225,
+    "name": "Wedding",
+    "expansions": [13],
+    "types": [9],
+    "cost": 4,
+    "debt": 3
+  },
+  {
+    "id": 226,
+    "name": "Wild Hunt",
+    "expansions": [13],
+    "types": [1, 11],
+    "cost": 5
+  },
+  {
+    "id": 227,
+    "name": "Windfall",
+    "expansions": [13],
+    "types": [9],
+    "cost": 5
+  },
+  {
+    "id": 228,
+    "name": "Wolf Den",
+    "expansions": [13],
+    "types": [15],
+    "cost": null
+  },
+  { "id": 229, "name": "Advisor", "expansions": [11], "types": [1], "cost": 4 },
+  { "id": 230, "name": "Baker", "expansions": [11], "types": [1], "cost": 5 },
+  { "id": 231, "name": "Butcher", "expansions": [11], "types": [1], "cost": 5 },
+  {
+    "id": 232,
+    "name": "Candlestick Maker",
+    "expansions": [11],
+    "types": [1],
+    "cost": 2
+  },
+  { "id": 233, "name": "Doctor", "expansions": [11], "types": [1], "cost": 3 },
+  { "id": 234, "name": "Herald", "expansions": [11], "types": [1], "cost": 4 },
+  {
+    "id": 235,
+    "name": "Journeyman",
+    "expansions": [11],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 236,
+    "name": "Masterpiece",
+    "expansions": [11],
+    "types": [27],
+    "cost": 3
+  },
+  {
+    "id": 237,
+    "name": "Merchant Guild",
+    "expansions": [11],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 238, "name": "Plaza", "expansions": [11], "types": [1], "cost": 4 },
+  {
+    "id": 239,
+    "name": "Soothsayer",
+    "expansions": [11],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 240,
+    "name": "Stonemason",
+    "expansions": [11],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 241,
+    "name": "Taxman",
+    "expansions": [11],
+    "types": [1, 3],
+    "cost": 4
+  },
+  {
+    "id": 242,
+    "name": "Border Village",
+    "expansions": [9],
+    "types": [1],
+    "cost": 6
+  },
+  { "id": 243, "name": "Cache", "expansions": [9], "types": [27], "cost": 5 },
+  {
+    "id": 244,
+    "name": "Cartographer",
+    "expansions": [9],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 245,
+    "name": "Crossroads",
+    "expansions": [9],
+    "types": [1],
+    "cost": 2
+  },
+  { "id": 246, "name": "Develop", "expansions": [9], "types": [1], "cost": 3 },
+  { "id": 247, "name": "Duchess", "expansions": [9], "types": [1], "cost": 2 },
+  { "id": 248, "name": "Embassy", "expansions": [9], "types": [1], "cost": 5 },
+  {
+    "id": 249,
+    "name": "Farmland",
+    "expansions": [9],
+    "types": [28],
+    "cost": 6
+  },
+  {
+    "id": 250,
+    "name": "Fool's Gold",
+    "expansions": [9],
+    "types": [27, 20],
+    "cost": 2
+  },
+  { "id": 251, "name": "Haggler", "expansions": [9], "types": [1], "cost": 5 },
+  { "id": 252, "name": "Highway", "expansions": [9], "types": [1], "cost": 5 },
+  {
+    "id": 253,
+    "name": "Ill-Gotten Gains",
+    "expansions": [9],
+    "types": [27],
+    "cost": 5
+  },
+  { "id": 254, "name": "Inn", "expansions": [9], "types": [1], "cost": 5 },
+  {
+    "id": 255,
+    "name": "Jack of all Trades",
+    "expansions": [9],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 256, "name": "Mandarin", "expansions": [9], "types": [1], "cost": 5 },
+  {
+    "id": 257,
+    "name": "Margrave",
+    "expansions": [9],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 258,
+    "name": "Noble Brigand",
+    "expansions": [9],
+    "types": [1, 3],
+    "cost": 4
+  },
+  {
+    "id": 259,
+    "name": "Nomad Camp",
+    "expansions": [9],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 260, "name": "Oasis", "expansions": [9], "types": [1], "cost": 3 },
+  {
+    "id": 261,
+    "name": "Oracle",
+    "expansions": [9],
+    "types": [1, 3],
+    "cost": 3
+  },
+  { "id": 262, "name": "Scheme", "expansions": [9], "types": [1], "cost": 3 },
+  {
+    "id": 263,
+    "name": "Silk Road",
+    "expansions": [9],
+    "types": [28],
+    "cost": 4
+  },
+  {
+    "id": 264,
+    "name": "Spice Merchant",
+    "expansions": [9],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 265, "name": "Stables", "expansions": [9], "types": [1], "cost": 5 },
+  {
+    "id": 266,
+    "name": "Trader",
+    "expansions": [9],
+    "types": [1, 20],
+    "cost": 4
+  },
+  {
+    "id": 267,
+    "name": "Tunnel",
+    "expansions": [9],
+    "types": [28, 20],
+    "cost": 3
+  },
+  {
+    "id": 268,
+    "name": "Coppersmith",
+    "expansions": [3],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 269,
+    "name": "Great Hall",
+    "expansions": [3],
+    "types": [1, 28],
+    "cost": 3
+  },
+  {
+    "id": 270,
+    "name": "Saboteur",
+    "expansions": [3],
+    "types": [1, 3],
+    "cost": 5
+  },
+  { "id": 271, "name": "Scout", "expansions": [3], "types": [1], "cost": 4 },
+  {
+    "id": 272,
+    "name": "Secret Chamber",
+    "expansions": [3],
+    "types": [1, 20],
+    "cost": 2
+  },
+  { "id": 273, "name": "Tribute", "expansions": [3], "types": [1], "cost": 5 },
+  { "id": 274, "name": "Baron", "expansions": [3, 4], "types": [1], "cost": 4 },
+  {
+    "id": 275,
+    "name": "Bridge",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 276,
+    "name": "Conspirator",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 277,
+    "name": "Courtyard",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 2
+  },
+  { "id": 278, "name": "Duke", "expansions": [3, 4], "types": [28], "cost": 5 },
+  {
+    "id": 279,
+    "name": "Harem",
+    "expansions": [3, 4],
+    "types": [27, 28],
+    "cost": 6
+  },
+  {
+    "id": 280,
+    "name": "Ironworks",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 281,
+    "name": "Masquerade",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 282,
+    "name": "Mining Village",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 283,
+    "name": "Minion",
+    "expansions": [3, 4],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 284,
+    "name": "Nobles",
+    "expansions": [3, 4],
+    "types": [1, 28],
+    "cost": 6
+  },
+  { "id": 285, "name": "Pawn", "expansions": [3, 4], "types": [1], "cost": 2 },
+  {
+    "id": 286,
+    "name": "Shanty Town",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 287,
+    "name": "Steward",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 288,
+    "name": "Swindler",
+    "expansions": [3, 4],
+    "types": [1, 3],
+    "cost": 3
+  },
+  {
+    "id": 289,
+    "name": "Torturer",
+    "expansions": [3, 4],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 290,
+    "name": "Trading Post",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 291,
+    "name": "Upgrade",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 292,
+    "name": "Wishing Well",
+    "expansions": [3, 4],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 293,
+    "name": "Courtier",
+    "expansions": [4, null],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 294,
+    "name": "Diplomat",
+    "expansions": [4, null],
+    "types": [1, 20],
+    "cost": 4
+  },
+  {
+    "id": 295,
+    "name": "Lurker",
+    "expansions": [4, null],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 296,
+    "name": "Mill",
+    "expansions": [4, null],
+    "types": [1, 28],
+    "cost": 4
+  },
+  {
+    "id": 297,
+    "name": "Patrol",
+    "expansions": [4, null],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 298,
+    "name": "Replace",
+    "expansions": [4, null],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 299,
+    "name": "Secret Passage",
+    "expansions": [4, null],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 300,
+    "name": "Bad Omens",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 301,
+    "name": "Bard",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 4
+  },
+  { "id": 302, "name": "Bat", "expansions": [14], "types": [17], "cost": 2 },
+  {
+    "id": 303,
+    "name": "Blessed Village",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 4
+  },
+  {
+    "id": 304,
+    "name": "Cemetery",
+    "expansions": [14],
+    "types": [28],
+    "cost": 4
+  },
+  {
+    "id": 305,
+    "name": "Changeling",
+    "expansions": [14],
+    "types": [17],
+    "cost": 3
+  },
+  {
+    "id": 306,
+    "name": "Cobbler",
+    "expansions": [14],
+    "types": [17, 8],
+    "cost": 5
+  },
+  {
+    "id": 307,
+    "name": "Conclave",
+    "expansions": [14],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 308,
+    "name": "Crypt",
+    "expansions": [14],
+    "types": [17, 8],
+    "cost": 5
+  },
+  {
+    "id": 309,
+    "name": "Cursed Gold",
+    "expansions": [14],
+    "types": [27, 12],
+    "cost": 4
+  },
+  {
+    "id": 310,
+    "name": "Cursed Village",
+    "expansions": [14],
+    "types": [1, 7],
+    "cost": 5
+  },
+  {
+    "id": 311,
+    "name": "Delusion",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 312,
+    "name": "Den of Sin",
+    "expansions": [14],
+    "types": [17, 8],
+    "cost": 5
+  },
+  {
+    "id": 313,
+    "name": "Devil's Workshop",
+    "expansions": [14],
+    "types": [17],
+    "cost": 4
+  },
+  {
+    "id": 314,
+    "name": "Druid",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 2
+  },
+  {
+    "id": 315,
+    "name": "Envious - Deluded",
+    "expansions": [14],
+    "types": [25],
+    "cost": null
+  },
+  {
+    "id": 316,
+    "name": "Envy",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 317,
+    "name": "Exorcist",
+    "expansions": [14],
+    "types": [17],
+    "cost": 4
+  },
+  {
+    "id": 318,
+    "name": "Faithful Hound",
+    "expansions": [14],
+    "types": [1, 20],
+    "cost": 2
+  },
+  {
+    "id": 319,
+    "name": "Famine",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 320,
+    "name": "Fear",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 321,
+    "name": "Fool",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 3
+  },
+  {
+    "id": 322,
+    "name": "Ghost",
+    "expansions": [14],
+    "types": [17, 8, 24],
+    "cost": 4
+  },
+  {
+    "id": 323,
+    "name": "Ghost Town",
+    "expansions": [14],
+    "types": [17, 8],
+    "cost": 3
+  },
+  {
+    "id": 324,
+    "name": "Goat",
+    "expansions": [14],
+    "types": [27, 12],
+    "cost": 2
+  },
+  {
+    "id": 325,
+    "name": "Greed",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 326,
+    "name": "Guardian",
+    "expansions": [14],
+    "types": [17, 8],
+    "cost": 2
+  },
+  {
+    "id": 327,
+    "name": "Haunted Mirror",
+    "expansions": [14],
+    "types": [27, 12],
+    "cost": 0
+  },
+  {
+    "id": 328,
+    "name": "Haunting",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 329,
+    "name": "Idol",
+    "expansions": [14],
+    "types": [27, 3, 10],
+    "cost": 5
+  },
+  { "id": 330, "name": "Imp", "expansions": [14], "types": [1, 24], "cost": 2 },
+  {
+    "id": 331,
+    "name": "Leprechaun",
+    "expansions": [14],
+    "types": [1, 7],
+    "cost": 3
+  },
+  {
+    "id": 332,
+    "name": "Locusts",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 333,
+    "name": "Lost in the Woods",
+    "expansions": [14],
+    "types": [25],
+    "cost": null
+  },
+  {
+    "id": 334,
+    "name": "Lucky Coin",
+    "expansions": [14],
+    "types": [27, 12],
+    "cost": 4
+  },
+  {
+    "id": 335,
+    "name": "Magic Lamp",
+    "expansions": [14],
+    "types": [27, 12],
+    "cost": 0
+  },
+  {
+    "id": 336,
+    "name": "Miserable - Twice Miserable",
+    "expansions": [14],
+    "types": [25],
+    "cost": null
+  },
+  {
+    "id": 337,
+    "name": "Misery",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 338,
+    "name": "Monastery",
+    "expansions": [14],
+    "types": [17],
+    "cost": 2
+  },
+  {
+    "id": 339,
+    "name": "Necromancer",
+    "expansions": [14],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 340,
+    "name": "Night Watchman",
+    "expansions": [14],
+    "types": [17],
+    "cost": 3
+  },
+  {
+    "id": 341,
+    "name": "Pasture",
+    "expansions": [14],
+    "types": [27, 28, 12],
+    "cost": 2
+  },
+  {
+    "id": 342,
+    "name": "Pixie",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 2
+  },
+  {
+    "id": 343,
+    "name": "Plague",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  { "id": 344, "name": "Pooka", "expansions": [14], "types": [1], "cost": 5 },
+  {
+    "id": 345,
+    "name": "Pouch",
+    "expansions": [14],
+    "types": [27, 12],
+    "cost": 2
+  },
+  {
+    "id": 346,
+    "name": "Poverty",
+    "expansions": [14],
+    "types": [13],
+    "cost": null
+  },
+  {
+    "id": 347,
+    "name": "Raider",
+    "expansions": [14],
+    "types": [17, 8, 3],
+    "cost": 6
+  },
+  {
+    "id": 348,
+    "name": "Sacred Grove",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 5
+  },
+  {
+    "id": 349,
+    "name": "Secret Cave",
+    "expansions": [14],
+    "types": [1, 8],
+    "cost": 3
+  },
+  {
+    "id": 350,
+    "name": "Shepherd",
+    "expansions": [14],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 351,
+    "name": "Skulk",
+    "expansions": [14],
+    "types": [1, 3, 7],
+    "cost": 4
+  },
+  {
+    "id": 352,
+    "name": "The Earth's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 353,
+    "name": "The Field's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 354,
+    "name": "The Flame's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 355,
+    "name": "The Forest's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 356,
+    "name": "The Moon's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 357,
+    "name": "The Mountain's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 358,
+    "name": "The River's Gift.",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 359,
+    "name": "The Sea's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 360,
+    "name": "The Sky's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 361,
+    "name": "The Sun's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 362,
+    "name": "The Swamp's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 363,
+    "name": "The Wind's Gift",
+    "expansions": [14],
+    "types": [4],
+    "cost": null
+  },
+  {
+    "id": 364,
+    "name": "Tormentor",
+    "expansions": [14],
+    "types": [1, 3, 7],
+    "cost": 5
+  },
+  {
+    "id": 365,
+    "name": "Tracker",
+    "expansions": [14],
+    "types": [1, 10],
+    "cost": 2
+  },
+  {
+    "id": 366,
+    "name": "Tragic Hero",
+    "expansions": [14],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 367,
+    "name": "Vampire",
+    "expansions": [14],
+    "types": [17, 3, 7],
+    "cost": 5
+  },
+  { "id": 368, "name": "War", "expansions": [14], "types": [13], "cost": null },
+  {
+    "id": 369,
+    "name": "Werewolf",
+    "expansions": [14],
+    "types": [1, 3, 17, 7],
+    "cost": 5
+  },
+  {
+    "id": 370,
+    "name": "Will-O'-Wisp",
+    "expansions": [14],
+    "types": [1, 24],
+    "cost": 0
+  },
+  { "id": 371, "name": "Wish", "expansions": [14], "types": [1], "cost": 0 },
+  {
+    "id": 372,
+    "name": "Zombie Apprentice",
+    "expansions": [14],
+    "types": [1, 29],
+    "cost": 3
+  },
+  {
+    "id": 373,
+    "name": "Zombie Mason",
+    "expansions": [14],
+    "types": [1, 29],
+    "cost": 3
+  },
+  {
+    "id": 374,
+    "name": "Zombie Spy",
+    "expansions": [14],
+    "types": [1, 29],
+    "cost": 3
+  },
+  { "id": 375, "name": "Avanto", "expansions": [99], "types": [1], "cost": 5 },
+  {
+    "id": 376,
+    "name": "Black Market",
+    "expansions": [99],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 377,
+    "name": "Captain",
+    "expansions": [99],
+    "types": [1, 8],
+    "cost": 6
+  },
+  {
+    "id": 378,
+    "name": "Church",
+    "expansions": [99],
+    "types": [1, 8],
+    "cost": 3
+  },
+  {
+    "id": 379,
+    "name": "Dismantle",
+    "expansions": [99],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 380, "name": "Envoy", "expansions": [99], "types": [1], "cost": 4 },
+  {
+    "id": 381,
+    "name": "Governor",
+    "expansions": [99],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 382, "name": "Prince", "expansions": [99], "types": [1], "cost": 8 },
+  { "id": 383, "name": "Sauna", "expansions": [99], "types": [1], "cost": 4 },
+  { "id": 384, "name": "Stash", "expansions": [99], "types": [27], "cost": 5 },
+  { "id": 385, "name": "Summon", "expansions": [99], "types": [9], "cost": 5 },
+  {
+    "id": 386,
+    "name": "Walled Village",
+    "expansions": [99],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 387, "name": "Bank", "expansions": [7], "types": [27], "cost": 7 },
+  { "id": 388, "name": "Bishop", "expansions": [7], "types": [1], "cost": 4 },
+  { "id": 389, "name": "City", "expansions": [7], "types": [1], "cost": 5 },
+  {
+    "id": 390,
+    "name": "Contraband",
+    "expansions": [7],
+    "types": [27],
+    "cost": 5
+  },
+  {
+    "id": 391,
+    "name": "Counting House",
+    "expansions": [7],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 392, "name": "Expand", "expansions": [7], "types": [1], "cost": 7 },
+  { "id": 393, "name": "Forge", "expansions": [7], "types": [1], "cost": 7 },
+  { "id": 394, "name": "Goons", "expansions": [7], "types": [1, 3], "cost": 6 },
+  {
+    "id": 395,
+    "name": "Grand Market",
+    "expansions": [7],
+    "types": [1],
+    "cost": 6
+  },
+  { "id": 396, "name": "Hoard", "expansions": [7], "types": [27], "cost": 6 },
+  {
+    "id": 397,
+    "name": "King's Court",
+    "expansions": [7],
+    "types": [1],
+    "cost": 7
+  },
+  { "id": 398, "name": "Loan", "expansions": [7], "types": [27], "cost": 3 },
+  { "id": 399, "name": "Mint", "expansions": [7], "types": [1], "cost": 5 },
+  { "id": 400, "name": "Monument", "expansions": [7], "types": [1], "cost": 4 },
+  {
+    "id": 401,
+    "name": "Mountebank",
+    "expansions": [7],
+    "types": [1, 3],
+    "cost": 5
+  },
+  { "id": 402, "name": "Peddler", "expansions": [7], "types": [1], "cost": 8 },
+  { "id": 403, "name": "Quarry", "expansions": [7], "types": [27], "cost": 4 },
+  {
+    "id": 404,
+    "name": "Rabble",
+    "expansions": [7],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 405,
+    "name": "Royal Seal",
+    "expansions": [7],
+    "types": [27],
+    "cost": 5
+  },
+  {
+    "id": 406,
+    "name": "Talisman",
+    "expansions": [7],
+    "types": [27],
+    "cost": 4
+  },
+  {
+    "id": 407,
+    "name": "Trade Route",
+    "expansions": [7],
+    "types": [1],
+    "cost": 3
+  },
+  { "id": 408, "name": "Vault", "expansions": [7], "types": [1], "cost": 5 },
+  { "id": 409, "name": "Venture", "expansions": [7], "types": [27], "cost": 5 },
+  {
+    "id": 410,
+    "name": "Watchtower",
+    "expansions": [7],
+    "types": [1, 20],
+    "cost": 3
+  },
+  {
+    "id": 411,
+    "name": "Worker's Village",
+    "expansions": [7],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 412,
+    "name": "Academy",
+    "expansions": [15],
+    "types": [19],
+    "cost": 5
+  },
+  {
+    "id": 413,
+    "name": "Acting Troupe",
+    "expansions": [15],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 414,
+    "name": "Barracks",
+    "expansions": [15],
+    "types": [19],
+    "cost": 6
+  },
+  {
+    "id": 415,
+    "name": "Border Guard",
+    "expansions": [15],
+    "types": [1],
+    "cost": 2
+  },
+  { "id": 416, "name": "Canal", "expansions": [15], "types": [19], "cost": 7 },
+  {
+    "id": 417,
+    "name": "Capitalism",
+    "expansions": [15],
+    "types": [19],
+    "cost": 5
+  },
+  {
+    "id": 418,
+    "name": "Cargo Ship",
+    "expansions": [15],
+    "types": [1, 8],
+    "cost": 3
+  },
+  {
+    "id": 419,
+    "name": "Cathedral",
+    "expansions": [15],
+    "types": [19],
+    "cost": 3
+  },
+  {
+    "id": 420,
+    "name": "Citadel",
+    "expansions": [15],
+    "types": [19],
+    "cost": 8
+  },
+  {
+    "id": 421,
+    "name": "City Gate",
+    "expansions": [15],
+    "types": [19],
+    "cost": 3
+  },
+  {
+    "id": 422,
+    "name": "Crop Rotation",
+    "expansions": [15],
+    "types": [19],
+    "cost": 6
+  },
+  { "id": 423, "name": "Ducat", "expansions": [15], "types": [27], "cost": 2 },
+  {
+    "id": 424,
+    "name": "Experiment",
+    "expansions": [15],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 425,
+    "name": "Exploration",
+    "expansions": [15],
+    "types": [19],
+    "cost": 4
+  },
+  { "id": 426, "name": "Fair", "expansions": [15], "types": [19], "cost": 4 },
+  { "id": 427, "name": "Flag", "expansions": [15], "types": [2], "cost": null },
+  {
+    "id": 428,
+    "name": "Flag Bearer",
+    "expansions": [15],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 429, "name": "Fleet", "expansions": [15], "types": [19], "cost": 5 },
+  {
+    "id": 430,
+    "name": "Guildhall",
+    "expansions": [15],
+    "types": [19],
+    "cost": 5
+  },
+  { "id": 431, "name": "Hideout", "expansions": [15], "types": [1], "cost": 4 },
+  { "id": 432, "name": "Horn", "expansions": [15], "types": [2], "cost": null },
+  { "id": 433, "name": "Improve", "expansions": [15], "types": [1], "cost": 3 },
+  {
+    "id": 434,
+    "name": "Innovation",
+    "expansions": [15],
+    "types": [19],
+    "cost": 6
+  },
+  {
+    "id": 435,
+    "name": "Inventor",
+    "expansions": [15],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 436, "name": "Key", "expansions": [15], "types": [2], "cost": null },
+  { "id": 437, "name": "Lackeys", "expansions": [15], "types": [1], "cost": 2 },
+  {
+    "id": 438,
+    "name": "Lantern",
+    "expansions": [15],
+    "types": [2],
+    "cost": null
+  },
+  {
+    "id": 439,
+    "name": "Mountain Village",
+    "expansions": [15],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 440,
+    "name": "Old Witch",
+    "expansions": [15],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 441,
+    "name": "Pageant",
+    "expansions": [15],
+    "types": [19],
+    "cost": 3
+  },
+  {
+    "id": 442,
+    "name": "Patron",
+    "expansions": [15],
+    "types": [1, 20],
+    "cost": 4
+  },
+  { "id": 443, "name": "Piazza", "expansions": [15], "types": [19], "cost": 5 },
+  { "id": 444, "name": "Priest", "expansions": [15], "types": [1], "cost": 4 },
+  {
+    "id": 445,
+    "name": "Recruiter",
+    "expansions": [15],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 446,
+    "name": "Research",
+    "expansions": [15],
+    "types": [1, 8],
+    "cost": 4
+  },
+  {
+    "id": 447,
+    "name": "Road Network",
+    "expansions": [15],
+    "types": [19],
+    "cost": 5
+  },
+  {
+    "id": 448,
+    "name": "Scepter",
+    "expansions": [15],
+    "types": [27],
+    "cost": 5
+  },
+  { "id": 449, "name": "Scholar", "expansions": [15], "types": [1], "cost": 5 },
+  {
+    "id": 450,
+    "name": "Sculptor",
+    "expansions": [15],
+    "types": [1],
+    "cost": 5
+  },
+  { "id": 451, "name": "Seer", "expansions": [15], "types": [1], "cost": 5 },
+  { "id": 452, "name": "Sewers", "expansions": [15], "types": [19], "cost": 3 },
+  {
+    "id": 453,
+    "name": "Silk Merchant",
+    "expansions": [15],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 454, "name": "Silos", "expansions": [15], "types": [19], "cost": 4 },
+  {
+    "id": 455,
+    "name": "Sinister Plot",
+    "expansions": [15],
+    "types": [19],
+    "cost": 4
+  },
+  { "id": 456, "name": "Spices", "expansions": [15], "types": [27], "cost": 5 },
+  {
+    "id": 457,
+    "name": "Star Chart",
+    "expansions": [15],
+    "types": [19],
+    "cost": 3
+  },
+  {
+    "id": 458,
+    "name": "Swashbuckler",
+    "expansions": [15],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 459,
+    "name": "Treasure Chest",
+    "expansions": [15],
+    "types": [2],
+    "cost": null
+  },
+  {
+    "id": 460,
+    "name": "Treasurer",
+    "expansions": [15],
+    "types": [1],
+    "cost": 5
+  },
+  {
+    "id": 461,
+    "name": "Villain",
+    "expansions": [15],
+    "types": [1, 3],
+    "cost": 5
+  },
+  {
+    "id": 462,
+    "name": "Ambassador",
+    "expansions": [5],
+    "types": [1, 3],
+    "cost": 3
+  },
+  { "id": 463, "name": "Bazaar", "expansions": [5], "types": [1], "cost": 5 },
+  {
+    "id": 464,
+    "name": "Caravan",
+    "expansions": [5],
+    "types": [1, 8],
+    "cost": 4
+  },
+  {
+    "id": 465,
+    "name": "Cutpurse",
+    "expansions": [5],
+    "types": [1, 3],
+    "cost": 4
+  },
+  { "id": 466, "name": "Embargo", "expansions": [5], "types": [1], "cost": 2 },
+  { "id": 467, "name": "Explorer", "expansions": [5], "types": [1], "cost": 5 },
+  {
+    "id": 468,
+    "name": "Fishing Village",
+    "expansions": [5],
+    "types": [1, 8],
+    "cost": 3
+  },
+  {
+    "id": 469,
+    "name": "Ghost Ship",
+    "expansions": [5],
+    "types": [1, 3],
+    "cost": 5
+  },
+  { "id": 470, "name": "Haven", "expansions": [5], "types": [1, 8], "cost": 2 },
+  {
+    "id": 471,
+    "name": "Island",
+    "expansions": [5],
+    "types": [1, 28],
+    "cost": 4
+  },
+  {
+    "id": 472,
+    "name": "Lighthouse",
+    "expansions": [5],
+    "types": [1, 8],
+    "cost": 2
+  },
+  { "id": 473, "name": "Lookout", "expansions": [5], "types": [1], "cost": 3 },
+  {
+    "id": 474,
+    "name": "Merchant Ship",
+    "expansions": [5],
+    "types": [1, 8],
+    "cost": 5
+  },
+  {
+    "id": 475,
+    "name": "Native Village",
+    "expansions": [5],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 476,
+    "name": "Navigator",
+    "expansions": [5],
+    "types": [1],
+    "cost": 4
+  },
+  {
+    "id": 477,
+    "name": "Outpost",
+    "expansions": [5],
+    "types": [1, 8],
+    "cost": 5
+  },
+  {
+    "id": 478,
+    "name": "Pearl Diver",
+    "expansions": [5],
+    "types": [1],
+    "cost": 2
+  },
+  {
+    "id": 479,
+    "name": "Pirate Ship",
+    "expansions": [5],
+    "types": [1, 3],
+    "cost": 4
+  },
+  { "id": 480, "name": "Salvager", "expansions": [5], "types": [1], "cost": 4 },
+  {
+    "id": 481,
+    "name": "Sea Hag",
+    "expansions": [5],
+    "types": [1, 3],
+    "cost": 4
+  },
+  {
+    "id": 482,
+    "name": "Smugglers",
+    "expansions": [5],
+    "types": [1],
+    "cost": 3
+  },
+  {
+    "id": 483,
+    "name": "Tactician",
+    "expansions": [5],
+    "types": [1, 8],
+    "cost": 5
+  },
+  {
+    "id": 484,
+    "name": "Treasure Map",
+    "expansions": [5],
+    "types": [1],
+    "cost": 4
+  },
+  { "id": 485, "name": "Treasury", "expansions": [5], "types": [1], "cost": 5 },
+  {
+    "id": 486,
+    "name": "Warehouse",
+    "expansions": [5],
+    "types": [1],
+    "cost": 3
+  },
+  { "id": 487, "name": "Wharf", "expansions": [5], "types": [1, 8], "cost": 5 }
 ]
