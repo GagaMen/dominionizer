@@ -1,8 +1,12 @@
-# Dominiontabs Converter [https://github.com/sumpfork/dominiontabs]
+# Dominiontabs Converter
 
-Divider generator for the card game Dominion and its expansions. http://domtabs.sandflea.org
+This tool converts the card data of the [Dominiontabs](https://github.com/sumpfork/dominiontabs) project to the data structure of Dominionizer.
 
-## cards_db
+## Run
+Execute `npm start` to run the converter. The data are written to `./output/cards.json`.
+
+## Data Mapping
+This section describes the mapping between the properties of the two data structures.
 - `card_tag`
   - internal name of card
   - string
