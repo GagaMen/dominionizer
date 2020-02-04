@@ -11,12 +11,12 @@ describe('CardService', () => {
   let cardService: CardService;
   let dataServiceSpy: jasmine.SpyObj<DataService>;
   const events: Card[] = [
-    { id: 1001, name: 'Alms', description: '', expansions: [{ id: 11, name: 'Adventures' }], types: [CardType.Event] },
-    { id: 1002, name: 'Borrow', description: '', expansions: [{ id: 11, name: 'Adventures' }], types: [CardType.Event] },
+    { id: 1001, name: 'Alms', expansions: [{ id: 11, name: 'Adventures' }], types: [CardType.Event] },
+    { id: 1002, name: 'Borrow', expansions: [{ id: 11, name: 'Adventures' }], types: [CardType.Event] },
   ];
   const landmarks: Card[] = [
-    { id: 2001, name: 'Aqueduct', description: '', expansions: [{ id: 12, name: 'Empires' }], types: [15] },
-    { id: 2002, name: 'Arena', description: '', expansions: [{ id: 12, name: 'Empires' }], types: [15] },
+    { id: 2001, name: 'Aqueduct', expansions: [{ id: 12, name: 'Empires' }], types: [15] },
+    { id: 2002, name: 'Arena', expansions: [{ id: 12, name: 'Empires' }], types: [15] },
   ];
 
   beforeEach(() => {
