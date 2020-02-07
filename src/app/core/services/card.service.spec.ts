@@ -3,70 +3,107 @@ import { cold } from 'jasmine-marbles';
 
 import { CardService } from './card.service';
 import { DataService } from './data.service';
-import { Observable } from 'rxjs';
+import { Observable, NEVER, EMPTY } from 'rxjs';
 import { Card } from '../models/card';
 import { CardType } from '../models/card-type';
+import { SpyObj } from 'src/testing/spy-obj';
+import { CardDto } from '../dtos/card-dto';
+import { Expansion } from '../models/expansion';
+import { ExpansionService } from './expansion.service';
 
 describe('CardService', () => {
   let cardService: CardService;
-  let dataServiceSpy: jasmine.SpyObj<DataService>;
-  const events: Card[] = [
-    { id: 1001, name: 'Alms', expansions: [{ id: 11, name: 'Adventures' }], types: [CardType.Event] },
-    { id: 1002, name: 'Borrow', expansions: [{ id: 11, name: 'Adventures' }], types: [CardType.Event] },
+  let dataServiceSpy: SpyObj<DataService>;
+  let expansionServiceSpy: SpyObj<ExpansionService>;
+
+  const testCardDtos: CardDto[] = [
+    { id: 1, name: 'First Test Card', expansions: [1, 2], types: [CardType.Action]},
+    { id: 2, name: 'Second Test Card', expansions: [2], types: [CardType.Event]},
   ];
-  const landmarks: Card[] = [
-    { id: 2001, name: 'Aqueduct', expansions: [{ id: 12, name: 'Empires' }], types: [15] },
-    { id: 2002, name: 'Arena', expansions: [{ id: 12, name: 'Empires' }], types: [15] },
+  const testExpansions: Expansion[] = [
+    { id: 1, name: 'First Test Expansion' },
+    { id: 2, name: 'Second Test Expansion' },
+  ];
+  const testCards: Card[] = [
+    { id: 1, name: 'First Test Card', expansions: [testExpansions[0], testExpansions[1]], types: [CardType.Action]},
+    { id: 2, name: 'Second Test Card', expansions: [testExpansions[1]], types: [CardType.Event]},
   ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        CardService,
         {
           provide: DataService,
-          useValue: jasmine.createSpyObj<DataService>(
-            'DataService',
-            ['cards', 'events', 'landmarks', 'boons', 'hexes', 'states']
-          ),
-        }
+          useValue: jasmine.createSpyObj<DataService>('DataService', ['cards']),
+        },
+        { provide: ExpansionService, useValue: {} },
       ]
     });
 
     dataServiceSpy = TestBed.get(DataService);
+    expansionServiceSpy = TestBed.get(ExpansionService);
+  });
 
-    const emptyCards$: Observable<Card[]> = cold('(a|)', { a: [] });
-    dataServiceSpy.cards.and.returnValue(emptyCards$);
-    dataServiceSpy.events.and.returnValue(emptyCards$);
-    dataServiceSpy.landmarks.and.returnValue(emptyCards$);
-    dataServiceSpy.boons.and.returnValue(emptyCards$);
-    dataServiceSpy.hexes.and.returnValue(emptyCards$);
-    dataServiceSpy.states.and.returnValue(emptyCards$);
+  describe('cards$', () => {
+    it('with called the first time should return immediately an empty array', () => {
+      const expected$ = cold('a---', { a: [] });
+      dataServiceSpy.cards.and.returnValue(NEVER);
+      expansionServiceSpy.expansions$ = NEVER;
+      cardService = TestBed.get(CardService);
+
+      const actual$ = cardService.cards$;
+
+      expect(actual$).toBeObservable(expected$);
+    });
+
+    it('with DataService.cards() and ExpansionService.expansions$ complete should never complete', () => {
+      const expected$ = cold('a---', { a: [] });
+      dataServiceSpy.cards.and.returnValue(EMPTY);
+      expansionServiceSpy.expansions$ = EMPTY;
+      cardService = TestBed.get(CardService);
+
+      const actual$ = cardService.cards$;
+
+      expect(actual$).toBeObservable(expected$);
+    });
+
+    it('should map CardDto objects from DataService.cards() to their corresponding Card objects', () => {
+      const cardDtos$ = cold('  ----(b|)', { b: testCardDtos });
+      const expansions$ = cold('a--b----', { a: [], b: testExpansions });
+      const expected$ = cold('  a---b---', { a: [], b: testCards });
+      dataServiceSpy.cards.and.returnValue(cardDtos$);
+      expansionServiceSpy.expansions$ = expansions$;
+      cardService = TestBed.get(CardService);
+
+      const actual$ = cardService.cards$;
+
+      expect(actual$).toBeObservable(expected$);
+    });
+
+    it('with ExpansionService.expansions$ returns empty array should return empty array', () => {
+      const cardDtos$ = cold('  --(b|)', { b: testCardDtos });
+      const expansions$ = cold('a----b----', { a: [], b: [] });
+      const expected$ = cold('  a---------', { a: [] });
+      dataServiceSpy.cards.and.returnValue(cardDtos$);
+      expansionServiceSpy.expansions$ = expansions$;
+      cardService = TestBed.get(CardService);
+
+      const actual$ = cardService.cards$;
+
+      expect(actual$).toBeObservable(expected$);
+    });
   });
 
   describe('findByCardType', () => {
     it('should return only cards of given card type', () => {
-      const events$: Observable<Card[]> = cold('   (a|)', { a: events });
-      const landmarks$: Observable<Card[]> = cold('(a|)', { a: landmarks });
-      const expected$: Observable<Card[]> = cold(' (a|)', { a: events });
-      dataServiceSpy.events.and.returnValue(events$);
-      dataServiceSpy.landmarks.and.returnValue(landmarks$);
+      const cardDtos$ = cold('  ----(b|)', { b: testCardDtos });
+      const expansions$ = cold('a--b----', { a: [], b: testExpansions });
+      const expected$ = cold('  a---b---', { a: [], b: [testCards[0]] });
+      dataServiceSpy.cards.and.returnValue(cardDtos$);
+      expansionServiceSpy.expansions$ = expansions$;
       cardService = TestBed.get(CardService);
 
-      const actual$ = cardService.findByCardType(CardType.Event);
-
-      expect(actual$).toBeObservable(expected$)
-    });
-
-    it('should return only after all cards were loaded', () => {
-      const events$: Observable<Card[]> = cold('   -(a|)', { a: events });
-      const landmarks$: Observable<Card[]> = cold('---(a|)', { a: landmarks });
-      const expected$: Observable<Card[]> = cold(' ---(a|)', { a: events });
-      dataServiceSpy.events.and.returnValue(events$);
-      dataServiceSpy.landmarks.and.returnValue(landmarks$);
-      cardService = TestBed.get(CardService);
-
-      const actual$ = cardService.findByCardType(CardType.Event);
+      const actual$ = cardService.findByCardType(CardType.Action);
 
       expect(actual$).toBeObservable(expected$);
     });
