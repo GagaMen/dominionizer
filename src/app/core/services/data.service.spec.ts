@@ -1,12 +1,75 @@
+import { Observable } from 'rxjs';
+import { Expansion } from './../models/expansion';
+import { HttpClient } from '@angular/common/http';
+import { SpyObj } from 'src/testing/spy-obj';
 import { TestBed } from '@angular/core/testing';
 
 import { DataService } from './data.service';
+import { cold } from 'jasmine-marbles';
+import { CardDto } from '../dtos/card-dto';
 
-xdescribe('DataService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe('DataService', () => {
+  let dataService: DataService;
+  let httpClientSpy: SpyObj<HttpClient>;
+  const expansions: Expansion[] = [
+    { id: 1, name: 'First Expansion' },
+    { id: 2, name: 'Second Expansion' },
+  ];
+  const cards: CardDto[] = [
+    { id: 1, name: 'First Card', expansions: [1, 2], types: [1] },
+    { id: 2, name: 'Second Card', expansions: [2], types: [11] },
+    { id: 3, name: 'Third Card', expansions: [1], types: [22] },
+  ];
 
-  it('should be created', () => {
-    const service: DataService = TestBed.get(DataService);
-    expect(service).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: HttpClient,
+          useValue: jasmine.createSpyObj<HttpClient>('HttpClient', ['get']),
+        },
+      ]
+    });
+
+    httpClientSpy = TestBed.get(HttpClient);
+    dataService = TestBed.get(DataService);
+  });
+
+  describe('expansions', () => {
+    it('should call HttpClient.get() with the correct URL', () => {
+      httpClientSpy.get.and.stub();
+
+      dataService.expansions();
+
+      expect(httpClientSpy.get).toHaveBeenCalledWith(DataService.expansionsUrl);
+    });
+
+    it('should return same data as HttpClient.get()', () => {
+      const expansions$: Observable<Expansion[]> = cold('(a|)', { a: expansions });
+      httpClientSpy.get.withArgs(DataService.expansionsUrl).and.returnValue(expansions$);
+
+      const actual$ = dataService.expansions();
+
+      expect(actual$).toBeObservable(expansions$);
+    });
+  });
+
+  describe('cards', () => {
+    it('should call HttpClient.get() with the correct URL', () => {
+      httpClientSpy.get.and.stub();
+
+      dataService.cards();
+
+      expect(httpClientSpy.get).toHaveBeenCalledWith(DataService.cardsUrl);
+    });
+
+    it('should return same data as HttpClient.get()', () => {
+      const cards$: Observable<CardDto[]> = cold('(a|)', { a: cards });
+      httpClientSpy.get.withArgs(DataService.cardsUrl).and.returnValue(cards$);
+
+      const actual$ = dataService.cards();
+
+      expect(actual$).toBeObservable(cards$);
+    });
   });
 });
