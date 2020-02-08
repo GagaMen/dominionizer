@@ -6,3 +6,4 @@ const dominiontabsConverter = new DominiontabsConverter(
 );
 
 dominiontabsConverter.run();
+console.log('Card data successfully converted!');

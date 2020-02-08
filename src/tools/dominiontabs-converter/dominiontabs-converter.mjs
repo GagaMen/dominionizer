@@ -24,6 +24,10 @@ export class DominiontabsConverter {
     ['menagerie', 16],
     ['promo', 99],
   ]);
+  ignoredExpansions = new Set([
+    'dominion2ndEditionUpgrade',
+    'intrigue2ndEditionUpgrade',
+  ]);
   typesMap = new Map([
     ['Action', 1],
     ['Artifact', 2],
@@ -64,23 +68,24 @@ export class DominiontabsConverter {
   async run() {
     const data = await fetch(this.dataSource).then(res => res.json());
 
-    const cards = data.map(cardData => this.createCard(cardData));
+    const cards = data.filter(cardData => this.shouldCardBeCreated(cardData))
+      .map(cardData => this.createCard(cardData));
 
     fs.mkdirSync(this.outputPath, { recursive: true });
     fs.writeFileSync(`${this.outputPath}/cards.json`, JSON.stringify(cards));
   }
 
-  createCard(cardData) {
-    if (cardData.cardset_tags.includes('base')) {
-      return undefined;
-    }
+  shouldCardBeCreated(cardData) {
+    return !(cardData.cardset_tags.includes('base') || cardData.cardset_tags.includes('animals'));
+  }
 
+  createCard(cardData) {
     return {
       id: this.createCardId(),
       name: cardData.card_tag,
       expansions: this.createExpansions(cardData.cardset_tags),
       types: this.createTypes(cardData.types),
-      cost: Number.parseInt(cardData.cost),
+      cost: cardData.cost ? Number.parseInt(cardData.cost) : undefined,
       debt: cardData.debtcost ? Number.parseInt(cardData.debtcost) : undefined,
       potion: cardData.potcost ? true : undefined,
     }
@@ -92,24 +97,35 @@ export class DominiontabsConverter {
   }
 
   createExpansions(expansionsData) {
-    return expansionsData.map(expansion => {
-      if (!this.expansionsMap.has(expansion)) {
-        console.warn(`Expansion '${expansion}' is unknown!`);
-        return null;
-      }
+    return expansionsData.filter(expansion => this.shouldExpansionBeCreated(expansion))
+      .map(expansion => this.expansionsMap.get(expansion));
+  }
 
-      return this.expansionsMap.get(expansion);
-    });
+  shouldExpansionBeCreated(expansion) {
+    const isKnown = this.expansionsMap.has(expansion);
+    const isIgnored = this.ignoredExpansions.has(expansion);
+
+    if (!isKnown && !isIgnored) {
+      console.warn(`Expansion '${expansion}' is unknown and not on the ignore list!`);
+      return false;
+    }
+
+    return true;
   }
 
   createTypes(typeData) {
-    return typeData.map(type => {
-      if (!this.typesMap.has(type)) {
-        console.warn(`Type '${type}' is unknown!`);
-        return null;
-      }
+    return typeData.filter(type => this.shouldTypeBeCreated(type))
+      .map(type => this.typesMap.get(type));
+  }
 
-      return this.typesMap.get(type);
-    });
+  shouldTypeBeCreated(type) {
+    const isKnown = this.typesMap.has(type);
+
+    if (!isKnown) {
+      console.warn(`Type '${type}' is unknown!`);
+      return false;
+    }
+
+    return true;
   }
 }
