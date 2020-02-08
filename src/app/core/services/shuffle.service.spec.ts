@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ShuffleService } from './shuffle.service';
-import { DataService } from './data.service';
 import { ConfigurationService } from './configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { cold, getTestScheduler } from 'jasmine-marbles';
@@ -10,10 +9,11 @@ import { Expansion } from '../models/expansion';
 import { Card } from '../models/card';
 import { CardType } from '../models/card-type';
 import { MathJsService } from './math-js.service';
+import { CardService } from './card.service';
 
 describe('ShuffleService', () => {
   let shuffleService: ShuffleService;
-  let dataServiceSpy: SpyObj<DataService>;
+  let cardServiceSpy: SpyObj<CardService>;
   let configurationServiceSpy: SpyObj<ConfigurationService>;
   let mathJsServiceSpy: SpyObj<MathJsService>;
 
@@ -62,8 +62,8 @@ describe('ShuffleService', () => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: DataService,
-          useValue: jasmine.createSpyObj<DataService>('DataService', ['cards']),
+          provide: CardService,
+          useValue: jasmine.createSpyObj<CardService>('CardService', ['cards$', 'findByCardType']),
         },
         {
           provide: ConfigurationService,
@@ -76,8 +76,8 @@ describe('ShuffleService', () => {
       ]
     });
 
-    dataServiceSpy = TestBed.get(DataService);
-    dataServiceSpy.cards.and.returnValue(cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard]}));
+    cardServiceSpy = TestBed.get(CardService);
+    cardServiceSpy.cards$ = cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard]});
     configurationServiceSpy = TestBed.get(ConfigurationService);
     configurationServiceSpy.configuration$ = cold('a', { a: defaultConfiguration });
     mathJsServiceSpy = TestBed.get(MathJsService);
