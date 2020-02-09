@@ -1,11 +1,10 @@
 import { TestBed, tick, fakeAsync } from '@angular/core/testing';
 
 import { ExpansionService } from './expansion.service';
-import { cold, getTestScheduler } from 'jasmine-marbles';
+import { cold } from 'jasmine-marbles';
 import { Expansion } from '../models/expansion';
 import { DataService } from './data.service';
 import { SpyObj } from 'src/testing/spy-obj';
-import { concat, NEVER } from 'rxjs';
 
 describe('ExpansionService', () => {
   let expansionService: ExpansionService;
@@ -29,30 +28,9 @@ describe('ExpansionService', () => {
   });
 
   describe('expansions$', () => {
-    it('with called the first time should return immediately an empty array', () => {
-      const expected$ = cold('a---', { a: [] });
-      dataServiceSpy.expansions.and.returnValue(NEVER);
-      expansionService = TestBed.get(ExpansionService);
-
-      const actual$ = expansionService.expansions$;
-
-      expect(actual$).toBeObservable(expected$);
-    });
-
-    it('with DataService.expansions() completes should never complete', () => {
-      const expansionData$ = cold('---|');
-      const expected$ = cold('a---', { a: [] });
-      dataServiceSpy.expansions.and.returnValue(expansionData$);
-      expansionService = TestBed.get(ExpansionService);
-
-      const actual$ = expansionService.expansions$;
-
-      expect(actual$).toBeObservable(expected$);
-    });
-
-    it('should pass through data from DataService.expansions()', () => {
-      const expansionData$ = cold('---(b|)', { b: testExpansions });
-      const expected$ = cold('a--b---', { a: [], b: testExpansions });
+    it('should return data from DataService.expansions() and complete', () => {
+      const expansionData$ = cold('---(a|)', { a: testExpansions });
+      const expected$ = cold('     ---(a|)', { a: testExpansions });
       dataServiceSpy.expansions.and.returnValue(expansionData$);
       expansionService = TestBed.get(ExpansionService);
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CardType } from '../models/card-type';
-import { Observable, combineLatest, forkJoin, BehaviorSubject } from 'rxjs';
+import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Card } from '../models/card';
-import { filter, map, tap } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { DataService } from './data.service';
 import { ExpansionService } from './expansion.service';
 import { CardDto } from '../dtos/card-dto';
@@ -15,15 +15,15 @@ export class CardService {
 
   private cardsSubject: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
-  readonly cards$: Observable<Card[]> = this.cardsSubject.asObservable();
+  readonly cards$: Observable<Card[]> = this.cardsSubject.pipe(
+    first((cards: Card[]) => cards.length !== 0),
+  );
 
   constructor(private dataService: DataService, private expansionService: ExpansionService) {
-    combineLatest([
+    forkJoin([
       this.dataService.cards(),
       this.expansionService.expansions$,
-    ]).pipe(
-      filter((data: [CardDto[], Expansion[]]) => data[1].length !== 0),
-    ).subscribe((data: [CardDto[], Expansion[]]) =>
+    ]).subscribe((data: [CardDto[], Expansion[]]) =>
       this.cardsSubject.next(this.mapCardDtosToCards(data))
     );
   }

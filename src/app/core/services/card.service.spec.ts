@@ -3,7 +3,6 @@ import { cold } from 'jasmine-marbles';
 
 import { CardService } from './card.service';
 import { DataService } from './data.service';
-import { Observable, NEVER, EMPTY } from 'rxjs';
 import { Card } from '../models/card';
 import { CardType } from '../models/card-type';
 import { SpyObj } from 'src/testing/spy-obj';
@@ -45,45 +44,10 @@ describe('CardService', () => {
   });
 
   describe('cards$', () => {
-    it('with called the first time should return immediately an empty array', () => {
-      const expected$ = cold('a---', { a: [] });
-      dataServiceSpy.cards.and.returnValue(NEVER);
-      expansionServiceSpy.expansions$ = NEVER;
-      cardService = TestBed.get(CardService);
-
-      const actual$ = cardService.cards$;
-
-      expect(actual$).toBeObservable(expected$);
-    });
-
-    it('with DataService.cards() and ExpansionService.expansions$ complete should never complete', () => {
-      const expected$ = cold('a---', { a: [] });
-      dataServiceSpy.cards.and.returnValue(EMPTY);
-      expansionServiceSpy.expansions$ = EMPTY;
-      cardService = TestBed.get(CardService);
-
-      const actual$ = cardService.cards$;
-
-      expect(actual$).toBeObservable(expected$);
-    });
-
-    it('should map CardDto objects from DataService.cards() to their corresponding Card objects', () => {
-      const cardDtos$ = cold('  ----(b|)', { b: testCardDtos });
-      const expansions$ = cold('a--b----', { a: [], b: testExpansions });
-      const expected$ = cold('  a---b---', { a: [], b: testCards });
-      dataServiceSpy.cards.and.returnValue(cardDtos$);
-      expansionServiceSpy.expansions$ = expansions$;
-      cardService = TestBed.get(CardService);
-
-      const actual$ = cardService.cards$;
-
-      expect(actual$).toBeObservable(expected$);
-    });
-
-    it('with ExpansionService.expansions$ returns empty array should return empty array', () => {
-      const cardDtos$ = cold('  --(b|)', { b: testCardDtos });
-      const expansions$ = cold('a----b----', { a: [], b: [] });
-      const expected$ = cold('  a---------', { a: [] });
+    it('should map CardDto objects from DataService.cards() to their corresponding Card objects and complete', () => {
+      const cardDtos$ = cold('  ----(a|)', { a: testCardDtos });
+      const expansions$ = cold('-(a|)   ', { a: testExpansions });
+      const expected$ = cold('  ----(a|)', { a: testCards });
       dataServiceSpy.cards.and.returnValue(cardDtos$);
       expansionServiceSpy.expansions$ = expansions$;
       cardService = TestBed.get(CardService);
@@ -95,10 +59,10 @@ describe('CardService', () => {
   });
 
   describe('findByCardType', () => {
-    it('should return only cards of given card type', () => {
-      const cardDtos$ = cold('  ----(b|)', { b: testCardDtos });
-      const expansions$ = cold('a--b----', { a: [], b: testExpansions });
-      const expected$ = cold('  a---b---', { a: [], b: [testCards[0]] });
+    it('should return only cards of given card type and complete', () => {
+      const cardDtos$ = cold('  ----(a|)', { a: testCardDtos });
+      const expansions$ = cold('(a|)    ', { a: testExpansions });
+      const expected$ = cold('  ----(a|)', { a: [testCards[0]] });
       dataServiceSpy.cards.and.returnValue(cardDtos$);
       expansionServiceSpy.expansions$ = expansions$;
       cardService = TestBed.get(CardService);
