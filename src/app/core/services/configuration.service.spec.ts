@@ -12,17 +12,6 @@ import { Observable } from 'rxjs';
 describe('ConfigurationService', () => {
   let configurationService: ConfigurationService;
   let cardServiceSpy: jasmine.SpyObj<CardService>;
-  const defaultConfiguration: Configuration = {
-    expansions: [],
-    options: {
-      events: 0,
-      landmarks: 0,
-      boons: 0,
-      hexes: 0,
-      states: 0,
-    },
-    costDistribution: new Map<number, number>(),
-  };
   const enabledTestExpansion: Expansion = {
     id: 1,
     name: 'Enabled Test Expansion',
@@ -54,7 +43,7 @@ describe('ConfigurationService', () => {
 
   describe('configuration$', () => {
     it('with service just initialized should emit default configuration', () => {
-      const expected$ = cold('a', { a: defaultConfiguration });
+      const expected$ = cold('a', { a: ConfigurationService.defaultConfiguration });
       configurationService = TestBed.get(ConfigurationService);
 
       const actual$ = configurationService.configuration$;
@@ -67,7 +56,7 @@ describe('ConfigurationService', () => {
     it('should update configuration.expansions', () => {
       const expansions: Expansion[] = [enabledTestExpansion];
       const expected$: Observable<Configuration> =
-        cold('a', { a: { ...defaultConfiguration, expansions: expansions }});
+        cold('a', { a: { ...ConfigurationService.defaultConfiguration, expansions: expansions }});
       configurationService = TestBed.get(ConfigurationService);
 
       configurationService.updateExpansions(expansions);

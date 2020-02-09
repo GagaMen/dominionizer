@@ -12,7 +12,8 @@ import { Card } from '../models/card';
   providedIn: 'root'
 })
 export class ConfigurationService {
-  private configurationSubject = new BehaviorSubject<Configuration>({
+
+  static readonly defaultConfiguration: Configuration = {
     expansions: [],
     options: {
       events: 0,
@@ -21,8 +22,24 @@ export class ConfigurationService {
       hexes: 0,
       states: 0,
     },
-    costDistribution: new Map<number, number>(),
-  });
+    costDistribution: new Map<number, number>([
+      [0, 24],
+      [1, 5],
+      [2, 51],
+      [3, 77],
+      [4, 106],
+      [5, 130],
+      [6, 24],
+      [7, 6],
+      [8, 5],
+      [14, 1],
+      [undefined, 55]
+    ]),
+  };
+
+  private configurationSubject = new BehaviorSubject<Configuration>(
+    ConfigurationService.defaultConfiguration
+  );
 
   readonly configuration$: Observable<Configuration> = this.configurationSubject.asObservable();
 
