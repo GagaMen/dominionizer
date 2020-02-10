@@ -35,11 +35,11 @@ describe('DataService', () => {
     dataService = TestBed.get(DataService);
   });
 
-  describe('expansions', () => {
+  describe('fetchExpansions', () => {
     it('should call HttpClient.get() with the correct URL', () => {
       httpClientSpy.get.and.stub();
 
-      dataService.expansions();
+      dataService.fetchExpansions();
 
       expect(httpClientSpy.get).toHaveBeenCalledWith(DataService.expansionsUrl);
     });
@@ -48,17 +48,17 @@ describe('DataService', () => {
       const expansions$: Observable<Expansion[]> = cold('(a|)', { a: expansions });
       httpClientSpy.get.withArgs(DataService.expansionsUrl).and.returnValue(expansions$);
 
-      const actual$ = dataService.expansions();
+      const actual$ = dataService.fetchExpansions();
 
       expect(actual$).toBeObservable(expansions$);
     });
   });
 
-  describe('cards', () => {
+  describe('fetchCards', () => {
     it('should call HttpClient.get() with the correct URL', () => {
       httpClientSpy.get.and.stub();
 
-      dataService.cards();
+      dataService.fetchCards();
 
       expect(httpClientSpy.get).toHaveBeenCalledWith(DataService.cardsUrl);
     });
@@ -67,7 +67,7 @@ describe('DataService', () => {
       const cards$: Observable<CardDto[]> = cold('(a|)', { a: cards });
       httpClientSpy.get.withArgs(DataService.cardsUrl).and.returnValue(cards$);
 
-      const actual$ = dataService.cards();
+      const actual$ = dataService.fetchCards();
 
       expect(actual$).toBeObservable(cards$);
     });

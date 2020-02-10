@@ -36,7 +36,7 @@ describe('ExpansionSelectComponent', () => {
         },
         {
           provide: DataService,
-          useValue: jasmine.createSpyObj<DataService>('DataService', ['expansions'])
+          useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchExpansions'])
         },
         FormBuilder
       ]
@@ -44,7 +44,7 @@ describe('ExpansionSelectComponent', () => {
 
     dataServiceSpy = TestBed.get(DataService);
     const defaultExpansions$: Observable<Expansion[]> = cold('--(a|)', { a: defaultExpansions });
-    dataServiceSpy.expansions.and.returnValue(defaultExpansions$);
+    dataServiceSpy.fetchExpansions.and.returnValue(defaultExpansions$);
 
     fixture = TestBed.createComponent(ExpansionSelectComponent);
     component = fixture.componentInstance;

@@ -13,11 +13,11 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  expansions(): Observable<Expansion[]> {
+  fetchExpansions(): Observable<Expansion[]> {
     return this.http.get<Expansion[]>(DataService.expansionsUrl);
   }
 
-  cards(): Observable<CardDto[]> {
+  fetchCards(): Observable<CardDto[]> {
     return this.http.get<CardDto[]>(DataService.cardsUrl);
   }
 }

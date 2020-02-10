@@ -33,7 +33,7 @@ describe('CardService', () => {
       providers: [
         {
           provide: DataService,
-          useValue: jasmine.createSpyObj<DataService>('DataService', ['cards']),
+          useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchCards']),
         },
         { provide: ExpansionService, useValue: {} },
       ]
@@ -48,7 +48,7 @@ describe('CardService', () => {
       const cardDtos$ = cold('  ----(a|)', { a: testCardDtos });
       const expansions$ = cold('-(a|)   ', { a: testExpansions });
       const expected$ = cold('  ----(a|)', { a: testCards });
-      dataServiceSpy.cards.and.returnValue(cardDtos$);
+      dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
       expansionServiceSpy.expansions$ = expansions$;
       cardService = TestBed.get(CardService);
 
@@ -63,7 +63,7 @@ describe('CardService', () => {
       const cardDtos$ = cold('  ----(a|)', { a: testCardDtos });
       const expansions$ = cold('(a|)    ', { a: testExpansions });
       const expected$ = cold('  ----(a|)', { a: [testCards[0]] });
-      dataServiceSpy.cards.and.returnValue(cardDtos$);
+      dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
       expansionServiceSpy.expansions$ = expansions$;
       cardService = TestBed.get(CardService);
 

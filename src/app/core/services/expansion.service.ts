@@ -16,7 +16,7 @@ export class ExpansionService {
   );
 
   constructor(private dataService: DataService) {
-    this.dataService.expansions().subscribe((expansions: Expansion[]) =>
+    this.dataService.fetchExpansions().subscribe((expansions: Expansion[]) =>
       this.expansionsSubject.next(expansions)
     );
   }

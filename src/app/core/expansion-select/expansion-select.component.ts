@@ -19,7 +19,7 @@ export class ExpansionSelectComponent {
     private dataService: DataService,
     private formBuilder: FormBuilder
   ) {
-    this.dataService.expansions().subscribe((expansions: Expansion[]) => {
+    this.dataService.fetchExpansions().subscribe((expansions: Expansion[]) => {
       this.expansions = expansions;
       this.buildFormGroup();
       this.initializeToggleBehaviour();

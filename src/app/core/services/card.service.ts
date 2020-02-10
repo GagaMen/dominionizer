@@ -21,7 +21,7 @@ export class CardService {
 
   constructor(private dataService: DataService, private expansionService: ExpansionService) {
     forkJoin([
-      this.dataService.cards(),
+      this.dataService.fetchCards(),
       this.expansionService.expansions$,
     ]).subscribe((data: [CardDto[], Expansion[]]) =>
       this.cardsSubject.next(this.mapCardDtosToCards(data))
