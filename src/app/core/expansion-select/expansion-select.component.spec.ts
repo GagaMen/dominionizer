@@ -2,18 +2,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpansionSelectComponent } from './expansion-select.component';
 import { ConfigurationService } from '../services/configuration.service';
-import { DataService } from '../services/data.service';
 import { FormBuilder, ReactiveFormsModule, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { Observable } from 'rxjs';
 import { Expansion } from '../models/expansion';
 import { cold, getTestScheduler } from 'jasmine-marbles';
+import { ExpansionService } from '../services/expansion.service';
+import { SpyObj } from 'src/testing/spy-obj';
 
 describe('ExpansionSelectComponent', () => {
   let component: ExpansionSelectComponent;
   let fixture: ComponentFixture<ExpansionSelectComponent>;
-  let dataServiceSpy: jasmine.SpyObj<DataService>;
+  let expansionServiceSpy: SpyObj<ExpansionService>;
   const defaultExpansions: Expansion[] = [
     { id: 1, name: 'Test Expansion 1' },
     { id: 2, name: 'Test Expansion 2' },
@@ -35,16 +36,16 @@ describe('ExpansionSelectComponent', () => {
           useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', ['updateExpansions'])
         },
         {
-          provide: DataService,
-          useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchExpansions'])
+          provide: ExpansionService,
+          useValue: {}
         },
         FormBuilder
       ]
     });
 
-    dataServiceSpy = TestBed.get(DataService);
+    expansionServiceSpy = TestBed.get(ExpansionService);
     const defaultExpansions$: Observable<Expansion[]> = cold('--(a|)', { a: defaultExpansions });
-    dataServiceSpy.fetchExpansions.and.returnValue(defaultExpansions$);
+    expansionServiceSpy.expansions$ = defaultExpansions$;
 
     fixture = TestBed.createComponent(ExpansionSelectComponent);
     component = fixture.componentInstance;
@@ -53,7 +54,7 @@ describe('ExpansionSelectComponent', () => {
   });
 
   describe('expansions', () => {
-    it('should return same value as dataService.expansions()', () => {
+    it('should return same value as expansionService.expansions$', () => {
       const expansions = component.expansions;
 
       expect(expansions).toBe(defaultExpansions);
@@ -111,6 +112,7 @@ describe('ExpansionSelectComponent', () => {
     });
   });
 
+  // TODO: complete tests
   // describe('onNgSubmit', () => {
   //   it('should emit submit-Event', () => {
   //     const expected$ = cold('a');

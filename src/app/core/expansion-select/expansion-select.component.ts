@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, ValidationErrors } from '@angular/forms';
 import { Expansion } from '../models/expansion';
 import { ConfigurationService } from '../services/configuration.service';
-import { DataService } from '../services/data.service';
+import { ExpansionService } from '../services/expansion.service';
 
 @Component({
   selector: 'app-expansion-select',
@@ -16,10 +16,10 @@ export class ExpansionSelectComponent {
 
   constructor(
     private configurationService: ConfigurationService,
-    private dataService: DataService,
+    private expansionService: ExpansionService,
     private formBuilder: FormBuilder
   ) {
-    this.dataService.fetchExpansions().subscribe((expansions: Expansion[]) => {
+    this.expansionService.expansions$.subscribe((expansions: Expansion[]) => {
       this.expansions = expansions;
       this.buildFormGroup();
       this.initializeToggleBehaviour();
