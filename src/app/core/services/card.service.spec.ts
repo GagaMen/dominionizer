@@ -15,6 +15,12 @@ describe('CardService', () => {
   let dataServiceSpy: SpyObj<DataService>;
   let expansionServiceSpy: SpyObj<ExpansionService>;
 
+  const defaultTestCardDto: CardDto = {
+    id: 1,
+    name: 'Default Test Card',
+    expansions: [1],
+    types: [CardType.Action]
+  };
   const testCardDtos: CardDto[] = [
     { id: 1, name: 'First Test Card', expansions: [1, 2], types: [CardType.Action]},
     { id: 2, name: 'Second Test Card', expansions: [2], types: [CardType.Event]},
@@ -53,6 +59,24 @@ describe('CardService', () => {
       cardService = TestBed.get(CardService);
 
       const actual$ = cardService.cards$;
+
+      expect(actual$).toBeObservable(expected$);
+    });
+  });
+
+  describe('findKingdomCards', () => {
+    it('should not contain cards of non-Kingdom card types', () => {
+      const nonKingdomCardDtos = CardService.nonKingdomCardTypes.map((type: CardType) => {
+        return { ...defaultTestCardDto, types: [type] };
+      });
+      const cardDtos$ = cold('  (a|)', { a: nonKingdomCardDtos });
+      const expansions$ = cold('(a|)', { a: testExpansions });
+      const expected$ = cold('  (a|)', { a: [] });
+      dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
+      expansionServiceSpy.expansions$ = expansions$;
+      cardService = TestBed.get(CardService);
+
+      const actual$ = cardService.findKingdomCards();
 
       expect(actual$).toBeObservable(expected$);
     });

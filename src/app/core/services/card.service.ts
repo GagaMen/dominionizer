@@ -13,6 +13,22 @@ import { Expansion } from '../models/expansion';
 })
 export class CardService {
 
+  static readonly nonKingdomCardTypes: CardType[] = [
+    CardType.Artifact,
+    CardType.Boon,
+    CardType.Event,
+    CardType.Heirloom,
+    CardType.Hex,
+    CardType.Landmark,
+    CardType.Prize,
+    CardType.Project,
+    CardType.Ruins,
+    CardType.Shelter,
+    CardType.Spirit,
+    CardType.State,
+    CardType.Zombie,
+  ];
+
   private cardsSubject: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
   readonly cards$: Observable<Card[]> = this.cardsSubject.pipe(
@@ -39,6 +55,20 @@ export class CardService {
         ),
       };
     });
+  }
+
+  findKingdomCards(): Observable<Card[]> {
+    return this.cards$.pipe(
+      map((cards: Card[]) =>
+        cards.filter((card: Card) => this.isKingdomCard(card))
+      ),
+    );
+  }
+
+  private isKingdomCard(card: Card): boolean {
+    return !card.types.some((type: CardType) =>
+      CardService.nonKingdomCardTypes.includes(type)
+    );
   }
 
   findByCardType(type: CardType): Observable<Card[]> {
