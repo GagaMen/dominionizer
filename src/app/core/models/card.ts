@@ -7,12 +7,13 @@ export interface Card {
     description?: string;
     expansions: Expansion[];
     types: CardType[];
+    isKingdomCard?: boolean;
     cost?: number;
+    potion?: boolean;
     debt?: number;
     points?: number;
     money?: number;
     draws?: number;
     actions?: number;
     purchases?: number;
-    potion?: boolean;
 }
