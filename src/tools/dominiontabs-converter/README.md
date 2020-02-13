@@ -12,7 +12,7 @@ This section describes the mapping between the properties of the two data struct
   - string
   - --> `name`
 - `cardset_tags`
-  - internal name of expansions, the card belongs to
+  - internal name of expansions the card belongs to
   - string[]
   - --> if contains "base" then ignore card
   - --> `expansion`
@@ -31,13 +31,14 @@ This section describes the mapping between the properties of the two data struct
   - optional
   - --> `potion`
 - `group_tag`
-  - subset of expansion
+  - internal name of a group of cards that belong together (e.g. events of an expansion or split piles)
   - string
+  - optional
   - --> ignore
 - `group_top`
-  - card is on top in mixed stack
+  - card is on top in a split pile
   - boolean
-  - --> ignore
+  - --> `isOnTopOfSplitPile`
 - `debtcost`
   - amount of debts to buy the card
   - string
@@ -46,7 +47,7 @@ This section describes the mapping between the properties of the two data struct
 - `randomizer`
   - card has a randomizer card (blue border)
   - boolean
-  - --> ignore
+  - --> influences `isKingdomCard`
 - `types`
   - internal type names of the card
   - string[]
