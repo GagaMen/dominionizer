@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "angular.ng-template",
+        "msjsdiag.debugger-for-chrome",
+        "editorconfig.editorconfig",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eg2.vscode-npm-script"
+    ]
+}
