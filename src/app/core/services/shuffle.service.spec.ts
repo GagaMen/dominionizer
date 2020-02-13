@@ -66,7 +66,7 @@ describe('ShuffleService', () => {
       providers: [
         {
           provide: CardService,
-          useValue: jasmine.createSpyObj<CardService>('CardService', ['cards$', 'findByCardType']),
+          useValue: jasmine.createSpyObj<CardService>('CardService', ['findRandomizableKingdomCards', 'findByCardType']),
         },
         {
           provide: ConfigurationService,
@@ -80,7 +80,7 @@ describe('ShuffleService', () => {
     });
 
     cardServiceSpy = TestBed.get(CardService);
-    cardServiceSpy.cards$ = cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard]});
+    cardServiceSpy.findRandomizableKingdomCards.and.returnValue(cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard]}));
     configurationServiceSpy = TestBed.get(ConfigurationService);
     configurationServiceSpy.configuration$ = cold('a', { a: defaultConfiguration });
     mathJsServiceSpy = TestBed.get(MathJsService);

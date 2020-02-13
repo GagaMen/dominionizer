@@ -26,7 +26,7 @@ export class ShuffleService {
   }
 
   shuffleCards(amount: number = 10): Observable<Card[]> {
-    return this.cardService.cards$.pipe(
+    return this.cardService.findRandomizableKingdomCards().pipe(
       map((cards: Card[]) => this.filterByExpansions(cards)),
       map((cards: Card[]) => this.pickRandomCards(cards, amount))
     );

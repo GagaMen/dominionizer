@@ -65,22 +65,41 @@ describe('CardService', () => {
     });
   });
 
-  describe('findKingdomCards', () => {
-    it('should not contain cards of non-Kingdom card types', () => {
-      const nonKingdomCardDtos = CardService.nonKingdomCardTypes.map((type: CardType) => {
-        return { ...defaultTestCardDto, types: [type] };
-      });
-      const cardDtos$ = cold('  (a|)', { a: nonKingdomCardDtos });
+  describe('findRandomizableKingdomCards', () => {
+    it('should contain only Kingdom cards', () => {
+      const kingdomCardDto = { ...defaultTestCardDto, isKingdomCard: true };
+      const kingdomCard = { ...kingdomCardDto, expansions: [testExpansions[0]] };
+      const nonKingdomCardDto = { ...defaultTestCardDto, isKingdomCard: false };
+      const cardDtos$ = cold('  (a|)', { a: [kingdomCardDto, nonKingdomCardDto] });
       const expansions$ = cold('(a|)', { a: testExpansions });
-      const expected$ = cold('  (a|)', { a: [] });
+      const expected$ = cold('  (a|)', { a: [kingdomCard] });
       dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
       expansionServiceSpy.expansions$ = expansions$;
       cardService = TestBed.get(CardService);
 
-      const actual$ = cardService.findKingdomCards();
+      const actual$ = cardService.findRandomizableKingdomCards();
 
       expect(actual$).toBeObservable(expected$);
     });
+
+    it('should not contain Kingdom cards that are part of a split pile and not on top of it', () => {
+        const cardDto = {
+            ...defaultTestCardDto,
+            isKingdomCard: true,
+            isPartOfSplitPile: true,
+            isOnTopOfSplitPile: false
+        };
+        const cardDtos$ = cold('  (a|)', { a: [cardDto] });
+        const expansions$ = cold('(a|)', { a: testExpansions });
+        const expected$ = cold('  (a|)', { a: [] });
+        dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
+        expansionServiceSpy.expansions$ = expansions$;
+        cardService = TestBed.get(CardService);
+
+        const actual$ = cardService.findRandomizableKingdomCards();
+
+        expect(actual$).toBeObservable(expected$);
+      });
   });
 
   describe('findByCardType', () => {
