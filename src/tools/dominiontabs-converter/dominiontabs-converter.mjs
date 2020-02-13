@@ -59,6 +59,21 @@ export class DominiontabsConverter {
     ['Victory', 28],
     ['Zombie', 29],
   ]);
+  splitPileCards = new Set([
+    'Settlers',
+    'Bustling Village',
+    'Patrician',
+    'Emporium',
+    'Gladiator',
+    'Fortune',
+    'Encampment',
+    'Plunder',
+    'Catapult',
+    'Rocks',
+    'Sauna',
+    'Avanto',
+    'Castles',
+  ]);
 
   constructor(dataSource, outputPath) {
     this.dataSource = dataSource;
@@ -85,6 +100,11 @@ export class DominiontabsConverter {
       name: cardData.card_tag,
       expansions: this.createExpansions(cardData.cardset_tags),
       types: this.createTypes(cardData.types),
+      isKingdomCard: this.splitPileCards.has(cardData.card_tag) || cardData.randomizer === undefined,
+      isPartOfSplitPile: this.splitPileCards.has(cardData.card_tag) || undefined,
+      isOnTopOfSplitPile: cardData.card_tag === 'Castles'
+        || (this.splitPileCards.has(cardData.card_tag) && cardData.group_top)
+        || undefined,
       cost: cardData.cost ? Number.parseInt(cardData.cost) : undefined,
       debt: cardData.debtcost ? Number.parseInt(cardData.debtcost) : undefined,
       potion: cardData.potcost ? true : undefined,

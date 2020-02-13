@@ -8,6 +8,8 @@ export interface Card {
     expansions: Expansion[];
     types: CardType[];
     isKingdomCard?: boolean;
+    isPartOfSplitPile?: boolean;
+    isOnTopOfSplitPile?: boolean;
     cost?: number;
     potion?: boolean;
     debt?: number;
