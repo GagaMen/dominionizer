@@ -19,19 +19,20 @@ describe('CardService', () => {
     id: 1,
     name: 'Default Test Card',
     expansions: [1],
-    types: [CardType.Action]
+    types: [CardType.Action],
+    isKingdomCard: true,
   };
   const testCardDtos: CardDto[] = [
-    { id: 1, name: 'First Test Card', expansions: [1, 2], types: [CardType.Action]},
-    { id: 2, name: 'Second Test Card', expansions: [2], types: [CardType.Event]},
+    { id: 1, name: 'First Test Card', expansions: [1, 2], types: [CardType.Action], isKingdomCard: true },
+    { id: 2, name: 'Second Test Card', expansions: [2], types: [CardType.Event], isKingdomCard: false },
   ];
   const testExpansions: Expansion[] = [
     { id: 1, name: 'First Test Expansion' },
     { id: 2, name: 'Second Test Expansion' },
   ];
   const testCards: Card[] = [
-    { id: 1, name: 'First Test Card', expansions: [testExpansions[0], testExpansions[1]], types: [CardType.Action]},
-    { id: 2, name: 'Second Test Card', expansions: [testExpansions[1]], types: [CardType.Event]},
+    { id: 1, name: 'First Test Card', expansions: [testExpansions[0], testExpansions[1]], types: [CardType.Action], isKingdomCard: true },
+    { id: 2, name: 'Second Test Card', expansions: [testExpansions[1]], types: [CardType.Event], isKingdomCard: false },
   ];
 
   beforeEach(() => {

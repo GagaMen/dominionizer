@@ -25,6 +25,7 @@ describe('ConfigurationService', () => {
     name: 'Default Test Card',
     expansions: [disabledTestExpansion, enabledTestExpansion],
     types: [CardType.Action],
+    isKingdomCard: true,
   };
 
   beforeEach(() => {

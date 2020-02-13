@@ -30,6 +30,7 @@ describe('ShuffleService', () => {
     name: 'First Test Card',
     expansions: [disabledTestExpansion, enabledTestExpansion],
     types: [CardType.Action],
+    isKingdomCard: true,
     cost: 4,
   };
   const secondTestCard: Card = {
@@ -37,6 +38,7 @@ describe('ShuffleService', () => {
     name: 'Second Test Card',
     expansions: [enabledTestExpansion],
     types: [CardType.Action],
+    isKingdomCard: true,
     cost: 5,
   };
   const thirdTestCard: Card = {
@@ -44,6 +46,7 @@ describe('ShuffleService', () => {
     name: 'Third Test Card',
     expansions: [enabledTestExpansion],
     types: [CardType.Action],
+    isKingdomCard: true,
     cost: 5,
   };
   const defaultConfiguration: Configuration = {

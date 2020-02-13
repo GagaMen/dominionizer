@@ -7,7 +7,7 @@ export interface Card {
     description?: string;
     expansions: Expansion[];
     types: CardType[];
-    isKingdomCard?: boolean;
+    isKingdomCard: boolean;
     isPartOfSplitPile?: boolean;
     isOnTopOfSplitPile?: boolean;
     cost?: number;
