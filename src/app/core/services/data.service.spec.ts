@@ -16,9 +16,9 @@ describe('DataService', () => {
     { id: 2, name: 'Second Expansion' },
   ];
   const cards: CardDto[] = [
-    { id: 1, name: 'First Card', expansions: [1, 2], types: [1] },
-    { id: 2, name: 'Second Card', expansions: [2], types: [11] },
-    { id: 3, name: 'Third Card', expansions: [1], types: [22] },
+    { id: 1, name: 'First Card', expansions: [1, 2], types: [1], isKingdomCard: true },
+    { id: 2, name: 'Second Card', expansions: [2], types: [11], isKingdomCard: true },
+    { id: 3, name: 'Third Card', expansions: [1], types: [22], isKingdomCard: false },
   ];
 
   beforeEach(() => {

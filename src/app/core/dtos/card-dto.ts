@@ -4,7 +4,7 @@ export interface CardDto {
   description?: string;
   expansions: number[];
   types: number[];
-  isKingdomCard?: boolean;
+  isKingdomCard: boolean;
   isPartOfSplitPile?: boolean;
   isOnTopOfSplitPile?: boolean;
   cost?: number;
