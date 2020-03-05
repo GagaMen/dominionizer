@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "eslint": "eslint --ignore-path .gitignore --ext .ts,.js .",
+    "eslint": "eslint --ignore-path .gitignore --ext .ts,.js,.json .",
     "stylelint": "stylelint \"./src/**/*.scss\" -s scss --cache",
     "e2e": "ng e2e"
   },
@@ -43,6 +43,7 @@
     "codelyzer": "^5.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-json": "^2.1.0",
     "eslint-plugin-prettier": "^3.1.2",
     "jasmine-core": "^3.5.0",
     "jasmine-marbles": "^0.6.0",
