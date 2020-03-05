@@ -6,6 +6,7 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "eg2.vscode-npm-script",
-        "stylelint.vscode-stylelint"
+        "stylelint.vscode-stylelint",
+        "davidanson.vscode-markdownlint"
     ]
 }
