@@ -6,9 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "eslint": "eslint --ignore-path .gitignore --ext .ts,.js,.json .",
-    "stylelint": "stylelint \"./src/**/*.scss\" -s scss --cache",
-    "markdownlint": "markdownlint **/*.md -f --ignore node_modules --ignore src/tools/dominiontabs-converter/node_modules",
+    "eslint": "eslint . --ignore-path .gitignore --ext .ts,.js,.json",
+    "stylelint": "stylelint \"**/*.scss\" --ignore-path .gitignore --syntax scss --cache",
+    "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
     "e2e": "ng e2e"
   },
   "private": true,
