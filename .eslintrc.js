@@ -179,6 +179,7 @@ module.exports = {
             files: ['*.component.html'],
             parser: '@angular-eslint/template-parser',
             plugins: ['@angular-eslint/template'],
+            extends: ['plugin:prettier/recommended'],
             rules: {
                 // ORIGINAL tslint.json -> "template-banana-in-box": true,
                 '@angular-eslint/template/banana-in-a-box': 'error',
