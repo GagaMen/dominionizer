@@ -2,16 +2,15 @@ module.exports = {
     root: true,
     overrides: [
         {
-            files: ['*.ts', '*.js'],
-            parser: '@typescript-eslint/parser',
+            files: ['*.ts'],
             plugins: ['@angular-eslint'],
             extends:  [
                 'eslint:recommended',
                 'plugin:@typescript-eslint/eslint-recommended',
                 'plugin:@typescript-eslint/recommended',
                 'plugin:@typescript-eslint/recommended-requiring-type-checking',
-                'prettier/@typescript-eslint',
                 'plugin:prettier/recommended',
+                'prettier/@typescript-eslint',
             ],
             parserOptions:  {
                 ecmaVersion:  2018,
@@ -161,6 +160,16 @@ module.exports = {
                 // ORIGINAL tslint.json -> "use-pipe-transform-interface": true
                 '@angular-eslint/use-pipe-transform-interface': 'error',
             }
+        },
+        {
+            files: ['*.js'],
+            extends:  [
+                'eslint:recommended',
+                'plugin:prettier/recommended',
+            ],
+            parserOptions:  {
+                ecmaVersion:  2018,
+            },
         },
         {
             files: ['*.json'],
