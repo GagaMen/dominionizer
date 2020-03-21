@@ -45,3 +45,12 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Files which ESLint ignores by default, but we want to lint
+# through the pattern '.*' it ignores all dot files and folders
+!.eslintrc.js
+!.markdownlint.json
+!.prettierrc.js
+!.stylelintrc.json
+# neccessary, because files can't be re-included if a parent directory is excluded
+!.vscode/
