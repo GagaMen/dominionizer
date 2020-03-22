@@ -51,6 +51,6 @@ Thumbs.db
 !.eslintrc.js
 !.markdownlint.json
 !.prettierrc.js
-!.stylelintrc.json
+!.stylelintrc.js
 # neccessary, because files can't be re-included if a parent directory is excluded
 !.vscode/
