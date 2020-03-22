@@ -1,14 +1,29 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true,
-    "source.fixAll.markdownlint": true
-  },
-  "eslint.validate":  [
-    "javascript",
-    "typescript",
-  ],
-  "css.validate": false,
-  "scss.validate": false,
-  "less.validate": false
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true,
+        "source.fixAll.markdownlint": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "javascript.validate.enable": false,
+    "typescript.validate.enable": false,
+    "css.validate": false,
+    "scss.validate": false,
+    "eslint.options": {
+        "ignorePath": "./.gitignore"
+    },
+    "eslint.validate": ["html"],
+    "[typescript]": {
+        "editor.formatOnSave": false
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false
+    },
+    "[css]": {
+        "editor.formatOnSave": false
+    },
+    "[scss]": {
+        "editor.formatOnSave": false
+    }
 }
