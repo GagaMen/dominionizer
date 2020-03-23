@@ -5,19 +5,19 @@ import { Expansion } from '../models/expansion';
 import { CardDto } from '../dtos/card-dto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class DataService {
-  static expansionsUrl = '/assets/data/expansions.json';
-  static cardsUrl = '/assets/data/cards.json';
+    static expansionsUrl = '/assets/data/expansions.json';
+    static cardsUrl = '/assets/data/cards.json';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
-  fetchExpansions(): Observable<Expansion[]> {
-    return this.http.get<Expansion[]>(DataService.expansionsUrl);
-  }
+    fetchExpansions(): Observable<Expansion[]> {
+        return this.http.get<Expansion[]>(DataService.expansionsUrl);
+    }
 
-  fetchCards(): Observable<CardDto[]> {
-    return this.http.get<CardDto[]>(DataService.cardsUrl);
-  }
+    fetchCards(): Observable<CardDto[]> {
+        return this.http.get<CardDto[]>(DataService.cardsUrl);
+    }
 }

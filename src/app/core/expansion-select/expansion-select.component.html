@@ -8,9 +8,9 @@
     <div formArrayName="expansions" class="expansions">
         <ng-container *ngFor="let expansion of expansions; let i = index">
             <mat-slide-toggle [formControlName]="i">
-            <span class="white-space-normal">
-                {{ expansion.name }}
-            </span>
+                <span class="white-space-normal">
+                    {{ expansion.name }}
+                </span>
             </mat-slide-toggle>
         </ng-container>
     </div>

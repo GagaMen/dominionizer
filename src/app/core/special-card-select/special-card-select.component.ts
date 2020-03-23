@@ -6,49 +6,59 @@ import { Observable } from 'rxjs/internal/Observable';
 import { CardType } from '../models/card-type';
 
 @Component({
-  selector: 'app-special-card-select',
-  templateUrl: './special-card-select.component.html',
-  styleUrls: ['./special-card-select.component.scss']
+    selector: 'app-special-card-select',
+    templateUrl: './special-card-select.component.html',
+    styleUrls: ['./special-card-select.component.scss'],
 })
 export class SpecialCardSelectComponent {
-  @Output() submit: EventEmitter<any> = new EventEmitter();
-  formGroup: FormGroup = null;
-  areEventsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Event);
-  areLandmarksAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Landmark);
-  areBoonsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Boon);
-  areHexesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.Hex);
-  areStatesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(CardType.State);
+    @Output() submitForm: EventEmitter<never> = new EventEmitter();
+    formGroup: FormGroup = null;
+    areEventsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.Event,
+    );
+    areLandmarksAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.Landmark,
+    );
+    areBoonsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.Boon,
+    );
+    areHexesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.Hex,
+    );
+    areStatesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.State,
+    );
 
-  constructor(
-    private configurationService: ConfigurationService,
-    private formBuilder: FormBuilder,
-  ) {
-    this.buildFormGroup();
-  }
+    constructor(
+        private configurationService: ConfigurationService,
+        private formBuilder: FormBuilder,
+    ) {
+        this.buildFormGroup();
+    }
 
-  private buildFormGroup() {
-    this.formGroup = this.formBuilder.group({
-      events: [0],
-      landmarks: [0],
-      boons: [0],
-      hexes: [0],
-      states: [0],
-    });
-  }
+    private buildFormGroup(): void {
+        this.formGroup = this.formBuilder.group({
+            events: [0],
+            landmarks: [0],
+            boons: [0],
+            hexes: [0],
+            states: [0],
+        });
+    }
 
-  // TODO: Should be correct inconsistent configuration state
-  //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
-  onNgSubmit() {
-    const specialCardStates = this.formGroup.value;
-    const options: Options = {
-      events: specialCardStates.events,
-      landmarks: specialCardStates.landmarks,
-      boons: specialCardStates.boons,
-      hexes: specialCardStates.hexes,
-      states: specialCardStates.states
-    };
-    this.configurationService.updateOptions(options);
+    // TODO: Should be correct inconsistent configuration state
+    //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
+    onNgSubmit(): void {
+        const specialCardStates = this.formGroup.value;
+        const options: Options = {
+            events: specialCardStates.events,
+            landmarks: specialCardStates.landmarks,
+            boons: specialCardStates.boons,
+            hexes: specialCardStates.hexes,
+            states: specialCardStates.states,
+        };
+        this.configurationService.updateOptions(options);
 
-    this.submit.emit();
-  }
+        this.submitForm.emit();
+    }
 }

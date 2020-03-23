@@ -1,32 +1,38 @@
-@import "~@angular/material/prebuilt-themes/purple-green.css";
-@import "~material-design-icons/iconfont/material-icons.css";
-@import "./variables";
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~material-design-icons/iconfont/material-icons.css';
+@import './variables';
 
 ::selection {
-  background-color: #7b1fa2;
-  color: #fff;
+    background-color: #7b1fa2;
+    color: #fff;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1.5rem;
+    margin-top: 0;
 }
 
 .white-space-normal {
-  white-space: normal;
+    white-space: normal;
 }

@@ -4,7 +4,7 @@ module.exports = {
         {
             files: ['*.ts'],
             plugins: ['@angular-eslint'],
-            extends:  [
+            extends: [
                 'eslint:recommended',
                 'plugin:@typescript-eslint/eslint-recommended',
                 'plugin:@typescript-eslint/recommended',
@@ -12,22 +12,22 @@ module.exports = {
                 'plugin:prettier/recommended',
                 'prettier/@typescript-eslint',
             ],
-            parserOptions:  {
-                ecmaVersion:  2018,
+            parserOptions: {
+                ecmaVersion: 2018,
                 project: './tsconfig.json',
                 tsconfigRootDir: __dirname,
             },
             rules: {
                 '@angular-eslint/component-class-suffix': 'error',
-                "@angular-eslint/component-selector": [
+                '@angular-eslint/component-selector': [
                     'error',
-                    { type: 'element', prefix: 'app', style: 'kebab-case' }
+                    { type: 'element', prefix: 'app', style: 'kebab-case' },
                 ],
                 '@angular-eslint/contextual-lifecycle': 'error',
-                '@angular-eslint/directive-class-suffix': 'error',
-                "@angular-eslint/directive-selector": [
+                // '@angular-eslint/directive-class-suffix': 'error',
+                '@angular-eslint/directive-selector': [
                     'error',
-                    { type: 'attribute', prefix: 'app', style: 'camelCase' }
+                    { type: 'attribute', prefix: 'app', style: 'camelCase' },
                 ],
                 '@typescript-eslint/interface-name-prefix': 'off',
                 '@typescript-eslint/member-ordering': [
@@ -41,7 +41,7 @@ module.exports = {
                         ],
                     },
                 ],
-                "@angular-eslint/no-conflicting-lifecycle": 'error',
+                '@angular-eslint/no-conflicting-lifecycle': 'error',
                 '@angular-eslint/no-host-metadata-property': 'error',
                 '@angular-eslint/no-input-rename': 'error',
                 '@angular-eslint/no-inputs-metadata-property': 'error',
@@ -53,10 +53,10 @@ module.exports = {
                     'error',
                     {
                         paths: [
-                        {
-                            name: 'rxjs/Rx',
-                            message: "Please import directly from 'rxjs' instead",
-                        },
+                            {
+                                name: 'rxjs/Rx',
+                                message: "Please import directly from 'rxjs' instead",
+                            },
                         ],
                     },
                 ],
@@ -64,22 +64,25 @@ module.exports = {
                     'error',
                     {
                         selector:
-                        'CallExpression[callee.object.name="console"][callee.property.name=/^(debug|info|time|timeEnd|trace)$/]',
+                            'CallExpression[callee.object.name="console"][callee.property.name=/^(debug|info|time|timeEnd|trace)$/]',
                         message: 'Unexpected property on console object was called',
+                    },
+                ],
+                '@typescript-eslint/unbound-method': [
+                    'error',
+                    {
+                        ignoreStatic: true,
                     },
                 ],
                 '@angular-eslint/use-lifecycle-interface': 'warn',
                 '@angular-eslint/use-pipe-transform-interface': 'error',
-            }
+            },
         },
         {
             files: ['*.js'],
-            extends:  [
-                'eslint:recommended',
-                'plugin:prettier/recommended',
-            ],
-            parserOptions:  {
-                ecmaVersion:  2018,
+            extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+            parserOptions: {
+                ecmaVersion: 2018,
             },
             env: {
                 node: true,
@@ -87,7 +90,7 @@ module.exports = {
         },
         {
             files: ['*.json'],
-            extends: ["plugin:json/recommended"]
+            extends: ['plugin:json/recommended-with-comments'],
         },
         {
             files: ['*.component.html'],
@@ -97,7 +100,7 @@ module.exports = {
             rules: {
                 '@angular-eslint/template/banana-in-a-box': 'error',
                 '@angular-eslint/template/no-negated-async': 'error',
-            }
-        }
-    ]
+            },
+        },
+    ],
 };

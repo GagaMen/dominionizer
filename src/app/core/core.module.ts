@@ -15,7 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { GenerateSetResultComponent } from './generate-set-result/generate-set-result.component';
@@ -23,34 +23,32 @@ import { ExpansionSelectComponent } from './expansion-select/expansion-select.co
 import { SpecialCardSelectComponent } from './special-card-select/special-card-select.component';
 
 @NgModule({
-  declarations: [
-    AppBarComponent,
-    ConfigurationComponent,
-    CardComponent,
-    CardListComponent,
-    GenerateSetResultComponent,
-    ExpansionSelectComponent,
-    SpecialCardSelectComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatSliderModule,
-    MatCardModule,
-    MatDividerModule,
-    MatStepperModule,
-    CoreRoutingModule,
-    FormsModule
-  ],
-  exports: [
-    AppBarComponent,
-  ]
+    declarations: [
+        AppBarComponent,
+        ConfigurationComponent,
+        CardComponent,
+        CardListComponent,
+        GenerateSetResultComponent,
+        ExpansionSelectComponent,
+        SpecialCardSelectComponent,
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatSliderModule,
+        MatCardModule,
+        MatDividerModule,
+        MatStepperModule,
+        CoreRoutingModule,
+        FormsModule,
+    ],
+    exports: [AppBarComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

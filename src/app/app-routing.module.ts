@@ -5,14 +5,14 @@ import { ConfigurationComponent } from './core/configuration/configuration.compo
 import { GenerateSetResultComponent } from './core/generate-set-result/generate-set-result.component';
 
 const routes: Routes = [
-  {path: '', component: ConfigurationComponent},
-  {path: 'result', component: GenerateSetResultComponent, canActivate: [ConfigurationGuard] },
-  // TODO: Redirect to PageNotFoundComponent when existent
-  {path: '**', component: ConfigurationComponent},
+    { path: '', component: ConfigurationComponent },
+    { path: 'result', component: GenerateSetResultComponent, canActivate: [ConfigurationGuard] },
+    // TODO: Redirect to PageNotFoundComponent when existent
+    { path: '**', component: ConfigurationComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
