@@ -8,10 +8,11 @@ import { Expansion } from '../models/expansion';
 import { Card } from '../models/card';
 import { CardType } from '../models/card-type';
 import { Observable } from 'rxjs';
+import { SpyObj } from 'src/testing/spy-obj';
 
 describe('ConfigurationService', () => {
     let configurationService: ConfigurationService;
-    let cardServiceSpy: jasmine.SpyObj<CardService>;
+    let cardServiceSpy: SpyObj<CardService>;
     const enabledTestExpansion: Expansion = {
         id: 1,
         name: 'Enabled Test Expansion',
@@ -39,7 +40,7 @@ describe('ConfigurationService', () => {
             ],
         });
 
-        cardServiceSpy = TestBed.inject(CardService);
+        cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
     });
 
     describe('configuration$', () => {

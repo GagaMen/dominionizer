@@ -70,7 +70,7 @@ describe('CardService', () => {
             ],
         });
 
-        dataServiceSpy = TestBed.inject(DataService);
+        dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
         expansionServiceSpy = TestBed.inject(ExpansionService);
     });
 

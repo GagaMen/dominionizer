@@ -31,7 +31,7 @@ describe('DataService', () => {
             ],
         });
 
-        httpClientSpy = TestBed.inject(HttpClient);
+        httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
         dataService = TestBed.inject(DataService);
     });
 

@@ -82,13 +82,15 @@ describe('ShuffleService', () => {
             ],
         });
 
-        cardServiceSpy = TestBed.inject(CardService);
+        cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
             cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard] }),
         );
-        configurationServiceSpy = TestBed.inject(ConfigurationService);
+        configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
+            ConfigurationService
+        >;
         configurationServiceSpy.configuration$ = cold('a', { a: defaultConfiguration });
-        mathJsServiceSpy = TestBed.inject(MathJsService);
+        mathJsServiceSpy = TestBed.inject(MathJsService) as jasmine.SpyObj<MathJsService>;
         mathJsServiceSpy.pickRandom.and.returnValue([]);
     });
 

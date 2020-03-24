@@ -24,7 +24,7 @@ describe('ExpansionService', () => {
             ],
         });
 
-        dataServiceSpy = TestBed.inject(DataService);
+        dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
     });
 
     describe('expansions$', () => {
