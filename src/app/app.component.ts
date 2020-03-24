@@ -7,7 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    @ViewChild(MatSidenav, { static: false }) private sidenav: MatSidenav;
+    @ViewChild(MatSidenav) private sidenav: MatSidenav;
 
     title = 'dominionizer';
 
