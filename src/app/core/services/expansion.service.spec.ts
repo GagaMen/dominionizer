@@ -24,7 +24,7 @@ describe('ExpansionService', () => {
             ],
         });
 
-        dataServiceSpy = TestBed.get(DataService);
+        dataServiceSpy = TestBed.inject(DataService);
     });
 
     describe('expansions$', () => {
@@ -32,7 +32,7 @@ describe('ExpansionService', () => {
             const expansionData$ = cold('---(a|)', { a: testExpansions });
             const expected$ = cold('     ---(a|)', { a: testExpansions });
             dataServiceSpy.fetchExpansions.and.returnValue(expansionData$);
-            expansionService = TestBed.get(ExpansionService);
+            expansionService = TestBed.inject(ExpansionService);
 
             const actual$ = expansionService.expansions$;
 
@@ -49,7 +49,7 @@ describe('ExpansionService', () => {
             const firstExpected$ = cold('a--b---', { a: [], b: testExpansions });
             const secondExpected$ = cold('a-----', { a: testExpansions });
             dataServiceSpy.fetchExpansions.and.returnValue(expansionData$);
-            expansionService = TestBed.get(ExpansionService);
+            expansionService = TestBed.inject(ExpansionService);
 
             const firstActual$ = expansionService.expansions$;
             expect(firstActual$).toBeObservable(firstExpected$);

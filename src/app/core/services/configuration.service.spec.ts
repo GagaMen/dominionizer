@@ -39,13 +39,13 @@ describe('ConfigurationService', () => {
             ],
         });
 
-        cardServiceSpy = TestBed.get(CardService);
+        cardServiceSpy = TestBed.inject(CardService);
     });
 
     describe('configuration$', () => {
         it('with service just initialized should emit default configuration', () => {
             const expected$ = cold('a', { a: ConfigurationService.defaultConfiguration });
-            configurationService = TestBed.get(ConfigurationService);
+            configurationService = TestBed.inject(ConfigurationService);
 
             const actual$ = configurationService.configuration$;
 
@@ -59,7 +59,7 @@ describe('ConfigurationService', () => {
             const expected$: Observable<Configuration> = cold('a', {
                 a: { ...ConfigurationService.defaultConfiguration, expansions: expansions },
             });
-            configurationService = TestBed.get(ConfigurationService);
+            configurationService = TestBed.inject(ConfigurationService);
 
             configurationService.updateExpansions(expansions);
             const actual$ = configurationService.configuration$;
@@ -79,7 +79,7 @@ describe('ConfigurationService', () => {
             const cards$: Observable<Card[]> = cold('a', { a: [card] });
             cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
             const expected$ = cold('a', { a: true });
-            configurationService = TestBed.get(ConfigurationService);
+            configurationService = TestBed.inject(ConfigurationService);
             configurationService.updateExpansions([enabledTestExpansion]);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType);
@@ -97,7 +97,7 @@ describe('ConfigurationService', () => {
             const cards$: Observable<Card[]> = cold('a', { a: [card] });
             cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
             const expected$ = cold('a', { a: false });
-            configurationService = TestBed.get(ConfigurationService);
+            configurationService = TestBed.inject(ConfigurationService);
             configurationService.updateExpansions([enabledTestExpansion]);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType);

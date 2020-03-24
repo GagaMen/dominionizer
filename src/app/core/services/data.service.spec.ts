@@ -31,8 +31,8 @@ describe('DataService', () => {
             ],
         });
 
-        httpClientSpy = TestBed.get(HttpClient);
-        dataService = TestBed.get(DataService);
+        httpClientSpy = TestBed.inject(HttpClient);
+        dataService = TestBed.inject(DataService);
     });
 
     describe('fetchExpansions', () => {

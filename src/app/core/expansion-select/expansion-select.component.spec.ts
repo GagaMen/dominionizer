@@ -45,7 +45,7 @@ describe('ExpansionSelectComponent', () => {
             ],
         });
 
-        expansionServiceSpy = TestBed.get(ExpansionService);
+        expansionServiceSpy = TestBed.inject(ExpansionService);
         const defaultExpansions$: Observable<Expansion[]> = cold('--(a|)', {
             a: defaultExpansions,
         });

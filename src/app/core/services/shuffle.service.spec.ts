@@ -82,20 +82,20 @@ describe('ShuffleService', () => {
             ],
         });
 
-        cardServiceSpy = TestBed.get(CardService);
+        cardServiceSpy = TestBed.inject(CardService);
         cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
             cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard] }),
         );
-        configurationServiceSpy = TestBed.get(ConfigurationService);
+        configurationServiceSpy = TestBed.inject(ConfigurationService);
         configurationServiceSpy.configuration$ = cold('a', { a: defaultConfiguration });
-        mathJsServiceSpy = TestBed.get(MathJsService);
+        mathJsServiceSpy = TestBed.inject(MathJsService);
         mathJsServiceSpy.pickRandom.and.returnValue([]);
     });
 
     describe('shuffleCards', () => {
         it('should pass all card ids for selected expansions to MathJsService.pickRandom()', () => {
             const cardIds = [firstTestCard.id, secondTestCard.id, thirdTestCard.id];
-            shuffleService = TestBed.get(ShuffleService);
+            shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleCards(1).subscribe(null, fail);
             getTestScheduler().flush();
@@ -109,7 +109,7 @@ describe('ShuffleService', () => {
 
         it('should pass amount value to MathJsService.pickRandom()', () => {
             const amount = 3;
-            shuffleService = TestBed.get(ShuffleService);
+            shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleCards(amount).subscribe(null, fail);
             getTestScheduler().flush();
@@ -132,7 +132,7 @@ describe('ShuffleService', () => {
             configurationServiceSpy.configuration$ = cold('a', { a: configuration });
             // calculation formula: cost distribution value / count of cards with equal cost
             const cardWeights = [1 / 1, 2 / 2, 2 / 2];
-            shuffleService = TestBed.get(ShuffleService);
+            shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleCards(1).subscribe(null, fail);
             getTestScheduler().flush();

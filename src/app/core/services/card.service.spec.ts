@@ -70,8 +70,8 @@ describe('CardService', () => {
             ],
         });
 
-        dataServiceSpy = TestBed.get(DataService);
-        expansionServiceSpy = TestBed.get(ExpansionService);
+        dataServiceSpy = TestBed.inject(DataService);
+        expansionServiceSpy = TestBed.inject(ExpansionService);
     });
 
     describe('cards$', () => {
@@ -81,7 +81,7 @@ describe('CardService', () => {
             const expected$ = cold('  ----(a|)', { a: testCards });
             dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
             expansionServiceSpy.expansions$ = expansions$;
-            cardService = TestBed.get(CardService);
+            cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.cards$;
 
@@ -99,7 +99,7 @@ describe('CardService', () => {
             const expected$ = cold('  (a|)', { a: [kingdomCard] });
             dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
             expansionServiceSpy.expansions$ = expansions$;
-            cardService = TestBed.get(CardService);
+            cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.findRandomizableKingdomCards();
 
@@ -118,7 +118,7 @@ describe('CardService', () => {
             const expected$ = cold('  (a|)', { a: [] });
             dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
             expansionServiceSpy.expansions$ = expansions$;
-            cardService = TestBed.get(CardService);
+            cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.findRandomizableKingdomCards();
 
@@ -133,7 +133,7 @@ describe('CardService', () => {
             const expected$ = cold('  ----(a|)', { a: [testCards[0]] });
             dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
             expansionServiceSpy.expansions$ = expansions$;
-            cardService = TestBed.get(CardService);
+            cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.findByCardType(CardType.Action);
 
