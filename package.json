@@ -11,6 +11,16 @@
         "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
         "e2e": "ng e2e"
     },
+    "lint-staged": {
+        "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore ",
+        "*.scss": "stylelint --ignore-path .gitignore --syntax scss --cache",
+        "*.md": "markdownlint --ignore-path .gitignore"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
     "private": true,
     "dependencies": {
         "@angular/animations": "^9.0.7",
@@ -48,6 +58,7 @@
         "eslint-config-prettier": "6.10.1",
         "eslint-plugin-json": "2.1.1",
         "eslint-plugin-prettier": "3.1.2",
+        "husky": "^4.2.3",
         "jasmine-core": "^3.5.0",
         "jasmine-marbles": "^0.6.0",
         "jasmine-spec-reporter": "^5.0.1",
@@ -56,6 +67,7 @@
         "karma-coverage-istanbul-reporter": "^2.1.1",
         "karma-jasmine": "^3.1.1",
         "karma-jasmine-html-reporter": "^1.5.3",
+        "lint-staged": "^10.0.9",
         "markdownlint-cli": "0.22.0",
         "prettier": "1.19.1",
         "protractor": "^5.4.3",
