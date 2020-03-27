@@ -13,8 +13,7 @@
     },
     "lint-staged": {
         "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
-        "*.scss": "stylelint --ignore-path .gitignore --syntax scss --cache",
-        "*.md": "markdownlint --ignore-path .gitignore"
+        "*.scss": "stylelint --ignore-path .gitignore --syntax scss --cache"
     },
     "husky": {
         "hooks": {
