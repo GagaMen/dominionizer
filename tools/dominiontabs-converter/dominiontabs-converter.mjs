@@ -57,7 +57,8 @@ export class DominiontabsConverter {
     ['Traveller', 26],
     ['Treasure', 27],
     ['Victory', 28],
-    ['Zombie', 29],
+    ['Way', 29],
+    ['Zombie', 30],
   ]);
   splitPileCards = new Set([
     'Settlers',
@@ -105,7 +106,7 @@ export class DominiontabsConverter {
       isOnTopOfSplitPile: cardData.card_tag === 'Castles'
         || (this.splitPileCards.has(cardData.card_tag) && cardData.group_top)
         || undefined,
-      cost: cardData.cost ? Number.parseInt(cardData.cost) : undefined,
+      cost: cardData.cost ? Number.parseInt(cardData.cost) : 0,
       debt: cardData.debtcost ? Number.parseInt(cardData.debtcost) : undefined,
       potion: cardData.potcost ? true : undefined,
     }
@@ -125,6 +126,9 @@ export class DominiontabsConverter {
     const isKnown = this.expansionsMap.has(expansion);
     const isIgnored = this.ignoredExpansions.has(expansion);
 
+    if (isIgnored) {
+        return false;
+    }
     if (!isKnown && !isIgnored) {
       console.warn(`Expansion '${expansion}' is unknown and not on the ignore list!`);
       return false;

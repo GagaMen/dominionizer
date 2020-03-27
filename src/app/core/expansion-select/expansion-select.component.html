@@ -1,4 +1,4 @@
-<form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
+<form *ngIf="expansions.length > 0" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
     <mat-slide-toggle formControlName="selectAll">
         <span class="white-space-normal">
             Alle auswählen/abwählen

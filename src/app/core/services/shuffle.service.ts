@@ -13,7 +13,11 @@ import { CardType } from '../models/card-type';
     providedIn: 'root',
 })
 export class ShuffleService {
-    configuration: Configuration;
+    configuration: Configuration = {
+        expansions: [],
+        options: { boons: 0, events: 0, hexes: 0, landmarks: 0, states: 0 },
+        costDistribution: new Map(),
+    };
 
     constructor(
         private cardService: CardService,
@@ -83,19 +87,17 @@ export class ShuffleService {
         const cardIds = cards.map((card: Card) => card.id);
         const cardsAggregatedByCost = cards.reduce<Map<number, number>>(
             (aggregation: Map<number, number>, card: Card) => {
-                aggregation.set(
-                    card.cost,
-                    aggregation.has(card.cost) ? aggregation.get(card.cost) + 1 : 1,
-                );
+                const costCount = aggregation.get(card.cost) ?? 0;
+                aggregation.set(card.cost, costCount + 1);
                 return aggregation;
             },
             new Map<number, number>(),
         );
-        const cardWeights = cards.map(
-            (card: Card) =>
-                this.configuration.costDistribution.get(card.cost) /
-                cardsAggregatedByCost.get(card.cost),
-        );
+        const cardWeights = cards.map((card: Card) => {
+            const costWeight = this.configuration.costDistribution.get(card.cost) ?? 0;
+            const costCount = cardsAggregatedByCost.get(card.cost);
+            return costCount !== undefined ? costWeight / costCount : 0;
+        });
 
         const pickedCardIds = this.mathJsService.pickRandom(
             cardIds,
@@ -104,7 +106,7 @@ export class ShuffleService {
         ) as number[];
         const pickedCards = pickedCardIds.map((cardId: number) =>
             cards.find((card: Card) => card.id === cardId),
-        );
+        ) as Card[];
 
         return pickedCards;
     }

@@ -27,5 +27,6 @@ export enum CardType {
     Traveller,
     Treasure,
     Victory,
+    Way,
     Zombie,
 }

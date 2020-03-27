@@ -1,5 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl, ValidationErrors } from '@angular/forms';
+import {
+    FormGroup,
+    FormBuilder,
+    FormArray,
+    FormControl,
+    ValidationErrors,
+    AbstractControl,
+} from '@angular/forms';
 import { Expansion } from '../models/expansion';
 import { ConfigurationService } from '../services/configuration.service';
 import { ExpansionService } from '../services/expansion.service';
@@ -12,7 +19,7 @@ import { ExpansionService } from '../services/expansion.service';
 export class ExpansionSelectComponent {
     @Output() submitForm: EventEmitter<never> = new EventEmitter();
     expansions: Expansion[] = [];
-    formGroup: FormGroup = null;
+    formGroup: FormGroup = new FormGroup({});
 
     constructor(
         private configurationService: ConfigurationService,
@@ -26,8 +33,8 @@ export class ExpansionSelectComponent {
         });
     }
 
-    private static validateMinSelect(control: FormArray): ValidationErrors | null {
-        const controlValues = Object.values(control.value);
+    private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
+        const controlValues: boolean[] = Object.values(control.value);
         const result = controlValues.reduce(
             (previousValue: boolean, currentValue: boolean) => previousValue || currentValue,
         );
@@ -45,15 +52,15 @@ export class ExpansionSelectComponent {
     }
 
     private initializeToggleBehaviour(): void {
-        this.formGroup.get('selectAll').valueChanges.subscribe(bool => {
+        this.formGroup.get('selectAll')?.valueChanges.subscribe(bool => {
             const expansions = this.formGroup.get('expansions') as FormArray;
             expansions.patchValue(Array(expansions.length).fill(bool), { emitEvent: false });
         });
 
-        this.formGroup.get('expansions').valueChanges.subscribe(val => {
-            const allSelected = val.every(bool => bool);
-            if (this.formGroup.get('selectAll').value !== allSelected) {
-                this.formGroup.get('selectAll').patchValue(allSelected, { emitEvent: false });
+        this.formGroup.get('expansions')?.valueChanges.subscribe(val => {
+            const allSelected = val.every((bool: boolean) => bool);
+            if (this.formGroup.get('selectAll')?.value !== allSelected) {
+                this.formGroup.get('selectAll')?.patchValue(allSelected, { emitEvent: false });
             }
         });
     }

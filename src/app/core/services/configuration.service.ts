@@ -22,7 +22,7 @@ export class ConfigurationService {
             states: 0,
         },
         costDistribution: new Map<number, number>([
-            [0, 24],
+            [0, 79],
             [1, 5],
             [2, 51],
             [3, 77],
@@ -32,7 +32,6 @@ export class ConfigurationService {
             [7, 6],
             [8, 5],
             [14, 1],
-            [undefined, 55],
         ]),
     };
 

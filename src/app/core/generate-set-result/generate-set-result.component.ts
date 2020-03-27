@@ -10,7 +10,7 @@ import { exhaustMap } from 'rxjs/operators';
     styleUrls: ['./generate-set-result.component.scss'],
 })
 export class GenerateSetResultComponent {
-    private shuffleSubject: Subject<unknown> = new BehaviorSubject({});
+    private shuffleSubject: Subject<unknown> = new BehaviorSubject<unknown>({});
     set$: Observable<Set>;
 
     constructor(private shuffleService: ShuffleService) {

@@ -10,7 +10,7 @@ export interface Card {
     isKingdomCard: boolean;
     isPartOfSplitPile?: boolean;
     isOnTopOfSplitPile?: boolean;
-    cost?: number;
+    cost: number;
     potion?: boolean;
     debt?: number;
     points?: number;

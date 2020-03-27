@@ -12,7 +12,7 @@ import { CardType } from '../models/card-type';
 })
 export class SpecialCardSelectComponent {
     @Output() submitForm: EventEmitter<never> = new EventEmitter();
-    formGroup: FormGroup = null;
+    formGroup: FormGroup = new FormGroup({});
     areEventsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
         CardType.Event,
     );

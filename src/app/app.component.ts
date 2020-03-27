@@ -7,11 +7,11 @@ import { MatSidenav } from '@angular/material/sidenav';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    @ViewChild(MatSidenav) private sidenav: MatSidenav;
+    @ViewChild(MatSidenav) private sidenav: MatSidenav | null = null;
 
     title = 'dominionizer';
 
     onSidenavToggle(): void {
-        this.sidenav.toggle();
+        this.sidenav?.toggle();
     }
 }
