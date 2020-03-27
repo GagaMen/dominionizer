@@ -4,7 +4,7 @@ This tool converts the card data of the [Dominiontabs](https://github.com/sumpfo
 
 ## Run
 
-Execute `npm start` to run the converter. The data are written to `./output/cards.json`.
+Execute `npm start` to run the converter. The data are written to `./dist/cards.json`.
 
 ## Data Mapping
 
