@@ -12,7 +12,7 @@
         "e2e": "ng e2e"
     },
     "lint-staged": {
-        "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore ",
+        "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
         "*.scss": "stylelint --ignore-path .gitignore --syntax scss --cache",
         "*.md": "markdownlint --ignore-path .gitignore"
     },
@@ -69,7 +69,7 @@
         "karma-jasmine-html-reporter": "^1.5.3",
         "lint-staged": "^10.0.9",
         "markdownlint-cli": "0.22.0",
-        "prettier": "1.19.1",
+        "prettier": "2.0.2",
         "protractor": "^5.4.3",
         "stylelint": "13.2.1",
         "stylelint-config-prettier": "8.0.1",

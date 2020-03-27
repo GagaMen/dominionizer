@@ -52,12 +52,12 @@ export class ExpansionSelectComponent {
     }
 
     private initializeToggleBehaviour(): void {
-        this.formGroup.get('selectAll')?.valueChanges.subscribe(bool => {
+        this.formGroup.get('selectAll')?.valueChanges.subscribe((bool) => {
             const expansions = this.formGroup.get('expansions') as FormArray;
             expansions.patchValue(Array(expansions.length).fill(bool), { emitEvent: false });
         });
 
-        this.formGroup.get('expansions')?.valueChanges.subscribe(val => {
+        this.formGroup.get('expansions')?.valueChanges.subscribe((val) => {
             const allSelected = val.every((bool: boolean) => bool);
             if (this.formGroup.get('selectAll')?.value !== allSelected) {
                 this.formGroup.get('selectAll')?.patchValue(allSelected, { emitEvent: false });
