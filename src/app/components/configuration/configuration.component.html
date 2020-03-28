@@ -1,12 +1,11 @@
-<h1>Stelle dein Set zusammen:</h1>
 <mat-vertical-stepper #stepper>
     <mat-step
         [stepControl]="expansionSelect.formGroup"
-        errorMessage="Wähle mindestens eine Erweiterung aus."
+        errorMessage="Choose at least one expansion"
     >
         <ng-template matStepLabel>
             <span class="white-space-normal">
-                Welche Erweiterungen sollen berücksichtigt werden?
+                Expansions
             </span>
         </ng-template>
         <app-expansion-select #expansionSelect (submit)="stepper.next()"></app-expansion-select>
@@ -14,7 +13,7 @@
     <mat-step [stepControl]="specialCardSelect.formGroup">
         <ng-template matStepLabel>
             <span class="white-space-normal">
-                Spiel-Optionen
+                Special Cards
             </span>
         </ng-template>
         <app-special-card-select #specialCardSelect (submit)="onSubmit()"></app-special-card-select>
