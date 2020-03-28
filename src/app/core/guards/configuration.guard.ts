@@ -10,7 +10,7 @@ export class ConfigurationGuard implements CanActivate {
     constructor(private router: Router, private shuffleService: ShuffleService) {}
 
     canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        if (this.shuffleService.configuration) {
+        if (this.shuffleService.configuration.expansions.length !== 0) {
             return true;
         }
 
