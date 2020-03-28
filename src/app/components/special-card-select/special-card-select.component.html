@@ -21,6 +21,28 @@
         ></mat-slider>
     </ng-container>
 
+    <ng-container *ngIf="areProjectsAvailable$ | async">
+        <div class="special-cards-label">
+            <label>Projekte</label>
+            <span>{{ projects.value }}</span>
+        </div>
+        <mat-slider
+            #projects
+            formControlName="projects"
+            min="0"
+            max="5"
+            tickInterval="1"
+        ></mat-slider>
+    </ng-container>
+
+    <ng-container *ngIf="areWaysAvailable$ | async">
+        <div class="special-cards-label">
+            <label>Wege</label>
+            <span>{{ ways.value }}</span>
+        </div>
+        <mat-slider #ways formControlName="ways" min="0" max="5" tickInterval="1"></mat-slider>
+    </ng-container>
+
     <div class="form-actions">
         <button mat-button matStepperPrevious color="accent">Zurück</button>
         <button mat-raised-button color="primary" type="submit">Generieren</button>

@@ -12,4 +12,14 @@
         <h2>Landmarks:</h2>
         <app-card-list [cardList]="set.landmarks"></app-card-list>
     </ng-container>
+
+    <ng-container *ngIf="set.projects.length > 0">
+        <h2>Projekte:</h2>
+        <app-card-list [cardList]="set.projects"></app-card-list>
+    </ng-container>
+
+    <ng-container *ngIf="set.ways.length > 0">
+        <h2>Wege:</h2>
+        <app-card-list [cardList]="set.ways"></app-card-list>
+    </ng-container>
 </ng-container>

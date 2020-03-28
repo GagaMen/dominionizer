@@ -18,6 +18,8 @@ export class GenerateSetResultComponent {
             cards: this.shuffleService.shuffleCards(),
             events: this.shuffleService.shuffleEvents(),
             landmarks: this.shuffleService.shuffleLandmarks(),
+            projects: this.shuffleService.shuffleProjects(),
+            ways: this.shuffleService.shuffleWays(),
         });
 
         this.set$ = this.shuffleSubject.pipe(exhaustMap(() => singleSet$));

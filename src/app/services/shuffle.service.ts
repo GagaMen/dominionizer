@@ -15,7 +15,7 @@ import { CardType } from '../models/card-type';
 export class ShuffleService {
     configuration: Configuration = {
         expansions: [],
-        options: { events: 0, landmarks: 0 },
+        options: { events: 0, landmarks: 0, projects: 0, ways: 0 },
         costDistribution: new Map(),
     };
 
@@ -54,6 +54,26 @@ export class ShuffleService {
         );
 
         return iif(() => this.configuration.options.landmarks > 0, landmarks$, of([]));
+    }
+
+    shuffleProjects(): Observable<Card[]> {
+        const projects$ = this.cardService.findByCardType(CardType.Project).pipe(
+            map((cards: Card[]) => this.filterByExpansions(cards)),
+            map((cards: Card[]) =>
+                this.pickRandomCards(cards, this.configuration.options.projects),
+            ),
+        );
+
+        return iif(() => this.configuration.options.projects > 0, projects$, of([]));
+    }
+
+    shuffleWays(): Observable<Card[]> {
+        const ways$ = this.cardService.findByCardType(CardType.Way).pipe(
+            map((cards: Card[]) => this.filterByExpansions(cards)),
+            map((cards: Card[]) => this.pickRandomCards(cards, this.configuration.options.ways)),
+        );
+
+        return iif(() => this.configuration.options.ways > 0, ways$, of([]));
     }
 
     private pickRandomCards(cards: Card[], amount: number): Card[] {

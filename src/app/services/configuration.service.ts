@@ -17,6 +17,8 @@ export class ConfigurationService {
         options: {
             events: 0,
             landmarks: 0,
+            projects: 0,
+            ways: 0,
         },
         costDistribution: new Map<number, number>([
             [0, 79],

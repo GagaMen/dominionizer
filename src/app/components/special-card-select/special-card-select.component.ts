@@ -19,6 +19,12 @@ export class SpecialCardSelectComponent {
     areLandmarksAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
         CardType.Landmark,
     );
+    areProjectsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.Project,
+    );
+    areWaysAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
+        CardType.Way,
+    );
 
     constructor(
         private configurationService: ConfigurationService,
@@ -31,6 +37,8 @@ export class SpecialCardSelectComponent {
         this.formGroup = this.formBuilder.group({
             events: [0],
             landmarks: [0],
+            projects: [0],
+            ways: [0],
         });
     }
 
@@ -41,6 +49,8 @@ export class SpecialCardSelectComponent {
         const options: Options = {
             events: specialCardStates.events,
             landmarks: specialCardStates.landmarks,
+            projects: specialCardStates.projects,
+            ways: specialCardStates.ways,
         };
         this.configurationService.updateOptions(options);
 
