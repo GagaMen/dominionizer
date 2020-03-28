@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-bar',
@@ -6,6 +6,5 @@ import { Component, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./app-bar.component.scss'],
 })
 export class AppBarComponent {
-    @Output() sidenavToggle = new EventEmitter();
     title = 'Dominionizer';
 }
