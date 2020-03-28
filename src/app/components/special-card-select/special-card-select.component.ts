@@ -19,15 +19,6 @@ export class SpecialCardSelectComponent {
     areLandmarksAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
         CardType.Landmark,
     );
-    areBoonsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
-        CardType.Boon,
-    );
-    areHexesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
-        CardType.Hex,
-    );
-    areStatesAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
-        CardType.State,
-    );
 
     constructor(
         private configurationService: ConfigurationService,
@@ -40,22 +31,16 @@ export class SpecialCardSelectComponent {
         this.formGroup = this.formBuilder.group({
             events: [0],
             landmarks: [0],
-            boons: [0],
-            hexes: [0],
-            states: [0],
         });
     }
 
-    // TODO: Should be correct inconsistent configuration state
+    // TODO: Method should correct inconsistent configuration state
     //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
     onNgSubmit(): void {
         const specialCardStates = this.formGroup.value;
         const options: Options = {
             events: specialCardStates.events,
             landmarks: specialCardStates.landmarks,
-            boons: specialCardStates.boons,
-            hexes: specialCardStates.hexes,
-            states: specialCardStates.states,
         };
         this.configurationService.updateOptions(options);
 

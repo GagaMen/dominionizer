@@ -27,6 +27,7 @@ describe('ConfigurationService', () => {
         expansions: [disabledTestExpansion, enabledTestExpansion],
         types: [CardType.Action],
         isKingdomCard: true,
+        cost: 2,
     };
 
     beforeEach(() => {

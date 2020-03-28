@@ -15,7 +15,7 @@ import { CardType } from '../models/card-type';
 export class ShuffleService {
     configuration: Configuration = {
         expansions: [],
-        options: { boons: 0, events: 0, hexes: 0, landmarks: 0, states: 0 },
+        options: { events: 0, landmarks: 0 },
         costDistribution: new Map(),
     };
 
@@ -54,33 +54,6 @@ export class ShuffleService {
         );
 
         return iif(() => this.configuration.options.landmarks > 0, landmarks$, of([]));
-    }
-
-    shuffleBoons(): Observable<Card[]> {
-        const boons$ = this.cardService.findByCardType(CardType.Landmark).pipe(
-            map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.pickRandomCards(cards, this.configuration.options.boons)),
-        );
-
-        return iif(() => this.configuration.options.boons > 0, boons$, of([]));
-    }
-
-    shuffleHexes(): Observable<Card[]> {
-        const hexes$ = this.cardService.findByCardType(CardType.Hex).pipe(
-            map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.pickRandomCards(cards, this.configuration.options.hexes)),
-        );
-
-        return iif(() => this.configuration.options.hexes > 0, hexes$, of([]));
-    }
-
-    shuffleStates(): Observable<Card[]> {
-        const states$ = this.cardService.findByCardType(CardType.State).pipe(
-            map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.pickRandomCards(cards, this.configuration.options.states)),
-        );
-
-        return iif(() => this.configuration.options.states > 0, states$, of([]));
     }
 
     private pickRandomCards(cards: Card[], amount: number): Card[] {

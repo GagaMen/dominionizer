@@ -21,6 +21,7 @@ describe('CardService', () => {
         expansions: [1],
         types: [CardType.Action],
         isKingdomCard: true,
+        cost: 2,
     };
     const testCardDtos: CardDto[] = [
         {
@@ -29,6 +30,7 @@ describe('CardService', () => {
             expansions: [1, 2],
             types: [CardType.Action],
             isKingdomCard: true,
+            cost: 2,
         },
         {
             id: 2,
@@ -36,6 +38,7 @@ describe('CardService', () => {
             expansions: [2],
             types: [CardType.Event],
             isKingdomCard: false,
+            cost: 2,
         },
     ];
     const testExpansions: Expansion[] = [
@@ -49,6 +52,7 @@ describe('CardService', () => {
             expansions: [testExpansions[0], testExpansions[1]],
             types: [CardType.Action],
             isKingdomCard: true,
+            cost: 2,
         },
         {
             id: 2,
@@ -56,6 +60,7 @@ describe('CardService', () => {
             expansions: [testExpansions[1]],
             types: [CardType.Event],
             isKingdomCard: false,
+            cost: 2,
         },
     ];
 
