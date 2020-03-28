@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, Subject, forkJoin, BehaviorSubject } from 'rxjs';
-import { ShuffleService } from '../services/shuffle.service';
-import { Set } from '../models/set';
+import { ShuffleService } from '../../services/shuffle.service';
+import { Set } from '../../models/set';
 import { exhaustMap } from 'rxjs/operators';
 
 @Component({

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpansionSelectComponent } from './expansion-select.component';
-import { ConfigurationService } from '../services/configuration.service';
+import { ConfigurationService } from '../../services/configuration.service';
 import {
     FormBuilder,
     ReactiveFormsModule,
@@ -12,9 +12,9 @@ import {
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { Observable } from 'rxjs';
-import { Expansion } from '../models/expansion';
+import { Expansion } from '../../models/expansion';
 import { cold, getTestScheduler } from 'jasmine-marbles';
-import { ExpansionService } from '../services/expansion.service';
+import { ExpansionService } from '../../services/expansion.service';
 import { SpyObj } from 'src/testing/spy-obj';
 
 describe('ExpansionSelectComponent', () => {

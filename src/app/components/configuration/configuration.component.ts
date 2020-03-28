@@ -1,9 +1,9 @@
-import { ShuffleService } from './../services/shuffle.service';
-import { ConfigurationService } from './../services/configuration.service';
+import { ShuffleService } from '../../services/shuffle.service';
+import { ConfigurationService } from '../../services/configuration.service';
 import { Component } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Router } from '@angular/router';
-import { Configuration } from '../models/configuration';
+import { Configuration } from '../../models/configuration';
 
 @Component({
     selector: 'app-configuration',

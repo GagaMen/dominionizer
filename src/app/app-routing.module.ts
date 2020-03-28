@@ -1,8 +1,8 @@
-import { ConfigurationGuard } from './core/guards/configuration.guard';
+import { ConfigurationGuard } from './guards/configuration.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ConfigurationComponent } from './core/configuration/configuration.component';
-import { GenerateSetResultComponent } from './core/generate-set-result/generate-set-result.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { GenerateSetResultComponent } from './components/generate-set-result/generate-set-result.component';
 
 const routes: Routes = [
     { path: '', component: ConfigurationComponent },

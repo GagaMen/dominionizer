@@ -7,9 +7,9 @@ import {
     ValidationErrors,
     AbstractControl,
 } from '@angular/forms';
-import { Expansion } from '../models/expansion';
-import { ConfigurationService } from '../services/configuration.service';
-import { ExpansionService } from '../services/expansion.service';
+import { Expansion } from '../../models/expansion';
+import { ConfigurationService } from '../../services/configuration.service';
+import { ExpansionService } from '../../services/expansion.service';
 
 @Component({
     selector: 'app-expansion-select',
