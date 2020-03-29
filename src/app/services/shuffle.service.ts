@@ -105,15 +105,10 @@ export class ShuffleService {
     }
 
     private filterByExpansions(cards: Card[]): Card[] {
-        // TODO: intermediate step, that determines the expansion ids, can be deleted when it is
-        //       ensured that expansion objects exist only once in the whole app
-        const expansionIds = new Set<number>();
-        this.configuration.expansions.forEach((expansion: Expansion) =>
-            expansionIds.add(expansion.id),
-        );
-
         return cards.filter((card: Card) =>
-            card.expansions.some((expansion: Expansion) => expansionIds.has(expansion.id)),
+            card.expansions.some((expansion: Expansion) =>
+                this.configuration.expansions.includes(expansion),
+            ),
         );
     }
 }
