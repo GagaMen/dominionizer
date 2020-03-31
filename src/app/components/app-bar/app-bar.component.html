@@ -1,3 +1,11 @@
 <mat-toolbar color="primary">
     <span class="app-title">{{ title }}</span>
+    <mat-slide-toggle
+        class="app-theme"
+        labelPosition="before"
+        [checked]="themeService.isLightThemeActive$ | async"
+        (change)="onToggleLightTheme($event.checked)"
+    >
+        Light theme
+    </mat-slide-toggle>
 </mat-toolbar>

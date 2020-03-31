@@ -1,10 +1,10 @@
-@import '~@angular/material/prebuilt-themes/purple-green.css';
-@import '~material-design-icons/iconfont/material-icons.css';
 @import './variables';
+@import './material-theme';
+@import '~material-design-icons/iconfont/material-icons.css';
 
 ::selection {
-    background-color: #7b1fa2;
-    color: #fff;
+    background-color: mat-color($primary);
+    color: $light-primary-text;
 }
 
 * {
