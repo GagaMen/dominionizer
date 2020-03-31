@@ -31,6 +31,7 @@ export class SpecialCardSelectComponent {
         private formBuilder: FormBuilder,
     ) {
         this.buildFormGroup();
+        this.initializeResetSliderBehaviour();
     }
 
     private buildFormGroup(): void {
@@ -42,8 +43,32 @@ export class SpecialCardSelectComponent {
         });
     }
 
-    // TODO: Method should correct inconsistent configuration state
-    //       - e.g. select "Adventures" -> select "2" for Events -> unselect "Adventures" -> FormGroup still contains "2" for Events
+    private initializeResetSliderBehaviour(): void {
+        this.areEventsAvailable$.subscribe((areEventsAvailable) => {
+            if (!areEventsAvailable) {
+                this.formGroup.get('events')?.setValue(0);
+            }
+        });
+
+        this.areLandmarksAvailable$.subscribe((areLandmarksAvailable) => {
+            if (!areLandmarksAvailable) {
+                this.formGroup.get('landmarks')?.setValue(0);
+            }
+        });
+
+        this.areProjectsAvailable$.subscribe((areProjectsAvailable) => {
+            if (!areProjectsAvailable) {
+                this.formGroup.get('projects')?.setValue(0);
+            }
+        });
+
+        this.areWaysAvailable$.subscribe((areWaysAvailable) => {
+            if (!areWaysAvailable) {
+                this.formGroup.get('ways')?.setValue(0);
+            }
+        });
+    }
+
     onNgSubmit(): void {
         const specialCardStates = this.formGroup.value;
         const options: Options = {
