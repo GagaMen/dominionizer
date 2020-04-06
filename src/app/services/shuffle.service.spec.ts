@@ -76,7 +76,9 @@ describe('ShuffleService', () => {
                 },
                 {
                     provide: MathJsService,
-                    useValue: jasmine.createSpyObj<MathJsService>('MathJsService', ['pickRandom']),
+                    useValue: jasmine.createSpyObj<MathJsService>('MathJsService', [
+                        'pickRandomCards',
+                    ]),
                 },
             ],
         });
@@ -90,39 +92,57 @@ describe('ShuffleService', () => {
         >;
         configurationServiceSpy.configuration$ = cold('a', { a: defaultConfiguration });
         mathJsServiceSpy = TestBed.inject(MathJsService) as jasmine.SpyObj<MathJsService>;
-        mathJsServiceSpy.pickRandom.and.returnValue([]);
+        mathJsServiceSpy.pickRandomCards.and.returnValue([]);
     });
 
-    describe('shuffleCards', () => {
-        it('should pass all card ids for selected expansions to MathJsService.pickRandom()', () => {
-            const cardIds = [firstTestCard.id, secondTestCard.id, thirdTestCard.id];
+    describe('shuffleKingdomCards', () => {
+        it('should pass all cards for selected expansions to MathJsService.pickRandomCards()', () => {
+            const cards = [firstTestCard, secondTestCard, thirdTestCard];
             shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleCards(1).subscribe(null, fail);
+            shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
             getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandom).toHaveBeenCalledWith(
-                cardIds,
+            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+                cards,
                 jasmine.anything(),
-                jasmine.anything(),
+                undefined,
             );
         });
 
-        it('should pass amount value to MathJsService.pickRandom()', () => {
+        it('should pass amount value to MathJsService.pickRandomCards()', () => {
             const amount = 3;
             shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleCards(amount).subscribe(null, fail);
+            shuffleService.shuffleKingdomCards(amount).subscribe(null, fail);
             getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandom).toHaveBeenCalledWith(
+            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
                 jasmine.anything(),
                 amount,
-                jasmine.anything(),
+                undefined,
             );
         });
 
-        it('should pass correct card weights to MathJsService.pickRandom()', () => {
+        it('with costDistribution is empty should pass undefined card weights to MathJsService.pickRandomCards()', () => {
+            const configuration: Configuration = {
+                ...defaultConfiguration,
+                costDistribution: new Map<number, number>(),
+            };
+            configurationServiceSpy.configuration$ = cold('a', { a: configuration });
+            shuffleService = TestBed.inject(ShuffleService);
+
+            shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
+            getTestScheduler().flush();
+
+            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+                jasmine.anything(),
+                jasmine.anything(),
+                undefined,
+            );
+        });
+
+        it('with costDistribution is not empty should pass defined card weights to MathJsService.pickRandomCards()', () => {
             const configuration: Configuration = {
                 ...defaultConfiguration,
                 costDistribution: new Map<number, number>([
@@ -135,10 +155,10 @@ describe('ShuffleService', () => {
             const cardWeights = [1 / 1, 2 / 2, 2 / 2];
             shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleCards(1).subscribe(null, fail);
+            shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
             getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandom).toHaveBeenCalledWith(
+            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
                 jasmine.anything(),
                 jasmine.anything(),
                 cardWeights,

@@ -15,7 +15,7 @@ export class GenerateSetResultComponent {
 
     constructor(private shuffleService: ShuffleService) {
         const singleSet$ = forkJoin({
-            cards: this.shuffleService.shuffleCards(),
+            cards: this.shuffleService.shuffleKingdomCards(),
             events: this.shuffleService.shuffleEvents(),
             landmarks: this.shuffleService.shuffleLandmarks(),
             projects: this.shuffleService.shuffleProjects(),

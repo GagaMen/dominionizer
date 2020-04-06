@@ -29,17 +29,21 @@ export class ShuffleService {
         );
     }
 
-    shuffleCards(amount = 10): Observable<Card[]> {
+    shuffleKingdomCards(amount = 10): Observable<Card[]> {
         return this.cardService.findRandomizableKingdomCards().pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.pickRandomCards(cards, amount)),
+            map((cards: Card[]) =>
+                this.mathJsService.pickRandomCards(cards, amount, this.calculateCardWeights(cards)),
+            ),
         );
     }
 
     shuffleEvents(): Observable<Card[]> {
         const events$ = this.cardService.findByCardType(CardType.Event).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.pickRandomCards(cards, this.configuration.options.events)),
+            map((cards: Card[]) =>
+                this.mathJsService.pickRandomCards(cards, this.configuration.options.events),
+            ),
         );
 
         return iif(() => this.configuration.options.events > 0, events$, of([]));
@@ -49,7 +53,7 @@ export class ShuffleService {
         const landmarks$ = this.cardService.findByCardType(CardType.Landmark).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) =>
-                this.pickRandomCards(cards, this.configuration.options.landmarks),
+                this.mathJsService.pickRandomCards(cards, this.configuration.options.landmarks),
             ),
         );
 
@@ -60,7 +64,7 @@ export class ShuffleService {
         const projects$ = this.cardService.findByCardType(CardType.Project).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) =>
-                this.pickRandomCards(cards, this.configuration.options.projects),
+                this.mathJsService.pickRandomCards(cards, this.configuration.options.projects),
             ),
         );
 
@@ -70,14 +74,19 @@ export class ShuffleService {
     shuffleWays(): Observable<Card[]> {
         const ways$ = this.cardService.findByCardType(CardType.Way).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.pickRandomCards(cards, this.configuration.options.ways)),
+            map((cards: Card[]) =>
+                this.mathJsService.pickRandomCards(cards, this.configuration.options.ways),
+            ),
         );
 
         return iif(() => this.configuration.options.ways > 0, ways$, of([]));
     }
 
-    private pickRandomCards(cards: Card[], amount: number): Card[] {
-        const cardIds = cards.map((card: Card) => card.id);
+    private calculateCardWeights(cards: Card[]): number[] | undefined {
+        if (this.configuration.costDistribution.size === 0) {
+            return undefined;
+        }
+
         const cardsAggregatedByCost = cards.reduce<Map<number, number>>(
             (aggregation: Map<number, number>, card: Card) => {
                 const costCount = aggregation.get(card.cost) ?? 0;
@@ -86,22 +95,12 @@ export class ShuffleService {
             },
             new Map<number, number>(),
         );
-        const cardWeights = cards.map((card: Card) => {
+
+        return cards.map((card: Card) => {
             const costWeight = this.configuration.costDistribution.get(card.cost) ?? 0;
             const costCount = cardsAggregatedByCost.get(card.cost);
             return costCount !== undefined ? costWeight / costCount : 0;
         });
-
-        const pickedCardIds = this.mathJsService.pickRandom(
-            cardIds,
-            amount,
-            cardWeights,
-        ) as number[];
-        const pickedCards = pickedCardIds.map((cardId: number) =>
-            cards.find((card: Card) => card.id === cardId),
-        ) as Card[];
-
-        return pickedCards;
     }
 
     private filterByExpansions(cards: Card[]): Card[] {
