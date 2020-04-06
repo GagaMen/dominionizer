@@ -20,18 +20,7 @@ export class ConfigurationService {
             projects: 0,
             ways: 0,
         },
-        costDistribution: new Map<number, number>([
-            [0, 79],
-            [1, 5],
-            [2, 51],
-            [3, 77],
-            [4, 106],
-            [5, 130],
-            [6, 24],
-            [7, 6],
-            [8, 5],
-            [14, 1],
-        ]),
+        costDistribution: new Map(),
     };
 
     private configurationSubject = new BehaviorSubject<Configuration>(
