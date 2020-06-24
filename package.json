@@ -13,7 +13,8 @@
     },
     "lint-staged": {
         "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
-        "*.scss": "stylelint --ignore-path .gitignore --syntax scss --cache"
+        "*.scss": "stylelint --ignore-path .gitignore --syntax scss --cache",
+        "*.md": "markdownlint --ignore-path .gitignore"
     },
     "husky": {
         "hooks": {
@@ -67,7 +68,7 @@
         "karma-jasmine": "^3.1.1",
         "karma-jasmine-html-reporter": "^1.5.3",
         "lint-staged": "^10.0.9",
-        "markdownlint-cli": "0.22.0",
+        "markdownlint-cli": "^0.23.1",
         "prettier": "2.0.2",
         "protractor": "^5.4.3",
         "stylelint": "13.2.1",
