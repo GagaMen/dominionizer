@@ -10,8 +10,8 @@ describe('ExpansionService', () => {
     let expansionService: ExpansionService;
     let dataServiceSpy: SpyObj<DataService>;
     const testExpansions: Expansion[] = [
-        { id: 1, name: 'First Test Expansion' },
-        { id: 2, name: 'Second Test Expansion' },
+        { id: 1, name: 'First Test Expansion', icon: '/assets/icons/expansion_icon.png' },
+        { id: 2, name: 'Second Test Expansion', icon: '/assets/icons/expansion_icon.png' },
     ];
 
     beforeEach(() => {

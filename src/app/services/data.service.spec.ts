@@ -12,8 +12,8 @@ describe('DataService', () => {
     let dataService: DataService;
     let httpClientSpy: SpyObj<HttpClient>;
     const expansions: Expansion[] = [
-        { id: 1, name: 'First Expansion' },
-        { id: 2, name: 'Second Expansion' },
+        { id: 1, name: 'First Expansion', icon: '/assets/icons/expansion_icon.png' },
+        { id: 2, name: 'Second Expansion', icon: '/assets/icons/expansion_icon.png' },
     ];
     const cards: CardDto[] = [
         { id: 1, name: 'First Card', expansions: [1, 2], types: [1], isKingdomCard: true, cost: 2 },

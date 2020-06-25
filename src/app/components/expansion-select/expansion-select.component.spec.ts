@@ -22,8 +22,8 @@ describe('ExpansionSelectComponent', () => {
     let fixture: ComponentFixture<ExpansionSelectComponent>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
     const defaultExpansions: Expansion[] = [
-        { id: 1, name: 'Test Expansion 1' },
-        { id: 2, name: 'Test Expansion 2' },
+        { id: 1, name: 'Test Expansion 1', icon: '/assets/icons/expansion_icon.png' },
+        { id: 2, name: 'Test Expansion 2', icon: '/assets/icons/expansion_icon.png' },
     ];
 
     beforeEach(() => {

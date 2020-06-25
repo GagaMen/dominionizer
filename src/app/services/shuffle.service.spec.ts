@@ -20,10 +20,12 @@ describe('ShuffleService', () => {
     const enabledTestExpansion: Expansion = {
         id: 1,
         name: 'Enabled Test Expansion',
+        icon: '/assets/icons/expansion_icon.png',
     };
     const disabledTestExpansion: Expansion = {
         id: 2,
         name: 'Disabled Test Expansion',
+        icon: '/assets/icons/expansion_icon.png',
     };
     const firstTestCard: Card = {
         id: 1,

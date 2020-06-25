@@ -8,6 +8,11 @@
     }
 }
 
+.expansion-icon {
+    border-radius: unset;
+    object-fit: contain;
+}
+
 .type-action {
     background-color: $background-color-action;
 

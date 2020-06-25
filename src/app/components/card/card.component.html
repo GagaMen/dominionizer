@@ -12,7 +12,16 @@
         'type-ruins': card?.types?.includes(22)
     }"
 >
-    <mat-card-title>{{ card?.name }}</mat-card-title>
+    <mat-card-header>
+        <img
+            class="expansion-icon"
+            mat-card-avatar
+            *ngIf="card !== null"
+            src="{{ card.expansions[0].icon }}"
+            alt="Expansion Icon"
+        />
+        <mat-card-title>{{ card?.name }}</mat-card-title>
+    </mat-card-header>
     <mat-card-content>
         <p>{{ card?.description }}</p>
     </mat-card-content>
