@@ -1,0 +1,108 @@
+@import '../../../scss/variables';
+
+.card {
+    color: $font-color-card;
+
+    &.type-night:not(.type-duration) {
+        color: inherit;
+    }
+}
+
+.type-action {
+    background-color: $color-action;
+
+    &.type-duration {
+        background-color: $color-duration;
+    }
+
+    &.type-treasure {
+        background: linear-gradient($color-action 50%, $color-treasure 50%);
+        background-color: none;
+    }
+
+    &.type-victory {
+        background: linear-gradient($color-action 50%, $color-victory 50%);
+        background-color: none;
+    }
+
+    &.type-shelter {
+        background: linear-gradient($color-action 50%, $color-shelter 50%);
+        background-color: none;
+    }
+}
+
+.type-treasure {
+    background-color: $color-treasure;
+
+    &.type-reserve {
+        background: linear-gradient($color-treasure 50%, $color-reserve 50%);
+        background-color: none;
+    }
+
+    &.type-victory {
+        background: linear-gradient($color-treasure 50%, $color-victory 50%);
+        background-color: none;
+    }
+
+    &.type-reaction {
+        background: linear-gradient($color-treasure 50%, $color-reaction 50%);
+        background-color: none;
+    }
+}
+
+.type-victory {
+    background-color: $color-victory;
+
+    &.type-shelter {
+        background: linear-gradient($color-victory 50%, $color-shelter 50%);
+        background-color: none;
+    }
+
+    &.type-reaction {
+        background: linear-gradient($color-victory 50%, $color-reaction 50%);
+        background-color: none;
+    }
+}
+
+.type-reaction {
+    background-color: $color-reaction;
+
+    &.type-shelter {
+        background: linear-gradient($color-reaction 50%, $color-shelter 50%);
+        background-color: none;
+    }
+}
+
+.type-reserve {
+    background-color: $color-reserve;
+
+    &.type-victory {
+        background: linear-gradient($color-reserve 50%, $color-victory 50%);
+        background-color: none;
+    }
+}
+
+.type-duration {
+    background-color: $color-duration;
+
+    &.type-reaction {
+        background: linear-gradient($color-duration 50%, $color-reaction 50%);
+        background-color: none;
+    }
+}
+
+.type-night {
+    background-color: $color-night;
+
+    &.type-duration {
+        background-color: $color-duration;
+    }
+}
+
+.type-shelter {
+    background-color: $color-shelter;
+}
+
+.type-ruins {
+    background-color: $color-ruins;
+}
