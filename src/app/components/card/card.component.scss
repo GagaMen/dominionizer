@@ -12,6 +12,11 @@
     }
 }
 
+.mat-card-subtitle {
+    // this removes the default margin of 16px
+    margin-bottom: 0;
+}
+
 .expansion-icon {
     border-radius: unset;
     object-fit: contain;
