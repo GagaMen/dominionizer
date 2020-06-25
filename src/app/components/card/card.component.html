@@ -1,6 +1,5 @@
 <mat-card
     [ngClass]="{
-        card: true,
         'type-action': card?.types?.includes(1),
         'type-treasure': card?.types?.includes(27),
         'type-victory': card?.types?.includes(28),
@@ -21,6 +20,7 @@
             alt="Expansion Icon"
         />
         <mat-card-title>{{ card?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ types.join(' - ') }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <p>{{ card?.description }}</p>

@@ -1,9 +1,13 @@
 @import '../../../scss/variables';
 
-.card {
+.mat-card-title,
+.mat-card-subtitle {
     color: $font-color-card;
+}
 
-    &.type-night:not(.type-duration) {
+.type-night:not(.type-duration) {
+    .mat-card-title,
+    .mat-card-subtitle {
         color: inherit;
     }
 }
