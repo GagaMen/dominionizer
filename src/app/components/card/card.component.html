@@ -19,8 +19,14 @@
             src="{{ card.expansions[0].icon }}"
             alt="Expansion Icon"
         />
-        <mat-card-title>{{ card?.name }}</mat-card-title>
-        <mat-card-subtitle>{{ types.join(' - ') }}</mat-card-subtitle>
+        <mat-card-title-group>
+            <mat-card-title>{{ card?.name }}</mat-card-title>
+            <mat-card-subtitle>{{ types.join(' - ') }}</mat-card-subtitle>
+        </mat-card-title-group>
+        <div class="spacer"></div>
+        <button mat-mini-fab (click)="onReshuffle()">
+            <mat-icon>cached</mat-icon>
+        </button>
     </mat-card-header>
     <mat-card-content>
         <p>{{ card?.description }}</p>

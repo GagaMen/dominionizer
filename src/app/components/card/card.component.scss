@@ -1,5 +1,10 @@
 @import '../../../scss/variables';
 
+.expansion-icon {
+    border-radius: unset;
+    object-fit: contain;
+}
+
 .mat-card-title,
 .mat-card-subtitle {
     color: $font-color-card;
@@ -17,9 +22,8 @@
     margin-bottom: 0;
 }
 
-.expansion-icon {
-    border-radius: unset;
-    object-fit: contain;
+.spacer {
+    flex-grow: 1;
 }
 
 .type-action {

@@ -38,44 +38,56 @@ export class ShuffleService {
         );
     }
 
-    shuffleEvents(): Observable<Card[]> {
+    shuffleEvents(amount: number | undefined = undefined): Observable<Card[]> {
         const events$ = this.cardService.findByCardType(CardType.Event).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) =>
-                this.mathJsService.pickRandomCards(cards, this.configuration.options.events),
+                this.mathJsService.pickRandomCards(
+                    cards,
+                    amount !== undefined ? amount : this.configuration.options.events,
+                ),
             ),
         );
 
         return iif(() => this.configuration.options.events > 0, events$, of([]));
     }
 
-    shuffleLandmarks(): Observable<Card[]> {
+    shuffleLandmarks(amount: number | undefined = undefined): Observable<Card[]> {
         const landmarks$ = this.cardService.findByCardType(CardType.Landmark).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) =>
-                this.mathJsService.pickRandomCards(cards, this.configuration.options.landmarks),
+                this.mathJsService.pickRandomCards(
+                    cards,
+                    amount !== undefined ? amount : this.configuration.options.landmarks,
+                ),
             ),
         );
 
         return iif(() => this.configuration.options.landmarks > 0, landmarks$, of([]));
     }
 
-    shuffleProjects(): Observable<Card[]> {
+    shuffleProjects(amount: number | undefined = undefined): Observable<Card[]> {
         const projects$ = this.cardService.findByCardType(CardType.Project).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) =>
-                this.mathJsService.pickRandomCards(cards, this.configuration.options.projects),
+                this.mathJsService.pickRandomCards(
+                    cards,
+                    amount !== undefined ? amount : this.configuration.options.projects,
+                ),
             ),
         );
 
         return iif(() => this.configuration.options.projects > 0, projects$, of([]));
     }
 
-    shuffleWays(): Observable<Card[]> {
+    shuffleWays(amount: number | undefined = undefined): Observable<Card[]> {
         const ways$ = this.cardService.findByCardType(CardType.Way).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) =>
-                this.mathJsService.pickRandomCards(cards, this.configuration.options.ways),
+                this.mathJsService.pickRandomCards(
+                    cards,
+                    amount !== undefined ? amount : this.configuration.options.ways,
+                ),
             ),
         );
 
