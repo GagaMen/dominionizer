@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable, Subject, forkJoin, BehaviorSubject } from 'rxjs';
 import { ShuffleService } from '../../services/shuffle.service';
-import { Set } from '../../models/set';
-import { exhaustMap } from 'rxjs/operators';
+import { SetService } from 'src/app/services/set.service';
 
 @Component({
     selector: 'app-generate-set-result',
@@ -10,22 +8,11 @@ import { exhaustMap } from 'rxjs/operators';
     styleUrls: ['./generate-set-result.component.scss'],
 })
 export class GenerateSetResultComponent {
-    private shuffleSubject: Subject<unknown> = new BehaviorSubject<unknown>({});
-    set$: Observable<Set>;
-
-    constructor(private shuffleService: ShuffleService) {
-        const singleSet$ = forkJoin({
-            cards: this.shuffleService.shuffleKingdomCards(),
-            events: this.shuffleService.shuffleEvents(),
-            landmarks: this.shuffleService.shuffleLandmarks(),
-            projects: this.shuffleService.shuffleProjects(),
-            ways: this.shuffleService.shuffleWays(),
-        });
-
-        this.set$ = this.shuffleSubject.pipe(exhaustMap(() => singleSet$));
+    constructor(private shuffleService: ShuffleService, public setService: SetService) {
+        this.shuffle();
     }
 
     shuffle(): void {
-        this.shuffleSubject.next();
+        this.shuffleService.shuffleCards();
     }
 }

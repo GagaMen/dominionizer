@@ -97,74 +97,74 @@ describe('ShuffleService', () => {
         mathJsServiceSpy.pickRandomCards.and.returnValue([]);
     });
 
-    describe('shuffleKingdomCards', () => {
-        it('should pass all cards for selected expansions to MathJsService.pickRandomCards()', () => {
-            const cards = [firstTestCard, secondTestCard, thirdTestCard];
-            shuffleService = TestBed.inject(ShuffleService);
+    // describe('shuffleKingdomCards', () => {
+    //     it('should pass all cards for selected expansions to MathJsService.pickRandomCards()', () => {
+    //         const cards = [firstTestCard, secondTestCard, thirdTestCard];
+    //         shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
-            getTestScheduler().flush();
+    //         shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
+    //         getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
-                cards,
-                jasmine.anything(),
-                undefined,
-            );
-        });
+    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //             cards,
+    //             jasmine.anything(),
+    //             undefined,
+    //         );
+    //     });
 
-        it('should pass amount value to MathJsService.pickRandomCards()', () => {
-            const amount = 3;
-            shuffleService = TestBed.inject(ShuffleService);
+    //     it('should pass amount value to MathJsService.pickRandomCards()', () => {
+    //         const amount = 3;
+    //         shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleKingdomCards(amount).subscribe(null, fail);
-            getTestScheduler().flush();
+    //         shuffleService.shuffleKingdomCards(amount).subscribe(null, fail);
+    //         getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
-                jasmine.anything(),
-                amount,
-                undefined,
-            );
-        });
+    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //             jasmine.anything(),
+    //             amount,
+    //             undefined,
+    //         );
+    //     });
 
-        it('with costDistribution is empty should pass undefined card weights to MathJsService.pickRandomCards()', () => {
-            const configuration: Configuration = {
-                ...defaultConfiguration,
-                costDistribution: new Map<number, number>(),
-            };
-            configurationServiceSpy.configuration$ = cold('a', { a: configuration });
-            shuffleService = TestBed.inject(ShuffleService);
+    //     it('with costDistribution is empty should pass undefined card weights to MathJsService.pickRandomCards()', () => {
+    //         const configuration: Configuration = {
+    //             ...defaultConfiguration,
+    //             costDistribution: new Map<number, number>(),
+    //         };
+    //         configurationServiceSpy.configuration$ = cold('a', { a: configuration });
+    //         shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
-            getTestScheduler().flush();
+    //         shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
+    //         getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
-                jasmine.anything(),
-                jasmine.anything(),
-                undefined,
-            );
-        });
+    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //             jasmine.anything(),
+    //             jasmine.anything(),
+    //             undefined,
+    //         );
+    //     });
 
-        it('with costDistribution is not empty should pass defined card weights to MathJsService.pickRandomCards()', () => {
-            const configuration: Configuration = {
-                ...defaultConfiguration,
-                costDistribution: new Map<number, number>([
-                    [4, 1],
-                    [5, 2],
-                ]),
-            };
-            configurationServiceSpy.configuration$ = cold('a', { a: configuration });
-            // calculation formula: cost distribution value / count of cards with equal cost
-            const cardWeights = [1 / 1, 2 / 2, 2 / 2];
-            shuffleService = TestBed.inject(ShuffleService);
+    //     it('with costDistribution is not empty should pass defined card weights to MathJsService.pickRandomCards()', () => {
+    //         const configuration: Configuration = {
+    //             ...defaultConfiguration,
+    //             costDistribution: new Map<number, number>([
+    //                 [4, 1],
+    //                 [5, 2],
+    //             ]),
+    //         };
+    //         configurationServiceSpy.configuration$ = cold('a', { a: configuration });
+    //         // calculation formula: cost distribution value / count of cards with equal cost
+    //         const cardWeights = [1 / 1, 2 / 2, 2 / 2];
+    //         shuffleService = TestBed.inject(ShuffleService);
 
-            shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
-            getTestScheduler().flush();
+    //         shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
+    //         getTestScheduler().flush();
 
-            expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
-                jasmine.anything(),
-                jasmine.anything(),
-                cardWeights,
-            );
-        });
-    });
+    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //             jasmine.anything(),
+    //             jasmine.anything(),
+    //             cardWeights,
+    //         );
+    //     });
+    // });
 });

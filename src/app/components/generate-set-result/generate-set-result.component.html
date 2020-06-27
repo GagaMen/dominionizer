@@ -1,25 +1,25 @@
 <button mat-button (click)="shuffle()">Reshuffle</button>
-<ng-container *ngIf="set$ | async as set">
+<ng-container *ngIf="setService.set$ | async as set">
     <h2>Cards:</h2>
-    <app-card-list [cardList]="set.cards"></app-card-list>
+    <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
 
     <ng-container *ngIf="set.events.length > 0">
         <h2>Events:</h2>
-        <app-card-list [cardList]="set.events"></app-card-list>
+        <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
     </ng-container>
 
     <ng-container *ngIf="set.landmarks.length > 0">
         <h2>Landmarks:</h2>
-        <app-card-list [cardList]="set.landmarks"></app-card-list>
+        <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
     </ng-container>
 
     <ng-container *ngIf="set.projects.length > 0">
         <h2>Projects:</h2>
-        <app-card-list [cardList]="set.projects"></app-card-list>
+        <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
     </ng-container>
 
     <ng-container *ngIf="set.ways.length > 0">
         <h2>Ways:</h2>
-        <app-card-list [cardList]="set.ways"></app-card-list>
+        <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
     </ng-container>
 </ng-container>
