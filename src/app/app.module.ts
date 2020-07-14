@@ -18,6 +18,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { CardComponent } from './components/card/card.component';
@@ -54,6 +56,8 @@ import { SpecialCardSelectComponent } from './components/special-card-select/spe
         MatCardModule,
         MatDividerModule,
         MatStepperModule,
+        MatCheckboxModule,
+        MatRadioModule,
         FormsModule,
         AppRoutingModule,
     ],

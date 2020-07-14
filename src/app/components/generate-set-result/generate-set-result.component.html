@@ -1,5 +1,17 @@
 <button mat-button color="accent" routerLink="/">Back</button>
 <button mat-raised-button color="primary" (click)="shuffle()">Reshuffle</button>
+<mat-card [formGroup]="formGroup">
+    <mat-card-header>
+        <mat-card-title>Sorting:</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+        <mat-checkbox formControlName="expansion">Expansion</mat-checkbox>
+        <mat-radio-group formControlName="sorting">
+            <mat-radio-button value="1" checked="ture">Alphabetical</mat-radio-button>
+            <mat-radio-button value="2">Money</mat-radio-button>
+        </mat-radio-group>
+    </mat-card-actions>
+</mat-card>
 <ng-container *ngIf="setService.set$ | async as set">
     <h2>Cards:</h2>
     <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
