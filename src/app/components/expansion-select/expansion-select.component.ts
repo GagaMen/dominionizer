@@ -17,7 +17,7 @@ import { ExpansionService } from '../../services/expansion.service';
     styleUrls: ['./expansion-select.component.scss'],
 })
 export class ExpansionSelectComponent {
-    @Output() submitForm: EventEmitter<never> = new EventEmitter();
+    @Output() submitForm: EventEmitter<never> = new EventEmitter<never>();
     expansions: Expansion[] = [];
     formGroup: FormGroup = new FormGroup({});
 

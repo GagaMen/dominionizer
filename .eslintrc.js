@@ -14,7 +14,7 @@ module.exports = {
             ],
             parserOptions: {
                 ecmaVersion: 2018,
-                project: './tsconfig.json',
+                project: './tsconfig.base.json',
                 tsconfigRootDir: __dirname,
             },
             rules: {
@@ -42,6 +42,7 @@ module.exports = {
                     },
                 ],
                 '@angular-eslint/no-conflicting-lifecycle': 'error',
+                '@typescript-eslint/no-floating-promises': 'off',
                 '@angular-eslint/no-host-metadata-property': 'error',
                 '@angular-eslint/no-input-rename': 'error',
                 '@angular-eslint/no-inputs-metadata-property': 'error',
@@ -68,6 +69,9 @@ module.exports = {
                         message: 'Unexpected property on console object was called',
                     },
                 ],
+                '@typescript-eslint/no-unsafe-assignment': 'off',
+                '@typescript-eslint/no-unsafe-call': 'off',
+                '@typescript-eslint/no-unsafe-member-access': 'off',
                 '@typescript-eslint/unbound-method': [
                     'error',
                     {

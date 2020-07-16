@@ -11,7 +11,7 @@ import { CardType } from '../../models/card-type';
     styleUrls: ['./special-card-select.component.scss'],
 })
 export class SpecialCardSelectComponent {
-    @Output() submitForm: EventEmitter<never> = new EventEmitter();
+    @Output() submitForm: EventEmitter<never> = new EventEmitter<never>();
     formGroup: FormGroup = new FormGroup({});
     areEventsAvailable$: Observable<boolean> = this.configurationService.isCardTypeAvailable(
         CardType.Event,

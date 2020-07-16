@@ -9,7 +9,7 @@ import { CardType } from 'src/app/models/card-type';
 })
 export class CardComponent implements OnInit {
     @Input() card: Card | null = null;
-    @Output() reshuffle: EventEmitter<never> = new EventEmitter();
+    @Output() reshuffle: EventEmitter<never> = new EventEmitter<never>();
     types: string[] = [];
 
     ngOnInit(): void {
