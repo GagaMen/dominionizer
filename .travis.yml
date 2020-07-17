@@ -14,4 +14,5 @@ install:
 
 script:
     - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-    - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+    # TODO: uncomment next line to enable e2e test on push via travis
+    # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
