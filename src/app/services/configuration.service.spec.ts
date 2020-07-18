@@ -4,33 +4,14 @@ import { ConfigurationService } from './configuration.service';
 import { CardService } from './card.service';
 import { Configuration } from '../models/configuration';
 import { cold } from 'jasmine-marbles';
-import { Expansion } from '../models/expansion';
-import { Card } from '../models/card';
-import { CardType } from '../models/card-type';
 import { Observable } from 'rxjs';
 import { SpyObj } from 'src/testing/spy-obj';
+import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ConfigurationService', () => {
     let configurationService: ConfigurationService;
     let cardServiceSpy: SpyObj<CardService>;
-    const enabledTestExpansion: Expansion = {
-        id: 1,
-        name: 'Enabled Test Expansion',
-        icon: '/assets/icons/expansion_icon.png',
-    };
-    const disabledTestExpansion: Expansion = {
-        id: 2,
-        name: 'Disabled Test Expansion',
-        icon: '/assets/icons/expansion_icon.png',
-    };
-    const defaultTestCard: Card = {
-        id: 1,
-        name: 'Default Test Card',
-        expansions: [disabledTestExpansion, enabledTestExpansion],
-        types: [CardType.Action],
-        isKingdomCard: true,
-        cost: 2,
-    };
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -43,13 +24,14 @@ describe('ConfigurationService', () => {
             ],
         });
 
+        dataFixture = new DataFixture();
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
+        configurationService = TestBed.inject(ConfigurationService);
     });
 
     describe('configuration$', () => {
         it('with service just initialized should emit default configuration', () => {
             const expected$ = cold('a', { a: ConfigurationService.defaultConfiguration });
-            configurationService = TestBed.inject(ConfigurationService);
 
             const actual$ = configurationService.configuration$;
 
@@ -59,11 +41,10 @@ describe('ConfigurationService', () => {
 
     describe('updateExpansions', () => {
         it('should update configuration.expansions', () => {
-            const expansions: Expansion[] = [enabledTestExpansion];
+            const expansions = dataFixture.createExpansions();
             const expected$: Observable<Configuration> = cold('a', {
                 a: { ...ConfigurationService.defaultConfiguration, expansions: expansions },
             });
-            configurationService = TestBed.inject(ConfigurationService);
 
             configurationService.updateExpansions(expansions);
             const actual$ = configurationService.configuration$;
@@ -74,17 +55,14 @@ describe('ConfigurationService', () => {
 
     describe('isCardTypeAvailable', () => {
         it('with enabled expansion has card with given card type should return true', () => {
-            const cardType: CardType = CardType.Event;
-            const card: Card = {
-                ...defaultTestCard,
-                expansions: [disabledTestExpansion, enabledTestExpansion],
-                types: [cardType],
-            };
-            const cards$: Observable<Card[]> = cold('a', { a: [card] });
-            cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
-            const expected$ = cold('a', { a: true });
-            configurationService = TestBed.inject(ConfigurationService);
-            configurationService.updateExpansions([enabledTestExpansion]);
+            const expansions = dataFixture.createExpansions();
+            const enabledExpansions = expansions.slice(1);
+            const cardType = dataFixture.createCardType();
+            const card = dataFixture.createCard({ expansions: expansions, types: [cardType] });
+            const findByCardType$ = cold('a', { a: [card] });
+            const expected$ = cold('      a', { a: true });
+            cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(findByCardType$);
+            configurationService.updateExpansions(enabledExpansions);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType);
 
@@ -92,17 +70,15 @@ describe('ConfigurationService', () => {
         });
 
         it('with enabled expansion has no card with given card type should return false', () => {
-            const cardType: CardType = CardType.Event;
-            const card: Card = {
-                ...defaultTestCard,
-                expansions: [disabledTestExpansion],
-                types: [cardType],
-            };
-            const cards$: Observable<Card[]> = cold('a', { a: [card] });
-            cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(cards$);
-            const expected$ = cold('a', { a: false });
-            configurationService = TestBed.inject(ConfigurationService);
-            configurationService.updateExpansions([enabledTestExpansion]);
+            const expansions = dataFixture.createExpansions();
+            const enabledExpansions = expansions.slice(0, 1);
+            const cardExpansions = expansions.slice(1);
+            const cardType = dataFixture.createCardType();
+            const card = dataFixture.createCard({ expansions: cardExpansions, types: [cardType] });
+            const findByCardType$ = cold('a', { a: [card] });
+            const expected$ = cold('      a', { a: false });
+            cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(findByCardType$);
+            configurationService.updateExpansions(enabledExpansions);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType);
 

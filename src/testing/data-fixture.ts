@@ -1,0 +1,101 @@
+import { Expansion } from 'src/app/models/expansion';
+import { Chance } from 'chance';
+import { CardDto } from 'src/app/dtos/card-dto';
+import { Card } from 'src/app/models/card';
+import { CardType } from 'src/app/models/card-type';
+import { Configuration } from 'src/app/models/configuration';
+
+export class DataFixture {
+    private chance: Chance.Chance = new Chance();
+    private expansionIdCount = 0;
+    private cardDtoIdCount = 0;
+    private cardIdCount = 0;
+
+    createExpansion(expansion: Partial<Expansion> = {}): Expansion {
+        return {
+            id: this.expansionIdCount++,
+            name: this.chance.word(),
+            icon: this.chance.word(),
+            ...expansion,
+        };
+    }
+
+    createExpansions(amount = 3, expansion: Partial<Expansion> = {}): Expansion[] {
+        return this.createMultiple(
+            (expansion?: Partial<Expansion>) => this.createExpansion(expansion),
+            amount,
+            expansion,
+        );
+    }
+
+    createCardDto(cardDto: Partial<CardDto> = {}): CardDto {
+        return {
+            id: this.cardDtoIdCount++,
+            name: this.chance.word(),
+            expansions: [this.chance.integer({ min: 1, max: 10 })],
+            types: [this.chance.integer({ min: 1, max: 10 })],
+            isKingdomCard: this.chance.bool(),
+            cost: this.chance.integer({ min: 0, max: 5 }),
+            ...cardDto,
+        };
+    }
+
+    createCardDtos(amount = 3, cardDto: Partial<CardDto> = {}): CardDto[] {
+        return this.createMultiple(
+            (cardDto?: Partial<CardDto>) => this.createCardDto(cardDto),
+            amount,
+            cardDto,
+        );
+    }
+
+    createCardType(): CardType {
+        return this.chance.integer({ min: 1, max: 10 }) as CardType;
+    }
+
+    createCardTypes(amount = 3): CardType[] {
+        return this.createMultiple(() => this.createCardType(), amount);
+    }
+
+    createCard(card: Partial<Card> = {}): Card {
+        return {
+            id: this.cardIdCount++,
+            name: this.chance.word(),
+            expansions: [this.createExpansion()],
+            types: [this.createCardType()],
+            isKingdomCard: this.chance.bool(),
+            cost: this.chance.integer({ min: 0, max: 5 }),
+            ...card,
+        };
+    }
+
+    createCards(amount = 3, card: Partial<Card> = {}): Card[] {
+        return this.createMultiple((card?: Partial<Card>) => this.createCard(card), amount, card);
+    }
+
+    createConfiguration(configuration: Partial<Configuration> = {}): Configuration {
+        return {
+            expansions: this.createExpansions(),
+            options: {
+                events: this.chance.integer({ min: 0, max: 5 }),
+                landmarks: this.chance.integer({ min: 0, max: 5 }),
+                projects: this.chance.integer({ min: 0, max: 5 }),
+                ways: this.chance.integer({ min: 0, max: 5 }),
+            },
+            costDistribution: new Map<number, number>(),
+            ...configuration,
+        };
+    }
+
+    private createMultiple<T>(
+        create: (props?: Partial<T>) => T,
+        amount: number,
+        props?: Partial<T>,
+    ): T[] {
+        const array: T[] = [];
+        for (let i = 0; i < amount; i++) {
+            array.push(create(props));
+        }
+
+        return array;
+    }
+}

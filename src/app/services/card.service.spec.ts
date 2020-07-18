@@ -9,60 +9,13 @@ import { SpyObj } from 'src/testing/spy-obj';
 import { CardDto } from '../dtos/card-dto';
 import { Expansion } from '../models/expansion';
 import { ExpansionService } from './expansion.service';
+import { DataFixture } from 'src/testing/data-fixture';
 
 describe('CardService', () => {
     let cardService: CardService;
     let dataServiceSpy: SpyObj<DataService>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
-
-    const defaultTestCardDto: CardDto = {
-        id: 1,
-        name: 'Default Test Card',
-        expansions: [1],
-        types: [CardType.Action],
-        isKingdomCard: true,
-        cost: 2,
-    };
-    const testCardDtos: CardDto[] = [
-        {
-            id: 1,
-            name: 'First Test Card',
-            expansions: [1, 2],
-            types: [CardType.Action],
-            isKingdomCard: true,
-            cost: 2,
-        },
-        {
-            id: 2,
-            name: 'Second Test Card',
-            expansions: [2],
-            types: [CardType.Event],
-            isKingdomCard: false,
-            cost: 2,
-        },
-    ];
-    const testExpansions: Expansion[] = [
-        { id: 1, name: 'First Test Expansion', icon: '/assets/icons/expansion_icon.png' },
-        { id: 2, name: 'Second Test Expansion', icon: '/assets/icons/expansion_icon.png' },
-    ];
-    const testCards: Card[] = [
-        {
-            id: 1,
-            name: 'First Test Card',
-            expansions: [testExpansions[0], testExpansions[1]],
-            types: [CardType.Action],
-            isKingdomCard: true,
-            cost: 2,
-        },
-        {
-            id: 2,
-            name: 'Second Test Card',
-            expansions: [testExpansions[1]],
-            types: [CardType.Event],
-            isKingdomCard: false,
-            cost: 2,
-        },
-    ];
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -75,17 +28,36 @@ describe('CardService', () => {
             ],
         });
 
+        dataFixture = new DataFixture();
+
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
+        dataServiceSpy.fetchCards.and.returnValue(
+            cold('(a|)', { a: dataFixture.createCardDtos() }),
+        );
         expansionServiceSpy = TestBed.inject(ExpansionService);
+        expansionServiceSpy.expansions$ = cold('(a|)', { a: dataFixture.createExpansions() });
     });
 
     describe('cards$', () => {
-        it('should map CardDto objects from DataService.cards() to their corresponding Card objects and complete', () => {
-            const cardDtos$ = cold('  ----(a|)', { a: testCardDtos });
-            const expansions$ = cold('-(a|)   ', { a: testExpansions });
-            const expected$ = cold('  ----(a|)', { a: testCards });
-            dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
+        it('should map CardDto objects from server to their corresponding Card objects and complete', () => {
+            const expansions = dataFixture.createExpansions();
+            const cardDtos = dataFixture.createCardDtos(3, {
+                expansions: [expansions[1].id, expansions[0].id],
+            });
+            const expected = cardDtos.map((cardDto: CardDto) => {
+                return {
+                    ...cardDto,
+                    expansions: (jasmine.arrayWithExactContents([
+                        expansions[1],
+                        expansions[0],
+                    ]) as unknown) as Expansion[],
+                } as Card;
+            });
+            const expansions$ = cold('-(a|)   ', { a: expansions });
+            const fetchCards$ = cold('----(a|)', { a: cardDtos });
+            const expected$ = cold('  ----(a|)', { a: expected });
             expansionServiceSpy.expansions$ = expansions$;
+            dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
             cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.cards$;
@@ -96,15 +68,12 @@ describe('CardService', () => {
 
     describe('findRandomizableKingdomCards', () => {
         it('should contain only Kingdom cards', () => {
-            const kingdomCardDto = { ...defaultTestCardDto, isKingdomCard: true };
-            const kingdomCard = { ...kingdomCardDto, expansions: [testExpansions[0]] };
-            const nonKingdomCardDto = { ...defaultTestCardDto, isKingdomCard: false };
-            const cardDtos$ = cold('  (a|)', { a: [kingdomCardDto, nonKingdomCardDto] });
-            const expansions$ = cold('(a|)', { a: testExpansions });
-            const expected$ = cold('  (a|)', { a: [kingdomCard] });
-            dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
-            expansionServiceSpy.expansions$ = expansions$;
+            const nonKingdomCard = dataFixture.createCard({ isKingdomCard: false });
+            const kingdomCard = dataFixture.createCard({ isKingdomCard: true });
+            const cards$ = cold('   (a|)', { a: [nonKingdomCard, kingdomCard] });
+            const expected$ = cold('(a|)', { a: [kingdomCard] });
             cardService = TestBed.inject(CardService);
+            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
 
             const actual$ = cardService.findRandomizableKingdomCards();
 
@@ -112,18 +81,15 @@ describe('CardService', () => {
         });
 
         it('should not contain Kingdom cards that are part of a split pile and not on top of it', () => {
-            const cardDto = {
-                ...defaultTestCardDto,
+            const card = dataFixture.createCard({
                 isKingdomCard: true,
                 isPartOfSplitPile: true,
                 isOnTopOfSplitPile: false,
-            };
-            const cardDtos$ = cold('  (a|)', { a: [cardDto] });
-            const expansions$ = cold('(a|)', { a: testExpansions });
-            const expected$ = cold('  (a|)', { a: [] });
-            dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
-            expansionServiceSpy.expansions$ = expansions$;
+            });
+            const cards$ = cold('   (a|)', { a: [card] });
+            const expected$ = cold('(a|)', { a: [] });
             cardService = TestBed.inject(CardService);
+            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
 
             const actual$ = cardService.findRandomizableKingdomCards();
 
@@ -133,12 +99,14 @@ describe('CardService', () => {
 
     describe('findByCardType', () => {
         it('should return only cards of given card type and complete', () => {
-            const cardDtos$ = cold('  ----(a|)', { a: testCardDtos });
-            const expansions$ = cold('(a|)    ', { a: testExpansions });
-            const expected$ = cold('  ----(a|)', { a: [testCards[0]] });
-            dataServiceSpy.fetchCards.and.returnValue(cardDtos$);
-            expansionServiceSpy.expansions$ = expansions$;
+            const nonActionCard = dataFixture.createCard({ types: [CardType.Attack] });
+            const actionCard = dataFixture.createCard({
+                types: [CardType.Duration, CardType.Action],
+            });
+            const cards$ = cold('   (a|)', { a: [nonActionCard, actionCard] });
+            const expected$ = cold('(a|)', { a: [actionCard] });
             cardService = TestBed.inject(CardService);
+            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
 
             const actual$ = cardService.findByCardType(CardType.Action);
 
