@@ -53,7 +53,8 @@
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "6kb"
                                 }
-                            ]
+                            ],
+                            "baseHref": "https://gagamen.github.io/dominionizer/"
                         }
                     }
                 },
