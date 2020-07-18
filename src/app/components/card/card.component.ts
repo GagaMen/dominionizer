@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Card } from './../../models/card';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CardType } from 'src/app/models/card-type';
@@ -11,6 +12,7 @@ export class CardComponent implements OnInit {
     @Input() card: Card | null = null;
     @Output() reshuffle: EventEmitter<never> = new EventEmitter<never>();
     types: string[] = [];
+    entryPoint: string = environment.entryPoint;
 
     ngOnInit(): void {
         if (this.card !== null) {
