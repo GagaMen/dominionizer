@@ -16,15 +16,14 @@ import { Expansion } from '../../models/expansion';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { ExpansionService } from '../../services/expansion.service';
 import { SpyObj } from 'src/testing/spy-obj';
+import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ExpansionSelectComponent', () => {
     let component: ExpansionSelectComponent;
     let fixture: ComponentFixture<ExpansionSelectComponent>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
-    const defaultExpansions: Expansion[] = [
-        { id: 1, name: 'Test Expansion 1', icon: '/assets/icons/expansion_icon.png' },
-        { id: 2, name: 'Test Expansion 2', icon: '/assets/icons/expansion_icon.png' },
-    ];
+    let dataFixture: DataFixture;
+    let expansions: Expansion[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -45,11 +44,13 @@ describe('ExpansionSelectComponent', () => {
             ],
         });
 
+        dataFixture = new DataFixture();
         expansionServiceSpy = TestBed.inject(ExpansionService);
-        const defaultExpansions$: Observable<Expansion[]> = cold('--(a|)', {
-            a: defaultExpansions,
+        expansions = dataFixture.createExpansions();
+        const expansions$: Observable<Expansion[]> = cold('--(a|)', {
+            a: expansions,
         });
-        expansionServiceSpy.expansions$ = defaultExpansions$;
+        expansionServiceSpy.expansions$ = expansions$;
 
         fixture = TestBed.createComponent(ExpansionSelectComponent);
         component = fixture.componentInstance;
@@ -61,7 +62,7 @@ describe('ExpansionSelectComponent', () => {
         it('should return same value as expansionService.expansions$', () => {
             const expansions = component.expansions;
 
-            expect(expansions).toBe(defaultExpansions);
+            expect(expansions).toBe(expansions);
         });
     });
 
@@ -82,7 +83,7 @@ describe('ExpansionSelectComponent', () => {
             const formArray: FormArray = component.formGroup.get('expansions') as FormArray;
             const expansionFormControls: AbstractControl[] = formArray.controls;
 
-            expect(expansionFormControls.length).toBe(defaultExpansions.length);
+            expect(expansionFormControls.length).toBe(expansions.length);
             expansionFormControls.forEach((control: AbstractControl) => {
                 expect(control instanceof FormControl).toBe(true);
             });

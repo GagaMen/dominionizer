@@ -1,18 +1,17 @@
-import { TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { ExpansionService } from './expansion.service';
-import { cold } from 'jasmine-marbles';
-import { Expansion } from '../models/expansion';
+import { cold, getTestScheduler } from 'jasmine-marbles';
 import { DataService } from './data.service';
 import { SpyObj } from 'src/testing/spy-obj';
+import { DataFixture } from 'src/testing/data-fixture';
+import { Expansion } from '../models/expansion';
 
 describe('ExpansionService', () => {
     let expansionService: ExpansionService;
     let dataServiceSpy: SpyObj<DataService>;
-    const testExpansions: Expansion[] = [
-        { id: 1, name: 'First Test Expansion', icon: '/assets/icons/expansion_icon.png' },
-        { id: 2, name: 'Second Test Expansion', icon: '/assets/icons/expansion_icon.png' },
-    ];
+    let dataFixture: DataFixture;
+    let expansions: Expansion[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -24,14 +23,17 @@ describe('ExpansionService', () => {
             ],
         });
 
+        dataFixture = new DataFixture();
+        expansions = dataFixture.createExpansions();
+
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
     });
 
     describe('expansions$', () => {
-        it('should return data from DataService.expansions() and complete', () => {
-            const expansionData$ = cold('---(a|)', { a: testExpansions });
-            const expected$ = cold('     ---(a|)', { a: testExpansions });
-            dataServiceSpy.fetchExpansions.and.returnValue(expansionData$);
+        it('with initialization is pending should return from server fetched data after initialization and complete', () => {
+            const fetchExpansions$ = cold('--(a|)', { a: expansions });
+            const expected$ = cold('       --(a|)', { a: expansions });
+            dataServiceSpy.fetchExpansions.and.returnValue(fetchExpansions$);
             expansionService = TestBed.inject(ExpansionService);
 
             const actual$ = expansionService.expansions$;
@@ -39,25 +41,17 @@ describe('ExpansionService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
-        // TODO: Test doesn't work this way and needs to be fixed
-        //      - implementation with BehaviorSubject works correctly
-        //      - test calls DataService.expansions() twice instead of once as expected
-        //      - either the test needs to be rewritten or the test tools (rxjs, jasmine-marbles)
-        //        are buggy
-        xit('with second call after delay should return data immediately', fakeAsync(() => {
-            const expansionData$ = cold('---(a|)', { a: testExpansions });
-            const firstExpected$ = cold('a--b---', { a: [], b: testExpansions });
-            const secondExpected$ = cold('a-----', { a: testExpansions });
-            dataServiceSpy.fetchExpansions.and.returnValue(expansionData$);
+        it('with initialization is completed should return cached data immediately and complete', () => {
+            const fetchExpansions$ = cold('--(a|)', { a: expansions });
+            const expected$ = cold('       (a|)  ', { a: expansions });
+            dataServiceSpy.fetchExpansions.and.returnValue(fetchExpansions$);
             expansionService = TestBed.inject(ExpansionService);
+            getTestScheduler().flush();
+            getTestScheduler().frame = 0;
 
-            const firstActual$ = expansionService.expansions$;
-            expect(firstActual$).toBeObservable(firstExpected$);
+            const actual$ = expansionService.expansions$;
 
-            tick(100);
-
-            const secondActual$ = expansionService.expansions$;
-            expect(secondActual$).toBeObservable(secondExpected$);
-        }));
+            expect(actual$).toBeObservable(expected$);
+        });
     });
 });

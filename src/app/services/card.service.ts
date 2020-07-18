@@ -14,9 +14,9 @@ import { Expansion } from '../models/expansion';
 export class CardService {
     private cardsSubject: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
-    readonly cards$: Observable<Card[]> = this.cardsSubject.pipe(
-        first((cards: Card[]) => cards.length !== 0),
-    );
+    get cards$(): Observable<Card[]> {
+        return this.cardsSubject.pipe(first((cards: Card[]) => cards.length !== 0));
+    }
 
     constructor(private dataService: DataService, private expansionService: ExpansionService) {
         forkJoin([

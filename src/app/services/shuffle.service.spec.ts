@@ -4,63 +4,16 @@ import { ShuffleService } from './shuffle.service';
 import { ConfigurationService } from './configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { cold, getTestScheduler } from 'jasmine-marbles';
-import { Configuration } from '../models/configuration';
-import { Expansion } from '../models/expansion';
-import { Card } from '../models/card';
-import { CardType } from '../models/card-type';
 import { MathJsService } from './math-js.service';
 import { CardService } from './card.service';
+import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ShuffleService', () => {
     let shuffleService: ShuffleService;
     let cardServiceSpy: SpyObj<CardService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
     let mathJsServiceSpy: SpyObj<MathJsService>;
-
-    const enabledTestExpansion: Expansion = {
-        id: 1,
-        name: 'Enabled Test Expansion',
-        icon: '/assets/icons/expansion_icon.png',
-    };
-    const disabledTestExpansion: Expansion = {
-        id: 2,
-        name: 'Disabled Test Expansion',
-        icon: '/assets/icons/expansion_icon.png',
-    };
-    const firstTestCard: Card = {
-        id: 1,
-        name: 'First Test Card',
-        expansions: [disabledTestExpansion, enabledTestExpansion],
-        types: [CardType.Action],
-        isKingdomCard: true,
-        cost: 4,
-    };
-    const secondTestCard: Card = {
-        id: 2,
-        name: 'Second Test Card',
-        expansions: [enabledTestExpansion],
-        types: [CardType.Action],
-        isKingdomCard: true,
-        cost: 5,
-    };
-    const thirdTestCard: Card = {
-        id: 3,
-        name: 'Third Test Card',
-        expansions: [enabledTestExpansion],
-        types: [CardType.Action],
-        isKingdomCard: true,
-        cost: 5,
-    };
-    const defaultConfiguration: Configuration = {
-        expansions: [enabledTestExpansion],
-        options: {
-            events: 0,
-            landmarks: 0,
-            projects: 0,
-            ways: 0,
-        },
-        costDistribution: new Map<number, number>(),
-    };
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -85,14 +38,17 @@ describe('ShuffleService', () => {
             ],
         });
 
+        dataFixture = new DataFixture();
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
-            cold('a', { a: [firstTestCard, secondTestCard, thirdTestCard] }),
+            cold('a', { a: dataFixture.createCards(3, { isKingdomCard: true }) }),
         );
         configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
             ConfigurationService
         >;
-        configurationServiceSpy.configuration$ = cold('a', { a: defaultConfiguration });
+        configurationServiceSpy.configuration$ = cold('a', {
+            a: dataFixture.createConfiguration(),
+        });
         mathJsServiceSpy = TestBed.inject(MathJsService) as jasmine.SpyObj<MathJsService>;
         mathJsServiceSpy.pickRandomCards.and.returnValue([]);
     });
