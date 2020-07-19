@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,8 +9,8 @@ import { CardDto } from '../dtos/card-dto';
     providedIn: 'root',
 })
 export class DataService {
-    static expansionsUrl = '/assets/data/expansions.json';
-    static cardsUrl = '/assets/data/cards.json';
+    static expansionsUrl = `${environment.entryPoint}/assets/data/expansions.json`;
+    static cardsUrl = `${environment.entryPoint}/assets/data/cards.json`;
 
     constructor(private http: HttpClient) {}
 
