@@ -1,7 +1,9 @@
 <mat-toolbar *ngIf="appBarService.configuration$ | async as configuration" color="primary">
-    <button mat-icon-button *ngIf="configuration.navigationAction !== 'none'">
-        <mat-icon *ngIf="configuration.navigationAction === 'sidenav'">menu</mat-icon>
-        <mat-icon *ngIf="configuration.navigationAction === 'back'">arrow_back</mat-icon>
+    <button *ngIf="configuration.navigationAction === 'sidenav'" mat-icon-button>
+        <mat-icon>menu</mat-icon>
     </button>
+    <a *ngIf="configuration.navigationAction === 'back'" routerLink="/" mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+    </a>
     <span class="app-title">{{ title }}</span>
 </mat-toolbar>

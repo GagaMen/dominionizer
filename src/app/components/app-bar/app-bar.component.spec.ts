@@ -1,6 +1,6 @@
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule, MatAnchor } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { SpyObj } from './../../../testing/spy-obj';
@@ -47,7 +47,7 @@ describe('AppBarComponent', () => {
             expect(actual).toBeNull();
         });
 
-        it('with configuration.navigationAction equals "none" should not display MatIconButton', () => {
+        it('with configuration.navigationAction equals "none" should display no MatButton and MatAnchor', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'none' }),
             });
@@ -55,12 +55,14 @@ describe('AppBarComponent', () => {
             getTestScheduler().flush();
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatButton));
+            const actual = fixture.debugElement.query(
+                By.css('button[mat-icon-button], a[mat-icon-button]'),
+            );
 
             expect(actual).toBeNull();
         });
 
-        it('with configuration.navigationAction equals "sidenav" should display one MatIcon "menu"', () => {
+        it('with configuration.navigationAction equals "sidenav" should display MatButton with "menu" icon', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'sidenav' }),
             });
@@ -77,7 +79,7 @@ describe('AppBarComponent', () => {
             expect(actualText).toBe('menu');
         });
 
-        it('with configuration.navigationAction equals "back" should display one MatIcon "arrow_back"', () => {
+        it('with configuration.navigationAction equals "back" should display MatAnchor with "arrow_back" icon', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'back' }),
             });
@@ -86,7 +88,7 @@ describe('AppBarComponent', () => {
             fixture.detectChanges();
 
             const actualElement = fixture.debugElement
-                .query(By.directive(MatButton))
+                .query(By.directive(MatAnchor))
                 .queryAll(By.directive(MatIcon));
             const actualText = actualElement[0].nativeElement.textContent;
 
