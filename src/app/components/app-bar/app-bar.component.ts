@@ -1,3 +1,4 @@
+import { AppBarService } from './../../services/app-bar.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppBarComponent {
     title = 'Dominionizer';
+
+    constructor(public appBarService: AppBarService) {}
 }

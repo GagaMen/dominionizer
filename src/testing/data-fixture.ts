@@ -1,3 +1,4 @@
+import { AppBarConfiguration, NavigationAction } from './../app/models/app-bar-configuration';
 import { Expansion } from 'src/app/models/expansion';
 import { Chance } from 'chance';
 import { CardDto } from 'src/app/dtos/card-dto';
@@ -82,6 +83,16 @@ export class DataFixture {
                 ways: this.chance.integer({ min: 0, max: 5 }),
             },
             costDistribution: new Map<number, number>(),
+            ...configuration,
+        };
+    }
+
+    createAppBarConfiguration(
+        configuration: Partial<AppBarConfiguration> = {},
+    ): AppBarConfiguration {
+        return {
+            navigationAction: this.chance.pickone<NavigationAction>(['back', 'sidenav', 'none']),
+            actions: [],
             ...configuration,
         };
     }
