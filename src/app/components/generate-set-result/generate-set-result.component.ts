@@ -1,8 +1,9 @@
+import { AppBarService } from './../../services/app-bar.service';
 import { Card } from './../../models/card';
 import { SortOptions } from './../../models/sort-options';
 import { Observable, combineLatest } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShuffleService } from '../../services/shuffle.service';
 import { SetService } from 'src/app/services/set.service';
 
@@ -11,7 +12,7 @@ import { SetService } from 'src/app/services/set.service';
     templateUrl: './generate-set-result.component.html',
     styleUrls: ['./generate-set-result.component.scss'],
 })
-export class GenerateSetResultComponent {
+export class GenerateSetResultComponent implements OnInit {
     formGroup: FormGroup = new FormGroup({});
     sortOptions$: Observable<FormGroup>;
 
@@ -19,11 +20,16 @@ export class GenerateSetResultComponent {
         private shuffleService: ShuffleService,
         public setService: SetService,
         private formBuilder: FormBuilder,
+        private appBarService: AppBarService,
     ) {
         this.buildFormGroup();
         this.sortOptions$ = this.formGroup.valueChanges;
         this.initializeSorting();
         this.shuffle();
+    }
+
+    ngOnInit(): void {
+        this.appBarService.updateConfiguration({ navigationAction: 'back', actions: [] });
     }
 
     private buildFormGroup(): void {
