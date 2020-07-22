@@ -1,38 +1,40 @@
-<button mat-button color="accent" routerLink="/">Back</button>
-<button mat-raised-button color="primary" (click)="shuffle()">Reshuffle</button>
-<mat-card [formGroup]="formGroup">
-    <mat-card-header>
-        <mat-card-title>Sorting:</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-        <mat-checkbox formControlName="expansion">Expansion</mat-checkbox>
-        <mat-radio-group formControlName="sorting">
-            <mat-radio-button value="1" checked="ture">Alphabetical</mat-radio-button>
-            <mat-radio-button value="2">Money</mat-radio-button>
-        </mat-radio-group>
-    </mat-card-actions>
-</mat-card>
-<ng-container *ngIf="setService.set$ | async as set">
-    <h2>Cards:</h2>
-    <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
+<div class="container">
+    <button mat-button color="accent" routerLink="/">Back</button>
+    <button mat-raised-button color="primary" (click)="shuffle()">Reshuffle</button>
+    <mat-card [formGroup]="formGroup">
+        <mat-card-header>
+            <mat-card-title>Sorting:</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+            <mat-checkbox formControlName="expansion">Expansion</mat-checkbox>
+            <mat-radio-group formControlName="sorting">
+                <mat-radio-button value="1" checked="ture">Alphabetical</mat-radio-button>
+                <mat-radio-button value="2">Money</mat-radio-button>
+            </mat-radio-group>
+        </mat-card-actions>
+    </mat-card>
+    <ng-container *ngIf="setService.set$ | async as set">
+        <h2>Cards:</h2>
+        <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
 
-    <ng-container *ngIf="set.events.length > 0">
-        <h2>Events:</h2>
-        <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
-    </ng-container>
+        <ng-container *ngIf="set.events.length > 0">
+            <h2>Events:</h2>
+            <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
+        </ng-container>
 
-    <ng-container *ngIf="set.landmarks.length > 0">
-        <h2>Landmarks:</h2>
-        <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
-    </ng-container>
+        <ng-container *ngIf="set.landmarks.length > 0">
+            <h2>Landmarks:</h2>
+            <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
+        </ng-container>
 
-    <ng-container *ngIf="set.projects.length > 0">
-        <h2>Projects:</h2>
-        <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
-    </ng-container>
+        <ng-container *ngIf="set.projects.length > 0">
+            <h2>Projects:</h2>
+            <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
+        </ng-container>
 
-    <ng-container *ngIf="set.ways.length > 0">
-        <h2>Ways:</h2>
-        <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
+        <ng-container *ngIf="set.ways.length > 0">
+            <h2>Ways:</h2>
+            <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
+        </ng-container>
     </ng-container>
-</ng-container>
+</div>
