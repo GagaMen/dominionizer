@@ -2,11 +2,11 @@ import { ConfigurationGuard } from './guards/configuration.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
-import { GenerateSetResultComponent } from './components/generate-set-result/generate-set-result.component';
+import { SetComponent } from './components/set/set.component';
 
 const routes: Routes = [
     { path: '', component: ConfigurationComponent },
-    { path: 'result', component: GenerateSetResultComponent, canActivate: [ConfigurationGuard] },
+    { path: 'set', component: SetComponent, canActivate: [ConfigurationGuard] },
     // TODO: Redirect to PageNotFoundComponent when existent
     { path: '**', component: ConfigurationComponent },
 ];

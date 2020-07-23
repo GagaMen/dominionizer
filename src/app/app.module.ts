@@ -24,7 +24,7 @@ import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { CardComponent } from './components/card/card.component';
 import { CardListComponent } from './components/card-list/card-list.component';
-import { GenerateSetResultComponent } from './components/generate-set-result/generate-set-result.component';
+import { SetComponent } from './components/set/set.component';
 import { ExpansionSelectComponent } from './components/expansion-select/expansion-select.component';
 import { SpecialCardSelectComponent } from './components/special-card-select/special-card-select.component';
 
@@ -35,7 +35,7 @@ import { SpecialCardSelectComponent } from './components/special-card-select/spe
         ConfigurationComponent,
         CardComponent,
         CardListComponent,
-        GenerateSetResultComponent,
+        SetComponent,
         ExpansionSelectComponent,
         SpecialCardSelectComponent,
     ],

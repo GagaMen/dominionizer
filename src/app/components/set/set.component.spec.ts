@@ -1,18 +1,18 @@
 import { NEVER } from 'rxjs';
-import { SetService } from './../../services/set.service';
-import { ShuffleService } from './../../services/shuffle.service';
+import { SetService } from '../../services/set.service';
+import { ShuffleService } from '../../services/shuffle.service';
 import { FormBuilder } from '@angular/forms';
 import { DataFixture } from 'src/testing/data-fixture';
-import { AppBarConfiguration } from './../../models/app-bar-configuration';
-import { SpyObj } from './../../../testing/spy-obj';
-import { AppBarService } from './../../services/app-bar.service';
+import { AppBarConfiguration } from '../../models/app-bar-configuration';
+import { SpyObj } from '../../../testing/spy-obj';
+import { AppBarService } from '../../services/app-bar.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenerateSetResultComponent } from './generate-set-result.component';
+import { SetComponent } from './set.component';
 
-describe('GenerateSetResultComponent', () => {
-    let component: GenerateSetResultComponent;
-    let fixture: ComponentFixture<GenerateSetResultComponent>;
+describe('SetComponent', () => {
+    let component: SetComponent;
+    let fixture: ComponentFixture<SetComponent>;
     let shuffleServiceSpy: SpyObj<ShuffleService>;
     let setServiceSpy: SpyObj<SetService>;
     let appBarServiceSpy: SpyObj<AppBarService>;
@@ -20,7 +20,7 @@ describe('GenerateSetResultComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [GenerateSetResultComponent],
+            declarations: [SetComponent],
             providers: [
                 {
                     provide: ShuffleService,
@@ -49,7 +49,7 @@ describe('GenerateSetResultComponent', () => {
         setServiceSpy.set$ = NEVER;
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
-        fixture = TestBed.createComponent(GenerateSetResultComponent);
+        fixture = TestBed.createComponent(SetComponent);
         component = fixture.componentInstance;
     });
 

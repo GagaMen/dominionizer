@@ -1,6 +1,6 @@
-import { AppBarService } from './../../services/app-bar.service';
-import { Card } from './../../models/card';
-import { SortOptions } from './../../models/sort-options';
+import { AppBarService } from '../../services/app-bar.service';
+import { Card } from '../../models/card';
+import { SortOptions } from '../../models/sort-options';
 import { Observable, combineLatest } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -8,11 +8,11 @@ import { ShuffleService } from '../../services/shuffle.service';
 import { SetService } from 'src/app/services/set.service';
 
 @Component({
-    selector: 'app-generate-set-result',
-    templateUrl: './generate-set-result.component.html',
-    styleUrls: ['./generate-set-result.component.scss'],
+    selector: 'app-set',
+    templateUrl: './set.component.html',
+    styleUrls: ['./set.component.scss'],
 })
-export class GenerateSetResultComponent implements OnInit {
+export class SetComponent implements OnInit {
     formGroup: FormGroup = new FormGroup({});
     sortOptions$: Observable<FormGroup>;
 

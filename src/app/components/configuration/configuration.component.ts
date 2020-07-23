@@ -32,6 +32,6 @@ export class ConfigurationComponent implements OnInit {
     }
 
     onSubmit(): void {
-        this.router.navigate(['result']);
+        this.router.navigate(['set']);
     }
 }
