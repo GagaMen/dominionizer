@@ -29,7 +29,15 @@ export class SetComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.appBarService.updateConfiguration({ navigationAction: 'back', actions: [] });
+        this.appBarService.updateConfiguration({
+            navigationAction: 'back',
+            actions: [
+                {
+                    icon: 'cached',
+                    onClick: () => this.shuffle(),
+                },
+            ],
+        });
     }
 
     private buildFormGroup(): void {

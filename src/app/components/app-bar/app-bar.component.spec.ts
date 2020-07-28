@@ -47,7 +47,7 @@ describe('AppBarComponent', () => {
             expect(actual).toBeNull();
         });
 
-        it('with configuration.navigationAction equals "none" should display no MatButton and MatAnchor', () => {
+        it('with configuration.navigationAction is "none" should display no MatButton and MatAnchor', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'none' }),
             });
@@ -56,13 +56,15 @@ describe('AppBarComponent', () => {
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(
-                By.css('button[mat-icon-button], a[mat-icon-button]'),
+                By.css(
+                    '.navigation-action > button[mat-icon-button], .navigation-action > a[mat-icon-button]',
+                ),
             );
 
             expect(actual).toBeNull();
         });
 
-        it('with configuration.navigationAction equals "sidenav" should display MatButton with "menu" icon', () => {
+        it('with configuration.navigationAction is "sidenav" should display MatButton with "menu" icon', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'sidenav' }),
             });
@@ -79,7 +81,7 @@ describe('AppBarComponent', () => {
             expect(actualText).toBe('menu');
         });
 
-        it('with configuration.navigationAction equals "back" should display MatAnchor with "arrow_back" icon', () => {
+        it('with configuration.navigationAction is "back" should display MatAnchor with "arrow_back" icon', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'back' }),
             });
@@ -94,6 +96,61 @@ describe('AppBarComponent', () => {
 
             expect(actualElement.length).toBe(1);
             expect(actualText).toBe('arrow_back');
+        });
+
+        it('with configuration.actions is empty should display no action container', () => {
+            appBarServiceSpy.configuration$ = cold('-a-', {
+                a: dataFixture.createAppBarConfiguration({
+                    actions: [],
+                }),
+            });
+            fixture.detectChanges();
+            getTestScheduler().flush();
+            fixture.detectChanges();
+
+            const actualElement = fixture.debugElement.query(By.css('.actions'));
+
+            expect(actualElement).toBeNull();
+        });
+
+        it('with configuration.actions contains actions should display corresponding MatButtons with MatIcon', () => {
+            appBarServiceSpy.configuration$ = cold('-a-', {
+                a: dataFixture.createAppBarConfiguration({
+                    actions: [
+                        { icon: 'icon', onClick: () => null },
+                        { icon: 'icon2', onClick: () => null },
+                    ],
+                }),
+            });
+            fixture.detectChanges();
+            getTestScheduler().flush();
+            fixture.detectChanges();
+
+            const actualElement = fixture.debugElement.queryAll(
+                By.css('.actions > [mat-icon-button] mat-icon'),
+            );
+
+            expect(actualElement.length).toBe(2);
+        });
+
+        it('with configuration.actions contains actions should register a click event for each MatButton', () => {
+            let clickCounter = 0;
+            appBarServiceSpy.configuration$ = cold('-a-', {
+                a: dataFixture.createAppBarConfiguration({
+                    actions: [{ icon: 'icon', onClick: () => clickCounter++ }],
+                }),
+            });
+            fixture.detectChanges();
+            getTestScheduler().flush();
+            fixture.detectChanges();
+
+            const actualElement = fixture.debugElement.query(
+                By.css('.actions > [mat-icon-button]'),
+            );
+
+            actualElement.nativeElement.click();
+
+            expect(clickCounter).toBe(1);
         });
     });
 });
