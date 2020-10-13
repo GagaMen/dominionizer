@@ -4,17 +4,13 @@
         errorMessage="Choose at least one expansion"
     >
         <ng-template matStepLabel>
-            <span class="white-space-normal">
-                Expansions
-            </span>
+            <span class="white-space-normal">Expansions</span>
         </ng-template>
         <app-expansion-select #expansionSelect (submit)="stepper.next()"></app-expansion-select>
     </mat-step>
     <mat-step [stepControl]="specialCardSelect.formGroup">
         <ng-template matStepLabel>
-            <span class="white-space-normal">
-                Special Cards
-            </span>
+            <span class="white-space-normal">Special Cards</span>
         </ng-template>
         <app-special-card-select #specialCardSelect (submit)="onSubmit()"></app-special-card-select>
     </mat-step>

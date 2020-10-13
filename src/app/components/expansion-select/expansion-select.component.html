@@ -1,8 +1,6 @@
 <form *ngIf="expansions.length > 0" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
     <mat-slide-toggle formControlName="selectAll">
-        <span class="white-space-normal">
-            Select/deselect all
-        </span>
+        <span class="white-space-normal">Select/deselect all</span>
     </mat-slide-toggle>
     <mat-divider></mat-divider>
     <div formArrayName="expansions" class="expansions">
