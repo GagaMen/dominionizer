@@ -7,7 +7,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./app-bar.component.scss'],
 })
 export class AppBarComponent {
-    title = 'Dominionizer';
-
     constructor(public appBarService: AppBarService) {}
 }
