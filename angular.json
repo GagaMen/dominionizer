@@ -23,7 +23,7 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": ["src/favicon.ico", "src/assets"],
+                        "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],
                         "styles": ["src/scss/styles.scss"],
                         "scripts": [],
                         "customWebpackConfig": {
@@ -87,7 +87,7 @@
                         "karmaConfig": "karma.conf.js",
                         "styles": ["src/scss/styles.scss"],
                         "scripts": [],
-                        "assets": ["src/favicon.ico", "src/assets"]
+                        "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"]
                     }
                 },
                 "lint": {
