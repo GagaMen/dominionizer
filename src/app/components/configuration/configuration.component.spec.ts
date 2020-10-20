@@ -9,6 +9,10 @@ import { ConfigurationService } from './../../services/configuration.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigurationComponent } from './configuration.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ExpansionSelectStubComponent } from 'src/testing/components/expansion-select.stub.component';
+import { SpecialCardSelectStubComponent } from 'src/testing/components/special-card-select.stub.component';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -20,7 +24,12 @@ describe('ConfigurationComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [ConfigurationComponent],
+            imports: [MatStepperModule, NoopAnimationsModule],
+            declarations: [
+                ConfigurationComponent,
+                ExpansionSelectStubComponent,
+                SpecialCardSelectStubComponent,
+            ],
             providers: [
                 {
                     provide: Router,

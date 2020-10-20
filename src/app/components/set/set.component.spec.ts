@@ -1,13 +1,16 @@
 import { NEVER } from 'rxjs';
 import { SetService } from '../../services/set.service';
 import { ShuffleService } from '../../services/shuffle.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AppBarConfiguration } from '../../models/app-bar-configuration';
 import { SpyObj } from '../../../testing/spy-obj';
 import { AppBarService } from '../../services/app-bar.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetComponent } from './set.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 describe('SetComponent', () => {
     let component: SetComponent;
@@ -17,6 +20,7 @@ describe('SetComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [MatCardModule, MatCheckboxModule, MatRadioModule, ReactiveFormsModule],
             declarations: [SetComponent],
             providers: [
                 {
