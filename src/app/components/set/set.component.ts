@@ -3,9 +3,10 @@ import { Card } from '../../models/card';
 import { SortOptions } from '../../models/sort-options';
 import { Observable, combineLatest } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShuffleService } from '../../services/shuffle.service';
 import { SetService } from 'src/app/services/set.service';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
     selector: 'app-set',
@@ -15,6 +16,7 @@ import { SetService } from 'src/app/services/set.service';
 export class SetComponent implements OnInit {
     formGroup: FormGroup = new FormGroup({});
     sortOptions$: Observable<FormGroup>;
+    @ViewChild('menu', { static: true }) menu?: MatMenu;
 
     constructor(
         private shuffleService: ShuffleService,
@@ -35,6 +37,10 @@ export class SetComponent implements OnInit {
                 {
                     icon: 'cached',
                     onClick: () => this.shuffle(),
+                },
+                {
+                    icon: 'sort',
+                    matMenu: this.menu,
                 },
             ],
         });

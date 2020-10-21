@@ -11,12 +11,13 @@
         <object data="assets/logo/logo.svg" type="image/svg+xml">Dominionizer</object>
     </div>
     <div class="actions" *ngIf="configuration.actions.length !== 0">
-        <button
-            mat-icon-button
-            *ngFor="let action of configuration.actions"
-            (click)="action.onClick()"
-        >
-            <mat-icon>{{ action.icon }}</mat-icon>
-        </button>
+        <ng-container *ngFor="let action of configuration.actions">
+            <button *ngIf="action.onClick" mat-icon-button (click)="action?.onClick()">
+                <mat-icon>{{ action.icon }}</mat-icon>
+            </button>
+            <button *ngIf="action.matMenu" mat-icon-button [matMenuTriggerFor]="action.matMenu">
+                <mat-icon>{{ action.icon }}</mat-icon>
+            </button>
+        </ng-container>
     </div>
 </mat-toolbar>

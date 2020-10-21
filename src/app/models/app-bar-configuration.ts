@@ -1,8 +1,11 @@
+import { MatMenu } from '@angular/material/menu';
+
 export type NavigationAction = 'back' | 'sidenav' | 'none';
 
 export interface Action {
     icon: string;
-    onClick(): void;
+    matMenu?: MatMenu;
+    onClick?: () => void;
 }
 
 export interface AppBarConfiguration {
