@@ -1,7 +1,6 @@
 import { NEVER } from 'rxjs';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarConfiguration } from './../../models/app-bar-configuration';
-import { DataFixture } from './../../../testing/data-fixture';
 import { AppBarService } from './../../services/app-bar.service';
 import { ShuffleService } from './../../services/shuffle.service';
 import { Router } from '@angular/router';
@@ -15,12 +14,9 @@ import { ExpansionSelectStubComponent } from 'src/testing/components/expansion-s
 import { SpecialCardSelectStubComponent } from 'src/testing/components/special-card-select.stub.component';
 
 describe('ConfigurationComponent', () => {
-    let component: ConfigurationComponent;
     let fixture: ComponentFixture<ConfigurationComponent>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
-    let shuffleServiceSpy: SpyObj<ShuffleService>;
     let appBarServiceSpy: SpyObj<AppBarService>;
-    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -52,17 +48,13 @@ describe('ConfigurationComponent', () => {
             ],
         });
 
-        dataFixture = new DataFixture();
-
         configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
             ConfigurationService
         >;
         configurationServiceSpy.configuration$ = NEVER;
-        shuffleServiceSpy = TestBed.inject(ShuffleService) as jasmine.SpyObj<ShuffleService>;
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
         fixture = TestBed.createComponent(ConfigurationComponent);
-        component = fixture.componentInstance;
     });
 
     describe('ngOnInit', () => {

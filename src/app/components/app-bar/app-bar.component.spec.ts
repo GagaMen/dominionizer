@@ -11,7 +11,6 @@ import { NEVER } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 describe('AppBarComponent', () => {
-    let component: AppBarComponent;
     let fixture: ComponentFixture<AppBarComponent>;
     let appBarServiceSpy: SpyObj<AppBarService>;
     let dataFixture: DataFixture;
@@ -34,7 +33,6 @@ describe('AppBarComponent', () => {
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
         fixture = TestBed.createComponent(AppBarComponent);
-        component = fixture.componentInstance;
     }));
 
     describe('template', () => {

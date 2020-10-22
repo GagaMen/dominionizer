@@ -1,15 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShuffleService } from './shuffle.service';
 import { ConfigurationService } from './configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
-import { cold, getTestScheduler } from 'jasmine-marbles';
+import { cold } from 'jasmine-marbles';
 import { MathJsService } from './math-js.service';
 import { CardService } from './card.service';
 import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ShuffleService', () => {
-    let shuffleService: ShuffleService;
     let cardServiceSpy: SpyObj<CardService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
     let mathJsServiceSpy: SpyObj<MathJsService>;
