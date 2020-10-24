@@ -11,6 +11,7 @@ import { SetComponent } from './set.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('SetComponent', () => {
     let component: SetComponent;
@@ -20,7 +21,13 @@ describe('SetComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatCardModule, MatCheckboxModule, MatRadioModule, ReactiveFormsModule],
+            imports: [
+                MatCardModule,
+                MatCheckboxModule,
+                MatMenuModule,
+                MatRadioModule,
+                ReactiveFormsModule,
+            ],
             declarations: [SetComponent],
             providers: [
                 {
@@ -60,12 +67,16 @@ describe('SetComponent', () => {
                         icon: 'cached',
                         onClick: jasmine.any(Function),
                     },
+                    {
+                        icon: 'sort',
+                        matMenu: component.menu,
+                    },
                 ],
             });
             const shuffleSpy = spyOn(component, 'shuffle').and.stub();
 
             fixture.detectChanges();
-            appBarServiceSpy.updateConfiguration.calls.first().args[0].actions[0].onClick();
+            appBarServiceSpy.updateConfiguration.calls.first().args[0].actions[0].onClick?.();
 
             expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
             expect(shuffleSpy).toHaveBeenCalled();
