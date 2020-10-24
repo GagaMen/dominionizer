@@ -39,7 +39,7 @@ export class SetComponent implements OnInit {
                     matMenu: this.menu,
                 },
                 {
-                    icon: 'cached',
+                    icon: 'casino',
                     onClick: () => this.shuffle(),
                 },
             ],

@@ -68,7 +68,7 @@ describe('SetComponent', () => {
                         matMenu: component.menu,
                     },
                     {
-                        icon: 'cached',
+                        icon: 'casino',
                         onClick: jasmine.any(Function),
                     },
                 ],
