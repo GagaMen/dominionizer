@@ -35,12 +35,12 @@ export class SetComponent implements OnInit {
             navigationAction: 'back',
             actions: [
                 {
-                    icon: 'cached',
-                    onClick: () => this.shuffle(),
-                },
-                {
                     icon: 'sort',
                     matMenu: this.menu,
+                },
+                {
+                    icon: 'cached',
+                    onClick: () => this.shuffle(),
                 },
             ],
         });

@@ -64,19 +64,19 @@ describe('SetComponent', () => {
                 navigationAction: 'back',
                 actions: [
                     {
-                        icon: 'cached',
-                        onClick: jasmine.any(Function),
-                    },
-                    {
                         icon: 'sort',
                         matMenu: component.menu,
+                    },
+                    {
+                        icon: 'cached',
+                        onClick: jasmine.any(Function),
                     },
                 ],
             });
             const shuffleSpy = spyOn(component, 'shuffle').and.stub();
 
             fixture.detectChanges();
-            appBarServiceSpy.updateConfiguration.calls.first().args[0].actions[0].onClick?.();
+            appBarServiceSpy.updateConfiguration.calls.first().args[0].actions[1].onClick?.();
 
             expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
             expect(shuffleSpy).toHaveBeenCalled();
