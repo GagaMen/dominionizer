@@ -1,22 +1,4 @@
 <div class="container">
-    <button mat-button color="accent" routerLink="/">Back</button>
-    <button mat-raised-button color="primary" (click)="shuffle()">Reshuffle</button>
-    <mat-card [formGroup]="formGroup">
-        <mat-card-header>
-            <mat-card-title>Sorting:</mat-card-title>
-        </mat-card-header>
-        <mat-card-actions>
-            <mat-checkbox formControlName="expansion">Expansion</mat-checkbox>
-            <mat-radio-group formControlName="sorting">
-                <mat-radio-button value="1" checked="ture">Alphabetical</mat-radio-button>
-                <mat-radio-button value="2">Money</mat-radio-button>
-            </mat-radio-group>
-        </mat-card-actions>
-    </mat-card>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-    </mat-menu>
     <ng-container *ngIf="setService.set$ | async as set">
         <h2>Cards:</h2>
         <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
@@ -42,3 +24,41 @@
         </ng-container>
     </ng-container>
 </div>
+
+<mat-menu #menu="matMenu">
+    <div>Grouping</div>
+    <button mat-menu-item (click)="onGroup('without')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.groupingOption$ | async) === 'without'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>Without</span>
+    </button>
+    <button mat-menu-item (click)="onGroup('byExpansion')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.groupingOption$ | async) === 'byExpansion'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>By Expansion</span>
+    </button>
+    <mat-divider></mat-divider>
+    <div>Sorting</div>
+    <button mat-menu-item (click)="onSort('byName')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.sortingOption$ | async) === 'byName'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>By Name</span>
+    </button>
+    <button mat-menu-item (click)="onSort('byCost')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.sortingOption$ | async) === 'byCost'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>By Cost</span>
+    </button>
+</mat-menu>
