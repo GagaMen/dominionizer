@@ -3,14 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { ConfigurationService } from './configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { cold } from 'jasmine-marbles';
-import { MathJsService } from './math-js.service';
+import { MathService } from './math.service';
 import { CardService } from './card.service';
 import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ShuffleService', () => {
     let cardServiceSpy: SpyObj<CardService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
-    let mathJsServiceSpy: SpyObj<MathJsService>;
+    let mathServiceSpy: SpyObj<MathService>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -28,10 +28,8 @@ describe('ShuffleService', () => {
                     useValue: {},
                 },
                 {
-                    provide: MathJsService,
-                    useValue: jasmine.createSpyObj<MathJsService>('MathJsService', [
-                        'pickRandomCards',
-                    ]),
+                    provide: MathService,
+                    useValue: jasmine.createSpyObj<MathService>('MathService', ['pickRandomCards']),
                 },
             ],
         });
@@ -47,40 +45,40 @@ describe('ShuffleService', () => {
         configurationServiceSpy.configuration$ = cold('a', {
             a: dataFixture.createConfiguration(),
         });
-        mathJsServiceSpy = TestBed.inject(MathJsService) as jasmine.SpyObj<MathJsService>;
-        mathJsServiceSpy.pickRandomCards.and.returnValue([]);
+        mathServiceSpy = TestBed.inject(MathService) as jasmine.SpyObj<MathService>;
+        mathServiceSpy.pickRandomCards.and.returnValue([]);
     });
 
     // describe('shuffleKingdomCards', () => {
-    //     it('should pass all cards for selected expansions to MathJsService.pickRandomCards()', () => {
+    //     it('should pass all cards for selected expansions to MathService.pickRandomCards()', () => {
     //         const cards = [firstTestCard, secondTestCard, thirdTestCard];
     //         shuffleService = TestBed.inject(ShuffleService);
 
     //         shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
     //         getTestScheduler().flush();
 
-    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //         expect(mathServiceSpy.pickRandomCards).toHaveBeenCalledWith(
     //             cards,
     //             jasmine.anything(),
     //             undefined,
     //         );
     //     });
 
-    //     it('should pass amount value to MathJsService.pickRandomCards()', () => {
+    //     it('should pass amount value to MathService.pickRandomCards()', () => {
     //         const amount = 3;
     //         shuffleService = TestBed.inject(ShuffleService);
 
     //         shuffleService.shuffleKingdomCards(amount).subscribe(null, fail);
     //         getTestScheduler().flush();
 
-    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //         expect(mathServiceSpy.pickRandomCards).toHaveBeenCalledWith(
     //             jasmine.anything(),
     //             amount,
     //             undefined,
     //         );
     //     });
 
-    //     it('with costDistribution is empty should pass undefined card weights to MathJsService.pickRandomCards()', () => {
+    //     it('with costDistribution is empty should pass undefined card weights to MathService.pickRandomCards()', () => {
     //         const configuration: Configuration = {
     //             ...defaultConfiguration,
     //             costDistribution: new Map<number, number>(),
@@ -91,14 +89,14 @@ describe('ShuffleService', () => {
     //         shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
     //         getTestScheduler().flush();
 
-    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //         expect(mathServiceSpy.pickRandomCards).toHaveBeenCalledWith(
     //             jasmine.anything(),
     //             jasmine.anything(),
     //             undefined,
     //         );
     //     });
 
-    //     it('with costDistribution is not empty should pass defined card weights to MathJsService.pickRandomCards()', () => {
+    //     it('with costDistribution is not empty should pass defined card weights to MathService.pickRandomCards()', () => {
     //         const configuration: Configuration = {
     //             ...defaultConfiguration,
     //             costDistribution: new Map<number, number>([
@@ -114,7 +112,7 @@ describe('ShuffleService', () => {
     //         shuffleService.shuffleKingdomCards(1).subscribe(null, fail);
     //         getTestScheduler().flush();
 
-    //         expect(mathJsServiceSpy.pickRandomCards).toHaveBeenCalledWith(
+    //         expect(mathServiceSpy.pickRandomCards).toHaveBeenCalledWith(
     //             jasmine.anything(),
     //             jasmine.anything(),
     //             cardWeights,

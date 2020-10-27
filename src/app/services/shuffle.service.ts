@@ -8,7 +8,7 @@ import { Card } from '../models/card';
 import { Observable, of, iif, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Expansion } from '../models/expansion';
-import { MathJsService } from './math-js.service';
+import { MathService } from './math.service';
 import { CardService } from './card.service';
 import { Set } from '../models/set';
 
@@ -40,7 +40,7 @@ export class ShuffleService {
     constructor(
         private cardService: CardService,
         private configurationService: ConfigurationService,
-        private mathJsService: MathJsService,
+        private mathService: MathService,
         private setService: SetService,
     ) {
         this.configurationService.configuration$.subscribe(
@@ -97,7 +97,7 @@ export class ShuffleService {
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) => this.excludeCardsToIgnore(cards, cardsToIgnore)),
             map((cards: Card[]) =>
-                this.mathJsService.pickRandomCards(cards, amount, this.calculateCardWeights(cards)),
+                this.mathService.pickRandomCards(cards, amount, this.calculateCardWeights(cards)),
             ),
         );
     }
@@ -112,7 +112,7 @@ export class ShuffleService {
         const cards$ = this.cardService.findByCardType(cardType).pipe(
             map((cards: Card[]) => this.filterByExpansions(cards)),
             map((cards: Card[]) => this.excludeCardsToIgnore(cards, cardsToIgnore)),
-            map((cards: Card[]) => this.mathJsService.pickRandomCards(cards, nonNullAmount)),
+            map((cards: Card[]) => this.mathService.pickRandomCards(cards, nonNullAmount)),
         );
 
         return iif(() => nonNullAmount > 0, cards$, of([]));

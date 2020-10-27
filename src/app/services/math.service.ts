@@ -13,7 +13,7 @@ export const MathJsStaticInjectionToken = new InjectionToken<math.MathJsStatic>(
 @Injectable({
     providedIn: 'root',
 })
-export class MathJsService {
+export class MathService {
     constructor(@Inject(MathJsStaticInjectionToken) private mathJsService: math.MathJsStatic) {}
 
     pickRandomCards(cards: Card[], number: number, weights?: number[]): Card[] {

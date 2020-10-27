@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MathJsService, MathJsStaticInjectionToken } from './math-js.service';
+import { MathService, MathJsStaticInjectionToken } from './math.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import * as math from 'mathjs';
 import { SpyObj } from 'src/testing/spy-obj';
@@ -19,15 +19,15 @@ describe('MathJsStaticInjectionToken', () => {
     });
 });
 
-describe('MathJsService', () => {
-    let mathJsService: MathJsService;
+describe('MathService', () => {
+    let mathService: MathService;
     let mathJsStaticSpy: SpyObj<math.MathJsStatic>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                MathJsService,
+                MathService,
                 {
                     provide: MathJsStaticInjectionToken,
                     useValue: jasmine.createSpyObj<math.MathJsStatic>('math.MathJsStatic', [
@@ -39,7 +39,7 @@ describe('MathJsService', () => {
 
         dataFixture = new DataFixture();
         mathJsStaticSpy = TestBed.inject<SpyObj<math.MathJsStatic>>(MathJsStaticInjectionToken);
-        mathJsService = TestBed.inject(MathJsService);
+        mathService = TestBed.inject(MathService);
     });
 
     describe('pickRandomCards', () => {
@@ -51,7 +51,7 @@ describe('MathJsService', () => {
                 .withArgs(jasmine.any(Array), number)
                 .and.returnValue(cards[0].id);
 
-            const actual = mathJsService.pickRandomCards(cards, number);
+            const actual = mathService.pickRandomCards(cards, number);
 
             expect(actual).toEqual(expected);
         });
@@ -64,7 +64,7 @@ describe('MathJsService', () => {
                 .withArgs(jasmine.any(Array), number)
                 .and.returnValue([cards[0].id, cards[1].id]);
 
-            const actual = mathJsService.pickRandomCards(cards, number);
+            const actual = mathService.pickRandomCards(cards, number);
 
             expect(actual).toEqual(expected);
         });
@@ -78,7 +78,7 @@ describe('MathJsService', () => {
                 .withArgs(jasmine.any(Array), number, weights)
                 .and.returnValue(cards[0].id);
 
-            const actual = mathJsService.pickRandomCards(cards, number, weights);
+            const actual = mathService.pickRandomCards(cards, number, weights);
 
             expect(actual).toEqual(expected);
         });
