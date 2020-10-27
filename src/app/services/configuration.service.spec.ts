@@ -53,6 +53,20 @@ describe('ConfigurationService', () => {
         });
     });
 
+    describe('updateOptions', () => {
+        it('should update configuration.options', () => {
+            const options = dataFixture.createConfiguration().options;
+            const expected$: Observable<Configuration> = cold('a', {
+                a: { ...ConfigurationService.defaultConfiguration, options: options },
+            });
+
+            configurationService.updateOptions(options);
+            const actual$ = configurationService.configuration$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
     describe('isCardTypeAvailable', () => {
         it('with enabled expansion has card with given card type should return true', () => {
             const expansions = dataFixture.createExpansions();
