@@ -1,29 +1,29 @@
-<div class="container">
-    <ng-container *ngIf="setService.set$ | async as set">
-        <h2>Cards:</h2>
+<mat-accordion *ngIf="setService.set$ | async as set" multi>
+    <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>Cards</mat-expansion-panel-header>
         <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
+    </mat-expansion-panel>
 
-        <ng-container *ngIf="set.events.length > 0">
-            <h2>Events:</h2>
-            <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
-        </ng-container>
+    <mat-expansion-panel *ngIf="set.events.length > 0" expanded>
+        <mat-expansion-panel-header>Events</mat-expansion-panel-header>
+        <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
+    </mat-expansion-panel>
 
-        <ng-container *ngIf="set.landmarks.length > 0">
-            <h2>Landmarks:</h2>
-            <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
-        </ng-container>
+    <mat-expansion-panel *ngIf="set.landmarks.length > 0" expanded>
+        <mat-expansion-panel-header>Landmarks</mat-expansion-panel-header>
+        <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
+    </mat-expansion-panel>
 
-        <ng-container *ngIf="set.projects.length > 0">
-            <h2>Projects:</h2>
-            <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
-        </ng-container>
+    <mat-expansion-panel *ngIf="set.projects.length > 0" expanded>
+        <mat-expansion-panel-header>Projects</mat-expansion-panel-header>
+        <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
+    </mat-expansion-panel>
 
-        <ng-container *ngIf="set.ways.length > 0">
-            <h2>Ways:</h2>
-            <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
-        </ng-container>
-    </ng-container>
-</div>
+    <mat-expansion-panel *ngIf="set.ways.length > 0" expanded>
+        <mat-expansion-panel-header>Ways</mat-expansion-panel-header>
+        <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
+    </mat-expansion-panel>
+</mat-accordion>
 
 <mat-menu #menu="matMenu">
     <div class="mat-menu-headline">Grouping</div>
