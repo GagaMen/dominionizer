@@ -1,5 +1,1 @@
-<div class="card-list">
-    <ng-container *ngFor="let card of cardList">
-        <app-card [card]="card" (reshuffle)="onReshuffle(card)"></app-card>
-    </ng-container>
-</div>
+<app-card *ngFor="let card of cardList" [card]="card" (reshuffle)="onReshuffle(card)"></app-card>

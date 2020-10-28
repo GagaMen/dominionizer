@@ -1,0 +1,21 @@
+:host {
+    column-gap: 0.5rem;
+    display: grid;
+    row-gap: 0.5rem;
+
+    @media (min-width: 792px) {
+        grid-template-columns: auto auto;
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: auto auto auto;
+    }
+
+    @media (min-width: 1600px) {
+        grid-template-columns: auto auto auto auto;
+    }
+
+    @media (min-width: 1920px) {
+        grid-template-columns: auto auto auto auto auto;
+    }
+}
