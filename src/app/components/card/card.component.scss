@@ -10,9 +10,17 @@
     color: $font-color-card;
 }
 
+mat-icon {
+    color: $font-color-card;
+}
+
 .type-night:not(.type-duration) {
     .mat-card-title,
     .mat-card-subtitle {
+        color: inherit;
+    }
+
+    mat-icon {
         color: inherit;
     }
 }
