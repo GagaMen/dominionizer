@@ -1,5 +1,17 @@
+mat-toolbar {
+    padding: 0 8px;
+}
+
 .logo {
-    align-items: center;
-    display: flex;
     flex: 1 1 auto;
+    line-height: 0;
+    padding-left: 16px;
+
+    object {
+        height: 40px;
+    }
+}
+
+.navigation-action .logo {
+    padding-left: 24px;
 }
