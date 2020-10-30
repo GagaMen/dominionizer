@@ -10,8 +10,19 @@
     color: $font-color-card;
 }
 
-mat-icon {
+[mat-icon-button] {
     color: $font-color-card;
+}
+
+:host {
+    ::ng-deep .mat-button-focus-overlay {
+        background: #000;
+    }
+
+    /* stylelint-disable-next-line selector-max-compound-selectors */
+    ::ng-deep .type-night:not(.type-duration) .mat-button-focus-overlay {
+        background: #fff;
+    }
 }
 
 .type-night:not(.type-duration) {
@@ -20,7 +31,7 @@ mat-icon {
         color: inherit;
     }
 
-    mat-icon {
+    [mat-icon-button] {
         color: inherit;
     }
 }
