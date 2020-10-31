@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
-import { Card } from './../../models/card';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Card, NullCard } from './../../models/card';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CardType } from 'src/app/models/card-type';
 
 @Component({
@@ -8,19 +8,16 @@ import { CardType } from 'src/app/models/card-type';
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],
 })
-export class CardComponent implements OnInit {
-    @Input() card: Card | null = null;
-    @Output() reshuffle: EventEmitter<never> = new EventEmitter<never>();
-    types: string[] = [];
-    entryPoint: string = environment.entryPoint;
+export class CardComponent {
+    @Input() card: Card = NullCard;
+    @Output() reshuffle: EventEmitter<undefined> = new EventEmitter<undefined>();
 
-    ngOnInit(): void {
-        if (this.card !== null) {
-            this.types = this.getTypeNamesFromCard(this.card);
-        }
+    get expansionIconUrl(): string | null {
+        const icon = this.card.expansions[0]?.icon;
+        return icon ? `${environment.entryPoint}${icon}` : null;
     }
 
-    private getTypeNamesFromCard(card: Card): string[] {
-        return card.types.map<string>((type: CardType) => CardType[type]);
+    get typesLabel(): string {
+        return this.card.types.map<string>((type: CardType) => CardType[type]).join(' - ');
     }
 }

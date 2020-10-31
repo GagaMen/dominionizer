@@ -1,38 +1,35 @@
 <mat-card
     [ngClass]="{
-        'type-action': card?.types?.includes(1),
-        'type-treasure': card?.types?.includes(27),
-        'type-victory': card?.types?.includes(28),
-        'type-reaction': card?.types?.includes(20),
-        'type-reserve': card?.types?.includes(21),
-        'type-duration': card?.types?.includes(8),
-        'type-night': card?.types?.includes(17),
-        'type-shelter': card?.types?.includes(23),
-        'type-ruins': card?.types?.includes(22),
-        'type-event': card?.types?.includes(9),
-        'type-landmark': card?.types?.includes(15),
-        'type-project': card?.types?.includes(19),
-        'type-way': card?.types?.includes(29)
+        'type-action': card.types.includes(1),
+        'type-treasure': card.types.includes(27),
+        'type-victory': card.types.includes(28),
+        'type-reaction': card.types.includes(20),
+        'type-reserve': card.types.includes(21),
+        'type-duration': card.types.includes(8),
+        'type-night': card.types.includes(17),
+        'type-shelter': card.types.includes(23),
+        'type-ruins': card.types.includes(22),
+        'type-event': card.types.includes(9),
+        'type-landmark': card.types.includes(15),
+        'type-project': card.types.includes(19),
+        'type-way': card.types.includes(29)
     }"
 >
     <mat-card-header>
         <img
-            class="expansion-icon"
+            *ngIf="expansionIconUrl !== null"
             mat-card-avatar
-            *ngIf="card !== null"
-            src="{{ entryPoint }}{{ card.expansions[0].icon }}"
+            [src]="expansionIconUrl"
             alt="Expansion Icon"
+            class="expansion-icon"
         />
         <mat-card-title-group>
-            <mat-card-title>{{ card?.name }} ({{ card?.cost }})</mat-card-title>
-            <mat-card-subtitle>{{ types.join(' - ') }}</mat-card-subtitle>
+            <mat-card-title>{{ card.name }} ({{ card.cost }})</mat-card-title>
+            <mat-card-subtitle>{{ typesLabel }}</mat-card-subtitle>
         </mat-card-title-group>
         <div class="spacer"></div>
-        <button mat-icon-button (click)="reshuffle.next()">
+        <button mat-icon-button (click)="reshuffle.emit()">
             <mat-icon>casino</mat-icon>
         </button>
     </mat-card-header>
-    <mat-card-content>
-        <p>{{ card?.description }}</p>
-    </mat-card-content>
 </mat-card>
