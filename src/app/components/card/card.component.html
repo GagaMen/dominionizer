@@ -1,20 +1,4 @@
-<mat-card
-    [ngClass]="{
-        'type-action': card.types.includes(1),
-        'type-treasure': card.types.includes(27),
-        'type-victory': card.types.includes(28),
-        'type-reaction': card.types.includes(20),
-        'type-reserve': card.types.includes(21),
-        'type-duration': card.types.includes(8),
-        'type-night': card.types.includes(17),
-        'type-shelter': card.types.includes(23),
-        'type-ruins': card.types.includes(22),
-        'type-event': card.types.includes(9),
-        'type-landmark': card.types.includes(15),
-        'type-project': card.types.includes(19),
-        'type-way': card.types.includes(29)
-    }"
->
+<mat-card [style.background]="color">
     <mat-card-header>
         <img
             *ngIf="expansionIconUrl !== null"

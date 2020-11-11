@@ -6,6 +6,7 @@ import {
     MatCardAvatar,
     MatCardTitle,
     MatCardSubtitle,
+    MatCard,
 } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DataFixture } from 'src/testing/data-fixture';
@@ -83,12 +84,141 @@ describe('CardComponent', () => {
         });
     });
 
+    describe('color', () => {
+        const calculateColor = (topCardType: CardType, bottomCardType?: CardType) => {
+            const topColor = CardComponent.colorOfCardTypes.get(topCardType);
+            const bottomColor = bottomCardType
+                ? CardComponent.colorOfCardTypes.get(bottomCardType)
+                : undefined;
+
+            if (topColor && bottomColor) {
+                return `linear-gradient(${topColor} 50%, ${bottomColor} 50%)`;
+            }
+            if (topColor) {
+                return topColor;
+            }
+
+            return '';
+        };
+        const cardTypeCompinations = [
+            { types: [CardType.Action], expected: calculateColor(CardType.Action) },
+            { types: [CardType.Duration], expected: calculateColor(CardType.Duration) },
+            { types: [CardType.Event], expected: calculateColor(CardType.Event) },
+            { types: [CardType.Landmark], expected: calculateColor(CardType.Landmark) },
+            { types: [CardType.Night], expected: calculateColor(CardType.Night) },
+            { types: [CardType.Project], expected: calculateColor(CardType.Project) },
+            { types: [CardType.Reaction], expected: calculateColor(CardType.Reaction) },
+            { types: [CardType.Reserve], expected: calculateColor(CardType.Reserve) },
+            { types: [CardType.Ruins], expected: calculateColor(CardType.Ruins) },
+            { types: [CardType.Shelter], expected: calculateColor(CardType.Shelter) },
+            { types: [CardType.Treasure], expected: calculateColor(CardType.Treasure) },
+            { types: [CardType.Victory], expected: calculateColor(CardType.Victory) },
+            { types: [CardType.Way], expected: calculateColor(CardType.Way) },
+            {
+                types: [CardType.Action, CardType.Duration],
+                expected: calculateColor(CardType.Duration),
+            },
+            {
+                types: [CardType.Action, CardType.Night],
+                expected: calculateColor(CardType.Action),
+            },
+            {
+                types: [CardType.Action, CardType.Reaction],
+                expected: calculateColor(CardType.Reaction),
+            },
+            {
+                types: [CardType.Action, CardType.Ruins],
+                expected: calculateColor(CardType.Ruins),
+            },
+            {
+                types: [CardType.Action, CardType.Shelter],
+                expected: calculateColor(CardType.Action, CardType.Shelter),
+            },
+            {
+                types: [CardType.Action, CardType.Treasure],
+                expected: calculateColor(CardType.Action, CardType.Treasure),
+            },
+            {
+                types: [CardType.Action, CardType.Victory],
+                expected: calculateColor(CardType.Action, CardType.Victory),
+            },
+            {
+                types: [CardType.Duration, CardType.Reaction],
+                expected: calculateColor(CardType.Duration, CardType.Reaction),
+            },
+            {
+                types: [CardType.Night, CardType.Duration],
+                expected: calculateColor(CardType.Duration),
+            },
+            {
+                types: [CardType.Reaction, CardType.Shelter],
+                expected: calculateColor(CardType.Reaction, CardType.Shelter),
+            },
+            {
+                types: [CardType.Reserve, CardType.Victory],
+                expected: calculateColor(CardType.Reserve, CardType.Victory),
+            },
+            {
+                types: [CardType.Treasure, CardType.Reserve],
+                expected: calculateColor(CardType.Treasure, CardType.Reserve),
+            },
+            {
+                types: [CardType.Treasure, CardType.Victory],
+                expected: calculateColor(CardType.Treasure, CardType.Victory),
+            },
+            {
+                types: [CardType.Treasure, CardType.Reaction],
+                expected: calculateColor(CardType.Treasure, CardType.Reaction),
+            },
+            {
+                types: [CardType.Victory, CardType.Shelter],
+                expected: calculateColor(CardType.Victory, CardType.Shelter),
+            },
+            {
+                types: [CardType.Victory, CardType.Reaction],
+                expected: calculateColor(CardType.Victory, CardType.Reaction),
+            },
+            {
+                types: [CardType.Action, CardType.Duration, CardType.Reaction],
+                expected: calculateColor(CardType.Duration, CardType.Reaction),
+            },
+            {
+                types: [CardType.Action, CardType.Reserve, CardType.Victory],
+                expected: calculateColor(CardType.Reserve, CardType.Victory),
+            },
+        ];
+
+        it('with card has given card types should return correct color', () => {
+            cardTypeCompinations.forEach(({ types, expected }) => {
+                component.card = dataFixture.createCard({ types: types });
+
+                const actual = component.color;
+
+                expect(actual).toBe(
+                    expected,
+                    `for types [${types.map((type) => CardType[type]).join(', ')}]`,
+                );
+            });
+        });
+    });
+
     describe('template', () => {
         let expansionIconUrlSpy: jasmine.Spy;
 
         beforeEach(() => {
             expansionIconUrlSpy = spyOnProperty(component, 'expansionIconUrl');
             expansionIconUrlSpy.and.returnValue(expansionIconUrl);
+        });
+
+        it('should bind "background" style of MatCard correctly', () => {
+            const color = '#999';
+            const expected = 'rgb(153, 153, 153)';
+            spyOnProperty(component, 'color').and.returnValue(color);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.directive(MatCard)).styles.background;
+
+            expect(actual).toBe(expected);
         });
 
         it('with expansionIconUrl is null should not display MatCardAvatar', () => {
