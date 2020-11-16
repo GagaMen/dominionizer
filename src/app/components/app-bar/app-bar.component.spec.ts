@@ -5,7 +5,7 @@ import { DataFixture } from './../../../testing/data-fixture';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarService } from './../../services/app-bar.service';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppBarComponent } from './app-bar.component';
 import { NEVER } from 'rxjs';
 import { By } from '@angular/platform-browser';
@@ -15,25 +15,27 @@ describe('AppBarComponent', () => {
     let appBarServiceSpy: SpyObj<AppBarService>;
     let dataFixture: DataFixture;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [MatToolbarModule, MatButtonModule, MatIconModule],
-            declarations: [AppBarComponent],
-            providers: [
-                {
-                    provide: AppBarService,
-                    useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
-                        'configuration$',
-                    ]),
-                },
-            ],
-        });
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [MatToolbarModule, MatButtonModule, MatIconModule],
+                declarations: [AppBarComponent],
+                providers: [
+                    {
+                        provide: AppBarService,
+                        useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
+                            'configuration$',
+                        ]),
+                    },
+                ],
+            });
 
-        dataFixture = new DataFixture();
-        appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
+            dataFixture = new DataFixture();
+            appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
-        fixture = TestBed.createComponent(AppBarComponent);
-    }));
+            fixture = TestBed.createComponent(AppBarComponent);
+        }),
+    );
 
     describe('template', () => {
         it('with no configuration should not display MatToolbar', () => {
