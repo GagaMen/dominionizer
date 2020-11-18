@@ -1,8 +1,8 @@
 import { AppBarService } from '../../services/app-bar.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShuffleService } from '../../services/shuffle.service';
-import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
-import { MatMenu } from '@angular/material/menu';
+import { SetService } from 'src/app/services/set.service';
+import { GroupingAndSortingMenuComponent } from '../grouping-and-sorting-menu/grouping-and-sorting-menu.component';
 
 @Component({
     selector: 'app-set',
@@ -10,7 +10,8 @@ import { MatMenu } from '@angular/material/menu';
     styleUrls: ['./set.component.scss'],
 })
 export class SetComponent implements OnInit {
-    @ViewChild('menu', { static: true }) menu?: MatMenu;
+    @ViewChild(GroupingAndSortingMenuComponent, { static: true })
+    groupingAndSortingMenu?: GroupingAndSortingMenuComponent;
 
     constructor(
         public setService: SetService,
@@ -25,7 +26,7 @@ export class SetComponent implements OnInit {
             actions: [
                 {
                     icon: 'sort',
-                    matMenu: this.menu,
+                    matMenu: this.groupingAndSortingMenu?.matMenu,
                 },
                 {
                     icon: 'casino',
@@ -37,13 +38,5 @@ export class SetComponent implements OnInit {
 
     shuffle(): void {
         this.shuffleService.shuffleCards();
-    }
-
-    onGroup(groupingOption: GroupingOption): void {
-        this.setService.updateGroupingOption(groupingOption);
-    }
-
-    onSort(sortingOption: SortingOption): void {
-        this.setService.updateSortingOption(sortingOption);
     }
 }

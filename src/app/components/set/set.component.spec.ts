@@ -1,4 +1,4 @@
-import { SetService, GroupingOption, SortingOption } from '../../services/set.service';
+import { SetService } from '../../services/set.service';
 import { ShuffleService } from '../../services/shuffle.service';
 import { AppBarConfiguration } from '../../models/app-bar-configuration';
 import { SpyObj } from '../../../testing/spy-obj';
@@ -6,9 +6,7 @@ import { AppBarService } from '../../services/app-bar.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetComponent } from './set.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+import { MatMenu } from '@angular/material/menu';
 import { cold } from 'jasmine-marbles';
 import { DataFixture } from 'src/testing/data-fixture';
 import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
@@ -20,6 +18,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatAccordionHarness } from '@angular/material/expansion/testing';
 import { detectChangesAndFlush } from 'src/testing/utilities';
+import { GroupingAndSortingMenuStubComponent } from 'src/testing/components/grouping-and-sorting-menu.stub.component';
 
 interface SetPartDescription {
     name: SetPartName;
@@ -37,14 +36,12 @@ describe('SetComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                MatDividerModule,
-                MatExpansionModule,
-                MatIconModule,
-                MatMenuModule,
-                NoopAnimationsModule,
+            imports: [MatExpansionModule, NoopAnimationsModule],
+            declarations: [
+                SetComponent,
+                CardListStubComponent,
+                GroupingAndSortingMenuStubComponent,
             ],
-            declarations: [SetComponent, CardListStubComponent],
             providers: [
                 {
                     provide: ShuffleService,
@@ -54,10 +51,7 @@ describe('SetComponent', () => {
                 },
                 {
                     provide: SetService,
-                    useValue: jasmine.createSpyObj<SetService>('SetService', [
-                        'updateGroupingOption',
-                        'updateSortingOption',
-                    ]),
+                    useValue: {},
                 },
                 {
                     provide: AppBarService,
@@ -80,9 +74,9 @@ describe('SetComponent', () => {
         component = fixture.componentInstance;
     });
 
-    describe('menu', () => {
+    describe('groupingAndSortingMenu', () => {
         it('should be resolved before change detection runs', () => {
-            expect(component.menu).toBeDefined();
+            expect(component.groupingAndSortingMenu).toBeDefined();
         });
     });
 
@@ -96,12 +90,15 @@ describe('SetComponent', () => {
         });
 
         it('should update AppBarConfiguration correctly', () => {
+            const stubMatMenu: MatMenu = {} as MatMenu;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            component.groupingAndSortingMenu!.matMenu = stubMatMenu;
             const configuration = jasmine.objectContaining<AppBarConfiguration>({
                 navigationAction: 'back',
                 actions: [
                     {
                         icon: 'sort',
-                        matMenu: component.menu,
+                        matMenu: stubMatMenu,
                     },
                     {
                         icon: 'casino',
@@ -124,26 +121,6 @@ describe('SetComponent', () => {
             component.shuffle();
 
             expect(shuffleServiceSpy.shuffleCards).toHaveBeenCalled();
-        });
-    });
-
-    describe('onGroup', () => {
-        it('should update grouping option with given value', () => {
-            const groupingOption: GroupingOption = 'byExpansion';
-
-            component.onGroup(groupingOption);
-
-            expect(setServiceSpy.updateGroupingOption).toHaveBeenCalledWith(groupingOption);
-        });
-    });
-
-    describe('onSort', () => {
-        it('should update sorting option with given value', () => {
-            const sortingOption: SortingOption = 'byCost';
-
-            component.onSort(sortingOption);
-
-            expect(setServiceSpy.updateSortingOption).toHaveBeenCalledWith(sortingOption);
         });
     });
 

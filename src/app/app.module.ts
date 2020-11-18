@@ -28,6 +28,7 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { SetComponent } from './components/set/set.component';
 import { ExpansionSelectComponent } from './components/expansion-select/expansion-select.component';
 import { SpecialCardSelectComponent } from './components/special-card-select/special-card-select.component';
+import { GroupingAndSortingMenuComponent } from './components/grouping-and-sorting-menu/grouping-and-sorting-menu.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { SpecialCardSelectComponent } from './components/special-card-select/spe
         SetComponent,
         ExpansionSelectComponent,
         SpecialCardSelectComponent,
+        GroupingAndSortingMenuComponent,
     ],
     imports: [
         BrowserModule,

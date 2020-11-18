@@ -1,0 +1,37 @@
+<mat-menu>
+    <div class="mat-menu-headline">Grouping</div>
+    <button mat-menu-item (click)="onGroup('without')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.groupingOption$ | async) === 'without'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>Without</span>
+    </button>
+    <button mat-menu-item (click)="onGroup('byExpansion')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.groupingOption$ | async) === 'byExpansion'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>By Expansion</span>
+    </button>
+    <mat-divider></mat-divider>
+    <div class="mat-menu-headline">Sorting</div>
+    <button mat-menu-item (click)="onSort('byName')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.sortingOption$ | async) === 'byName'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>By Name</span>
+    </button>
+    <button mat-menu-item (click)="onSort('byCost')">
+        <mat-icon>
+            <ng-container *ngIf="(setService.sortingOption$ | async) === 'byCost'">
+                check
+            </ng-container>
+        </mat-icon>
+        <span>By Cost</span>
+    </button>
+</mat-menu>
