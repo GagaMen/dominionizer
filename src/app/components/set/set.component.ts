@@ -26,7 +26,10 @@ export class SetComponent implements OnInit {
             actions: [
                 {
                     icon: 'sort',
-                    matMenu: this.groupingAndSortingMenu?.matMenu,
+                    // groupingAndSortingMenu is garantied to be defined because ViewChild query result
+                    // is resolved before change detection runs (see static = true)
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    matMenu: this.groupingAndSortingMenu!.matMenu,
                 },
                 {
                     icon: 'casino',
