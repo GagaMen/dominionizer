@@ -13,14 +13,13 @@ export class SetComponent implements OnInit {
     @ViewChild('menu', { static: true }) menu?: MatMenu;
 
     constructor(
-        private shuffleService: ShuffleService,
         public setService: SetService,
+        private shuffleService: ShuffleService,
         private appBarService: AppBarService,
-    ) {
-        this.shuffle();
-    }
+    ) {}
 
     ngOnInit(): void {
+        this.shuffle();
         this.appBarService.updateConfiguration({
             navigationAction: 'back',
             actions: [

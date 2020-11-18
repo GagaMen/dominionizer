@@ -5,6 +5,7 @@ import { CardDto } from 'src/app/dtos/card-dto';
 import { Card } from 'src/app/models/card';
 import { CardType } from 'src/app/models/card-type';
 import { Configuration } from 'src/app/models/configuration';
+import { Set } from 'src/app/models/set';
 
 export class DataFixture {
     private chance: Chance.Chance = new Chance();
@@ -84,6 +85,17 @@ export class DataFixture {
             },
             costDistribution: new Map<number, number>(),
             ...configuration,
+        };
+    }
+
+    createSet(set: Partial<Set> = {}): Set {
+        return {
+            cards: this.createCards(10),
+            events: this.createCards(2),
+            landmarks: this.createCards(2),
+            projects: this.createCards(2),
+            ways: this.createCards(2),
+            ...set,
         };
     }
 

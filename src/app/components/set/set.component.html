@@ -1,26 +1,36 @@
 <mat-accordion *ngIf="setService.set$ | async as set" multi>
     <mat-expansion-panel expanded>
-        <mat-expansion-panel-header>Cards</mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Cards</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.events.length > 0" expanded>
-        <mat-expansion-panel-header>Events</mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Events</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.landmarks.length > 0" expanded>
-        <mat-expansion-panel-header>Landmarks</mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Landmarks</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.projects.length > 0" expanded>
-        <mat-expansion-panel-header>Projects</mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Projects</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.ways.length > 0" expanded>
-        <mat-expansion-panel-header>Ways</mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Ways</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
     </mat-expansion-panel>
 </mat-accordion>

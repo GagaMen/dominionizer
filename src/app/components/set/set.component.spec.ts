@@ -1,38 +1,50 @@
-import { NEVER } from 'rxjs';
-import { SetService } from '../../services/set.service';
+import { SetService, GroupingOption, SortingOption } from '../../services/set.service';
 import { ShuffleService } from '../../services/shuffle.service';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AppBarConfiguration } from '../../models/app-bar-configuration';
 import { SpyObj } from '../../../testing/spy-obj';
 import { AppBarService } from '../../services/app-bar.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetComponent } from './set.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { cold } from 'jasmine-marbles';
+import { DataFixture } from 'src/testing/data-fixture';
+import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CardListStubComponent } from 'src/testing/components/card-list.stub.component';
+import { SetPartName, Set } from 'src/app/models/set';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatAccordionHarness } from '@angular/material/expansion/testing';
+import { detectChangesAndFlush } from 'src/testing/utilities';
+
+interface SetPartDescription {
+    name: SetPartName;
+    label: string;
+}
 
 describe('SetComponent', () => {
     let component: SetComponent;
     let fixture: ComponentFixture<SetComponent>;
+    let harnessLoader: HarnessLoader;
+    let shuffleServiceSpy: SpyObj<ShuffleService>;
     let setServiceSpy: SpyObj<SetService>;
     let appBarServiceSpy: SpyObj<AppBarService>;
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                MatCardModule,
-                MatCheckboxModule,
                 MatDividerModule,
+                MatExpansionModule,
                 MatIconModule,
                 MatMenuModule,
-                MatRadioModule,
-                ReactiveFormsModule,
+                NoopAnimationsModule,
             ],
-            declarations: [SetComponent],
+            declarations: [SetComponent, CardListStubComponent],
             providers: [
                 {
                     provide: ShuffleService,
@@ -42,9 +54,11 @@ describe('SetComponent', () => {
                 },
                 {
                     provide: SetService,
-                    useValue: {},
+                    useValue: jasmine.createSpyObj<SetService>('SetService', [
+                        'updateGroupingOption',
+                        'updateSortingOption',
+                    ]),
                 },
-                FormBuilder,
                 {
                     provide: AppBarService,
                     useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
@@ -54,15 +68,33 @@ describe('SetComponent', () => {
             ],
         });
 
+        dataFixture = new DataFixture();
+
+        shuffleServiceSpy = TestBed.inject(ShuffleService) as jasmine.SpyObj<ShuffleService>;
         setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
-        setServiceSpy.set$ = NEVER;
+        setServiceSpy.set$ = cold('--a', { a: dataFixture.createSet() });
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
         fixture = TestBed.createComponent(SetComponent);
+        harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
     });
 
+    describe('menu', () => {
+        it('should be resolved before change detection runs', () => {
+            expect(component.menu).toBeDefined();
+        });
+    });
+
     describe('ngOnInit', () => {
+        it('should shuffle', () => {
+            const shuffleSpy = spyOn(component, 'shuffle').and.stub();
+
+            fixture.detectChanges();
+
+            expect(shuffleSpy).toHaveBeenCalled();
+        });
+
         it('should update AppBarConfiguration correctly', () => {
             const configuration = jasmine.objectContaining<AppBarConfiguration>({
                 navigationAction: 'back',
@@ -84,6 +116,161 @@ describe('SetComponent', () => {
 
             expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
             expect(shuffleSpy).toHaveBeenCalled();
+        });
+    });
+
+    describe('shuffle', () => {
+        it('should shuffle cards', () => {
+            component.shuffle();
+
+            expect(shuffleServiceSpy.shuffleCards).toHaveBeenCalled();
+        });
+    });
+
+    describe('onGroup', () => {
+        it('should update grouping option with given value', () => {
+            const groupingOption: GroupingOption = 'byExpansion';
+
+            component.onGroup(groupingOption);
+
+            expect(setServiceSpy.updateGroupingOption).toHaveBeenCalledWith(groupingOption);
+        });
+    });
+
+    describe('onSort', () => {
+        it('should update sorting option with given value', () => {
+            const sortingOption: SortingOption = 'byCost';
+
+            component.onSort(sortingOption);
+
+            expect(setServiceSpy.updateSortingOption).toHaveBeenCalledWith(sortingOption);
+        });
+    });
+
+    describe('template', () => {
+        it('with SetService never emits set should not render MatAccordion', () => {
+            setServiceSpy.set$ = cold('---');
+
+            detectChangesAndFlush(fixture);
+            const actual = fixture.debugElement.query(By.directive(MatAccordion));
+
+            expect(actual).toBeNull();
+        });
+
+        it('with SetService emits set should render MatAccordion', () => {
+            setServiceSpy.set$ = cold('--a', { a: dataFixture.createSet() });
+
+            detectChangesAndFlush(fixture);
+            const actual = fixture.debugElement.query(By.directive(MatAccordion));
+
+            expect(actual).not.toBeNull();
+        });
+
+        it('should render MatAccordion that allows multiple expanded accordian items simultaneously', async () => {
+            detectChangesAndFlush(fixture);
+            const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
+            const actual = await matAccordion.isMulti();
+
+            expect(actual).toBeTrue();
+        });
+
+        it('should render MatExpansionPanel for cards inside MatAccordion correctly', async () => {
+            detectChangesAndFlush(fixture);
+            const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
+            const actual = (await matAccordion.getExpansionPanels())[0];
+
+            expect(actual).toBeDefined();
+            expect(await actual.isExpanded())
+                .withContext('expanded')
+                .toBeTrue();
+            expect(await actual.getTitle())
+                .withContext('title')
+                .toBe('Cards');
+        });
+
+        it('should render CardList for cards inside MatExpansionPanel correctly', () => {
+            const set = dataFixture.createSet();
+            setServiceSpy.set$ = cold('--a', { a: set });
+            const expectedCardList = set.cards;
+            const expectedSetPartName: SetPartName = 'cards';
+
+            detectChangesAndFlush(fixture);
+            const actual = fixture.debugElement
+                .query(By.directive(MatExpansionPanel))
+                .query(By.directive(CardListStubComponent))
+                .injector.get(CardListStubComponent);
+
+            expect(actual).toBeDefined();
+            expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
+            expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
+        });
+
+        it('with no special cards should render MatExpansionPanel only for cards', async () => {
+            const set = dataFixture.createSet({
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            setServiceSpy.set$ = cold('--a', { a: set });
+
+            detectChangesAndFlush(fixture);
+            const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
+            const actual = await matAccordion.getExpansionPanels();
+
+            expect(actual.length).toBe(1);
+        });
+
+        const specialSetParts: SetPartDescription[] = [
+            { name: 'events', label: 'Events' },
+            { name: 'landmarks', label: 'Landmarks' },
+            { name: 'projects', label: 'Projects' },
+            { name: 'ways', label: 'Ways' },
+        ];
+        specialSetParts.forEach((specialSetPart: SetPartDescription) => {
+            describe(`with set contains ${specialSetPart.name}`, () => {
+                let set: Set;
+
+                beforeEach(() => {
+                    set = dataFixture.createSet({
+                        events: [],
+                        landmarks: [],
+                        projects: [],
+                        ways: [],
+                    });
+                    set[specialSetPart.name] = dataFixture.createCards();
+                    setServiceSpy.set$ = cold('--a', { a: set });
+                });
+
+                it(`should render MatExpansionPanel for ${specialSetPart.name} inside MatAccordion correctly`, async () => {
+                    detectChangesAndFlush(fixture);
+                    const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
+                    const actual = (await matAccordion.getExpansionPanels())[1];
+
+                    expect(actual).toBeDefined();
+                    expect(await actual.isExpanded())
+                        .withContext('expanded')
+                        .toBeTrue();
+                    expect(await actual.getTitle())
+                        .withContext('title')
+                        .toBe(specialSetPart.label);
+                });
+
+                it(`should render CardList for ${specialSetPart.name} inside MatExpansionPanel correctly`, () => {
+                    const expectedCardList = set[specialSetPart.name];
+                    const expectedSetPartName: SetPartName = specialSetPart.name;
+
+                    detectChangesAndFlush(fixture);
+                    const actual = fixture.debugElement
+                        .queryAll(By.directive(MatExpansionPanel))[1]
+                        .query(By.directive(CardListStubComponent))
+                        .injector.get(CardListStubComponent);
+
+                    expect(actual).toBeDefined();
+                    expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
+                    expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
+                });
+            });
         });
     });
 });
