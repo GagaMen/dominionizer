@@ -1,16 +1,234 @@
 import { TestBed } from '@angular/core/testing';
+import { cold } from 'jasmine-marbles';
+import { Observable } from 'rxjs';
+import { DataFixture } from 'src/testing/data-fixture';
+import { Set } from '../models/set';
 
-import { SetService } from './set.service';
+import { GroupingOption, SetService, SortingOption } from './set.service';
 
 describe('SetService', () => {
-    let service: SetService;
+    let setService: SetService;
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(SetService);
+
+        dataFixture = new DataFixture();
+        setService = TestBed.inject(SetService);
     });
 
-    it('should be created', () => {
-        expect(service).toBeTruthy();
+    describe('set$', () => {
+        it('with service just initialized should emit default set', () => {
+            const expected$ = cold('a', { a: SetService.defaultSet });
+
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with grouping option "without" and sorting option "byName" should emit set with cards correctly ordered', () => {
+            const firstCard = dataFixture.createCard({ name: 'a' });
+            const secondCard = dataFixture.createCard({ name: 'b' });
+            const unorderedSet = dataFixture.createSet({
+                cards: [secondCard, firstCard],
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            setService.updateGroupingOption('without');
+            setService.updateSortingOption('byName');
+            setService.updateSet(unorderedSet);
+            const expectedSet: Set = {
+                ...unorderedSet,
+                cards: [firstCard, secondCard],
+            };
+            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with grouping option "without" and sorting option "byCost" should emit set with cards correctly ordered', () => {
+            const firstCard = dataFixture.createCard({ cost: 1 });
+            const secondCard = dataFixture.createCard({ cost: 2, name: 'a' });
+            const thirdCard = dataFixture.createCard({ cost: 2, name: 'b' });
+            const unorderedSet = dataFixture.createSet({
+                cards: [thirdCard, secondCard, firstCard],
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            setService.updateGroupingOption('without');
+            setService.updateSortingOption('byCost');
+            setService.updateSet(unorderedSet);
+            const expectedSet: Set = {
+                ...unorderedSet,
+                cards: [firstCard, secondCard, thirdCard],
+            };
+            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with grouping option "byExpansion" and sorting option "byName" should emit set with cards correctly ordered', () => {
+            const firstExpansion = dataFixture.createExpansion({ name: 'a' });
+            const secondExpansion = dataFixture.createExpansion({ name: 'b' });
+            const firstCard = dataFixture.createCard({ expansions: [firstExpansion] });
+            const secondCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'a' });
+            const thirdCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'b' });
+            const unorderedSet = dataFixture.createSet({
+                cards: [thirdCard, secondCard, firstCard],
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            setService.updateGroupingOption('byExpansion');
+            setService.updateSortingOption('byName');
+            setService.updateSet(unorderedSet);
+            const expectedSet: Set = {
+                ...unorderedSet,
+                cards: [firstCard, secondCard, thirdCard],
+            };
+            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with grouping option "byExpansion" and sorting option "byCost" should emit set with cards correctly ordered', () => {
+            const firstExpansion = dataFixture.createExpansion({ name: 'a' });
+            const secondExpansion = dataFixture.createExpansion({ name: 'b' });
+            const firstCard = dataFixture.createCard({ expansions: [firstExpansion] });
+            const secondCard = dataFixture.createCard({ expansions: [secondExpansion], cost: 1 });
+            const thirdCard = dataFixture.createCard({
+                expansions: [secondExpansion],
+                cost: 2,
+                name: 'a',
+            });
+            const fourthCard = dataFixture.createCard({
+                expansions: [secondExpansion],
+                cost: 2,
+                name: 'b',
+            });
+            const unorderedSet = dataFixture.createSet({
+                cards: [fourthCard, thirdCard, secondCard, firstCard],
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            setService.updateGroupingOption('byExpansion');
+            setService.updateSortingOption('byCost');
+            setService.updateSet(unorderedSet);
+            const expectedSet: Set = {
+                ...unorderedSet,
+                cards: [firstCard, secondCard, thirdCard, fourthCard],
+            };
+            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('groupingOption$', () => {
+        it('with service just initialized should emit default grouping option', () => {
+            const expected$ = cold('a', { a: SetService.defaultGroupingOption });
+
+            const actual$ = setService.groupingOption$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('sortingOption$', () => {
+        it('with service just initialized should emit default sorting option', () => {
+            const expected$ = cold('a', { a: SetService.defaultSortingOption });
+
+            const actual$ = setService.sortingOption$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('updateSet', () => {
+        it('should update set', () => {
+            const set = dataFixture.createSet({
+                cards: dataFixture.createCards(1),
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            const expected$: Observable<Set> = cold('a', { a: set });
+
+            setService.updateSet(set);
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('updateSingleCard', () => {
+        it('should update set correctly', () => {
+            const initialSet = dataFixture.createSet({
+                cards: dataFixture.createCards(1),
+                events: [],
+                landmarks: [],
+                projects: [],
+                ways: [],
+            });
+            setService.updateSet(initialSet);
+            const oldCard = initialSet.cards[0];
+            const newCard = dataFixture.createCard();
+            const expectedSet: Set = {
+                ...initialSet,
+                cards: [newCard],
+            };
+            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+
+            setService.updateSingleCard(oldCard, newCard, 'cards');
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('updateGroupingOption', () => {
+        it('should update grouping option', () => {
+            const groupingOption: GroupingOption = 'byExpansion';
+            const expected$: Observable<GroupingOption> = cold('a', { a: groupingOption });
+
+            setService.updateGroupingOption(groupingOption);
+            const actual$ = setService.groupingOption$;
+
+            expect(groupingOption)
+                .withContext('test value')
+                .not.toBe(SetService.defaultGroupingOption);
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('updateSortingOption', () => {
+        it('should update sorting option', () => {
+            const sortingOption: SortingOption = 'byCost';
+            const expected$: Observable<SortingOption> = cold('a', { a: sortingOption });
+
+            setService.updateSortingOption(sortingOption);
+            const actual$ = setService.sortingOption$;
+
+            expect(sortingOption)
+                .withContext('test value')
+                .not.toBe(SetService.defaultSortingOption);
+            expect(actual$).toBeObservable(expected$);
+        });
     });
 });

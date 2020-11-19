@@ -35,6 +35,7 @@ export class SetService {
         this.sortingOptionSubject,
     ]).pipe(
         map(([set, groupingOption, sortingOption]: [Set, GroupingOption, SortingOption]) => {
+            // TODO: implement ordering for special cards
             set.cards.sort((firstCard: Card, secondCard: Card) =>
                 this.sortCards(firstCard, secondCard, groupingOption, sortingOption),
             );
@@ -89,8 +90,6 @@ export class SetService {
             // falls through
             case 'byName':
                 return firstCard.name.localeCompare(secondCard.name);
-            default:
-                return 0;
         }
     }
 }
