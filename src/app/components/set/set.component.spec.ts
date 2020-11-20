@@ -46,7 +46,7 @@ describe('SetComponent', () => {
                 {
                     provide: ShuffleService,
                     useValue: jasmine.createSpyObj<ShuffleService>('ShuffleService', [
-                        'shuffleCards',
+                        'shuffleSet',
                     ]),
                 },
                 {
@@ -117,10 +117,10 @@ describe('SetComponent', () => {
     });
 
     describe('shuffle', () => {
-        it('should shuffle cards', () => {
+        it('should shuffle set', () => {
             component.shuffle();
 
-            expect(shuffleServiceSpy.shuffleCards).toHaveBeenCalled();
+            expect(shuffleServiceSpy.shuffleSet).toHaveBeenCalled();
         });
     });
 

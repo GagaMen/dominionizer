@@ -5,37 +5,34 @@ import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
 import { Injectable } from '@angular/core';
 import { Card } from '../models/card';
-import { Observable, of, iif, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, Subject } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { Expansion } from '../models/expansion';
 import { MathService } from './math.service';
 import { CardService } from './card.service';
 import { Set } from '../models/set';
 
+export interface SingleCardShuffle {
+    card: Card;
+    setPartName: SetPartName;
+}
+
+type RandomizableCards = Set;
+
 @Injectable({
     providedIn: 'root',
 })
 export class ShuffleService {
-    configuration: Configuration = {
-        expansions: [],
-        options: { events: 0, landmarks: 0, projects: 0, ways: 0 },
-        costDistribution: new Map(),
-    };
+    private shuffleSetTriggerSubject = new Subject<void>();
+    private shuffleSingleCardTriggerSubject = new Subject<SingleCardShuffle>();
 
-    set: Set = {
-        cards: [],
-        events: [],
-        landmarks: [],
-        projects: [],
-        ways: [],
-    };
-
-    private mapping: Map<SetPartName, CardType> = new Map([
-        ['events', CardType.Event],
-        ['landmarks', CardType.Landmark],
-        ['projects', CardType.Project],
-        ['ways', CardType.Way],
-    ]);
+    private randomizableCards$: Observable<RandomizableCards> = forkJoin({
+        cards: this.cardService.findRandomizableKingdomCards(),
+        events: this.cardService.findByCardType(CardType.Event),
+        landmarks: this.cardService.findByCardType(CardType.Landmark),
+        projects: this.cardService.findByCardType(CardType.Project),
+        ways: this.cardService.findByCardType(CardType.Way),
+    });
 
     constructor(
         private cardService: CardService,
@@ -43,83 +40,126 @@ export class ShuffleService {
         private mathService: MathService,
         private setService: SetService,
     ) {
-        this.configurationService.configuration$.subscribe(
-            (configuration: Configuration) => (this.configuration = configuration),
+        this.initShuffleSet().subscribe();
+        this.initShuffleSingleCard().subscribe();
+    }
+
+    private initShuffleSet(): Observable<void> {
+        return this.shuffleSetTriggerSubject.pipe(
+            withLatestFrom(
+                this.randomizableCards$,
+                this.configurationService.configuration$,
+                (_, randomizableCards: RandomizableCards, configuration: Configuration) =>
+                    this.pickRandomSet(randomizableCards, configuration),
+            ),
+            map((set: Set) => this.setService.updateSet(set)),
         );
-
-        this.setService.set$.subscribe((set: Set) => (this.set = set));
     }
 
-    shuffleCards(): void {
-        forkJoin({
-            cards: this.shuffleKingdomCards(),
-            events: this.shuffleSpecialCards(
-                CardType.Event,
-                (configuration: Configuration) => configuration.options.events,
+    private pickRandomSet(randomizableCards: RandomizableCards, configuration: Configuration): Set {
+        return {
+            cards: this.pickRandomCards(
+                randomizableCards.cards,
+                configuration.expansions,
+                10,
+                configuration.costDistribution,
             ),
-            landmarks: this.shuffleSpecialCards(
-                CardType.Landmark,
-                (configuration: Configuration) => configuration.options.landmarks,
+            events: this.pickRandomCards(
+                randomizableCards.events,
+                configuration.expansions,
+                configuration.options.events,
             ),
-            projects: this.shuffleSpecialCards(
-                CardType.Project,
-                (configuration: Configuration) => configuration.options.projects,
+            landmarks: this.pickRandomCards(
+                randomizableCards.landmarks,
+                configuration.expansions,
+                configuration.options.landmarks,
             ),
-            ways: this.shuffleSpecialCards(
-                CardType.Way,
-                (configuration: Configuration) => configuration.options.ways,
+            projects: this.pickRandomCards(
+                randomizableCards.projects,
+                configuration.expansions,
+                configuration.options.projects,
             ),
-        }).subscribe((set: Set) => this.setService.updateSet(set));
+            ways: this.pickRandomCards(
+                randomizableCards.ways,
+                configuration.expansions,
+                configuration.options.ways,
+            ),
+        };
     }
 
-    shuffleSingleCard(card: Card, setPartName: SetPartName): void {
-        let newCard$;
-        if (setPartName === 'cards') {
-            newCard$ = this.shuffleKingdomCards(1, this.set.cards);
-        } else {
-            const cardType = this.mapping.get(setPartName) as CardType;
-            newCard$ = this.shuffleSpecialCards(
-                cardType,
-                (configuration: Configuration) => configuration.options[setPartName],
-                1,
-                this.set[setPartName],
-            );
+    private initShuffleSingleCard(): Observable<void> {
+        return this.shuffleSingleCardTriggerSubject.pipe(
+            withLatestFrom(
+                this.randomizableCards$,
+                this.configurationService.configuration$,
+                this.setService.set$,
+                (
+                    shuffle: SingleCardShuffle,
+                    randomizableCards: RandomizableCards,
+                    configuration: Configuration,
+                    currentSet: Set,
+                ) => this.pickRandomCard(shuffle, randomizableCards, configuration, currentSet),
+            ),
+            map(([oldCard, newCard, setPartName]) =>
+                this.setService.updateSingleCard(oldCard, newCard, setPartName),
+            ),
+        );
+    }
+
+    private pickRandomCard(
+        shuffle: SingleCardShuffle,
+        randomizableCards: RandomizableCards,
+        configuration: Configuration,
+        currentSet: Set,
+    ): [Card, Card, SetPartName] {
+        const costDistribution =
+            shuffle.setPartName === 'cards' ? configuration.costDistribution : undefined;
+        const newCard = this.pickRandomCards(
+            randomizableCards[shuffle.setPartName],
+            configuration.expansions,
+            1,
+            costDistribution,
+            currentSet[shuffle.setPartName],
+        )[0];
+
+        return [shuffle.card, newCard, shuffle.setPartName];
+    }
+
+    private pickRandomCards(
+        cards: Card[],
+        expansions: Expansion[],
+        amount: number,
+        costDistribution?: Map<number, number>,
+        cardsToIgnore: Card[] = [],
+    ): Card[] {
+        if (amount === 0) {
+            return [];
         }
 
-        newCard$.subscribe((cards: Card[]) => {
-            const newCard: Card = cards[0];
-            this.setService.updateSingleCard(card, newCard, setPartName);
-        });
+        cards = this.filterByExpansions(cards, expansions);
+        cards = this.excludeCardsToIgnore(cards, cardsToIgnore);
+        const weights = costDistribution
+            ? this.calculateCardWeights(cards, costDistribution)
+            : undefined;
+
+        return this.mathService.pickRandomCards(cards, amount, weights);
     }
 
-    private shuffleKingdomCards(amount = 10, cardsToIgnore: Card[] = []): Observable<Card[]> {
-        return this.cardService.findRandomizableKingdomCards().pipe(
-            map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.excludeCardsToIgnore(cards, cardsToIgnore)),
-            map((cards: Card[]) =>
-                this.mathService.pickRandomCards(cards, amount, this.calculateCardWeights(cards)),
-            ),
+    private filterByExpansions(cards: Card[], expansions: Expansion[]): Card[] {
+        return cards.filter((card: Card) =>
+            card.expansions.some((expansion: Expansion) => expansions.includes(expansion)),
         );
     }
 
-    private shuffleSpecialCards(
-        cardType: CardType,
-        getSpecialCardsFromConfiguration: (configuration: Configuration) => number,
-        amount: number | null = null,
-        cardsToIgnore: Card[] = [],
-    ): Observable<Card[]> {
-        const nonNullAmount = amount ?? getSpecialCardsFromConfiguration(this.configuration);
-        const cards$ = this.cardService.findByCardType(cardType).pipe(
-            map((cards: Card[]) => this.filterByExpansions(cards)),
-            map((cards: Card[]) => this.excludeCardsToIgnore(cards, cardsToIgnore)),
-            map((cards: Card[]) => this.mathService.pickRandomCards(cards, nonNullAmount)),
-        );
-
-        return iif(() => nonNullAmount > 0, cards$, of([]));
+    private excludeCardsToIgnore(cards: Card[], cardsToIgnore: Card[]): Card[] {
+        return cards.filter((card: Card) => !cardsToIgnore.includes(card));
     }
 
-    private calculateCardWeights(cards: Card[]): number[] | undefined {
-        if (this.configuration.costDistribution.size === 0) {
+    private calculateCardWeights(
+        cards: Card[],
+        costDistribution: Map<number, number>,
+    ): number[] | undefined {
+        if (costDistribution.size === 0) {
             return undefined;
         }
 
@@ -133,21 +173,17 @@ export class ShuffleService {
         );
 
         return cards.map((card: Card) => {
-            const costWeight = this.configuration.costDistribution.get(card.cost) ?? 0;
+            const costWeight = costDistribution.get(card.cost) ?? 0;
             const costCount = cardsAggregatedByCost.get(card.cost);
             return costCount !== undefined ? costWeight / costCount : 0;
         });
     }
 
-    private filterByExpansions(cards: Card[]): Card[] {
-        return cards.filter((card: Card) =>
-            card.expansions.some((expansion: Expansion) =>
-                this.configuration.expansions.includes(expansion),
-            ),
-        );
+    shuffleSet(): void {
+        this.shuffleSetTriggerSubject.next();
     }
 
-    private excludeCardsToIgnore(cards: Card[], cardsToIgnore: Card[]): Card[] {
-        return cards.filter((card: Card) => !cardsToIgnore.includes(card));
+    shuffleSingleCard(card: Card, setPartName: SetPartName): void {
+        this.shuffleSingleCardTriggerSubject.next({ card: card, setPartName: setPartName });
     }
 }

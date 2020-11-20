@@ -40,6 +40,6 @@ export class SetComponent implements OnInit {
     }
 
     shuffle(): void {
-        this.shuffleService.shuffleCards();
+        this.shuffleService.shuffleSet();
     }
 }
