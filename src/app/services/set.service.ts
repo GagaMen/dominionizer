@@ -12,7 +12,7 @@ export type SortingOption = 'byName' | 'byCost';
 })
 export class SetService {
     static readonly defaultSet: Set = {
-        cards: [],
+        kingdomCards: [],
         events: [],
         landmarks: [],
         projects: [],
@@ -36,7 +36,7 @@ export class SetService {
     ]).pipe(
         map(([set, groupingOption, sortingOption]: [Set, GroupingOption, SortingOption]) => {
             // TODO: implement ordering for special cards
-            set.cards.sort((firstCard: Card, secondCard: Card) =>
+            set.kingdomCards.sort((firstCard: Card, secondCard: Card) =>
                 this.sortCards(firstCard, secondCard, groupingOption, sortingOption),
             );
 

@@ -26,11 +26,11 @@ describe('SetService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
-        it('with grouping option "without" and sorting option "byName" should emit set with cards correctly ordered', () => {
+        it('with grouping option "without" and sorting option "byName" should emit set with kingdom cards correctly ordered', () => {
             const firstCard = dataFixture.createCard({ name: 'a' });
             const secondCard = dataFixture.createCard({ name: 'b' });
             const unorderedSet = dataFixture.createSet({
-                cards: [secondCard, firstCard],
+                kingdomCards: [secondCard, firstCard],
                 events: [],
                 landmarks: [],
                 projects: [],
@@ -41,7 +41,7 @@ describe('SetService', () => {
             setService.updateSet(unorderedSet);
             const expectedSet: Set = {
                 ...unorderedSet,
-                cards: [firstCard, secondCard],
+                kingdomCards: [firstCard, secondCard],
             };
             const expected$: Observable<Set> = cold('a', { a: expectedSet });
 
@@ -50,12 +50,12 @@ describe('SetService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
-        it('with grouping option "without" and sorting option "byCost" should emit set with cards correctly ordered', () => {
+        it('with grouping option "without" and sorting option "byCost" should emit set with kingdom cards correctly ordered', () => {
             const firstCard = dataFixture.createCard({ cost: 1 });
             const secondCard = dataFixture.createCard({ cost: 2, name: 'a' });
             const thirdCard = dataFixture.createCard({ cost: 2, name: 'b' });
             const unorderedSet = dataFixture.createSet({
-                cards: [thirdCard, secondCard, firstCard],
+                kingdomCards: [thirdCard, secondCard, firstCard],
                 events: [],
                 landmarks: [],
                 projects: [],
@@ -66,7 +66,7 @@ describe('SetService', () => {
             setService.updateSet(unorderedSet);
             const expectedSet: Set = {
                 ...unorderedSet,
-                cards: [firstCard, secondCard, thirdCard],
+                kingdomCards: [firstCard, secondCard, thirdCard],
             };
             const expected$: Observable<Set> = cold('a', { a: expectedSet });
 
@@ -75,14 +75,14 @@ describe('SetService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
-        it('with grouping option "byExpansion" and sorting option "byName" should emit set with cards correctly ordered', () => {
+        it('with grouping option "byExpansion" and sorting option "byName" should emit set with kingdom cards correctly ordered', () => {
             const firstExpansion = dataFixture.createExpansion({ name: 'a' });
             const secondExpansion = dataFixture.createExpansion({ name: 'b' });
             const firstCard = dataFixture.createCard({ expansions: [firstExpansion] });
             const secondCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'a' });
             const thirdCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'b' });
             const unorderedSet = dataFixture.createSet({
-                cards: [thirdCard, secondCard, firstCard],
+                kingdomCards: [thirdCard, secondCard, firstCard],
                 events: [],
                 landmarks: [],
                 projects: [],
@@ -93,7 +93,7 @@ describe('SetService', () => {
             setService.updateSet(unorderedSet);
             const expectedSet: Set = {
                 ...unorderedSet,
-                cards: [firstCard, secondCard, thirdCard],
+                kingdomCards: [firstCard, secondCard, thirdCard],
             };
             const expected$: Observable<Set> = cold('a', { a: expectedSet });
 
@@ -102,7 +102,7 @@ describe('SetService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
-        it('with grouping option "byExpansion" and sorting option "byCost" should emit set with cards correctly ordered', () => {
+        it('with grouping option "byExpansion" and sorting option "byCost" should emit set with kingdom cards correctly ordered', () => {
             const firstExpansion = dataFixture.createExpansion({ name: 'a' });
             const secondExpansion = dataFixture.createExpansion({ name: 'b' });
             const firstCard = dataFixture.createCard({ expansions: [firstExpansion] });
@@ -118,7 +118,7 @@ describe('SetService', () => {
                 name: 'b',
             });
             const unorderedSet = dataFixture.createSet({
-                cards: [fourthCard, thirdCard, secondCard, firstCard],
+                kingdomCards: [fourthCard, thirdCard, secondCard, firstCard],
                 events: [],
                 landmarks: [],
                 projects: [],
@@ -129,7 +129,7 @@ describe('SetService', () => {
             setService.updateSet(unorderedSet);
             const expectedSet: Set = {
                 ...unorderedSet,
-                cards: [firstCard, secondCard, thirdCard, fourthCard],
+                kingdomCards: [firstCard, secondCard, thirdCard, fourthCard],
             };
             const expected$: Observable<Set> = cold('a', { a: expectedSet });
 
@@ -162,7 +162,7 @@ describe('SetService', () => {
     describe('updateSet', () => {
         it('should update set', () => {
             const set = dataFixture.createSet({
-                cards: dataFixture.createCards(1),
+                kingdomCards: dataFixture.createCards(1),
                 events: [],
                 landmarks: [],
                 projects: [],
@@ -180,22 +180,22 @@ describe('SetService', () => {
     describe('updateSingleCard', () => {
         it('should update set correctly', () => {
             const initialSet = dataFixture.createSet({
-                cards: dataFixture.createCards(1),
+                kingdomCards: dataFixture.createCards(1),
                 events: [],
                 landmarks: [],
                 projects: [],
                 ways: [],
             });
             setService.updateSet(initialSet);
-            const oldCard = initialSet.cards[0];
+            const oldCard = initialSet.kingdomCards[0];
             const newCard = dataFixture.createCard();
             const expectedSet: Set = {
                 ...initialSet,
-                cards: [newCard],
+                kingdomCards: [newCard],
             };
             const expected$: Observable<Set> = cold('a', { a: expectedSet });
 
-            setService.updateSingleCard(oldCard, newCard, 'cards');
+            setService.updateSingleCard(oldCard, newCard, 'kingdomCards');
             const actual$ = setService.set$;
 
             expect(actual$).toBeObservable(expected$);

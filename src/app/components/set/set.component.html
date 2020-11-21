@@ -1,9 +1,9 @@
 <mat-accordion *ngIf="setService.set$ | async as set" multi>
     <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
-            <mat-panel-title>Cards</mat-panel-title>
+            <mat-panel-title>Kingdom Cards</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-card-list setPartName="cards" [cardList]="set.cards"></app-card-list>
+        <app-card-list setPartName="kingdomCards" [cardList]="set.kingdomCards"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.events.length > 0" expanded>

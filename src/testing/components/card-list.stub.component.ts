@@ -7,6 +7,6 @@ import { SetPartName } from 'src/app/models/set';
     template: '',
 })
 export class CardListStubComponent {
-    @Input() setPartName: SetPartName = 'cards';
+    @Input() setPartName: SetPartName = 'kingdomCards';
     @Input() cardList: Card[] = [];
 }

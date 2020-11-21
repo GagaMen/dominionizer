@@ -90,7 +90,7 @@ export class DataFixture {
 
     createSet(set: Partial<Set> = {}): Set {
         return {
-            cards: this.createCards(10),
+            kingdomCards: this.createCards(10),
             events: this.createCards(2),
             landmarks: this.createCards(2),
             projects: this.createCards(2),

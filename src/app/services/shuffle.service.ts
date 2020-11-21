@@ -27,7 +27,7 @@ export class ShuffleService {
     private shuffleSingleCardTriggerSubject = new Subject<SingleCardShuffle>();
 
     private randomizableCards$: Observable<RandomizableCards> = forkJoin({
-        cards: this.cardService.findRandomizableKingdomCards(),
+        kingdomCards: this.cardService.findRandomizableKingdomCards(),
         events: this.cardService.findByCardType(CardType.Event),
         landmarks: this.cardService.findByCardType(CardType.Landmark),
         projects: this.cardService.findByCardType(CardType.Project),
@@ -58,8 +58,8 @@ export class ShuffleService {
 
     private pickRandomSet(randomizableCards: RandomizableCards, configuration: Configuration): Set {
         return {
-            cards: this.pickRandomCards(
-                randomizableCards.cards,
+            kingdomCards: this.pickRandomCards(
+                randomizableCards.kingdomCards,
                 configuration.expansions,
                 10,
                 configuration.costDistribution,
@@ -113,7 +113,7 @@ export class ShuffleService {
         currentSet: Set,
     ): [Card, Card, SetPartName] {
         const costDistribution =
-            shuffle.setPartName === 'cards' ? configuration.costDistribution : undefined;
+            shuffle.setPartName === 'kingdomCards' ? configuration.costDistribution : undefined;
         const newCard = this.pickRandomCards(
             randomizableCards[shuffle.setPartName],
             configuration.expansions,

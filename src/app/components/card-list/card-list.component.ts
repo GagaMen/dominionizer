@@ -9,7 +9,7 @@ import { Card } from '../../models/card';
     styleUrls: ['./card-list.component.scss'],
 })
 export class CardListComponent {
-    @Input() setPartName: SetPartName = 'cards';
+    @Input() setPartName: SetPartName = 'kingdomCards';
     @Input() cardList: Card[] = [];
 
     constructor(private shuffleService: ShuffleService) {}

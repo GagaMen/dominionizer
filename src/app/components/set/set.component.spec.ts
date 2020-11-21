@@ -151,7 +151,7 @@ describe('SetComponent', () => {
             expect(actual).toBeTrue();
         });
 
-        it('should render MatExpansionPanel for cards inside MatAccordion correctly', async () => {
+        it('should render MatExpansionPanel for kingdom cards inside MatAccordion correctly', async () => {
             detectChangesAndFlush(fixture);
             const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
             const actual = (await matAccordion.getExpansionPanels())[0];
@@ -162,14 +162,14 @@ describe('SetComponent', () => {
                 .toBeTrue();
             expect(await actual.getTitle())
                 .withContext('title')
-                .toBe('Cards');
+                .toBe('Kingdom Cards');
         });
 
-        it('should render CardList for cards inside MatExpansionPanel correctly', () => {
+        it('should render CardList for kingdom cards inside MatExpansionPanel correctly', () => {
             const set = dataFixture.createSet();
             setServiceSpy.set$ = cold('--a', { a: set });
-            const expectedCardList = set.cards;
-            const expectedSetPartName: SetPartName = 'cards';
+            const expectedCardList = set.kingdomCards;
+            const expectedSetPartName: SetPartName = 'kingdomCards';
 
             detectChangesAndFlush(fixture);
             const actual = fixture.debugElement
@@ -182,7 +182,7 @@ describe('SetComponent', () => {
             expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
         });
 
-        it('with no special cards should render MatExpansionPanel only for cards', async () => {
+        it('with no special cards should render MatExpansionPanel only for kingdom cards', async () => {
             const set = dataFixture.createSet({
                 events: [],
                 landmarks: [],
