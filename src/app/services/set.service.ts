@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Card } from './../models/card';
-import { Set, SetPartName } from './../models/set';
+import { Set } from './../models/set';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -49,9 +49,9 @@ export class SetService {
         this.setSubject.next(set);
     }
 
-    updateSingleCard(oldCard: Card, newCard: Card, setPartName: SetPartName): void {
+    updateSingleCard(oldCard: Card, newCard: Card): void {
         const set = this.setSubject.value;
-        const setPart: Card[] = set[setPartName];
+        const setPart: Card[] = oldCard.isKingdomCard ? set.kingdomCards : set.specialCards;
         const cardIndex = setPart.indexOf(oldCard);
         setPart[cardIndex] = newCard;
 

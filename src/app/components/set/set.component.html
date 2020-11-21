@@ -3,14 +3,14 @@
         <mat-expansion-panel-header>
             <mat-panel-title>Kingdom Cards</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-card-list setPartName="kingdomCards" [cardList]="set.kingdomCards"></app-card-list>
+        <app-card-list [cardList]="set.kingdomCards"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.specialCards.length > 0" expanded>
         <mat-expansion-panel-header>
             <mat-panel-title>Special Cards</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-card-list setPartName="specialCards" [cardList]="set.specialCards"></app-card-list>
+        <app-card-list [cardList]="set.specialCards"></app-card-list>
     </mat-expansion-panel>
 </mat-accordion>
 

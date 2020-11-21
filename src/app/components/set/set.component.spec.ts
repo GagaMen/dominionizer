@@ -13,7 +13,6 @@ import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/ma
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CardListStubComponent } from 'src/testing/components/card-list.stub.component';
-import { SetPartName } from 'src/app/models/set';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatAccordionHarness } from '@angular/material/expansion/testing';
@@ -160,7 +159,6 @@ describe('SetComponent', () => {
             const set = dataFixture.createSet();
             setServiceSpy.set$ = cold('--a', { a: set });
             const expectedCardList = set.kingdomCards;
-            const expectedSetPartName: SetPartName = 'kingdomCards';
 
             detectChangesAndFlush(fixture);
             const actual = fixture.debugElement
@@ -170,7 +168,6 @@ describe('SetComponent', () => {
 
             expect(actual).toBeDefined();
             expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
-            expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
         });
 
         it('should render MatExpansionPanel for special cards inside MatAccordion correctly', async () => {
@@ -191,7 +188,6 @@ describe('SetComponent', () => {
             const set = dataFixture.createSet();
             setServiceSpy.set$ = cold('--a', { a: set });
             const expectedCardList = set.specialCards;
-            const expectedSetPartName: SetPartName = 'specialCards';
 
             detectChangesAndFlush(fixture);
             const actual = fixture.debugElement
@@ -201,7 +197,6 @@ describe('SetComponent', () => {
 
             expect(actual).toBeDefined();
             expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
-            expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
         });
 
         it('with no special cards should render MatExpansionPanel only for kingdom cards', async () => {

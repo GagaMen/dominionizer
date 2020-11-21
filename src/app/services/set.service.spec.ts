@@ -163,9 +163,9 @@ describe('SetService', () => {
     });
 
     describe('updateSingleCard', () => {
-        it('should update set correctly', () => {
+        it('with card is kingdom card should update set correctly', () => {
             const initialSet = dataFixture.createSet({
-                kingdomCards: dataFixture.createCards(1),
+                kingdomCards: dataFixture.createCards(1, { isKingdomCard: true }),
                 specialCards: [],
             });
             setService.updateSet(initialSet);
@@ -177,7 +177,27 @@ describe('SetService', () => {
             };
             const expected$: Observable<Set> = cold('a', { a: expectedSet });
 
-            setService.updateSingleCard(oldCard, newCard, 'kingdomCards');
+            setService.updateSingleCard(oldCard, newCard);
+            const actual$ = setService.set$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with card is special card should update set correctly', () => {
+            const initialSet = dataFixture.createSet({
+                kingdomCards: [],
+                specialCards: dataFixture.createCards(1, { isKingdomCard: false }),
+            });
+            setService.updateSet(initialSet);
+            const oldCard = initialSet.specialCards[0];
+            const newCard = dataFixture.createCard();
+            const expectedSet: Set = {
+                ...initialSet,
+                specialCards: [newCard],
+            };
+            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+
+            setService.updateSingleCard(oldCard, newCard);
             const actual$ = setService.set$;
 
             expect(actual$).toBeObservable(expected$);

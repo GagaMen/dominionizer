@@ -38,24 +38,12 @@ describe('CardListComponent', () => {
     });
 
     describe('onReshuffle', () => {
-        it('with setPartName is not given should shuffle given card for "kingdomCards" set', () => {
+        it('should shuffle given card', () => {
             const card = dataFixture.createCard();
 
             component.onReshuffle(card);
 
-            expect(shuffleServiceSpy.shuffleSingleCard).toHaveBeenCalledWith(card, 'kingdomCards');
-        });
-
-        it('with setPartName is given should shuffle given card for corresponding set', () => {
-            const card = dataFixture.createCard();
-            component.setPartName = 'specialCards';
-
-            component.onReshuffle(card);
-
-            expect(shuffleServiceSpy.shuffleSingleCard).toHaveBeenCalledWith(
-                card,
-                component.setPartName,
-            );
+            expect(shuffleServiceSpy.shuffleSingleCard).toHaveBeenCalledWith(card);
         });
     });
 

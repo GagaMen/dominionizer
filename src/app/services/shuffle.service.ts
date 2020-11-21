@@ -1,6 +1,5 @@
 import { SetService } from 'src/app/services/set.service';
 import { CardType } from 'src/app/models/card-type';
-import { SetPartName } from './../models/set';
 import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
 import { Injectable } from '@angular/core';
@@ -11,11 +10,6 @@ import { Expansion } from '../models/expansion';
 import { MathService } from './math.service';
 import { CardService } from './card.service';
 import { Set } from '../models/set';
-
-export interface SingleCardShuffle {
-    card: Card;
-    setPartName: SetPartName;
-}
 
 interface RandomizableCards {
     kingdomCards: Card[];
@@ -30,7 +24,7 @@ interface RandomizableCards {
 })
 export class ShuffleService {
     private shuffleSetTriggerSubject = new Subject<void>();
-    private shuffleSingleCardTriggerSubject = new Subject<SingleCardShuffle>();
+    private shuffleSingleCardTriggerSubject = new Subject<Card>();
 
     private randomizableCards$: Observable<RandomizableCards> = forkJoin({
         kingdomCards: this.cardService.findRandomizableKingdomCards(),
@@ -102,36 +96,37 @@ export class ShuffleService {
                 this.configurationService.configuration$,
                 this.setService.set$,
                 (
-                    shuffle: SingleCardShuffle,
+                    oldCard: Card,
                     randomizableCards: RandomizableCards,
                     configuration: Configuration,
                     currentSet: Set,
-                ) => this.pickRandomCard(shuffle, randomizableCards, configuration, currentSet),
+                ) => this.pickRandomCard(oldCard, randomizableCards, configuration, currentSet),
             ),
-            map(([oldCard, newCard, setPartName]) =>
-                this.setService.updateSingleCard(oldCard, newCard, setPartName),
-            ),
+            map(([oldCard, newCard]) => this.setService.updateSingleCard(oldCard, newCard)),
         );
     }
 
     private pickRandomCard(
-        shuffle: SingleCardShuffle,
+        oldCard: Card,
         randomizableCards: RandomizableCards,
         configuration: Configuration,
         currentSet: Set,
-    ): [Card, Card, SetPartName] {
-        const candidates = this.determineCandidatesFromOldCard(shuffle.card, randomizableCards);
-        const costDistribution =
-            shuffle.setPartName === 'kingdomCards' ? configuration.costDistribution : undefined;
+    ): [Card, Card] {
+        const candidates = this.determineCandidatesFromOldCard(oldCard, randomizableCards);
+        const costDistribution = oldCard.isKingdomCard ? configuration.costDistribution : undefined;
+        const cardsToIgnore = oldCard.isKingdomCard
+            ? currentSet.kingdomCards
+            : currentSet.specialCards;
+
         const newCard = this.pickRandomCards(
             candidates,
             configuration.expansions,
             1,
             costDistribution,
-            currentSet[shuffle.setPartName],
+            cardsToIgnore,
         )[0];
 
-        return [shuffle.card, newCard, shuffle.setPartName];
+        return [oldCard, newCard];
     }
 
     private determineCandidatesFromOldCard(
@@ -212,7 +207,7 @@ export class ShuffleService {
         this.shuffleSetTriggerSubject.next();
     }
 
-    shuffleSingleCard(card: Card, setPartName: SetPartName): void {
-        this.shuffleSingleCardTriggerSubject.next({ card: card, setPartName: setPartName });
+    shuffleSingleCard(card: Card): void {
+        this.shuffleSingleCardTriggerSubject.next(card);
     }
 }
