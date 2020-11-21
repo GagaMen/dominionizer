@@ -13,10 +13,7 @@ export type SortingOption = 'byName' | 'byCost';
 export class SetService {
     static readonly defaultSet: Set = {
         kingdomCards: [],
-        events: [],
-        landmarks: [],
-        projects: [],
-        ways: [],
+        specialCards: [],
     };
     static readonly defaultGroupingOption: GroupingOption = 'without';
     static readonly defaultSortingOption: SortingOption = 'byName';

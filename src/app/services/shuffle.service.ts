@@ -17,7 +17,13 @@ export interface SingleCardShuffle {
     setPartName: SetPartName;
 }
 
-type RandomizableCards = Set;
+interface RandomizableCards {
+    kingdomCards: Card[];
+    events: Card[];
+    landmarks: Card[];
+    projects: Card[];
+    ways: Card[];
+}
 
 @Injectable({
     providedIn: 'root',
@@ -64,26 +70,28 @@ export class ShuffleService {
                 10,
                 configuration.costDistribution,
             ),
-            events: this.pickRandomCards(
-                randomizableCards.events,
-                configuration.expansions,
-                configuration.options.events,
-            ),
-            landmarks: this.pickRandomCards(
-                randomizableCards.landmarks,
-                configuration.expansions,
-                configuration.options.landmarks,
-            ),
-            projects: this.pickRandomCards(
-                randomizableCards.projects,
-                configuration.expansions,
-                configuration.options.projects,
-            ),
-            ways: this.pickRandomCards(
-                randomizableCards.ways,
-                configuration.expansions,
-                configuration.options.ways,
-            ),
+            specialCards: [
+                ...this.pickRandomCards(
+                    randomizableCards.events,
+                    configuration.expansions,
+                    configuration.options.events,
+                ),
+                ...this.pickRandomCards(
+                    randomizableCards.landmarks,
+                    configuration.expansions,
+                    configuration.options.landmarks,
+                ),
+                ...this.pickRandomCards(
+                    randomizableCards.projects,
+                    configuration.expansions,
+                    configuration.options.projects,
+                ),
+                ...this.pickRandomCards(
+                    randomizableCards.ways,
+                    configuration.expansions,
+                    configuration.options.ways,
+                ),
+            ],
         };
     }
 
@@ -112,10 +120,11 @@ export class ShuffleService {
         configuration: Configuration,
         currentSet: Set,
     ): [Card, Card, SetPartName] {
+        const candidates = this.determineCandidatesFromOldCard(shuffle.card, randomizableCards);
         const costDistribution =
             shuffle.setPartName === 'kingdomCards' ? configuration.costDistribution : undefined;
         const newCard = this.pickRandomCards(
-            randomizableCards[shuffle.setPartName],
+            candidates,
             configuration.expansions,
             1,
             costDistribution,
@@ -125,8 +134,28 @@ export class ShuffleService {
         return [shuffle.card, newCard, shuffle.setPartName];
     }
 
+    private determineCandidatesFromOldCard(
+        oldCard: Card,
+        randomizableCards: RandomizableCards,
+    ): Card[] {
+        const candidatesPerCardType: Map<CardType, Card[]> = new Map([
+            [CardType.Event, randomizableCards.events],
+            [CardType.Landmark, randomizableCards.landmarks],
+            [CardType.Project, randomizableCards.projects],
+            [CardType.Way, randomizableCards.ways],
+        ]);
+
+        for (const [cardType, candidates] of candidatesPerCardType) {
+            if (oldCard.types.some((type) => type === cardType)) {
+                return candidates;
+            }
+        }
+
+        return randomizableCards.kingdomCards;
+    }
+
     private pickRandomCards(
-        cards: Card[],
+        candidates: Card[],
         expansions: Expansion[],
         amount: number,
         costDistribution?: Map<number, number>,
@@ -136,13 +165,13 @@ export class ShuffleService {
             return [];
         }
 
-        cards = this.filterByExpansions(cards, expansions);
-        cards = this.excludeCardsToIgnore(cards, cardsToIgnore);
+        candidates = this.filterByExpansions(candidates, expansions);
+        candidates = this.excludeCardsToIgnore(candidates, cardsToIgnore);
         const weights = costDistribution
-            ? this.calculateCardWeights(cards, costDistribution)
+            ? this.calculateCardWeights(candidates, costDistribution)
             : undefined;
 
-        return this.mathService.pickRandomCards(cards, amount, weights);
+        return this.mathService.pickRandomCards(candidates, amount, weights);
     }
 
     private filterByExpansions(cards: Card[], expansions: Expansion[]): Card[] {

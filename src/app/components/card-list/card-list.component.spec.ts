@@ -48,7 +48,7 @@ describe('CardListComponent', () => {
 
         it('with setPartName is given should shuffle given card for corresponding set', () => {
             const card = dataFixture.createCard();
-            component.setPartName = 'events';
+            component.setPartName = 'specialCards';
 
             component.onReshuffle(card);
 

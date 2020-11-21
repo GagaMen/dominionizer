@@ -13,17 +13,12 @@ import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/ma
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CardListStubComponent } from 'src/testing/components/card-list.stub.component';
-import { SetPartName, Set } from 'src/app/models/set';
+import { SetPartName } from 'src/app/models/set';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatAccordionHarness } from '@angular/material/expansion/testing';
 import { detectChangesAndFlush } from 'src/testing/utilities';
 import { GroupingAndSortingMenuStubComponent } from 'src/testing/components/grouping-and-sorting-menu.stub.component';
-
-interface SetPartDescription {
-    name: SetPartName;
-    label: string;
-}
 
 describe('SetComponent', () => {
     let component: SetComponent;
@@ -182,13 +177,39 @@ describe('SetComponent', () => {
             expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
         });
 
+        it('should render MatExpansionPanel for special cards inside MatAccordion correctly', async () => {
+            detectChangesAndFlush(fixture);
+            const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
+            const actual = (await matAccordion.getExpansionPanels())[1];
+
+            expect(actual).toBeDefined();
+            expect(await actual.isExpanded())
+                .withContext('expanded')
+                .toBeTrue();
+            expect(await actual.getTitle())
+                .withContext('title')
+                .toBe('Special Cards');
+        });
+
+        it('should render CardList for special cards inside MatExpansionPanel correctly', () => {
+            const set = dataFixture.createSet();
+            setServiceSpy.set$ = cold('--a', { a: set });
+            const expectedCardList = set.specialCards;
+            const expectedSetPartName: SetPartName = 'specialCards';
+
+            detectChangesAndFlush(fixture);
+            const actual = fixture.debugElement
+                .queryAll(By.directive(MatExpansionPanel))[1]
+                .query(By.directive(CardListStubComponent))
+                .injector.get(CardListStubComponent);
+
+            expect(actual).toBeDefined();
+            expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
+            expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
+        });
+
         it('with no special cards should render MatExpansionPanel only for kingdom cards', async () => {
-            const set = dataFixture.createSet({
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
-            });
+            const set = dataFixture.createSet({ specialCards: [] });
             setServiceSpy.set$ = cold('--a', { a: set });
 
             detectChangesAndFlush(fixture);
@@ -196,58 +217,6 @@ describe('SetComponent', () => {
             const actual = await matAccordion.getExpansionPanels();
 
             expect(actual.length).toBe(1);
-        });
-
-        const specialSetParts: SetPartDescription[] = [
-            { name: 'events', label: 'Events' },
-            { name: 'landmarks', label: 'Landmarks' },
-            { name: 'projects', label: 'Projects' },
-            { name: 'ways', label: 'Ways' },
-        ];
-        specialSetParts.forEach((specialSetPart: SetPartDescription) => {
-            describe(`with set contains ${specialSetPart.name}`, () => {
-                let set: Set;
-
-                beforeEach(() => {
-                    set = dataFixture.createSet({
-                        events: [],
-                        landmarks: [],
-                        projects: [],
-                        ways: [],
-                    });
-                    set[specialSetPart.name] = dataFixture.createCards();
-                    setServiceSpy.set$ = cold('--a', { a: set });
-                });
-
-                it(`should render MatExpansionPanel for ${specialSetPart.name} inside MatAccordion correctly`, async () => {
-                    detectChangesAndFlush(fixture);
-                    const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
-                    const actual = (await matAccordion.getExpansionPanels())[1];
-
-                    expect(actual).toBeDefined();
-                    expect(await actual.isExpanded())
-                        .withContext('expanded')
-                        .toBeTrue();
-                    expect(await actual.getTitle())
-                        .withContext('title')
-                        .toBe(specialSetPart.label);
-                });
-
-                it(`should render CardList for ${specialSetPart.name} inside MatExpansionPanel correctly`, () => {
-                    const expectedCardList = set[specialSetPart.name];
-                    const expectedSetPartName: SetPartName = specialSetPart.name;
-
-                    detectChangesAndFlush(fixture);
-                    const actual = fixture.debugElement
-                        .queryAll(By.directive(MatExpansionPanel))[1]
-                        .query(By.directive(CardListStubComponent))
-                        .injector.get(CardListStubComponent);
-
-                    expect(actual).toBeDefined();
-                    expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
-                    expect(actual.setPartName).withContext('setPartName').toBe(expectedSetPartName);
-                });
-            });
         });
     });
 });

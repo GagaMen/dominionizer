@@ -6,32 +6,11 @@
         <app-card-list setPartName="kingdomCards" [cardList]="set.kingdomCards"></app-card-list>
     </mat-expansion-panel>
 
-    <mat-expansion-panel *ngIf="set.events.length > 0" expanded>
+    <mat-expansion-panel *ngIf="set.specialCards.length > 0" expanded>
         <mat-expansion-panel-header>
-            <mat-panel-title>Events</mat-panel-title>
+            <mat-panel-title>Special Cards</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-card-list setPartName="events" [cardList]="set.events"></app-card-list>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel *ngIf="set.landmarks.length > 0" expanded>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Landmarks</mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-card-list setPartName="landmarks" [cardList]="set.landmarks"></app-card-list>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel *ngIf="set.projects.length > 0" expanded>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Projects</mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-card-list setPartName="projects" [cardList]="set.projects"></app-card-list>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel *ngIf="set.ways.length > 0" expanded>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Ways</mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-card-list setPartName="ways" [cardList]="set.ways"></app-card-list>
+        <app-card-list setPartName="specialCards" [cardList]="set.specialCards"></app-card-list>
     </mat-expansion-panel>
 </mat-accordion>
 

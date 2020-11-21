@@ -1,11 +1,8 @@
 import { Card } from './card';
 
-export type SetPartName = 'kingdomCards' | 'events' | 'landmarks' | 'projects' | 'ways';
+export type SetPartName = 'kingdomCards' | 'specialCards';
 
 export interface Set {
     kingdomCards: Card[];
-    events: Card[];
-    landmarks: Card[];
-    projects: Card[];
-    ways: Card[];
+    specialCards: Card[];
 }

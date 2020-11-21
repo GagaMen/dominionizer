@@ -31,10 +31,7 @@ describe('SetService', () => {
             const secondCard = dataFixture.createCard({ name: 'b' });
             const unorderedSet = dataFixture.createSet({
                 kingdomCards: [secondCard, firstCard],
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
+                specialCards: [],
             });
             setService.updateGroupingOption('without');
             setService.updateSortingOption('byName');
@@ -56,10 +53,7 @@ describe('SetService', () => {
             const thirdCard = dataFixture.createCard({ cost: 2, name: 'b' });
             const unorderedSet = dataFixture.createSet({
                 kingdomCards: [thirdCard, secondCard, firstCard],
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
+                specialCards: [],
             });
             setService.updateGroupingOption('without');
             setService.updateSortingOption('byCost');
@@ -83,10 +77,7 @@ describe('SetService', () => {
             const thirdCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'b' });
             const unorderedSet = dataFixture.createSet({
                 kingdomCards: [thirdCard, secondCard, firstCard],
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
+                specialCards: [],
             });
             setService.updateGroupingOption('byExpansion');
             setService.updateSortingOption('byName');
@@ -119,10 +110,7 @@ describe('SetService', () => {
             });
             const unorderedSet = dataFixture.createSet({
                 kingdomCards: [fourthCard, thirdCard, secondCard, firstCard],
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
+                specialCards: [],
             });
             setService.updateGroupingOption('byExpansion');
             setService.updateSortingOption('byCost');
@@ -163,10 +151,7 @@ describe('SetService', () => {
         it('should update set', () => {
             const set = dataFixture.createSet({
                 kingdomCards: dataFixture.createCards(1),
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
+                specialCards: [],
             });
             const expected$: Observable<Set> = cold('a', { a: set });
 
@@ -181,10 +166,7 @@ describe('SetService', () => {
         it('should update set correctly', () => {
             const initialSet = dataFixture.createSet({
                 kingdomCards: dataFixture.createCards(1),
-                events: [],
-                landmarks: [],
-                projects: [],
-                ways: [],
+                specialCards: [],
             });
             setService.updateSet(initialSet);
             const oldCard = initialSet.kingdomCards[0];
