@@ -8,20 +8,20 @@ import { SpyObj } from 'src/testing/spy-obj';
 import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testing';
 import { MatIconHarness } from '@angular/material/icon/testing';
 
-import { GroupingAndSortingMenuComponent } from './grouping-and-sorting-menu.component';
+import { SetOrderingMenuComponent } from './set-ordering-menu.component';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { GroupingAndSortingMenuHostComponent } from 'src/testing/components/grouping-and-sorting-menu.host.component';
+import { SetOrderingMenuHostComponent } from 'src/testing/components/set-ordering-menu.host.component';
 
-describe('GroupingAndSortingMenuComponent', () => {
-    let component: GroupingAndSortingMenuComponent;
-    let fixture: ComponentFixture<GroupingAndSortingMenuComponent>;
+describe('SetOrderingMenuComponent', () => {
+    let component: SetOrderingMenuComponent;
+    let fixture: ComponentFixture<SetOrderingMenuComponent>;
     let setServiceSpy: SpyObj<SetService>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [MatDividerModule, MatIconModule, MatMenuModule, NoopAnimationsModule],
-            declarations: [GroupingAndSortingMenuComponent, GroupingAndSortingMenuHostComponent],
+            declarations: [SetOrderingMenuComponent, SetOrderingMenuHostComponent],
             providers: [
                 {
                     provide: SetService,
@@ -35,7 +35,7 @@ describe('GroupingAndSortingMenuComponent', () => {
 
         setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
 
-        fixture = TestBed.createComponent(GroupingAndSortingMenuComponent);
+        fixture = TestBed.createComponent(SetOrderingMenuComponent);
         component = fixture.componentInstance;
     });
 
@@ -69,8 +69,8 @@ describe('GroupingAndSortingMenuComponent', () => {
         let matMenu: MatMenuHarness;
 
         async function initMenu(): Promise<void> {
-            const fixture = TestBed.createComponent(GroupingAndSortingMenuHostComponent);
-            component = fixture.componentInstance.menu as GroupingAndSortingMenuComponent;
+            const fixture = TestBed.createComponent(SetOrderingMenuHostComponent);
+            component = fixture.componentInstance.menu as SetOrderingMenuComponent;
             const harnessLoader = TestbedHarnessEnvironment.loader(fixture);
             matMenu = await harnessLoader.getHarness(MatMenuHarness);
             await matMenu.open();

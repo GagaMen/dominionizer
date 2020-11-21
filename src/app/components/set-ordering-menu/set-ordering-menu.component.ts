@@ -3,11 +3,11 @@ import { MatMenu } from '@angular/material/menu';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 
 @Component({
-    selector: 'app-grouping-and-sorting-menu',
-    templateUrl: './grouping-and-sorting-menu.component.html',
-    styleUrls: ['./grouping-and-sorting-menu.component.scss'],
+    selector: 'app-set-ordering-menu',
+    templateUrl: './set-ordering-menu.component.html',
+    styleUrls: ['./set-ordering-menu.component.scss'],
 })
-export class GroupingAndSortingMenuComponent {
+export class SetOrderingMenuComponent {
     @ViewChild(MatMenu, { static: true }) matMenu?: MatMenu;
 
     constructor(public setService: SetService) {}

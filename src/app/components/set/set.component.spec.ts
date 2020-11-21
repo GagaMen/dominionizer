@@ -18,7 +18,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatAccordionHarness } from '@angular/material/expansion/testing';
 import { detectChangesAndFlush } from 'src/testing/utilities';
-import { GroupingAndSortingMenuStubComponent } from 'src/testing/components/grouping-and-sorting-menu.stub.component';
+import { SetOrderingMenuStubComponent } from 'src/testing/components/set-ordering-menu.stub.component';
 
 describe('SetComponent', () => {
     let component: SetComponent;
@@ -32,11 +32,7 @@ describe('SetComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [MatExpansionModule, NoopAnimationsModule],
-            declarations: [
-                SetComponent,
-                CardListStubComponent,
-                GroupingAndSortingMenuStubComponent,
-            ],
+            declarations: [SetComponent, CardListStubComponent, SetOrderingMenuStubComponent],
             providers: [
                 {
                     provide: ShuffleService,
@@ -69,9 +65,9 @@ describe('SetComponent', () => {
         component = fixture.componentInstance;
     });
 
-    describe('groupingAndSortingMenu', () => {
+    describe('setOrderingMenu', () => {
         it('should be resolved before change detection runs', () => {
-            expect(component.groupingAndSortingMenu).toBeDefined();
+            expect(component.setOrderingMenu).toBeDefined();
         });
     });
 
@@ -87,7 +83,7 @@ describe('SetComponent', () => {
         it('should update AppBarConfiguration correctly', () => {
             const stubMatMenu: MatMenu = {} as MatMenu;
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            component.groupingAndSortingMenu!.matMenu = stubMatMenu;
+            component.setOrderingMenu!.matMenu = stubMatMenu;
             const configuration = jasmine.objectContaining<AppBarConfiguration>({
                 navigationAction: 'back',
                 actions: [
