@@ -32,9 +32,11 @@ export class SetService {
         this.sortingOptionSubject,
     ]).pipe(
         map(([set, groupingOption, sortingOption]: [Set, GroupingOption, SortingOption]) => {
-            // TODO: implement ordering for special cards
             set.kingdomCards.sort((firstCard: Card, secondCard: Card) =>
-                this.sortCards(firstCard, secondCard, groupingOption, sortingOption),
+                SetService.orderCards(firstCard, secondCard, groupingOption, sortingOption),
+            );
+            set.specialCards.sort((firstCard: Card, secondCard: Card) =>
+                SetService.orderCards(firstCard, secondCard, groupingOption, sortingOption),
             );
 
             return set;
@@ -45,28 +47,7 @@ export class SetService {
     > = this.groupingOptionSubject.asObservable();
     readonly sortingOption$: Observable<SortingOption> = this.sortingOptionSubject.asObservable();
 
-    updateSet(set: Set): void {
-        this.setSubject.next(set);
-    }
-
-    updateSingleCard(oldCard: Card, newCard: Card): void {
-        const set = this.setSubject.value;
-        const setPart: Card[] = oldCard.isKingdomCard ? set.kingdomCards : set.specialCards;
-        const cardIndex = setPart.indexOf(oldCard);
-        setPart[cardIndex] = newCard;
-
-        this.setSubject.next(set);
-    }
-
-    updateGroupingOption(groupingOption: GroupingOption): void {
-        this.groupingOptionSubject.next(groupingOption);
-    }
-
-    updateSortingOption(sortingOption: SortingOption): void {
-        this.sortingOptionSubject.next(sortingOption);
-    }
-
-    private sortCards(
+    static orderCards(
         firstCard: Card,
         secondCard: Card,
         groupingOption: GroupingOption,
@@ -88,5 +69,26 @@ export class SetService {
             case 'byName':
                 return firstCard.name.localeCompare(secondCard.name);
         }
+    }
+
+    updateSet(set: Set): void {
+        this.setSubject.next(set);
+    }
+
+    updateSingleCard(oldCard: Card, newCard: Card): void {
+        const set = this.setSubject.value;
+        const setPart: Card[] = oldCard.isKingdomCard ? set.kingdomCards : set.specialCards;
+        const cardIndex = setPart.indexOf(oldCard);
+        setPart[cardIndex] = newCard;
+
+        this.setSubject.next(set);
+    }
+
+    updateGroupingOption(groupingOption: GroupingOption): void {
+        this.groupingOptionSubject.next(groupingOption);
+    }
+
+    updateSortingOption(sortingOption: SortingOption): void {
+        this.sortingOptionSubject.next(sortingOption);
     }
 }

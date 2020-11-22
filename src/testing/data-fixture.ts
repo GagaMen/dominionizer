@@ -6,6 +6,7 @@ import { Card } from 'src/app/models/card';
 import { CardType } from 'src/app/models/card-type';
 import { Configuration } from 'src/app/models/configuration';
 import { Set } from 'src/app/models/set';
+import { GroupingOption, SortingOption } from 'src/app/services/set.service';
 
 export class DataFixture {
     private chance: Chance.Chance = new Chance();
@@ -94,6 +95,14 @@ export class DataFixture {
             specialCards: this.createCards(2),
             ...set,
         };
+    }
+
+    createGroupingOption(): GroupingOption {
+        return this.chance.pickone<GroupingOption>(['without', 'byExpansion']);
+    }
+
+    createSortingOption(): SortingOption {
+        return this.chance.pickone<SortingOption>(['byName', 'byCost']);
     }
 
     createAppBarConfiguration(
