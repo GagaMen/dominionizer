@@ -29,6 +29,8 @@ import { SetComponent } from './components/set/set.component';
 import { ExpansionSelectComponent } from './components/expansion-select/expansion-select.component';
 import { SpecialCardSelectComponent } from './components/special-card-select/special-card-select.component';
 import { SetOrderingMenuComponent } from './components/set-ordering-menu/set-ordering-menu.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -64,6 +66,7 @@ import { SetOrderingMenuComponent } from './components/set-ordering-menu/set-ord
         MatRadioModule,
         FormsModule,
         AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [],
     bootstrap: [AppComponent],

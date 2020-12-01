@@ -57,7 +57,9 @@
                                     "maximumWarning": "6kb"
                                 }
                             ],
-                            "baseHref": "https://gagamen.github.io/dominionizer/"
+                            "baseHref": "/dominionizer/",
+                            "serviceWorker": true,
+                            "ngswConfigPath": "ngsw-config.json"
                         }
                     }
                 },
