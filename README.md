@@ -1,29 +1,34 @@
-# Dominionizer
+# ![Dominionizer](/src/assets/logo/logo.svg)
 
 [![Build Status](https://travis-ci.com/GagaMen/dominionizer.svg?branch=master)](https://travis-ci.com/GagaMen/dominionizer)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
+This project contains the source code of the web app Dominionizer, which is a set generator for the card game [Dominion](<https://en.wikipedia.org/wiki/Dominion_(card_game)>) from [Rio Grande Games](https://www.riograndegames.com/).
 
-## Development server
+## Get Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Install and start the app locally:
 
-## Code scaffolding
+```bash
+npm install
+npm start
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Contributing
 
-## Build
+At the moment we don't accept PRs until we release our first version of the app. The first release is planned to be before end of 2020.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Special Tanks
 
-## Running unit tests
+Firstly, we want to thank Donald X. Vaccarino, the father of Dominion, and [Rio Grande Games](https://www.riograndegames.com/) for creating and publishing this game we love to play ourselves.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+We also want to thank [@sumpfork](https://github.com/sumpfork) and all the contributors of [dominiontabs](https://github.com/sumpfork/dominiontabs), which is a divider generator you can use to build your custom Dominion box. They maintain an exhaustive dataset about all dominion cards, that we use as data source for Dominionizer.
 
-## Running end-to-end tests
+## License
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Copyright (C) 2020 GagaMen, Tobias Dimmel and contributors
 
-## Further help
+This program is free software: you can redistribute it and/or modify it under the terms of the [GNU Affero General Public License](/LICENSE) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+**Exceptions:** The game Dominion and all its expansions are games published by Rio Grande Games. Rio Grande Games holds all rights to these games, and all the text and images used in this project that stem from these games, namely all images and text from rules and/or cards. These are used here with permission from Rio Grande Games under the condition that they not be used for commercial purposes. You must obtain separate permission from Rio Grande Games before re-using these images and texts in any other context.
