@@ -162,9 +162,7 @@ export class ShuffleService {
 
         candidates = this.filterByExpansions(candidates, expansions);
         candidates = this.excludeCardsToIgnore(candidates, cardsToIgnore);
-        const weights = costDistribution
-            ? this.calculateCardWeights(candidates, costDistribution)
-            : undefined;
+        const weights = this.calculateCardWeights(candidates, costDistribution);
 
         return this.mathService.pickRandomCards(candidates, amount, weights);
     }
@@ -181,8 +179,11 @@ export class ShuffleService {
 
     private calculateCardWeights(
         cards: Card[],
-        costDistribution: Map<number, number>,
+        costDistribution?: Map<number, number>,
     ): number[] | undefined {
+        if (!costDistribution) {
+            return undefined;
+        }
         if (costDistribution.size === 0) {
             return undefined;
         }
@@ -198,8 +199,8 @@ export class ShuffleService {
 
         return cards.map((card: Card) => {
             const costWeight = costDistribution.get(card.cost) ?? 0;
-            const costCount = cardsAggregatedByCost.get(card.cost);
-            return costCount !== undefined ? costWeight / costCount : 0;
+            const costCount = cardsAggregatedByCost.get(card.cost) as number;
+            return costWeight / costCount;
         });
     }
 
