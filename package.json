@@ -2,11 +2,11 @@
     "name": "dominionizer",
     "version": "0.0.0",
     "scripts": {
-        "ng": "ng",
         "start": "ng serve",
         "start:prod": "npm run build && http-server -p 8080 -o ./dominionizer -c-1 ./dist",
         "build": "ng build --prod",
         "test": "ng test",
+        "test:coverage": "npm run test -- --no-watch --code-coverage",
         "eslint": "eslint . --ignore-path .gitignore --ext .ts,.js,.json,.component.html",
         "stylelint": "stylelint \"**/*.scss\" --ignore-path .gitignore --syntax scss --cache",
         "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
