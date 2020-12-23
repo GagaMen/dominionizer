@@ -5,13 +5,14 @@ mat-divider {
 form {
     padding-top: 0.625rem;
 }
+ul {
+    list-style: none;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
 
-mat-slide-toggle {
-    display: block;
-
-    + mat-slide-toggle {
-        margin-top: 0.3rem;
-    }
+li {
+    margin-top: 0.3rem;
 }
 
 .form-actions {

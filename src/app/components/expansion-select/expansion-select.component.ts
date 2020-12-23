@@ -1,9 +1,8 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import {
     FormGroup,
     FormBuilder,
     FormArray,
-    FormControl,
     ValidationErrors,
     AbstractControl,
 } from '@angular/forms';
@@ -16,8 +15,8 @@ import { ExpansionService } from '../../services/expansion.service';
     templateUrl: './expansion-select.component.html',
     styleUrls: ['./expansion-select.component.scss'],
 })
-export class ExpansionSelectComponent {
-    @Output() submitForm: EventEmitter<never> = new EventEmitter<never>();
+export class ExpansionSelectComponent implements OnInit {
+    @Output() submitForm: EventEmitter<void> = new EventEmitter<void>();
     expansions: Expansion[] = [];
     formGroup: FormGroup = new FormGroup({});
 
@@ -25,13 +24,7 @@ export class ExpansionSelectComponent {
         private configurationService: ConfigurationService,
         private expansionService: ExpansionService,
         private formBuilder: FormBuilder,
-    ) {
-        this.expansionService.expansions$.subscribe((expansions: Expansion[]) => {
-            this.expansions = expansions;
-            this.buildFormGroup();
-            this.initializeToggleBehaviour();
-        });
-    }
+    ) {}
 
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
         const controlValues: boolean[] = Object.values(control.value);
@@ -41,27 +34,34 @@ export class ExpansionSelectComponent {
         return result ? null : { minSelect: { value: control.value } };
     }
 
+    ngOnInit(): void {
+        this.expansionService.expansions$.subscribe((expansions: Expansion[]) => {
+            this.expansions = expansions;
+            this.buildFormGroup();
+            this.initializeToggleBehaviour();
+        });
+    }
+
     private buildFormGroup(): void {
         this.formGroup = this.formBuilder.group({
-            expansions: new FormArray(
-                this.expansions.map(() => new FormControl(false)),
+            all: false,
+            expansions: this.formBuilder.array(
+                this.expansions.map(() => this.formBuilder.control(false)),
                 ExpansionSelectComponent.validateMinSelect,
             ),
-            selectAll: new FormControl(false),
         });
     }
 
     private initializeToggleBehaviour(): void {
-        this.formGroup.get('selectAll')?.valueChanges.subscribe((bool) => {
+        this.formGroup.get('all')?.valueChanges.subscribe((value: boolean) => {
             const expansions = this.formGroup.get('expansions') as FormArray;
-            expansions.patchValue(Array(expansions.length).fill(bool), { emitEvent: false });
+            const expansionsPatch = new Array(expansions.length).fill(value);
+            expansions.patchValue(expansionsPatch, { emitEvent: false });
         });
 
-        this.formGroup.get('expansions')?.valueChanges.subscribe((val) => {
-            const allSelected = val.every((bool: boolean) => bool);
-            if (this.formGroup.get('selectAll')?.value !== allSelected) {
-                this.formGroup.get('selectAll')?.patchValue(allSelected, { emitEvent: false });
-            }
+        this.formGroup.get('expansions')?.valueChanges.subscribe((value: boolean[]) => {
+            const allPatch = value.every((bool: boolean) => bool);
+            this.formGroup.get('all')?.patchValue(allPatch, { emitEvent: false });
         });
     }
 

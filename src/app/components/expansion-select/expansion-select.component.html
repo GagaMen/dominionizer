@@ -1,17 +1,11 @@
 <form *ngIf="expansions.length > 0" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
-    <mat-slide-toggle formControlName="selectAll">
-        <span class="white-space-normal">Select/deselect all</span>
-    </mat-slide-toggle>
+    <mat-checkbox formControlName="all">All</mat-checkbox>
     <mat-divider></mat-divider>
-    <div formArrayName="expansions" class="expansions">
-        <ng-container *ngFor="let expansion of expansions; let i = index">
-            <mat-slide-toggle [formControlName]="i">
-                <span class="white-space-normal">
-                    {{ expansion.name }}
-                </span>
-            </mat-slide-toggle>
-        </ng-container>
-    </div>
+    <ul formArrayName="expansions" class="expansions">
+        <li *ngFor="let expansion of expansions; let i = index">
+            <mat-checkbox [formControlName]="i">{{ expansion.name }}</mat-checkbox>
+        </li>
+    </ul>
     <div class="form-actions">
         <button mat-raised-button matStepperNext color="primary" type="submit">Forward</button>
     </div>
