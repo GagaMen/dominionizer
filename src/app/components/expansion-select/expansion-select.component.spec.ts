@@ -57,6 +57,20 @@ describe('ExpansionSelectComponent', () => {
         component.expansions = expansions;
     });
 
+    describe('expansions', () => {
+        it('should return expansions ordered by name', () => {
+            const firstExpansion = dataFixture.createExpansion({ name: 'a' });
+            const secondExpansion = dataFixture.createExpansion({ name: 'b' });
+            const input = [secondExpansion, firstExpansion];
+            const expected = [firstExpansion, secondExpansion];
+            component.expansions = input;
+
+            const actual = component.expansions;
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
     describe('formGroup', () => {
         it('should have "all"-FormControl', () => {
             fixture.detectChanges();

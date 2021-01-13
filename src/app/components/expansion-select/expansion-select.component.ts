@@ -9,7 +9,14 @@ import { ConfigurationService } from '../../services/configuration.service';
     styleUrls: ['./expansion-select.component.scss'],
 })
 export class ExpansionSelectComponent implements OnInit {
-    @Input() expansions: Expansion[] = [];
+    private _expansions: Expansion[] = [];
+    get expansions(): Expansion[] {
+        return this._expansions;
+    }
+    @Input() set expansions(value: Expansion[]) {
+        this._expansions = value.sort((a: Expansion, b: Expansion) => a.name.localeCompare(b.name));
+    }
+
     formGroup: FormGroup = new FormGroup({});
 
     constructor(
