@@ -1,12 +1,13 @@
 <mat-vertical-stepper #stepper>
     <mat-step
+        *ngIf="expansionService.expansions$ | async as expansions"
         [stepControl]="expansionSelect.formGroup"
         errorMessage="Choose at least one expansion"
     >
         <ng-template matStepLabel>
             <span class="white-space-normal">Expansions</span>
         </ng-template>
-        <app-expansion-select #expansionSelect></app-expansion-select>
+        <app-expansion-select #expansionSelect [expansions]="expansions"></app-expansion-select>
     </mat-step>
     <mat-step [stepControl]="specialCardSelect.formGroup">
         <ng-template matStepLabel>

@@ -11,24 +11,20 @@ import {
 } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { Expansion } from '../../models/expansion';
-import { cold, getTestScheduler } from 'jasmine-marbles';
-import { ExpansionService } from '../../services/expansion.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
-import { detectChangesAndFlush } from 'src/testing/utilities';
 import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ExpansionSelectComponent', () => {
+describe('ExpansionSelectComponent', () => {
     let component: ExpansionSelectComponent;
     let fixture: ComponentFixture<ExpansionSelectComponent>;
     let harnessLoader: HarnessLoader;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
-    let expansionServiceSpy: SpyObj<ExpansionService>;
     let dataFixture: DataFixture;
     let expansions: Expansion[];
 
@@ -43,10 +39,6 @@ fdescribe('ExpansionSelectComponent', () => {
                         'updateExpansions',
                     ]),
                 },
-                {
-                    provide: ExpansionService,
-                    useValue: {},
-                },
                 FormBuilder,
             ],
         });
@@ -58,27 +50,51 @@ fdescribe('ExpansionSelectComponent', () => {
             ConfigurationService
         >;
 
-        expansionServiceSpy = TestBed.inject(ExpansionService);
-        expansionServiceSpy.expansions$ = cold('--(a|)', {
-            a: expansions,
-        });
-
         fixture = TestBed.createComponent(ExpansionSelectComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
+
+        component.expansions = expansions;
     });
 
     describe('formGroup', () => {
-        it('should has "all"-FormControl unchecked after initialization', () => {
-            detectChangesAndFlush(fixture);
+        it('should have "all"-FormControl', () => {
+            fixture.detectChanges();
+
+            const actual = component.formGroup.get('all');
+
+            expect(actual).toBeInstanceOf(FormControl);
+        });
+
+        it('should have "expansions"-FormArray', () => {
+            fixture.detectChanges();
+
+            const actual = component.formGroup.get('expansions');
+
+            expect(actual).toBeInstanceOf(FormArray);
+        });
+
+        it('should have FormControl per expansion inside the "expansions"-FormArray', () => {
+            fixture.detectChanges();
+            const expected = jasmine.arrayWithExactContents(
+                expansions.map(() => jasmine.any(FormControl)),
+            );
+
+            const actual = (component.formGroup.get('expansions') as FormArray).controls;
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('should have "all"-FormControl unchecked after initialization', () => {
+            fixture.detectChanges();
 
             const actual = component.formGroup.value.all;
 
             expect(actual).toBeFalse();
         });
 
-        it('should has all expansions unselected after initialization', () => {
-            detectChangesAndFlush(fixture);
+        it('should have all expansions unselected after initialization', () => {
+            fixture.detectChanges();
             const expected = expansions.map(() => false);
 
             const actual = component.formGroup.value.expansions;
@@ -87,60 +103,19 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('with no selected expansion should be invalid', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
 
             const actual = component.formGroup.invalid;
 
             expect(actual).toBeTrue();
         });
-    });
 
-    describe('ngOnInit', () => {
-        it('should set expansions to value from expansionService.expansions$', () => {
-            const expected = expansions;
-
+        it('with selected expansions change should update configuration', () => {
             fixture.detectChanges();
-            getTestScheduler().flush();
-            const actual = component.expansions;
-
-            expect(actual).toBe(expected);
-        });
-
-        it('should set formGroup with "all"-FormControl', () => {
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            const actual = component.formGroup.get('all');
-
-            expect(actual).toBeInstanceOf(FormControl);
-        });
-
-        it('should set formGroup with "expansions"-FormArray', () => {
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            const actual = component.formGroup.get('expansions');
-
-            expect(actual).toBeInstanceOf(FormArray);
-        });
-
-        it('should set formGroup with FormControl per expansion inside the "expansions"-FormArray', () => {
-            const expected = jasmine.arrayWithExactContents(
-                expansions.map(() => jasmine.any(FormControl)),
-            );
-
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            const actual = (component.formGroup.get('expansions') as FormArray).controls;
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('should set up updating of configuration when selected expansions change', () => {
             const selectedExpansions = expansions.slice(0, 1);
             const expansionsPatch: boolean[] = expansions.map(() => false);
             expansionsPatch[0] = true;
 
-            fixture.detectChanges();
-            getTestScheduler().flush();
             component.formGroup.patchValue({ expansions: expansionsPatch });
 
             expect(configurationServiceSpy.updateExpansions).toHaveBeenCalledWith(
@@ -151,7 +126,7 @@ fdescribe('ExpansionSelectComponent', () => {
 
     describe('areSomeButNotAllSelected', () => {
         it('with at least one but not all expansions are selected should return true', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expansionsPatch: boolean[] = expansions.map(() => false);
             expansionsPatch[0] = true;
             component.formGroup.patchValue({ expansions: expansionsPatch });
@@ -162,7 +137,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('with no expansion is selected should return false', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expansionsPatch: boolean[] = expansions.map(() => false);
             component.formGroup.patchValue({ expansions: expansionsPatch });
 
@@ -172,7 +147,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('with all expansion are selected should return false', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expansionsPatch: boolean[] = expansions.map(() => true);
             component.formGroup.patchValue({ expansions: expansionsPatch });
 
@@ -184,7 +159,7 @@ fdescribe('ExpansionSelectComponent', () => {
 
     describe('areAllSelected', () => {
         it('with all expansions are selected should return true', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expansionsPatch: boolean[] = expansions.map(() => true);
             component.formGroup.patchValue({ expansions: expansionsPatch });
 
@@ -194,7 +169,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('with not all expansions are selected should return false', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expansionsPatch: boolean[] = expansions.map(() => true);
             expansionsPatch[0] = false;
             component.formGroup.patchValue({ expansions: expansionsPatch });
@@ -207,7 +182,7 @@ fdescribe('ExpansionSelectComponent', () => {
 
     describe('selectOrDeselectAll', () => {
         it('with checked is true should select all expansions', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const checked = true;
             const expected = expansions.map(() => checked);
 
@@ -218,7 +193,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('with checked is false should deselect all expansions', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const checked = false;
             const expected = expansions.map(() => checked);
 
@@ -231,7 +206,7 @@ fdescribe('ExpansionSelectComponent', () => {
 
     describe('template', () => {
         it('should render checkbox for "all"-FormControl correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
             const actual = await matCheckbox.getLabelText();
@@ -240,7 +215,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind checkbox to "all"-FormControl correctly', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
 
             const actual = fixture.debugElement.query(
                 By.css('mat-checkbox[formControlName="all"]'),
@@ -250,7 +225,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind "checked" input property of "all" checkbox correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expected = true;
             spyOn(component, 'areAllSelected').and.returnValue(expected);
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
@@ -261,7 +236,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind "indeterminate" input property of "all" checkbox correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const expected = true;
             spyOn(component, 'areSomeButNotAllSelected').and.returnValue(expected);
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
@@ -272,7 +247,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind "change" output property of "all" checkbox correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const selectOrDeselectAllSpy = spyOn(component, 'selectOrDeselectAll');
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
@@ -282,7 +257,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind ul element to "expansions"-FormArray', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('ul[formArrayName="expansions"]'));
 
@@ -290,7 +265,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should render checkbox inside li element for each expansion correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
 
             const actual = await harnessLoader.getAllHarnesses(
                 MatCheckboxHarness.with({ ancestor: 'li' }),
@@ -303,7 +278,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind checkbox for each expansion correctly', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
 
             const actual = fixture.debugElement
                 .queryAll(By.css('li'))
@@ -318,7 +293,7 @@ fdescribe('ExpansionSelectComponent', () => {
         });
 
         it('should bind forward button correctly', () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
 
             const matButton = harnessLoader.getHarness(
                 MatButtonHarness.with({ selector: '[matStepperNext]' }),

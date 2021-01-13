@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Expansion } from '../../models/expansion';
 import { ConfigurationService } from '../../services/configuration.service';
-import { ExpansionService } from '../../services/expansion.service';
 
 @Component({
     selector: 'app-expansion-select',
@@ -10,12 +9,11 @@ import { ExpansionService } from '../../services/expansion.service';
     styleUrls: ['./expansion-select.component.scss'],
 })
 export class ExpansionSelectComponent implements OnInit {
-    expansions: Expansion[] = [];
+    @Input() expansions: Expansion[] = [];
     formGroup: FormGroup = new FormGroup({});
 
     constructor(
         private configurationService: ConfigurationService,
-        private expansionService: ExpansionService,
         private formBuilder: FormBuilder,
     ) {}
 
@@ -28,11 +26,8 @@ export class ExpansionSelectComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.expansionService.expansions$.subscribe((expansions: Expansion[]) => {
-            this.expansions = expansions;
-            this.buildFormGroup();
-            this.initConfigurationUpdating();
-        });
+        this.buildFormGroup();
+        this.initConfigurationUpdating();
     }
 
     private buildFormGroup(): void {

@@ -1,4 +1,4 @@
-<form *ngIf="expansions.length > 0" [formGroup]="formGroup">
+<form [formGroup]="formGroup">
     <mat-checkbox
         formControlName="all"
         [checked]="areAllSelected()"
