@@ -1,11 +1,5 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import {
-    FormGroup,
-    FormBuilder,
-    FormArray,
-    ValidationErrors,
-    AbstractControl,
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Expansion } from '../../models/expansion';
 import { ConfigurationService } from '../../services/configuration.service';
 import { ExpansionService } from '../../services/expansion.service';
@@ -16,7 +10,6 @@ import { ExpansionService } from '../../services/expansion.service';
     styleUrls: ['./expansion-select.component.scss'],
 })
 export class ExpansionSelectComponent implements OnInit {
-    @Output() submitForm: EventEmitter<void> = new EventEmitter<void>();
     expansions: Expansion[] = [];
     formGroup: FormGroup = new FormGroup({});
 
@@ -38,7 +31,7 @@ export class ExpansionSelectComponent implements OnInit {
         this.expansionService.expansions$.subscribe((expansions: Expansion[]) => {
             this.expansions = expansions;
             this.buildFormGroup();
-            this.initializeToggleBehaviour();
+            this.initConfigurationUpdating();
         });
     }
 
@@ -52,26 +45,30 @@ export class ExpansionSelectComponent implements OnInit {
         });
     }
 
-    private initializeToggleBehaviour(): void {
-        this.formGroup.get('all')?.valueChanges.subscribe((value: boolean) => {
-            const expansions = this.formGroup.get('expansions') as FormArray;
-            const expansionsPatch = new Array(expansions.length).fill(value);
-            expansions.patchValue(expansionsPatch, { emitEvent: false });
-        });
-
-        this.formGroup.get('expansions')?.valueChanges.subscribe((value: boolean[]) => {
-            const allPatch = value.every((bool: boolean) => bool);
-            this.formGroup.get('all')?.patchValue(allPatch, { emitEvent: false });
+    private initConfigurationUpdating(): void {
+        this.formGroup.get('expansions')?.valueChanges.subscribe((expansionsState: boolean[]) => {
+            const selectedExpansions = this.expansions.filter(
+                (_, index: number) => expansionsState[index] === true,
+            );
+            this.configurationService.updateExpansions(selectedExpansions);
         });
     }
 
-    onNgSubmit(): void {
-        const expansionStates = this.formGroup.value;
-        const enabledExpansions = this.expansions.filter(
-            (_, index: number) => expansionStates.expansions[index] === true,
-        );
-        this.configurationService.updateExpansions(enabledExpansions);
+    areSomeButNotAllSelected(): boolean {
+        const selectedExpansionCount: number = (this.formGroup.value
+            .expansions as boolean[]).filter((expansionSelected) => expansionSelected).length;
 
-        this.submitForm.emit();
+        return selectedExpansionCount > 0 && selectedExpansionCount < this.expansions.length;
+    }
+
+    areAllSelected(): boolean {
+        return (this.formGroup.value.expansions as boolean[]).every(
+            (expansionSelected) => expansionSelected,
+        );
+    }
+
+    selectOrDeselectAll(checked: boolean): void {
+        const expansionsPatch: boolean[] = this.expansions.map(() => checked);
+        this.formGroup.patchValue({ expansions: expansionsPatch });
     }
 }

@@ -1,5 +1,11 @@
-<form *ngIf="expansions.length > 0" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
-    <mat-checkbox formControlName="all">All</mat-checkbox>
+<form *ngIf="expansions.length > 0" [formGroup]="formGroup">
+    <mat-checkbox
+        formControlName="all"
+        [checked]="areAllSelected()"
+        [indeterminate]="areSomeButNotAllSelected()"
+        (change)="selectOrDeselectAll($event.checked)"
+        >All</mat-checkbox
+    >
     <mat-divider></mat-divider>
     <ul formArrayName="expansions" class="expansions">
         <li *ngFor="let expansion of expansions; let i = index">
@@ -7,6 +13,6 @@
         </li>
     </ul>
     <div class="form-actions">
-        <button mat-raised-button matStepperNext color="primary" type="submit">Forward</button>
+        <button mat-raised-button matStepperNext color="primary">Forward</button>
     </div>
 </form>
