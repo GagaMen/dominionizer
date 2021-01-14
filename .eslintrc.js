@@ -3,6 +3,7 @@ module.exports = {
     overrides: [
         {
             files: ['*.ts'],
+            plugins: ['unused-imports'],
             extends: [
                 'eslint:recommended',
                 'plugin:@typescript-eslint/eslint-recommended',
@@ -29,6 +30,17 @@ module.exports = {
                     'error',
                     {
                         ignoreStatic: true,
+                    },
+                ],
+                '@typescript-eslint/no-unused-vars': 'off',
+                'unused-imports/no-unused-imports-ts': 'error',
+                'unused-imports/no-unused-vars-ts': [
+                    'warn',
+                    {
+                        vars: 'all',
+                        varsIgnorePattern: '^_',
+                        args: 'after-used',
+                        argsIgnorePattern: '^_',
                     },
                 ],
             },
