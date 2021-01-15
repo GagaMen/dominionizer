@@ -30,7 +30,7 @@ script:
     # TODO: uncomment next line to enable e2e test on push via travis
     # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - npm run build
-    - nyc --reporter=lcov npm run test:coverage
+    - nyc --reporter=lcov npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
 
 after_script:
     - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
