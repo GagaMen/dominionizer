@@ -1,5 +1,5 @@
-<form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onNgSubmit()">
-    <ng-container *ngIf="areEventsAvailable$ | async">
+<form [formGroup]="formGroup">
+    <ng-container *ngIf="availability.events">
         <div class="special-cards-label">
             <label>Events</label>
             <span>{{ events.value }}</span>
@@ -7,7 +7,7 @@
         <mat-slider #events formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
     </ng-container>
 
-    <ng-container *ngIf="areLandmarksAvailable$ | async">
+    <ng-container *ngIf="availability.landmarks">
         <div class="special-cards-label">
             <label>Landmarks</label>
             <span>{{ landmarks.value }}</span>
@@ -21,7 +21,7 @@
         ></mat-slider>
     </ng-container>
 
-    <ng-container *ngIf="areProjectsAvailable$ | async">
+    <ng-container *ngIf="availability.projects">
         <div class="special-cards-label">
             <label>Projects</label>
             <span>{{ projects.value }}</span>
@@ -35,7 +35,7 @@
         ></mat-slider>
     </ng-container>
 
-    <ng-container *ngIf="areWaysAvailable$ | async">
+    <ng-container *ngIf="availability.ways">
         <div class="special-cards-label">
             <label>Ways</label>
             <span>{{ ways.value }}</span>
@@ -45,6 +45,6 @@
 
     <div class="form-actions">
         <button mat-button matStepperPrevious color="accent">Back</button>
-        <button mat-raised-button color="primary" type="submit">Generate</button>
+        <button mat-raised-button color="primary" routerLink="set">Generate</button>
     </div>
 </form>

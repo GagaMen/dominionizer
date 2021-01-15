@@ -1,3 +1,4 @@
+// TODO: rename to SpecialCardsCount
 export interface Options {
     events: number;
     landmarks: number;

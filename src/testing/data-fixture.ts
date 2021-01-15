@@ -7,6 +7,7 @@ import { CardType } from 'src/app/models/card-type';
 import { Configuration } from 'src/app/models/configuration';
 import { Set } from 'src/app/models/set';
 import { GroupingOption, SortingOption } from 'src/app/services/set.service';
+import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 
 export class DataFixture {
     private chance: Chance.Chance = new Chance();
@@ -86,6 +87,18 @@ export class DataFixture {
             },
             costDistribution: new Map<number, number>(),
             ...configuration,
+        };
+    }
+
+    createSpecialCardsAvailability(
+        availability: Partial<SpecialCardsAvailability> = {},
+    ): SpecialCardsAvailability {
+        return {
+            events: this.chance.bool(),
+            landmarks: this.chance.bool(),
+            projects: this.chance.bool(),
+            ways: this.chance.bool(),
+            ...availability,
         };
     }
 

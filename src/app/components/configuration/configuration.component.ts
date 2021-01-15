@@ -1,8 +1,12 @@
 import { AppBarService } from './../../services/app-bar.service';
 import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Router } from '@angular/router';
 import { ExpansionService } from 'src/app/services/expansion.service';
+import { combineLatest, Observable } from 'rxjs';
+import { ConfigurationService } from 'src/app/services/configuration.service';
+import { map } from 'rxjs/operators';
+import { CardType } from 'src/app/models/card-type';
+import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 
 @Component({
     selector: 'app-configuration',
@@ -11,10 +15,12 @@ import { ExpansionService } from 'src/app/services/expansion.service';
     providers: [{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }],
 })
 export class ConfigurationComponent implements OnInit {
+    specialCardsAvailability$: Observable<SpecialCardsAvailability> = new Observable();
+
     constructor(
-        private router: Router,
         private appBarService: AppBarService,
         public expansionService: ExpansionService,
+        private configurationService: ConfigurationService,
     ) {}
 
     ngOnInit(): void {
@@ -22,9 +28,20 @@ export class ConfigurationComponent implements OnInit {
             navigationAction: 'none',
             actions: [],
         });
-    }
-
-    onSubmit(): void {
-        this.router.navigate(['set']);
+        this.specialCardsAvailability$ = combineLatest(
+            this.configurationService.isCardTypeAvailable(CardType.Event),
+            this.configurationService.isCardTypeAvailable(CardType.Landmark),
+            this.configurationService.isCardTypeAvailable(CardType.Project),
+            this.configurationService.isCardTypeAvailable(CardType.Way),
+        ).pipe(
+            map(([events, landmarks, projects, ways]) => {
+                return {
+                    events: events,
+                    landmarks: landmarks,
+                    projects: projects,
+                    ways: ways,
+                } as SpecialCardsAvailability;
+            }),
+        );
     }
 }

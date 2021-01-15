@@ -9,10 +9,16 @@
         </ng-template>
         <app-expansion-select #expansionSelect [expansions]="expansions"></app-expansion-select>
     </mat-step>
-    <mat-step [stepControl]="specialCardSelect.formGroup">
+    <mat-step
+        *ngIf="specialCardsAvailability$ | async as availability"
+        [stepControl]="specialCardSelect.formGroup"
+    >
         <ng-template matStepLabel>
             <span class="white-space-normal">Special Cards</span>
         </ng-template>
-        <app-special-card-select #specialCardSelect (submit)="onSubmit()"></app-special-card-select>
+        <app-special-card-select
+            #specialCardSelect
+            [availability]="availability"
+        ></app-special-card-select>
     </mat-step>
 </mat-vertical-stepper>
