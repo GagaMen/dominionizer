@@ -1,3 +1,7 @@
+env:
+    global:
+        - CC_TEST_REPORTER_ID=$CODE_CLIMATE_ID
+
 language: node_js
 node_js:
     - '14'
