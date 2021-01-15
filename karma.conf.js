@@ -20,7 +20,7 @@ module.exports = function (config) {
             subdir: 'dominionizer',
             reporters: [{ type: 'html' }, { type: 'lcovonly' }, { type: 'text-summary' }],
         },
-        reporters: ['progress', 'kjhtml', 'coverage'],
+        reporters: ['progress', 'kjhtml'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
