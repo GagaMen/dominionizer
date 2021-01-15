@@ -37,7 +37,7 @@ after_script:
 
 deploy:
     provider: pages
-    skip_cleanup: true
+    cleanup: true
     github_token: $GITHUB_TOKEN
     keep_history: true
     local_dir: dist/dominionizer
