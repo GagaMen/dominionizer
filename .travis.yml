@@ -12,6 +12,12 @@ cache:
 install:
     - npm install
 
+before_script:
+    - npm install -g nyc
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
+
 script:
     - npm run eslint
     - npm run stylelint
@@ -20,6 +26,10 @@ script:
     # TODO: uncomment next line to enable e2e test on push via travis
     # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - npm run build
+    - nyc --reporter=lcov npm run test:coverage
+
+after_script:
+    - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 deploy:
     provider: pages
