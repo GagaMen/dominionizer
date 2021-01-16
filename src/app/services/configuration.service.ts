@@ -1,4 +1,4 @@
-import { Options } from './../models/options';
+import { SpecialCardsCount } from '../models/special-cards-count';
 import { Injectable } from '@angular/core';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
@@ -14,7 +14,7 @@ import { Card } from '../models/card';
 export class ConfigurationService {
     static readonly defaultConfiguration: Configuration = {
         expansions: [],
-        options: {
+        specialCardsCount: {
             events: 0,
             landmarks: 0,
             projects: 0,
@@ -41,9 +41,9 @@ export class ConfigurationService {
         this.configurationSubject.next(configuration);
     }
 
-    updateOptions(options: Options): void {
+    updateSpecialCardsCount(count: SpecialCardsCount): void {
         const configuration = this.configurationSubject.value;
-        configuration.options = options;
+        configuration.specialCardsCount = count;
         this.configurationSubject.next(configuration);
     }
 

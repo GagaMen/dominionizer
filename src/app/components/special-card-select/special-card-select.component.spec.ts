@@ -2,7 +2,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { Options } from 'src/app/models/options';
+import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
@@ -14,12 +14,14 @@ import { By } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { SimpleChange } from '@angular/core';
+import { DataFixture } from 'src/testing/data-fixture';
 
 describe('SpecialCardSelectComponent', () => {
     let component: SpecialCardSelectComponent;
     let fixture: ComponentFixture<SpecialCardSelectComponent>;
     let harnessLoader: HarnessLoader;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -29,12 +31,14 @@ describe('SpecialCardSelectComponent', () => {
                 {
                     provide: ConfigurationService,
                     useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
-                        'updateOptions',
+                        'updateSpecialCardsCount',
                     ]),
                 },
                 FormBuilder,
             ],
         });
+
+        dataFixture = new DataFixture();
 
         configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
             ConfigurationService
@@ -51,15 +55,15 @@ describe('SpecialCardSelectComponent', () => {
 
             const actual = component.formGroup;
 
-            expect(actual.contains('events')).toBeTrue();
-            expect(actual.contains('landmarks')).toBeTrue();
-            expect(actual.contains('projects')).toBeTrue();
-            expect(actual.contains('ways')).toBeTrue();
+            expect(actual.contains('events')).withContext('events').toBeTrue();
+            expect(actual.contains('landmarks')).withContext('landmarks').toBeTrue();
+            expect(actual.contains('projects')).withContext('projects').toBeTrue();
+            expect(actual.contains('ways')).withContext('ways').toBeTrue();
         });
 
         it('should have correct start value', () => {
             fixture.detectChanges();
-            const expected: Options = { events: 0, landmarks: 0, projects: 0, ways: 0 };
+            const expected: SpecialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
 
             const actual = component.formGroup.value;
 
@@ -74,11 +78,11 @@ describe('SpecialCardSelectComponent', () => {
                 projects: true,
                 ways: true,
             };
-            const count: Options = { events: 1, landmarks: 1, projects: 1, ways: 1 };
+            const expected = dataFixture.createSpecialCardsCount();
 
-            component.formGroup.setValue(count);
+            component.formGroup.setValue(expected);
 
-            expect(configurationServiceSpy.updateOptions).toHaveBeenCalledWith(count);
+            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(expected);
         });
 
         it('with not all special cards are available and special cards count change should update configuration correctly', () => {
@@ -89,27 +93,27 @@ describe('SpecialCardSelectComponent', () => {
                 projects: false,
                 ways: false,
             };
-            const count: Options = { events: 1, landmarks: 1, projects: 1, ways: 1 };
-            const expected: Options = { events: 1, landmarks: 1, projects: 0, ways: 0 };
+            const count = dataFixture.createSpecialCardsCount();
+            const expected: SpecialCardsCount = { ...count, projects: 0, ways: 0 };
 
             component.formGroup.setValue(count);
 
-            expect(configurationServiceSpy.updateOptions).toHaveBeenCalledWith(expected);
+            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(expected);
         });
     });
 
     describe('ngOnChanges', () => {
         it('with specialCardsAvailability changes should update configuration correctly', () => {
             fixture.detectChanges();
-            const count: Options = { events: 1, landmarks: 1, projects: 1, ways: 1 };
+            const count = dataFixture.createSpecialCardsCount();
             component.formGroup.setValue(count);
-            const availability = {
+            const availability: SpecialCardsAvailability = {
                 events: true,
                 landmarks: true,
                 projects: false,
                 ways: false,
             };
-            const expected: Options = { events: 1, landmarks: 1, projects: 0, ways: 0 };
+            const expected: SpecialCardsCount = { ...count, projects: 0, ways: 0 };
 
             component.ngOnChanges({
                 specialCardsAvailability: new SimpleChange(
@@ -119,7 +123,7 @@ describe('SpecialCardSelectComponent', () => {
                 ),
             });
 
-            expect(configurationServiceSpy.updateOptions).toHaveBeenCalledWith(expected);
+            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(expected);
         });
     });
 

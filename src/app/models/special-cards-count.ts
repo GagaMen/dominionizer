@@ -1,5 +1,4 @@
-// TODO: rename to SpecialCardsCount
-export interface Options {
+export interface SpecialCardsCount {
     events: number;
     landmarks: number;
     projects: number;

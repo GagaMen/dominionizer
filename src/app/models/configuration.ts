@@ -1,8 +1,8 @@
 import { Expansion } from './expansion';
-import { Options } from './options';
+import { SpecialCardsCount } from './special-cards-count';
 
 export interface Configuration {
     expansions: Expansion[];
-    options: Options;
+    specialCardsCount: SpecialCardsCount;
     costDistribution: Map<number, number>;
 }

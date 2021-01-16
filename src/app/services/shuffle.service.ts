@@ -68,22 +68,22 @@ export class ShuffleService {
                 ...this.pickRandomCards(
                     randomizableCards.events,
                     configuration.expansions,
-                    configuration.options.events,
+                    configuration.specialCardsCount.events,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.landmarks,
                     configuration.expansions,
-                    configuration.options.landmarks,
+                    configuration.specialCardsCount.landmarks,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.projects,
                     configuration.expansions,
-                    configuration.options.projects,
+                    configuration.specialCardsCount.projects,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.ways,
                     configuration.expansions,
-                    configuration.options.ways,
+                    configuration.specialCardsCount.ways,
                 ),
             ],
         };
@@ -152,11 +152,11 @@ export class ShuffleService {
     private pickRandomCards(
         candidates: Card[],
         expansions: Expansion[],
-        amount: number,
+        count: number,
         costDistribution?: Map<number, number>,
         cardsToIgnore: Card[] = [],
     ): Card[] {
-        if (amount === 0) {
+        if (count === 0) {
             return [];
         }
 
@@ -164,7 +164,7 @@ export class ShuffleService {
         candidates = this.excludeCardsToIgnore(candidates, cardsToIgnore);
         const weights = this.calculateCardWeights(candidates, costDistribution);
 
-        return this.mathService.pickRandomCards(candidates, amount, weights);
+        return this.mathService.pickRandomCards(candidates, count, weights);
     }
 
     private filterByExpansions(cards: Card[], expansions: Expansion[]): Card[] {

@@ -1,4 +1,4 @@
-import { Options } from '../../models/options';
+import { SpecialCardsCount } from '../../models/special-cards-count';
 import { SpecialCardsAvailability } from '../../models/special-cards-availability';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -38,7 +38,7 @@ export class SpecialCardSelectComponent implements OnInit, OnChanges {
     }
 
     private initConfigurationUpdating(): void {
-        this.formGroup.valueChanges.subscribe((specialCardsCount: Options) =>
+        this.formGroup.valueChanges.subscribe((specialCardsCount: SpecialCardsCount) =>
             this.updateSpecialCardsCount(this.availability, specialCardsCount),
         );
     }
@@ -52,8 +52,11 @@ export class SpecialCardSelectComponent implements OnInit, OnChanges {
         }
     }
 
-    private updateSpecialCardsCount(availability: SpecialCardsAvailability, count: Options): void {
-        this.configurationService.updateOptions({
+    private updateSpecialCardsCount(
+        availability: SpecialCardsAvailability,
+        count: SpecialCardsCount,
+    ): void {
+        this.configurationService.updateSpecialCardsCount({
             events: availability.events ? count.events : 0,
             landmarks: availability.landmarks ? count.landmarks : 0,
             projects: availability.projects ? count.projects : 0,

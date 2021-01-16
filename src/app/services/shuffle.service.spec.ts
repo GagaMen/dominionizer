@@ -12,6 +12,7 @@ import { CardType } from '../models/card-type';
 import { Card } from '../models/card';
 import { Expansion } from '../models/expansion';
 import { Configuration } from '../models/configuration';
+import { SpecialCardsCount } from '../models/special-cards-count';
 
 describe('ShuffleService', () => {
     let shuffleService: ShuffleService;
@@ -28,21 +29,21 @@ describe('ShuffleService', () => {
     let landmarks: Card[];
     let projects: Card[];
     let ways: Card[];
-    const kingdomCardsAmountOfConfiguredExpansions = 20;
-    const specialCardsAmountOfConfiguredExpansions = 5;
+    const kingdomCardsCountOfConfiguredExpansions = 20;
+    const singleSpecialCardsCountOfConfiguredExpansions = 5;
 
     function createCards(
         cardType: CardType,
         isKingdomCard: boolean,
-        cardsAmountOfConfiguredExpansions: number,
+        cardsCountOfConfiguredExpansions: number,
     ): Card[] {
         return [
-            ...dataFixture.createCards(cardsAmountOfConfiguredExpansions, {
+            ...dataFixture.createCards(cardsCountOfConfiguredExpansions, {
                 expansions: [configuredExpansion],
                 types: [cardType],
                 isKingdomCard: isKingdomCard,
             }),
-            ...dataFixture.createCards(cardsAmountOfConfiguredExpansions, {
+            ...dataFixture.createCards(cardsCountOfConfiguredExpansions, {
                 expansions: [nonConfiguredExpansion],
                 types: [cardType],
                 isKingdomCard: isKingdomCard,
@@ -83,11 +84,19 @@ describe('ShuffleService', () => {
         configuredExpansion = dataFixture.createExpansion();
         nonConfiguredExpansion = dataFixture.createExpansion();
         configuration = dataFixture.createConfiguration({ expansions: [configuredExpansion] });
-        kingdomCards = createCards(CardType.Action, true, kingdomCardsAmountOfConfiguredExpansions);
-        events = createCards(CardType.Event, false, specialCardsAmountOfConfiguredExpansions);
-        landmarks = createCards(CardType.Landmark, false, specialCardsAmountOfConfiguredExpansions);
-        projects = createCards(CardType.Project, false, specialCardsAmountOfConfiguredExpansions);
-        ways = createCards(CardType.Way, false, specialCardsAmountOfConfiguredExpansions);
+        kingdomCards = createCards(CardType.Action, true, kingdomCardsCountOfConfiguredExpansions);
+        events = createCards(CardType.Event, false, singleSpecialCardsCountOfConfiguredExpansions);
+        landmarks = createCards(
+            CardType.Landmark,
+            false,
+            singleSpecialCardsCountOfConfiguredExpansions,
+        );
+        projects = createCards(
+            CardType.Project,
+            false,
+            singleSpecialCardsCountOfConfiguredExpansions,
+        );
+        ways = createCards(CardType.Way, false, singleSpecialCardsCountOfConfiguredExpansions);
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
@@ -131,7 +140,7 @@ describe('ShuffleService', () => {
         it('should pick 10 random kingdom cards from configured expansions', () => {
             const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
                 0,
-                kingdomCardsAmountOfConfiguredExpansions,
+                kingdomCardsCountOfConfiguredExpansions,
             );
             const expected = kingdomCards.slice(0, 10);
             mathServiceSpy.pickRandomCards
@@ -180,19 +189,18 @@ describe('ShuffleService', () => {
             ['landmarks', () => landmarks],
             ['projects', () => projects],
             ['ways', () => ways],
-        ] as [string, () => Card[]][]).forEach(([type, specialCards]) => {
+        ] as [keyof SpecialCardsCount, () => Card[]][]).forEach(([type, specialCards]) => {
             it(`with ${type} configured should pick corresponding number of random ${type} from configured expansions`, () => {
-                const specialCardsAmount = 2;
-                configuration.options = { events: 0, landmarks: 0, projects: 0, ways: 0 };
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (configuration.options as any)[type] = specialCardsAmount;
+                const singleCount = 2;
+                configuration.specialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
+                configuration.specialCardsCount[type] = singleCount;
                 const specialCardsOfConfiguredExpansions = specialCards().slice(
                     0,
-                    specialCardsAmountOfConfiguredExpansions,
+                    singleSpecialCardsCountOfConfiguredExpansions,
                 );
-                const expected = specialCardsOfConfiguredExpansions.slice(0, specialCardsAmount);
+                const expected = specialCardsOfConfiguredExpansions.slice(0, singleCount);
                 mathServiceSpy.pickRandomCards
-                    .withArgs(specialCardsOfConfiguredExpansions, specialCardsAmount, undefined)
+                    .withArgs(specialCardsOfConfiguredExpansions, singleCount, undefined)
                     .and.returnValue(expected);
                 shuffleService = TestBed.inject(ShuffleService);
                 getTestScheduler().flush();
@@ -219,14 +227,14 @@ describe('ShuffleService', () => {
         it('with card is kingdom card should pick different random kingdom card from configured expansions', () => {
             const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
                 0,
-                kingdomCardsAmountOfConfiguredExpansions,
+                kingdomCardsCountOfConfiguredExpansions,
             );
             const currentSet = dataFixture.createSet({
                 kingdomCards: kingdomCardsOfConfiguredExpansions.slice(0, 10),
             });
             const candidates = kingdomCardsOfConfiguredExpansions.slice(
                 10,
-                kingdomCardsAmountOfConfiguredExpansions,
+                kingdomCardsCountOfConfiguredExpansions,
             );
             const expectedOldCard = currentSet.kingdomCards[0];
             const expectedNewCard = candidates[0];
@@ -286,17 +294,17 @@ describe('ShuffleService', () => {
             ['way', () => ways],
         ] as [string, () => Card[]][]).forEach(([type, specialCards]) => {
             it(`with card is ${type} should pick different random ${type} from configured expansions`, () => {
-                const specialCardsAmount = 2;
+                const singleCount = 2;
                 const specialCardsOfConfiguredExpansions = specialCards().slice(
                     0,
-                    specialCardsAmountOfConfiguredExpansions,
+                    singleSpecialCardsCountOfConfiguredExpansions,
                 );
                 const currentSet = dataFixture.createSet({
-                    specialCards: specialCardsOfConfiguredExpansions.slice(0, specialCardsAmount),
+                    specialCards: specialCardsOfConfiguredExpansions.slice(0, singleCount),
                 });
                 const candidates = specialCardsOfConfiguredExpansions.slice(
-                    specialCardsAmount,
-                    specialCardsAmountOfConfiguredExpansions,
+                    singleCount,
+                    singleSpecialCardsCountOfConfiguredExpansions,
                 );
                 const expectedOldCard = currentSet.specialCards[0];
                 const expectedNewCard = candidates[0];

@@ -53,14 +53,16 @@ describe('ConfigurationService', () => {
         });
     });
 
-    describe('updateOptions', () => {
-        it('should update configuration.options', () => {
-            const options = dataFixture.createConfiguration().options;
-            const expected$: Observable<Configuration> = cold('a', {
-                a: { ...ConfigurationService.defaultConfiguration, options: options },
-            });
+    describe('updateSpecialCardsCount', () => {
+        it('should update configuration.specialCardsCount', () => {
+            const count = dataFixture.createSpecialCardsCount();
+            const expected: Configuration = {
+                ...ConfigurationService.defaultConfiguration,
+                specialCardsCount: count,
+            };
+            const expected$: Observable<Configuration> = cold('a', { a: expected });
 
-            configurationService.updateOptions(options);
+            configurationService.updateSpecialCardsCount(count);
             const actual$ = configurationService.configuration$;
 
             expect(actual$).toBeObservable(expected$);

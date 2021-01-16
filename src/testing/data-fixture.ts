@@ -8,6 +8,7 @@ import { Configuration } from 'src/app/models/configuration';
 import { Set } from 'src/app/models/set';
 import { GroupingOption, SortingOption } from 'src/app/services/set.service';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
+import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 
 export class DataFixture {
     private chance: Chance.Chance = new Chance();
@@ -79,14 +80,19 @@ export class DataFixture {
     createConfiguration(configuration: Partial<Configuration> = {}): Configuration {
         return {
             expansions: this.createExpansions(),
-            options: {
-                events: this.chance.integer({ min: 0, max: 5 }),
-                landmarks: this.chance.integer({ min: 0, max: 5 }),
-                projects: this.chance.integer({ min: 0, max: 5 }),
-                ways: this.chance.integer({ min: 0, max: 5 }),
-            },
+            specialCardsCount: this.createSpecialCardsCount(),
             costDistribution: new Map<number, number>(),
             ...configuration,
+        };
+    }
+
+    createSpecialCardsCount(count: Partial<SpecialCardsCount> = {}): SpecialCardsCount {
+        return {
+            events: this.chance.integer({ min: 0, max: 5 }),
+            landmarks: this.chance.integer({ min: 0, max: 5 }),
+            projects: this.chance.integer({ min: 0, max: 5 }),
+            ways: this.chance.integer({ min: 0, max: 5 }),
+            ...count,
         };
     }
 
