@@ -14,7 +14,8 @@ import { ConfigurationService } from 'src/app/services/configuration.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { CardType } from 'src/app/models/card-type';
 import { cold } from 'jasmine-marbles';
-import { NEVER } from 'rxjs';
+import { NEVER, of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -50,6 +51,7 @@ describe('ConfigurationComponent', () => {
                     provide: ConfigurationService,
                     useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
                         'isCardTypeAvailable',
+                        'updateSpecialCardsCount',
                     ]),
                 },
             ],
@@ -104,6 +106,24 @@ describe('ConfigurationComponent', () => {
             const actual$ = component.specialCardsAvailability$;
 
             expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('template', () => {
+        it('should bind change event of SpecialCardSelectComponent correctly', () => {
+            fixture.detectChanges();
+            const count = dataFixture.createSpecialCardsCount();
+            configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
+            component.specialCardsAvailability$ = of(dataFixture.createSpecialCardsAvailability());
+            fixture.detectChanges();
+
+            const specialCardSelectComponent = fixture.debugElement
+                .query(By.directive(SpecialCardSelectStubComponent))
+                .injector.get(SpecialCardSelectStubComponent);
+            specialCardSelectComponent.change.emit(count);
+            fixture.detectChanges();
+
+            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(count);
         });
     });
 });

@@ -20,7 +20,7 @@ export class ConfigurationComponent implements OnInit {
     constructor(
         private appBarService: AppBarService,
         public expansionService: ExpansionService,
-        private configurationService: ConfigurationService,
+        public configurationService: ConfigurationService,
     ) {}
 
     ngOnInit(): void {

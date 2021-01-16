@@ -2,10 +2,8 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { ConfigurationService } from 'src/app/services/configuration.service';
-import { SpyObj } from 'src/testing/spy-obj';
 import { MatSliderHarness } from '@angular/material/slider/testing';
 
 import { SpecialCardSelectComponent } from './special-card-select.component';
@@ -13,14 +11,12 @@ import { MatSliderModule } from '@angular/material/slider';
 import { By } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonHarness } from '@angular/material/button/testing';
-import { SimpleChange } from '@angular/core';
 import { DataFixture } from 'src/testing/data-fixture';
 
 describe('SpecialCardSelectComponent', () => {
     let component: SpecialCardSelectComponent;
     let fixture: ComponentFixture<SpecialCardSelectComponent>;
     let harnessLoader: HarnessLoader;
-    let configurationServiceSpy: SpyObj<ConfigurationService>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -39,10 +35,6 @@ describe('SpecialCardSelectComponent', () => {
         });
 
         dataFixture = new DataFixture();
-
-        configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
-            ConfigurationService
-        >;
 
         fixture = TestBed.createComponent(SpecialCardSelectComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
@@ -71,7 +63,7 @@ describe('SpecialCardSelectComponent', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with all special cards are available and special cards count change should update configuration correctly', () => {
+        it('with value changes should emit change event correctly', () => {
             fixture.detectChanges();
             component.availability = {
                 events: true,
@@ -80,51 +72,11 @@ describe('SpecialCardSelectComponent', () => {
                 ways: true,
             };
             const expected = dataFixture.createSpecialCardsCount();
+            const emitSpy = spyOn(component.change, 'emit');
 
             component.formGroup.setValue(expected);
 
-            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(expected);
-        });
-
-        it('with not all special cards are available and special cards count change should update configuration correctly', () => {
-            fixture.detectChanges();
-            component.availability = {
-                events: true,
-                landmarks: true,
-                projects: false,
-                ways: false,
-            };
-            const count = dataFixture.createSpecialCardsCount();
-            const expected: SpecialCardsCount = { ...count, projects: 0, ways: 0 };
-
-            component.formGroup.setValue(count);
-
-            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(expected);
-        });
-    });
-
-    describe('ngOnChanges', () => {
-        it('with specialCardsAvailability changes should update configuration correctly', () => {
-            fixture.detectChanges();
-            const count = dataFixture.createSpecialCardsCount();
-            component.formGroup.setValue(count);
-            const availability: SpecialCardsAvailability = {
-                events: true,
-                landmarks: true,
-                projects: false,
-                ways: false,
-            };
-            const expected: SpecialCardsCount = { ...count, projects: 0, ways: 0 };
-
-            component.ngOnChanges({
-                specialCardsAvailability: new SimpleChange(
-                    component.availability,
-                    availability,
-                    false,
-                ),
-            });
-
-            expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(expected);
+            expect(emitSpy).toHaveBeenCalledWith(expected);
         });
     });
 

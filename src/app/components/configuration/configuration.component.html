@@ -20,6 +20,7 @@
             #specialCardSelect
             [initialValue]="(configurationService.configuration$ | async).specialCardsCount"
             [availability]="availability"
+            (change)="configurationService.updateSpecialCardsCount($event)"
         ></app-special-card-select>
     </mat-step>
 </mat-vertical-stepper>
