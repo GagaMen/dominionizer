@@ -16,6 +16,9 @@ export class SpecialCardSelectComponent implements OnInit, OnChanges {
         projects: false,
         ways: false,
     };
+
+    @Input() initialValue: SpecialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
+
     formGroup: FormGroup = new FormGroup({});
 
     constructor(
@@ -30,10 +33,10 @@ export class SpecialCardSelectComponent implements OnInit, OnChanges {
 
     private buildFormGroup(): void {
         this.formGroup = this.formBuilder.group({
-            events: [0],
-            landmarks: [0],
-            projects: [0],
-            ways: [0],
+            events: [this.initialValue.events],
+            landmarks: [this.initialValue.landmarks],
+            projects: [this.initialValue.projects],
+            ways: [this.initialValue.ways],
         });
     }
 

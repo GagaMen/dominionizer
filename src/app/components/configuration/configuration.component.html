@@ -18,6 +18,7 @@
         </ng-template>
         <app-special-card-select
             #specialCardSelect
+            [initialValue]="(configurationService.configuration$ | async).specialCardsCount"
             [availability]="availability"
         ></app-special-card-select>
     </mat-step>

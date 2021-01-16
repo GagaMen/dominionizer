@@ -61,9 +61,10 @@ describe('SpecialCardSelectComponent', () => {
             expect(actual.contains('ways')).withContext('ways').toBeTrue();
         });
 
-        it('should have correct start value', () => {
+        it('should have correct initial value', () => {
+            const expected = dataFixture.createSpecialCardsCount();
+            component.initialValue = expected;
             fixture.detectChanges();
-            const expected: SpecialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
 
             const actual = component.formGroup.value;
 
