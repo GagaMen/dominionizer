@@ -16,6 +16,8 @@ export class ExpansionSelectComponent implements OnInit {
         this._expansions = value.sort((a: Expansion, b: Expansion) => a.name.localeCompare(b.name));
     }
 
+    @Input() initialValue: Expansion[] = [];
+
     // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() readonly change: EventEmitter<Expansion[]> = new EventEmitter<Expansion[]>();
 
@@ -32,10 +34,14 @@ export class ExpansionSelectComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        const expansionFormControls = this.expansions.map((expansion: Expansion) => {
+            const isExpansionSelected = this.initialValue.includes(expansion);
+            return this.formBuilder.control(isExpansionSelected);
+        });
         this.formGroup = this.formBuilder.group({
-            all: false,
+            all: this.initialValue.length === this.expansions.length,
             expansions: this.formBuilder.array(
-                this.expansions.map(() => this.formBuilder.control(false)),
+                expansionFormControls,
                 ExpansionSelectComponent.validateMinSelect,
             ),
         });

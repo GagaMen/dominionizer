@@ -8,6 +8,8 @@ import { Expansion } from 'src/app/models/expansion';
 export class ExpansionSelectStubComponent {
     @Input() expansions: Expansion[] = [];
 
+    @Input() initialValue: Expansion[] = [];
+
     // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() readonly change: EventEmitter<Expansion[]> = new EventEmitter<Expansion[]>();
 }

@@ -17,12 +17,14 @@ import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
+import { Chance } from 'chance';
 
 describe('ExpansionSelectComponent', () => {
     let component: ExpansionSelectComponent;
     let fixture: ComponentFixture<ExpansionSelectComponent>;
     let harnessLoader: HarnessLoader;
     let dataFixture: DataFixture;
+    let chance: Chance.Chance;
     let expansions: Expansion[];
 
     beforeEach(() => {
@@ -33,6 +35,7 @@ describe('ExpansionSelectComponent', () => {
         });
 
         dataFixture = new DataFixture();
+        chance = new Chance();
         expansions = dataFixture.createExpansions();
 
         fixture = TestBed.createComponent(ExpansionSelectComponent);
@@ -84,19 +87,30 @@ describe('ExpansionSelectComponent', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('should have "all"-FormControl unchecked after initialization', () => {
+        it('with initialValue contains not all expansions should have correct initial value', () => {
+            const selectedExpansions = chance.pickset(
+                component.expansions,
+                chance.integer({ min: 0, max: component.expansions.length - 1 }),
+            );
+            const expansionsState = component.expansions.map((expansion: Expansion) =>
+                selectedExpansions.includes(expansion),
+            );
+            const expected = { all: false, expansions: expansionsState };
+            component.initialValue = selectedExpansions;
             fixture.detectChanges();
 
-            const actual = component.formGroup.value.all;
+            const actual = component.formGroup.value;
 
-            expect(actual).toBeFalse();
+            expect(actual).toEqual(expected);
         });
 
-        it('should have all expansions unselected after initialization', () => {
+        it('with initialValue contains all expansions should have correct initial value', () => {
+            const expansionState = component.expansions.map(() => true);
+            const expected = { all: true, expansions: expansionState };
+            component.initialValue = component.expansions;
             fixture.detectChanges();
-            const expected = expansions.map(() => false);
 
-            const actual = component.formGroup.value.expansions;
+            const actual = component.formGroup.value;
 
             expect(actual).toEqual(expected);
         });

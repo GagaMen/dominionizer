@@ -10,6 +10,7 @@
         <app-expansion-select
             #expansionSelect
             [expansions]="expansions"
+            [initialValue]="(configurationService.configuration$ | async).expansions"
             (change)="configurationService.updateExpansions($event)"
         ></app-expansion-select>
     </mat-step>
