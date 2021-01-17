@@ -1,6 +1,6 @@
 <mat-vertical-stepper #stepper>
     <mat-step
-        *ngIf="expansionService.expansions$ | async as expansions"
+        *ngIf="expansionSelectViewData$ | async as viewData"
         [stepControl]="expansionSelect.formGroup"
         errorMessage="Choose at least one expansion"
     >
@@ -9,13 +9,13 @@
         </ng-template>
         <app-expansion-select
             #expansionSelect
-            [expansions]="expansions"
-            [initialValue]="(configurationService.configuration$ | async).expansions"
+            [expansions]="viewData.expansions"
+            [initialValue]="viewData.initialValue"
             (change)="configurationService.updateExpansions($event)"
         ></app-expansion-select>
     </mat-step>
     <mat-step
-        *ngIf="specialCardsAvailability$ | async as availability"
+        *ngIf="specialCardSelectViewData$ | async as viewData"
         [stepControl]="specialCardSelect.formGroup"
     >
         <ng-template matStepLabel>
@@ -23,8 +23,8 @@
         </ng-template>
         <app-special-card-select
             #specialCardSelect
-            [initialValue]="(configurationService.configuration$ | async).specialCardsCount"
-            [availability]="availability"
+            [initialValue]="viewData.initialValue"
+            [availability]="viewData.availability"
             (change)="configurationService.updateSpecialCardsCount($event)"
         ></app-special-card-select>
     </mat-step>

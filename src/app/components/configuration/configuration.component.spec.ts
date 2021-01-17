@@ -4,7 +4,11 @@ import { AppBarService } from './../../services/app-bar.service';
 import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfigurationComponent } from './configuration.component';
+import {
+    ConfigurationComponent,
+    ExpansionSelectViewData,
+    SpecialCardSelectViewData,
+} from './configuration.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ExpansionSelectStubComponent } from 'src/testing/components/expansion-select.stub.component';
@@ -88,13 +92,39 @@ describe('ConfigurationComponent', () => {
             expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
         });
 
-        it('should set specialCardsAvailability$ correctly', () => {
+        it('should set expansionSelectViewData$ correctly', () => {
+            const expansions = dataFixture.createExpansions();
+            const configuration = dataFixture.createConfiguration();
+            const expected: ExpansionSelectViewData = {
+                expansions: expansions,
+                initialValue: configuration.expansions,
+            };
+            const expansions$ = cold('   --a', { a: expansions });
+            const configuration$ = cold('--b', { b: configuration });
+            const expected$ = cold('     --c', { c: expected });
+            expansionServiceSpy.expansions$ = expansions$;
+            configurationServiceSpy.configuration$ = configuration$;
+
+            fixture.detectChanges();
+            const actual$ = component.expansionSelectViewData$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('should set specialCardSelectViewData$ correctly', () => {
+            const configuration = dataFixture.createConfiguration();
             const availability = dataFixture.createSpecialCardsAvailability();
-            const areEventsAvailable$ = cold('   --a', { a: availability.events });
-            const areLandmarksAvailable$ = cold('--b', { b: availability.landmarks });
-            const areProjectsAvailable$ = cold(' --c', { c: availability.projects });
-            const areWaysAvailable$ = cold('     --d', { d: availability.ways });
-            const expected$ = cold('             --e', { e: availability });
+            const expected: SpecialCardSelectViewData = {
+                initialValue: configuration.specialCardsCount,
+                availability: availability,
+            };
+            const configuration$ = cold('        --a', { a: configuration });
+            const areEventsAvailable$ = cold('   --b', { b: availability.events });
+            const areLandmarksAvailable$ = cold('--c', { c: availability.landmarks });
+            const areProjectsAvailable$ = cold(' --d', { d: availability.projects });
+            const areWaysAvailable$ = cold('     --e', { e: availability.ways });
+            const expected$ = cold('             --f', { f: expected });
+            configurationServiceSpy.configuration$ = configuration$;
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardType.Event)
                 .and.returnValue(areEventsAvailable$);
@@ -109,7 +139,7 @@ describe('ConfigurationComponent', () => {
                 .and.returnValue(areWaysAvailable$);
 
             fixture.detectChanges();
-            const actual$ = component.specialCardsAvailability$;
+            const actual$ = component.specialCardSelectViewData$;
 
             expect(actual$).toBeObservable(expected$);
         });
