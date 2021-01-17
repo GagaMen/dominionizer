@@ -2,45 +2,33 @@
     <ng-container *ngIf="availability.events">
         <div class="special-cards-label">
             <label>Events</label>
-            <span>{{ events.value }}</span>
+            <span>{{ formGroup.value.events }}</span>
         </div>
-        <mat-slider #events formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
+        <mat-slider formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
     </ng-container>
 
     <ng-container *ngIf="availability.landmarks">
         <div class="special-cards-label">
             <label>Landmarks</label>
-            <span>{{ landmarks.value }}</span>
+            <span>{{ formGroup.value.landmarks }}</span>
         </div>
-        <mat-slider
-            #landmarks
-            formControlName="landmarks"
-            min="0"
-            max="5"
-            tickInterval="1"
-        ></mat-slider>
+        <mat-slider formControlName="landmarks" min="0" max="5" tickInterval="1"></mat-slider>
     </ng-container>
 
     <ng-container *ngIf="availability.projects">
         <div class="special-cards-label">
             <label>Projects</label>
-            <span>{{ projects.value }}</span>
+            <span>{{ formGroup.value.projects }}</span>
         </div>
-        <mat-slider
-            #projects
-            formControlName="projects"
-            min="0"
-            max="5"
-            tickInterval="1"
-        ></mat-slider>
+        <mat-slider formControlName="projects" min="0" max="5" tickInterval="1"></mat-slider>
     </ng-container>
 
     <ng-container *ngIf="availability.ways">
         <div class="special-cards-label">
             <label>Ways</label>
-            <span>{{ ways.value }}</span>
+            <span>{{ formGroup.value.ways }}</span>
         </div>
-        <mat-slider #ways formControlName="ways" min="0" max="5" tickInterval="1"></mat-slider>
+        <mat-slider formControlName="ways" min="0" max="5" tickInterval="1"></mat-slider>
     </ng-container>
 
     <div class="form-actions">
