@@ -7,7 +7,11 @@
         <ng-template matStepLabel>
             <span class="white-space-normal">Expansions</span>
         </ng-template>
-        <app-expansion-select #expansionSelect [expansions]="expansions"></app-expansion-select>
+        <app-expansion-select
+            #expansionSelect
+            [expansions]="expansions"
+            (change)="configurationService.updateExpansions($event)"
+        ></app-expansion-select>
     </mat-step>
     <mat-step
         *ngIf="specialCardsAvailability$ | async as availability"

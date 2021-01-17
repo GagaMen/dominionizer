@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Expansion } from '../../models/expansion';
-import { ConfigurationService } from '../../services/configuration.service';
 
 @Component({
     selector: 'app-expansion-select',
@@ -17,12 +16,12 @@ export class ExpansionSelectComponent implements OnInit {
         this._expansions = value.sort((a: Expansion, b: Expansion) => a.name.localeCompare(b.name));
     }
 
+    // eslint-disable-next-line @angular-eslint/no-output-native
+    @Output() readonly change: EventEmitter<Expansion[]> = new EventEmitter<Expansion[]>();
+
     formGroup: FormGroup = new FormGroup({});
 
-    constructor(
-        private configurationService: ConfigurationService,
-        private formBuilder: FormBuilder,
-    ) {}
+    constructor(private formBuilder: FormBuilder) {}
 
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
         const controlValues: boolean[] = Object.values(control.value);
@@ -33,11 +32,6 @@ export class ExpansionSelectComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.buildFormGroup();
-        this.initConfigurationUpdating();
-    }
-
-    private buildFormGroup(): void {
         this.formGroup = this.formBuilder.group({
             all: false,
             expansions: this.formBuilder.array(
@@ -45,14 +39,12 @@ export class ExpansionSelectComponent implements OnInit {
                 ExpansionSelectComponent.validateMinSelect,
             ),
         });
-    }
 
-    private initConfigurationUpdating(): void {
         this.formGroup.get('expansions')?.valueChanges.subscribe((expansionsState: boolean[]) => {
             const selectedExpansions = this.expansions.filter(
                 (_, index: number) => expansionsState[index] === true,
             );
-            this.configurationService.updateExpansions(selectedExpansions);
+            this.change.emit(selectedExpansions);
         });
     }
 

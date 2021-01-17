@@ -14,13 +14,14 @@ import { ConfigurationService } from 'src/app/services/configuration.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { CardType } from 'src/app/models/card-type';
 import { cold } from 'jasmine-marbles';
-import { NEVER, of } from 'rxjs';
+import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
     let fixture: ComponentFixture<ConfigurationComponent>;
     let appBarServiceSpy: SpyObj<AppBarService>;
+    let expansionServiceSpy: SpyObj<ExpansionService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
     let dataFixture: DataFixture;
 
@@ -51,6 +52,7 @@ describe('ConfigurationComponent', () => {
                     provide: ConfigurationService,
                     useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
                         'isCardTypeAvailable',
+                        'updateExpansions',
                         'updateSpecialCardsCount',
                     ]),
                 },
@@ -61,10 +63,14 @@ describe('ConfigurationComponent', () => {
 
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
+        expansionServiceSpy = TestBed.inject(ExpansionService) as jasmine.SpyObj<ExpansionService>;
+        expansionServiceSpy.expansions$ = of(dataFixture.createExpansions());
+
         configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
             ConfigurationService
         >;
-        configurationServiceSpy.isCardTypeAvailable.and.returnValue(NEVER);
+        configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
+        configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(false));
 
         fixture = TestBed.createComponent(ConfigurationComponent);
         component = fixture.componentInstance;
@@ -110,18 +116,26 @@ describe('ConfigurationComponent', () => {
     });
 
     describe('template', () => {
+        it('should bind change event of ExpansionSelectComponent correctly', () => {
+            fixture.detectChanges();
+            const expansions = dataFixture.createExpansions();
+
+            const expansionSelectComponent = fixture.debugElement
+                .query(By.directive(ExpansionSelectStubComponent))
+                .injector.get(ExpansionSelectStubComponent);
+            expansionSelectComponent.change.emit(expansions);
+
+            expect(configurationServiceSpy.updateExpansions).toHaveBeenCalledWith(expansions);
+        });
+
         it('should bind change event of SpecialCardSelectComponent correctly', () => {
             fixture.detectChanges();
             const count = dataFixture.createSpecialCardsCount();
-            configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
-            component.specialCardsAvailability$ = of(dataFixture.createSpecialCardsAvailability());
-            fixture.detectChanges();
 
             const specialCardSelectComponent = fixture.debugElement
                 .query(By.directive(SpecialCardSelectStubComponent))
                 .injector.get(SpecialCardSelectStubComponent);
             specialCardSelectComponent.change.emit(count);
-            fixture.detectChanges();
 
             expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(count);
         });

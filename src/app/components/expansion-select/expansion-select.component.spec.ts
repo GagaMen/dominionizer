@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpansionSelectComponent } from './expansion-select.component';
-import { ConfigurationService } from '../../services/configuration.service';
 import {
     FormBuilder,
     ReactiveFormsModule,
@@ -11,7 +10,6 @@ import {
 } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { Expansion } from '../../models/expansion';
-import { SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -24,7 +22,6 @@ describe('ExpansionSelectComponent', () => {
     let component: ExpansionSelectComponent;
     let fixture: ComponentFixture<ExpansionSelectComponent>;
     let harnessLoader: HarnessLoader;
-    let configurationServiceSpy: SpyObj<ConfigurationService>;
     let dataFixture: DataFixture;
     let expansions: Expansion[];
 
@@ -32,23 +29,11 @@ describe('ExpansionSelectComponent', () => {
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, MatDividerModule, MatCheckboxModule],
             declarations: [ExpansionSelectComponent],
-            providers: [
-                {
-                    provide: ConfigurationService,
-                    useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
-                        'updateExpansions',
-                    ]),
-                },
-                FormBuilder,
-            ],
+            providers: [FormBuilder],
         });
 
         dataFixture = new DataFixture();
         expansions = dataFixture.createExpansions();
-
-        configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
-            ConfigurationService
-        >;
 
         fixture = TestBed.createComponent(ExpansionSelectComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
@@ -124,17 +109,16 @@ describe('ExpansionSelectComponent', () => {
             expect(actual).toBeTrue();
         });
 
-        it('with selected expansions change should update configuration', () => {
+        it('with selected expansions change should emit change event correctly', () => {
             fixture.detectChanges();
             const selectedExpansions = expansions.slice(0, 1);
             const expansionsPatch: boolean[] = expansions.map(() => false);
             expansionsPatch[0] = true;
+            const emitSpy = spyOn(component.change, 'emit');
 
             component.formGroup.patchValue({ expansions: expansionsPatch });
 
-            expect(configurationServiceSpy.updateExpansions).toHaveBeenCalledWith(
-                selectedExpansions,
-            );
+            expect(emitSpy).toHaveBeenCalledWith(selectedExpansions);
         });
     });
 
