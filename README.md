@@ -1,6 +1,8 @@
 # ![Dominionizer](/src/assets/logo/logo.svg)
 
 [![Build Status](https://travis-ci.com/GagaMen/dominionizer.svg?branch=master)](https://travis-ci.com/GagaMen/dominionizer)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/test_coverage)](https://codeclimate.com/github/GagaMen/dominionizer/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/maintainability)](https://codeclimate.com/github/GagaMen/dominionizer/maintainability)
 
 This project contains the source code of the web app Dominionizer, which is a set generator for the card game [Dominion](<https://en.wikipedia.org/wiki/Dominion_(card_game)>) from [Rio Grande Games](https://www.riograndegames.com/).
 
