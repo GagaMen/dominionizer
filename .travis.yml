@@ -17,7 +17,6 @@ install:
     - npm install
 
 before_script:
-    - npm install -g nyc
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build
@@ -26,14 +25,14 @@ script:
     - npm run eslint
     - npm run stylelint
     - npm run markdownlint
-    - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+    - npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
     # TODO: uncomment next line to enable e2e test on push via travis
     # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
     - npm run build
-    - nyc --reporter=lcov npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
 
 after_script:
-    - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+    - ./cc-test-reporter format-coverage -t lcov -o coverage/dominionizer/codeclimate.json coverage/dominionizer/lcov.info
+    - ./cc-test-reporter upload-coverage -i coverage/dominionizer/codeclimate.json
 
 deploy:
     provider: pages:git
