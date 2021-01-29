@@ -81,7 +81,6 @@ export class DataFixture {
         return {
             expansions: this.createExpansions(),
             specialCardsCount: this.createSpecialCardsCount(),
-            costDistribution: new Map<number, number>(),
             ...configuration,
         };
     }

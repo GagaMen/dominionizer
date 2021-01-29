@@ -68,19 +68,5 @@ describe('MathService', () => {
 
             expect(actual).toEqual(expected);
         });
-
-        it('with weights should return correct cards', () => {
-            const cards = dataFixture.createCards();
-            const number = 1;
-            const weights = [1, 3, 2];
-            const expected = cards.slice(0, number);
-            mathJsStaticSpy.pickRandom
-                .withArgs(jasmine.any(Array), number, weights)
-                .and.returnValue(cards[0].id);
-
-            const actual = mathService.pickRandomCards(cards, number, weights);
-
-            expect(actual).toEqual(expected);
-        });
     });
 });

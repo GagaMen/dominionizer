@@ -20,7 +20,6 @@ export class ConfigurationService {
             projects: 0,
             ways: 0,
         },
-        costDistribution: new Map(),
     };
 
     private configurationSubject = new BehaviorSubject<Configuration>(

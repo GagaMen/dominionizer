@@ -144,7 +144,7 @@ describe('ShuffleService', () => {
             );
             const expected = kingdomCards.slice(0, 10);
             mathServiceSpy.pickRandomCards
-                .withArgs(kingdomCardsOfConfiguredExpansions, 10, undefined)
+                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
                 .and.returnValue(expected);
             shuffleService = TestBed.inject(ShuffleService);
             getTestScheduler().flush();
@@ -153,35 +153,6 @@ describe('ShuffleService', () => {
             const set = setServiceSpy.updateSet.calls.first().args[0];
 
             expect(set.kingdomCards).toEqual(expected);
-        });
-
-        it('with costDistribution is not empty should pass correct card weights to MathService.pickRandomCards()', () => {
-            const partialKingdomCard: Partial<Card> = {
-                expansions: [configuredExpansion],
-                types: [CardType.Action],
-                isKingdomCard: true,
-            };
-            kingdomCards = [
-                dataFixture.createCard({ ...partialKingdomCard, cost: 4 }),
-                ...dataFixture.createCards(2, { ...partialKingdomCard, cost: 5 }),
-                dataFixture.createCard({ ...partialKingdomCard, cost: 6 }),
-            ];
-            configuration.costDistribution = new Map<number, number>([
-                [4, 1],
-                [5, 2],
-            ]);
-            // calculation formula: cost distribution value / count of cards with equal cost
-            const expected = [1 / 1, 2 / 2, 2 / 2, 0 / 1];
-            cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
-                cold('(a|)', { a: kingdomCards }),
-            );
-            shuffleService = TestBed.inject(ShuffleService);
-            getTestScheduler().flush();
-
-            shuffleService.shuffleSet();
-            const actual = mathServiceSpy.pickRandomCards.calls.first().args[2];
-
-            expect(actual).toEqual(expected);
         });
 
         ([
@@ -200,7 +171,7 @@ describe('ShuffleService', () => {
                 );
                 const expected = specialCardsOfConfiguredExpansions.slice(0, singleCount);
                 mathServiceSpy.pickRandomCards
-                    .withArgs(specialCardsOfConfiguredExpansions, singleCount, undefined)
+                    .withArgs(specialCardsOfConfiguredExpansions, singleCount)
                     .and.returnValue(expected);
                 shuffleService = TestBed.inject(ShuffleService);
                 getTestScheduler().flush();
@@ -240,7 +211,7 @@ describe('ShuffleService', () => {
             const expectedNewCard = candidates[0];
             setServiceSpy.set$ = cold('a', { a: currentSet });
             mathServiceSpy.pickRandomCards
-                .withArgs(candidates, 1, undefined)
+                .withArgs(candidates, 1)
                 .and.returnValue([expectedNewCard]);
             shuffleService = TestBed.inject(ShuffleService);
             getTestScheduler().flush();
@@ -251,40 +222,6 @@ describe('ShuffleService', () => {
 
             expect(actualOldCard).withContext('oldCard').toEqual(expectedOldCard);
             expect(actualNewCard).withContext('newCard').toEqual(expectedNewCard);
-        });
-
-        it('with costDistribution is not empty should pass correct card weights to MathService.pickRandomCards()', () => {
-            const partialKingdomCard: Partial<Card> = {
-                expansions: [configuredExpansion],
-                types: [CardType.Action],
-                isKingdomCard: true,
-            };
-            kingdomCards = [
-                ...dataFixture.createCards(2, { ...partialKingdomCard, cost: 4 }),
-                ...dataFixture.createCards(2, { ...partialKingdomCard, cost: 5 }),
-                dataFixture.createCard({ ...partialKingdomCard, cost: 6 }),
-            ];
-            configuration.costDistribution = new Map<number, number>([
-                [4, 1],
-                [5, 2],
-            ]);
-            const currentSet = dataFixture.createSet({
-                kingdomCards: kingdomCards.slice(0, 1),
-            });
-            const oldCard = currentSet.kingdomCards[0];
-            // calculation formula: cost distribution value / count of cards with equal cost
-            const expected = [1 / 1, 2 / 2, 2 / 2, 0 / 1];
-            cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
-                cold('(a|)', { a: kingdomCards }),
-            );
-            setServiceSpy.set$ = cold('a', { a: currentSet });
-            shuffleService = TestBed.inject(ShuffleService);
-            getTestScheduler().flush();
-
-            shuffleService.shuffleSingleCard(oldCard);
-            const actual = mathServiceSpy.pickRandomCards.calls.first().args[2];
-
-            expect(actual).toEqual(expected);
         });
 
         ([
@@ -310,7 +247,7 @@ describe('ShuffleService', () => {
                 const expectedNewCard = candidates[0];
                 setServiceSpy.set$ = cold('a', { a: currentSet });
                 mathServiceSpy.pickRandomCards
-                    .withArgs(candidates, 1, undefined)
+                    .withArgs(candidates, 1)
                     .and.returnValue([expectedNewCard]);
                 shuffleService = TestBed.inject(ShuffleService);
                 getTestScheduler().flush();

@@ -16,11 +16,9 @@ export const MathJsStaticInjectionToken = new InjectionToken<math.MathJsStatic>(
 export class MathService {
     constructor(@Inject(MathJsStaticInjectionToken) private mathJsService: math.MathJsStatic) {}
 
-    pickRandomCards(cards: Card[], number: number, weights?: number[]): Card[] {
+    pickRandomCards(cards: Card[], number: number): Card[] {
         const cardIds = cards.map((card: Card) => card.id);
-        const pickedCardIds = weights
-            ? this.mathJsService.pickRandom(cardIds, number, weights)
-            : this.mathJsService.pickRandom(cardIds, number);
+        const pickedCardIds = this.mathJsService.pickRandom(cardIds, number);
 
         return typeof pickedCardIds === 'number'
             ? [cards.find((card: Card) => card.id === pickedCardIds) as Card]

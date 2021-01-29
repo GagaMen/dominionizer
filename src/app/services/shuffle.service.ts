@@ -62,7 +62,6 @@ export class ShuffleService {
                 randomizableCards.kingdomCards,
                 configuration.expansions,
                 10,
-                configuration.costDistribution,
             ),
             specialCards: [
                 ...this.pickRandomCards(
@@ -113,7 +112,6 @@ export class ShuffleService {
         currentSet: Set,
     ): [Card, Card] {
         const candidates = this.determineCandidatesFromOldCard(oldCard, randomizableCards);
-        const costDistribution = oldCard.isKingdomCard ? configuration.costDistribution : undefined;
         const cardsToIgnore = oldCard.isKingdomCard
             ? currentSet.kingdomCards
             : currentSet.specialCards;
@@ -122,7 +120,6 @@ export class ShuffleService {
             candidates,
             configuration.expansions,
             1,
-            costDistribution,
             cardsToIgnore,
         )[0];
 
@@ -153,7 +150,6 @@ export class ShuffleService {
         candidates: Card[],
         expansions: Expansion[],
         count: number,
-        costDistribution?: Map<number, number>,
         cardsToIgnore: Card[] = [],
     ): Card[] {
         if (count === 0) {
@@ -162,9 +158,8 @@ export class ShuffleService {
 
         candidates = this.filterByExpansions(candidates, expansions);
         candidates = this.excludeCardsToIgnore(candidates, cardsToIgnore);
-        const weights = this.calculateCardWeights(candidates, costDistribution);
 
-        return this.mathService.pickRandomCards(candidates, count, weights);
+        return this.mathService.pickRandomCards(candidates, count);
     }
 
     private filterByExpansions(cards: Card[], expansions: Expansion[]): Card[] {
@@ -175,33 +170,6 @@ export class ShuffleService {
 
     private excludeCardsToIgnore(cards: Card[], cardsToIgnore: Card[]): Card[] {
         return cards.filter((card: Card) => !cardsToIgnore.includes(card));
-    }
-
-    private calculateCardWeights(
-        cards: Card[],
-        costDistribution?: Map<number, number>,
-    ): number[] | undefined {
-        if (!costDistribution) {
-            return undefined;
-        }
-        if (costDistribution.size === 0) {
-            return undefined;
-        }
-
-        const cardsAggregatedByCost = cards.reduce<Map<number, number>>(
-            (aggregation: Map<number, number>, card: Card) => {
-                const costCount = aggregation.get(card.cost) ?? 0;
-                aggregation.set(card.cost, costCount + 1);
-                return aggregation;
-            },
-            new Map<number, number>(),
-        );
-
-        return cards.map((card: Card) => {
-            const costWeight = costDistribution.get(card.cost) ?? 0;
-            const costCount = cardsAggregatedByCost.get(card.cost) as number;
-            return costWeight / costCount;
-        });
     }
 
     shuffleSet(): void {
