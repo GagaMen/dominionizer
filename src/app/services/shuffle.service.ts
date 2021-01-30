@@ -7,7 +7,7 @@ import { Card } from '../models/card';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { Expansion } from '../models/expansion';
-import { MathService } from './math.service';
+import { ChanceService } from './chance.service';
 import { CardService } from './card.service';
 import { Set } from '../models/set';
 
@@ -37,7 +37,7 @@ export class ShuffleService {
     constructor(
         private cardService: CardService,
         private configurationService: ConfigurationService,
-        private mathService: MathService,
+        private chanceService: ChanceService,
         private setService: SetService,
     ) {
         this.initShuffleSet().subscribe();
@@ -159,7 +159,7 @@ export class ShuffleService {
         candidates = this.filterByExpansions(candidates, expansions);
         candidates = this.excludeCardsToIgnore(candidates, cardsToIgnore);
 
-        return this.mathService.pickRandomCards(candidates, count);
+        return this.chanceService.pickCards(candidates, count);
     }
 
     private filterByExpansions(cards: Card[], expansions: Expansion[]): Card[] {

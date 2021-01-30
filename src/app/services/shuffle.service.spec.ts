@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ConfigurationService } from './configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { cold, getTestScheduler } from 'jasmine-marbles';
-import { MathService } from './math.service';
+import { ChanceService } from './chance.service';
 import { CardService } from './card.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { SetService } from './set.service';
@@ -18,7 +18,7 @@ describe('ShuffleService', () => {
     let shuffleService: ShuffleService;
     let cardServiceSpy: SpyObj<CardService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
-    let mathServiceSpy: SpyObj<MathService>;
+    let chanceServiceSpy: SpyObj<ChanceService>;
     let setServiceSpy: SpyObj<SetService>;
     let dataFixture: DataFixture;
     let configuredExpansion: Expansion;
@@ -66,8 +66,8 @@ describe('ShuffleService', () => {
                     useValue: {},
                 },
                 {
-                    provide: MathService,
-                    useValue: jasmine.createSpyObj<MathService>('MathService', ['pickRandomCards']),
+                    provide: ChanceService,
+                    useValue: jasmine.createSpyObj<ChanceService>('ChanceService', ['pickCards']),
                 },
                 {
                     provide: SetService,
@@ -123,8 +123,8 @@ describe('ShuffleService', () => {
         >;
         configurationServiceSpy.configuration$ = cold('a', { a: configuration });
 
-        mathServiceSpy = TestBed.inject(MathService) as jasmine.SpyObj<MathService>;
-        mathServiceSpy.pickRandomCards.and.returnValue([]);
+        chanceServiceSpy = TestBed.inject(ChanceService) as jasmine.SpyObj<ChanceService>;
+        chanceServiceSpy.pickCards.and.returnValue([]);
 
         setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
         setServiceSpy.set$ = cold('a', { a: dataFixture.createSet() });
@@ -146,7 +146,7 @@ describe('ShuffleService', () => {
                 kingdomCardsCountOfConfiguredExpansions,
             );
             const expected = kingdomCards.slice(0, 10);
-            mathServiceSpy.pickRandomCards
+            chanceServiceSpy.pickCards
                 .withArgs(kingdomCardsOfConfiguredExpansions, 10)
                 .and.returnValue(expected);
             shuffleService = TestBed.inject(ShuffleService);
@@ -173,7 +173,7 @@ describe('ShuffleService', () => {
                         singleSpecialCardsCountOfConfiguredExpansions,
                     );
                     const expected = specialCardsOfConfiguredExpansions.slice(0, singleCount);
-                    mathServiceSpy.pickRandomCards
+                    chanceServiceSpy.pickCards
                         .withArgs(specialCardsOfConfiguredExpansions, singleCount)
                         .and.returnValue(expected);
                     shuffleService = TestBed.inject(ShuffleService);
@@ -191,8 +191,8 @@ describe('ShuffleService', () => {
                     for (let i = 0; i < singleSpecialCardsCountOfConfiguredExpansions; i++) {
                         getSpecialCards().shift();
                     }
-                    mathServiceSpy.pickRandomCards.withArgs([], singleCount).and.returnValue([]);
-                    mathServiceSpy.pickRandomCards
+                    chanceServiceSpy.pickCards.withArgs([], singleCount).and.returnValue([]);
+                    chanceServiceSpy.pickCards
                         .withArgs(jasmine.notEmpty(), jasmine.anything())
                         .and.returnValue(dataFixture.createCards());
                     shuffleService = TestBed.inject(ShuffleService);
@@ -233,9 +233,7 @@ describe('ShuffleService', () => {
             const expectedOldCard = currentSet.kingdomCards[0];
             const expectedNewCard = candidates[0];
             setServiceSpy.set$ = cold('a', { a: currentSet });
-            mathServiceSpy.pickRandomCards
-                .withArgs(candidates, 1)
-                .and.returnValue([expectedNewCard]);
+            chanceServiceSpy.pickCards.withArgs(candidates, 1).and.returnValue([expectedNewCard]);
             shuffleService = TestBed.inject(ShuffleService);
             getTestScheduler().flush();
 
@@ -269,7 +267,7 @@ describe('ShuffleService', () => {
                 const expectedOldCard = currentSet.specialCards[0];
                 const expectedNewCard = candidates[0];
                 setServiceSpy.set$ = cold('a', { a: currentSet });
-                mathServiceSpy.pickRandomCards
+                chanceServiceSpy.pickCards
                     .withArgs(candidates, 1)
                     .and.returnValue([expectedNewCard]);
                 shuffleService = TestBed.inject(ShuffleService);

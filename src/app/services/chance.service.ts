@@ -4,8 +4,8 @@ import { Card } from '../models/card';
 @Injectable({
     providedIn: 'root',
 })
-export class MathService {
-    pickRandomCards(candidates: Card[], amount: number): Card[] {
+export class ChanceService {
+    pickCards(candidates: Card[], amount: number): Card[] {
         if (amount >= candidates.length) {
             return [...candidates];
         }

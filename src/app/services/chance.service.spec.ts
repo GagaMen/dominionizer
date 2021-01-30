@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MathService } from './math.service';
+import { ChanceService } from './chance.service';
 import { DataFixture } from 'src/testing/data-fixture';
 
-describe('MathService', () => {
-    let mathService: MathService;
+describe('ChanceService', () => {
+    let chanceService: ChanceService;
     let mathRandomSpy: jasmine.Spy<() => number>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [MathService],
+            providers: [ChanceService],
         });
 
         dataFixture = new DataFixture();
@@ -18,15 +18,15 @@ describe('MathService', () => {
         mathRandomSpy = spyOn(Math, 'random');
         mathRandomSpy.and.callThrough();
 
-        mathService = TestBed.inject(MathService);
+        chanceService = TestBed.inject(ChanceService);
     });
 
-    describe('pickRandomCards', () => {
+    describe('pickCards', () => {
         it('with amount is greater than candidates size should return all candidates', () => {
             const amount = 10;
             const candidates = dataFixture.createCards(amount - 1);
 
-            const actual = mathService.pickRandomCards(candidates, amount);
+            const actual = chanceService.pickCards(candidates, amount);
 
             expect(actual).toEqual(candidates);
             expect(actual).not.toBe(candidates);
@@ -36,7 +36,7 @@ describe('MathService', () => {
             const amount = 10;
             const candidates = dataFixture.createCards(amount);
 
-            const actual = mathService.pickRandomCards(candidates, amount);
+            const actual = chanceService.pickCards(candidates, amount);
 
             expect(actual).toEqual(candidates);
             expect(actual).not.toBe(candidates);
@@ -48,7 +48,7 @@ describe('MathService', () => {
             mathRandomSpy.and.returnValue(0.15);
             const expected = candidates.slice(1, 2);
 
-            const actual = mathService.pickRandomCards(candidates, amount);
+            const actual = chanceService.pickCards(candidates, amount);
 
             expect(actual).toEqual(expected);
         });
