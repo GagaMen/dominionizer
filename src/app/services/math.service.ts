@@ -1,29 +1,26 @@
-import { Injectable, InjectionToken, Inject } from '@angular/core';
-import * as math from 'mathjs';
+import { Injectable } from '@angular/core';
 import { Card } from '../models/card';
-
-export const MathJsStaticInjectionToken = new InjectionToken<math.MathJsStatic>(
-    'math.MathJsStatic',
-    {
-        providedIn: 'root',
-        factory: () => math,
-    },
-);
 
 @Injectable({
     providedIn: 'root',
 })
 export class MathService {
-    constructor(@Inject(MathJsStaticInjectionToken) private mathJsService: math.MathJsStatic) {}
+    pickRandomCards(candidates: Card[], amount: number): Card[] {
+        if (amount > candidates.length) {
+            throw new Error(
+                `Amount has to be equal or less than candidates size, but was greater. ` +
+                    `(Amount: ${amount}; Candidates: ${candidates.length})`,
+            );
+        }
 
-    pickRandomCards(cards: Card[], number: number): Card[] {
-        const cardIds = cards.map((card: Card) => card.id);
-        const pickedCardIds = this.mathJsService.pickRandom(cardIds, number);
+        const result = [];
+        const currentCandidates = [...candidates];
+        for (let i = 0; i < amount; i++) {
+            const index = Math.floor(Math.random() * currentCandidates.length);
+            const pickedCard = currentCandidates.splice(index, 1)[0];
+            result.push(pickedCard);
+        }
 
-        return typeof pickedCardIds === 'number'
-            ? [cards.find((card: Card) => card.id === pickedCardIds) as Card]
-            : (pickedCardIds.map((cardId: number) =>
-                  cards.find((card: Card) => card.id === cardId),
-              ) as Card[]);
+        return result;
     }
 }

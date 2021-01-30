@@ -1,72 +1,51 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MathService, MathJsStaticInjectionToken } from './math.service';
+import { MathService } from './math.service';
 import { DataFixture } from 'src/testing/data-fixture';
-import * as math from 'mathjs';
-import { SpyObj } from 'src/testing/spy-obj';
-
-describe('MathJsStaticInjectionToken', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [{ provide: MathJsStaticInjectionToken }],
-        });
-    });
-
-    it('should provide "math" constant', () => {
-        const actual = TestBed.inject<math.MathJsStatic>(MathJsStaticInjectionToken);
-
-        expect(actual).toBe(math);
-    });
-});
 
 describe('MathService', () => {
     let mathService: MathService;
-    let mathJsStaticSpy: SpyObj<math.MathJsStatic>;
+    let mathRandomSpy: jasmine.Spy<() => number>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                MathService,
-                {
-                    provide: MathJsStaticInjectionToken,
-                    useValue: jasmine.createSpyObj<math.MathJsStatic>('math.MathJsStatic', [
-                        'pickRandom',
-                    ]),
-                },
-            ],
+            providers: [MathService],
         });
 
         dataFixture = new DataFixture();
-        mathJsStaticSpy = TestBed.inject<SpyObj<math.MathJsStatic>>(MathJsStaticInjectionToken);
+        mathRandomSpy = spyOn(Math, 'random');
         mathService = TestBed.inject(MathService);
     });
 
     describe('pickRandomCards', () => {
-        it('with number is 1 should return correct cards', () => {
-            const cards = dataFixture.createCards();
-            const number = 1;
-            const expected = cards.slice(0, number);
-            mathJsStaticSpy.pickRandom
-                .withArgs(jasmine.any(Array), number)
-                .and.returnValue(cards[0].id);
+        it('with amount equals candidates size should return all candidates', () => {
+            const amount = 10;
+            const candidates = dataFixture.createCards(amount);
 
-            const actual = mathService.pickRandomCards(cards, number);
+            const actual = mathService.pickRandomCards(candidates, amount);
+
+            expect(actual).toEqual(candidates);
+        });
+
+        it('with amount is 1 should return one random card', () => {
+            const amount = 1;
+            const candidates = dataFixture.createCards(10);
+            mathRandomSpy.and.returnValue(0.15);
+            const expected = candidates.slice(1, 2);
+
+            const actual = mathService.pickRandomCards(candidates, amount);
 
             expect(actual).toEqual(expected);
         });
 
-        it('with number is more than 1 should return correct cards', () => {
-            const cards = dataFixture.createCards();
-            const number = 2;
-            const expected = cards.slice(0, number);
-            mathJsStaticSpy.pickRandom
-                .withArgs(jasmine.any(Array), number)
-                .and.returnValue([cards[0].id, cards[1].id]);
+        it('with amount is greater than candidates size should throw error', () => {
+            const amount = 10;
+            const candidates = dataFixture.createCards(amount - 1);
 
-            const actual = mathService.pickRandomCards(cards, number);
+            const act = () => mathService.pickRandomCards(candidates, amount);
 
-            expect(actual).toEqual(expected);
+            expect(act).toThrowError();
         });
     });
 });
