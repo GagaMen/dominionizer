@@ -9,7 +9,7 @@ import {
     ExpansionSelectViewData,
     SpecialCardSelectViewData,
 } from './configuration.component';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ExpansionSelectStubComponent } from 'src/testing/components/expansion-select.stub.component';
 import { SpecialCardSelectStubComponent } from 'src/testing/components/special-card-select.stub.component';
@@ -20,10 +20,18 @@ import { CardType } from 'src/app/models/card-type';
 import { cold } from 'jasmine-marbles';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import {
+    MatStepHarness,
+    MatStepperHarness,
+    StepperOrientation,
+} from '@angular/material/stepper/testing';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
     let fixture: ComponentFixture<ConfigurationComponent>;
+    let harnessLoader: HarnessLoader;
     let appBarServiceSpy: SpyObj<AppBarService>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
@@ -77,6 +85,7 @@ describe('ConfigurationComponent', () => {
         configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(false));
 
         fixture = TestBed.createComponent(ConfigurationComponent);
+        harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
     });
 
@@ -146,16 +155,107 @@ describe('ConfigurationComponent', () => {
     });
 
     describe('template', () => {
+        it('should render vertical stepper', async () => {
+            const actual = await harnessLoader.getHarness(
+                MatStepperHarness.with({ orientation: StepperOrientation.VERTICAL }),
+            );
+
+            expect(actual).toBeInstanceOf(MatStepperHarness);
+        });
+
+        it('should render "Expansions" step', async () => {
+            const actual = await harnessLoader.getHarness(
+                MatStepHarness.with({ label: 'Expansions' }),
+            );
+
+            expect(actual).toBeInstanceOf(MatStepHarness);
+        });
+
+        it('should bind properties of "Expansions" step correctly', () => {
+            fixture.detectChanges();
+            const expansionSelect = fixture.debugElement
+                .query(By.directive(ExpansionSelectStubComponent))
+                .injector.get(ExpansionSelectStubComponent);
+
+            const actual = fixture.debugElement
+                .query(By.directive(MatStepper))
+                .injector.get(MatStepper).steps.first;
+
+            expect(actual.stepControl).withContext('stepControl').toBe(expansionSelect.formGroup);
+            expect(actual.errorMessage)
+                .withContext('errorMessage')
+                .toBe('Choose at least one expansion');
+        });
+
+        it('should bind properties of ExpansionSelectComponent correctly', () => {
+            fixture.detectChanges();
+            const expansions = dataFixture.createExpansions();
+            const initialValue = expansions.slice(0, 1);
+            const viewData: ExpansionSelectViewData = {
+                expansions: expansions,
+                initialValue: initialValue,
+            };
+            component.expansionSelectViewData$ = of(viewData);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement
+                .query(By.directive(ExpansionSelectStubComponent))
+                .injector.get(ExpansionSelectStubComponent);
+
+            expect(actual.expansions).withContext('expansions').toBe(expansions);
+            expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
+        });
+
         it('should bind change event of ExpansionSelectComponent correctly', () => {
             fixture.detectChanges();
             const expansions = dataFixture.createExpansions();
 
-            const expansionSelectComponent = fixture.debugElement
+            const expansionSelect = fixture.debugElement
                 .query(By.directive(ExpansionSelectStubComponent))
                 .injector.get(ExpansionSelectStubComponent);
-            expansionSelectComponent.change.emit(expansions);
+            expansionSelect.change.emit(expansions);
 
             expect(configurationServiceSpy.updateExpansions).toHaveBeenCalledWith(expansions);
+        });
+
+        it('should render "Special Cards" step', async () => {
+            const actual = await harnessLoader.getHarness(
+                MatStepHarness.with({ label: 'Special Cards' }),
+            );
+
+            expect(actual).toBeInstanceOf(MatStepHarness);
+        });
+
+        it('should bind properties of "Special Cards" step correctly', () => {
+            fixture.detectChanges();
+            const specialCardSelect = fixture.debugElement
+                .query(By.directive(SpecialCardSelectStubComponent))
+                .injector.get(SpecialCardSelectStubComponent);
+
+            const actual = fixture.debugElement
+                .query(By.directive(MatStepper))
+                .injector.get(MatStepper).steps.last;
+
+            expect(actual.stepControl).withContext('stepControl').toBe(specialCardSelect.formGroup);
+        });
+
+        it('should bind properties of SpecialCardSelectComponent correctly', () => {
+            fixture.detectChanges();
+            const initialValue = dataFixture.createSpecialCardsCount();
+            const availability = dataFixture.createSpecialCardsAvailability();
+            const viewData: SpecialCardSelectViewData = {
+                initialValue: initialValue,
+                availability: availability,
+            };
+            component.specialCardSelectViewData$ = of(viewData);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement
+                .query(By.directive(SpecialCardSelectStubComponent))
+                .injector.get(SpecialCardSelectStubComponent);
+
+            expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
+            expect(actual.availability).withContext('availability').toBe(availability);
         });
 
         it('should bind change event of SpecialCardSelectComponent correctly', () => {
