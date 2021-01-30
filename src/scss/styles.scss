@@ -35,3 +35,13 @@ h6 {
 .white-space-normal {
     white-space: normal;
 }
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+    }
+}

@@ -1,23 +1,25 @@
 <mat-toolbar *ngIf="appBarService.configuration$ | async as configuration" color="primary">
-    <div class="navigation-action">
-        <button *ngIf="configuration.navigationAction === 'sidenav'" mat-icon-button>
-            <mat-icon>menu</mat-icon>
-        </button>
-        <a *ngIf="configuration.navigationAction === 'back'" routerLink="/" mat-icon-button>
-            <mat-icon>arrow_back</mat-icon>
-        </a>
-    </div>
-    <div class="logo">
-        <object data="assets/logo/logo.svg" type="image/svg+xml">Dominionizer</object>
-    </div>
-    <div class="actions" *ngIf="configuration.actions.length !== 0">
-        <ng-container *ngFor="let action of configuration.actions">
-            <button *ngIf="action.onClick" mat-icon-button (click)="action?.onClick()">
-                <mat-icon>{{ action.icon }}</mat-icon>
+    <div class="container">
+        <div class="navigation-action">
+            <button *ngIf="configuration.navigationAction === 'sidenav'" mat-icon-button>
+                <mat-icon>menu</mat-icon>
             </button>
-            <button *ngIf="action.matMenu" mat-icon-button [matMenuTriggerFor]="action.matMenu">
-                <mat-icon>{{ action.icon }}</mat-icon>
-            </button>
-        </ng-container>
+            <a *ngIf="configuration.navigationAction === 'back'" routerLink="/" mat-icon-button>
+                <mat-icon>arrow_back</mat-icon>
+            </a>
+        </div>
+        <div class="logo">
+            <object data="assets/logo/logo.svg" type="image/svg+xml">Dominionizer</object>
+        </div>
+        <div class="actions" *ngIf="configuration.actions.length !== 0">
+            <ng-container *ngFor="let action of configuration.actions">
+                <button *ngIf="action.onClick" mat-icon-button (click)="action?.onClick()">
+                    <mat-icon>{{ action.icon }}</mat-icon>
+                </button>
+                <button *ngIf="action.matMenu" mat-icon-button [matMenuTriggerFor]="action.matMenu">
+                    <mat-icon>{{ action.icon }}</mat-icon>
+                </button>
+            </ng-container>
+        </div>
     </div>
 </mat-toolbar>
