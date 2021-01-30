@@ -14,11 +14,24 @@ describe('MathService', () => {
         });
 
         dataFixture = new DataFixture();
+
         mathRandomSpy = spyOn(Math, 'random');
+        mathRandomSpy.and.callThrough();
+
         mathService = TestBed.inject(MathService);
     });
 
     describe('pickRandomCards', () => {
+        it('with amount is greater than candidates size should return all candidates', () => {
+            const amount = 10;
+            const candidates = dataFixture.createCards(amount - 1);
+
+            const actual = mathService.pickRandomCards(candidates, amount);
+
+            expect(actual).toEqual(candidates);
+            expect(actual).not.toBe(candidates);
+        });
+
         it('with amount equals candidates size should return all candidates', () => {
             const amount = 10;
             const candidates = dataFixture.createCards(amount);
@@ -26,9 +39,10 @@ describe('MathService', () => {
             const actual = mathService.pickRandomCards(candidates, amount);
 
             expect(actual).toEqual(candidates);
+            expect(actual).not.toBe(candidates);
         });
 
-        it('with amount is 1 should return one random card', () => {
+        it('with amount is 1 and candidates size is greater should return one random card', () => {
             const amount = 1;
             const candidates = dataFixture.createCards(10);
             mathRandomSpy.and.returnValue(0.15);
@@ -37,15 +51,6 @@ describe('MathService', () => {
             const actual = mathService.pickRandomCards(candidates, amount);
 
             expect(actual).toEqual(expected);
-        });
-
-        it('with amount is greater than candidates size should throw error', () => {
-            const amount = 10;
-            const candidates = dataFixture.createCards(amount - 1);
-
-            const act = () => mathService.pickRandomCards(candidates, amount);
-
-            expect(act).toThrowError();
         });
     });
 });

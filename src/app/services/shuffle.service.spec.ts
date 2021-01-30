@@ -83,7 +83,10 @@ describe('ShuffleService', () => {
 
         configuredExpansion = dataFixture.createExpansion();
         nonConfiguredExpansion = dataFixture.createExpansion();
-        configuration = dataFixture.createConfiguration({ expansions: [configuredExpansion] });
+        configuration = dataFixture.createConfiguration({
+            expansions: [configuredExpansion],
+            specialCardsCount: { events: 0, landmarks: 0, projects: 0, ways: 0 },
+        });
         kingdomCards = createCards(CardType.Action, true, kingdomCardsCountOfConfiguredExpansions);
         events = createCards(CardType.Event, false, singleSpecialCardsCountOfConfiguredExpansions);
         landmarks = createCards(
@@ -160,28 +163,48 @@ describe('ShuffleService', () => {
             ['landmarks', () => landmarks],
             ['projects', () => projects],
             ['ways', () => ways],
-        ] as [keyof SpecialCardsCount, () => Card[]][]).forEach(([type, specialCards]) => {
-            it(`with ${type} configured should pick corresponding number of random ${type} from configured expansions`, () => {
-                const singleCount = 2;
-                configuration.specialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
-                configuration.specialCardsCount[type] = singleCount;
-                const specialCardsOfConfiguredExpansions = specialCards().slice(
-                    0,
-                    singleSpecialCardsCountOfConfiguredExpansions,
-                );
-                const expected = specialCardsOfConfiguredExpansions.slice(0, singleCount);
-                mathServiceSpy.pickRandomCards
-                    .withArgs(specialCardsOfConfiguredExpansions, singleCount)
-                    .and.returnValue(expected);
-                shuffleService = TestBed.inject(ShuffleService);
-                getTestScheduler().flush();
+        ] as [keyof SpecialCardsCount, () => Card[]][]).forEach(
+            ([specialCards, getSpecialCards]) => {
+                it(`with ${specialCards} are available in configured expansions should pick configured number of random ${specialCards}`, () => {
+                    const singleCount = 2;
+                    configuration.specialCardsCount[specialCards] = singleCount;
+                    const specialCardsOfConfiguredExpansions = getSpecialCards().slice(
+                        0,
+                        singleSpecialCardsCountOfConfiguredExpansions,
+                    );
+                    const expected = specialCardsOfConfiguredExpansions.slice(0, singleCount);
+                    mathServiceSpy.pickRandomCards
+                        .withArgs(specialCardsOfConfiguredExpansions, singleCount)
+                        .and.returnValue(expected);
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
 
-                shuffleService.shuffleSet();
-                const set = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    shuffleService.shuffleSet();
+                    const set = setServiceSpy.updateSet.calls.mostRecent().args[0];
 
-                expect(set.specialCards).toEqual(expected);
-            });
-        });
+                    expect(set.specialCards).toEqual(expected);
+                });
+
+                it(`with ${specialCards} are not available in configured expansions should pick no ${specialCards}`, () => {
+                    const singleCount = 2;
+                    configuration.specialCardsCount[specialCards] = singleCount;
+                    for (let i = 0; i < singleSpecialCardsCountOfConfiguredExpansions; i++) {
+                        getSpecialCards().shift();
+                    }
+                    mathServiceSpy.pickRandomCards.withArgs([], singleCount).and.returnValue([]);
+                    mathServiceSpy.pickRandomCards
+                        .withArgs(jasmine.notEmpty(), jasmine.anything())
+                        .and.returnValue(dataFixture.createCards());
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
+
+                    shuffleService.shuffleSet();
+                    const set = setServiceSpy.updateSet.calls.mostRecent()?.args[0];
+
+                    expect(set?.specialCards).toEqual([]);
+                });
+            },
+        );
     });
 
     describe('shuffleSingleCard', () => {
@@ -229,10 +252,10 @@ describe('ShuffleService', () => {
             ['landmark', () => landmarks],
             ['project', () => projects],
             ['way', () => ways],
-        ] as [string, () => Card[]][]).forEach(([type, specialCards]) => {
-            it(`with card is ${type} should pick different random ${type} from configured expansions`, () => {
+        ] as [string, () => Card[]][]).forEach(([specialCard, getSpecialCards]) => {
+            it(`with card is ${specialCard} should pick different random ${specialCard} from configured expansions`, () => {
                 const singleCount = 2;
-                const specialCardsOfConfiguredExpansions = specialCards().slice(
+                const specialCardsOfConfiguredExpansions = getSpecialCards().slice(
                     0,
                     singleSpecialCardsCountOfConfiguredExpansions,
                 );

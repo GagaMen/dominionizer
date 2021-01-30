@@ -6,11 +6,8 @@ import { Card } from '../models/card';
 })
 export class MathService {
     pickRandomCards(candidates: Card[], amount: number): Card[] {
-        if (amount > candidates.length) {
-            throw new Error(
-                `Amount has to be equal or less than candidates size, but was greater. ` +
-                    `(Amount: ${amount}; Candidates: ${candidates.length})`,
-            );
+        if (amount >= candidates.length) {
+            return [...candidates];
         }
 
         const result = [];
