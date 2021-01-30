@@ -14,7 +14,6 @@ import { DataFixture } from 'src/testing/data-fixture';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
 import { Chance } from 'chance';
@@ -302,16 +301,6 @@ describe('ExpansionSelectComponent', () => {
             for (let index = 0; index < actual.length; index++) {
                 expect(actual[index].name).toBe(index);
             }
-        });
-
-        it('should bind forward button correctly', () => {
-            fixture.detectChanges();
-
-            const matButton = harnessLoader.getHarness(
-                MatButtonHarness.with({ selector: '[matStepperNext]' }),
-            );
-
-            expect(matButton).not.toBeNull();
         });
     });
 });

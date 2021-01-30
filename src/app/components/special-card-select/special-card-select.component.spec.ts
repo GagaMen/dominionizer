@@ -9,8 +9,6 @@ import { MatSliderHarness } from '@angular/material/slider/testing';
 import { SpecialCardSelectComponent } from './special-card-select.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { By } from '@angular/platform-browser';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonHarness } from '@angular/material/button/testing';
 import { DataFixture } from 'src/testing/data-fixture';
 
 describe('SpecialCardSelectComponent', () => {
@@ -21,7 +19,7 @@ describe('SpecialCardSelectComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatSliderModule, MatButtonModule],
+            imports: [ReactiveFormsModule, MatSliderModule],
             declarations: [SpecialCardSelectComponent],
             providers: [
                 {
@@ -160,14 +158,6 @@ describe('SpecialCardSelectComponent', () => {
 
                 expect(actual).toBe(expected);
             });
-        });
-
-        it('should bind back button correctly', () => {
-            const matButton = harnessLoader.getHarness(
-                MatButtonHarness.with({ selector: '[matStepperPrevious]' }),
-            );
-
-            expect(matButton).not.toBeNull();
         });
     });
 });

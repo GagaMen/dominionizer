@@ -27,6 +27,9 @@ import {
     MatStepperHarness,
     StepperOrientation,
 } from '@angular/material/stepper/testing';
+import { MatButtonHarness } from '@angular/material/button/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -39,7 +42,7 @@ describe('ConfigurationComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatStepperModule, NoopAnimationsModule],
+            imports: [MatStepperModule, MatButtonModule, MatIconModule, NoopAnimationsModule],
             declarations: [
                 ConfigurationComponent,
                 ExpansionSelectStubComponent,
@@ -268,6 +271,17 @@ describe('ConfigurationComponent', () => {
             specialCardSelectComponent.change.emit(count);
 
             expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(count);
+        });
+
+        it('should render shuffle button correctly', async () => {
+            const matButton = await harnessLoader.getHarness(
+                MatButtonHarness.with({ selector: '[mat-fab][routerLink="set"]' }),
+            );
+
+            expect(matButton).toBeInstanceOf(MatButtonHarness);
+            expect(await matButton.getText())
+                .withContext('content')
+                .toBe('casino');
         });
     });
 });
