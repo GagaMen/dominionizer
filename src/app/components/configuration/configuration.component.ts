@@ -28,7 +28,7 @@ export interface SpecialCardSelectViewData {
 })
 export class ConfigurationComponent implements OnInit {
     expansionSelectViewData$: Observable<ExpansionSelectViewData> = new Observable();
-    specialCardSelectViewData$: Observable<SpecialCardSelectViewData> = new Observable();
+    specialCardSelectViewData$: Observable<SpecialCardSelectViewData | null> = new Observable();
 
     constructor(
         private appBarService: AppBarService,
@@ -76,6 +76,17 @@ export class ConfigurationComponent implements OnInit {
                     areProjectsAvailable,
                     areWaysAvailable,
                 ]) => {
+                    if (
+                        !(
+                            areEventsAvailable ||
+                            areLandmarksAvailable ||
+                            areProjectsAvailable ||
+                            areWaysAvailable
+                        )
+                    ) {
+                        return null;
+                    }
+
                     const viewData: SpecialCardSelectViewData = {
                         initialValue: configuration.specialCardsCount,
                         availability: {

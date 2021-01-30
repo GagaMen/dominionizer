@@ -85,26 +85,15 @@ describe('ConfigurationComponent', () => {
             ConfigurationService
         >;
         configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
-        configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(false));
+        configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(true));
 
         fixture = TestBed.createComponent(ConfigurationComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
     });
 
-    describe('ngOnInit', () => {
-        it('should update AppBarConfiguration correctly', () => {
-            const configuration: AppBarConfiguration = {
-                navigationAction: 'none',
-                actions: [],
-            };
-
-            fixture.detectChanges();
-
-            expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
-        });
-
-        it('should set expansionSelectViewData$ correctly', () => {
+    describe('expansionSelectViewData$', () => {
+        it('should emit correct ExpansionSelectViewData', () => {
             const expansions = dataFixture.createExpansions();
             const configuration = dataFixture.createConfiguration();
             const expected: ExpansionSelectViewData = {
@@ -116,14 +105,16 @@ describe('ConfigurationComponent', () => {
             const expected$ = cold('     --c', { c: expected });
             expansionServiceSpy.expansions$ = expansions$;
             configurationServiceSpy.configuration$ = configuration$;
-
             fixture.detectChanges();
+
             const actual$ = component.expansionSelectViewData$;
 
             expect(actual$).toBeObservable(expected$);
         });
+    });
 
-        it('should set specialCardSelectViewData$ correctly', () => {
+    describe('specialCardSelectViewData$', () => {
+        it('with special cards are available should emit correct SpecialCardSelectViewData', () => {
             const configuration = dataFixture.createConfiguration();
             const availability = dataFixture.createSpecialCardsAvailability();
             const expected: SpecialCardSelectViewData = {
@@ -149,11 +140,38 @@ describe('ConfigurationComponent', () => {
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardType.Way)
                 .and.returnValue(areWaysAvailable$);
-
             fixture.detectChanges();
+
             const actual$ = component.specialCardSelectViewData$;
 
             expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with no special cards are available should emit null', () => {
+            const configuration = dataFixture.createConfiguration();
+            const configuration$ = cold('      --a', { a: configuration });
+            const isCardTypeAvailable$ = cold('--b', { b: false });
+            const expected$ = cold('           --c', { c: null });
+            configurationServiceSpy.configuration$ = configuration$;
+            configurationServiceSpy.isCardTypeAvailable.and.returnValue(isCardTypeAvailable$);
+            fixture.detectChanges();
+
+            const actual$ = component.specialCardSelectViewData$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+    });
+
+    describe('ngOnInit', () => {
+        it('should update AppBarConfiguration correctly', () => {
+            const configuration: AppBarConfiguration = {
+                navigationAction: 'none',
+                actions: [],
+            };
+
+            fixture.detectChanges();
+
+            expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
         });
     });
 
