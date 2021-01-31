@@ -1,5 +1,15 @@
+form {
+    display: grid;
+    gap: 0.5rem;
+
+    @media (min-width: 450px) {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
 .special-cards-label {
     display: flex;
+    padding: 0 8px;
 
     > label {
         flex: 1;

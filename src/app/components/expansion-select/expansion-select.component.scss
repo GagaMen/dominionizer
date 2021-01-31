@@ -1,3 +1,12 @@
+.expansions {
+    display: grid;
+    gap: 0.5rem;
+
+    @media (min-width: 450px) {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
 mat-divider {
     margin: 0.5rem 0;
 }
@@ -6,8 +15,4 @@ ul {
     list-style: none;
     margin-block: 0;
     padding-inline-start: 0;
-}
-
-li {
-    margin-top: 0.3rem;
 }

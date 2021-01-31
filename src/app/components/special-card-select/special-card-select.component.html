@@ -1,33 +1,33 @@
 <form [formGroup]="formGroup">
-    <ng-container *ngIf="availability.events">
+    <div *ngIf="availability.events">
         <div class="special-cards-label">
             <label>Events</label>
             <span>{{ formGroup.value.events }}</span>
         </div>
         <mat-slider formControlName="events" min="0" max="5" tickInterval="1"></mat-slider>
-    </ng-container>
+    </div>
 
-    <ng-container *ngIf="availability.landmarks">
+    <div *ngIf="availability.landmarks">
         <div class="special-cards-label">
             <label>Landmarks</label>
             <span>{{ formGroup.value.landmarks }}</span>
         </div>
         <mat-slider formControlName="landmarks" min="0" max="5" tickInterval="1"></mat-slider>
-    </ng-container>
+    </div>
 
-    <ng-container *ngIf="availability.projects">
+    <div *ngIf="availability.projects">
         <div class="special-cards-label">
             <label>Projects</label>
             <span>{{ formGroup.value.projects }}</span>
         </div>
         <mat-slider formControlName="projects" min="0" max="5" tickInterval="1"></mat-slider>
-    </ng-container>
+    </div>
 
-    <ng-container *ngIf="availability.ways">
+    <div *ngIf="availability.ways">
         <div class="special-cards-label">
             <label>Ways</label>
             <span>{{ formGroup.value.ways }}</span>
         </div>
         <mat-slider formControlName="ways" min="0" max="5" tickInterval="1"></mat-slider>
-    </ng-container>
+    </div>
 </form>
