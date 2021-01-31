@@ -1,0 +1,41 @@
+@import '../../../scss/material-theme';
+
+footer {
+    background: mat-color($primary, default);
+    flex-shrink: 0;
+    padding: 32px 0;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+
+li:not(:first-child) {
+    margin: 0;
+    padding-left: 0.5rem;
+
+    &::before {
+        content: '\2219';
+        font-weight: 900;
+        padding-right: 0.5rem;
+    }
+}
+
+a {
+    text-decoration: none;
+
+    &:visited {
+        color: rgba(0, 0, 0, 0.87);
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

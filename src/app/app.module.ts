@@ -31,6 +31,7 @@ import { SpecialCardSelectComponent } from './components/special-card-select/spe
 import { SetOrderingMenuComponent } from './components/set-ordering-menu/set-ordering-menu.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { environment } from '../environments/environment';
         ExpansionSelectComponent,
         SpecialCardSelectComponent,
         SetOrderingMenuComponent,
+        FooterComponent,
     ],
     imports: [
         BrowserModule,

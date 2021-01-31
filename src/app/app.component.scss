@@ -1,3 +1,13 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
 app-bar {
     left: 0;
     position: fixed;
