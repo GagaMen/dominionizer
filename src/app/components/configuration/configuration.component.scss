@@ -1,5 +1,18 @@
+mat-vertical-stepper {
+    margin-bottom: 88px;
+}
+
+.stepper-actions {
+    bottom: 0;
+    position: sticky;
+}
+
+.relative-container {
+    position: relative;
+}
+
 .mat-fab {
     bottom: 16px;
-    position: fixed;
+    position: absolute;
     right: 16px;
 }
