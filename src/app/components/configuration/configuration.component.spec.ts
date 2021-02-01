@@ -27,7 +27,6 @@ import {
     MatStepperHarness,
     StepperOrientation,
 } from '@angular/material/stepper/testing';
-import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -291,15 +290,16 @@ describe('ConfigurationComponent', () => {
             expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(count);
         });
 
-        it('should render shuffle button correctly', async () => {
-            const matButton = await harnessLoader.getHarness(
-                MatButtonHarness.with({ selector: '[mat-fab][routerLink="set"]' }),
+        it('should render shuffle button correctly', () => {
+            const button = fixture.debugElement.query(
+                By.css('.mdc-fab.mdc-fab--extended[routerLink="set"]'),
             );
+            const icon = button.query(By.css('.material-icons.mdc-fab__icon'));
+            const label = button.query(By.css('.mdc-fab__label'));
 
-            expect(matButton).toBeInstanceOf(MatButtonHarness);
-            expect(await matButton.getText())
-                .withContext('content')
-                .toBe('casino');
+            expect(button).toBeTruthy();
+            expect(icon.nativeElement.textContent).withContext('icon').toBe('casino');
+            expect(label.nativeElement.textContent).withContext('label').toBe('generate');
         });
     });
 });
