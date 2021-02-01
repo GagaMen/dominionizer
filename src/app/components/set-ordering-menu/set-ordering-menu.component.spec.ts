@@ -77,6 +77,14 @@ describe('SetOrderingMenuComponent', () => {
             getTestScheduler().flush();
         }
 
+        it('should render menu with xPosition is "before"', async () => {
+            await initMenu();
+
+            const actual = component.matMenu?.xPosition;
+
+            expect(actual).toBe('before');
+        });
+
         it('should render "Without" menu item', async () => {
             await initMenu();
 
