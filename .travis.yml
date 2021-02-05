@@ -51,6 +51,7 @@ jobs:
               - ./cc-test-reporter format-coverage -t lcov -o coverage/dominionizer/codeclimate.json coverage/dominionizer/lcov.info
               - ./cc-test-reporter upload-coverage -i coverage/dominionizer/codeclimate.json
         - name: build
+          stage: build
           script:
               - npm run build
         - name: deploy
