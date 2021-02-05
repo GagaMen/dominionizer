@@ -16,30 +16,17 @@ cache:
 install:
     - npm install
 
-stages:
-    - build
-    - deploy
-
 jobs:
     include:
         - name: lint
           if: branch = master
-          stage: build
           script:
               - commitlint-travis
               - npm run eslint
               - npm run stylelint
               - npm run markdownlint
-        - name: test
-          if: branch = release
-          stage: build
-          script:
-              - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-              # TODO: uncomment next line to enable e2e test on push via travis
-              # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
         - name: test:coverage
           if: branch = master
-          stage: build
           before_script:
               - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
               - chmod +x ./cc-test-reporter
@@ -50,15 +37,20 @@ jobs:
           after_script:
               - ./cc-test-reporter format-coverage -t lcov -o coverage/dominionizer/codeclimate.json coverage/dominionizer/lcov.info
               - ./cc-test-reporter upload-coverage -i coverage/dominionizer/codeclimate.json
+        - name: test
+          if: branch = release
+          script:
+              - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+              # TODO: uncomment next line to enable e2e test on push via travis
+              # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
         - name: build
-          stage: build
           script:
               - npm run build
-        - name: deploy
-          if: branch = release
-          stage: deploy
-          deploy:
-              provider: pages:git
-              github_token: $GITHUB_TOKEN
-              local_dir: dist/dominionizer
-              edge: true
+
+deploy:
+    provider: pages:git
+    github_token: $GITHUB_TOKEN
+    local_dir: dist/dominionizer
+    edge: true
+    on:
+        branch: release
