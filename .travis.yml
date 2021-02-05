@@ -22,6 +22,7 @@ before_script:
     - ./cc-test-reporter before-build
 
 script:
+    - commitlint-travis
     - npm run eslint
     - npm run stylelint
     - npm run markdownlint

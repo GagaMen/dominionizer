@@ -5,12 +5,15 @@
         "start": "ng serve",
         "start:prod": "npm run build && http-server -p 8080 -o ./dominionizer -c-1 ./dist",
         "build": "ng build --prod",
+        "build:changelog": "conventional-changelog -i CHANGELOG.md -s",
         "test": "ng test",
         "test:coverage": "npm run test -- --no-watch --code-coverage",
         "eslint": "eslint . --ignore-path .gitignore --ext .ts,.js,.json,.component.html",
         "stylelint": "stylelint \"**/*.scss\" --ignore-path .gitignore --syntax scss --cache",
         "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "commitizen": "commitizen",
+        "cm": "cz"
     },
     "lint-staged": {
         "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
@@ -19,7 +22,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     },
     "private": true,
@@ -52,6 +56,9 @@
         "@angular/cli": "~11.0.1",
         "@angular/compiler-cli": "~11.0.0",
         "@angular/language-service": "~11.0.0",
+        "@commitlint/cli": "^11.0.0",
+        "@commitlint/config-conventional": "^11.0.0",
+        "@commitlint/travis-cli": "^11.0.0",
         "@types/chance": "^1.1.0",
         "@types/jasmine": "~3.6.0",
         "@types/jasminewd2": "^2.0.8",
@@ -60,6 +67,9 @@
         "@typescript-eslint/eslint-plugin": "^4.8.0",
         "@typescript-eslint/parser": "^4.8.0",
         "chance": "^1.1.7",
+        "commitizen": "^4.2.3",
+        "conventional-changelog-cli": "^2.1.1",
+        "cz-conventional-changelog": "3.3.0",
         "eslint": "^7.13.0",
         "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-json": "2.1.2",

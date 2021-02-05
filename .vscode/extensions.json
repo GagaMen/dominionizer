@@ -7,6 +7,7 @@
         "esbenp.prettier-vscode",
         "eg2.vscode-npm-script",
         "stylelint.vscode-stylelint",
-        "davidanson.vscode-markdownlint"
+        "davidanson.vscode-markdownlint",
+        "knisterpeter.vscode-commitizen"
     ]
 }
