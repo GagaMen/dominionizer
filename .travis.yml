@@ -32,7 +32,7 @@ jobs:
               - npm run markdownlint
         - name: test
           if: branch = release
-          stage: deploy
+          stage: build
           script:
               - npm run test -- --no-progress --browsers=ChromeHeadlessCI
               # TODO: uncomment next line to enable e2e test on push via travis
