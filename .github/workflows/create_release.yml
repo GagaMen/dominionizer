@@ -15,7 +15,7 @@ jobs:
               run: |
                   npm install
                   npm run build
-                  zip -r app.zip ./dist/dominionizer
+                  zip --recurse-paths --junk-paths app.zip ./dist/dominionizer
             - name: Create release
               uses: actions/create-release@v1
               id: create_release
