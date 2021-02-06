@@ -18,33 +18,29 @@ install:
 
 jobs:
     include:
-        - name: lint
-          if: branch = master
-          script:
-              - commitlint-travis
-              - npm run eslint
-              - npm run stylelint
-              - npm run markdownlint
-        - name: test:coverage
+        - name: master
           if: branch = master
           before_script:
               - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
               - chmod +x ./cc-test-reporter
               - ./cc-test-reporter before-build
           script:
+              - commitlint-travis
+              - npm run eslint
+              - npm run stylelint
+              - npm run markdownlint
               - npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
-              # TODO: add test coverage for e2e test on push via travis
+              # TODO: uncomment next line to enable e2e test on push via travis
+              # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+              - npm run build
           after_script:
               - ./cc-test-reporter format-coverage -t lcov -o coverage/dominionizer/codeclimate.json coverage/dominionizer/lcov.info
               - ./cc-test-reporter upload-coverage -i coverage/dominionizer/codeclimate.json
-        - name: test
+        - name: release
           if: branch = release
           script:
               - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-              # TODO: uncomment next line to enable e2e test on push via travis
-              # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-        - name: build
-          script:
+              # TODO: add test coverage for e2e test on push via travis
               - npm run build
 
 deploy:
