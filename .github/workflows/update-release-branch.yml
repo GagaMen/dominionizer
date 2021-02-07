@@ -1,8 +1,9 @@
-name: Publish release
+name: Update release branch
 
 on:
-    release:
-        types: [released]
+    push:
+        tags:
+            - 'v[0-9]+'
 
 jobs:
     publish:
@@ -10,12 +11,11 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.ref }}
 
-            - name: Merge into release branch
+            - name: Merge master into release
               uses: devmasx/merge-branch@v1.3.1
               with:
                   type: now
+                  from_branch: master
                   target_branch: release
                   github_token: ${{ github.token }}
