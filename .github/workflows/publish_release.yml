@@ -1,0 +1,21 @@
+name: Create release
+
+on:
+    release:
+        types: [released]
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.ref }}
+
+            - name: Merge into release branch
+              uses: devmasx/merge-branch@v1.3.1
+              with:
+                  type: now
+                  target_branch: release
+                  github_token: ${{ github.token }}
