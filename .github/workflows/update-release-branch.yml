@@ -6,7 +6,7 @@ on:
             - 'v[0-9]+'
 
 jobs:
-    publish:
+    update-release-branch:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -16,6 +16,5 @@ jobs:
               uses: devmasx/merge-branch@v1.3.1
               with:
                   type: now
-                  from_branch: master
                   target_branch: release
-                  github_token: ${{ github.token }}
+                  github_token: ${{ secrets.UPDATE_RELEASE_BRANCH_TOKEN }}
