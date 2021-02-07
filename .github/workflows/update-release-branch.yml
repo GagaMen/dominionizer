@@ -11,10 +11,12 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
+              with:
+                  persist-credentials: false
 
             - name: Merge master into release
               uses: devmasx/merge-branch@v1.3.1
               with:
                   type: now
                   target_branch: release
-                  github_token: ${{ secrets.UPDATE_RELEASE_BRANCH_TOKEN }}
+                  github_token: ${{ github.token }}
