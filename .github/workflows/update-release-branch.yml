@@ -9,8 +9,10 @@ jobs:
     update-release-branch:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout code
+            - name: Checkout release branch
               uses: actions/checkout@v2
+              with:
+                  ref: release
 
             - name: Rebase release branch
               run: |
