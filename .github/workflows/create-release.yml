@@ -34,7 +34,7 @@ jobs:
             - name: Create build artifacts
               run: |
                   cd dist/dominionizer/
-                  zip --recurse-paths app.zip .
+                  zip --recurse-paths dominionizer.zip .
 
             - name: Set environment variable for latest tag
               run: echo "LATEST_TAG=$(git describe --abbrev=0)" >> $GITHUB_ENV
@@ -58,6 +58,6 @@ jobs:
               with:
                   # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./dist/dominionizer/app.zip
-                  asset_name: dominionizer_app.zip
+                  asset_path: ./dist/dominionizer/dominionizer.zip
+                  asset_name: dominionizer.zip
                   asset_content_type: application/zip
