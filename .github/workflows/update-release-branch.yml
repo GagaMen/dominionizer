@@ -16,5 +16,5 @@ jobs:
 
             - name: Rebase release branch
               run: |
-                  git rebase --onto ${{ github.ref }} master
+                  git rebase --onto ${{ github.ref }} origin/master
                   git push
