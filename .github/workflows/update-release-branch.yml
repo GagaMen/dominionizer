@@ -14,7 +14,7 @@ jobs:
               with:
                   ref: release
                   fetch-depth: 0
-                  token: ${{ secret.UPDATE_RELEASE_BRANCH_TOKEN }}
+                  token: ${{ secrets.UPDATE_RELEASE_BRANCH_TOKEN }}
 
             - name: Rebase release branch
               run: |
