@@ -118,9 +118,9 @@ describe('ShuffleService', () => {
             .withArgs(CardType.Way)
             .and.returnValue(cold('(a|)', { a: ways }));
 
-        configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
-            ConfigurationService
-        >;
+        configurationServiceSpy = TestBed.inject(
+            ConfigurationService,
+        ) as jasmine.SpyObj<ConfigurationService>;
         configurationServiceSpy.configuration$ = cold('a', { a: configuration });
 
         chanceServiceSpy = TestBed.inject(ChanceService) as jasmine.SpyObj<ChanceService>;

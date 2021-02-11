@@ -42,9 +42,7 @@ export class SetService {
             return set;
         }),
     );
-    readonly groupingOption$: Observable<
-        GroupingOption
-    > = this.groupingOptionSubject.asObservable();
+    readonly groupingOption$: Observable<GroupingOption> = this.groupingOptionSubject.asObservable();
     readonly sortingOption$: Observable<SortingOption> = this.sortingOptionSubject.asObservable();
 
     static orderCards(

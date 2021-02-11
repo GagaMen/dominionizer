@@ -80,9 +80,9 @@ describe('ConfigurationComponent', () => {
         expansionServiceSpy = TestBed.inject(ExpansionService) as jasmine.SpyObj<ExpansionService>;
         expansionServiceSpy.expansions$ = of(dataFixture.createExpansions());
 
-        configurationServiceSpy = TestBed.inject(ConfigurationService) as jasmine.SpyObj<
-            ConfigurationService
-        >;
+        configurationServiceSpy = TestBed.inject(
+            ConfigurationService,
+        ) as jasmine.SpyObj<ConfigurationService>;
         configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
         configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(true));
 

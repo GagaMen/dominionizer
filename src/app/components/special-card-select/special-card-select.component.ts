@@ -19,9 +19,8 @@ export class SpecialCardSelectComponent implements OnInit {
     @Input() initialValue: SpecialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
 
     // eslint-disable-next-line @angular-eslint/no-output-native
-    @Output() readonly change: EventEmitter<SpecialCardsCount> = new EventEmitter<
-        SpecialCardsCount
-    >();
+    @Output()
+    readonly change: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
 
     formGroup: FormGroup = new FormGroup({});
 

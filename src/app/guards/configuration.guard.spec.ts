@@ -24,9 +24,9 @@ describe('ConfigurationGuard', () => {
 
         dataFixture = new DataFixture();
         routerSpy = (TestBed.inject(Router) as unknown) as SpyObj<Router>;
-        configurationServiceSpy = (TestBed.inject(ConfigurationService) as unknown) as SpyObj<
-            ConfigurationService
-        >;
+        configurationServiceSpy = (TestBed.inject(
+            ConfigurationService,
+        ) as unknown) as SpyObj<ConfigurationService>;
         configurationGuard = TestBed.inject(ConfigurationGuard);
     });
 
