@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/maintainability)](https://codeclimate.com/github/GagaMen/dominionizer/maintainability)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-This project contains the source code of the web app Dominionizer, which is a set generator for the card game [Dominion](<https://en.wikipedia.org/wiki/Dominion_(card_game)>) from [Rio Grande Games](https://www.riograndegames.com/).
+This project contains the source code of the web app [Dominionizer](https://dominionizer.app/), which is a set generator for the card game [Dominion](<https://en.wikipedia.org/wiki/Dominion_(card_game)>) from [Rio Grande Games](https://www.riograndegames.com/).
 
 ## Get Started
 
@@ -18,7 +18,7 @@ npm start
 
 ## Contributing
 
-At the moment we don't accept PRs until we release our first version of the app. The first release is planned to be before end of 2020.
+The easiest way to contribute is telling your friends about this app. If you want to go further and report a bug, request a feature or even contribute code, please check out our [contributing guidelines](/CONTRIBUTING.md) first.
 
 ## Special Tanks
 
@@ -28,7 +28,7 @@ We also want to thank [@sumpfork](https://github.com/sumpfork) and all the contr
 
 ## License
 
-Copyright (C) 2020 GagaMen, Tobias Dimmel and contributors
+Copyright (C) 2020 Felix Dimmel, Tobias Dimmel and contributors
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GNU Affero General Public License](/LICENSE) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
