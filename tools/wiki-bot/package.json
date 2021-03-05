@@ -1,0 +1,24 @@
+{
+    "name": "dominionizer-wiki-bot",
+    "scripts": {
+        "start": "tsc --project tsconfig.json && node ./dist/main.js",
+        "start:ts-node": "ts-node ./src/main.ts",
+        "test": "karma start",
+        "test:coverage": "karma start --single-run --reporters progress,kjhtml,karma-typescript"
+    },
+    "devDependencies": {
+        "@types/jasmine": "^3.6.4",
+        "@types/jasminewd2": "^2.0.8",
+        "@types/node": "^14.14.31",
+        "jasmine-core": "^3.6.0",
+        "jasmine-spec-reporter": "^6.0.0",
+        "karma": "^6.1.1",
+        "karma-chrome-launcher": "^3.1.0",
+        "karma-coverage": "^2.0.3",
+        "karma-jasmine": "^4.0.1",
+        "karma-jasmine-html-reporter": "^1.5.4",
+        "karma-typescript": "^5.4.0",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.2.3"
+    }
+}
