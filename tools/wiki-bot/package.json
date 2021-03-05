@@ -1,8 +1,7 @@
 {
     "name": "dominionizer-wiki-bot",
     "scripts": {
-        "start": "tsc --project tsconfig.json && node ./dist/main.js",
-        "start:ts-node": "ts-node ./src/main.ts",
+        "start": "ts-node ./src/main.ts",
         "test": "karma start",
         "test:coverage": "karma start --single-run --reporters progress,kjhtml,karma-typescript"
     },
