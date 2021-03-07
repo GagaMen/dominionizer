@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "f2d17733-0110-4547-bf25-d32a610089a1",
+		"name": "wiki.dominionstrategy.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Single Card",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&titles=Shepherd&prop=revisions&rvprop=content",
+					"protocol": "http",
+					"host": [
+						"wiki",
+						"dominionstrategy",
+						"com"
+					],
+					"path": [
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "titles",
+							"value": "Shepherd"
+						},
+						{
+							"key": "prop",
+							"value": "revisions"
+						},
+						{
+							"key": "rvprop",
+							"value": "content"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single File",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&titles=File:ShepherdArt.jpg&prop=imageinfo&iiprop=timestamp|user|comment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth",
+					"protocol": "http",
+					"host": [
+						"wiki",
+						"dominionstrategy",
+						"com"
+					],
+					"path": [
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "titles",
+							"value": "File:ShepherdArt.jpg"
+						},
+						{
+							"key": "prop",
+							"value": "imageinfo"
+						},
+						{
+							"key": "iiprop",
+							"value": "timestamp|user|comment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Expansions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&list=categorymembers&cmtitle=Category:Sets&cmtype=page",
+					"protocol": "http",
+					"host": [
+						"wiki",
+						"dominionstrategy",
+						"com"
+					],
+					"path": [
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "list",
+							"value": "categorymembers"
+						},
+						{
+							"key": "cmtitle",
+							"value": "Category:Sets"
+						},
+						{
+							"key": "cmtype",
+							"value": "page"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
