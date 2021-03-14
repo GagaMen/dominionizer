@@ -19,6 +19,7 @@ module.exports = function (config) {
         port: 9877,
         karmaTypescriptConfig: {
             tsconfig: 'tsconfig.spec.json',
+            stopOnFailure: false,
             reports: {
                 html: '',
                 lcovonly: '',
