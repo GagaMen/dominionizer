@@ -3,3 +3,5 @@ export interface Expansion {
     name: string;
     icon: string;
 }
+
+export type ExpansionTranslation = Pick<Expansion, 'id' | 'name'>;

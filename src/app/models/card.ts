@@ -1,5 +1,6 @@
 import { Expansion } from './expansion';
 import { CardType } from './card-type';
+import { Dependency } from './dependency';
 
 export const NullCard: Card = {
     id: 0,
@@ -17,6 +18,7 @@ export interface Card {
     expansions: Expansion[];
     types: CardType[];
     isKingdomCard: boolean;
+    dependencies?: Dependency[];
     isPartOfSplitPile?: boolean;
     isOnTopOfSplitPile?: boolean;
     cost: number;
@@ -27,4 +29,7 @@ export interface Card {
     draws?: number;
     actions?: number;
     purchases?: number;
+    image?: string;
 }
+
+export type CardTranslation = Pick<Card, 'id' | 'name' | 'description'>;
