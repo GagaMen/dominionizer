@@ -1,12 +1,11 @@
-import { Expansion } from './../../../../../src/app/models/expansion';
 import { CardType } from '../../../../../src/app/models/card-type';
-import { Card } from '../../../../../src/app/models/card';
-import { CardPage, WikiText } from './../wiki-client/api-models';
+import { CardPage, WikiText } from '../wiki-client/api-models';
+import { CardDto } from 'src/app/dtos/card-dto';
 
 export class CardDtoBuilder {
-    constructor(private expansionMap: Map<string, Expansion[]>) {}
+    constructor(private expansionMap: Map<string, number[]>) {}
 
-    build(cardPage: CardPage): Card {
+    build(cardPage: CardPage): CardDto {
         return {
             id: cardPage.pageid,
             name: cardPage.title,
@@ -17,22 +16,24 @@ export class CardDtoBuilder {
         };
     }
 
-    private extractExpansions(cardPage: CardPage): Expansion[] {
+    private extractExpansions(cardPage: CardPage): number[] {
         return this.expansionMap.get(cardPage.title) ?? [];
     }
 
-    private extractTypes(cardPage: CardPage): CardType[] {
+    private extractTypes(cardPage: CardPage): number[] {
         const wikiText: WikiText = cardPage.revisions[0]['*'] ?? '';
         const infoBox: WikiText = /\{\{Infobox Card\\n.*\}\}/g.exec(wikiText)?.[0] ?? '';
 
-        const cardTypes: string[] = Object.keys(CardType).filter((x) => !(parseInt(x) >= 0));
-        const types: CardType[] = [];
+        const typeNames: string[] = Object.keys(CardType).filter(
+            (typeName: string) => !(parseInt(typeName) >= 0),
+        );
+        const types: number[] = [];
 
         const regex = /\|type\d = (\w*)/g;
         let match: RegExpExecArray | null;
         while ((match = regex.exec(infoBox))) {
-            const key = cardTypes.findIndex((x) => x === match?.[1]) + 1;
-            types.push(key);
+            const type = typeNames.findIndex((typeName: string) => typeName === match?.[1]) + 1;
+            types.push(type);
         }
 
         return types;
