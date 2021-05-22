@@ -3,7 +3,7 @@ import { CardType } from '../../../../../src/app/models/card-type';
 import { Card } from '../../../../../src/app/models/card';
 import { CardPage, WikiText } from './../wiki-client/api-models';
 
-export class CardBuilder {
+export class CardDtoBuilder {
     constructor(private expansionMap: Map<string, Expansion[]>) {}
 
     build(cardPage: CardPage): Card {

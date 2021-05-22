@@ -1,11 +1,11 @@
-import { Expansion } from './../../../../../src/app/models/expansion';
+import { Expansion } from '../../../../../src/app/models/expansion';
 import { CardType } from '../../../../../src/app/models/card-type';
 import { Card } from '../../../../../src/app/models/card';
-import { CardPage } from './../wiki-client/api-models';
-import { CardBuilder } from './card-builder';
+import { CardPage } from '../wiki-client/api-models';
+import { CardDtoBuilder } from './card-dto-builder';
 
-describe('CardBuilder', () => {
-    let cardBuilder: CardBuilder;
+describe('CardDtoBuilder', () => {
+    let cardDtoBuilder: CardDtoBuilder;
     const menagerie: Expansion = {
         id: 6737,
         name: 'Menagerie',
@@ -27,7 +27,7 @@ describe('CardBuilder', () => {
     expansionMap.set('Moat', [dominion, dominionSecondEdition]);
 
     beforeEach(() => {
-        cardBuilder = new CardBuilder(expansionMap);
+        cardDtoBuilder = new CardDtoBuilder(expansionMap);
     });
 
     describe('build', () => {
@@ -58,7 +58,7 @@ describe('CardBuilder', () => {
                 cost: 2,
             };
 
-            const actual = cardBuilder.build(cardPage);
+            const actual = cardDtoBuilder.build(cardPage);
 
             expect(actual).toEqual(expected);
         });
@@ -95,7 +95,7 @@ describe('CardBuilder', () => {
                 cost: 2,
             };
 
-            const actual = cardBuilder.build(cardPage);
+            const actual = cardDtoBuilder.build(cardPage);
 
             expect(actual).toEqual(expected);
         });
