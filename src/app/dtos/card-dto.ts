@@ -1,3 +1,5 @@
+import { DependencyDto } from './dependency-dto';
+
 export interface CardDto {
     id: number;
     name: string;
@@ -5,6 +7,7 @@ export interface CardDto {
     expansions: number[];
     types: number[];
     isKingdomCard: boolean;
+    dependencies?: DependencyDto[];
     isPartOfSplitPile?: boolean;
     isOnTopOfSplitPile?: boolean;
     cost: number;
@@ -15,4 +18,5 @@ export interface CardDto {
     draws?: number;
     actions?: number;
     purchases?: number;
+    image?: string;
 }
