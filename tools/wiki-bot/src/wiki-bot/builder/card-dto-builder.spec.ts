@@ -8,10 +8,23 @@ describe('CardDtoBuilder', () => {
 
     const cardExpansionsMap: Map<string, number[]> = new Map();
     cardExpansionsMap.set('Moat', [914, 914.1]);
-    cardExpansionsMap.set('Engineer', [2739]);
-    cardExpansionsMap.set('Alchemist', [176]);
 
-    const undefinedCardDto: Partial<CardDto> = {
+    const nullCardPage: CardPage = {
+        pageid: 0,
+        title: '',
+        fullurl: '',
+        revisions: [],
+    };
+    const nullCardDto: CardDto = {
+        id: nullCardPage.pageid,
+        name: nullCardPage.title,
+        description: [''],
+        image: '',
+        wikiUrl: nullCardPage.fullurl,
+        expansions: [],
+        types: [],
+        isKingdomCard: true,
+        cost: 0,
         potion: undefined,
         debt: undefined,
     };
@@ -23,20 +36,32 @@ describe('CardDtoBuilder', () => {
     describe('build', () => {
         it('with basic cardPage should return correct card', () => {
             const cardPage: CardPage = {
+                ...nullCardPage,
                 pageid: 18,
                 title: 'Moat',
                 fullurl: 'http://wiki.dominionstrategy.com/index.php/Moat',
                 revisions: [
                     {
                         '*':
-                            '{{Infobox Card\\n|name = Moat\\n|cost = 2\\n|type1 = Action\\n|type2 = Reaction\\n}}',
+                            `{{Infobox Card\\n` +
+                            `|name = Moat\\n` +
+                            `|cost = 2\\n` +
+                            `|type1 = Action\\n` +
+                            `|type2 = Reaction\\n` +
+                            `|text = '''+2 Cards'''\\n` +
+                            `|text2 = When another player...\\n}}\\n\\n` +
+                            `== Trivia ==\\n` +
+                            `[[Image:MoatArt.jpg|thumb|right|354px|Official card art.]]\\n\\n`,
                     },
                 ],
             };
             const expected: CardDto = {
-                ...undefinedCardDto,
+                ...nullCardDto,
                 id: cardPage.pageid,
                 name: cardPage.title,
+                description: [`'''+2 Cards'''`, `When another player...`],
+                image: 'MoatArt.jpg',
+                wikiUrl: cardPage.fullurl,
                 expansions: [914, 914.1],
                 types: [CardType.Action, CardType.Reaction],
                 isKingdomCard: true,
@@ -48,26 +73,36 @@ describe('CardDtoBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with cardPage contains debt should return correct card', () => {
+        it('with cardPage of non-kingdom card should return correct card', () => {
             const cardPage: CardPage = {
-                pageid: 3337,
-                title: 'Engineer',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Engineer',
+                ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            '{{Infobox Card\\n |name = Engineer\\n |cost2 = 4\\n |type1 = Action\\n}}',
+                        '*': '{{Infobox Card\\n |kingdom = No\\n}}\\n\\n',
                     },
                 ],
             };
             const expected: CardDto = {
-                ...undefinedCardDto,
-                id: cardPage.pageid,
-                name: cardPage.title,
-                expansions: [2739],
-                types: [CardType.Action],
-                isKingdomCard: true,
-                cost: 0,
+                ...nullCardDto,
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains debt should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Card\\n |cost2 = 4\\n}}\\n\\n',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
                 debt: 4,
             };
 
@@ -78,23 +113,15 @@ describe('CardDtoBuilder', () => {
 
         it('with cardPage contains potion should return correct card', () => {
             const cardPage: CardPage = {
-                pageid: 129,
-                title: 'Alchemist',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Alchemist',
+                ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            '{{Infobox Card\\n |name = Alchemist\\n |cost = 3P\\n |type1 = Action\\n}}',
+                        '*': '{{Infobox Card\\n |cost = 3P\\n}}\\n\\n',
                     },
                 ],
             };
             const expected: CardDto = {
-                ...undefinedCardDto,
-                id: cardPage.pageid,
-                name: cardPage.title,
-                expansions: [176],
-                types: [CardType.Action],
-                isKingdomCard: true,
+                ...nullCardDto,
                 cost: 3,
                 potion: true,
             };

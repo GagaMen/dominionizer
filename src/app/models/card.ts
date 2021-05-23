@@ -5,6 +5,9 @@ import { Dependency } from './dependency';
 export const NullCard: Card = {
     id: 0,
     name: '',
+    description: [],
+    image: '',
+    wikiUrl: '',
     expansions: [],
     types: [],
     isKingdomCard: false,
@@ -14,22 +17,16 @@ export const NullCard: Card = {
 export interface Card {
     id: number;
     name: string;
-    description?: string;
+    description: string[];
+    image: string;
+    wikiUrl: string;
     expansions: Expansion[];
     types: CardType[];
     isKingdomCard: boolean;
-    dependencies?: Dependency[];
-    isPartOfSplitPile?: boolean;
-    isOnTopOfSplitPile?: boolean;
     cost: number;
     potion?: boolean;
     debt?: number;
-    points?: number;
-    money?: number;
-    draws?: number;
-    actions?: number;
-    purchases?: number;
-    image?: string;
+    dependencies?: Dependency[];
 }
 
 export type CardTranslation = Pick<Card, 'id' | 'name' | 'description'>;
