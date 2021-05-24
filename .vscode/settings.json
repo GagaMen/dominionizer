@@ -6,10 +6,6 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "javascript.validate.enable": false,
-    "typescript.validate.enable": false,
-    "css.validate": false,
-    "scss.validate": false,
     "eslint.options": {
         "ignorePath": "./.gitignore"
     },
@@ -26,5 +22,6 @@
     "[scss]": {
         "editor.formatOnSave": false
     },
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true
 }
