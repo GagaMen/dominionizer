@@ -1,7 +1,7 @@
 import { CardType } from '../../../../../src/app/models/card-type';
 import { CardPage } from '../wiki-client/api-models';
 import { CardDtoBuilder } from './card-dto-builder';
-import { CardDto } from 'src/app/dtos/card-dto';
+import { CardDto } from '../../../../../src/app/dtos/card-dto';
 
 describe('CardDtoBuilder', () => {
     let cardDtoBuilder: CardDtoBuilder;

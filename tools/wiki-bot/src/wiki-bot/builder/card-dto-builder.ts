@@ -1,6 +1,6 @@
 import { CardType } from '../../../../../src/app/models/card-type';
 import { CardPage, WikiText } from '../wiki-client/api-models';
-import { CardDto } from 'src/app/dtos/card-dto';
+import { CardDto } from '../../../../../src/app/dtos/card-dto';
 
 export class CardDtoBuilder {
     constructor(private cardExpansionsMap: Map<string, number[]>) {}

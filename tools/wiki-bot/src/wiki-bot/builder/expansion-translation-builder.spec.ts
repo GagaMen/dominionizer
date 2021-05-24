@@ -1,4 +1,4 @@
-import { ExpansionTranslation } from 'src/app/models/expansion';
+import { ExpansionTranslation } from '../../../../../src/app/models/expansion';
 import { ExpansionPage } from '../wiki-client/api-models';
 import { ExpansionTranslationBuilder } from './expansion-translation-builder';
 
