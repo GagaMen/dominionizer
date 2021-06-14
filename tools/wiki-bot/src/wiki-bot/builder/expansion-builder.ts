@@ -10,7 +10,7 @@ export class ExpansionBuilder {
                 {
                     id: expansionPage.pageid,
                     name: this.extractName(expansionPage),
-                    icon: '',
+                    icon: `${this.extractName(expansionPage)}_icon.png`,
                 },
             ];
         }
@@ -20,7 +20,7 @@ export class ExpansionBuilder {
             expansions.push({
                 id: expansionPage.pageid + i * 0.1,
                 name: `${this.extractName(expansionPage)} (${i + 1}. Edition)`,
-                icon: '',
+                icon: this.extractName(expansionPage) + (i === 0 ? '_old_icon.png' : '_icon.png'),
             });
         }
 

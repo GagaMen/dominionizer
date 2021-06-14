@@ -20,7 +20,7 @@ describe('ExpansionBuilder', () => {
                 {
                     id: expansionPage.pageid,
                     name: 'Dominion',
-                    icon: '',
+                    icon: 'Dominion_icon.png',
                 },
             ];
 
@@ -41,12 +41,12 @@ describe('ExpansionBuilder', () => {
                 {
                     id: expansionPage.pageid,
                     name: 'Dominion (1. Edition)',
-                    icon: '',
+                    icon: 'Dominion_old_icon.png',
                 },
                 {
                     id: expansionPage.pageid + 0.1,
                     name: 'Dominion (2. Edition)',
-                    icon: '',
+                    icon: 'Dominion_icon.png',
                 },
             ];
 
