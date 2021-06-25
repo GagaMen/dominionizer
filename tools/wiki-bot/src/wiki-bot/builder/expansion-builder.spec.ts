@@ -13,14 +13,14 @@ describe('ExpansionBuilder', () => {
         it('with single release should return correct expansion', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 1,
-                title: 'Dominion (Base Set)',
+                title: 'Expansion Name (Base Set)',
                 revisions: [{ '*': 'wiki text of expansion' }],
             };
             const expected: Expansion[] = [
                 {
                     id: expansionPage.pageid,
-                    name: 'Dominion',
-                    icon: 'Dominion_icon.png',
+                    name: 'Expansion Name',
+                    icon: 'Expansion_Name_icon.png',
                 },
             ];
 

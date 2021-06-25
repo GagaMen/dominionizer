@@ -10,17 +10,17 @@ export class ExpansionBuilder {
                 {
                     id: expansionPage.pageid,
                     name: this.extractName(expansionPage),
-                    icon: `${this.extractName(expansionPage)}_icon.png`,
+                    icon: this.buildIcon(expansionPage, true),
                 },
             ];
         }
 
         const expansions: Expansion[] = [];
-        for (let i = 0; i < releaseAmount; i++) {
+        for (let release = 1; release <= releaseAmount; release++) {
             expansions.push({
-                id: expansionPage.pageid + i * 0.1,
-                name: `${this.extractName(expansionPage)} (${i + 1}. Edition)`,
-                icon: this.extractName(expansionPage) + (i === 0 ? '_old_icon.png' : '_icon.png'),
+                id: expansionPage.pageid + (release - 1) * 0.1,
+                name: `${this.extractName(expansionPage)} (${release}. Edition)`,
+                icon: this.buildIcon(expansionPage, release === releaseAmount),
             });
         }
 
@@ -33,6 +33,13 @@ export class ExpansionBuilder {
         const release: WikiText = /\|release.*\\n/.exec(infoBox)?.[0] ?? '';
 
         return release?.split('/').length ?? 1;
+    }
+
+    private buildIcon(expansionPage: ExpansionPage, currentRelease: boolean): string {
+        const name = this.extractName(expansionPage).replace(' ', '_');
+        const suffix = currentRelease ? 'icon.png' : 'old_icon.png';
+
+        return `${name}_${suffix}`;
     }
 
     private extractName(expansionPage: ExpansionPage): string {
