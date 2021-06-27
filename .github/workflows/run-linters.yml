@@ -12,7 +12,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
               with:
-                  path: ~/workspace
+                  path: workspace
 
             - name: Use Node.js 14
               uses: actions/setup-node@v2
@@ -27,13 +27,13 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  cd ~/workspace
+                  cd workspace
                   npm ci
 
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: ~/workspace
+                  path: workspace
                   key: workspace-${{ github.sha }}
 
     commitlint:
@@ -43,12 +43,12 @@ jobs:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: ~/workspace
+                  path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run commitlint
               run: |
-                  cd ~/workspace
+                  cd workspace
                   npx --no-install commitlint --verbose --from ${{ github.event.push.before }} --to HEAD
 
     eslint:
@@ -58,12 +58,12 @@ jobs:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: ~/workspace
+                  path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run eslint
               run: |
-                  cd ~/workspace
+                  cd workspace
                   npm run eslint
 
     stylelint:
@@ -73,12 +73,12 @@ jobs:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: ~/workspace
+                  path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run stylelint
               run: |
-                  cd ~/workspace
+                  cd workspace
                   npm run stylelint
 
     markdownlint:
@@ -88,10 +88,10 @@ jobs:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: ~/workspace
+                  path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run markdownlint
               run: |
-                  cd ~/workspace
+                  cd workspace
                   npm run markdownlint
