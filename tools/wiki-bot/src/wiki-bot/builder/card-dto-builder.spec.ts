@@ -78,7 +78,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\\n |kingdom = No\\n}}\\n\\n',
+                        '*': '{{Infobox Card\\n |kingdom = No\\n}}',
                     },
                 ],
             };
@@ -97,7 +97,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\\n |cost2 = 4\\n}}\\n\\n',
+                        '*': '{{Infobox Card\\n |cost2 = 4\\n}}',
                     },
                 ],
             };
@@ -116,7 +116,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\\n |cost = 3P\\n}}\\n\\n',
+                        '*': '{{Infobox Card\\n |cost = 3P\\n}}',
                     },
                 ],
             };
