@@ -1,42 +1,42 @@
 import { ExpansionPage, WikiText } from '../wiki-client/api-models';
+import { extractSection, normalize } from './helper-functions';
 
 export class ExpansionCardsMapBuilder {
     build(expansionPage: ExpansionPage): Map<number, string[]> {
         const wikiText: WikiText = expansionPage.revisions[0]['*'] ?? '';
-        const contents: WikiText = /== Contents ==.*?\\n==(\s|[a-zA-Z])/.exec(wikiText)?.[0] ?? '';
+        const contents: WikiText = extractSection(wikiText, 'Contents', 2);
         const expansionCardsMap = new Map<number, string[]>();
 
         [
-            /=== Kingdom cards.*? ===[^=]*/.exec(contents)?.[0] ?? '',
-            /=== Prizes ===[^=]*/.exec(contents)?.[0] ?? '',
-            /==== Ruins ====[^=]*/.exec(contents)?.[0] ?? '',
-            /==== Shelters ====[^=]*/.exec(contents)?.[0] ?? '',
-            /==== Non-Supply cards ====[^=]*/.exec(contents)?.[0] ?? '',
-            /=== Events ===[^=]*/.exec(contents)?.[0] ?? '',
-            /==== Upgrade cards ====[^=]*/.exec(contents)?.[0] ?? '',
-            /=== Landmarks ===[^=]*/.exec(contents)?.[0] ?? '',
-            /==== \[\[Boon\]\]s ====[^=]*/.exec(contents)?.[0] ?? '',
-            /====\[\[Hex\]\]es ====[^=]*/.exec(contents)?.[0] ?? '',
-            /==== \[\[State\]\]s ====[^=]*/.exec(contents)?.[0] ?? '',
-            /====\[\[Artifact\]\]s====[^=]*/.exec(contents)?.[0] ?? '',
-            /====\[\[Project\]\]s====[^=]*/.exec(contents)?.[0] ?? '',
-            /=== Ways ===[^=]*/.exec(contents)?.[0] ?? '',
-            /== Card List ==[^=]*/.exec(wikiText)?.[0] ?? '',
-        ].forEach((contentSection: WikiText) =>
-            this.updateMapForContentSection(
-                expansionCardsMap,
-                expansionPage.pageid,
-                contentSection,
-            ),
+            extractSection(contents, 'Kingdom cards.*?', 3),
+            extractSection(contents, 'Prizes', 3),
+            extractSection(contents, 'Ruins', 4),
+            extractSection(contents, 'Shelters', 4),
+            extractSection(contents, 'Non-Supply cards', 4),
+            extractSection(contents, 'Events', 3),
+            extractSection(contents, 'Upgrade cards', 4),
+            extractSection(contents, 'Landmarks', 3),
+            extractSection(contents, '\\[\\[Boon\\]\\]s', 4),
+            extractSection(contents, '\\[\\[Hex\\]\\]es', 4),
+            extractSection(contents, '\\[\\[State\\]\\]s', 4),
+            extractSection(contents, '\\[\\[Artifact\\]\\]s', 4),
+            extractSection(contents, '\\[\\[Project\\]\\]s', 4),
+            extractSection(contents, 'Ways', 3),
+            extractSection(wikiText, 'Card List', 2),
+        ].forEach((section: WikiText) =>
+            this.updateMapForSection(expansionCardsMap, expansionPage.pageid, section),
         );
 
         if (expansionCardsMap.size > 1) {
             this.addCardsFromFirstToSecondEdition(expansionCardsMap, expansionPage);
         }
 
-        const removedCards: WikiText =
-            /=== Removed first-edition Kingdom cards ===[^=]*/.exec(contents)?.[0] ?? '';
-        this.updateMapForContentSection(expansionCardsMap, expansionPage.pageid, removedCards);
+        const removedCards: WikiText = extractSection(
+            contents,
+            'Removed first-edition Kingdom cards',
+            3,
+        );
+        this.updateMapForSection(expansionCardsMap, expansionPage.pageid, removedCards);
 
         return expansionCardsMap;
     }
@@ -54,15 +54,15 @@ export class ExpansionCardsMapBuilder {
         );
     }
 
-    private updateMapForContentSection(
+    private updateMapForSection(
         expansionCardsMap: Map<number, string[]>,
         expansionId: number,
-        contentSection: WikiText,
+        section: WikiText,
     ): void {
-        const cardRegex = /{{(?:Card|Event|Landmark|Boon|Hex|State|Artifact|Project|Way)\|(.*?)}}(\*?)/g;
+        const cardRegex = /{{\s*(?:Card|Event|Landmark|Boon|Hex|State|Artifact|Project|Way)\s*\|(.*?)}}(\*?)/g;
         let match: RegExpExecArray | null;
-        while ((match = cardRegex.exec(contentSection))) {
-            const card = match?.[1];
+        while ((match = cardRegex.exec(section))) {
+            const card = normalize(match?.[1]);
             expansionId = match?.[2] === '*' ? expansionId + 0.1 : expansionId;
 
             if (!expansionCardsMap.has(expansionId)) {

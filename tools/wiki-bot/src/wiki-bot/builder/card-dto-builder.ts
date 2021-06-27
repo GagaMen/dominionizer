@@ -1,13 +1,19 @@
 import { CardType } from '../../../../../src/app/models/card-type';
 import { CardPage, WikiText } from '../wiki-client/api-models';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
+import {
+    extractSection,
+    extractTemplate,
+    extractTemplatePropertyValue,
+    normalize,
+} from './helper-functions';
 
 export class CardDtoBuilder {
     constructor(private cardExpansionsMap: Map<string, number[]>) {}
 
     build(cardPage: CardPage): CardDto {
         const wikiText: WikiText = cardPage.revisions[0]['*'] ?? '';
-        const infoBox: WikiText = /\{\{Infobox Card\\n.*?\}\}\\n\\n/g.exec(wikiText)?.[0] ?? '';
+        const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Card');
 
         return {
             id: cardPage.pageid,
@@ -25,16 +31,18 @@ export class CardDtoBuilder {
     }
 
     private extractDescription(infoBox: WikiText): string[] {
-        const text: WikiText = /\|text = (.*?)\\n/.exec(infoBox)?.[1] ?? '';
-        const text2: WikiText = /\|text2 = (.*?)\\n/.exec(infoBox)?.[1] ?? '';
+        const text: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'text'));
+        const text2: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'text2'));
 
         return text2 ? [text, text2] : [text];
     }
 
     private extractImage(wikiText: WikiText): string {
-        const trivia: WikiText = /== Trivia ==[^=]*/.exec(wikiText)?.[0] ?? '';
+        const trivia: WikiText = extractSection(wikiText, 'Trivia', 2);
 
-        return /\[\[Image:(.*?\.jpg)\|.*?\|Official card art\.\]\]/.exec(trivia)?.[1] ?? '';
+        return normalize(
+            /\[\[\s*Image:(.*?\.jpg)\s*\|.*?\|\s*Official card art\.\s*\]\]/.exec(trivia)?.[1],
+        );
     }
 
     private extractExpansions(cardPage: CardPage): number[] {
@@ -45,39 +53,46 @@ export class CardDtoBuilder {
         const typeNames: string[] = Object.keys(CardType).filter(
             (typeName: string) => !(parseInt(typeName) >= 0),
         );
-        const types: number[] = [];
 
-        const regex = /\|type\d = (\w*)/g;
-        let match: RegExpExecArray | null;
-        while ((match = regex.exec(infoBox))) {
-            const type = typeNames.findIndex((typeName: string) => typeName === match?.[1]) + 1;
+        const types: number[] = [];
+        let index = 1;
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+            const extractedTypeName = normalize(
+                extractTemplatePropertyValue(infoBox, `type${index}`),
+            );
+            const type =
+                typeNames.findIndex((typeName: string) => typeName === extractedTypeName) + 1;
+            if (type <= 0) break;
+
             types.push(type);
+            index++;
         }
 
         return types;
     }
 
     private extractIsKingdomCard(infoBox: WikiText): boolean {
-        const isKingdomCard: WikiText = /\|kingdom.*?\\n/.exec(infoBox)?.[0] ?? '';
+        const isKingdomCard: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'kingdom'));
 
-        return !/= No/.test(isKingdomCard);
+        return isKingdomCard !== 'No';
     }
 
     private extractCost(infoBox: WikiText): number {
-        const cost: WikiText = /\|cost =.*?\\n/.exec(infoBox)?.[0] ?? '';
+        const cost: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'cost'));
 
-        return Number(/\d+/.exec(cost)?.[0] ?? 0);
+        return Number(cost.replace(/P/, '')) ?? 0;
     }
 
     private extractPotion(infoBox: WikiText): boolean | undefined {
-        const cost: WikiText = /\|cost =.*?\\n/.exec(infoBox)?.[0] ?? '';
+        const cost: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'cost'));
 
         return /P/.test(cost) ? true : undefined;
     }
 
     private extractDebt(infoBox: WikiText): number | undefined {
-        const cost2: WikiText = /\|cost2 =.*?\\n/.exec(infoBox)?.[0] ?? '';
+        const cost2: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'cost2'));
 
-        return cost2 ? Number(/= (\d+)/.exec(cost2)?.[1]) : undefined;
+        return cost2 ? Number(cost2) : undefined;
     }
 }

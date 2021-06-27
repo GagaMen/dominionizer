@@ -30,7 +30,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German \\n| Burggraben ||  || || '''+2 Karten'''\\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -66,7 +66,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text !! Notes\\n` +
                             `|-\\n` +
                             `!German \\n| Burggraben ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler... || HiG translation error...\\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -100,7 +100,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German \\n| || || || \\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -133,7 +133,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German \\n| ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler...\\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -166,7 +166,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere...<br>die... \\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -201,7 +201,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere... <br>die... \\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -237,7 +237,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<hr>Ignoriere... <br>die... \\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -273,7 +273,7 @@ describe('CardTranslationBuilder', () => {
                             `! Language !! Name !! Print !! Digital !! Text\\n` +
                             `|-\\n` +
                             `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''\\nIgnoriere... <br>die... \\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -311,7 +311,7 @@ describe('CardTranslationBuilder', () => {
                             `!Czech \\n| || || || \\n` +
                             `|-\\n` +
                             `!German \\n| || || || \\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };
@@ -337,7 +337,7 @@ describe('CardTranslationBuilder', () => {
                             `|-\\n` +
                             `!German \\n| || || || \\n` +
                             `|-\\n` +
-                            `|}\\n\\n==`,
+                            `|}`,
                     },
                 ],
             };

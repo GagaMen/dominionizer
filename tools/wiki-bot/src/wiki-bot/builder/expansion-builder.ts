@@ -1,5 +1,6 @@
 import { ExpansionPage, WikiText } from '../wiki-client/api-models';
 import { Expansion } from '../../../../../src/app/models/expansion';
+import { extractTemplate, extractTemplatePropertyValue, normalize } from './helper-functions';
 
 export class ExpansionBuilder {
     build(expansionPage: ExpansionPage): Expansion[] {
@@ -29,8 +30,8 @@ export class ExpansionBuilder {
 
     private extractReleaseAmount(expansionPage: ExpansionPage): number {
         const wikiText: WikiText = expansionPage.revisions[0]['*'] ?? '';
-        const infoBox: WikiText = /\{\{Infobox Set\\n.*\}\}/.exec(wikiText)?.[0] ?? '';
-        const release: WikiText = /\|release.*\\n/.exec(infoBox)?.[0] ?? '';
+        const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Set');
+        const release: WikiText = extractTemplatePropertyValue(infoBox, 'release');
 
         return release?.split('/').length ?? 1;
     }
@@ -43,6 +44,6 @@ export class ExpansionBuilder {
     }
 
     private extractName(expansionPage: ExpansionPage): string {
-        return /[\w\s]+/.exec(expansionPage.title)?.[0].trim() ?? '';
+        return normalize(/[\w\s]+/.exec(expansionPage.title)?.[0]);
     }
 }

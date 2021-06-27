@@ -18,9 +18,8 @@ describe('ExpansionMapBuilder', () => {
                         '*':
                             '== Contents ==\\n' +
                             '=== Kingdom cards ===\\n' +
-                            '* {{Cost|2}}: {{Card|Embargo}}\\n' +
-                            '* {{Cost|3}}: {{Card|Ambassador}}, {{Card|Fishing Village}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{Cost|2}}: {{ Card | Embargo }}\\n' +
+                            '* {{Cost|3}}: {{Card|Ambassador}}, {{Card|Fishing Village}}',
                     },
                 ],
             };
@@ -46,8 +45,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|2}}: {{Card|Cellar}}\\n* {{Cost|3}}: {{Card|Harbinger}}*\\n\\n' +
                             '=== Removed first-edition Kingdom cards ===\\n' +
                             'These cards were included in the first edition, and [[Removed cards|removed]] from the second edition.\\n' +
-                            '* {{Cost|3}}: {{Card|Chancellor}}\\n\\n' +
-                            '== Flavor text ==\n',
+                            '* {{Cost|3}}: {{Card|Chancellor}}',
                     },
                 ],
             };
@@ -71,8 +69,7 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\\n' +
                             '=== Prizes ===\\n' +
                             'The 5 cards in the [[Prize]] pile are unique.\\n' +
-                            '* {{Cost|0*}}: {{Card|Bag of Gold}}, {{Card|Diadem}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{Cost|0*}}: {{Card|Bag of Gold}}, {{Card|Diadem}}',
                     },
                 ],
             };
@@ -95,8 +92,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|1}}: {{Card|Poor House}}\\n\\n' +
                             '=== Additional materials ===\\n' +
                             '==== Ruins ====\\n' +
-                            '* {{Cost|0}}: {{Card|Abandoned Mine}}, {{Card|Ruined Library}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{Cost|0}}: {{Card|Abandoned Mine}}, {{Card|Ruined Library}}',
                     },
                 ],
             };
@@ -121,8 +117,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|1}}: {{Card|Poor House}}\\n\\n' +
                             '=== Additional materials ===\\n' +
                             '==== Shelters ====\\n' +
-                            '* {{Cost|1}}: {{Card|Hovel}}, {{Card|Necropolis}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{Cost|1}}: {{Card|Hovel}}, {{Card|Necropolis}}',
                     },
                 ],
             };
@@ -147,8 +142,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|1}}: {{Card|Poor House}}\\n\\n' +
                             '=== Additional materials ===\\n' +
                             '==== Non-Supply cards ====\\n' +
-                            '* {{Cost|0*}}: {{Card|Madman}}, {{Card|Mercenary}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{Cost|0*}}: {{Card|Madman}}, {{Card|Mercenary}}',
                     },
                 ],
             };
@@ -172,8 +166,7 @@ describe('ExpansionMapBuilder', () => {
                             '=== Kingdom cards ===\\n' +
                             '* {{Cost|2}}: {{Card|Coin of the Realm}}\\n\\n' +
                             '=== Events ===\\n' +
-                            '* {{Cost|0}}: {{Event|Alms}}\\n\\n' +
-                            '== Flavor text ==\\n',
+                            '* {{Cost|0}}: {{Event|Alms}}',
                     },
                 ],
             };
@@ -198,8 +191,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|2}}: {{Card|Coin of the Realm}}\\n\\n' +
                             '=== Additional materials ===\\n' +
                             '==== Upgrade cards ====\\n' +
-                            '* {{Cost|3*}}: {{Card|Soldier}}\\n\\n' +
-                            '== Flavor text ==\\n',
+                            '* {{Cost|3*}}: {{Card|Soldier}}',
                     },
                 ],
             };
@@ -224,8 +216,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Debt|4}}: {{Card|Engineer}}\\n\\n' +
                             '=== Landmarks ===\\n' +
                             '* {{Landmark|Aqueduct}}\\n' +
-                            '* {{Landmark|Arena}}\\n\\n' +
-                            '== Flavor text ==\\n',
+                            '* {{Landmark|Arena}}',
                     },
                 ],
             };
@@ -250,8 +241,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|2}} {{Card|Druid}}\\n\\n' +
                             '=== Additional materials ===\\n\\n' +
                             '==== [[Boon]]s ====\\n' +
-                            "{{Boon|The Earth's Gift}}, {{Boon|The Field's Gift}}\\n\\n" +
-                            '== Additional rules ==\\n',
+                            "{{Boon|The Earth's Gift}}, {{Boon|The Field's Gift}}",
                     },
                 ],
             };
@@ -276,8 +266,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|2}} {{Card|Druid}}\\n\\n' +
                             '=== Additional materials ===\\n\\n' +
                             '====[[Hex]]es ====\\n' +
-                            '{{Hex|Bad Omens}}, {{Hex|Delusion}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '{{Hex|Bad Omens}}, {{Hex|Delusion}}',
                     },
                 ],
             };
@@ -303,8 +292,7 @@ describe('ExpansionMapBuilder', () => {
                             '=== Additional materials ===\\n\\n' +
                             '==== [[State]]s ====\\n' +
                             '* {{State|Lost in the Woods}} (1 copy)\\n' +
-                            '* {{State|Deluded}}/{{State|Envious}} (6 copies, double-sided)\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{State|Deluded}}/{{State|Envious}} (6 copies, double-sided)',
                     },
                 ],
             };
@@ -329,8 +317,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|2}} {{Card|Border Guard}}\\n\\n' +
                             '=== Additional materials ===\\n' +
                             '====[[Artifact]]s====\\n' +
-                            '1 each of: {{Artifact|Flag}}, {{Artifact|Horn}}\\n\\n' +
-                            '==Flavor text==\\n',
+                            '1 each of: {{Artifact|Flag}}, {{Artifact|Horn}}',
                     },
                 ],
             };
@@ -355,8 +342,7 @@ describe('ExpansionMapBuilder', () => {
                             '* {{Cost|2}} {{Card|Border Guard}}\\n\\n' +
                             '=== Additional materials ===\\n' +
                             '====[[Project]]s====\\n' +
-                            '* {{Cost|3}} {{Project|Cathedral}}, {{Project|City Gate}}\\n\\n' +
-                            '==Flavor text==\\n',
+                            '* {{Cost|3}} {{Project|Cathedral}}, {{Project|City Gate}}',
                     },
                 ],
             };
@@ -380,8 +366,7 @@ describe('ExpansionMapBuilder', () => {
                             '=== Kingdom cards ===\\n' +
                             '* {{Cost|2}}: {{Card|Black Cat}}\\n\\n' +
                             '=== Ways ===\\n' +
-                            '* {{Way|Way of the Butterfly}}\\n* {{Way|Way of the Camel}}\\n\\n' +
-                            '== Cards gallery ==',
+                            '* {{Way|Way of the Butterfly}}\\n* {{Way|Way of the Camel}}',
                     },
                 ],
             };
@@ -401,8 +386,8 @@ describe('ExpansionMapBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            '== Card List ==\n' +
-                            '* {{Card|Envoy}} (November 2008)\n* {{Card|Black Market}} (March 2009)\n\n',
+                            '== Card List ==\\n' +
+                            '* {{Card|Envoy}} (November 2008)\\n* {{Card|Black Market}} (March 2009)',
                     },
                 ],
             };
@@ -413,7 +398,7 @@ describe('ExpansionMapBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with cards in entry text of kingdom card section should return correct map', () => {
+        it('with cards in entry text of kingdom cards section should return correct map', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 156,
                 title: 'Dark Ages',
@@ -424,8 +409,7 @@ describe('ExpansionMapBuilder', () => {
                             '=== Kingdom cards ===\\n' +
                             'There are 20 copies of {{Card|Rats}}. The 10 cards in the {{Card|Knights}} pile are unique.\\n' +
                             '* {{Cost|4}}: {{Card|Rats}}\\n' +
-                            '* {{Cost|5}}: {{Card|Knights}}\\n\\n' +
-                            '== Additional rules ==\\n',
+                            '* {{Cost|5}}: {{Card|Knights}}',
                     },
                 ],
             };
