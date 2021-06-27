@@ -6,11 +6,13 @@ on:
             - release
 
 jobs:
-    setup:
+    setup-linters:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
+              with:
+                  path: ~/workspace
 
             - name: Use Node.js 14
               uses: actions/setup-node@v2
@@ -24,69 +26,72 @@ jobs:
                   key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
 
             - name: Install dependencies
-              run: npm ci
+              run: |
+                  cd ~/workspace
+                  npm ci
 
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: |
-                      ~/**/*
-                      !~/.npm
-                      !~/.git
+                  path: ~/workspace
                   key: workspace-${{ github.sha }}
 
     commitlint:
-        needs: setup
+        needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: $GITHUB_WORKSPACE
+                  path: ~/workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run commitlint
               run: |
+                  cd ~/workspace
                   npx --no-install commitlint --verbose --from ${{ github.event.push.before }} --to HEAD
 
     eslint:
-        needs: setup
+        needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: $GITHUB_WORKSPACE
+                  path: ~/workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run eslint
               run: |
+                  cd ~/workspace
                   npm run eslint
 
     stylelint:
-        needs: setup
+        needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: $GITHUB_WORKSPACE
+                  path: ~/workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run stylelint
               run: |
+                  cd ~/workspace
                   npm run stylelint
 
     markdownlint:
-        needs: setup
+        needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: $GITHUB_WORKSPACE
+                  path: ~/workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run markdownlint
               run: |
+                  cd ~/workspace
                   npm run markdownlint
