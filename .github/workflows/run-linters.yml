@@ -30,7 +30,7 @@ jobs:
               uses: actions/cache@v2
               with:
                   path: $GITHUB_WORKSPACE
-                  key: workspace-$GITHUB_SHA
+                  key: workspace-${{ github.sha }}
 
     commitlint:
         needs: setup
@@ -40,7 +40,7 @@ jobs:
               uses: actions/cache@v2
               with:
                   path: $GITHUB_WORKSPACE
-                  key: workspace-$GITHUB_SHA
+                  key: workspace-${{ github.sha }}
 
             - name: Run commitlint
               run: |
@@ -54,7 +54,7 @@ jobs:
               uses: actions/cache@v2
               with:
                   path: $GITHUB_WORKSPACE
-                  key: workspace-$GITHUB_SHA
+                  key: workspace-${{ github.sha }}
 
             - name: Run eslint
               run: |
@@ -68,7 +68,7 @@ jobs:
               uses: actions/cache@v2
               with:
                   path: $GITHUB_WORKSPACE
-                  key: workspace-$GITHUB_SHA
+                  key: workspace-${{ github.sha }}
 
             - name: Run stylelint
               run: |
@@ -82,7 +82,7 @@ jobs:
               uses: actions/cache@v2
               with:
                   path: $GITHUB_WORKSPACE
-                  key: workspace-$GITHUB_SHA
+                  key: workspace-${{ github.sha }}
 
             - name: Run markdownlint
               run: |
