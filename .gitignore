@@ -42,6 +42,7 @@ testem.log
 /typings
 .stylelintcache
 debug.log
+.actrc
 
 # System Files
 .DS_Store
