@@ -29,7 +29,10 @@ jobs:
             - name: Cache workspace
               uses: actions/cache@v2
               with:
-                  path: $GITHUB_WORKSPACE
+                  path: |
+                      ~/**/*
+                      !~/.npm
+                      !~/.git
                   key: workspace-${{ github.sha }}
 
     commitlint:
