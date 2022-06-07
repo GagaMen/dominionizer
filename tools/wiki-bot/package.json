@@ -1,11 +1,12 @@
 {
     "name": "dominionizer-wiki-bot",
     "scripts": {
-        "start": "ts-node ./src/main.ts",
-        "test": "nodemon --watch 'src/**/*.ts' --ext ts --exec 'npm run test:cli'",
-        "test:cli": "ts-node ./node_modules/jasmine/bin/jasmine --config=jasmine.json"
+        "start": "ts-node --files ./src/main.ts",
+        "test": "nodemon --watch 'src/**/*.ts' --ext ts --exec 'npm run test:ci'",
+        "test:ci": "ts-node --project tsconfig.spec.json --files ./node_modules/jasmine/bin/jasmine --config=jasmine.json"
     },
     "dependencies": {
+        "@squoosh/lib": "^0.4.0",
         "axios": "^0.21.1"
     },
     "devDependencies": {

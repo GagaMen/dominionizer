@@ -166,4 +166,8 @@ export class WikiClient {
 
         return pages;
     }
+
+    async fetchImage(url: string): Promise<Buffer> {
+        return (await this.axios.get<Buffer>(url, { responseType: 'arraybuffer' })).data;
+    }
 }

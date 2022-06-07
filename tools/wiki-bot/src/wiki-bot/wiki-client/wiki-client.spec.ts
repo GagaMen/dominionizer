@@ -583,4 +583,21 @@ describe('WikiClient', () => {
             },
         );
     });
+
+    describe('fetchImage', () => {
+        it('should fetch image correctly', async () => {
+            const url = 'http://wiki.dominionstrategy.com/images/5/5e/Adventures_icon.png';
+            const image: Buffer = {} as Buffer;
+            const axiosResponse: AxiosResponse<Buffer> = {
+                data: image,
+            } as AxiosResponse<Buffer>;
+            axiosSpy.get
+                .withArgs(url, { responseType: 'arraybuffer' })
+                .and.resolveTo(axiosResponse);
+
+            const actual = await wikiClient.fetchImage(url);
+
+            expect(actual).toBe(image);
+        });
+    });
 });
