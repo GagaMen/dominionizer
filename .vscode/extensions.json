@@ -8,6 +8,6 @@
         "eg2.vscode-npm-script",
         "stylelint.vscode-stylelint",
         "davidanson.vscode-markdownlint",
-        "knisterpeter.vscode-commitizen"
+        "adam-bender.commit-message-editor"
     ]
 }
