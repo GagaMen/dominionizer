@@ -1,17 +1,84 @@
-import { ImagePool, EncoderOptions, EncodeResult, PreprocessOptions } from '@squoosh/lib';
+import { ImagePool, EncoderOptions, PreprocessOptions, Image } from '@squoosh/lib';
+import { ImagePage } from '../wiki-client/api-models';
+import { WikiClient } from '../wiki-client/wiki-client';
+
+export interface EncodedImage {
+    fileName: string;
+    data: Uint8Array;
+}
 
 export class ImageBuilder {
-    constructor(private imagePool: ImagePool) {}
+    constructor(private wikiClient: WikiClient, private imagePool: ImagePool) {}
 
-    async build(
-        rawImage: Buffer,
-        preprocessOptions: PreprocessOptions,
-        encodeOptions: EncoderOptions,
-    ): Promise<{ [key in keyof EncoderOptions]: EncodeResult }> {
+    async build(imagePage: ImagePage): Promise<EncodedImage> {
+        return {
+            fileName: this.buildFileName(imagePage),
+            data: await this.buildData(imagePage),
+        };
+    }
+
+    private buildFileName(imagePage: ImagePage): string {
+        return imagePage.title.replace('File:', '').replace('(expansion) ', '').replace(' ', '_');
+    }
+
+    private async buildData(imagePage: ImagePage): Promise<Uint8Array> {
+        const imageinfo = imagePage.imageinfo[0];
+        const rawImage = await this.wikiClient.fetchImage(imageinfo.url);
         const image = this.imagePool.ingestImage(rawImage);
 
+        return imageinfo.mime === 'image/png'
+            ? await this.buildDataForCardSymbol(image)
+            : await this.buildDataForCardArt(image);
+    }
+
+    private async buildDataForCardSymbol(image: Image): Promise<Uint8Array> {
+        const preprocessOptions: PreprocessOptions = {
+            resize: {
+                width: 40,
+                height: 40,
+            },
+        };
         await image.preprocess(preprocessOptions);
 
-        return await image.encode<EncoderOptions>(encodeOptions);
+        const encoderOptions = { oxipng: {} }; // means default options
+        const encodeResults = await image.encode<EncoderOptions>(encoderOptions);
+
+        return encodeResults.oxipng?.binary ?? new Uint8Array();
+    }
+
+    private async buildDataForCardArt(image: Image): Promise<Uint8Array> {
+        const aspectRatio: number = image.decoded.bitmap.width / image.decoded.bitmap.height;
+        let preprocessOptions: PreprocessOptions;
+        if (aspectRatio < 1) {
+            // supply card
+            preprocessOptions = {
+                resize: {
+                    width: 150,
+                    height: 196,
+                },
+            };
+        } else if (aspectRatio > 2) {
+            // special card
+            preprocessOptions = {
+                resize: {
+                    width: 300,
+                    height: 118,
+                },
+            };
+        } else {
+            // kingdom card
+            preprocessOptions = {
+                resize: {
+                    width: 300,
+                    height: 215,
+                },
+            };
+        }
+        await image.preprocess(preprocessOptions);
+
+        const encoderOptions = { mozjpeg: {} }; // means default options
+        const encodeResults = await image.encode<EncoderOptions>(encoderOptions);
+
+        return encodeResults.mozjpeg?.binary ?? new Uint8Array();
     }
 }
