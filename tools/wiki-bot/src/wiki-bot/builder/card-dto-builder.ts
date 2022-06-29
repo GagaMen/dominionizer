@@ -9,9 +9,7 @@ import {
 } from './helper-functions';
 
 export class CardDtoBuilder {
-    constructor(private cardExpansionsMap: Map<string, number[]>) {}
-
-    build(cardPage: CardPage): CardDto {
+    build(cardPage: CardPage, cardExpansionsMap: Map<string, number[]>): CardDto {
         const wikiText: WikiText = cardPage.revisions[0]['*'] ?? '';
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Card');
 
@@ -21,7 +19,7 @@ export class CardDtoBuilder {
             description: this.extractDescription(infoBox),
             image: this.extractImage(wikiText),
             wikiUrl: cardPage.fullurl,
-            expansions: this.extractExpansions(cardPage),
+            expansions: this.extractExpansions(cardPage, cardExpansionsMap),
             types: this.extractTypes(infoBox),
             isKingdomCard: this.extractIsKingdomCard(infoBox),
             cost: this.extractCost(infoBox),
@@ -45,8 +43,11 @@ export class CardDtoBuilder {
         );
     }
 
-    private extractExpansions(cardPage: CardPage): number[] {
-        return this.cardExpansionsMap.get(cardPage.title) ?? [];
+    private extractExpansions(
+        cardPage: CardPage,
+        cardExpansionsMap: Map<string, number[]>,
+    ): number[] {
+        return cardExpansionsMap.get(cardPage.title) ?? [];
     }
 
     private extractTypes(infoBox: WikiText): number[] {

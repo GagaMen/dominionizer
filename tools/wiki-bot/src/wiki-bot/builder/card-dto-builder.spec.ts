@@ -30,7 +30,7 @@ describe('CardDtoBuilder', () => {
     };
 
     beforeEach(() => {
-        cardDtoBuilder = new CardDtoBuilder(cardExpansionsMap);
+        cardDtoBuilder = new CardDtoBuilder();
     });
 
     describe('build', () => {
@@ -68,7 +68,7 @@ describe('CardDtoBuilder', () => {
                 cost: 2,
             };
 
-            const actual = cardDtoBuilder.build(cardPage);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
 
             expect(actual).toEqual(expected);
         });
@@ -87,7 +87,7 @@ describe('CardDtoBuilder', () => {
                 isKingdomCard: false,
             };
 
-            const actual = cardDtoBuilder.build(cardPage);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
 
             expect(actual).toEqual(expected);
         });
@@ -106,7 +106,7 @@ describe('CardDtoBuilder', () => {
                 debt: 4,
             };
 
-            const actual = cardDtoBuilder.build(cardPage);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
 
             expect(actual).toEqual(expected);
         });
@@ -126,7 +126,7 @@ describe('CardDtoBuilder', () => {
                 potion: true,
             };
 
-            const actual = cardDtoBuilder.build(cardPage);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
 
             expect(actual).toEqual(expected);
         });

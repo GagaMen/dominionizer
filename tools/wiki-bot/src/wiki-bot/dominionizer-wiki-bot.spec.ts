@@ -6,7 +6,7 @@ import { ExpansionPage } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
 
-fdescribe('DominionizerWikiBot', () => {
+describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
     let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
@@ -33,7 +33,6 @@ fdescribe('DominionizerWikiBot', () => {
     });
 
     describe('generateAll', () => {
-        // generate expansion card maps
         // generate cards
         // generate card translations
         // generate card symbols
