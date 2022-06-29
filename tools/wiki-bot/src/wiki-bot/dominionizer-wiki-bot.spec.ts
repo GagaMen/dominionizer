@@ -33,7 +33,6 @@ fdescribe('DominionizerWikiBot', () => {
     });
 
     describe('generateAll', () => {
-        // generate expansion translations
         // generate expansion card maps
         // generate cards
         // generate card translations
