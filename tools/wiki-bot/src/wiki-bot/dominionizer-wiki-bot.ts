@@ -1,21 +1,30 @@
+import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder';
+import { CardDto } from './../../../../src/app/dtos/card-dto';
+import { CardDtoBuilder } from './builder/card-dto-builder';
 import { ExpansionTranslationBuilder } from './builder/expansion-translation-builder';
 import { writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
-import { ExpansionPage } from './wiki-client/api-models';
+import { ExpansionPage, CardPage } from './wiki-client/api-models';
 
 export class DominionizerWikiBot {
     constructor(
         private wikiClient: WikiClient,
         private expansionBuilder: ExpansionBuilder,
         private expansionTranslationBuilder: ExpansionTranslationBuilder,
+        private expansionCardsMapBuilder: ExpansionCardsMapBuilder,
+        private cardDtoBuilder: CardDtoBuilder,
     ) {}
 
     async generateAll(): Promise<void> {
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
         await this.generateExpansions(expansionPages);
         await this.generateExpansionTranslations(expansionPages);
+
+        const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages);
+        const cardPages = await this.wikiClient.fetchAllCardPages();
+        await this.generateCards(cardPages, cardExpansionsMap);
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<void> {
@@ -47,5 +56,33 @@ export class DominionizerWikiBot {
                 JSON.stringify(translationsByLanguage),
             );
         }
+    }
+
+    private async generateCards(cardPages: CardPage[], cardExpansionsMap: Map<string, number[]>) {
+        let cards: CardDto[] = [];
+
+        for (const cardPage of cardPages) {
+            cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap));
+        }
+
+        await writeFile('cards.json', JSON.stringify(cards));
+    }
+
+    private generateCardExpansionsMap(expansionPages: ExpansionPage[]): Map<string, number[]> {
+        const cardExpansionsMap: Map<string, number[]> = new Map();
+
+        for (const expansionPage of expansionPages) {
+            const expansionCardsMap = this.expansionCardsMapBuilder.build(expansionPage);
+
+            for (const [expansion, cardNames] of expansionCardsMap) {
+                for (const cardName of cardNames) {
+                    const expansionsByCardName = cardExpansionsMap.get(cardName) ?? [];
+
+                    cardExpansionsMap.set(cardName, expansionsByCardName.concat(expansion));
+                }
+            }
+        }
+
+        return cardExpansionsMap;
     }
 }

@@ -1,8 +1,11 @@
+import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder';
+import { CardDto } from './../../../../src/app/dtos/card-dto';
+import { CardDtoBuilder } from './builder/card-dto-builder';
 import { ExpansionTranslationBuilder } from './builder/expansion-translation-builder';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { DominionizerWikiBot } from './dominionizer-wiki-bot';
-import { ExpansionPage } from './wiki-client/api-models';
+import { ExpansionPage, CardPage } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
 
@@ -11,10 +14,18 @@ describe('DominionizerWikiBot', () => {
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
     let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
     let expansionTranslationBuilderSpy: jasmine.SpyObj<ExpansionTranslationBuilder>;
+    let expansionCardsMapBuilderSpy: jasmine.SpyObj<ExpansionCardsMapBuilder>;
+    let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
     let writeFileSpy: jasmine.Spy;
 
     beforeEach(() => {
-        wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', ['fetchAllExpansionPages']);
+        wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
+            'fetchAllExpansionPages',
+            'fetchAllCardPages',
+        ]);
+        wikiClientSpy.fetchAllExpansionPages.and.returnValue(Promise.resolve([]));
+        wikiClientSpy.fetchAllCardPages.and.returnValue(Promise.resolve([]));
+
         expansionBuilderSpy = jasmine.createSpyObj<ExpansionBuilder>('ExpansionBuilder', ['build']);
 
         expansionTranslationBuilderSpy = jasmine.createSpyObj<ExpansionTranslationBuilder>(
@@ -23,17 +34,27 @@ describe('DominionizerWikiBot', () => {
         );
         expansionTranslationBuilderSpy.build.and.returnValue(new Map());
 
+        expansionCardsMapBuilderSpy = jasmine.createSpyObj<ExpansionCardsMapBuilder>(
+            'ExpansionCardsMapBuilder',
+            ['build'],
+        );
+        expansionCardsMapBuilderSpy.build.and.returnValue(new Map());
+
+        cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
+        expansionTranslationBuilderSpy.build.and.returnValue(new Map());
+
         writeFileSpy = spyOn(Fs, 'writeFile');
 
         dominionizerWikiBot = new DominionizerWikiBot(
             wikiClientSpy,
             expansionBuilderSpy,
             expansionTranslationBuilderSpy,
+            expansionCardsMapBuilderSpy,
+            cardDtoBuilderSpy,
         );
     });
 
     describe('generateAll', () => {
-        // generate cards
         // generate card translations
         // generate card symbols
         // generate card art
@@ -97,6 +118,43 @@ describe('DominionizerWikiBot', () => {
                 'expansions.french.json',
                 JSON.stringify(frenchTranslations),
             );
+        });
+
+        it('should generate cards', async () => {
+            const expansionPages: ExpansionPage[] = [
+                { pageid: 1 } as ExpansionPage,
+                { pageid: 2 } as ExpansionPage,
+            ];
+            const cardPages: CardPage[] = [
+                { pageid: 10, title: 'Card 10' } as CardPage,
+                { pageid: 20, title: 'Card 20' } as CardPage,
+            ];
+            const cardExpansionsMap: Map<string, number[]> = new Map([
+                ['Card 10', [1]],
+                ['Card 20', [1, 2]],
+            ]);
+            const cards: CardDto[] = [
+                { id: 10, name: 'Card 10', expansions: [1] } as CardDto,
+                { id: 20, name: 'Card 20', expansions: [1, 2] } as CardDto,
+            ];
+            wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
+            wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
+            expansionCardsMapBuilderSpy.build
+                .withArgs(expansionPages[0])
+                .and.returnValue(new Map([[1, ['Card 10', 'Card 20']]]));
+            expansionCardsMapBuilderSpy.build
+                .withArgs(expansionPages[1])
+                .and.returnValue(new Map([[2, ['Card 20']]]));
+            cardDtoBuilderSpy.build
+                .withArgs(cardPages[0], cardExpansionsMap)
+                .and.returnValue(cards[0]);
+            cardDtoBuilderSpy.build
+                .withArgs(cardPages[1], cardExpansionsMap)
+                .and.returnValue(cards[1]);
+
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith('cards.json', JSON.stringify(cards));
         });
     });
 });
