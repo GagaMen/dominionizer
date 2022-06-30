@@ -1,3 +1,5 @@
+import { CardTranslationBuilder } from './builder/card-translation-builder';
+import { CardTranslation } from './../../../../src/app/models/card';
 import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder';
 import { CardDto } from './../../../../src/app/dtos/card-dto';
 import { CardDtoBuilder } from './builder/card-dto-builder';
@@ -16,6 +18,7 @@ describe('DominionizerWikiBot', () => {
     let expansionTranslationBuilderSpy: jasmine.SpyObj<ExpansionTranslationBuilder>;
     let expansionCardsMapBuilderSpy: jasmine.SpyObj<ExpansionCardsMapBuilder>;
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
+    let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
     let writeFileSpy: jasmine.Spy;
 
     beforeEach(() => {
@@ -41,7 +44,12 @@ describe('DominionizerWikiBot', () => {
         expansionCardsMapBuilderSpy.build.and.returnValue(new Map());
 
         cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
-        expansionTranslationBuilderSpy.build.and.returnValue(new Map());
+
+        cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
+            'CardTranslationBuilder',
+            ['build'],
+        );
+        cardTranslationBuilderSpy.build.and.returnValue(new Map());
 
         writeFileSpy = spyOn(Fs, 'writeFile');
 
@@ -51,11 +59,11 @@ describe('DominionizerWikiBot', () => {
             expansionTranslationBuilderSpy,
             expansionCardsMapBuilderSpy,
             cardDtoBuilderSpy,
+            cardTranslationBuilderSpy,
         );
     });
 
     describe('generateAll', () => {
-        // generate card translations
         // generate card symbols
         // generate card art
         // success logging for each step
@@ -155,6 +163,51 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith('cards.json', JSON.stringify(cards));
+        });
+
+        it('should generate card translations', async () => {
+            const cardPages: CardPage[] = [{ pageid: 10 } as CardPage, { pageid: 20 } as CardPage];
+            const cards: CardDto[] = [{ id: 10 } as CardDto, { id: 20 } as CardDto];
+            const firstCardTranslations: Map<string, CardTranslation> = new Map([
+                ['German', { id: 10, name: 'german title' } as CardTranslation],
+                ['French', { id: 10, name: 'french title' } as CardTranslation],
+            ]);
+            const secondCardTranslations: Map<string, CardTranslation> = new Map([
+                ['German', { id: 20, name: 'german title' } as CardTranslation],
+                ['French', { id: 20, name: 'french title' } as CardTranslation],
+            ]);
+            const germanTranslations: CardTranslation[] = [
+                { id: 10, name: 'german title' } as CardTranslation,
+                { id: 20, name: 'german title' } as CardTranslation,
+            ];
+            const frenchTranslations: CardTranslation[] = [
+                { id: 10, name: 'french title' } as CardTranslation,
+                { id: 20, name: 'french title' } as CardTranslation,
+            ];
+            wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
+            cardDtoBuilderSpy.build
+                .withArgs(cardPages[0], jasmine.anything())
+                .and.returnValue(cards[0]);
+            cardDtoBuilderSpy.build
+                .withArgs(cardPages[1], jasmine.anything())
+                .and.returnValue(cards[1]);
+            cardTranslationBuilderSpy.build
+                .withArgs(cardPages[0], cards[0])
+                .and.returnValue(firstCardTranslations);
+            cardTranslationBuilderSpy.build
+                .withArgs(cardPages[1], cards[1])
+                .and.returnValue(secondCardTranslations);
+
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                'cards.german.json',
+                JSON.stringify(germanTranslations),
+            );
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                'cards.french.json',
+                JSON.stringify(frenchTranslations),
+            );
         });
     });
 });

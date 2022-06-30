@@ -1,3 +1,5 @@
+import { CardTranslationBuilder } from './builder/card-translation-builder';
+import { CardTranslation } from './../../../../src/app/models/card';
 import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder';
 import { CardDto } from './../../../../src/app/dtos/card-dto';
 import { CardDtoBuilder } from './builder/card-dto-builder';
@@ -15,6 +17,7 @@ export class DominionizerWikiBot {
         private expansionTranslationBuilder: ExpansionTranslationBuilder,
         private expansionCardsMapBuilder: ExpansionCardsMapBuilder,
         private cardDtoBuilder: CardDtoBuilder,
+        private cardTranslationBuilder: CardTranslationBuilder,
     ) {}
 
     async generateAll(): Promise<void> {
@@ -24,7 +27,8 @@ export class DominionizerWikiBot {
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages);
         const cardPages = await this.wikiClient.fetchAllCardPages();
-        await this.generateCards(cardPages, cardExpansionsMap);
+        const cards = await this.generateCards(cardPages, cardExpansionsMap);
+        await this.generateCardTranslations(cardPages, cards);
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<void> {
@@ -58,16 +62,6 @@ export class DominionizerWikiBot {
         }
     }
 
-    private async generateCards(cardPages: CardPage[], cardExpansionsMap: Map<string, number[]>) {
-        let cards: CardDto[] = [];
-
-        for (const cardPage of cardPages) {
-            cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap));
-        }
-
-        await writeFile('cards.json', JSON.stringify(cards));
-    }
-
     private generateCardExpansionsMap(expansionPages: ExpansionPage[]): Map<string, number[]> {
         const cardExpansionsMap: Map<string, number[]> = new Map();
 
@@ -84,5 +78,43 @@ export class DominionizerWikiBot {
         }
 
         return cardExpansionsMap;
+    }
+
+    private async generateCards(
+        cardPages: CardPage[],
+        cardExpansionsMap: Map<string, number[]>,
+    ): Promise<CardDto[]> {
+        let cards: CardDto[] = [];
+
+        for (const cardPage of cardPages) {
+            cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap));
+        }
+
+        await writeFile('cards.json', JSON.stringify(cards));
+
+        return cards;
+    }
+
+    private async generateCardTranslations(cardPages: CardPage[], cards: CardDto[]): Promise<void> {
+        const translations: Map<string, CardTranslation[]> = new Map();
+
+        for (const cardPage of cardPages) {
+            const card = cards.find((card: CardDto) => card.id === cardPage.pageid);
+            if (card === undefined) continue;
+            const translationsByCard = this.cardTranslationBuilder.build(cardPage, card);
+
+            for (const [language, translation] of translationsByCard) {
+                const translationsByLanguage = translations.get(language) ?? [];
+
+                translations.set(language, translationsByLanguage.concat(translation));
+            }
+        }
+
+        for (const [language, translationsByLanguage] of translations) {
+            await writeFile(
+                `cards.${language.toLowerCase()}.json`,
+                JSON.stringify(translationsByLanguage),
+            );
+        }
     }
 }
