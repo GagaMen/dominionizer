@@ -1,3 +1,4 @@
+import { ImageBuilder } from './builder/image-builder';
 import { CardTranslationBuilder } from './builder/card-translation-builder';
 import { CardTranslation } from './../../../../src/app/models/card';
 import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder';
@@ -8,7 +9,7 @@ import { writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
-import { ExpansionPage, CardPage } from './wiki-client/api-models';
+import { ExpansionPage, CardPage, ImagePage } from './wiki-client/api-models';
 
 export class DominionizerWikiBot {
     constructor(
@@ -18,6 +19,7 @@ export class DominionizerWikiBot {
         private expansionCardsMapBuilder: ExpansionCardsMapBuilder,
         private cardDtoBuilder: CardDtoBuilder,
         private cardTranslationBuilder: CardTranslationBuilder,
+        private imageBuilder: ImageBuilder,
     ) {}
 
     async generateAll(): Promise<void> {
@@ -29,6 +31,12 @@ export class DominionizerWikiBot {
         const cardPages = await this.wikiClient.fetchAllCardPages();
         const cards = await this.generateCards(cardPages, cardExpansionsMap);
         await this.generateCardTranslations(cardPages, cards);
+
+        const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
+        await this.generateImages(cardSymbolPages);
+
+        const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
+        await this.generateImages(cardArtPages);
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<void> {
@@ -115,6 +123,14 @@ export class DominionizerWikiBot {
                 `cards.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
+        }
+    }
+
+    private async generateImages(imagePages: ImagePage[]): Promise<void> {
+        for (const imagePage of imagePages) {
+            const encodedImage = await this.imageBuilder.build(imagePage);
+
+            await writeFile(encodedImage.fileName, encodedImage.data);
         }
     }
 }
