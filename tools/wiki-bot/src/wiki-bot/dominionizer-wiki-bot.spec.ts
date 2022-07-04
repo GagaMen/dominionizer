@@ -14,6 +14,7 @@ import * as Fs from 'fs/promises';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
+    let targetPath: string;
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
     let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
     let expansionTranslationBuilderSpy: jasmine.SpyObj<ExpansionTranslationBuilder>;
@@ -24,6 +25,8 @@ describe('DominionizerWikiBot', () => {
     let writeFileSpy: jasmine.Spy;
 
     beforeEach(() => {
+        targetPath = './assets';
+
         wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
             'fetchAllExpansionPages',
             'fetchAllCardPages',
@@ -62,6 +65,7 @@ describe('DominionizerWikiBot', () => {
         writeFileSpy = spyOn(Fs, 'writeFile');
 
         dominionizerWikiBot = new DominionizerWikiBot(
+            targetPath,
             wikiClientSpy,
             expansionBuilderSpy,
             expansionTranslationBuilderSpy,
@@ -89,7 +93,7 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                'expansions.json',
+                `${targetPath}/data/expansions.json`,
                 JSON.stringify(expansions),
             );
         });
@@ -126,11 +130,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                'expansions.german.json',
+                `${targetPath}/data/expansions.german.json`,
                 JSON.stringify(germanTranslations),
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                'expansions.french.json',
+                `${targetPath}/data/expansions.french.json`,
                 JSON.stringify(frenchTranslations),
             );
         });
@@ -169,7 +173,10 @@ describe('DominionizerWikiBot', () => {
 
             await dominionizerWikiBot.generateAll();
 
-            expect(writeFileSpy).toHaveBeenCalledWith('cards.json', JSON.stringify(cards));
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/data/cards.json`,
+                JSON.stringify(cards),
+            );
         });
 
         it('should generate card translations', async () => {
@@ -208,11 +215,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                'cards.german.json',
+                `${targetPath}/data/cards.german.json`,
                 JSON.stringify(germanTranslations),
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                'cards.french.json',
+                `${targetPath}/data/cards.french.json`,
                 JSON.stringify(frenchTranslations),
             );
         });
@@ -237,11 +244,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                firstEncodedImage.fileName,
+                `${targetPath}/card_symbols/${firstEncodedImage.fileName}`,
                 firstEncodedImage.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                secondEncodedImage.fileName,
+                `${targetPath}/card_symbols/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
         });
@@ -266,11 +273,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                firstEncodedImage.fileName,
+                `${targetPath}/card_arts/${firstEncodedImage.fileName}`,
                 firstEncodedImage.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                secondEncodedImage.fileName,
+                `${targetPath}/card_arts/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
         });

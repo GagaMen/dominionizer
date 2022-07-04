@@ -13,6 +13,7 @@ import { ExpansionPage, CardPage, ImagePage } from './wiki-client/api-models';
 
 export class DominionizerWikiBot {
     constructor(
+        private targetPath: string,
         private wikiClient: WikiClient,
         private expansionBuilder: ExpansionBuilder,
         private expansionTranslationBuilder: ExpansionTranslationBuilder,
@@ -33,10 +34,10 @@ export class DominionizerWikiBot {
         await this.generateCardTranslations(cardPages, cards);
 
         const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
-        await this.generateImages(cardSymbolPages);
+        await this.generateImages(cardSymbolPages, 'card_symbols');
 
         const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
-        await this.generateImages(cardArtPages);
+        await this.generateImages(cardArtPages, 'card_arts');
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<void> {
@@ -46,7 +47,7 @@ export class DominionizerWikiBot {
             expansions = expansions.concat(this.expansionBuilder.build(expansionPage));
         }
 
-        await writeFile('expansions.json', JSON.stringify(expansions));
+        await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));
     }
 
     private async generateExpansionTranslations(expansionPages: ExpansionPage[]): Promise<void> {
@@ -64,7 +65,7 @@ export class DominionizerWikiBot {
 
         for (const [language, translationsByLanguage] of translations) {
             await writeFile(
-                `expansions.${language.toLowerCase()}.json`,
+                `${this.targetPath}/data/expansions.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
         }
@@ -98,7 +99,7 @@ export class DominionizerWikiBot {
             cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap));
         }
 
-        await writeFile('cards.json', JSON.stringify(cards));
+        await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
 
         return cards;
     }
@@ -120,17 +121,20 @@ export class DominionizerWikiBot {
 
         for (const [language, translationsByLanguage] of translations) {
             await writeFile(
-                `cards.${language.toLowerCase()}.json`,
+                `${this.targetPath}/data/cards.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
         }
     }
 
-    private async generateImages(imagePages: ImagePage[]): Promise<void> {
+    private async generateImages(imagePages: ImagePage[], subFolder: string): Promise<void> {
         for (const imagePage of imagePages) {
             const encodedImage = await this.imageBuilder.build(imagePage);
 
-            await writeFile(encodedImage.fileName, encodedImage.data);
+            await writeFile(
+                `${this.targetPath}/${subFolder}/${encodedImage.fileName}`,
+                encodedImage.data,
+            );
         }
     }
 }
