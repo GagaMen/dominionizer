@@ -64,6 +64,8 @@ describe('DominionizerWikiBot', () => {
 
         writeFileSpy = spyOn(Fs, 'writeFile');
 
+        spyOn(console, 'log').and.stub();
+
         dominionizerWikiBot = new DominionizerWikiBot(
             targetPath,
             wikiClientSpy,
@@ -77,7 +79,6 @@ describe('DominionizerWikiBot', () => {
     });
 
     describe('generateAll', () => {
-        // success logging for each step
         // error handling for builders (log and continue)
 
         it('should generate expansions', async () => {
