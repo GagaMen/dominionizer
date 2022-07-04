@@ -9,28 +9,38 @@ import axios from 'axios';
 import { DominionizerWikiBot } from './wiki-bot/dominionizer-wiki-bot';
 import { WikiClient } from './wiki-bot/wiki-client/wiki-client';
 
-const axiosInstance = axios.create({
-    baseURL: 'http://wiki.dominionstrategy.com/api.php',
-    timeout: 60 * 1000,
-});
-const imagePool = new ImagePool();
+async function bootstrap(): Promise<void> {
+    const axiosInstance = axios.create({
+        baseURL: 'http://wiki.dominionstrategy.com/api.php',
+        timeout: 60 * 1000,
+    });
+    const imagePool = new ImagePool();
 
-const targetPath = '../../../src/assets/';
-const wikiClient = new WikiClient(axiosInstance);
-const expansionBuilder = new ExpansionBuilder();
-const expansionTranlationBuilder = new ExpansionTranslationBuilder();
-const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
-const cardDtoBuilder = new CardDtoBuilder();
-const cardTranslationBuilder = new CardTranslationBuilder();
-const imageBuilder = new ImageBuilder(wikiClient, imagePool);
+    const targetPath = '../../src/assets/';
+    const wikiClient = new WikiClient(axiosInstance);
+    const expansionBuilder = new ExpansionBuilder();
+    const expansionTranlationBuilder = new ExpansionTranslationBuilder();
+    const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
+    const cardDtoBuilder = new CardDtoBuilder();
+    const cardTranslationBuilder = new CardTranslationBuilder();
+    const imageBuilder = new ImageBuilder(wikiClient, imagePool);
 
-const bot = new DominionizerWikiBot(
-    targetPath,
-    wikiClient,
-    expansionBuilder,
-    expansionTranlationBuilder,
-    expansionCardsMapBuilder,
-    cardDtoBuilder,
-    cardTranslationBuilder,
-    imageBuilder,
-);
+    const bot = new DominionizerWikiBot(
+        targetPath,
+        wikiClient,
+        expansionBuilder,
+        expansionTranlationBuilder,
+        expansionCardsMapBuilder,
+        cardDtoBuilder,
+        cardTranslationBuilder,
+        imageBuilder,
+    );
+
+    try {
+        await bot.generateAll();
+    } finally {
+        imagePool.close();
+    }
+}
+
+bootstrap();
