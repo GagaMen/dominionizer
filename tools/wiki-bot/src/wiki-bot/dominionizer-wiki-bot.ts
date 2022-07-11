@@ -24,46 +24,46 @@ export class DominionizerWikiBot {
     ) {}
 
     async generateAll(): Promise<void> {
-        console.log('Fetching expansion pages...');
+        console.log('\nFetching expansion pages...');
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
-        console.log('Expansion pages fetched.');
+        console.log('Expansion pages fetched.\n');
 
         console.log('Generating expansions...');
         await this.generateExpansions(expansionPages);
-        console.log('Expansions generated.');
+        console.log('Expansions generated.\n');
 
         console.log('Generating expansion translations...');
         await this.generateExpansionTranslations(expansionPages);
-        console.log('Expansion translations generated.');
+        console.log('Expansion translations generated.\n');
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages);
         console.log('Fetching card pages...');
         const cardPages = await this.wikiClient.fetchAllCardPages();
-        console.log('Card pages fetched.');
+        console.log('Card pages fetched.\n');
 
         console.log('Generating cards...');
         const cards = await this.generateCards(cardPages, cardExpansionsMap);
-        console.log('Cards generated.');
+        console.log('Cards generated.\n');
 
         console.log('Generating card translations...');
         await this.generateCardTranslations(cardPages, cards);
-        console.log('Card translations generated.');
+        console.log('Card translations generated.\n');
 
         console.log('Fetching card symbol pages...');
         const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
-        console.log('Card symbol pages fetched.');
+        console.log('Card symbol pages fetched.\n');
 
         console.log('Generating card symbols...');
         await this.generateImages(cardSymbolPages, 'card_symbols');
-        console.log('Card symbols generated.');
+        console.log('Card symbols generated.\n');
 
         console.log('Fetching card art pages...');
         const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
-        console.log('Card art pages fetched.');
+        console.log('Card art pages fetched.\n');
 
         console.log('Generating card arts...');
         await this.generateImages(cardArtPages, 'card_arts');
-        console.log('Card arts generated.');
+        console.log('Card arts generated.\n');
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<void> {
