@@ -10,10 +10,10 @@ describe('helper functions', () => {
     describe('extractTemplate', () => {
         it('with non-existent template should return empty string', () => {
             const wikiText: WikiText =
-                `{{Infobox Set\\n` +
-                `|othercards =* 5 {{Card|Hero|Heroes}}\\n` +
-                `}}\\n\\n` +
-                `'''Adventures''' is...\\n` +
+                `{{Infobox Set\n` +
+                `|othercards =* 5 {{Card|Hero|Heroes}}\n` +
+                `}}\n\n` +
+                `'''Adventures''' is...\n` +
                 `{{Cost|2}}`;
 
             const actual = extractTemplate(wikiText, 'Non existent Template');
@@ -23,12 +23,12 @@ describe('helper functions', () => {
 
         it('with existent template should return correct template', () => {
             const wikiText: WikiText =
-                `{{Infobox Set\\n` +
-                `|othercards =* 5 {{Card|Hero|Heroes}}\\n` +
-                `}}\\n\\n` +
-                `'''Adventures''' is...\\n` +
+                `{{Infobox Set\n` +
+                `|othercards =* 5 {{Card|Hero|Heroes}}\n` +
+                `}}\n\n` +
+                `'''Adventures''' is...\n` +
                 `{{Cost|2}}`;
-            const expected: WikiText = `{{Infobox Set\\n|othercards =* 5 {{Card|Hero|Heroes}}\\n}}`;
+            const expected: WikiText = `{{Infobox Set\n|othercards =* 5 {{Card|Hero|Heroes}}\n}}`;
 
             const actual = extractTemplate(wikiText, 'Infobox Set');
 
@@ -38,7 +38,7 @@ describe('helper functions', () => {
 
     describe('extractTemplatePropertyValue', () => {
         it('with non-existent template property should return empty string', () => {
-            const wikiText: WikiText = `{{Infobox Set\\n|othercards=* 5 {{Card|Hero|Heroes}}\\n|blankcards = 6\\n}}`;
+            const wikiText: WikiText = `{{Infobox Set\n|othercards=* 5 {{Card|Hero|Heroes}}\n|blankcards = 6\n}}`;
 
             const actual = extractTemplatePropertyValue(wikiText, 'nonexistentproperty');
 
@@ -46,8 +46,8 @@ describe('helper functions', () => {
         });
 
         it('with template property in middle of template should return correct template property value', () => {
-            const wikiText: WikiText = `{{Infobox Set\\n|othercards=* 5 {{Card|Hero|Heroes}}\\n|blankcards = 6\\n}}`;
-            const expected: WikiText = `* 5 {{Card|Hero|Heroes}}\\n`;
+            const wikiText: WikiText = `{{Infobox Set\n|othercards=* 5 {{Card|Hero|Heroes}}\n|blankcards = 6\n}}`;
+            const expected: WikiText = `* 5 {{Card|Hero|Heroes}}\n`;
 
             const actual = extractTemplatePropertyValue(wikiText, 'othercards');
 
@@ -55,8 +55,8 @@ describe('helper functions', () => {
         });
 
         it('with template property at end of template should return correct template property value', () => {
-            const wikiText: WikiText = `{{Infobox Set\\n|othercards=* 5 {{Card|Hero|Heroes}}\\n|blankcards = 6\\n}}`;
-            const expected: WikiText = ` 6\\n`;
+            const wikiText: WikiText = `{{Infobox Set\n|othercards=* 5 {{Card|Hero|Heroes}}\n|blankcards = 6\n}}`;
+            const expected: WikiText = ` 6\n`;
 
             const actual = extractTemplatePropertyValue(wikiText, 'blankcards');
 
@@ -66,7 +66,7 @@ describe('helper functions', () => {
 
     describe('extractSection', () => {
         it('with non-existent section should return empty string', () => {
-            const wikiText: WikiText = `== Contents ==\\n`;
+            const wikiText: WikiText = `== Contents ==\n`;
 
             const actual = extractSection(wikiText, 'Non existent Section', 2);
 
@@ -75,15 +75,15 @@ describe('helper functions', () => {
 
         it('with section at beginning or in middle should return correct section', () => {
             const wikiText: WikiText =
-                `== Contents ==\\n` +
-                `Any contents...\\n` +
-                `=== Kingdom cards ===\\n` +
-                `Any kingdom cards...\\n` +
-                `== Flavor text ==\\n`;
+                `== Contents ==\n` +
+                `Any contents...\n` +
+                `=== Kingdom cards ===\n` +
+                `Any kingdom cards...\n` +
+                `== Flavor text ==\n`;
             const expected: WikiText =
-                `== Contents ==\\n` +
-                `Any contents...\\n` +
-                `=== Kingdom cards ===\\n` +
+                `== Contents ==\n` +
+                `Any contents...\n` +
+                `=== Kingdom cards ===\n` +
                 `Any kingdom cards...`;
 
             const actual = extractSection(wikiText, 'Contents', 2);
@@ -93,11 +93,11 @@ describe('helper functions', () => {
 
         it('with section at end should return correct section', () => {
             const wikiText: WikiText =
-                `== Contents ==\\n` +
-                `Any contents...\\n` +
-                `== Flavor text ==\\n` +
+                `== Contents ==\n` +
+                `Any contents...\n` +
+                `== Flavor text ==\n` +
                 `Any flavor text...`;
-            const expected: WikiText = `== Flavor text ==\\nAny flavor text...`;
+            const expected: WikiText = `== Flavor text ==\nAny flavor text...`;
 
             const actual = extractSection(wikiText, 'Flavor text', 2);
 
@@ -113,7 +113,7 @@ describe('helper functions', () => {
         });
 
         it('with value should convert \\n to spaces and trim', () => {
-            const actual = normalize(' any\\ntext\\n ');
+            const actual = normalize(' any\ntext\n ');
 
             expect(actual).toBe('any text');
         });

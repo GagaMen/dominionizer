@@ -34,7 +34,7 @@ describe('ExpansionBuilder', () => {
                 pageid: 1,
                 title: 'Dominion (Base Set)',
                 revisions: [
-                    { '*': '{{Infobox Set\\n|release = October 2008 (1st) / Fall 2016 (2nd)\\n}}' },
+                    { '*': '{{Infobox Set\n|release = October 2008 (1st) / Fall 2016 (2nd)\n}}' },
                 ],
             };
             const expected: Expansion[] = [

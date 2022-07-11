@@ -25,11 +25,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German \\n| Burggraben ||  || || '''+2 Karten'''\\n` +
+                            `===Other language versions===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German \n| Burggraben ||  || || '''+2 Karten'''\n` +
                             `|}`,
                     },
                 ],
@@ -61,11 +61,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text !! Notes\\n` +
-                            `|-\\n` +
-                            `!German \\n| Burggraben ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler... || HiG translation error...\\n` +
+                            `===Other language versions===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                            `|-\n` +
+                            `!German \n| Burggraben ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler... || HiG translation error...\n` +
                             `|}`,
                     },
                 ],
@@ -95,11 +95,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German \\n| || || || \\n` +
+                            `===Other language versions===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German \n| || || || \n` +
                             `|}`,
                     },
                 ],
@@ -128,11 +128,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German \\n| ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler...\\n` +
+                            `===Other language versions===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German \n| ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler...\n` +
                             `|}`,
                     },
                 ],
@@ -161,11 +161,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `=== Other language versions ===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere...<br>die... \\n` +
+                            `=== Other language versions ===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere...<br>die... \n` +
                             `|}`,
                     },
                 ],
@@ -196,11 +196,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `=== Other language versions ===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere... <br>die... \\n` +
+                            `=== Other language versions ===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere... <br>die... \n` +
                             `|}`,
                     },
                 ],
@@ -232,11 +232,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `=== Other language versions ===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<hr>Ignoriere... <br>die... \\n` +
+                            `=== Other language versions ===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<hr>Ignoriere... <br>die... \n` +
                             `|}`,
                     },
                 ],
@@ -268,11 +268,11 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `=== Other language versions ===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German\\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''\\nIgnoriere... <br>die... \\n` +
+                            `=== Other language versions ===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''\nIgnoriere... <br>die... \n` +
                             `|}`,
                     },
                 ],
@@ -304,13 +304,13 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!Czech \\n| || || || \\n` +
-                            `|-\\n` +
-                            `!German \\n| || || || \\n` +
+                            `===Other language versions===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!Czech \n| || || || \n` +
+                            `|-\n` +
+                            `!German \n| || || || \n` +
                             `|}`,
                     },
                 ],
@@ -331,12 +331,12 @@ describe('CardTranslationBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\\n` +
-                            `|-\\n` +
-                            `!German \\n| || || || \\n` +
-                            `|-\\n` +
+                            `===Other language versions===\n` +
+                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German \n| || || || \n` +
+                            `|-\n` +
                             `|}`,
                     },
                 ],

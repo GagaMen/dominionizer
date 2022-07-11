@@ -11,7 +11,7 @@ export class CardTranslationBuilder {
             'Other language versions',
             3,
         );
-        const table = /{\|(.*?)\|}/.exec(otherLanguageVersions)?.[1] ?? '';
+        const table = /{\|(.*?)\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
         const rows = table
             .split('|-')
             .slice(1)
@@ -19,7 +19,7 @@ export class CardTranslationBuilder {
 
         return new Map<string, CardTranslation>(
             rows.map((row) => {
-                const match = /!([^|]*)\|(.*)/.exec(row);
+                const match = /!([^|]*)\|(.*)/s.exec(row);
                 const language = normalize(match?.[1]);
                 const columns = match?.[2].split('||');
 
@@ -47,7 +47,7 @@ export class CardTranslationBuilder {
             return [normalize(description)];
         }
 
-        description = description.replace(/\\n$/, '').replace(/<hr>|\\n/g, '<br>');
+        description = description.replace(/\n$/, '').replace(/<hr>|\n/g, '<br>');
 
         const breakCount = cardDto.description[0].split('<br>').length;
         const descriptionParts = description?.split('<br>');

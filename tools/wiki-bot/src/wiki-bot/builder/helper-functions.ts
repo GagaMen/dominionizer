@@ -1,12 +1,12 @@
 import { WikiText } from '../wiki-client/api-models';
 
 export function extractTemplate(wikiText: WikiText, templateName: string): WikiText {
-    const templateRegExp = new RegExp(`{{${templateName}.*}}`);
+    const templateRegExp = new RegExp(`{{${templateName}.*}}`, 's');
     const templateCandidate = templateRegExp.exec(wikiText)?.[0] ?? '';
 
     // templateCandidate can exceed the template end if another template follows
     // so we need to find the actual template end
-    const boundaryTokensRegExp = /\{\{|\}\}/g;
+    const boundaryTokensRegExp = /\{\{|\}\}/gs;
     let match: RegExpExecArray | null;
     let nestingDepth = 0;
     while ((match = boundaryTokensRegExp.exec(templateCandidate))) {
@@ -23,7 +23,7 @@ export function extractTemplatePropertyValue(
     wikiText: WikiText,
     templatePropertyName: string,
 ): WikiText {
-    const templatePropertyRegExp = new RegExp(`\\|${templatePropertyName}\\s*=(.*)`);
+    const templatePropertyRegExp = new RegExp(`\\|${templatePropertyName}\\s*=(.*)`, 's');
     const templatePropertyValueCandidate = templatePropertyRegExp.exec(wikiText)?.[1] ?? '';
 
     // templatePropertyValueCandidate exceeds the template property value
@@ -49,12 +49,15 @@ export function extractTemplatePropertyValue(
 }
 
 export function extractSection(wikiText: WikiText, sectionName: string, level: number): WikiText {
-    const targetSectionRegExp = new RegExp(`={${level}}\\s*${sectionName}\\s*={${level}}\\\\n.*`);
+    const targetSectionRegExp = new RegExp(
+        `={${level}}\\s*${sectionName}\\s*={${level}}\\n.*`,
+        's',
+    );
     const sectionCandidate = targetSectionRegExp.exec(wikiText)?.[0] ?? '';
 
     // sectionCandidate can exceed the section end if another section follows
     // so we need to find the actual section end
-    const sectionRegExp = new RegExp(`(^|\\\\n)={${level}}\\s.*?\\s={${level}}\\\\n`, 'g');
+    const sectionRegExp = new RegExp(`(^|\\n)={${level}}\\s.*?\\s={${level}}\\n`, 'gs');
     sectionRegExp.exec(sectionCandidate);
     const match = sectionRegExp.exec(sectionCandidate);
 
@@ -62,5 +65,5 @@ export function extractSection(wikiText: WikiText, sectionName: string, level: n
 }
 
 export function normalize(wikiText: WikiText | undefined): WikiText {
-    return wikiText?.replace(/\\n/g, ' ').trim() ?? '';
+    return wikiText?.replace(/\n/g, ' ').trim() ?? '';
 }

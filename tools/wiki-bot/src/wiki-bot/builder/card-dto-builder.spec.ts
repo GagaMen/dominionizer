@@ -43,15 +43,15 @@ describe('CardDtoBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            `{{Infobox Card\\n` +
-                            `|name = Moat\\n` +
-                            `|cost = 2\\n` +
-                            `|type1 = Action\\n` +
-                            `|type2 = Reaction\\n` +
-                            `|text = '''+2 Cards'''\\n` +
-                            `|text2 = When another player...\\n}}\\n\\n` +
-                            `== Trivia ==\\n` +
-                            `[[Image:MoatArt.jpg|thumb|right|354px|Official card art.]]\\n\\n`,
+                            `{{Infobox Card\n` +
+                            `|name = Moat\n` +
+                            `|cost = 2\n` +
+                            `|type1 = Action\n` +
+                            `|type2 = Reaction\n` +
+                            `|text = '''+2 Cards'''\n` +
+                            `|text2 = When another player...\n}}\n\n` +
+                            `== Trivia ==\n` +
+                            `[[Image:MoatArt.jpg|thumb|right|354px|Official card art.]]\n\n`,
                     },
                 ],
             };
@@ -78,7 +78,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\\n |kingdom = No\\n}}',
+                        '*': '{{Infobox Card\n |kingdom = No\n}}',
                     },
                 ],
             };
@@ -97,7 +97,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\\n |cost2 = 4\\n}}',
+                        '*': '{{Infobox Card\n |cost2 = 4\n}}',
                     },
                 ],
             };
@@ -116,7 +116,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\\n |cost = 3P\\n}}',
+                        '*': '{{Infobox Card\n |cost = 3P\n}}',
                     },
                 ],
             };
