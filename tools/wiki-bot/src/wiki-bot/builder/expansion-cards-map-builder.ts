@@ -63,13 +63,13 @@ export class ExpansionCardsMapBuilder {
         let match: RegExpExecArray | null;
         while ((match = cardRegex.exec(section))) {
             const card = normalize(match?.[1]);
-            expansionId = match?.[2] === '*' ? expansionId + 0.1 : expansionId;
+            const expansionEditionId = match?.[2] === '*' ? expansionId + 0.1 : expansionId;
 
-            if (!expansionCardsMap.has(expansionId)) {
-                expansionCardsMap.set(expansionId, []);
+            if (!expansionCardsMap.has(expansionEditionId)) {
+                expansionCardsMap.set(expansionEditionId, []);
             }
 
-            const cards = expansionCardsMap.get(expansionId);
+            const cards = expansionCardsMap.get(expansionEditionId);
             if (cards?.includes(card)) {
                 continue;
             }

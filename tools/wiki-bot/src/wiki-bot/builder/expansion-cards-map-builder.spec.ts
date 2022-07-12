@@ -42,7 +42,9 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\n' +
                             '=== Kingdom cards, second edition ===\n' +
                             'Cards with an asterisk (*) were added in the second edition.\n' +
-                            '* {{Cost|2}}: {{Card|Cellar}}\n* {{Cost|3}}: {{Card|Harbinger}}*\n\n' +
+                            '* {{Cost|2}}: {{Card|Cellar}}\n' +
+                            '* {{Cost|3}}: {{Card|Harbinger}}*\n' +
+                            '* {{Cost|4}}: {{Card|Bureaucrat}}\n\n' +
                             '=== Removed first-edition Kingdom cards ===\n' +
                             'These cards were included in the first edition, and [[Removed cards|removed]] from the second edition.\n' +
                             '* {{Cost|3}}: {{Card|Chancellor}}',
@@ -50,8 +52,8 @@ describe('ExpansionMapBuilder', () => {
                 ],
             };
             const expected: Map<number, string[]> = new Map([
-                [914, ['Cellar', 'Chancellor']],
-                [914.1, ['Harbinger', 'Cellar']],
+                [914, ['Cellar', 'Bureaucrat', 'Chancellor']],
+                [914.1, ['Harbinger', 'Cellar', 'Bureaucrat']],
             ]);
 
             const actual = expansionMapBuilder.build(expansionPage);
