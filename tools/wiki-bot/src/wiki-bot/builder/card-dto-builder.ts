@@ -17,7 +17,7 @@ export class CardDtoBuilder {
             id: cardPage.pageid,
             name: cardPage.title,
             description: this.extractDescription(infoBox),
-            image: this.extractImage(wikiText),
+            image: this.extractImage(cardPage, wikiText),
             wikiUrl: cardPage.fullurl,
             expansions: this.extractExpansions(cardPage, cardExpansionsMap),
             types: this.extractTypes(infoBox),
@@ -35,12 +35,16 @@ export class CardDtoBuilder {
         return text2 ? [text, text2] : [text];
     }
 
-    private extractImage(wikiText: WikiText): string {
+    private extractImage(cardPage: CardPage, wikiText: WikiText): string {
         const trivia: WikiText = extractSection(wikiText, 'Trivia', 2);
 
-        return normalize(
-            /\[\[\s*Image:(.*?\.jpg)\s*\|.*?\|\s*Official card art\.\s*\]\]/.exec(trivia)?.[1],
-        );
+        const officialArtRegExp = /{{\s*OfficialArt\s*\|?.*}}/;
+        if (officialArtRegExp.test(trivia)) {
+            return `${cardPage.title.replace(/\s/g, '_')}Art.jpg`;
+        }
+
+        const cardArtRegExp = /\[\[\s*Image:(.*?\.jpg)\s*\|.*?\|\s*Official card art.*\]\]/;
+        return normalize(cardArtRegExp.exec(trivia)?.[1]).replace(/\s/g, '_');
     }
 
     private extractExpansions(

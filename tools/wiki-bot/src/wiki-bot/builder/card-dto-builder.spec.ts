@@ -7,7 +7,7 @@ describe('CardDtoBuilder', () => {
     let cardDtoBuilder: CardDtoBuilder;
 
     const cardExpansionsMap: Map<string, number[]> = new Map();
-    cardExpansionsMap.set('Moat', [914, 914.1]);
+    cardExpansionsMap.set('Ghost Town', [4213]);
 
     const nullCardPage: CardPage = {
         pageid: 0,
@@ -37,21 +37,21 @@ describe('CardDtoBuilder', () => {
         it('with basic cardPage should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
-                pageid: 18,
-                title: 'Moat',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Moat',
+                pageid: 5167,
+                title: 'Ghost Town',
+                fullurl: 'http://wiki.dominionstrategy.com/index.php/Ghost_Town',
                 revisions: [
                     {
                         '*':
                             `{{Infobox Card\n` +
-                            `|name = Moat\n` +
-                            `|cost = 2\n` +
-                            `|type1 = Action\n` +
-                            `|type2 = Reaction\n` +
-                            `|text = '''+2 Cards'''\n` +
-                            `|text2 = When another player...\n}}\n\n` +
+                            `|name = Ghost Town\n` +
+                            `|cost = 3\n` +
+                            `|type1 = Night\n` +
+                            `|type2 = Duration\n` +
+                            `|text = At the start...\n` +
+                            `|text2 = This is gained ...\n}}\n\n` +
                             `== Trivia ==\n` +
-                            `[[Image:MoatArt.jpg|thumb|right|354px|Official card art.]]\n\n`,
+                            `[[Image:Ghost TownArt.jpg|thumb|right|354px|Official card art.]]\n\n`,
                     },
                 ],
             };
@@ -59,13 +59,58 @@ describe('CardDtoBuilder', () => {
                 ...nullCardDto,
                 id: cardPage.pageid,
                 name: cardPage.title,
-                description: [`'''+2 Cards'''`, `When another player...`],
-                image: 'MoatArt.jpg',
+                description: [`At the start...`, `This is gained ...`],
+                image: 'Ghost_TownArt.jpg',
                 wikiUrl: cardPage.fullurl,
-                expansions: [914, 914.1],
-                types: [CardType.Action, CardType.Reaction],
+                expansions: [4213],
+                types: [CardType.Night, CardType.Duration],
                 isKingdomCard: true,
-                cost: 2,
+                cost: 3,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage uses OfficialArt template should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                title: `Horn of Plenty`,
+                revisions: [
+                    {
+                        '*': `== Trivia ==\n{{OfficialArt|l=1}}\n\n`,
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: cardPage.title,
+                image: 'Horn_of_PlentyArt.jpg',
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage reuses art of another card should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                title: 'Miserable',
+                revisions: [
+                    {
+                        '*':
+                            `== Trivia ==\n` +
+                            `[[Image:MiseryArt.jpg|thumb|right|500px|Official card art ` +
+                            `(the same as Twice Miserable's art).]]\n\n`,
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Miserable',
+                image: 'MiseryArt.jpg',
             };
 
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
