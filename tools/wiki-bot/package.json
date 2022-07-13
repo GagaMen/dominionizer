@@ -2,7 +2,6 @@
     "name": "dominionizer-wiki-bot",
     "scripts": {
         "start": "ts-node --files ./src/main.ts",
-        "debug": "export TS_NODE_FILES=true && node --inspect -r ts-node/register ./src/main.ts",
         "test": "nodemon --watch 'src/**/*.ts' --ext ts --exec 'npm run test:ci'",
         "test:ci": "ts-node --project tsconfig.spec.json --files ./node_modules/jasmine/bin/jasmine --config=jasmine.json"
     },

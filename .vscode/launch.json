@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "npm: start",
+            "name": "app: start",
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:4200",
@@ -19,7 +19,7 @@
             }
         },
         {
-            "name": "npm: test",
+            "name": "app: test",
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:9876/debug.html",
@@ -36,12 +36,23 @@
             }
         },
         {
-            "name": "npm: e2e",
+            "name": "app: e2e",
             "type": "node",
             "request": "launch",
             "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
-            "protocol": "inspector",
             "args": ["${workspaceFolder}/e2e/protractor.conf.js"]
+        },
+        {
+            "name": "wiki-bot: start",
+            "type": "node",
+            "request": "launch",
+            "localRoot": "${workspaceFolder}/tools/wiki-bot",
+            "runtimeArgs": ["-r", "ts-node/register"],
+            "env": {
+                "TS_NODE_FILES": "true"
+            },
+            "args": ["./src/main.ts"],
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }

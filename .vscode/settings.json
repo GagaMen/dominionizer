@@ -23,6 +23,5 @@
         "editor.formatOnSave": false
     },
     "typescript.tsdk": "node_modules\\typescript\\lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "debug.javascript.autoAttachFilter": "always"
+    "typescript.enablePromptUseWorkspaceTsdk": true
 }
