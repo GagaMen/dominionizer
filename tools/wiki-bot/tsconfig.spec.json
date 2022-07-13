@@ -3,8 +3,6 @@
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
         "module": "CommonJS",
-        "types": ["jasmine", "node"],
-        "typeRoots": ["./node_modules/@types", "./**/*"]
-    },
-    "include": ["src/**/*.d.ts"]
+        "typeRoots": ["./node_modules/@types", "./typings"]
+    }
 }

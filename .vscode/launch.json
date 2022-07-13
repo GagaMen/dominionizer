@@ -48,9 +48,6 @@
             "request": "launch",
             "localRoot": "${workspaceFolder}/tools/wiki-bot",
             "runtimeArgs": ["-r", "ts-node/register"],
-            "env": {
-                "TS_NODE_FILES": "true"
-            },
             "args": ["./src/main.ts"],
             "internalConsoleOptions": "openOnSessionStart"
         }
