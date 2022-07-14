@@ -61,102 +61,6 @@ describe('ExpansionMapBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with prizes should return correct map', () => {
-            const expansionPage: ExpansionPage = {
-                pageid: 180,
-                title: 'Cornucopia',
-                revisions: [
-                    {
-                        '*':
-                            '== Contents ==\n' +
-                            '=== Prizes ===\n' +
-                            'The 5 cards in the [[Prize]] pile are unique.\n' +
-                            '* {{Cost|0*}}: {{Card|Bag of Gold}}, {{Card|Diadem}}',
-                    },
-                ],
-            };
-            const expected: Map<number, string[]> = new Map([[180, ['Bag of Gold', 'Diadem']]]);
-
-            const actual = expansionMapBuilder.build(expansionPage);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with ruins should return correct map', () => {
-            const expansionPage: ExpansionPage = {
-                pageid: 156,
-                title: 'Dark Ages',
-                revisions: [
-                    {
-                        '*':
-                            '== Contents ==\n' +
-                            '=== Kingdom cards ===\n' +
-                            '* {{Cost|1}}: {{Card|Poor House}}\n\n' +
-                            '=== Additional materials ===\n' +
-                            '==== Ruins ====\n' +
-                            '* {{Cost|0}}: {{Card|Abandoned Mine}}, {{Card|Ruined Library}}',
-                    },
-                ],
-            };
-            const expected: Map<number, string[]> = new Map([
-                [156, ['Poor House', 'Abandoned Mine', 'Ruined Library']],
-            ]);
-
-            const actual = expansionMapBuilder.build(expansionPage);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with shelters should return correct map', () => {
-            const expansionPage: ExpansionPage = {
-                pageid: 156,
-                title: 'Dark Ages',
-                revisions: [
-                    {
-                        '*':
-                            '== Contents ==\n' +
-                            '=== Kingdom cards ===\n' +
-                            '* {{Cost|1}}: {{Card|Poor House}}\n\n' +
-                            '=== Additional materials ===\n' +
-                            '==== Shelters ====\n' +
-                            '* {{Cost|1}}: {{Card|Hovel}}, {{Card|Necropolis}}',
-                    },
-                ],
-            };
-            const expected: Map<number, string[]> = new Map([
-                [156, ['Poor House', 'Hovel', 'Necropolis']],
-            ]);
-
-            const actual = expansionMapBuilder.build(expansionPage);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with non-supply cards should return correct map', () => {
-            const expansionPage: ExpansionPage = {
-                pageid: 156,
-                title: 'Dark Ages',
-                revisions: [
-                    {
-                        '*':
-                            '== Contents ==\n' +
-                            '=== Kingdom cards ===\n' +
-                            '* {{Cost|1}}: {{Card|Poor House}}\n\n' +
-                            '=== Additional materials ===\n' +
-                            '==== Non-Supply cards ====\n' +
-                            '* {{Cost|0*}}: {{Card|Madman}}, {{Card|Mercenary}}',
-                    },
-                ],
-            };
-            const expected: Map<number, string[]> = new Map([
-                [156, ['Poor House', 'Madman', 'Mercenary']],
-            ]);
-
-            const actual = expansionMapBuilder.build(expansionPage);
-
-            expect(actual).toEqual(expected);
-        });
-
         it('with events should return correct map', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 1579,
@@ -174,31 +78,6 @@ describe('ExpansionMapBuilder', () => {
             };
             const expected: Map<number, string[]> = new Map([
                 [1579, ['Coin of the Realm', 'Alms']],
-            ]);
-
-            const actual = expansionMapBuilder.build(expansionPage);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with upgrade cards should return correct map', () => {
-            const expansionPage: ExpansionPage = {
-                pageid: 1579,
-                title: 'Adventures',
-                revisions: [
-                    {
-                        '*':
-                            '== Contents ==\n' +
-                            '=== Kingdom cards ===\n' +
-                            '* {{Cost|2}}: {{Card|Coin of the Realm}}\n\n' +
-                            '=== Additional materials ===\n' +
-                            '==== Upgrade cards ====\n' +
-                            '* {{Cost|3*}}: {{Card|Soldier}}',
-                    },
-                ],
-            };
-            const expected: Map<number, string[]> = new Map([
-                [1579, ['Coin of the Realm', 'Soldier']],
             ]);
 
             const actual = expansionMapBuilder.build(expansionPage);
@@ -241,8 +120,7 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\n' +
                             '=== Kingdom cards ===\n' +
                             '* {{Cost|2}} {{Card|Druid}}\n\n' +
-                            '=== Additional materials ===\n\n' +
-                            '==== [[Boon]]s ====\n' +
+                            '=== [[Boon]]s ===\n' +
                             "{{Boon|The Earth's Gift}}, {{Boon|The Field's Gift}}",
                     },
                 ],
@@ -266,8 +144,7 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\n' +
                             '=== Kingdom cards ===\n' +
                             '* {{Cost|2}} {{Card|Druid}}\n\n' +
-                            '=== Additional materials ===\n\n' +
-                            '====[[Hex]]es ====\n' +
+                            '===[[Hex]]es ===\n' +
                             '{{Hex|Bad Omens}}, {{Hex|Delusion}}',
                     },
                 ],
@@ -291,8 +168,7 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\n' +
                             '=== Kingdom cards ===\n' +
                             '* {{Cost|2}} {{Card|Druid}}\n\n' +
-                            '=== Additional materials ===\n\n' +
-                            '==== [[State]]s ====\n' +
+                            '=== [[State]]s ===\n' +
                             '* {{State|Lost in the Woods}} (1 copy)\n' +
                             '* {{State|Deluded}}/{{State|Envious}} (6 copies, double-sided)',
                     },
@@ -317,8 +193,7 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\n' +
                             '=== Kingdom cards ===\n' +
                             '* {{Cost|2}} {{Card|Border Guard}}\n\n' +
-                            '=== Additional materials ===\n' +
-                            '====[[Artifact]]s====\n' +
+                            '===[[Artifact]]s===\n' +
                             '1 each of: {{Artifact|Flag}}, {{Artifact|Horn}}',
                     },
                 ],
@@ -342,8 +217,7 @@ describe('ExpansionMapBuilder', () => {
                             '== Contents ==\n' +
                             '=== Kingdom cards ===\n' +
                             '* {{Cost|2}} {{Card|Border Guard}}\n\n' +
-                            '=== Additional materials ===\n' +
-                            '====[[Project]]s====\n' +
+                            '===[[Project]]s===\n' +
                             '* {{Cost|3}} {{Project|Cathedral}}, {{Project|City Gate}}',
                     },
                 ],
@@ -400,7 +274,7 @@ describe('ExpansionMapBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with cards in entry text of kingdom cards section should return correct map', () => {
+        it('with double entry should return correct map', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 156,
                 title: 'Dark Ages',
