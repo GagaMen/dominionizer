@@ -57,11 +57,13 @@ export function extractSection(wikiText: WikiText, sectionName: string, level: n
 
     // sectionCandidate can exceed the section end if another section follows
     // so we need to find the actual section end
-    const sectionRegExp = new RegExp(`(^|\\n)={${level}}\\s.*?\\s={${level}}\\n`, 'gs');
+    const sectionRegExp = new RegExp(`(^|\\n)={${level}}[^=]*?={${level}}\\n`, 'gs');
+    // exec finds the target section
     sectionRegExp.exec(sectionCandidate);
-    const match = sectionRegExp.exec(sectionCandidate);
+    // to find next section we call it again (uses stateful RegExp by using global flag)
+    const nextSection = sectionRegExp.exec(sectionCandidate);
 
-    return sectionCandidate.substring(0, match?.index);
+    return sectionCandidate.substring(0, nextSection?.index);
 }
 
 export function normalize(wikiText: WikiText | undefined): WikiText {

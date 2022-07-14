@@ -79,7 +79,7 @@ describe('helper functions', () => {
                 `Any contents...\n` +
                 `=== Kingdom cards ===\n` +
                 `Any kingdom cards...\n` +
-                `== Flavor text ==\n`;
+                `==Flavor text==\n`;
             const expected: WikiText =
                 `== Contents ==\n` +
                 `Any contents...\n` +
