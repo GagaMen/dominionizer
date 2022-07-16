@@ -1,6 +1,14 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
 import { WikiClient } from './wiki-client';
-import { ExpansionPage, CardPage, QueryResult, QueryParams, ImagePage, Page } from './api-models';
+import {
+    ExpansionPage,
+    CardPage,
+    QueryResult,
+    QueryParams,
+    ImagePage,
+    Page,
+    CardTypePage,
+} from './api-models';
 
 describe('WikiClient', () => {
     let wikiClient: WikiClient;
@@ -19,6 +27,11 @@ describe('WikiClient', () => {
         title: 'Card',
         fullurl: 'link/to/card',
         revisions: [{ '*': 'wiki text of card' }],
+    };
+    const cardTypePage: CardTypePage = {
+        pageid: 1,
+        title: 'Card Type',
+        revisions: [{ '*': 'wiki text of card type' }],
     };
     const imagePage: ImagePage = {
         pageid: 1,
@@ -168,6 +181,49 @@ describe('WikiClient', () => {
 
             expect(actual).toEqual(expected);
         });
+    });
+
+    describe('fetchAllCardTypePages', () => {
+        const allCardTypePagesParams: QueryParams = {
+            action: 'query',
+            format: 'json',
+            generator: 'categorymembers',
+            gcmtitle: 'Category:Card types',
+            gcmtype: 'page',
+            gcmlimit: 'max',
+            prop: 'revisions',
+            rvprop: 'content',
+        };
+
+        it('should fetch all card type pages correctly', async () => {
+            await wikiClient.fetchAllCardTypePages();
+
+            // eslint-disable-next-line @typescript-eslint/unbound-method
+            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: allCardTypePagesParams });
+        });
+
+        it('should return all card type pages', async () => {
+            const queryResult: QueryResult<CardTypePage> = {
+                query: {
+                    pages: {
+                        '1': cardTypePage,
+                        '2': cardTypePage,
+                    },
+                },
+            };
+            const axiosResponse: AxiosResponse<QueryResult<CardTypePage>> = {
+                data: queryResult,
+            } as AxiosResponse<QueryResult<CardTypePage>>;
+            axiosSpy.get.and.resolveTo(axiosResponse);
+            const expected = [cardTypePage, cardTypePage];
+
+            const actual = await wikiClient.fetchAllCardTypePages();
+
+            expect(actual).toEqual(expected);
+        });
+
+        // case with continuation data can't happen in reality because amount of existing card types
+        // is to low
     });
 
     describe('fetchAllCardArtPages', () => {

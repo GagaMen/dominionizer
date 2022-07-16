@@ -29,6 +29,10 @@ export interface CardPage extends Page {
     revisions: Revision[];
 }
 
+export interface CardTypePage extends Page {
+    revisions: Revision[];
+}
+
 export interface Revision {
     '*': WikiText;
 }

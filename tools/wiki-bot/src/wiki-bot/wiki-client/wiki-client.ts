@@ -1,5 +1,13 @@
 import { AxiosInstance } from 'axios';
-import { CardPage, ExpansionPage, ImagePage, Page, QueryParams, QueryResult } from './api-models';
+import {
+    CardPage,
+    CardTypePage,
+    ExpansionPage,
+    ImagePage,
+    Page,
+    QueryParams,
+    QueryResult,
+} from './api-models';
 
 export class WikiClient {
     private readonly defaultParams: QueryParams = {
@@ -20,6 +28,11 @@ export class WikiClient {
     private readonly defaultPropParamsForCardPages: QueryParams = {
         prop: 'info|revisions',
         inprop: 'url',
+        rvprop: 'content',
+    };
+
+    private readonly defaultPropParamsForCardTypePages: QueryParams = {
+        prop: 'revisions',
         rvprop: 'content',
     };
 
@@ -51,6 +64,18 @@ export class WikiClient {
             gcmtitle: 'Category:Cards',
             gcmtype: 'page',
             ...this.defaultPropParamsForCardPages,
+        };
+
+        return await this.fetchPages(params);
+    }
+
+    async fetchAllCardTypePages(): Promise<CardTypePage[]> {
+        const params: QueryParams = {
+            ...this.defaultParams,
+            ...this.defaultCategoryMembersParams,
+            gcmtitle: 'Category:Card types',
+            gcmtype: 'page',
+            ...this.defaultPropParamsForCardTypePages,
         };
 
         return await this.fetchPages(params);
