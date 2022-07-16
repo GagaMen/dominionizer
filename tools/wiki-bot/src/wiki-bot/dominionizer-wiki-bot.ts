@@ -1,3 +1,4 @@
+import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { EncodedImage, ImageBuilder } from './builder/image-builder';
 import { CardTranslationBuilder } from './builder/card-translation-builder';
@@ -11,7 +12,7 @@ import { Expansion, ExpansionTranslation } from './../../../../src/app/models/ex
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
 import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
-import { CardType } from 'src/app/models/card-type';
+import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 
 export class DominionizerWikiBot {
     constructor(
@@ -20,6 +21,7 @@ export class DominionizerWikiBot {
         private expansionBuilder: ExpansionBuilder,
         private expansionTranslationBuilder: ExpansionTranslationBuilder,
         private cardTypeBuilder: CardTypeBuilder,
+        private cardTypeTranslationBuilder: CardTypeTranslationBuilder,
         private expansionCardsMapBuilder: ExpansionCardsMapBuilder,
         private cardDtoBuilder: CardDtoBuilder,
         private cardTranslationBuilder: CardTranslationBuilder,
@@ -48,6 +50,12 @@ export class DominionizerWikiBot {
         console.log('Generating card types...');
         const cardTypes = await this.generateCardTypes(cardTypePages);
         console.log(`${cardTypes.length} card types generated.\n`);
+
+        console.log('Generating card types translations...');
+        const cardTypeTranslations = await this.generateCardTypeTranslations(cardTypePages);
+        console.log(
+            `Card type translations generated for ${cardTypeTranslations.size} languages.\n`,
+        );
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages);
         console.log('Fetching card pages...');
@@ -126,6 +134,31 @@ export class DominionizerWikiBot {
         await writeFile(`${this.targetPath}/data/card-types.json`, JSON.stringify(cardTypes));
 
         return cardTypes;
+    }
+
+    private async generateCardTypeTranslations(
+        cardTypePages: CardTypePage[],
+    ): Promise<Map<string, CardTypeTranslation[]>> {
+        const translations: Map<string, CardTypeTranslation[]> = new Map();
+
+        for (const cardTypePage of cardTypePages) {
+            const translationsByCardType = this.cardTypeTranslationBuilder.build(cardTypePage);
+
+            for (const [language, translation] of translationsByCardType) {
+                const translationsByLanguage = translations.get(language) ?? [];
+
+                translations.set(language, translationsByLanguage.concat(translation));
+            }
+        }
+
+        for (const [language, translationsByLanguage] of translations) {
+            await writeFile(
+                `${this.targetPath}/data/card-types.${language.toLowerCase()}.json`,
+                JSON.stringify(translationsByLanguage),
+            );
+        }
+
+        return translations;
     }
 
     private generateCardExpansionsMap(expansionPages: ExpansionPage[]): Map<string, number[]> {

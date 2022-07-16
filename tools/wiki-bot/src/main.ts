@@ -9,6 +9,7 @@ import { ExpansionBuilder } from './wiki-bot/builder/expansion-builder';
 import axios from 'axios';
 import { DominionizerWikiBot } from './wiki-bot/dominionizer-wiki-bot';
 import { WikiClient } from './wiki-bot/wiki-client/wiki-client';
+import { CardTypeTranslationBuilder } from './wiki-bot/builder/card-type-translation-builder';
 
 async function bootstrap(): Promise<void> {
     const axiosInstance = axios.create({
@@ -22,6 +23,7 @@ async function bootstrap(): Promise<void> {
     const expansionBuilder = new ExpansionBuilder();
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();
     const cardTypeBuilder = new CardTypeBuilder();
+    const cardTypeTranslationBuilder = new CardTypeTranslationBuilder();
     const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
     const cardDtoBuilder = new CardDtoBuilder();
     const cardTranslationBuilder = new CardTranslationBuilder();
@@ -33,6 +35,7 @@ async function bootstrap(): Promise<void> {
         expansionBuilder,
         expansionTranlationBuilder,
         cardTypeBuilder,
+        cardTypeTranslationBuilder,
         expansionCardsMapBuilder,
         cardDtoBuilder,
         cardTranslationBuilder,

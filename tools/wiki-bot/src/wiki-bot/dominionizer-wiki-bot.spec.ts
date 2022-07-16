@@ -1,3 +1,5 @@
+import { CardTypeTranslation } from './../../../../src/app/models/card-type';
+import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { ImageBuilder, EncodedImage } from './builder/image-builder';
 import { CardTranslationBuilder } from './builder/card-translation-builder';
@@ -21,6 +23,7 @@ describe('DominionizerWikiBot', () => {
     let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
     let expansionTranslationBuilderSpy: jasmine.SpyObj<ExpansionTranslationBuilder>;
     let cardTypeBuilderSpy: jasmine.SpyObj<CardTypeBuilder>;
+    let cardTypeTranslationBuilderSpy: jasmine.SpyObj<CardTypeTranslationBuilder>;
     let expansionCardsMapBuilderSpy: jasmine.SpyObj<ExpansionCardsMapBuilder>;
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
     let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
@@ -53,6 +56,12 @@ describe('DominionizerWikiBot', () => {
 
         cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', ['build']);
 
+        cardTypeTranslationBuilderSpy = jasmine.createSpyObj<CardTypeTranslationBuilder>(
+            'CardTypeTranslationBuilde',
+            ['build'],
+        );
+        cardTypeTranslationBuilderSpy.build.and.returnValue(new Map());
+
         expansionCardsMapBuilderSpy = jasmine.createSpyObj<ExpansionCardsMapBuilder>(
             'ExpansionCardsMapBuilder',
             ['build'],
@@ -79,6 +88,7 @@ describe('DominionizerWikiBot', () => {
             expansionBuilderSpy,
             expansionTranslationBuilderSpy,
             cardTypeBuilderSpy,
+            cardTypeTranslationBuilderSpy,
             expansionCardsMapBuilderSpy,
             cardDtoBuilderSpy,
             cardTranslationBuilderSpy,
@@ -166,6 +176,47 @@ describe('DominionizerWikiBot', () => {
             expect(writeFileSpy).toHaveBeenCalledWith(
                 `${targetPath}/data/card-types.json`,
                 JSON.stringify(cardTypes),
+            );
+        });
+
+        it('should generate card type translations', async () => {
+            const cardTypePages: CardTypePage[] = [
+                { pageid: 1000 } as CardTypePage,
+                { pageid: 2000 } as CardTypePage,
+            ];
+            const firstCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
+                ['German', { id: 1, name: 'german title' }],
+                ['French', { id: 1, name: 'french title' }],
+            ]);
+            const secondCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
+                ['German', { id: 2, name: 'german title' }],
+                ['French', { id: 2, name: 'french title' }],
+            ]);
+            const germanTranslations: CardTypeTranslation[] = [
+                { id: 1, name: 'german title' },
+                { id: 2, name: 'german title' },
+            ];
+            const frenchTranslations: CardTypeTranslation[] = [
+                { id: 1, name: 'french title' },
+                { id: 2, name: 'french title' },
+            ];
+            wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
+            cardTypeTranslationBuilderSpy.build
+                .withArgs(cardTypePages[0])
+                .and.returnValue(firstCardTypeTranslations);
+            cardTypeTranslationBuilderSpy.build
+                .withArgs(cardTypePages[1])
+                .and.returnValue(secondCardTypeTranslations);
+
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/data/card-types.german.json`,
+                JSON.stringify(germanTranslations),
+            );
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/data/card-types.french.json`,
+                JSON.stringify(frenchTranslations),
             );
         });
 
