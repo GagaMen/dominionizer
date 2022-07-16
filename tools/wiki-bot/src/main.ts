@@ -1,3 +1,4 @@
+import { CardTypeBuilder } from './wiki-bot/builder/card-type-builder';
 import { ExpansionCardsMapBuilder } from './wiki-bot/builder/expansion-cards-map-builder';
 import { ImagePool } from '@squoosh/lib';
 import { ImageBuilder } from './wiki-bot/builder/image-builder';
@@ -20,6 +21,7 @@ async function bootstrap(): Promise<void> {
     const wikiClient = new WikiClient(axiosInstance);
     const expansionBuilder = new ExpansionBuilder();
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();
+    const cardTypeBuilder = new CardTypeBuilder();
     const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
     const cardDtoBuilder = new CardDtoBuilder();
     const cardTranslationBuilder = new CardTranslationBuilder();
@@ -30,6 +32,7 @@ async function bootstrap(): Promise<void> {
         wikiClient,
         expansionBuilder,
         expansionTranlationBuilder,
+        cardTypeBuilder,
         expansionCardsMapBuilder,
         cardDtoBuilder,
         cardTranslationBuilder,

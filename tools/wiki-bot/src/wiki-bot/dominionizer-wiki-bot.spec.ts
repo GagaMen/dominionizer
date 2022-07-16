@@ -1,3 +1,4 @@
+import { CardTypeBuilder } from './builder/card-type-builder';
 import { ImageBuilder, EncodedImage } from './builder/image-builder';
 import { CardTranslationBuilder } from './builder/card-translation-builder';
 import { CardTranslation } from './../../../../src/app/models/card';
@@ -8,9 +9,10 @@ import { ExpansionTranslationBuilder } from './builder/expansion-translation-bui
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { DominionizerWikiBot } from './dominionizer-wiki-bot';
-import { ExpansionPage, CardPage, ImagePage } from './wiki-client/api-models';
+import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
+import { CardType } from '../../../../src/app/models/card-type';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -18,6 +20,7 @@ describe('DominionizerWikiBot', () => {
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
     let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
     let expansionTranslationBuilderSpy: jasmine.SpyObj<ExpansionTranslationBuilder>;
+    let cardTypeBuilderSpy: jasmine.SpyObj<CardTypeBuilder>;
     let expansionCardsMapBuilderSpy: jasmine.SpyObj<ExpansionCardsMapBuilder>;
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
     let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
@@ -29,11 +32,13 @@ describe('DominionizerWikiBot', () => {
 
         wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
             'fetchAllExpansionPages',
+            'fetchAllCardTypePages',
             'fetchAllCardPages',
             'fetchAllCardSymbolPages',
             'fetchAllCardArtPages',
         ]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
+        wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardArtPages.and.resolveTo([]);
@@ -45,6 +50,8 @@ describe('DominionizerWikiBot', () => {
             ['build'],
         );
         expansionTranslationBuilderSpy.build.and.returnValue(new Map());
+
+        cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', ['build']);
 
         expansionCardsMapBuilderSpy = jasmine.createSpyObj<ExpansionCardsMapBuilder>(
             'ExpansionCardsMapBuilder',
@@ -71,6 +78,7 @@ describe('DominionizerWikiBot', () => {
             wikiClientSpy,
             expansionBuilderSpy,
             expansionTranslationBuilderSpy,
+            cardTypeBuilderSpy,
             expansionCardsMapBuilderSpy,
             cardDtoBuilderSpy,
             cardTranslationBuilderSpy,
@@ -137,6 +145,27 @@ describe('DominionizerWikiBot', () => {
             expect(writeFileSpy).toHaveBeenCalledWith(
                 `${targetPath}/data/expansions.french.json`,
                 JSON.stringify(frenchTranslations),
+            );
+        });
+
+        it('should generate card types', async () => {
+            const cardTypePages: CardTypePage[] = [
+                { pageid: 1000 } as CardTypePage,
+                { pageid: 2000 } as CardTypePage,
+            ];
+            const cardTypes: CardType[] = [
+                { id: 1000, name: 'Card Type 1' },
+                { id: 2000, name: 'Card Type 2' },
+            ];
+            wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
+            cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[0]);
+            cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[1]);
+
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/data/card-types.json`,
+                JSON.stringify(cardTypes),
             );
         });
 
