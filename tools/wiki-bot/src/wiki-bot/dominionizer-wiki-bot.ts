@@ -63,7 +63,7 @@ export class DominionizerWikiBot {
         console.log(`${cardPages.length} card pages fetched.\n`);
 
         console.log('Generating cards...');
-        const cards = await this.generateCards(cardPages, cardExpansionsMap);
+        const cards = await this.generateCards(cardPages, cardExpansionsMap, cardTypes);
         console.log(`${cards.length} cards generated.\n`);
 
         console.log('Generating card translations...');
@@ -182,11 +182,12 @@ export class DominionizerWikiBot {
     private async generateCards(
         cardPages: CardPage[],
         cardExpansionsMap: Map<string, number[]>,
+        cardTypes: CardType[],
     ): Promise<CardDto[]> {
         let cards: CardDto[] = [];
 
         for (const cardPage of cardPages) {
-            cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap));
+            cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes));
         }
 
         await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));

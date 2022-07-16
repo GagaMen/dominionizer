@@ -1,13 +1,18 @@
-import { CardType } from '../../../../../src/app/models/card-type';
 import { CardPage } from '../wiki-client/api-models';
 import { CardDtoBuilder } from './card-dto-builder';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
+import { CardType } from '../../../../../src/app/models/card-type';
 
 describe('CardDtoBuilder', () => {
     let cardDtoBuilder: CardDtoBuilder;
 
     const cardExpansionsMap: Map<string, number[]> = new Map();
     cardExpansionsMap.set('Ghost Town', [4213]);
+
+    const cardTypes: CardType[] = [
+        { id: 593, name: 'Duration' },
+        { id: 4216, name: 'Night' },
+    ];
 
     const nullCardPage: CardPage = {
         pageid: 0,
@@ -63,12 +68,12 @@ describe('CardDtoBuilder', () => {
                 image: 'Ghost_TownArt.jpg',
                 wikiUrl: cardPage.fullurl,
                 expansions: [4213],
-                types: [CardType.Night, CardType.Duration],
+                types: [4216, 593],
                 isKingdomCard: true,
                 cost: 3,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
         });
@@ -89,7 +94,7 @@ describe('CardDtoBuilder', () => {
                 image: 'Horn_of_PlentyArt.jpg',
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
         });
@@ -113,7 +118,7 @@ describe('CardDtoBuilder', () => {
                 image: 'MiseryArt.jpg',
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
         });
@@ -132,7 +137,7 @@ describe('CardDtoBuilder', () => {
                 isKingdomCard: false,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
         });
@@ -151,7 +156,7 @@ describe('CardDtoBuilder', () => {
                 debt: 4,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
         });
@@ -171,7 +176,7 @@ describe('CardDtoBuilder', () => {
                 potion: true,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap);
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
         });

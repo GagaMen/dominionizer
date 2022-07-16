@@ -225,6 +225,11 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 1 } as ExpansionPage,
                 { pageid: 2 } as ExpansionPage,
             ];
+            const cardTypePages: CardTypePage[] = [
+                { pageid: 1000 } as CardTypePage,
+                { pageid: 2000 } as CardTypePage,
+            ];
+            const cardTypes: CardType[] = [{ id: 1000 } as CardType, { id: 2000 } as CardType];
             const cardPages: CardPage[] = [
                 { pageid: 10, title: 'Card 10' } as CardPage,
                 { pageid: 20, title: 'Card 20' } as CardPage,
@@ -239,6 +244,9 @@ describe('DominionizerWikiBot', () => {
             ];
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
+            wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
+            cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[0]);
+            cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[1]);
             expansionCardsMapBuilderSpy.build
                 .withArgs(expansionPages[0])
                 .and.returnValue(new Map([[1, ['Card 10', 'Card 20']]]));
@@ -246,10 +254,10 @@ describe('DominionizerWikiBot', () => {
                 .withArgs(expansionPages[1])
                 .and.returnValue(new Map([[2, ['Card 20']]]));
             cardDtoBuilderSpy.build
-                .withArgs(cardPages[0], cardExpansionsMap)
+                .withArgs(cardPages[0], cardExpansionsMap, cardTypes)
                 .and.returnValue(cards[0]);
             cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], cardExpansionsMap)
+                .withArgs(cardPages[1], cardExpansionsMap, cardTypes)
                 .and.returnValue(cards[1]);
 
             await dominionizerWikiBot.generateAll();
@@ -281,10 +289,10 @@ describe('DominionizerWikiBot', () => {
             ];
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
             cardDtoBuilderSpy.build
-                .withArgs(cardPages[0], jasmine.anything())
+                .withArgs(cardPages[0], jasmine.anything(), jasmine.anything())
                 .and.returnValue(cards[0]);
             cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], jasmine.anything())
+                .withArgs(cardPages[1], jasmine.anything(), jasmine.anything())
                 .and.returnValue(cards[1]);
             cardTranslationBuilderSpy.build
                 .withArgs(cardPages[0], cards[0])

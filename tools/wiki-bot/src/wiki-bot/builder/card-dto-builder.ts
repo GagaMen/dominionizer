@@ -1,4 +1,4 @@
-import { CardType } from '../../../../../src/app/models/card-type';
+import { CardType } from './../../../../../src/app/models/card-type';
 import { CardPage, WikiText } from '../wiki-client/api-models';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import {
@@ -9,7 +9,11 @@ import {
 } from './helper-functions';
 
 export class CardDtoBuilder {
-    build(cardPage: CardPage, cardExpansionsMap: Map<string, number[]>): CardDto {
+    build(
+        cardPage: CardPage,
+        cardExpansionsMap: Map<string, number[]>,
+        cardTypes: CardType[],
+    ): CardDto {
         const wikiText: WikiText = cardPage.revisions[0]['*'] ?? '';
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Card');
 
@@ -20,7 +24,7 @@ export class CardDtoBuilder {
             image: this.extractImage(cardPage, wikiText),
             wikiUrl: cardPage.fullurl,
             expansions: this.extractExpansions(cardPage, cardExpansionsMap),
-            types: this.extractTypes(infoBox),
+            types: this.extractTypes(infoBox, cardTypes),
             isKingdomCard: this.extractIsKingdomCard(infoBox),
             cost: this.extractCost(infoBox),
             potion: this.extractPotion(infoBox),
@@ -54,11 +58,7 @@ export class CardDtoBuilder {
         return cardExpansionsMap.get(cardPage.title) ?? [];
     }
 
-    private extractTypes(infoBox: WikiText): number[] {
-        const typeNames: string[] = Object.keys(CardType).filter(
-            (typeName: string) => !(parseInt(typeName) >= 0),
-        );
-
+    private extractTypes(infoBox: WikiText, cardTypes: CardType[]): number[] {
         const types: number[] = [];
         let index = 1;
         // eslint-disable-next-line no-constant-condition
@@ -66,11 +66,12 @@ export class CardDtoBuilder {
             const extractedTypeName = normalize(
                 extractTemplatePropertyValue(infoBox, `type${index}`),
             );
-            const type =
-                typeNames.findIndex((typeName: string) => typeName === extractedTypeName) + 1;
-            if (type <= 0) break;
+            const cardType = cardTypes.find(
+                (cardType: CardType) => cardType.name === extractedTypeName,
+            );
+            if (cardType === undefined) break;
 
-            types.push(type);
+            types.push(cardType.id);
             index++;
         }
 
