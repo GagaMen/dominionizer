@@ -1,32 +1,6 @@
-export enum CardType {
-    Action = 1,
-    Artifact,
-    Attack,
-    Boon,
-    Castle,
-    Curse,
-    Doom,
-    Duration,
-    Event,
-    Fate,
-    Gathering,
-    Heirloom,
-    Hex,
-    Knight,
-    Landmark,
-    Looter,
-    Night,
-    Prize,
-    Project,
-    Reaction,
-    Reserve,
-    Ruins,
-    Shelter,
-    Spirit,
-    State,
-    Traveller,
-    Treasure,
-    Victory,
-    Way,
-    Zombie,
+export interface CardType {
+    id: number;
+    name: string;
 }
+
+export type CardTypeTranslation = Pick<CardType, 'id' | 'name'>;
