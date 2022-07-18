@@ -1,8 +1,14 @@
+import { CardTypePage } from './../wiki-client/api-models';
 import { ExpansionPage, WikiText } from '../wiki-client/api-models';
-import { extractSection, normalize } from './helper-functions';
+import {
+    extractSection,
+    extractTemplate,
+    extractTemplatePropertyValue,
+    normalize,
+} from './helper-functions';
 
 export class ExpansionCardsMapBuilder {
-    build(expansionPage: ExpansionPage): Map<number, string[]> {
+    buildWithExpansionPage(expansionPage: ExpansionPage): Map<number, string[]> {
         const wikiText: WikiText = expansionPage.revisions[0]['*'] ?? '';
         let contents: WikiText = extractSection(wikiText, 'Contents', 2);
         const expansionCardsMap = new Map<number, string[]>();
@@ -25,6 +31,25 @@ export class ExpansionCardsMapBuilder {
         // special implementation for promo cards because of different page structure
         const promoCards = extractSection(wikiText, 'Card List', 2);
         this.updateMapForSection(expansionCardsMap, expansionPage.pageid, promoCards);
+
+        return expansionCardsMap;
+    }
+
+    buildWithCardTypePage(cardTypePage: CardTypePage): Map<number, string[]> {
+        const wikiText: WikiText = cardTypePage.revisions[0]['*'] ?? '';
+        const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Card');
+
+        if (infoBox === '') {
+            return new Map<number, string[]>();
+        }
+
+        const expansionCardsMap = new Map<number, string[]>();
+        const cardTypeName = normalize(extractTemplatePropertyValue(infoBox, 'name'));
+
+        expansionCardsMap.set(cardTypePage.pageid, [cardTypeName]);
+
+        const cardList: WikiText = extractSection(wikiText, 'List of.*?', 2);
+        this.updateMapForSection(expansionCardsMap, cardTypePage.pageid, cardList);
 
         return expansionCardsMap;
     }

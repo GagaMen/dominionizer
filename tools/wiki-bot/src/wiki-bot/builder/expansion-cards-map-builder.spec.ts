@@ -1,3 +1,4 @@
+import { CardTypePage } from './../wiki-client/api-models';
 import { ExpansionPage } from '../wiki-client/api-models';
 import { ExpansionCardsMapBuilder } from './expansion-cards-map-builder';
 
@@ -27,7 +28,7 @@ describe('ExpansionMapBuilder', () => {
                 [175, ['Embargo', 'Ambassador', 'Fishing Village']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -56,7 +57,7 @@ describe('ExpansionMapBuilder', () => {
                 [914.1, ['Harbinger', 'Cellar', 'Bureaucrat']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -80,7 +81,7 @@ describe('ExpansionMapBuilder', () => {
                 [1579, ['Coin of the Realm', 'Alms']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -105,7 +106,7 @@ describe('ExpansionMapBuilder', () => {
                 [2739, ['Engineer', 'Aqueduct', 'Arena']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -129,7 +130,7 @@ describe('ExpansionMapBuilder', () => {
                 [4213, ['Druid', "The Earth's Gift", "The Field's Gift"]],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -153,7 +154,7 @@ describe('ExpansionMapBuilder', () => {
                 [4213, ['Druid', 'Bad Omens', 'Delusion']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -178,7 +179,7 @@ describe('ExpansionMapBuilder', () => {
                 [4213, ['Druid', 'Lost in the Woods', 'Deluded', 'Envious']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -202,7 +203,7 @@ describe('ExpansionMapBuilder', () => {
                 [6098, ['Border Guard', 'Flag', 'Horn']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -226,7 +227,7 @@ describe('ExpansionMapBuilder', () => {
                 [6098, ['Border Guard', 'Cathedral', 'City Gate']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -250,7 +251,7 @@ describe('ExpansionMapBuilder', () => {
                 [6737, ['Black Cat', 'Way of the Butterfly', 'Way of the Camel']],
             ]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -269,7 +270,7 @@ describe('ExpansionMapBuilder', () => {
             };
             const expected: Map<number, string[]> = new Map([[206, ['Envoy', 'Black Market']]]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
             expect(actual).toEqual(expected);
         });
@@ -291,7 +292,43 @@ describe('ExpansionMapBuilder', () => {
             };
             const expected: Map<number, string[]> = new Map([[156, ['Rats', 'Knights']]]);
 
-            const actual = expansionMapBuilder.build(expansionPage);
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with card type page contains a card should return correct map', () => {
+            const cardTypePage: CardTypePage = {
+                pageid: 577,
+                title: 'Knight',
+                revisions: [
+                    {
+                        '*':
+                            '{{Infobox Card\n |name = Knights\n |cost = 5\n |type1 = Action\n |type2 = Attack\n |type3 = Knight\n |illustrator = Matthias Catrein\n |text = Shuffle the Knights pile before each game with it. Keep it face down except for the top card, which is the only one that can be bought or gained.\n |nocats = Yes\n}}\n\n' +
+                            "== List of Knights (and their secondary abilities) ==\n* {{Card|Dame Anna}} - ''You may trash up to 2 cards from your hand.''\n* {{Card|Dame Josephine}} - ''2 {{VP}}''\n* {{Card|Dame Molly}} - ''+2 Actions''\n* {{Card|Dame Natalie}} - ''You may gain a card costing up to'' {{Cost|3}}.\n* {{Card|Dame Sylvia}} - ''+''{{Cost|2}}\n* {{Card|Sir Bailey}} - ''+1 Card +1 Action''\n* {{Card|Sir Destry}} - ''+2 Cards''\n* {{Card|Sir Martin}} - ''+2 Buys''\n* {{Card|Sir Michael}} - ''Each other player discards down to 3 cards in hand.''\n* {{Card|Sir Vander}} - ''When you trash this, gain a Gold.''\n\n",
+                    },
+                ],
+            };
+            const expected: Map<number, string[]> = new Map([
+                [
+                    577,
+                    [
+                        'Knights',
+                        'Dame Anna',
+                        'Dame Josephine',
+                        'Dame Molly',
+                        'Dame Natalie',
+                        'Dame Sylvia',
+                        'Sir Bailey',
+                        'Sir Destry',
+                        'Sir Martin',
+                        'Sir Michael',
+                        'Sir Vander',
+                    ],
+                ],
+            ]);
+
+            const actual = expansionMapBuilder.buildWithCardTypePage(cardTypePage);
 
             expect(actual).toEqual(expected);
         });

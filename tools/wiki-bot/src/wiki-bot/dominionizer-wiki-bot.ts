@@ -165,7 +165,9 @@ export class DominionizerWikiBot {
         const cardExpansionsMap: Map<string, number[]> = new Map();
 
         for (const expansionPage of expansionPages) {
-            const expansionCardsMap = this.expansionCardsMapBuilder.build(expansionPage);
+            const expansionCardsMap = this.expansionCardsMapBuilder.buildWithExpansionPage(
+                expansionPage,
+            );
 
             for (const [expansion, cardNames] of expansionCardsMap) {
                 for (const cardName of cardNames) {

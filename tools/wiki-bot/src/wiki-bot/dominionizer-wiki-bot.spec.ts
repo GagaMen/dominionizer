@@ -64,9 +64,9 @@ describe('DominionizerWikiBot', () => {
 
         expansionCardsMapBuilderSpy = jasmine.createSpyObj<ExpansionCardsMapBuilder>(
             'ExpansionCardsMapBuilder',
-            ['build'],
+            ['buildWithExpansionPage'],
         );
-        expansionCardsMapBuilderSpy.build.and.returnValue(new Map());
+        expansionCardsMapBuilderSpy.buildWithExpansionPage.and.returnValue(new Map());
 
         cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
 
@@ -247,10 +247,10 @@ describe('DominionizerWikiBot', () => {
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
             cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[0]);
             cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[1]);
-            expansionCardsMapBuilderSpy.build
+            expansionCardsMapBuilderSpy.buildWithExpansionPage
                 .withArgs(expansionPages[0])
                 .and.returnValue(new Map([[1, ['Card 10', 'Card 20']]]));
-            expansionCardsMapBuilderSpy.build
+            expansionCardsMapBuilderSpy.buildWithExpansionPage
                 .withArgs(expansionPages[1])
                 .and.returnValue(new Map([[2, ['Card 20']]]));
             cardDtoBuilderSpy.build
