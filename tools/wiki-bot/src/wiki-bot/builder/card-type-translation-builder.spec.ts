@@ -14,6 +14,7 @@ describe('CardTypeTranslationBuilder', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 216,
                 title: 'Action',
+                fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
                 revisions: [
                     {
                         '*':

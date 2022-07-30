@@ -30,6 +30,7 @@ export interface CardPage extends Page {
 }
 
 export interface CardTypePage extends Page {
+    fullurl: string;
     revisions: Revision[];
 }
 

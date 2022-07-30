@@ -31,6 +31,7 @@ describe('WikiClient', () => {
     const cardTypePage: CardTypePage = {
         pageid: 1,
         title: 'Card Type',
+        fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
         revisions: [{ '*': 'wiki text of card type' }],
     };
     const imagePage: ImagePage = {
@@ -191,7 +192,8 @@ describe('WikiClient', () => {
             gcmtitle: 'Category:Card types',
             gcmtype: 'page',
             gcmlimit: 'max',
-            prop: 'revisions',
+            prop: 'info|revisions',
+            inprop: 'url',
             rvprop: 'content',
         };
 

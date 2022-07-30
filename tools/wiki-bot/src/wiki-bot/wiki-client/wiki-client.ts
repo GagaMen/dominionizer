@@ -32,7 +32,8 @@ export class WikiClient {
     };
 
     private readonly defaultPropParamsForCardTypePages: QueryParams = {
-        prop: 'revisions',
+        prop: 'info|revisions',
+        inprop: 'url',
         rvprop: 'content',
     };
 
