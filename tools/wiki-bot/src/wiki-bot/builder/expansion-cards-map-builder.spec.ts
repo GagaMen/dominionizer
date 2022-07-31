@@ -298,9 +298,12 @@ describe('ExpansionMapBuilder', () => {
         });
 
         it('with card type page contains a card should return correct map', () => {
+            const expansionCardsMap: Map<number, string[]> = new Map([[156, ['Knights']]]);
+
             const cardTypePage: CardTypePage = {
                 pageid: 577,
                 title: 'Knight',
+                fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
                 revisions: [
                     {
                         '*':
@@ -311,7 +314,7 @@ describe('ExpansionMapBuilder', () => {
             };
             const expected: Map<number, string[]> = new Map([
                 [
-                    577,
+                    156,
                     [
                         'Knights',
                         'Dame Anna',
@@ -328,7 +331,10 @@ describe('ExpansionMapBuilder', () => {
                 ],
             ]);
 
-            const actual = expansionMapBuilder.buildWithCardTypePage(cardTypePage);
+            const actual = expansionMapBuilder.buildWithCardTypePage(
+                cardTypePage,
+                expansionCardsMap,
+            );
 
             expect(actual).toEqual(expected);
         });

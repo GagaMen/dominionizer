@@ -35,23 +35,38 @@ export class ExpansionCardsMapBuilder {
         return expansionCardsMap;
     }
 
-    buildWithCardTypePage(cardTypePage: CardTypePage): Map<number, string[]> {
+    buildWithCardTypePage(
+        cardTypePage: CardTypePage,
+        expansionCardsMap: Map<number, string[]>,
+    ): Map<number, string[]> {
         const wikiText: WikiText = cardTypePage.revisions[0]['*'] ?? '';
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Card');
+        const expansionCardsMapForCardType = new Map<number, string[]>();
 
         if (infoBox === '') {
-            return new Map<number, string[]>();
+            return expansionCardsMapForCardType;
         }
 
-        const expansionCardsMap = new Map<number, string[]>();
         const cardTypeName = normalize(extractTemplatePropertyValue(infoBox, 'name'));
+        let cardTypeExpansion: number | undefined = undefined;
+        for (const [expansion, cardNames] of expansionCardsMap) {
+            if (!cardNames.includes(cardTypeName)) {
+                continue;
+            }
 
-        expansionCardsMap.set(cardTypePage.pageid, [cardTypeName]);
+            cardTypeExpansion = expansion;
+        }
+
+        if (cardTypeExpansion === undefined) {
+            return expansionCardsMapForCardType;
+        }
+
+        expansionCardsMapForCardType.set(cardTypeExpansion, [cardTypeName]);
 
         const cardList: WikiText = extractSection(wikiText, 'List of.*?', 2);
-        this.updateMapForSection(expansionCardsMap, cardTypePage.pageid, cardList);
+        this.updateMapForSection(expansionCardsMapForCardType, cardTypeExpansion, cardList);
 
-        return expansionCardsMap;
+        return expansionCardsMapForCardType;
     }
 
     private addCardsFromFirstToSecondEdition(

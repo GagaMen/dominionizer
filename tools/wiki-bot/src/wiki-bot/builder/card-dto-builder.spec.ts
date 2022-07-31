@@ -1,3 +1,4 @@
+import { CardTypePage } from './../wiki-client/api-models';
 import { CardPage } from '../wiki-client/api-models';
 import { CardDtoBuilder } from './card-dto-builder';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
@@ -8,8 +9,12 @@ describe('CardDtoBuilder', () => {
 
     const cardExpansionsMap: Map<string, number[]> = new Map();
     cardExpansionsMap.set('Ghost Town', [4213]);
+    cardExpansionsMap.set('Knight', [156]);
 
     const cardTypes: CardType[] = [
+        { id: 216, name: 'Action' },
+        { id: 219, name: 'Attack' },
+        { id: 577, name: 'Knight' },
         { id: 593, name: 'Duration' },
         { id: 4216, name: 'Night' },
     ];
@@ -63,7 +68,7 @@ describe('CardDtoBuilder', () => {
             const expected: CardDto = {
                 ...nullCardDto,
                 id: cardPage.pageid,
-                name: cardPage.title,
+                name: 'Ghost Town',
                 description: [`At the start...`, `This is gained ...`],
                 image: 'Ghost_TownArt.jpg',
                 wikiUrl: cardPage.fullurl,
@@ -84,13 +89,12 @@ describe('CardDtoBuilder', () => {
                 title: `Horn of Plenty`,
                 revisions: [
                     {
-                        '*': `== Trivia ==\n{{OfficialArt|l=1}}\n\n`,
+                        '*': `{{Infobox Card\n}}` + `== Trivia ==\n{{OfficialArt|l=1}}\n\n`,
                     },
                 ],
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                name: cardPage.title,
                 image: 'Horn_of_PlentyArt.jpg',
             };
 
@@ -106,6 +110,7 @@ describe('CardDtoBuilder', () => {
                 revisions: [
                     {
                         '*':
+                            `{{Infobox Card\n}}` +
                             `== Trivia ==\n` +
                             `[[Image:MiseryArt.jpg|thumb|right|500px|Official card art ` +
                             `(the same as Twice Miserable's art).]]\n\n`,
@@ -114,7 +119,6 @@ describe('CardDtoBuilder', () => {
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                name: 'Miserable',
                 image: 'MiseryArt.jpg',
             };
 
@@ -179,6 +183,63 @@ describe('CardDtoBuilder', () => {
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
 
             expect(actual).toEqual(expected);
+        });
+
+        it('with cardTypePage should return correct card', () => {
+            const cardTypePage: CardTypePage = {
+                ...nullCardPage,
+                pageid: 577,
+                title: 'Knight',
+                revisions: [
+                    {
+                        '*':
+                            `{{Infobox Card\n` +
+                            `|name = Knights\n` +
+                            `|cost = 5\n` +
+                            `|type1 = Action\n` +
+                            `|type2 = Attack\n` +
+                            `|type3 = Knight\n` +
+                            `|illustrator = Matthias Catrein\n` +
+                            `|text = Shuffle the Knights...\n` +
+                            `|nocats = Yes\n}}\n\n` +
+                            `== Trivia ==\n` +
+                            `[[Image:KnightsArt.jpg|thumb|right|354px|Official randomizer card art.]]\n\n`,
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                id: cardTypePage.pageid,
+                name: 'Knights',
+                description: [`Shuffle the Knights...`],
+                image: 'KnightsArt.jpg',
+                wikiUrl: '',
+                expansions: [156],
+                types: [216, 219, 577],
+                isKingdomCard: true,
+                cost: 5,
+            };
+
+            const actual = cardDtoBuilder.build(cardTypePage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('without infobox in cardTypePage should return null', () => {
+            const cardTypePage: CardTypePage = {
+                ...nullCardPage,
+                pageid: 216,
+                title: 'Action',
+                revisions: [
+                    {
+                        '*': '',
+                    },
+                ],
+            };
+
+            const actual = cardDtoBuilder.build(cardTypePage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toBeNull();
         });
     });
 });

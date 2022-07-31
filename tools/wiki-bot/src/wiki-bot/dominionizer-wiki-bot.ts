@@ -57,13 +57,18 @@ export class DominionizerWikiBot {
             `Card type translations generated for ${cardTypeTranslations.size} languages.\n`,
         );
 
-        const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages);
+        const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages, cardTypePages);
         console.log('Fetching card pages...');
         const cardPages = await this.wikiClient.fetchAllCardPages();
         console.log(`${cardPages.length} card pages fetched.\n`);
 
         console.log('Generating cards...');
-        const cards = await this.generateCards(cardPages, cardExpansionsMap, cardTypes);
+        const cards = await this.generateCards(
+            cardPages,
+            cardTypePages,
+            cardExpansionsMap,
+            cardTypes,
+        );
         console.log(`${cards.length} cards generated.\n`);
 
         console.log('Generating card translations...');
@@ -161,19 +166,44 @@ export class DominionizerWikiBot {
         return translations;
     }
 
-    private generateCardExpansionsMap(expansionPages: ExpansionPage[]): Map<string, number[]> {
+    private generateCardExpansionsMap(
+        expansionPages: ExpansionPage[],
+        cardTypePages: CardTypePage[],
+    ): Map<string, number[]> {
+        let expansionCardsMap: Map<number, string[]> = new Map();
         const cardExpansionsMap: Map<string, number[]> = new Map();
 
         for (const expansionPage of expansionPages) {
-            const expansionCardsMap = this.expansionCardsMapBuilder.buildWithExpansionPage(
-                expansionPage,
-            );
+            const map = this.expansionCardsMapBuilder.buildWithExpansionPage(expansionPage);
+            expansionCardsMap = new Map([
+                ...Array.from(expansionCardsMap.entries()),
+                ...Array.from(map.entries()),
+            ]);
 
-            for (const [expansion, cardNames] of expansionCardsMap) {
+            for (const [expansion, cardNames] of map) {
                 for (const cardName of cardNames) {
                     const expansionsByCardName = cardExpansionsMap.get(cardName) ?? [];
 
                     cardExpansionsMap.set(cardName, expansionsByCardName.concat(expansion));
+                }
+            }
+        }
+
+        for (const cardTypePage of cardTypePages) {
+            const map = this.expansionCardsMapBuilder.buildWithCardTypePage(
+                cardTypePage,
+                expansionCardsMap,
+            );
+
+            for (const [expansion, cardNames] of map) {
+                for (const cardName of cardNames) {
+                    const expansionsByCardName = cardExpansionsMap.get(cardName) ?? [];
+
+                    // use Set to remove duplicate values
+                    cardExpansionsMap.set(
+                        cardName,
+                        Array.from(new Set(expansionsByCardName.concat(expansion))),
+                    );
                 }
             }
         }
@@ -183,13 +213,30 @@ export class DominionizerWikiBot {
 
     private async generateCards(
         cardPages: CardPage[],
+        cardTypePages: CardTypePage[],
         cardExpansionsMap: Map<string, number[]>,
         cardTypes: CardType[],
     ): Promise<CardDto[]> {
         let cards: CardDto[] = [];
 
         for (const cardPage of cardPages) {
-            cards = cards.concat(this.cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes));
+            const card = this.cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+
+            if (card === null) {
+                continue;
+            }
+
+            cards = cards.concat(card);
+        }
+
+        for (const cardTypePage of cardTypePages) {
+            const card = this.cardDtoBuilder.build(cardTypePage, cardExpansionsMap, cardTypes);
+
+            if (card === null) {
+                continue;
+            }
+
+            cards = cards.concat(card);
         }
 
         await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));

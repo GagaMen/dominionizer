@@ -64,9 +64,10 @@ describe('DominionizerWikiBot', () => {
 
         expansionCardsMapBuilderSpy = jasmine.createSpyObj<ExpansionCardsMapBuilder>(
             'ExpansionCardsMapBuilder',
-            ['buildWithExpansionPage'],
+            ['buildWithExpansionPage', 'buildWithCardTypePage'],
         );
         expansionCardsMapBuilderSpy.buildWithExpansionPage.and.returnValue(new Map());
+        expansionCardsMapBuilderSpy.buildWithCardTypePage.and.returnValue(new Map());
 
         cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
 
@@ -225,6 +226,10 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 1 } as ExpansionPage,
                 { pageid: 2 } as ExpansionPage,
             ];
+            const expansionCardsMap: Map<number, string[]> = new Map([
+                [1, ['Card 10', 'Card 20']],
+                [2, ['Card 20']],
+            ]);
             const cardTypePages: CardTypePage[] = [
                 { pageid: 1000 } as CardTypePage,
                 { pageid: 2000 } as CardTypePage,
@@ -237,10 +242,12 @@ describe('DominionizerWikiBot', () => {
             const cardExpansionsMap: Map<string, number[]> = new Map([
                 ['Card 10', [1]],
                 ['Card 20', [1, 2]],
+                ['Card 1000', [1]],
             ]);
             const cards: CardDto[] = [
                 { id: 10, name: 'Card 10', expansions: [1] } as CardDto,
                 { id: 20, name: 'Card 20', expansions: [1, 2] } as CardDto,
+                { id: 1000, name: 'Card 1000', expansions: [1] } as CardDto,
             ];
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
@@ -253,12 +260,24 @@ describe('DominionizerWikiBot', () => {
             expansionCardsMapBuilderSpy.buildWithExpansionPage
                 .withArgs(expansionPages[1])
                 .and.returnValue(new Map([[2, ['Card 20']]]));
+            expansionCardsMapBuilderSpy.buildWithCardTypePage
+                .withArgs(cardTypePages[0], expansionCardsMap)
+                .and.returnValue(new Map([[1, ['Card 1000']]]));
+            expansionCardsMapBuilderSpy.buildWithCardTypePage
+                .withArgs(cardTypePages[1], expansionCardsMap)
+                .and.returnValue(new Map());
             cardDtoBuilderSpy.build
                 .withArgs(cardPages[0], cardExpansionsMap, cardTypes)
                 .and.returnValue(cards[0]);
             cardDtoBuilderSpy.build
                 .withArgs(cardPages[1], cardExpansionsMap, cardTypes)
                 .and.returnValue(cards[1]);
+            cardDtoBuilderSpy.build
+                .withArgs(cardTypePages[0], cardExpansionsMap, cardTypes)
+                .and.returnValue(cards[2]);
+            cardDtoBuilderSpy.build
+                .withArgs(cardTypePages[1], cardExpansionsMap, cardTypes)
+                .and.returnValue(null);
 
             await dominionizerWikiBot.generateAll();
 
