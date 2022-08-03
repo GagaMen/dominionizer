@@ -30,7 +30,7 @@ export class CardDtoBuilder {
             description: this.extractDescription(infoBox),
             image: this.extractImage(page, wikiText),
             wikiUrl: page.fullurl,
-            expansions: this.extractExpansions(page, cardExpansionsMap),
+            expansions: this.extractExpansions(cardName, cardExpansionsMap),
             types: this.extractTypes(infoBox, cardTypes),
             isKingdomCard: this.extractIsKingdomCard(infoBox),
             cost: this.extractCost(infoBox),
@@ -59,10 +59,10 @@ export class CardDtoBuilder {
     }
 
     private extractExpansions(
-        cardPage: CardPage | CardTypePage,
+        cardName: WikiText,
         cardExpansionsMap: Map<string, number[]>,
     ): number[] {
-        return cardExpansionsMap.get(cardPage.title) ?? [];
+        return cardExpansionsMap.get(cardName) ?? [];
     }
 
     private extractTypes(infoBox: WikiText, cardTypes: CardType[]): number[] {

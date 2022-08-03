@@ -9,7 +9,7 @@ describe('CardDtoBuilder', () => {
 
     const cardExpansionsMap: Map<string, number[]> = new Map();
     cardExpansionsMap.set('Ghost Town', [4213]);
-    cardExpansionsMap.set('Knight', [156]);
+    cardExpansionsMap.set('Knights', [156]);
 
     const cardTypes: CardType[] = [
         { id: 216, name: 'Action' },
