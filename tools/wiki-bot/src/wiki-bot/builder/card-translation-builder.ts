@@ -11,31 +11,38 @@ export class CardTranslationBuilder {
             'Other language versions',
             3,
         );
-        const table = /{\|(.*?)\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
-        const rows = table
-            .split('|-')
-            .slice(1)
-            .filter((row) => normalize(row) !== '');
+        let table = /{\|(.*?)\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
+        // remove table header
+        table = table.substr(table.indexOf('|-'));
 
-        return new Map<string, CardTranslation>(
-            rows.map((row) => {
-                const match = /!([^|]*)\|(.*)/s.exec(row);
-                const language = normalize(match?.[1]);
-                const columns = match?.[2].split('||');
+        const translations: Map<string, CardTranslation> = new Map();
 
-                const cardName = normalize(columns?.[0].match(/^[^(]*/)?.[0]);
-                const cardDescription = this.extractCardDescription(columns?.[3], cardDto);
+        const rowRegex = /![^|]*[^!]*/g;
+        let languageVersion: RegExpExecArray | null;
+        while ((languageVersion = rowRegex.exec(table))) {
+            const match = /!(rowspan=\d\|)?([^|\\]*)/.exec(languageVersion[0]);
+            const language = normalize(match?.[2]);
 
-                return [
-                    language,
-                    {
-                        id: cardPage.pageid,
-                        name: cardName,
-                        description: cardDescription,
-                    },
-                ];
-            }),
-        );
+            // use last row of language, because this is the most up to date one
+            const version = languageVersion[0]
+                .split('|-\n')
+                .filter((entry) => entry !== '')
+                .pop();
+            const columns = version?.split('||');
+
+            const cardName = normalize(
+                /^[^|]*\|([^(]*)/.exec(columns?.[0] as string)?.[1].replace('<br>', ''),
+            );
+            const cardDescription = this.extractCardDescription(columns?.[3], cardDto);
+
+            translations.set(language, {
+                id: cardPage.pageid,
+                name: cardName,
+                description: cardDescription,
+            });
+        }
+
+        return translations;
     }
 
     private extractCardDescription(description: WikiText | undefined, cardDto: CardDto): string[] {

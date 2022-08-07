@@ -347,5 +347,52 @@ describe('CardTranslationBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        it('with card language table contains rowspan information should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*':
+                            `===Other language versions===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n! Language !! Name !! Print !! Digital !! Text !! Notes\n|-\n` +
+                            `!Chinese \n| 橋樑 (pron. ''qiáoliáng'') || || || || \n|-\n` +
+                            `!rowspan=3|German\n| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten (auch die Karten, die die<br>Spieler auf der Hand halten) kosten<br>in diesem Zug {{Cost|1}} weniger, niemals<br>jedoch weniger als {{Cost|0}}. ||\n|-\n` +
+                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten<br>(überall) {{Cost|1}} weniger, aber nicht<br>weniger als {{Cost|0}}. ||\n|-\n` +
+                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten<br>(überall) {{Cost|1}} weniger. || \n|-\n` +
+                            `!Russian \n| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}<br>В этом ходу все карты (везде) стоят на {{Cost|1}} дешевле, но не меньше {{Cost|0}}. ||\n|-\n` +
+                            `!Spanish \n| Puente || || || || \n|}`,
+                    },
+                ],
+            };
+            const expected: Map<string, CardTranslation> = new Map([
+                ['Chinese', { id: cardPage.pageid, name: '橋樑', description: [] }],
+                [
+                    'German',
+                    {
+                        id: cardPage.pageid,
+                        name: 'Brücke',
+                        description: [
+                            `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten<br>(überall) {{Cost|1}} weniger.`,
+                        ],
+                    },
+                ],
+                [
+                    'Russian',
+                    {
+                        id: cardPage.pageid,
+                        name: 'Мост',
+                        description: [
+                            `'''+1 Покупка'''<br>+{{Cost|1}}<br>В этом ходу все карты (везде) стоят на {{Cost|1}} дешевле, но не меньше {{Cost|0}}.`,
+                        ],
+                    },
+                ],
+                ['Spanish', { id: cardPage.pageid, name: 'Puente', description: [] }],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, NullCardDto);
+
+            expect(actual).toEqual(expected);
+        });
     });
 });
