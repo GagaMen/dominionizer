@@ -10,7 +10,7 @@ export class ExpansionTranslationBuilder {
 
         return new Map<string, ExpansionTranslation>(
             languageCandidates.map((languageCandidate: WikiText) => {
-                const language = /^[^:]*/.exec(languageCandidate)?.[0];
+                const language = /^[^:(]*/.exec(languageCandidate)?.[0];
                 let name: string | undefined =
                     languageCandidate.split(/\n\*\*/)[1] ??
                     /^[^:]*:(.*)/.exec(languageCandidate)?.[1] ??

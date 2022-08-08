@@ -67,5 +67,32 @@ describe('ExpansionTranslationBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        fit('with expansion translation contains release announcement should return correct translations', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 914,
+                title: 'Dominion (Base Set)',
+                revisions: [
+                    {
+                        '*':
+                            `=== In other languages ===\n` +
+                            `* Dutch (release March 16, 2022): Bondgenoten\n` +
+                            `* German (release March 28, 2022): Verbündete\n` +
+                            `* Japanese (release announced for 2022 or later): 同盟\n` +
+                            `* Korean (release announced for 2022): 도미니언: 굳건한 동맹`,
+                    },
+                ],
+            };
+            const expected: Map<string, ExpansionTranslation> = new Map([
+                ['Dutch', { id: expansionPage.pageid, name: 'Bondgenoten' }],
+                ['German', { id: expansionPage.pageid, name: 'Verbündete' }],
+                ['Japanese', { id: expansionPage.pageid, name: '同盟' }],
+                ['Korean', { id: expansionPage.pageid, name: '도미니언' }],
+            ]);
+
+            const actual = expansionTranslationBuilder.build(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
     });
 });
