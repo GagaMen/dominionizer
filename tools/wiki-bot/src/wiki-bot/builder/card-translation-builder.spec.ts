@@ -394,5 +394,29 @@ describe('CardTranslationBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        it('with translation contains html comments should return correct translation', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*':
+                            `===Other language versions===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n! Language !! Name !! Print !! Digital !! style="width:22%"| Text \n|-\n` +
+                            `!German \n| Große Halle <!--Grosse Halle--> || || || \n|}`,
+                    },
+                ],
+            };
+            const expected = new Map([
+                [
+                    'German',
+                    { id: cardPage.pageid, name: 'Große Halle', description: jasmine.anything() },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, NullCardDto);
+
+            expect(actual).toEqual(expected);
+        });
     });
 });

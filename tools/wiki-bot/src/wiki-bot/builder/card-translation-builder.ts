@@ -14,6 +14,8 @@ export class CardTranslationBuilder {
         let table = /{\|(.*?)\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
         // remove table header
         table = table.substr(table.indexOf('|-'));
+        // remove html comment
+        table = table.replace(/<!--.*?-->/g, '');
 
         const translations: Map<string, CardTranslation> = new Map();
 

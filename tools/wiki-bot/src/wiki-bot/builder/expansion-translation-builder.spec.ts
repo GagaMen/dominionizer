@@ -68,7 +68,7 @@ describe('ExpansionTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        fit('with expansion translation contains release announcement should return correct translations', () => {
+        it('with expansion translation contains release announcement should return correct translations', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 914,
                 title: 'Dominion (Base Set)',
