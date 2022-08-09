@@ -190,7 +190,7 @@ declare module '@squoosh/lib' {
         file: any;
         workerPool: any;
         decoded: any;
-        encodedWith: object;
+        encodedWith: { [key in keyof EncoderOptions]: Promise<EncodeResult> };
 
         /**
          * Define one or several preprocessors to use on the image.
@@ -209,6 +209,6 @@ declare module '@squoosh/lib' {
                 optimizerButteraugliTarget?: number;
                 maxOptimizerRounds?: number;
             } & T,
-        ): Promise<{ [key in keyof T]: EncodeResult }>;
+        ): Promise<{ [key in keyof T]: Promise<EncodeResult> }>;
     }
 }

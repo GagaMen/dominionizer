@@ -15,6 +15,7 @@ describe('ImageBuilder', () => {
         imagePoolSpy = jasmine.createSpyObj<ImagePool>('ImagePool', ['ingestImage', 'close']);
 
         imageSpy = jasmine.createSpyObj<Image>('Image', ['preprocess', 'encode']);
+        imageSpy.encodedWith = {};
         imageSpy.decoded = {
             bitmap: {
                 width: 100,
@@ -44,11 +45,9 @@ describe('ImageBuilder', () => {
                 oxipng: {},
             };
             const encodedImageData: Uint8Array = new Uint8Array([1, 2, 3]);
-            const encodeResults: { [key in keyof EncoderOptions]: EncodeResult } = {
-                oxipng: {
-                    binary: encodedImageData,
-                } as EncodeResult,
-            };
+            imageSpy.encodedWith.oxipng = Promise.resolve({
+                binary: encodedImageData,
+            } as EncodeResult);
             const expected: EncodedImage = {
                 fileName: 'Menagerie_icon.png',
                 data: encodedImageData,
@@ -57,7 +56,7 @@ describe('ImageBuilder', () => {
                 .withArgs(imagePage.imageinfo[0].url)
                 .and.resolveTo(fetchedImage);
             imagePoolSpy.ingestImage.withArgs(fetchedImage).and.returnValue(imageSpy);
-            imageSpy.encode.withArgs(encoderOptions).and.resolveTo(encodeResults);
+            imageSpy.encode.withArgs(encoderOptions);
 
             const actual = await imageBuilder.build(imagePage);
 
@@ -112,11 +111,10 @@ describe('ImageBuilder', () => {
                 mozjpeg: {},
             };
             const encodedImageData: Uint8Array = new Uint8Array([1, 2, 3]);
-            const encodeResults: { [key in keyof EncoderOptions]: EncodeResult } = {
-                mozjpeg: {
-                    binary: encodedImageData,
-                } as EncodeResult,
-            };
+            imageSpy.encodedWith.mozjpeg = Promise.resolve({
+                binary: encodedImageData,
+            } as EncodeResult);
+
             const expected: EncodedImage = {
                 fileName: 'Abandoned_MineArt.jpg',
                 data: encodedImageData,
@@ -125,7 +123,7 @@ describe('ImageBuilder', () => {
                 .withArgs(imagePage.imageinfo[0].url)
                 .and.resolveTo(fetchedImage);
             imagePoolSpy.ingestImage.withArgs(fetchedImage).and.returnValue(imageSpy);
-            imageSpy.encode.withArgs(encoderOptions).and.resolveTo(encodeResults);
+            imageSpy.encode.withArgs(encoderOptions);
 
             const actual = await imageBuilder.build(imagePage);
 

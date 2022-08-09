@@ -13,6 +13,7 @@ import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
 import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
+import { mkdir } from 'fs/promises';
 
 export class DominionizerWikiBot {
     constructor(
@@ -277,6 +278,8 @@ export class DominionizerWikiBot {
         subFolder: string,
     ): Promise<EncodedImage[]> {
         const images: EncodedImage[] = [];
+
+        await mkdir(`${this.targetPath}/${subFolder}`, { recursive: true });
 
         for (const imagePage of imagePages) {
             const encodedImage = await this.imageBuilder.build(imagePage);

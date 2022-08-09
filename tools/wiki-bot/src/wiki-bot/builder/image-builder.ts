@@ -41,9 +41,9 @@ export class ImageBuilder {
         await image.preprocess(preprocessOptions);
 
         const encoderOptions = { oxipng: {} }; // means default options
-        const encodeResults = await image.encode<EncoderOptions>(encoderOptions);
+        await image.encode<EncoderOptions>(encoderOptions);
 
-        return encodeResults.oxipng?.binary ?? new Uint8Array();
+        return (await image.encodedWith.oxipng)?.binary ?? new Uint8Array();
     }
 
     private async buildDataForCardArt(image: Image): Promise<Uint8Array> {
@@ -77,8 +77,8 @@ export class ImageBuilder {
         await image.preprocess(preprocessOptions);
 
         const encoderOptions = { mozjpeg: {} }; // means default options
-        const encodeResults = await image.encode<EncoderOptions>(encoderOptions);
+        await image.encode<EncoderOptions>(encoderOptions);
 
-        return encodeResults.mozjpeg?.binary ?? new Uint8Array();
+        return (await image.encodedWith.mozjpeg)?.binary ?? new Uint8Array();
     }
 }
