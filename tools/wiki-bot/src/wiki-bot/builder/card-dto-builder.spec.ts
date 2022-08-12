@@ -132,7 +132,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Card\n |kingdom = No\n}}',
+                        '*': '{{Infobox Event\n |kingdom = No\n}}',
                     },
                 ],
             };

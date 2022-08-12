@@ -16,7 +16,7 @@ export class CardDtoBuilder {
         cardTypes: CardType[],
     ): CardDto | null {
         const wikiText: WikiText = page.revisions[0]['*'] ?? '';
-        const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Card');
+        const infoBox: WikiText = extractTemplate(wikiText, 'Infobox');
 
         if (infoBox === '') {
             return null;
