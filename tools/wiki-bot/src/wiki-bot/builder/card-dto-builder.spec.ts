@@ -35,7 +35,7 @@ describe('CardDtoBuilder', () => {
         types: [],
         isKingdomCard: true,
         cost: 0,
-        potion: undefined,
+        costModifier: undefined,
         debt: undefined,
     };
 
@@ -146,6 +146,26 @@ describe('CardDtoBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with cardPage contains cost modifier should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Card\n |cost = 3P\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                cost: 3,
+                costModifier: 'P',
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with cardPage contains debt should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
@@ -158,26 +178,6 @@ describe('CardDtoBuilder', () => {
             const expected: CardDto = {
                 ...nullCardDto,
                 debt: 4,
-            };
-
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage contains potion should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*': '{{Infobox Card\n |cost = 3P\n}}',
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                cost: 3,
-                potion: true,
             };
 
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);

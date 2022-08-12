@@ -34,7 +34,7 @@ export class CardDtoBuilder {
             types: this.extractTypes(infoBox, cardTypes),
             isKingdomCard: this.extractIsKingdomCard(infoBox),
             cost: this.extractCost(infoBox),
-            potion: this.extractPotion(infoBox),
+            costModifier: this.extractCostModifier(infoBox),
             debt: this.extractDebt(infoBox),
         };
     }
@@ -94,13 +94,13 @@ export class CardDtoBuilder {
     private extractCost(infoBox: WikiText): number {
         const cost: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'cost'));
 
-        return Number(cost.replace(/P/, '')) ?? 0;
+        return Number(/\d+/.exec(cost)?.[0] ?? 0);
     }
 
-    private extractPotion(infoBox: WikiText): boolean | undefined {
+    private extractCostModifier(infoBox: WikiText): string | undefined {
         const cost: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'cost'));
 
-        return /P/.test(cost) ? true : undefined;
+        return /[^\d]/.exec(cost)?.[0];
     }
 
     private extractDebt(infoBox: WikiText): number | undefined {

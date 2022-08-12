@@ -24,7 +24,7 @@ export interface Card {
     types: CardType[];
     isKingdomCard: boolean;
     cost: number;
-    potion?: boolean;
+    costModifier?: string;
     debt?: number;
     dependencies?: Dependency[];
 }

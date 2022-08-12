@@ -22,7 +22,7 @@ export interface CardDto {
     types: number[];
     isKingdomCard: boolean;
     cost: number;
-    potion?: boolean;
+    costModifier?: string;
     debt?: number;
     dependencies?: DependencyDto[];
 }
