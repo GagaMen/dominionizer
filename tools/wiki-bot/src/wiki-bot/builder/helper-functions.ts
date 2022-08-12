@@ -23,7 +23,7 @@ export function extractTemplatePropertyValue(
     wikiText: WikiText,
     templatePropertyName: string,
 ): WikiText {
-    const templatePropertyRegExp = new RegExp(`\\|${templatePropertyName}\\s*=(.*)`, 's');
+    const templatePropertyRegExp = new RegExp(`\\|\\s*${templatePropertyName}\\s*=(.*)`, 's');
     const templatePropertyValueCandidate = templatePropertyRegExp.exec(wikiText)?.[1] ?? '';
 
     // templatePropertyValueCandidate exceeds the template property value
