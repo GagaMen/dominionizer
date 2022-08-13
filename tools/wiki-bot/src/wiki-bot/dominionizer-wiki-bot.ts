@@ -233,7 +233,10 @@ export class DominionizerWikiBot {
         for (const cardTypePage of cardTypePages) {
             const card = this.cardDtoBuilder.build(cardTypePage, cardExpansionsMap, cardTypes);
 
-            if (card === null) {
+            if (
+                card === null ||
+                cards.some((existingCard: CardDto) => existingCard.id === card.id)
+            ) {
                 continue;
             }
 
