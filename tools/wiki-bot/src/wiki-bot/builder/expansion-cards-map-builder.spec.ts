@@ -256,6 +256,30 @@ describe('ExpansionMapBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with allies should return correct map', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 7293,
+                title: 'Allies',
+                revisions: [
+                    {
+                        '*':
+                            '== Contents ==\n' +
+                            '=== Kingdom cards ===\n' +
+                            '* {{Cost|2}} {{Card|Bauble}}\n\n' +
+                            '=== [[Ally|Allies]] ===\n' +
+                            `* {{Ally|Architects' Guild}}\n* {{Ally|Band of Nomads}}`,
+                    },
+                ],
+            };
+            const expected: Map<number, string[]> = new Map([
+                [7293, ['Bauble', `Architects' Guild`, 'Band of Nomads']],
+            ]);
+
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with promo cards should return correct map', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 206,
