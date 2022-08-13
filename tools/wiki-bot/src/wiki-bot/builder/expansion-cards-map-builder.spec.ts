@@ -9,7 +9,7 @@ describe('ExpansionMapBuilder', () => {
         expansionMapBuilder = new ExpansionCardsMapBuilder();
     });
 
-    describe('build', () => {
+    describe('buildWithExpansionPage', () => {
         it('with single edition should return correct map', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 175,
@@ -340,10 +340,11 @@ describe('ExpansionMapBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+    });
 
-        it('with card type page contains a card should return correct map', () => {
+    describe('buildWithCardTypePage', () => {
+        it('with Infobox Card for card of any expansion should return correct map', () => {
             const expansionCardsMap: Map<number, string[]> = new Map([[156, ['Knights']]]);
-
             const cardTypePage: CardTypePage = {
                 pageid: 577,
                 title: 'Knight',
@@ -351,28 +352,16 @@ describe('ExpansionMapBuilder', () => {
                 revisions: [
                     {
                         '*':
-                            '{{Infobox Card\n |name = Knights\n |cost = 5\n |type1 = Action\n |type2 = Attack\n |type3 = Knight\n |illustrator = Matthias Catrein\n |text = Shuffle the Knights pile before each game with it. Keep it face down except for the top card, which is the only one that can be bought or gained.\n |nocats = Yes\n}}\n\n' +
-                            "== List of Knights (and their secondary abilities) ==\n* {{Card|Dame Anna}} - ''You may trash up to 2 cards from your hand.''\n* {{Card|Dame Josephine}} - ''2 {{VP}}''\n* {{Card|Dame Molly}} - ''+2 Actions''\n* {{Card|Dame Natalie}} - ''You may gain a card costing up to'' {{Cost|3}}.\n* {{Card|Dame Sylvia}} - ''+''{{Cost|2}}\n* {{Card|Sir Bailey}} - ''+1 Card +1 Action''\n* {{Card|Sir Destry}} - ''+2 Cards''\n* {{Card|Sir Martin}} - ''+2 Buys''\n* {{Card|Sir Michael}} - ''Each other player discards down to 3 cards in hand.''\n* {{Card|Sir Vander}} - ''When you trash this, gain a Gold.''\n\n",
+                            `{{Infobox Card\n` +
+                            `|name = Knights\n}}\n\n` +
+                            `== List of Knights (and their secondary abilities) ==\n` +
+                            `* {{Card|Dame Anna}} - ''You may trash up to 2 cards from your hand.''\n` +
+                            `* {{Card|Dame Josephine}} - ''2 {{VP}}''\n`,
                     },
                 ],
             };
             const expected: Map<number, string[]> = new Map([
-                [
-                    156,
-                    [
-                        'Knights',
-                        'Dame Anna',
-                        'Dame Josephine',
-                        'Dame Molly',
-                        'Dame Natalie',
-                        'Dame Sylvia',
-                        'Sir Bailey',
-                        'Sir Destry',
-                        'Sir Martin',
-                        'Sir Michael',
-                        'Sir Vander',
-                    ],
-                ],
+                [156, ['Knights', 'Dame Anna', 'Dame Josephine']],
             ]);
 
             const actual = expansionMapBuilder.buildWithCardTypePage(
