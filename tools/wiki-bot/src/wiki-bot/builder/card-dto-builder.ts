@@ -22,21 +22,27 @@ export class CardDtoBuilder {
             return null;
         }
 
-        const cardName: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'name'));
+        const name: WikiText = this.extractName(page, infoBox);
 
         return {
             id: page.pageid,
-            name: cardName,
+            name: name,
             description: this.extractDescription(infoBox),
             image: this.extractImage(page, wikiText),
             wikiUrl: page.fullurl,
-            expansions: this.extractExpansions(cardName, cardExpansionsMap),
+            expansions: this.extractExpansions(name, cardExpansionsMap),
             types: this.extractTypes(infoBox, cardTypes),
             isKingdomCard: this.extractIsKingdomCard(infoBox),
             cost: this.extractCost(infoBox),
             costModifier: this.extractCostModifier(infoBox),
             debt: this.extractDebt(infoBox),
         };
+    }
+
+    private extractName(page: CardPage | CardTypePage, infoBox: WikiText): string {
+        const name = normalize(extractTemplatePropertyValue(infoBox, 'name'));
+
+        return name === '{{PAGENAME}}' ? page.title : name;
     }
 
     private extractDescription(infoBox: WikiText): string[] {

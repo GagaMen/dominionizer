@@ -83,6 +83,26 @@ describe('CardDtoBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with cardPage uses template for name should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                title: 'Berserker',
+                revisions: [
+                    {
+                        '*': '{{Infobox Event\n |name = {{PAGENAME}}\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Berserker',
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with cardPage uses OfficialArt template should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
