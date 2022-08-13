@@ -89,13 +89,17 @@ describe('CardDtoBuilder', () => {
                 title: 'Berserker',
                 revisions: [
                     {
-                        '*': '{{Infobox Event\n |name = {{PAGENAME}}\n}}',
+                        '*':
+                            `{{Infobox Event\n |name = {{PAGENAME}}\n}}` +
+                            `== Trivia ==\n` +
+                            `[[Image:{{PAGENAME}}Art.jpg|thumb|right|354px|Official card art.]]\n\n`,
                     },
                 ],
             };
             const expected: CardDto = {
                 ...nullCardDto,
                 name: 'Berserker',
+                image: 'BerserkerArt.jpg',
             };
 
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
@@ -106,15 +110,17 @@ describe('CardDtoBuilder', () => {
         it('with cardPage uses OfficialArt template should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
-                title: `Horn of Plenty`,
                 revisions: [
                     {
-                        '*': `{{Infobox Card\n}}` + `== Trivia ==\n{{OfficialArt|l=1}}\n\n`,
+                        '*':
+                            `{{Infobox Card\n |name = Horn of Plenty\n}}` +
+                            `== Trivia ==\n{{OfficialArt|l=1}}\n\n`,
                     },
                 ],
             };
             const expected: CardDto = {
                 ...nullCardDto,
+                name: 'Horn of Plenty',
                 image: 'Horn_of_PlentyArt.jpg',
             };
 

@@ -22,13 +22,13 @@ export class CardDtoBuilder {
             return null;
         }
 
-        const name: WikiText = this.extractName(page, infoBox);
+        const name = this.extractName(page, infoBox);
 
         return {
             id: page.pageid,
             name: name,
             description: this.extractDescription(infoBox),
-            image: this.extractImage(page, wikiText),
+            image: this.extractImage(name, wikiText),
             wikiUrl: page.fullurl,
             expansions: this.extractExpansions(name, cardExpansionsMap),
             types: this.extractTypes(infoBox, cardTypes),
@@ -40,9 +40,10 @@ export class CardDtoBuilder {
     }
 
     private extractName(page: CardPage | CardTypePage, infoBox: WikiText): string {
-        const name = normalize(extractTemplatePropertyValue(infoBox, 'name'));
-
-        return name === '{{PAGENAME}}' ? page.title : name;
+        return normalize(extractTemplatePropertyValue(infoBox, 'name')).replace(
+            '{{PAGENAME}}',
+            page.title,
+        );
     }
 
     private extractDescription(infoBox: WikiText): string[] {
@@ -52,20 +53,22 @@ export class CardDtoBuilder {
         return text2 ? [text, text2] : [text];
     }
 
-    private extractImage(cardPage: CardPage | CardTypePage, wikiText: WikiText): string {
+    private extractImage(cardName: string, wikiText: WikiText): string {
         const trivia: WikiText = extractSection(wikiText, 'Trivia', 2);
 
         const officialArtRegExp = /{{\s*OfficialArt\s*\|?.*}}/;
         if (officialArtRegExp.test(trivia)) {
-            return `${cardPage.title.replace(/\s/g, '_')}Art.jpg`;
+            return `${cardName.replace(/\s/g, '_')}Art.jpg`;
         }
 
         const cardArtRegExp = /\[\[\s*Image:(.*?\.jpg)\s*\|.*?\|\s*Official (randomizer\s)?card art.*\]\]/;
-        return normalize(cardArtRegExp.exec(trivia)?.[1]).replace(/\s/g, '_');
+        return normalize(cardArtRegExp.exec(trivia)?.[1])
+            .replace('{{PAGENAME}}', cardName)
+            .replace(/\s/g, '_');
     }
 
     private extractExpansions(
-        cardName: WikiText,
+        cardName: string,
         cardExpansionsMap: Map<string, number[]>,
     ): number[] {
         return cardExpansionsMap.get(cardName) ?? [];
