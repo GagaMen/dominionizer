@@ -19,7 +19,7 @@ describe('ExpansionMapBuilder', () => {
                         '*':
                             '== Contents ==\n' +
                             '=== Kingdom cards ===\n' +
-                            '* {{Cost|2}}: {{ Card | Embargo }}\n' +
+                            '* {{Cost|2}}: {{ card | Embargo }}\n' +
                             '* {{Cost|3}}: {{Card|Ambassador}}, {{Card|Fishing Village}}',
                     },
                 ],
@@ -56,6 +56,26 @@ describe('ExpansionMapBuilder', () => {
                 [914, ['Cellar', 'Bureaucrat', 'Chancellor']],
                 [914.1, ['Harbinger', 'Cellar', 'Bureaucrat']],
             ]);
+
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with additional parameters in card template should return correct map', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 171,
+                title: 'Intrigue',
+                revisions: [
+                    {
+                        '*':
+                            '== Contents ==\n' +
+                            '=== Removed first-edition Kingdom cards ===\n' +
+                            '* {{Cost|5}}: {{Card|Saboteur|oi=1}}',
+                    },
+                ],
+            };
+            const expected: Map<number, string[]> = new Map([[171, ['Saboteur']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
