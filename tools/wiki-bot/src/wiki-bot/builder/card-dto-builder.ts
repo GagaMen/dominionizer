@@ -76,6 +76,11 @@ export class CardDtoBuilder {
 
     private extractTypes(infoBox: WikiText, cardTypes: CardType[]): number[] {
         const types: number[] = [];
+
+        const templateName = normalize(/Infobox ([^|]*)/.exec(infoBox)?.[1]);
+        const cardType = cardTypes.find((cardType: CardType) => cardType.name === templateName);
+        if (cardType !== undefined) types.push(cardType.id);
+
         let index = 1;
         // eslint-disable-next-line no-constant-condition
         while (true) {

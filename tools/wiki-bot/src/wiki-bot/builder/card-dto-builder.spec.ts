@@ -16,6 +16,7 @@ describe('CardDtoBuilder', () => {
         { id: 219, name: 'Attack' },
         { id: 577, name: 'Knight' },
         { id: 593, name: 'Duration' },
+        { id: 1584, name: 'Event' },
         { id: 4216, name: 'Night' },
     ];
 
@@ -86,11 +87,11 @@ describe('CardDtoBuilder', () => {
         it('with cardPage uses template for name should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
-                title: 'Berserker',
+                title: 'Sacred Grove',
                 revisions: [
                     {
                         '*':
-                            `{{Infobox Event\n |name = {{PAGENAME}}\n}}` +
+                            `{{Infobox Card\n |name = {{PAGENAME}}\n}}` +
                             `== Trivia ==\n` +
                             `[[Image:{{PAGENAME}}Art.jpg|thumb|right|354px|Official card art.]]\n\n`,
                     },
@@ -98,8 +99,8 @@ describe('CardDtoBuilder', () => {
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                name: 'Berserker',
-                image: 'BerserkerArt.jpg',
+                name: 'Sacred Grove',
+                image: 'Sacred_GroveArt.jpg',
             };
 
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
@@ -164,6 +165,7 @@ describe('CardDtoBuilder', () => {
             };
             const expected: CardDto = {
                 ...nullCardDto,
+                types: [1584],
                 isKingdomCard: false,
             };
 
