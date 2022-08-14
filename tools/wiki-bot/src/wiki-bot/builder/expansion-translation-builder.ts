@@ -10,12 +10,10 @@ export class ExpansionTranslationBuilder {
 
         return new Map<string, ExpansionTranslation>(
             languageCandidates.map((languageCandidate: WikiText) => {
-                const language = /^[^:(]*/.exec(languageCandidate)?.[0];
-                let name: string | undefined =
-                    languageCandidate.split(/\n\*\*/)[1] ??
-                    /^[^:]*:(.*)/.exec(languageCandidate)?.[1] ??
-                    '';
-                name = /[^(:]*/.exec(name)?.[0];
+                const listItems = languageCandidate.split(/\n\*\*/);
+                const language = /^[^:(]*/.exec(listItems[0])?.[0];
+                const name =
+                    /:\s*(\S[^(:]*)/.exec(listItems[0])?.[1] ?? /^[^:(]+/.exec(listItems[1])?.[0];
 
                 return [normalize(language), { id: expansionPage.pageid, name: normalize(name) }];
             }),

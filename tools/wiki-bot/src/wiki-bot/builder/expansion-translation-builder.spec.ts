@@ -68,7 +68,7 @@ describe('ExpansionTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with expansion translation contains release announcement should return correct translations', () => {
+        it('with release announcement should return correct translations', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 914,
                 title: 'Dominion (Base Set)',
@@ -88,6 +88,32 @@ describe('ExpansionTranslationBuilder', () => {
                 ['German', { id: expansionPage.pageid, name: 'Verbündete' }],
                 ['Japanese', { id: expansionPage.pageid, name: '同盟' }],
                 ['Korean', { id: expansionPage.pageid, name: '도미니언' }],
+            ]);
+
+            const actual = expansionTranslationBuilder.build(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with additional information should return correct translations', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 914,
+                title: 'Dominion (Base Set)',
+                revisions: [
+                    {
+                        '*':
+                            `=== In other languages ===\n` +
+                            `* Czech: Alchymie\n` +
+                            `* Dutch: De Alchemisten (lit. ''the alchemists'')\n` +
+                            `** No longer available. In 2019 999 games combined ...\n` +
+                            `* Finnish: Alkemia`,
+                    },
+                ],
+            };
+            const expected: Map<string, ExpansionTranslation> = new Map([
+                ['Czech', { id: expansionPage.pageid, name: 'Alchymie' }],
+                ['Dutch', { id: expansionPage.pageid, name: 'De Alchemisten' }],
+                ['Finnish', { id: expansionPage.pageid, name: 'Alkemia' }],
             ]);
 
             const actual = expansionTranslationBuilder.build(expansionPage);
