@@ -1,7 +1,7 @@
 {
     "name": "dominionizer-wiki-bot",
     "scripts": {
-        "start": "ts-node ./src/main.ts",
+        "start": "ts-node ./src/main.ts & prettier --write --loglevel warn ../../src/assets/data",
         "test": "nodemon --watch 'src/**/*.ts' --ext ts --exec 'npm run test:ci'",
         "test:ci": "ts-node --project tsconfig.spec.json ./node_modules/jasmine/bin/jasmine --config=jasmine.json"
     },
