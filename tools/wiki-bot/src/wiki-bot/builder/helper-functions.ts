@@ -50,14 +50,14 @@ export function extractTemplatePropertyValue(
 
 export function extractSection(wikiText: WikiText, sectionName: string, level: number): WikiText {
     const targetSectionRegExp = new RegExp(
-        `={${level}}\\s*${sectionName}\\s*={${level}}\\n.*`,
+        `={${level}}\\s*${sectionName}\\s*={${level}}\\s*\\n.*`,
         's',
     );
     const sectionCandidate = targetSectionRegExp.exec(wikiText)?.[0] ?? '';
 
     // sectionCandidate can exceed the section end if another section follows
     // so we need to find the actual section end
-    const sectionRegExp = new RegExp(`(^|\\n)={${level}}[^=]*?={${level}}\\n`, 'gs');
+    const sectionRegExp = new RegExp(`(^|\\n)\\s*={${level}}[^=]*?={${level}}\\s*\\n`, 'gs');
     // exec finds the target section
     sectionRegExp.exec(sectionCandidate);
     // to find next section we call it again (uses stateful RegExp by using global flag)

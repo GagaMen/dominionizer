@@ -75,13 +75,13 @@ describe('helper functions', () => {
 
         it('with section at beginning or in middle should return correct section', () => {
             const wikiText: WikiText =
-                `== Contents ==\n` +
+                `== Contents == \n` +
                 `Any contents...\n` +
                 `=== Kingdom cards ===\n` +
                 `Any kingdom cards...\n` +
-                `==Flavor text==\n`;
+                ` ==Flavor text== \n`;
             const expected: WikiText =
-                `== Contents ==\n` +
+                `== Contents == \n` +
                 `Any contents...\n` +
                 `=== Kingdom cards ===\n` +
                 `Any kingdom cards...`;
