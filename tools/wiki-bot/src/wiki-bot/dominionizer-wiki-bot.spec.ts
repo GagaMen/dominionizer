@@ -101,13 +101,13 @@ describe('DominionizerWikiBot', () => {
     describe('generateAll', () => {
         it('should generate expansions', async () => {
             const expansionPages: ExpansionPage[] = [
-                { pageid: 1 } as ExpansionPage,
                 { pageid: 2 } as ExpansionPage,
+                { pageid: 1 } as ExpansionPage,
             ];
             const expansions: Expansion[] = [{ id: 1 } as Expansion, { id: 2 } as Expansion];
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
-            expansionBuilderSpy.build.withArgs(expansionPages[0]).and.returnValue([expansions[0]]);
-            expansionBuilderSpy.build.withArgs(expansionPages[1]).and.returnValue([expansions[1]]);
+            expansionBuilderSpy.build.withArgs(expansionPages[0]).and.returnValue([expansions[1]]);
+            expansionBuilderSpy.build.withArgs(expansionPages[1]).and.returnValue([expansions[0]]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -119,8 +119,8 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate expansion translations', async () => {
             const expansionPages: ExpansionPage[] = [
-                { pageid: 1 } as ExpansionPage,
                 { pageid: 2 } as ExpansionPage,
+                { pageid: 1 } as ExpansionPage,
             ];
             const firstExpansionTranslations: Map<string, ExpansionTranslation> = new Map([
                 ['German', { id: 1, name: 'german title' }],
@@ -141,10 +141,10 @@ describe('DominionizerWikiBot', () => {
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
             expansionTranslationBuilderSpy.build
                 .withArgs(expansionPages[0])
-                .and.returnValue(firstExpansionTranslations);
+                .and.returnValue(secondExpansionTranslations);
             expansionTranslationBuilderSpy.build
                 .withArgs(expansionPages[1])
-                .and.returnValue(secondExpansionTranslations);
+                .and.returnValue(firstExpansionTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -160,16 +160,16 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card types', async () => {
             const cardTypePages: CardTypePage[] = [
-                { pageid: 1000 } as CardTypePage,
                 { pageid: 2000 } as CardTypePage,
+                { pageid: 1000 } as CardTypePage,
             ];
             const cardTypes: CardType[] = [
                 { id: 1000, name: 'Card Type 1' },
                 { id: 2000, name: 'Card Type 2' },
             ];
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[0]);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[1]);
+            cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[1]);
+            cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[0]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -181,32 +181,32 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card type translations', async () => {
             const cardTypePages: CardTypePage[] = [
-                { pageid: 1000 } as CardTypePage,
                 { pageid: 2000 } as CardTypePage,
+                { pageid: 1000 } as CardTypePage,
             ];
             const firstCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
-                ['German', { id: 1, name: 'german title' }],
-                ['French', { id: 1, name: 'french title' }],
+                ['German', { id: 1000, name: 'german title' }],
+                ['French', { id: 1000, name: 'french title' }],
             ]);
             const secondCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
-                ['German', { id: 2, name: 'german title' }],
-                ['French', { id: 2, name: 'french title' }],
+                ['German', { id: 2000, name: 'german title' }],
+                ['French', { id: 2000, name: 'french title' }],
             ]);
             const germanTranslations: CardTypeTranslation[] = [
-                { id: 1, name: 'german title' },
-                { id: 2, name: 'german title' },
+                { id: 1000, name: 'german title' },
+                { id: 2000, name: 'german title' },
             ];
             const frenchTranslations: CardTypeTranslation[] = [
-                { id: 1, name: 'french title' },
-                { id: 2, name: 'french title' },
+                { id: 1000, name: 'french title' },
+                { id: 2000, name: 'french title' },
             ];
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
             cardTypeTranslationBuilderSpy.build
                 .withArgs(cardTypePages[0])
-                .and.returnValue(firstCardTypeTranslations);
+                .and.returnValue(secondCardTypeTranslations);
             cardTypeTranslationBuilderSpy.build
                 .withArgs(cardTypePages[1])
-                .and.returnValue(secondCardTypeTranslations);
+                .and.returnValue(firstCardTypeTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -240,8 +240,8 @@ describe('DominionizerWikiBot', () => {
                 { id: 40 } as CardType,
             ];
             const cardPages: CardPage[] = [
-                { pageid: 10, title: 'Card 10' } as CardPage,
                 { pageid: 20, title: 'Card 20' } as CardPage,
+                { pageid: 10, title: 'Card 10' } as CardPage,
             ];
             const cardExpansionsMap: Map<string, number[]> = new Map([
                 ['Card 10', [1]],
@@ -276,10 +276,10 @@ describe('DominionizerWikiBot', () => {
                 .and.returnValue(new Map());
             cardDtoBuilderSpy.build
                 .withArgs(cardPages[0], cardExpansionsMap, cardTypes)
-                .and.returnValue(cards[0]);
+                .and.returnValue(cards[1]);
             cardDtoBuilderSpy.build
                 .withArgs(cardPages[1], cardExpansionsMap, cardTypes)
-                .and.returnValue(cards[1]);
+                .and.returnValue(cards[0]);
             cardDtoBuilderSpy.build
                 .withArgs(cardTypePages[0], cardExpansionsMap, cardTypes)
                 .and.returnValue(cards[0]);
@@ -299,7 +299,7 @@ describe('DominionizerWikiBot', () => {
         });
 
         it('should generate card translations', async () => {
-            const cardPages: CardPage[] = [{ pageid: 10 } as CardPage, { pageid: 20 } as CardPage];
+            const cardPages: CardPage[] = [{ pageid: 20 } as CardPage, { pageid: 10 } as CardPage];
             const cards: CardDto[] = [{ id: 10 } as CardDto, { id: 20 } as CardDto];
             const firstCardTranslations: Map<string, CardTranslation> = new Map([
                 ['German', { id: 10, name: 'german title' } as CardTranslation],
@@ -320,16 +320,16 @@ describe('DominionizerWikiBot', () => {
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
             cardDtoBuilderSpy.build
                 .withArgs(cardPages[0], jasmine.anything(), jasmine.anything())
-                .and.returnValue(cards[0]);
+                .and.returnValue(cards[1]);
             cardDtoBuilderSpy.build
                 .withArgs(cardPages[1], jasmine.anything(), jasmine.anything())
-                .and.returnValue(cards[1]);
+                .and.returnValue(cards[0]);
             cardTranslationBuilderSpy.build
-                .withArgs(cardPages[0], cards[0])
-                .and.returnValue(firstCardTranslations);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardPages[1], cards[1])
+                .withArgs(cardPages[0], cards[1])
                 .and.returnValue(secondCardTranslations);
+            cardTranslationBuilderSpy.build
+                .withArgs(cardPages[1], cards[0])
+                .and.returnValue(firstCardTranslations);
 
             await dominionizerWikiBot.generateAll();
 

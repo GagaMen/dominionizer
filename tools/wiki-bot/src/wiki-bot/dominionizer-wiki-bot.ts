@@ -100,6 +100,8 @@ export class DominionizerWikiBot {
             expansions = expansions.concat(this.expansionBuilder.build(expansionPage));
         }
 
+        this.sortById(expansions);
+
         await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));
 
         return expansions;
@@ -121,6 +123,8 @@ export class DominionizerWikiBot {
         }
 
         for (const [language, translationsByLanguage] of translations) {
+            this.sortById(translationsByLanguage);
+
             await writeFile(
                 `${this.targetPath}/data/expansions.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
@@ -136,6 +140,8 @@ export class DominionizerWikiBot {
         for (const cardTypePage of cardTypePages) {
             cardTypes = cardTypes.concat(this.cardTypeBuilder.build(cardTypePage));
         }
+
+        this.sortById(cardTypes);
 
         await writeFile(`${this.targetPath}/data/card-types.json`, JSON.stringify(cardTypes));
 
@@ -158,6 +164,8 @@ export class DominionizerWikiBot {
         }
 
         for (const [language, translationsByLanguage] of translations) {
+            this.sortById(translationsByLanguage);
+
             await writeFile(
                 `${this.targetPath}/data/card-types.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
@@ -243,6 +251,8 @@ export class DominionizerWikiBot {
             cards = cards.concat(card);
         }
 
+        this.sortById(cards);
+
         await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
 
         return cards;
@@ -267,6 +277,8 @@ export class DominionizerWikiBot {
         }
 
         for (const [language, translationsByLanguage] of translations) {
+            this.sortById(translationsByLanguage);
+
             await writeFile(
                 `${this.targetPath}/data/cards.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
@@ -274,6 +286,10 @@ export class DominionizerWikiBot {
         }
 
         return translations;
+    }
+
+    private sortById(entities: { id: number }[]): void {
+        entities.sort((first, second) => first.id - second.id);
     }
 
     private async generateImages(
