@@ -108,6 +108,29 @@ describe('CardDtoBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with cardPage contains <br/> in text1 or text2 should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                title: 'Sacred Grove',
+                revisions: [
+                    {
+                        '*':
+                            `{{Infobox Card\n` +
+                            `|text = At the<br/>start...\n` +
+                            `|text2 = This is<br/>gained ...\n}}`,
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                description: [`At the<br>start...`, `This is<br>gained ...`],
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with cardPage uses OfficialArt template should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,

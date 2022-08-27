@@ -47,8 +47,12 @@ export class CardDtoBuilder {
     }
 
     private extractDescription(infoBox: WikiText): string[] {
-        const text: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'text'));
-        const text2: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'text2'));
+        const text: WikiText = normalize(
+            extractTemplatePropertyValue(infoBox, 'text').replace(/<br\/>/g, '<br>'),
+        );
+        const text2: WikiText = normalize(
+            extractTemplatePropertyValue(infoBox, 'text2').replace(/<br\/>/g, '<br>'),
+        );
 
         return text2 ? [text, text2] : [text];
     }
