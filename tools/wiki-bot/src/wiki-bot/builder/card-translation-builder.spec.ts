@@ -21,31 +21,41 @@ describe('CardTranslationBuilder', () => {
         it('with basic translation should return correct translations', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
-                pageid: 18,
+                pageid: 247,
                 revisions: [
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
+                            ` |-\n` +
+                            `!German \n| Platin {{nowrap| (lit. ...)}} || || || {{Cost|5|xl|}}\n` +
                             `|-\n` +
-                            `!German \n| Burggraben ||  || || '''+2 Karten'''\n` +
-                            `|}`,
+                            `!Polish \n| {{nowrap|Platyna}} || || || {{Cost|5}} \n` +
+                            ` |}`,
                     },
                 ],
             };
             const cardDto: CardDto = {
                 ...NullCardDto,
-                id: 18,
-                description: [`'''+2 Cards'''`],
+                id: 247,
+                description: [`{{Cost|5|xl}}`],
             };
             const expected: Map<string, CardTranslation> = new Map([
                 [
                     'German',
                     {
                         id: cardPage.pageid,
-                        name: 'Burggraben',
-                        description: [`'''+2 Karten'''`],
+                        name: 'Platin',
+                        description: [`{{Cost|5|xl|}}`],
+                    },
+                ],
+                [
+                    'Polish',
+                    {
+                        id: cardPage.pageid,
+                        name: '{{nowrap|Platyna}}',
+                        description: [`{{Cost|5}}`],
                     },
                 ],
             ]);
@@ -62,7 +72,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
                             `|-\n` +
                             `!German \n| Burggraben ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler... || HiG translation error...\n` +
@@ -96,7 +106,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
                             `!German \n| || || || \n` +
@@ -129,7 +139,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
                             `!German \n| ||  || || '''+2 Karten''' <br> Wenn ein Mitspieler...\n` +
@@ -155,31 +165,31 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with multiple <br> in text1 and without text2 should return card translation with correct description', () => {
+        it('with <br>, <br/>, <hr> or {{divline}} in text1 and without text2 should return card translation with correct description', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
                 revisions: [
                     {
                         '*':
                             `=== Other language versions ===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
-                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere...<br>die... \n` +
+                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br/>{{Cost|1}}<hr>Ignoriere...{{divline}}die... \n` +
                             `|}`,
                     },
                 ],
             };
             const cardDto: CardDto = {
                 ...NullCardDto,
-                description: [`'''+1 Card'''<br>'''+4 Actions'''<br>Ignore...`],
+                description: [`'''+1 Card'''<br>'''+4 Actions'''<br>{{Cost|1}}<br>Ignore...`],
             };
             const expected = new Map([
                 [
                     'German',
                     jasmine.objectContaining<CardTranslation>({
                         description: [
-                            `'''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere...<br>die...`,
+                            `'''+1 Karte'''<br>'''+4 Aktionen'''<br>{{Cost|1}}<br>Ignoriere...<br>die...`,
                         ],
                     }),
                 ],
@@ -197,7 +207,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `=== Other language versions ===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
                             `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<br>Ignoriere... <br>die... \n` +
@@ -226,6 +236,39 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with <br/> in translation should return card translation with correct description', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*':
+                            `=== Other language versions ===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German\n| ||  || || '''+1 Karte'''<br/>Ignoriere... \n` +
+                            `|}`,
+                    },
+                ],
+            };
+            const cardDto: CardDto = {
+                ...NullCardDto,
+                description: [`'''+1 Card'''`, `Ignore...`],
+            };
+            const expected = new Map([
+                [
+                    'German',
+                    jasmine.objectContaining<CardTranslation>({
+                        description: [`'''+1 Karte'''`, `Ignoriere...`],
+                    }),
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cardDto);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with <hr> in translation should return card translation with correct description', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
@@ -233,26 +276,31 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `=== Other language versions ===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
-                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''<hr>Ignoriere... <br>die... \n` +
+                            `!German\n| ||  || || '''+1 Karte'''<hr>Ignoriere... \n` +
+                            `|-\n` +
+                            `!French\n| ||  || || {{Cost|6|l}}<hr style="...">Lorsque vous... \n` +
                             `|}`,
                     },
                 ],
             };
             const cardDto: CardDto = {
                 ...NullCardDto,
-                description: [`'''+1 Card'''<br>'''+4 Actions'''`, `Ignore...`],
+                description: [`'''+1 Card'''`, `Ignore...`],
             };
             const expected = new Map([
                 [
                     'German',
                     jasmine.objectContaining<CardTranslation>({
-                        description: [
-                            `'''+1 Karte'''<br>'''+4 Aktionen'''`,
-                            `Ignoriere... <br>die...`,
-                        ],
+                        description: [`'''+1 Karte'''`, `Ignoriere...`],
+                    }),
+                ],
+                [
+                    'French',
+                    jasmine.objectContaining<CardTranslation>({
+                        description: [`{{Cost|6|l}}`, `Lorsque vous...`],
                     }),
                 ],
             ]);
@@ -269,26 +317,23 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `=== Other language versions ===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
-                            `!German\n| ||  || || '''+1 Karte'''<br>'''+4 Aktionen'''\nIgnoriere... <br>die... \n` +
+                            `!German\n| ||  || || '''+1 Karte'''\nIgnoriere... \n` +
                             `|}`,
                     },
                 ],
             };
             const cardDto: CardDto = {
                 ...NullCardDto,
-                description: [`'''+1 Card'''<br>'''+4 Actions'''`, `Ignore...`],
+                description: [`'''+1 Card'''`, `Ignore...`],
             };
             const expected = new Map([
                 [
                     'German',
                     jasmine.objectContaining<CardTranslation>({
-                        description: [
-                            `'''+1 Karte'''<br>'''+4 Aktionen'''`,
-                            `Ignoriere... <br>die...`,
-                        ],
+                        description: [`'''+1 Karte'''`, `Ignoriere...`],
                     }),
                 ],
             ]);
@@ -298,29 +343,69 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with multiple translations should return translations for each language', () => {
+        it('with {{divline}} in translation should return card translation with correct description', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
                 revisions: [
                     {
                         '*':
-                            `===Other language versions===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `=== Other language versions ===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
-                            `!Czech \n| || || || \n` +
-                            `|-\n` +
-                            `!German \n| || || || \n` +
+                            `!German\n| ||  || || Nimm dir 3 Kupfer...{{divline}}Wenn ein Mitspieler... \n` +
                             `|}`,
                     },
                 ],
             };
+            const cardDto: CardDto = {
+                ...NullCardDto,
+                description: [`Gain 3 Coppers...`, `When another player...`],
+            };
             const expected = new Map([
-                ['Czech', jasmine.anything()],
-                ['German', jasmine.anything()],
+                [
+                    'German',
+                    jasmine.objectContaining<CardTranslation>({
+                        description: [`Nimm dir 3 Kupfer...`, `Wenn ein Mitspieler...`],
+                    }),
+                ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage, NullCardDto);
+            const actual = cardTranslationBuilder.build(cardPage, cardDto);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with styles in translation should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*':
+                            `=== Other language versions ===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text\n` +
+                            `|-\n` +
+                            `!German\n| style="..."| Wache ||  || || style="..."| +{{Cost|2}}... \n` +
+                            `|}`,
+                    },
+                ],
+            };
+            const cardDto: CardDto = {
+                ...NullCardDto,
+                description: [`+{{Cost|2}}...`],
+            };
+            const expected = new Map([
+                [
+                    'German',
+                    jasmine.objectContaining<CardTranslation>({
+                        name: 'Wache',
+                        description: [`+{{Cost|2}}...`],
+                    }),
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cardDto);
 
             expect(actual).toEqual(expected);
         });
@@ -332,7 +417,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class=\\"wikitable\\" style=\\"text-align:center;\\"\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
                             `!German \n| || || || \n` +
@@ -348,32 +433,37 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with card language table contains rowspan information should return correct translations', () => {
+        it('with rowspan for language should return correct translations', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
                 revisions: [
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n! Language !! Name !! Print !! Digital !! Text !! Notes\n|-\n` +
-                            `!Chinese \n| 橋樑 (pron. ''qiáoliáng'') || || || || \n|-\n` +
-                            `!rowspan=3|German\n| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten (auch die Karten, die die<br>Spieler auf der Hand halten) kosten<br>in diesem Zug {{Cost|1}} weniger, niemals<br>jedoch weniger als {{Cost|0}}. ||\n|-\n` +
-                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten<br>(überall) {{Cost|1}} weniger, aber nicht<br>weniger als {{Cost|0}}. ||\n|-\n` +
-                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten<br>(überall) {{Cost|1}} weniger. || \n|-\n` +
-                            `!Russian \n| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}<br>В этом ходу все карты (везде) стоят на {{Cost|1}} дешевле, но не меньше {{Cost|0}}. ||\n|-\n` +
-                            `!Spanish \n| Puente || || || || \n|}`,
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                            `|-\n` +
+                            `!rowspan=3|German\n| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten... ||\n` +
+                            `|- \n` +
+                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten... ||\n` +
+                            `|- \n` +
+                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten... || \n` +
+                            `|- \n` +
+                            `! rowspan="2" |Russian \n| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}... ||\n` +
+                            `|-\n` +
+                            `| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}В этом... ||\n` +
+                            `|}`,
                     },
                 ],
             };
             const expected: Map<string, CardTranslation> = new Map([
-                ['Chinese', { id: cardPage.pageid, name: '橋樑', description: [] }],
                 [
                     'German',
                     {
                         id: cardPage.pageid,
                         name: 'Brücke',
                         description: [
-                            `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten<br>(überall) {{Cost|1}} weniger.`,
+                            `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten...`,
                         ],
                     },
                 ],
@@ -382,12 +472,9 @@ describe('CardTranslationBuilder', () => {
                     {
                         id: cardPage.pageid,
                         name: 'Мост',
-                        description: [
-                            `'''+1 Покупка'''<br>+{{Cost|1}}<br>В этом ходу все карты (везде) стоят на {{Cost|1}} дешевле, но не меньше {{Cost|0}}.`,
-                        ],
+                        description: [`'''+1 Покупка'''<br>+{{Cost|1}}В этом...`],
                     },
                 ],
-                ['Spanish', { id: cardPage.pageid, name: 'Puente', description: [] }],
             ]);
 
             const actual = cardTranslationBuilder.build(cardPage, NullCardDto);
@@ -402,8 +489,11 @@ describe('CardTranslationBuilder', () => {
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n! Language !! Name !! Print !! Digital !! style="width:22%"| Text \n|-\n` +
-                            `!German \n| Große Halle <!--Grosse Halle--> || || || \n|}`,
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Digital !! style="width:22%"| Text \n` +
+                            `|-\n` +
+                            `!German \n| Große Halle <!--Grosse Halle--> || || || \n` +
+                            `|}`,
                     },
                 ],
             };
