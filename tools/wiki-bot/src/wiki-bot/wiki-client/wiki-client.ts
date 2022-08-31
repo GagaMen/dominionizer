@@ -55,7 +55,7 @@ export class WikiClient {
             ...this.defaultPropParamsForExpansionPages,
         };
 
-        return await this.fetchPages(params);
+        return await this.fetchPages(params, 'expansion');
     }
 
     async fetchAllCardPages(): Promise<CardPage[]> {
@@ -67,7 +67,7 @@ export class WikiClient {
             ...this.defaultPropParamsForCardPages,
         };
 
-        return await this.fetchPages(params);
+        return await this.fetchPages(params, 'card');
     }
 
     async fetchAllCardTypePages(): Promise<CardTypePage[]> {
@@ -79,7 +79,7 @@ export class WikiClient {
             ...this.defaultPropParamsForCardTypePages,
         };
 
-        return await this.fetchPages(params);
+        return await this.fetchPages(params, 'card type');
     }
 
     async fetchAllCardArtPages(): Promise<ImagePage[]> {
@@ -91,7 +91,7 @@ export class WikiClient {
             ...this.defaultPropParamsForImagePages,
         };
 
-        return await this.fetchPages(params);
+        return await this.fetchPages(params, 'card art');
     }
 
     async fetchAllCardSymbolPages(): Promise<ImagePage[]> {
@@ -103,7 +103,7 @@ export class WikiClient {
             ...this.defaultPropParamsForImagePages,
         };
 
-        return await this.fetchPages(params);
+        return await this.fetchPages(params, 'card symbol');
     }
 
     async fetchRecentChanges(since: string): Promise<Page[]> {
@@ -161,9 +161,16 @@ export class WikiClient {
         return pages;
     }
 
-    private async fetchPages<TPage>(params: QueryParams): Promise<TPage[]> {
+    private async fetchPages<TPage>(
+        params: QueryParams,
+        logWithPageType?: string,
+    ): Promise<TPage[]> {
         let continueQuerying = true;
         let pages: TPage[] = [];
+
+        if (logWithPageType !== undefined) {
+            console.log(`Fetching ${logWithPageType} pages...`);
+        }
 
         while (continueQuerying) {
             const response = await this.axios.get<QueryResult<TPage> | []>('', {

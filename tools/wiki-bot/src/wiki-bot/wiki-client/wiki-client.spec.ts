@@ -56,6 +56,8 @@ describe('WikiClient', () => {
         axiosSpy = jasmine.createSpyObj<AxiosInstance>('AxiosInstance', ['get']);
         axiosSpy.get.and.resolveTo({ data: [] });
 
+        spyOn(console, 'log').and.stub();
+
         wikiClient = new WikiClient(axiosSpy);
     });
 
