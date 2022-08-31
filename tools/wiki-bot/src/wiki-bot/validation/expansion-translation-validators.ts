@@ -23,7 +23,7 @@ export class ExpansionTranslationValidator
         return this.joiValidator.validate(
             expansionTranslation,
             this.schema,
-            `Expansion translation (Name: "${expansionPage.title}", Language: "${language}"):\n`,
+            `Expansion translation (Name: "${expansionPage.title}", Language: "${language}"):`,
         );
     }
 }

@@ -23,7 +23,7 @@ export class CardTypeTranslationValidator
         return this.joiValidator.validate(
             cardTypeTranslation,
             this.schema,
-            `Card type translation (Name: "${cardTypePage.title}", Language: "${language}"):\n`,
+            `Card type translation (Name: "${cardTypePage.title}", Language: "${language}"):`,
         );
     }
 }

@@ -20,7 +20,7 @@ export class ExpansionValidator implements Validator<[Expansion, ExpansionPage]>
         return this.joiValidator.validate(
             expansion,
             this.schema,
-            `Expansion (ID: ${expansion.id}, Name: "${expansionPage.title}"):\n`,
+            `Expansion (ID: ${expansion.id}, Name: "${expansionPage.title}"):`,
         );
     }
 }
@@ -34,7 +34,7 @@ export class ExpansionsValidator implements Validator<[Expansion[], ExpansionPag
         return this.amountValidator.validate(
             expansions,
             expansionPages,
-            'For following expansion pages no expansion was generated:\n',
+            'For following expansion pages no expansion was generated:',
         );
     }
 }

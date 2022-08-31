@@ -19,7 +19,7 @@ export class CardTypeValidator implements Validator<[CardType, CardTypePage]> {
         return this.joiValidator.validate(
             cardType,
             this.schema,
-            `Card type (Name: "${cardTypePage.title}"):\n`,
+            `Card type (Name: "${cardTypePage.title}"):`,
         );
     }
 }
@@ -33,7 +33,7 @@ export class CardTypesValidator implements Validator<[CardType[], CardTypePage[]
         return this.amountValidator.validate(
             cardTypes,
             cardTypePages,
-            'For following card type pages no card type was generated:\n',
+            'For following card type pages no card type was generated:',
         );
     }
 }

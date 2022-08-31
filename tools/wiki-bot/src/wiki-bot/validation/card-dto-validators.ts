@@ -31,7 +31,7 @@ export class CardDtoValidator implements Validator<[CardDto, CardPage]> {
         return this.joiValidator.validate(
             card,
             this.schema,
-            `Card Dto (ID: ${card.id}, Name: "${cardPage.title}"):\n`,
+            `Card Dto (ID: ${card.id}, Name: "${cardPage.title}"):`,
         );
     }
 }
@@ -49,7 +49,7 @@ export class CardDtosValidator implements Validator<[CardDto[], CardType[], Card
         return this.amountValidator.validate(
             cardsWithoutCardTypes,
             cardPages,
-            'For following card pages no card was generated:\n',
+            'For following card pages no card was generated:',
         );
     }
 }

@@ -23,7 +23,7 @@ export class CardTranslationValidator implements Validator<[CardTranslation, str
         return this.joiValidator.validate(
             cardTranslation,
             this.schema,
-            `Card translation (Name: "${cardPage.title}", Language: "${language}"):\n`,
+            `Card translation (Name: "${cardPage.title}", Language: "${language}"):`,
         );
     }
 }

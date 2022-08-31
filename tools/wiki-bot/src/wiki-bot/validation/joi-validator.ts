@@ -19,7 +19,7 @@ export class JoiValidator<T> {
             (error: Joi.ValidationErrorItem) => error.message,
         );
 
-        const failureMessage = failureMessageHeadline + errorMessages.join('\n');
+        const failureMessage = `${failureMessageHeadline}\n${errorMessages.join('\n')}`;
 
         return ValidationResult.Failure(failureMessage);
     }

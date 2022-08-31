@@ -15,7 +15,7 @@ export class AmountValidator<TEntity extends { id: number }, TPage extends Page>
             return ValidationResult.Success;
         }
 
-        const failureMessage = failureMessageHeadline + pagesWithoutEntity.join('\n');
+        const failureMessage = `${failureMessageHeadline}\n${pagesWithoutEntity.join('\n')}`;
 
         return ValidationResult.Failure(failureMessage);
     }
