@@ -109,7 +109,7 @@ describe('CardTranslationBuilder', () => {
                             `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! Text\n` +
                             `|-\n` +
-                            `!German \n| || || || \n` +
+                            `!German \n| || || || style="..."| \n` +
                             `|}`,
                     },
                 ],
@@ -426,7 +426,9 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected = new Map([['German', jasmine.anything()]]);
+            const expected = new Map([
+                ['German', jasmine.objectContaining<CardTranslation>({ description: [] })],
+            ]);
 
             const actual = cardTranslationBuilder.build(cardPage, NullCardDto);
 

@@ -11,7 +11,7 @@ export class CardTranslationBuilder {
             'Other language versions',
             3,
         );
-        let table = /\n\s*{\|(.*?)\n\s*\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
+        let table = /\n\s*{\|(.*?\n)\s*\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
         // remove table header
         table = table.substr(table.indexOf('|-'));
         // remove html comment
@@ -26,7 +26,7 @@ export class CardTranslationBuilder {
 
             // use last row of language, because this is the most up to date one
             const translationVersion = languageVersion[0]
-                .split(/\|-\s*\n/)
+                .split(/\s*\|-\s*\n/)
                 .filter((entry) => entry !== '')
                 .pop();
             const columns = translationVersion?.split('||') ?? [];
@@ -53,12 +53,12 @@ export class CardTranslationBuilder {
     }
 
     private extractCardDescription(description: WikiText | undefined, cardDto: CardDto): string[] {
+        // removes HTML attributes on cells
+        description = description?.replace(/^.*(?<!\{\{.*?)\|/s, '');
+
         if (!description || !normalize(description)) {
             return [];
         }
-
-        // removes HTML attributes on cells
-        description = description.replace(/^.*(?<!\{\{.*?)\|/s, '');
 
         description = description
             .replace(/\n$/, '')
