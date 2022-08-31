@@ -22,3 +22,23 @@ export class CardTypeValidator implements Validator<[CardType, CardTypePage]> {
         );
     }
 }
+
+export class CardTypesValidator implements Validator<[CardType[], CardTypePage[]]> {
+    readonly name: string = 'card types';
+
+    validate(cardTypes: CardType[], cardTypePages: CardTypePage[]): ValidationResult {
+        const cardTypePagesWithoutCardType = cardTypePages
+            .filter(
+                (cardTypePage) =>
+                    !cardTypes.some((cardType) => cardType.id === cardTypePage.pageid),
+            )
+            .map((cardTypePage) => cardTypePage.title);
+
+        return cardTypePagesWithoutCardType.length === 0
+            ? ValidationResult.Success
+            : ValidationResult.Failure(
+                  'For following card type pages no card type was generated:\n' +
+                      cardTypePagesWithoutCardType.join('\n'),
+              );
+    }
+}

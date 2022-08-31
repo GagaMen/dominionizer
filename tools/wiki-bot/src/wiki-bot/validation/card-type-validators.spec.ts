@@ -1,6 +1,6 @@
 import { CardType } from '../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
-import { CardTypeValidator } from './card-type-validators';
+import { CardTypesValidator, CardTypeValidator } from './card-type-validators';
 import { ValidationResult } from './validation-result';
 
 describe('card type validators', () => {
@@ -31,6 +31,41 @@ describe('card type validators', () => {
                 );
 
                 const actual = validator?.validate(cardType, cardTypePage);
+
+                expect(actual).toEqual(expected);
+            });
+        });
+    });
+
+    describe('CardTypesValidator', () => {
+        const validator = new CardTypesValidator();
+
+        describe('validate', () => {
+            it('with valid card type amount should return Success', () => {
+                const cardTypes: CardType[] = [{ id: 1 } as CardType, { id: 2 } as CardType];
+                const cardTypePages: CardTypePage[] = [
+                    { pageid: 1 } as CardTypePage,
+                    { pageid: 2 } as CardTypePage,
+                ];
+                const expected = ValidationResult.Success;
+
+                const actual = validator?.validate(cardTypes, cardTypePages);
+
+                expect(actual).toEqual(expected);
+            });
+
+            it('with no card type for card type page should return Failure', () => {
+                const cardTypes: CardType[] = [{ id: 1 } as CardType];
+                const cardTypePages: CardTypePage[] = [
+                    { pageid: 1 } as CardTypePage,
+                    { pageid: 2, title: 'Card Type 2' } as CardTypePage,
+                    { pageid: 3, title: 'Card Type 3' } as CardTypePage,
+                ];
+                const expected = ValidationResult.Failure(
+                    'For following card type pages no card type was generated:\nCard Type 2\nCard Type 3',
+                );
+
+                const actual = validator?.validate(cardTypes, cardTypePages);
 
                 expect(actual).toEqual(expected);
             });
