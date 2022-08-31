@@ -6,6 +6,7 @@ import { ValidationResult } from './validation-result';
 describe('expansion validators', () => {
     describe('ExpansionValidator', () => {
         const validator = new ExpansionValidator();
+        const expansionPage: ExpansionPage = { pageid: 1, title: 'Dominion' } as ExpansionPage;
 
         describe('validate', () => {
             it('with valid expansion should return Success', () => {
@@ -15,7 +16,7 @@ describe('expansion validators', () => {
                     icon: 'Dominion_old_icon.png',
                 };
 
-                const actual = validator?.validate(expansion);
+                const actual = validator?.validate(expansion, expansionPage);
 
                 expect(actual).toEqual(ValidationResult.Success);
             });
@@ -23,12 +24,12 @@ describe('expansion validators', () => {
             it('with invalid expansion should return Failure', () => {
                 const expansion: Expansion = { id: 1, name: '' } as Expansion;
                 const expected = ValidationResult.Failure(
-                    'Expansion (ID: 1, Name: ""):\n' +
+                    'Expansion (ID: 1, Name: "Dominion"):\n' +
                         '"name" is not allowed to be empty\n' +
                         '"icon" is required',
                 );
 
-                const actual = validator?.validate(expansion);
+                const actual = validator?.validate(expansion, expansionPage);
 
                 expect(actual).toEqual(expected);
             });
@@ -64,7 +65,7 @@ describe('expansion validators', () => {
                     { pageid: 3, title: 'Exp 3' } as ExpansionPage,
                 ];
                 const expected = ValidationResult.Failure(
-                    'For following expansion pages no expansion was generated: Exp 2, Exp 3',
+                    'For following expansion pages no expansion was generated:\nExp 2\nExp 3',
                 );
 
                 const actual = validator?.validate(expansions, expansionPages);

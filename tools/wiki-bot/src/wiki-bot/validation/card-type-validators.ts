@@ -18,7 +18,7 @@ export class CardTypeValidator implements Validator<[CardType, CardTypePage]> {
         return this.joiValidator.validate(
             cardType,
             this.schema,
-            `Card type (ID: ${cardType.id}, Name: "${cardTypePage.title}"):\n`,
+            `Card type (Name: "${cardTypePage.title}"):\n`,
         );
     }
 }

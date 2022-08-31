@@ -6,7 +6,7 @@ import * as Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 
 export class CardTypeTranslationValidator
-    implements Validator<[CardTypeTranslation, CardTypePage]> {
+    implements Validator<[CardTypeTranslation, string, CardTypePage]> {
     readonly name: string = 'card type translation';
 
     private joiValidator: JoiValidator<CardTypeTranslation> = new JoiValidator();
@@ -17,12 +17,13 @@ export class CardTypeTranslationValidator
 
     validate(
         cardTypeTranslation: CardTypeTranslation,
+        language: string,
         cardTypePage: CardTypePage,
     ): ValidationResult {
         return this.joiValidator.validate(
             cardTypeTranslation,
             this.schema,
-            `Card type translation (ID: ${cardTypeTranslation.id}, Name: "${cardTypePage.title}"):\n`,
+            `Card type translation (Name: "${cardTypePage.title}", Language: "${language}"):\n`,
         );
     }
 }

@@ -19,7 +19,7 @@ describe('card type translation validators', () => {
                     name: 'Aktion',
                 };
 
-                const actual = validator?.validate(cardTypeTranslation, cardTypePage);
+                const actual = validator?.validate(cardTypeTranslation, 'German', cardTypePage);
 
                 expect(actual).toEqual(ValidationResult.Success);
             });
@@ -27,11 +27,11 @@ describe('card type translation validators', () => {
             it('with invalid card type translation should return Failure', () => {
                 const cardTypeTranslation: CardTypeTranslation = { id: 1, name: '' };
                 const expected = ValidationResult.Failure(
-                    'Card type translation (ID: 1, Name: "Action"):\n' +
+                    'Card type translation (Name: "Action", Language: "German"):\n' +
                         '"name" is not allowed to be empty',
                 );
 
-                const actual = validator?.validate(cardTypeTranslation, cardTypePage);
+                const actual = validator?.validate(cardTypeTranslation, 'German', cardTypePage);
 
                 expect(actual).toEqual(expected);
             });

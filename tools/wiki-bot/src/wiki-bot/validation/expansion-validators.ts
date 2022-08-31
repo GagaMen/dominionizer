@@ -5,7 +5,7 @@ import { ValidationResult } from './validation-result';
 import * as Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 
-export class ExpansionValidator implements Validator<[Expansion]> {
+export class ExpansionValidator implements Validator<[Expansion, ExpansionPage]> {
     readonly name: string = 'expansion';
 
     private joiValidator: JoiValidator<Expansion> = new JoiValidator();
@@ -15,11 +15,11 @@ export class ExpansionValidator implements Validator<[Expansion]> {
         icon: Joi.string().required(),
     });
 
-    validate(expansion: Expansion): ValidationResult {
+    validate(expansion: Expansion, expansionPage: ExpansionPage): ValidationResult {
         return this.joiValidator.validate(
             expansion,
             this.schema,
-            `Expansion (ID: ${expansion.id}, Name: "${expansion.name}"):\n`,
+            `Expansion (ID: ${expansion.id}, Name: "${expansionPage.title}"):\n`,
         );
     }
 }
@@ -38,8 +38,8 @@ export class ExpansionsValidator implements Validator<[Expansion[], ExpansionPag
         return expansionPagesWithoutExpansion.length === 0
             ? ValidationResult.Success
             : ValidationResult.Failure(
-                  'For following expansion pages no expansion was generated: ' +
-                      expansionPagesWithoutExpansion.join(', '),
+                  'For following expansion pages no expansion was generated:\n' +
+                      expansionPagesWithoutExpansion.join('\n'),
               );
     }
 }

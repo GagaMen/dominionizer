@@ -6,7 +6,7 @@ import { ExpansionPage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 
 export class ExpansionTranslationValidator
-    implements Validator<[ExpansionTranslation, ExpansionPage]> {
+    implements Validator<[ExpansionTranslation, string, ExpansionPage]> {
     readonly name: string = 'expansion translation';
 
     private joiValidator: JoiValidator<ExpansionTranslation> = new JoiValidator();
@@ -17,12 +17,13 @@ export class ExpansionTranslationValidator
 
     validate(
         expansionTranslation: ExpansionTranslation,
+        language: string,
         expansionPage: ExpansionPage,
     ): ValidationResult {
         return this.joiValidator.validate(
             expansionTranslation,
             this.schema,
-            `Expansion translation (ID: ${expansionTranslation.id}, Name: "${expansionPage.title}"):\n`,
+            `Expansion translation (Name: "${expansionPage.title}", Language: "${language}"):\n`,
         );
     }
 }

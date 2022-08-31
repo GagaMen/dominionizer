@@ -27,7 +27,7 @@ describe('card type validators', () => {
             it('with invalid card type should return Failure', () => {
                 const cardType: CardType = { id: 1, name: '' };
                 const expected = ValidationResult.Failure(
-                    'Card type (ID: 1, Name: "Action"):\n' + '"name" is not allowed to be empty',
+                    'Card type (Name: "Action"):\n' + '"name" is not allowed to be empty',
                 );
 
                 const actual = validator?.validate(cardType, cardTypePage);

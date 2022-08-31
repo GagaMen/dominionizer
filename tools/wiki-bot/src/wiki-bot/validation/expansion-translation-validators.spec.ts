@@ -19,7 +19,7 @@ describe('expansion translation validators', () => {
                     name: 'Dominion',
                 };
 
-                const actual = validator?.validate(expansionTranslation, expansionPage);
+                const actual = validator?.validate(expansionTranslation, 'German', expansionPage);
 
                 expect(actual).toEqual(ValidationResult.Success);
             });
@@ -27,11 +27,11 @@ describe('expansion translation validators', () => {
             it('with invalid expansion translation should return Failure', () => {
                 const expansionTranslation: ExpansionTranslation = { id: 1, name: '' };
                 const expected = ValidationResult.Failure(
-                    'Expansion translation (ID: 1, Name: "Dominion"):\n' +
+                    'Expansion translation (Name: "Dominion", Language: "German"):\n' +
                         '"name" is not allowed to be empty',
                 );
 
-                const actual = validator?.validate(expansionTranslation, expansionPage);
+                const actual = validator?.validate(expansionTranslation, 'German', expansionPage);
 
                 expect(actual).toEqual(expected);
             });
