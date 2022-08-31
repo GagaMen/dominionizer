@@ -31,59 +31,33 @@ export class DominionizerWikiBot {
 
     async generateAll(): Promise<void> {
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
-
-        console.log('Generating expansions...');
-        const expansions = await this.generateExpansions(expansionPages);
-        console.log(`${expansions.length} expansions generated.\n`);
-
-        console.log('Generating expansion translations...');
-        const expansionTranslations = await this.generateExpansionTranslations(expansionPages);
-        console.log(
-            `Expansion translations generated for ${expansionTranslations.size} languages.\n`,
-        );
+        await this.generateExpansions(expansionPages);
+        await this.generateExpansionTranslations(expansionPages);
 
         const cardTypePages = await this.wikiClient.fetchAllCardTypePages();
-
-        console.log('Generating card types...');
         const cardTypes = await this.generateCardTypes(cardTypePages);
-        console.log(`${cardTypes.length} card types generated.\n`);
-
-        console.log('Generating card types translations...');
-        const cardTypeTranslations = await this.generateCardTypeTranslations(cardTypePages);
-        console.log(
-            `Card type translations generated for ${cardTypeTranslations.size} languages.\n`,
-        );
+        await this.generateCardTypeTranslations(cardTypePages);
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages, cardTypePages);
         const cardPages = await this.wikiClient.fetchAllCardPages();
-
-        console.log('Generating cards...');
         const cards = await this.generateCards(
             cardPages,
             cardTypePages,
             cardExpansionsMap,
             cardTypes,
         );
-        console.log(`${cards.length} cards generated.\n`);
-
-        console.log('Generating card translations...');
-        const cardTranslations = await this.generateCardTranslations(cardPages, cards);
-        console.log(`Card translations generated for ${cardTranslations.size} languages.\n`);
+        await this.generateCardTranslations(cardPages, cards);
 
         const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
-
-        console.log('Generating card symbols...');
-        const cardSymbols = await this.generateImages(cardSymbolPages, 'card_symbols');
-        console.log(`${cardSymbols.length} card symbols generated.\n`);
+        await this.generateImages(cardSymbolPages, 'card_symbols');
 
         const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
-
-        console.log('Generating card arts...');
-        const cardArts = await this.generateImages(cardArtPages, 'card_arts');
-        console.log(`${cardArts.length} card arts generated.\n`);
+        await this.generateImages(cardArtPages, 'card_arts');
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<Expansion[]> {
+        console.log('Generating expansions...');
+
         let expansions: Expansion[] = [];
 
         for (const expansionPage of expansionPages) {
@@ -100,6 +74,8 @@ export class DominionizerWikiBot {
     private async generateExpansionTranslations(
         expansionPages: ExpansionPage[],
     ): Promise<Map<string, ExpansionTranslation[]>> {
+        console.log('Generating expansion translations...');
+
         const translations: Map<string, ExpansionTranslation[]> = new Map();
 
         for (const expansionPage of expansionPages) {
@@ -125,6 +101,8 @@ export class DominionizerWikiBot {
     }
 
     private async generateCardTypes(cardTypePages: CardTypePage[]): Promise<CardType[]> {
+        console.log('Generating card types...');
+
         let cardTypes: CardType[] = [];
 
         for (const cardTypePage of cardTypePages) {
@@ -141,6 +119,8 @@ export class DominionizerWikiBot {
     private async generateCardTypeTranslations(
         cardTypePages: CardTypePage[],
     ): Promise<Map<string, CardTypeTranslation[]>> {
+        console.log('Generating card types translations...');
+
         const translations: Map<string, CardTypeTranslation[]> = new Map();
 
         for (const cardTypePage of cardTypePages) {
@@ -216,6 +196,8 @@ export class DominionizerWikiBot {
         cardExpansionsMap: Map<string, number[]>,
         cardTypes: CardType[],
     ): Promise<CardDto[]> {
+        console.log('Generating cards...');
+
         let cards: CardDto[] = [];
 
         for (const cardPage of cardPages) {
@@ -252,6 +234,8 @@ export class DominionizerWikiBot {
         cardPages: CardPage[],
         cards: CardDto[],
     ): Promise<Map<string, CardTranslation[]>> {
+        console.log('Generating card translations...');
+
         const translations: Map<string, CardTranslation[]> = new Map();
 
         for (const cardPage of cardPages) {
@@ -286,6 +270,8 @@ export class DominionizerWikiBot {
         imagePages: ImagePage[],
         subFolder: string,
     ): Promise<EncodedImage[]> {
+        console.log(`Generating ${subFolder.replace('_', ' ')}...`);
+
         const images: EncodedImage[] = [];
 
         await mkdir(`${this.targetPath}/${subFolder}`, { recursive: true });
