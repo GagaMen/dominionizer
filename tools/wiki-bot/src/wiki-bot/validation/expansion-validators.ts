@@ -4,6 +4,7 @@ import { Validator } from './validator';
 import { ValidationResult } from './validation-result';
 import * as Joi from 'joi';
 import { JoiValidator } from './joi-validator';
+import { AmountValidator } from './amount-validator';
 
 export class ExpansionValidator implements Validator<[Expansion, ExpansionPage]> {
     readonly name: string = 'expansion';
@@ -27,19 +28,13 @@ export class ExpansionValidator implements Validator<[Expansion, ExpansionPage]>
 export class ExpansionsValidator implements Validator<[Expansion[], ExpansionPage[]]> {
     readonly name: string = 'expansions';
 
-    validate(expansions: Expansion[], expansionPages: ExpansionPage[]): ValidationResult {
-        const expansionPagesWithoutExpansion = expansionPages
-            .filter(
-                (expansionPage) =>
-                    !expansions.some((expansion) => expansion.id === expansionPage.pageid),
-            )
-            .map((expansionPage) => expansionPage.title);
+    private amountValidator: AmountValidator<Expansion, ExpansionPage> = new AmountValidator();
 
-        return expansionPagesWithoutExpansion.length === 0
-            ? ValidationResult.Success
-            : ValidationResult.Failure(
-                  'For following expansion pages no expansion was generated:\n' +
-                      expansionPagesWithoutExpansion.join('\n'),
-              );
+    validate(expansions: Expansion[], expansionPages: ExpansionPage[]): ValidationResult {
+        return this.amountValidator.validate(
+            expansions,
+            expansionPages,
+            'For following expansion pages no expansion was generated:\n',
+        );
     }
 }

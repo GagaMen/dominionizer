@@ -1,3 +1,4 @@
+import { AmountValidator } from './amount-validator';
 import { CardType } from './../../../../../src/app/models/card-type';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { Validator } from './validator';
@@ -38,23 +39,17 @@ export class CardDtoValidator implements Validator<[CardDto, CardPage]> {
 export class CardDtosValidator implements Validator<[CardDto[], CardType[], CardPage[]]> {
     readonly name: string = 'card dtos';
 
+    private amountValidator: AmountValidator<CardDto, CardPage> = new AmountValidator();
+
     validate(cards: CardDto[], cardTypes: CardType[], cardPages: CardPage[]): ValidationResult {
         const cardsWithoutCardTypes = cards.filter(
             (card: CardDto) => !cardTypes.some((cardType: CardType) => cardType.id === card.id),
         );
 
-        const cardPagesWithoutCard = cardPages
-            .filter(
-                (cardPage) =>
-                    !cardsWithoutCardTypes.some((card: CardDto) => card.id === cardPage.pageid),
-            )
-            .map((cardPage) => cardPage.title);
-
-        return cardPagesWithoutCard.length === 0
-            ? ValidationResult.Success
-            : ValidationResult.Failure(
-                  'For following card pages no card was generated:\n' +
-                      cardPagesWithoutCard.join('\n'),
-              );
+        return this.amountValidator.validate(
+            cardsWithoutCardTypes,
+            cardPages,
+            'For following card pages no card was generated:\n',
+        );
     }
 }
