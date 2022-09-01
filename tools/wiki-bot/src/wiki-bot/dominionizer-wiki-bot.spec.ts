@@ -325,10 +325,10 @@ describe('DominionizerWikiBot', () => {
                 .withArgs(cardPages[1], jasmine.anything(), jasmine.anything())
                 .and.returnValue(cards[0]);
             cardTranslationBuilderSpy.build
-                .withArgs(cardPages[0], cards[1])
+                .withArgs(cardPages[0])
                 .and.returnValue(secondCardTranslations);
             cardTranslationBuilderSpy.build
-                .withArgs(cardPages[1], cards[0])
+                .withArgs(cardPages[1])
                 .and.returnValue(firstCardTranslations);
 
             await dominionizerWikiBot.generateAll();
