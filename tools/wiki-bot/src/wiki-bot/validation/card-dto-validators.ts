@@ -1,6 +1,6 @@
 import { AmountValidator } from './amount-validator';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
-import { CardPage } from '../wiki-client/api-models';
+import { CardPage, CardTypePage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 import * as Joi from 'joi';
 import { ValidationResult } from './validation-result';
@@ -25,11 +25,11 @@ export class CardDtoValidator {
         debt: Joi.number().integer().min(0).optional(),
     });
 
-    validate(card: CardDto, cardPage: CardPage): ValidationResult {
+    validate(card: CardDto, page: CardPage | CardTypePage): ValidationResult {
         return this.joiValidator.validate(
             card,
             this.schema,
-            `Card Dto (ID: ${card.id}, Name: "${cardPage.title}"):`,
+            `Card Dto (ID: ${card.id}, Name: "${page.title}"):`,
         );
     }
 }

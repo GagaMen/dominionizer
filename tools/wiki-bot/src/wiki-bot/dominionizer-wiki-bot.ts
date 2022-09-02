@@ -269,6 +269,8 @@ export class DominionizerWikiBot {
                 continue;
             }
 
+            this.evaluateValidationResult(this.cardDtoValidator.validate(card, cardTypePage));
+
             cards = cards.concat(card);
         }
 
