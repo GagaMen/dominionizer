@@ -38,8 +38,8 @@ async function bootstrap(): Promise<void> {
     const cardDtoBuilder = new CardDtoBuilder();
     const cardTranslationBuilder = new CardTranslationBuilder();
     const imageBuilder = new ImageBuilder(wikiClient, imagePool);
-    const expansionValiditor = new ExpansionValidator();
-    const expansionsValiditor = new ExpansionsValidator();
+    const expansionValidator = new ExpansionValidator();
+    const expansionsValidator = new ExpansionsValidator();
     const expansionTranslationValidator = new ExpansionTranslationValidator();
     const cardTypeValidator = new CardTypeValidator();
     const cardTypesValidator = new CardTypesValidator();
@@ -60,8 +60,8 @@ async function bootstrap(): Promise<void> {
         cardDtoBuilder,
         cardTranslationBuilder,
         imageBuilder,
-        expansionValiditor,
-        expansionsValiditor,
+        expansionValidator,
+        expansionsValidator,
         expansionTranslationValidator,
         cardTypeValidator,
         cardTypesValidator,

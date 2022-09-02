@@ -36,8 +36,8 @@ describe('DominionizerWikiBot', () => {
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
     let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
     let imageBuilderSpy: jasmine.SpyObj<ImageBuilder>;
-    let expansionValiditorSpy: jasmine.SpyObj<ExpansionValidator>;
-    let expansionsValiditorSpy: jasmine.SpyObj<ExpansionsValidator>;
+    let expansionValidatorSpy: jasmine.SpyObj<ExpansionValidator>;
+    let expansionsValidatorSpy: jasmine.SpyObj<ExpansionsValidator>;
     let expansionTranslationValidatorSpy: jasmine.SpyObj<ExpansionTranslationValidator>;
     let cardTypeValidatorSpy: jasmine.SpyObj<CardTypeValidator>;
     let cardTypesValidatorSpy: jasmine.SpyObj<CardTypesValidator>;
@@ -100,14 +100,14 @@ describe('DominionizerWikiBot', () => {
 
         imageBuilderSpy = jasmine.createSpyObj<ImageBuilder>('ImageBuilder', ['build']);
 
-        expansionValiditorSpy = jasmine.createSpyObj<ExpansionValidator>('ExpansionValidator', [
+        expansionValidatorSpy = jasmine.createSpyObj<ExpansionValidator>('ExpansionValidator', [
             'validate',
         ]);
-        expansionValiditorSpy.validate.and.returnValue(ValidationResult.Success);
-        expansionsValiditorSpy = jasmine.createSpyObj<ExpansionsValidator>('ExpansionsValidator', [
+        expansionValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        expansionsValidatorSpy = jasmine.createSpyObj<ExpansionsValidator>('ExpansionsValidator', [
             'validate',
         ]);
-        expansionsValiditorSpy.validate.and.returnValue(ValidationResult.Success);
+        expansionsValidatorSpy.validate.and.returnValue(ValidationResult.Success);
         expansionTranslationValidatorSpy = jasmine.createSpyObj<ExpansionTranslationValidator>(
             'ExpansionTranslationValidator',
             ['validate'],
@@ -157,8 +157,8 @@ describe('DominionizerWikiBot', () => {
             cardDtoBuilderSpy,
             cardTranslationBuilderSpy,
             imageBuilderSpy,
-            expansionValiditorSpy,
-            expansionsValiditorSpy,
+            expansionValidatorSpy,
+            expansionsValidatorSpy,
             expansionTranslationValidatorSpy,
             cardTypeValidatorSpy,
             cardTypesValidatorSpy,
@@ -188,15 +188,15 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(expansions),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(expansionValiditorSpy.validate).toHaveBeenCalledWith(
+            expect(expansionValidatorSpy.validate).toHaveBeenCalledWith(
                 expansions[0],
                 expansionPages[1],
             );
-            expect(expansionValiditorSpy.validate).toHaveBeenCalledWith(
+            expect(expansionValidatorSpy.validate).toHaveBeenCalledWith(
                 expansions[1],
                 expansionPages[0],
             );
-            expect(expansionsValiditorSpy.validate).toHaveBeenCalledWith(
+            expect(expansionsValidatorSpy.validate).toHaveBeenCalledWith(
                 expansions,
                 expansionPages,
             );

@@ -38,8 +38,8 @@ export class DominionizerWikiBot {
         private cardDtoBuilder: CardDtoBuilder,
         private cardTranslationBuilder: CardTranslationBuilder,
         private imageBuilder: ImageBuilder,
-        private expansionValiditor: ExpansionValidator,
-        private expansionsValiditor: ExpansionsValidator,
+        private expansionValidator: ExpansionValidator,
+        private expansionsValidator: ExpansionsValidator,
         private expansionTranslationValidator: ExpansionTranslationValidator,
         private cardTypeValidator: CardTypeValidator,
         private cardTypesValidator: CardTypesValidator,
@@ -88,7 +88,7 @@ export class DominionizerWikiBot {
 
             generatedExpansions.forEach((expansion) => {
                 this.evaluateValidationResult(
-                    this.expansionValiditor.validate(expansion, expansionPage),
+                    this.expansionValidator.validate(expansion, expansionPage),
                 );
             });
 
@@ -98,7 +98,7 @@ export class DominionizerWikiBot {
         this.sortById(expansions);
 
         this.evaluateValidationResult(
-            this.expansionsValiditor.validate(expansions, expansionPages),
+            this.expansionsValidator.validate(expansions, expansionPages),
         );
 
         await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));

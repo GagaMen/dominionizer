@@ -9,10 +9,10 @@ export class ImagesValidator implements Validator<[EncodedImage[], ImagePage[]]>
 
     private amountValidator: AmountValidator<EncodedImage, ImagePage> = new AmountValidator();
 
-    validate(images: EncodedImage[], ImagePages: ImagePage[]): ValidationResult {
+    validate(images: EncodedImage[], imagePages: ImagePage[]): ValidationResult {
         return this.amountValidator.validate(
             images,
-            ImagePages,
+            imagePages,
             'For following image pages no image was generated:',
         );
     }
