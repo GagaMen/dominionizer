@@ -1,12 +1,10 @@
 import { ExpansionTranslation } from '../../../../../src/app/models/expansion';
-import { Validator } from './validator';
 import { ValidationResult } from './validation-result';
 import * as Joi from 'joi';
 import { ExpansionPage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 
-export class ExpansionTranslationValidator
-    implements Validator<[ExpansionTranslation, string, ExpansionPage]> {
+export class ExpansionTranslationValidator {
     readonly name: string = 'expansion translation';
 
     private joiValidator: JoiValidator<ExpansionTranslation> = new JoiValidator();

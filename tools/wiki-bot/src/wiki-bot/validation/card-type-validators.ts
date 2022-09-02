@@ -1,12 +1,11 @@
 import { CardType } from '../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
-import { Validator } from './validator';
 import { ValidationResult } from './validation-result';
 import * as Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 import { AmountValidator } from './amount-validator';
 
-export class CardTypeValidator implements Validator<[CardType, CardTypePage]> {
+export class CardTypeValidator {
     readonly name: string = 'card type';
 
     private joiValidator: JoiValidator<CardType> = new JoiValidator();
@@ -24,7 +23,7 @@ export class CardTypeValidator implements Validator<[CardType, CardTypePage]> {
     }
 }
 
-export class CardTypesValidator implements Validator<[CardType[], CardTypePage[]]> {
+export class CardTypesValidator {
     readonly name: string = 'card types';
 
     private amountValidator: AmountValidator<CardType, CardTypePage> = new AmountValidator();

@@ -1,12 +1,11 @@
 import { Expansion } from '../../../../../src/app/models/expansion';
 import { ExpansionPage } from '../wiki-client/api-models';
-import { Validator } from './validator';
 import { ValidationResult } from './validation-result';
 import * as Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 import { AmountValidator } from './amount-validator';
 
-export class ExpansionValidator implements Validator<[Expansion, ExpansionPage]> {
+export class ExpansionValidator {
     readonly name: string = 'expansion';
 
     private joiValidator: JoiValidator<Expansion> = new JoiValidator();
@@ -25,7 +24,7 @@ export class ExpansionValidator implements Validator<[Expansion, ExpansionPage]>
     }
 }
 
-export class ExpansionsValidator implements Validator<[Expansion[], ExpansionPage[]]> {
+export class ExpansionsValidator {
     readonly name: string = 'expansions';
 
     private amountValidator: AmountValidator<Expansion, ExpansionPage> = new AmountValidator();

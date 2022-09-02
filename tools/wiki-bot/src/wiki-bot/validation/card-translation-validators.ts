@@ -1,11 +1,10 @@
 import { CardPage } from './../wiki-client/api-models';
 import { CardTranslation } from './../../../../../src/app/models/card';
-import { Validator } from './validator';
 import { ValidationResult } from './validation-result';
 import * as Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 
-export class CardTranslationValidator implements Validator<[CardTranslation, string, CardPage]> {
+export class CardTranslationValidator {
     readonly name: string = 'card translation';
 
     private joiValidator: JoiValidator<CardTranslation> = new JoiValidator();
