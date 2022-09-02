@@ -32,11 +32,11 @@ async function bootstrap(): Promise<void> {
     const wikiClient = new WikiClient(axiosInstance);
     const expansionBuilder = new ExpansionBuilder();
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();
-    const cardTypeBuilder = new CardTypeBuilder();
-    const cardTypeTranslationBuilder = new CardTypeTranslationBuilder();
     const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
     const cardDtoBuilder = new CardDtoBuilder();
     const cardTranslationBuilder = new CardTranslationBuilder();
+    const cardTypeBuilder = new CardTypeBuilder();
+    const cardTypeTranslationBuilder = new CardTypeTranslationBuilder(cardTranslationBuilder);
     const imageBuilder = new ImageBuilder(wikiClient, imagePool);
     const expansionValidator = new ExpansionValidator();
     const expansionsValidator = new ExpansionsValidator();

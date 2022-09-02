@@ -1,57 +1,37 @@
 import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
+import { CardTranslationBuilder } from './card-translation-builder';
 
 export class CardTypeTranslationBuilder {
+    constructor(private cardTranslationBuilder: CardTranslationBuilder) {}
+
     build(cardTypePage: CardTypePage): Map<string, CardTypeTranslation> {
         const wikiText: WikiText = cardTypePage.revisions[0]['*'] ?? '';
         const inOtherLanguages: WikiText = extractSection(wikiText, 'In other languages', 3);
 
-        if (inOtherLanguages !== '') {
-            const languageCandidates: WikiText[] = inOtherLanguages.split(/\n\*\s/).slice(1);
-            return new Map<string, CardTypeTranslation>(
-                languageCandidates.map((languageCandidate: WikiText) => {
-                    const language = /^[^:]*/.exec(languageCandidate)?.[0];
-                    let name: string | undefined =
-                        languageCandidate.split(/\n\*\*/)[1] ??
-                        /^[^:]*:(.*)/.exec(languageCandidate)?.[1] ??
-                        '';
-                    name = /[^(:]*/.exec(name)?.[0];
+        if (inOtherLanguages === '') {
+            const cardTranslations = this.cardTranslationBuilder.build(cardTypePage);
+            const cardTypeTranslations: Map<string, CardTypeTranslation> = new Map();
 
-                    return [
-                        normalize(language),
-                        { id: cardTypePage.pageid, name: normalize(name) },
-                    ];
-                }),
-            );
+            for (const [language, translation] of cardTranslations) {
+                cardTypeTranslations.set(language, { id: translation.id, name: translation.name });
+            }
+
+            return cardTypeTranslations;
         }
 
-        const otherLanguageVersions: WikiText = extractSection(
-            wikiText,
-            'Other language versions',
-            3,
-        );
-        const table = /{\|(.*?)\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
-        const rows = table
-            .split('|-')
-            .slice(1)
-            .filter((row) => normalize(row) !== '');
-
+        const languageCandidates: WikiText[] = inOtherLanguages.split(/\n\*\s/).slice(1);
         return new Map<string, CardTypeTranslation>(
-            rows.map((row) => {
-                const match = /!([^|]*)\|(.*)/s.exec(row);
-                const language = normalize(match?.[1]);
-                const columns = match?.[2].split('||');
+            languageCandidates.map((languageCandidate: WikiText) => {
+                const language = /^[^:]*/.exec(languageCandidate)?.[0];
+                let name: string | undefined =
+                    languageCandidate.split(/\n\*\*/)[1] ??
+                    /^[^:]*:(.*)/.exec(languageCandidate)?.[1] ??
+                    '';
+                name = /[^(:]*/.exec(name)?.[0];
 
-                const cardTypeName = normalize(columns?.[0].match(/^[^(]*/)?.[0]);
-
-                return [
-                    language,
-                    {
-                        id: cardTypePage.pageid,
-                        name: cardTypeName,
-                    },
-                ];
+                return [normalize(language), { id: cardTypePage.pageid, name: normalize(name) }];
             }),
         );
     }
