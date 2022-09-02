@@ -54,7 +54,7 @@ export class CardDtoBuilder {
             extractTemplatePropertyValue(infoBox, 'text2').replace(/<br\/>/g, '<br>'),
         );
 
-        return text2 ? [text, text2] : [text];
+        return text2 ? [`${text}{{divline}}${text2}`] : [text];
     }
 
     private extractImage(cardName: string, wikiText: WikiText): string {

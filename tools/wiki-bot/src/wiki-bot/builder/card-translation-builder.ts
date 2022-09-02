@@ -1,10 +1,9 @@
-import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { CardTranslation } from '../../../../../src/app/models/card';
 import { CardPage, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 
 export class CardTranslationBuilder {
-    build(cardPage: CardPage, cardDto: CardDto): Map<string, CardTranslation> {
+    build(cardPage: CardPage): Map<string, CardTranslation> {
         const wikiText: WikiText = cardPage.revisions[0]['*'] ?? '';
         const otherLanguageVersions: WikiText = extractSection(
             wikiText,
@@ -32,7 +31,7 @@ export class CardTranslationBuilder {
             const columns = translationVersion?.split('||') ?? [];
 
             const cardName = this.extractCardName(columns[0]);
-            const cardDescription = this.extractCardDescription(columns[3], cardDto);
+            const cardDescription = this.extractCardDescription(columns[3]);
 
             translations.set(normalize(language), {
                 id: cardPage.pageid,
@@ -52,7 +51,7 @@ export class CardTranslationBuilder {
         return normalize(name);
     }
 
-    private extractCardDescription(description: WikiText | undefined, cardDto: CardDto): string[] {
+    private extractCardDescription(description: WikiText | undefined): string[] {
         // removes HTML attributes on cells
         description = description?.replace(/^.*(?<!\{\{.*?)\|/s, '');
 
@@ -62,17 +61,9 @@ export class CardTranslationBuilder {
 
         description = description
             .replace(/\n$/, '')
-            .replace(/<br\/>|<hr.*?>|\n|\{\{divline\}\}/gi, '<br>');
+            .replace(/<br\/>/gi, '<br>')
+            .replace(/<hr.*?>/gi, '{{divline}}');
 
-        if (cardDto.description.length == 1) {
-            return [normalize(description)];
-        }
-
-        const breakCount = cardDto.description[0].split('<br>').length;
-        const descriptionParts = description?.split('<br>');
-        const text1 = descriptionParts?.slice(0, breakCount).join('<br>');
-        const text2 = descriptionParts?.slice(breakCount).join('<br>');
-
-        return [normalize(text1), normalize(text2)];
+        return [normalize(description)];
     }
 }

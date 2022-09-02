@@ -297,7 +297,7 @@ export class DominionizerWikiBot {
         for (const cardPage of cardPages) {
             const card = cards.find((card: CardDto) => card.id === cardPage.pageid);
             if (card === undefined) continue;
-            const translationsByCard = this.cardTranslationBuilder.build(cardPage, card);
+            const translationsByCard = this.cardTranslationBuilder.build(cardPage);
 
             for (const [language, translation] of translationsByCard) {
                 const translationsByLanguage = translations.get(language) ?? [];
