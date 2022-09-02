@@ -89,6 +89,36 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with card back column should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*':
+                            `===Other language versions===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Card back !! Digital !! style="width:22%"| Text !! Release\n` +
+                            `|-\n` +
+                            `!German \n| Geldversteck || || {{CardVersionImage|Stash-back-2}} || || {{Cost|2|l}}... || \n` +
+                            `|}`,
+                    },
+                ],
+            };
+            const expected = new Map([
+                [
+                    'German',
+                    jasmine.objectContaining<CardTranslation>({
+                        name: 'Geldversteck',
+                        description: `{{Cost|2|l}}...`,
+                    }),
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('without translation for description should return card translation with correct description', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,

@@ -10,17 +10,17 @@ export class CardTranslationBuilder {
             'Other language versions',
             3,
         );
-        let table = /\n\s*{\|(.*?\n)\s*\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
-        // remove table header
-        table = table.substr(table.indexOf('|-'));
-        // remove html comment
-        table = table.replace(/<!--.*?-->/g, '');
+
+        const table = /\n\s*{\|(.*?\n)\s*\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
+        const textColumnIndex = this.findTextColumnIndex(table);
+        // remove table header and html comments
+        const tableBody = table.substr(table.indexOf('|-')).replace(/<!--.*?-->/g, '');
 
         const translations: Map<string, CardTranslation> = new Map();
 
         const rowRegex = /![^!]*/g;
         let languageVersion: RegExpExecArray | null;
-        while ((languageVersion = rowRegex.exec(table))) {
+        while ((languageVersion = rowRegex.exec(tableBody))) {
             const language = /!\s*(?:rowspan="?\d"?\s*\|)?([^|\\]*)/.exec(languageVersion[0])?.[1];
 
             // use last row of language, because this is the most up to date one
@@ -31,7 +31,9 @@ export class CardTranslationBuilder {
             const columns = translationVersion?.split('||') ?? [];
 
             const cardName = this.extractCardName(columns[0]);
-            const cardDescription = this.extractCardDescription(columns[3]);
+            // textColumnIndex - 1, because split with '||' returns the first two columns combined
+            // in the first array element
+            const cardDescription = this.extractCardDescription(columns[textColumnIndex - 1]);
 
             translations.set(normalize(language), {
                 id: cardPage.pageid,
@@ -41,6 +43,13 @@ export class CardTranslationBuilder {
         }
 
         return translations;
+    }
+
+    private findTextColumnIndex(table: WikiText): number {
+        const tableHeader = /\n\s*!(.*?)\n/.exec(table)?.[1] ?? '';
+        return tableHeader
+            .split('!!')
+            .findIndex((columnLabel) => normalize(columnLabel).includes('Text'));
     }
 
     private extractCardName(name: WikiText | undefined): string {
