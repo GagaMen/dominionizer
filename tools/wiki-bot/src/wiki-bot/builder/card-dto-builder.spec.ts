@@ -29,7 +29,7 @@ describe('CardDtoBuilder', () => {
     const nullCardDto: CardDto = {
         id: nullCardPage.pageid,
         name: nullCardPage.title,
-        description: [''],
+        description: '',
         image: '',
         wikiUrl: nullCardPage.fullurl,
         expansions: [],
@@ -70,7 +70,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardDto,
                 id: cardPage.pageid,
                 name: 'Ghost Town',
-                description: [`At the start...{{divline}}This is gained ...`],
+                description: `At the start...{{divline}}This is gained ...`,
                 image: 'Ghost_TownArt.jpg',
                 wikiUrl: cardPage.fullurl,
                 expansions: [4213],
@@ -123,7 +123,7 @@ describe('CardDtoBuilder', () => {
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                description: [`At the<br>start...{{divline}}This is<br>gained ...`],
+                description: `At the<br>start...{{divline}}This is<br>gained ...`,
             };
 
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
@@ -262,7 +262,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardDto,
                 id: cardTypePage.pageid,
                 name: 'Knights',
-                description: [`Shuffle the Knights...`],
+                description: `Shuffle the Knights...`,
                 image: 'KnightsArt.jpg',
                 wikiUrl: '',
                 expansions: [156],

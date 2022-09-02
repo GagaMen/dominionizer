@@ -18,9 +18,7 @@ describe('card dto validators', () => {
                 const card: CardDto = {
                     id: 1,
                     name: 'Cellar',
-                    description: [
-                        "'''+1 Action'''<br>Discard any number of cards, then draw that many.",
-                    ],
+                    description: `'''+1 Action'''<br>Discard any...`,
                     image: 'CellarArt.jpg',
                     wikiUrl: 'http://wiki.dominionstrategy.com/index.php/Cellar',
                     expansions: [914, 914.1],
@@ -38,9 +36,7 @@ describe('card dto validators', () => {
                 const card: CardDto = {
                     id: 3337,
                     name: 'Engineer',
-                    description: [
-                        'Gain a card costing up to {{Cost|4}}.<br>You may trash this.<br>If you do, gain a card costing up to {{Cost|4}}.',
-                    ],
+                    description: 'Gain a card costing up to {{Cost|4}}.',
                     image: 'EngineerArt.jpg',
                     wikiUrl: 'http://wiki.dominionstrategy.com/index.php/Engineer',
                     expansions: [2739],
@@ -61,9 +57,7 @@ describe('card dto validators', () => {
                     const card: CardDto = {
                         id: 128,
                         name: 'University',
-                        description: [
-                            "'''+2 Actions'''<br>You may gain an Action card costing up to {{Cost|5}}.",
-                        ],
+                        description: "'''+2 Actions'''<br>You may...",
                         image: 'UniversityArt.jpg',
                         wikiUrl: 'http://wiki.dominionstrategy.com/index.php/University',
                         expansions: [176],
@@ -83,7 +77,7 @@ describe('card dto validators', () => {
                 const card: CardDto = {
                     id: 1,
                     name: '',
-                    description: [],
+                    description: '',
                     image: '',
                     wikiUrl: '',
                     expansions: [],
@@ -96,7 +90,7 @@ describe('card dto validators', () => {
                 const expected = ValidationResult.Failure(
                     'Card Dto (ID: 1, Name: "Cellar"):\n' +
                         '"name" is not allowed to be empty\n' +
-                        '"description" must contain at least 1 items\n' +
+                        '"description" is not allowed to be empty\n' +
                         '"image" is not allowed to be empty\n' +
                         '"wikiUrl" is not allowed to be empty\n' +
                         '"expansions" must contain at least 1 items\n' +
@@ -116,7 +110,7 @@ describe('card dto validators', () => {
                 const card: CardDto = {
                     id: 1,
                     name: 'Cellar',
-                    description: [''],
+                    description: `'''+1 Action'''<br>Discard any...`,
                     image: 'CellarArt.jpg',
                     wikiUrl: 'ftp://wiki.dominionstrategy.com/index.php/Cellar',
                     expansions: [914, 914.1],
@@ -128,7 +122,6 @@ describe('card dto validators', () => {
                 };
                 const expected = ValidationResult.Failure(
                     'Card Dto (ID: 1, Name: "Cellar"):\n' +
-                        '"description[0]" is not allowed to be empty\n' +
                         '"wikiUrl" must be a valid uri with a scheme matching the http|https pattern\n' +
                         '"cost" must be greater than or equal to 0\n' +
                         '"costModifier" must be one of [P, *, +]\n' +

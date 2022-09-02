@@ -14,7 +14,7 @@ export class CardDtoValidator implements Validator<[CardDto, CardPage]> {
     private schema: Joi.ObjectSchema<CardDto> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().required(),
-        description: Joi.array().items(Joi.string()).min(1).required(),
+        description: Joi.string().required(),
         image: Joi.string().required(),
         wikiUrl: Joi.string()
             .uri({ scheme: ['http', 'https'] })

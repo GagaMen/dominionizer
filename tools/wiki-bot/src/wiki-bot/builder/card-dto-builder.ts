@@ -46,7 +46,7 @@ export class CardDtoBuilder {
         );
     }
 
-    private extractDescription(infoBox: WikiText): string[] {
+    private extractDescription(infoBox: WikiText): string {
         const text: WikiText = normalize(
             extractTemplatePropertyValue(infoBox, 'text').replace(/<br\/>/g, '<br>'),
         );
@@ -54,7 +54,7 @@ export class CardDtoBuilder {
             extractTemplatePropertyValue(infoBox, 'text2').replace(/<br\/>/g, '<br>'),
         );
 
-        return text2 ? [`${text}{{divline}}${text2}`] : [text];
+        return text2 ? `${text}{{divline}}${text2}` : text;
     }
 
     private extractImage(cardName: string, wikiText: WikiText): string {

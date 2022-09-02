@@ -41,7 +41,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         id: cardPage.pageid,
                         name: 'Platin',
-                        description: [`{{Cost|5|xl|}}`],
+                        description: `{{Cost|5|xl|}}`,
                     },
                 ],
                 [
@@ -49,7 +49,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         id: cardPage.pageid,
                         name: '{{nowrap|Platyna}}',
-                        description: [`{{Cost|5}}`],
+                        description: `{{Cost|5}}`,
                     },
                 ],
             ]);
@@ -79,7 +79,7 @@ describe('CardTranslationBuilder', () => {
                     'German',
                     jasmine.objectContaining<CardTranslation>({
                         name: 'Burggraben',
-                        description: [`'''+2 Karten'''`],
+                        description: `'''+2 Karten'''`,
                     }),
                 ],
             ]);
@@ -108,7 +108,7 @@ describe('CardTranslationBuilder', () => {
                 [
                     'German',
                     jasmine.objectContaining<CardTranslation>({
-                        description: [],
+                        description: '',
                     }),
                 ],
             ]);
@@ -137,7 +137,7 @@ describe('CardTranslationBuilder', () => {
                 [
                     'German',
                     jasmine.objectContaining<CardTranslation>({
-                        description: [`'''+1 Karte'''<br>Ignoriere...`],
+                        description: `'''+1 Karte'''<br>Ignoriere...`,
                     }),
                 ],
             ]);
@@ -168,13 +168,13 @@ describe('CardTranslationBuilder', () => {
                 [
                     'German',
                     jasmine.objectContaining<CardTranslation>({
-                        description: [`'''+1 Karte'''{{divline}}Ignoriere...`],
+                        description: `'''+1 Karte'''{{divline}}Ignoriere...`,
                     }),
                 ],
                 [
                     'French',
                     jasmine.objectContaining<CardTranslation>({
-                        description: [`{{Cost|6|l}}{{divline}}Lorsque vous...`],
+                        description: `{{Cost|6|l}}{{divline}}Lorsque vous...`,
                     }),
                 ],
             ]);
@@ -204,7 +204,7 @@ describe('CardTranslationBuilder', () => {
                     'German',
                     jasmine.objectContaining<CardTranslation>({
                         name: 'Wache',
-                        description: [`+{{Cost|2}}...`],
+                        description: `+{{Cost|2}}...`,
                     }),
                 ],
             ]);
@@ -231,7 +231,7 @@ describe('CardTranslationBuilder', () => {
                 ],
             };
             const expected = new Map([
-                ['German', jasmine.objectContaining<CardTranslation>({ description: [] })],
+                ['German', jasmine.objectContaining<CardTranslation>({ description: '' })],
             ]);
 
             const actual = cardTranslationBuilder.build(cardPage);
@@ -268,9 +268,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         id: cardPage.pageid,
                         name: 'Brücke',
-                        description: [
-                            `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten...`,
-                        ],
+                        description: `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten...`,
                     },
                 ],
                 [
@@ -278,7 +276,7 @@ describe('CardTranslationBuilder', () => {
                     {
                         id: cardPage.pageid,
                         name: 'Мост',
-                        description: [`'''+1 Покупка'''<br>+{{Cost|1}}В этом...`],
+                        description: `'''+1 Покупка'''<br>+{{Cost|1}}В этом...`,
                     },
                 ],
             ]);

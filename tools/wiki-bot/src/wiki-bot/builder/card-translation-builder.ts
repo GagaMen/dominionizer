@@ -51,12 +51,12 @@ export class CardTranslationBuilder {
         return normalize(name);
     }
 
-    private extractCardDescription(description: WikiText | undefined): string[] {
+    private extractCardDescription(description: WikiText | undefined): string {
         // removes HTML attributes on cells
         description = description?.replace(/^.*(?<!\{\{.*?)\|/s, '');
 
         if (!description || !normalize(description)) {
-            return [];
+            return '';
         }
 
         description = description
@@ -64,6 +64,6 @@ export class CardTranslationBuilder {
             .replace(/<br\/>/gi, '<br>')
             .replace(/<hr.*?>/gi, '{{divline}}');
 
-        return [normalize(description)];
+        return normalize(description);
     }
 }

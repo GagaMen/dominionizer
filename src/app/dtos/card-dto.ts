@@ -3,7 +3,7 @@ import { DependencyDto } from './dependency-dto';
 export const NullCardDto: CardDto = {
     id: 0,
     name: '',
-    description: [''],
+    description: '',
     image: '',
     wikiUrl: '',
     expansions: [],
@@ -15,7 +15,7 @@ export const NullCardDto: CardDto = {
 export interface CardDto {
     id: number;
     name: string;
-    description: string[];
+    description: string;
     image: string;
     wikiUrl: string;
     expansions: number[];

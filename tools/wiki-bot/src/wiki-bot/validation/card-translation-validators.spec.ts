@@ -17,7 +17,7 @@ describe('card translation validators', () => {
                 const cardTranslation: CardTranslation = {
                     id: 1,
                     name: 'Keller',
-                    description: ["'''+1 Aktion'''<br>Lege..."],
+                    description: "'''+1 Aktion'''<br>Lege...",
                 };
 
                 const actual = validator?.validate(cardTranslation, 'German', cardPage);
@@ -29,7 +29,7 @@ describe('card translation validators', () => {
                 const cardTranslation: CardTranslation = {
                     id: 1,
                     name: '',
-                    description: [],
+                    description: '',
                 };
 
                 const actual = validator?.validate(cardTranslation, 'German', cardPage);

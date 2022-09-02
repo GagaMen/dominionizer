@@ -5,7 +5,7 @@ import { Dependency } from './dependency';
 export const NullCard: Card = {
     id: 0,
     name: '',
-    description: [],
+    description: '',
     image: '',
     wikiUrl: '',
     expansions: [],
@@ -17,7 +17,7 @@ export const NullCard: Card = {
 export interface Card {
     id: number;
     name: string;
-    description: string[];
+    description: string;
     image: string;
     wikiUrl: string;
     expansions: Expansion[];

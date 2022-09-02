@@ -12,7 +12,7 @@ export class CardTranslationValidator implements Validator<[CardTranslation, str
     private schema: Joi.ObjectSchema<CardTranslation> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().allow('').required(),
-        description: Joi.array().items(Joi.string()).required(),
+        description: Joi.string().allow('').required(),
     });
 
     validate(
