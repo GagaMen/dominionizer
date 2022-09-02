@@ -49,6 +49,7 @@ describe('ImageBuilder', () => {
                 binary: encodedImageData,
             } as EncodeResult);
             const expected: EncodedImage = {
+                id: 6769,
                 fileName: 'Menagerie_icon.png',
                 data: encodedImageData,
             };
@@ -116,6 +117,7 @@ describe('ImageBuilder', () => {
             } as EncodeResult);
 
             const expected: EncodedImage = {
+                id: 1754,
                 fileName: 'Abandoned_MineArt.jpg',
                 data: encodedImageData,
             };

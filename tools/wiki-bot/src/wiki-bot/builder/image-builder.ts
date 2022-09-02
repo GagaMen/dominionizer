@@ -3,6 +3,7 @@ import { ImagePage } from '../wiki-client/api-models';
 import { WikiClient } from '../wiki-client/wiki-client';
 
 export interface EncodedImage {
+    id: number;
     fileName: string;
     data: Uint8Array;
 }
@@ -12,6 +13,7 @@ export class ImageBuilder {
 
     async build(imagePage: ImagePage): Promise<EncodedImage> {
         return {
+            id: imagePage.pageid,
             fileName: this.buildFileName(imagePage),
             data: await this.buildData(imagePage),
         };

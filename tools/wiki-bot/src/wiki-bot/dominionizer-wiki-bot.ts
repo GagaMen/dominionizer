@@ -1,3 +1,10 @@
+import { ImagesValidator } from './validation/image-validators';
+import { CardTranslationValidator } from './validation/card-translation-validators';
+import { CardDtosValidator, CardDtoValidator } from './validation/card-dto-validators';
+import { CardTypeTranslationValidator } from './validation/card-type-translation-validators';
+import { ExpansionTranslationValidator } from './validation/expansion-translation-validators';
+import { ExpansionsValidator, ExpansionValidator } from './validation/expansion-validators';
+import { CardTypesValidator, CardTypeValidator } from './validation/card-type-validators';
 import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { EncodedImage, ImageBuilder } from './builder/image-builder';
@@ -14,8 +21,12 @@ import { WikiClient } from './wiki-client/wiki-client';
 import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
+import { ValidationResult } from './validation/validation-result';
+import { red } from 'chalk';
 
 export class DominionizerWikiBot {
+    private successful = true;
+
     constructor(
         private targetPath: string,
         private wikiClient: WikiClient,
@@ -27,9 +38,19 @@ export class DominionizerWikiBot {
         private cardDtoBuilder: CardDtoBuilder,
         private cardTranslationBuilder: CardTranslationBuilder,
         private imageBuilder: ImageBuilder,
+        private expansionValiditor: ExpansionValidator,
+        private expansionsValiditor: ExpansionsValidator,
+        private expansionTranslationValidator: ExpansionTranslationValidator,
+        private cardTypeValidator: CardTypeValidator,
+        private cardTypesValidator: CardTypesValidator,
+        private cardTypeTranslationValidator: CardTypeTranslationValidator,
+        private cardDtoValidator: CardDtoValidator,
+        private cardDtosValidator: CardDtosValidator,
+        private cardTranslationValidator: CardTranslationValidator,
+        private imageValidator: ImagesValidator,
     ) {}
 
-    async generateAll(): Promise<void> {
+    async generateAll(): Promise<boolean> {
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
         await this.generateExpansions(expansionPages);
         await this.generateExpansionTranslations(expansionPages);
@@ -53,6 +74,8 @@ export class DominionizerWikiBot {
 
         const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
         await this.generateImages(cardArtPages, 'card_arts');
+
+        return this.successful;
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<Expansion[]> {
@@ -61,10 +84,22 @@ export class DominionizerWikiBot {
         let expansions: Expansion[] = [];
 
         for (const expansionPage of expansionPages) {
+            const generatedExpansions = this.expansionBuilder.build(expansionPage);
+
+            generatedExpansions.forEach((expansion) => {
+                this.evaluateValidationResult(
+                    this.expansionValiditor.validate(expansion, expansionPage),
+                );
+            });
+
             expansions = expansions.concat(this.expansionBuilder.build(expansionPage));
         }
 
         this.sortById(expansions);
+
+        this.evaluateValidationResult(
+            this.expansionsValiditor.validate(expansions, expansionPages),
+        );
 
         await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));
 
@@ -83,6 +118,14 @@ export class DominionizerWikiBot {
 
             for (const [language, translation] of translationsByExpansion) {
                 const translationsByLanguage = translations.get(language) ?? [];
+
+                this.evaluateValidationResult(
+                    this.expansionTranslationValidator.validate(
+                        translation,
+                        language,
+                        expansionPage,
+                    ),
+                );
 
                 translations.set(language, translationsByLanguage.concat(translation));
             }
@@ -106,10 +149,15 @@ export class DominionizerWikiBot {
         let cardTypes: CardType[] = [];
 
         for (const cardTypePage of cardTypePages) {
-            cardTypes = cardTypes.concat(this.cardTypeBuilder.build(cardTypePage));
+            const cardType = this.cardTypeBuilder.build(cardTypePage);
+            this.evaluateValidationResult(this.cardTypeValidator.validate(cardType, cardTypePage));
+
+            cardTypes = cardTypes.concat(cardType);
         }
 
         this.sortById(cardTypes);
+
+        this.evaluateValidationResult(this.cardTypesValidator.validate(cardTypes, cardTypePages));
 
         await writeFile(`${this.targetPath}/data/card-types.json`, JSON.stringify(cardTypes));
 
@@ -128,6 +176,10 @@ export class DominionizerWikiBot {
 
             for (const [language, translation] of translationsByCardType) {
                 const translationsByLanguage = translations.get(language) ?? [];
+
+                this.evaluateValidationResult(
+                    this.cardTypeTranslationValidator.validate(translation, language, cardTypePage),
+                );
 
                 translations.set(language, translationsByLanguage.concat(translation));
             }
@@ -207,6 +259,8 @@ export class DominionizerWikiBot {
                 continue;
             }
 
+            this.evaluateValidationResult(this.cardDtoValidator.validate(card, cardPage));
+
             cards = cards.concat(card);
         }
 
@@ -224,6 +278,8 @@ export class DominionizerWikiBot {
         }
 
         this.sortById(cards);
+
+        this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cardTypes, cardPages));
 
         await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
 
@@ -245,6 +301,10 @@ export class DominionizerWikiBot {
 
             for (const [language, translation] of translationsByCard) {
                 const translationsByLanguage = translations.get(language) ?? [];
+
+                this.evaluateValidationResult(
+                    this.cardTranslationValidator.validate(translation, language, cardPage),
+                );
 
                 translations.set(language, translationsByLanguage.concat(translation));
             }
@@ -286,6 +346,17 @@ export class DominionizerWikiBot {
             );
         }
 
+        this.evaluateValidationResult(this.imageValidator.validate(images, imagePages));
+
         return images;
+    }
+
+    private evaluateValidationResult(validationResult: ValidationResult): void {
+        if (validationResult === ValidationResult.Success) {
+            return;
+        }
+
+        console.error(red(validationResult.failureMessage));
+        this.successful = false;
     }
 }

@@ -10,6 +10,16 @@ import axios from 'axios';
 import { DominionizerWikiBot } from './wiki-bot/dominionizer-wiki-bot';
 import { WikiClient } from './wiki-bot/wiki-client/wiki-client';
 import { CardTypeTranslationBuilder } from './wiki-bot/builder/card-type-translation-builder';
+import { CardDtoValidator, CardDtosValidator } from './wiki-bot/validation/card-dto-validators';
+import { CardTranslationValidator } from './wiki-bot/validation/card-translation-validators';
+import { CardTypeTranslationValidator } from './wiki-bot/validation/card-type-translation-validators';
+import { CardTypeValidator, CardTypesValidator } from './wiki-bot/validation/card-type-validators';
+import { ExpansionTranslationValidator } from './wiki-bot/validation/expansion-translation-validators';
+import {
+    ExpansionValidator,
+    ExpansionsValidator,
+} from './wiki-bot/validation/expansion-validators';
+import { ImagesValidator } from './wiki-bot/validation/image-validators';
 
 async function bootstrap(): Promise<void> {
     const axiosInstance = axios.create({
@@ -28,6 +38,16 @@ async function bootstrap(): Promise<void> {
     const cardDtoBuilder = new CardDtoBuilder();
     const cardTranslationBuilder = new CardTranslationBuilder();
     const imageBuilder = new ImageBuilder(wikiClient, imagePool);
+    const expansionValiditor = new ExpansionValidator();
+    const expansionsValiditor = new ExpansionsValidator();
+    const expansionTranslationValidator = new ExpansionTranslationValidator();
+    const cardTypeValidator = new CardTypeValidator();
+    const cardTypesValidator = new CardTypesValidator();
+    const cardTypeTranslationValidator = new CardTypeTranslationValidator();
+    const cardDtoValidator = new CardDtoValidator();
+    const cardDtosValidator = new CardDtosValidator();
+    const cardTranslationValidator = new CardTranslationValidator();
+    const imageValidator = new ImagesValidator();
 
     const bot = new DominionizerWikiBot(
         targetPath,
@@ -40,6 +60,16 @@ async function bootstrap(): Promise<void> {
         cardDtoBuilder,
         cardTranslationBuilder,
         imageBuilder,
+        expansionValiditor,
+        expansionsValiditor,
+        expansionTranslationValidator,
+        cardTypeValidator,
+        cardTypesValidator,
+        cardTypeTranslationValidator,
+        cardDtoValidator,
+        cardDtosValidator,
+        cardTranslationValidator,
+        imageValidator,
     );
 
     try {

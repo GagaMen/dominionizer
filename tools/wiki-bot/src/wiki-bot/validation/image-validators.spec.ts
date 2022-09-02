@@ -1,3 +1,4 @@
+import { EncodedImage } from './../builder/image-builder';
 import { ImagePage } from '../wiki-client/api-models';
 import { ImagesValidator } from './image-validators';
 import { ValidationResult } from './validation-result';
@@ -8,7 +9,10 @@ describe('image validators', () => {
 
         describe('validate', () => {
             it('with valid image amount should return Success', () => {
-                const images: { id: number }[] = [{ id: 1 }, { id: 2 }];
+                const images: EncodedImage[] = [
+                    { id: 1 } as EncodedImage,
+                    { id: 2 } as EncodedImage,
+                ];
                 const imagePages: ImagePage[] = [
                     { pageid: 1 } as ImagePage,
                     { pageid: 2 } as ImagePage,
@@ -21,7 +25,7 @@ describe('image validators', () => {
             });
 
             it('with no image for image page should return Failure', () => {
-                const images: { id: number }[] = [{ id: 1 }];
+                const images: EncodedImage[] = [{ id: 1 } as EncodedImage];
                 const imagePages: ImagePage[] = [
                     { pageid: 1 } as ImagePage,
                     { pageid: 2, title: 'Image 2' } as ImagePage,

@@ -1,3 +1,10 @@
+import { CardTranslationValidator } from './validation/card-translation-validators';
+import { ImagesValidator } from './validation/image-validators';
+import { CardTypeTranslationValidator } from './validation/card-type-translation-validators';
+import { ExpansionTranslationValidator } from './validation/expansion-translation-validators';
+import { CardDtoValidator, CardDtosValidator } from './validation/card-dto-validators';
+import { ExpansionValidator, ExpansionsValidator } from './validation/expansion-validators';
+import { CardTypeValidator, CardTypesValidator } from './validation/card-type-validators';
 import { CardTypeTranslation } from './../../../../src/app/models/card-type';
 import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
@@ -15,6 +22,7 @@ import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
 import { CardType } from '../../../../src/app/models/card-type';
+import { ValidationResult } from './validation/validation-result';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -28,6 +36,16 @@ describe('DominionizerWikiBot', () => {
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
     let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
     let imageBuilderSpy: jasmine.SpyObj<ImageBuilder>;
+    let expansionValiditorSpy: jasmine.SpyObj<ExpansionValidator>;
+    let expansionsValiditorSpy: jasmine.SpyObj<ExpansionsValidator>;
+    let expansionTranslationValidatorSpy: jasmine.SpyObj<ExpansionTranslationValidator>;
+    let cardTypeValidatorSpy: jasmine.SpyObj<CardTypeValidator>;
+    let cardTypesValidatorSpy: jasmine.SpyObj<CardTypesValidator>;
+    let cardTypeTranslationValidatorSpy: jasmine.SpyObj<CardTypeTranslationValidator>;
+    let cardDtoValidatorSpy: jasmine.SpyObj<CardDtoValidator>;
+    let cardDtosValidatorSpy: jasmine.SpyObj<CardDtosValidator>;
+    let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
+    let imageValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let writeFileSpy: jasmine.Spy;
 
     beforeEach(() => {
@@ -47,6 +65,7 @@ describe('DominionizerWikiBot', () => {
         wikiClientSpy.fetchAllCardArtPages.and.resolveTo([]);
 
         expansionBuilderSpy = jasmine.createSpyObj<ExpansionBuilder>('ExpansionBuilder', ['build']);
+        expansionBuilderSpy.build.and.returnValue([]);
 
         expansionTranslationBuilderSpy = jasmine.createSpyObj<ExpansionTranslationBuilder>(
             'ExpansionTranslationBuilder',
@@ -55,6 +74,7 @@ describe('DominionizerWikiBot', () => {
         expansionTranslationBuilderSpy.build.and.returnValue(new Map());
 
         cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', ['build']);
+        cardTypeBuilderSpy.build.and.returnValue({} as CardType);
 
         cardTypeTranslationBuilderSpy = jasmine.createSpyObj<CardTypeTranslationBuilder>(
             'CardTypeTranslationBuilde',
@@ -80,6 +100,48 @@ describe('DominionizerWikiBot', () => {
 
         imageBuilderSpy = jasmine.createSpyObj<ImageBuilder>('ImageBuilder', ['build']);
 
+        expansionValiditorSpy = jasmine.createSpyObj<ExpansionValidator>('ExpansionValidator', [
+            'validate',
+        ]);
+        expansionValiditorSpy.validate.and.returnValue(ValidationResult.Success);
+        expansionsValiditorSpy = jasmine.createSpyObj<ExpansionsValidator>('ExpansionsValidator', [
+            'validate',
+        ]);
+        expansionsValiditorSpy.validate.and.returnValue(ValidationResult.Success);
+        expansionTranslationValidatorSpy = jasmine.createSpyObj<ExpansionTranslationValidator>(
+            'ExpansionTranslationValidator',
+            ['validate'],
+        );
+        expansionTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypeValidatorSpy = jasmine.createSpyObj<CardTypeValidator>('CardTypeValidator', [
+            'validate',
+        ]);
+        cardTypeValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypesValidatorSpy = jasmine.createSpyObj<CardTypesValidator>('CardTypesValidator', [
+            'validate',
+        ]);
+        cardTypesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypeTranslationValidatorSpy = jasmine.createSpyObj<CardTypeTranslationValidator>(
+            'CardTypeTranslationValidator',
+            ['validate'],
+        );
+        cardTypeTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardDtoValidatorSpy = jasmine.createSpyObj<CardDtoValidator>('CardDtoValidator', [
+            'validate',
+        ]);
+        cardDtoValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardDtosValidatorSpy = jasmine.createSpyObj<CardDtosValidator>('CardDtosValidator', [
+            'validate',
+        ]);
+        cardDtosValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTranslationValidatorSpy = jasmine.createSpyObj<CardTranslationValidator>(
+            'CardTranslationValidator',
+            ['validate'],
+        );
+        cardTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        imageValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
+        imageValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
         writeFileSpy = spyOn(Fs, 'writeFile');
 
         spyOn(console, 'log').and.stub();
@@ -95,6 +157,16 @@ describe('DominionizerWikiBot', () => {
             cardDtoBuilderSpy,
             cardTranslationBuilderSpy,
             imageBuilderSpy,
+            expansionValiditorSpy,
+            expansionsValiditorSpy,
+            expansionTranslationValidatorSpy,
+            cardTypeValidatorSpy,
+            cardTypesValidatorSpy,
+            cardTypeTranslationValidatorSpy,
+            cardDtoValidatorSpy,
+            cardDtosValidatorSpy,
+            cardTranslationValidatorSpy,
+            imageValidatorSpy,
         );
     });
 
@@ -115,6 +187,20 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/expansions.json`,
                 JSON.stringify(expansions),
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(expansionValiditorSpy.validate).toHaveBeenCalledWith(
+                expansions[0],
+                expansionPages[1],
+            );
+            expect(expansionValiditorSpy.validate).toHaveBeenCalledWith(
+                expansions[1],
+                expansionPages[0],
+            );
+            expect(expansionsValiditorSpy.validate).toHaveBeenCalledWith(
+                expansions,
+                expansionPages,
+            );
+            /* eslint-enable */
         });
 
         it('should generate expansion translations', async () => {
@@ -156,6 +242,28 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/expansions.french.json`,
                 JSON.stringify(frenchTranslations),
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                germanTranslations[0],
+                'German',
+                expansionPages[1],
+            );
+            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                germanTranslations[1],
+                'German',
+                expansionPages[0],
+            );
+            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                frenchTranslations[0],
+                'French',
+                expansionPages[1],
+            );
+            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                frenchTranslations[1],
+                'French',
+                expansionPages[0],
+            );
+            /* eslint-enable */
         });
 
         it('should generate card types', async () => {
@@ -177,6 +285,17 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/card-types.json`,
                 JSON.stringify(cardTypes),
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
+                cardTypes[0],
+                cardTypePages[1],
+            );
+            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
+                cardTypes[1],
+                cardTypePages[0],
+            );
+            expect(cardTypesValidatorSpy.validate).toHaveBeenCalledWith(cardTypes, cardTypePages);
+            /* eslint-enable */
         });
 
         it('should generate card type translations', async () => {
@@ -218,6 +337,28 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/card-types.french.json`,
                 JSON.stringify(frenchTranslations),
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                germanTranslations[0],
+                'German',
+                cardTypePages[1],
+            );
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                germanTranslations[1],
+                'German',
+                cardTypePages[0],
+            );
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                frenchTranslations[0],
+                'French',
+                cardTypePages[1],
+            );
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                frenchTranslations[1],
+                'French',
+                cardTypePages[0],
+            );
+            /* eslint-enable */
         });
 
         it('should generate cards', async () => {
@@ -296,6 +437,11 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/cards.json`,
                 JSON.stringify(cards),
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0], cardPages[1]);
+            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1], cardPages[0]);
+            expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cardTypes, cardPages);
+            /* eslint-enable */
         });
 
         it('should generate card translations', async () => {
@@ -341,6 +487,28 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/cards.french.json`,
                 JSON.stringify(frenchTranslations),
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                germanTranslations[0],
+                'German',
+                cardPages[1],
+            );
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                germanTranslations[1],
+                'German',
+                cardPages[0],
+            );
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                frenchTranslations[0],
+                'French',
+                cardPages[1],
+            );
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+                frenchTranslations[1],
+                'French',
+                cardPages[0],
+            );
+            /* eslint-enable */
         });
 
         it('should generate card symbols', async () => {
@@ -349,10 +517,12 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 200, title: 'File:Second.png' } as ImagePage,
             ];
             const firstEncodedImage: EncodedImage = {
+                id: 100,
                 fileName: 'First.png',
                 data: new Uint8Array([1, 2]),
             };
             const secondEncodedImage: EncodedImage = {
+                id: 200,
                 fileName: 'Second.png',
                 data: new Uint8Array([3, 4]),
             };
@@ -370,6 +540,12 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/card_symbols/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
+                [firstEncodedImage, secondEncodedImage],
+                cardSymbolPages,
+            );
+            /* eslint-enable */
         });
 
         it('should generate card arts', async () => {
@@ -378,10 +554,12 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 201, title: 'File:Second.jpg' } as ImagePage,
             ];
             const firstEncodedImage: EncodedImage = {
+                id: 101,
                 fileName: 'First.jpg',
                 data: new Uint8Array([1, 2]),
             };
             const secondEncodedImage: EncodedImage = {
+                id: 201,
                 fileName: 'Second.jpg',
                 data: new Uint8Array([3, 4]),
             };
@@ -399,6 +577,12 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/card_arts/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
+                [firstEncodedImage, secondEncodedImage],
+                cardArtPages,
+            );
+            /* eslint-enable */
         });
     });
 });
