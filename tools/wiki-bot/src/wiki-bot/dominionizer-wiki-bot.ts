@@ -61,13 +61,8 @@ export class DominionizerWikiBot {
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages, cardTypePages);
         const cardPages = await this.wikiClient.fetchAllCardPages();
-        const cards = await this.generateCards(
-            cardPages,
-            cardTypePages,
-            cardExpansionsMap,
-            cardTypes,
-        );
-        await this.generateCardTranslations(cardPages, cards);
+        await this.generateCards(cardPages, cardTypePages, cardExpansionsMap, cardTypes);
+        await this.generateCardTranslations(cardPages);
 
         const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
         await this.generateImages(cardSymbolPages, 'card_symbols');
@@ -288,15 +283,12 @@ export class DominionizerWikiBot {
 
     private async generateCardTranslations(
         cardPages: CardPage[],
-        cards: CardDto[],
     ): Promise<Map<string, CardTranslation[]>> {
         console.log('Generating card translations...');
 
         const translations: Map<string, CardTranslation[]> = new Map();
 
         for (const cardPage of cardPages) {
-            const card = cards.find((card: CardDto) => card.id === cardPage.pageid);
-            if (card === undefined) continue;
             const translationsByCard = this.cardTranslationBuilder.build(cardPage);
 
             for (const [language, translation] of translationsByCard) {
