@@ -1,4 +1,3 @@
-import { CardType } from './../../../../../src/app/models/card-type';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { CardPage } from '../wiki-client/api-models';
 import { CardDtoValidator, CardDtosValidator } from './card-dto-validators';
@@ -145,31 +144,29 @@ describe('card dto validators', () => {
                     { id: 2 } as CardDto,
                     { id: 3 } as CardDto,
                 ];
-                const cardTypes: CardType[] = [{ id: 3 } as CardType];
                 const cardPages: CardPage[] = [
                     { pageid: 1 } as CardPage,
                     { pageid: 2 } as CardPage,
                 ];
                 const expected = ValidationResult.Success;
 
-                const actual = validator?.validate(cards, cardTypes, cardPages);
+                const actual = validator?.validate(cards, cardPages);
 
                 expect(actual).toEqual(expected);
             });
 
             it('with no card for card page should return Failure', () => {
                 const cards: CardDto[] = [{ id: 1 } as CardDto, { id: 2 } as CardDto];
-                const cardTypes: CardType[] = [{ id: 2 } as CardType];
                 const cardPages: CardPage[] = [
                     { pageid: 1 } as CardPage,
-                    { pageid: 3, title: 'Card 1' } as CardPage,
-                    { pageid: 4, title: 'Card 2' } as CardPage,
+                    { pageid: 3, title: 'Card 3' } as CardPage,
+                    { pageid: 4, title: 'Card 4' } as CardPage,
                 ];
                 const expected = ValidationResult.Failure(
-                    'For following card pages no card was generated:\nCard 1\nCard 2',
+                    'For following card pages no card was generated:\nCard 3\nCard 4',
                 );
 
-                const actual = validator?.validate(cards, cardTypes, cardPages);
+                const actual = validator?.validate(cards, cardPages);
 
                 expect(actual).toEqual(expected);
             });

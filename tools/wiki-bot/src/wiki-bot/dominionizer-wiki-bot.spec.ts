@@ -440,7 +440,7 @@ describe('DominionizerWikiBot', () => {
             /* eslint-disable @typescript-eslint/unbound-method */
             expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0], cardPages[1]);
             expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1], cardPages[0]);
-            expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cardTypes, cardPages);
+            expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cardPages);
             /* eslint-enable */
         });
 

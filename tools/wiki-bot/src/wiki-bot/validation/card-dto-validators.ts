@@ -1,5 +1,4 @@
 import { AmountValidator } from './amount-validator';
-import { CardType } from './../../../../../src/app/models/card-type';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { CardPage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
@@ -40,13 +39,9 @@ export class CardDtosValidator {
 
     private amountValidator: AmountValidator<CardDto, CardPage> = new AmountValidator();
 
-    validate(cards: CardDto[], cardTypes: CardType[], cardPages: CardPage[]): ValidationResult {
-        const cardsWithoutCardTypes = cards.filter(
-            (card: CardDto) => !cardTypes.some((cardType: CardType) => cardType.id === card.id),
-        );
-
+    validate(cards: CardDto[], cardPages: CardPage[]): ValidationResult {
         return this.amountValidator.validate(
-            cardsWithoutCardTypes,
+            cards,
             cardPages,
             'For following card pages no card was generated:',
         );

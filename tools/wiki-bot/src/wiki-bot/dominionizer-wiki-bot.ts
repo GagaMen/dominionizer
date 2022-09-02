@@ -274,7 +274,7 @@ export class DominionizerWikiBot {
 
         this.sortById(cards);
 
-        this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cardTypes, cardPages));
+        this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cardPages));
 
         await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
 
