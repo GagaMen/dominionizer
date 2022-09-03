@@ -28,6 +28,7 @@ export class DominionizerWikiBot {
     private successful = true;
 
     constructor(
+        private currentGenerationTime: Date,
         private targetPath: string,
         private wikiClient: WikiClient,
         private expansionBuilder: ExpansionBuilder,
@@ -51,6 +52,8 @@ export class DominionizerWikiBot {
     ) {}
 
     async generateAll(): Promise<boolean> {
+        await this.writeCurrentGenerationTime();
+
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
         await this.generateExpansions(expansionPages);
         await this.generateExpansionTranslations(expansionPages);
@@ -71,6 +74,10 @@ export class DominionizerWikiBot {
         await this.generateImages(cardArtPages, 'card_arts');
 
         return this.successful;
+    }
+
+    private async writeCurrentGenerationTime(): Promise<void> {
+        await writeFile('./last-generation.json', JSON.stringify(this.currentGenerationTime));
     }
 
     private async generateExpansions(expansionPages: ExpansionPage[]): Promise<Expansion[]> {

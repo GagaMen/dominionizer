@@ -26,6 +26,7 @@ import { ValidationResult } from './validation/validation-result';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
+    let currentGenerationTime: Date;
     let targetPath: string;
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
     let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
@@ -49,6 +50,8 @@ describe('DominionizerWikiBot', () => {
     let writeFileSpy: jasmine.Spy;
 
     beforeEach(() => {
+        currentGenerationTime = new Date();
+
         targetPath = './assets';
 
         wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
@@ -147,6 +150,7 @@ describe('DominionizerWikiBot', () => {
         spyOn(console, 'log').and.stub();
 
         dominionizerWikiBot = new DominionizerWikiBot(
+            currentGenerationTime,
             targetPath,
             wikiClientSpy,
             expansionBuilderSpy,
@@ -171,6 +175,15 @@ describe('DominionizerWikiBot', () => {
     });
 
     describe('generateAll', () => {
+        it('should write current generation time to file', async () => {
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `./last-generation.json`,
+                JSON.stringify(currentGenerationTime),
+            );
+        });
+
         it('should generate expansions', async () => {
             const expansionPages: ExpansionPage[] = [
                 { pageid: 2 } as ExpansionPage,

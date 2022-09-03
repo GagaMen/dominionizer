@@ -28,6 +28,7 @@ async function bootstrap(): Promise<void> {
     });
     const imagePool = new ImagePool();
 
+    const currentGenerationTime = new Date();
     const targetPath = '../../src/assets/';
     const wikiClient = new WikiClient(axiosInstance);
     const expansionBuilder = new ExpansionBuilder();
@@ -50,6 +51,7 @@ async function bootstrap(): Promise<void> {
     const imageValidator = new ImagesValidator();
 
     const bot = new DominionizerWikiBot(
+        currentGenerationTime,
         targetPath,
         wikiClient,
         expansionBuilder,
