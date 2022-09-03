@@ -14,7 +14,7 @@ import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder'
 import { CardDto } from './../../../../src/app/dtos/card-dto';
 import { CardDtoBuilder } from './builder/card-dto-builder';
 import { ExpansionTranslationBuilder } from './builder/expansion-translation-builder';
-import { writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
@@ -78,6 +78,21 @@ export class DominionizerWikiBot {
         await this.generateImages(cardArtPages, 'card_arts');
 
         return this.successful;
+    }
+
+    async generateUpdate(): Promise<boolean> {
+        const lastGenerationTime = await this.readLastGenerationTime();
+        await this.writeCurrentGenerationTime();
+
+        await this.wikiClient.fetchRecentChanges(lastGenerationTime.toISOString());
+
+        return this.successful;
+    }
+
+    private async readLastGenerationTime(): Promise<Date> {
+        const lastGenerationTimeJsonString = await readFile('./last-generation.json', 'utf8');
+
+        return new Date(JSON.parse(lastGenerationTimeJsonString));
     }
 
     private async writeCurrentGenerationTime(): Promise<void> {

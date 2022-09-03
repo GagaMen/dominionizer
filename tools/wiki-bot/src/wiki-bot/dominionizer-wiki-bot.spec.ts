@@ -26,6 +26,7 @@ import { ValidationResult } from './validation/validation-result';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
+    let lastGenerationTime: Date;
     let currentGenerationTime: Date;
     let targetPath: string;
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
@@ -48,8 +49,10 @@ describe('DominionizerWikiBot', () => {
     let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
     let imageValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let writeFileSpy: jasmine.Spy;
+    let readFileSpy: jasmine.Spy;
 
     beforeEach(() => {
+        lastGenerationTime = new Date('2022-09-03T09:18:53.321Z');
         currentGenerationTime = new Date();
 
         targetPath = './assets';
@@ -60,6 +63,7 @@ describe('DominionizerWikiBot', () => {
             'fetchAllCardPages',
             'fetchAllCardSymbolPages',
             'fetchAllCardArtPages',
+            'fetchRecentChanges',
         ]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
@@ -146,6 +150,11 @@ describe('DominionizerWikiBot', () => {
         imageValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
         writeFileSpy = spyOn(Fs, 'writeFile');
+
+        readFileSpy = spyOn(Fs, 'readFile');
+        readFileSpy
+            .withArgs('./last-generation.json', 'utf8')
+            .and.resolveTo(JSON.stringify(lastGenerationTime));
 
         spyOn(console, 'log').and.stub();
 
@@ -606,6 +615,27 @@ describe('DominionizerWikiBot', () => {
             expect(wikiClientSpy.fetchAllCardSymbolPages).not.toHaveBeenCalled();
             expect(wikiClientSpy.fetchAllCardArtPages).not.toHaveBeenCalled();
             expect(imageBuilderSpy.build).not.toHaveBeenCalled();
+            /* eslint-enable */
+        });
+    });
+
+    describe('generateUpdate', () => {
+        it('should write current generation time to file', async () => {
+            await dominionizerWikiBot.generateUpdate();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                './last-generation.json',
+                JSON.stringify(currentGenerationTime),
+            );
+        });
+
+        it('should fetch recent changes correctly', async () => {
+            await dominionizerWikiBot.generateUpdate();
+
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(wikiClientSpy.fetchRecentChanges).toHaveBeenCalledWith(
+                lastGenerationTime.toISOString(),
+            );
             /* eslint-enable */
         });
     });
