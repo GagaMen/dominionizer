@@ -18,7 +18,13 @@ import { readFile, writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
-import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
+import {
+    ExpansionPage,
+    CardPage,
+    ImagePage,
+    CardTypePage,
+    ChangedPage,
+} from './wiki-client/api-models';
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
 import { ValidationResult } from './validation/validation-result';
@@ -90,7 +96,30 @@ export class DominionizerWikiBot {
         const lastGenerationTime = await this.readLastGenerationTime();
         await this.writeCurrentGenerationTime();
 
-        await this.wikiClient.fetchRecentChanges(lastGenerationTime.toISOString());
+        const changedPages = await this.wikiClient.fetchRecentChanges(
+            lastGenerationTime.toISOString(),
+        );
+
+        const pageIds = changedPages.map((changedPage: ChangedPage) => changedPage.pageid);
+        const changedExpansionPages = await this.wikiClient.fetchMultipleExpansionPages(pageIds);
+        const changedExpansions = this.generateExpansions(changedExpansionPages);
+
+        const expansions = await this.readExpansions();
+
+        for (const changedExpansion of changedExpansions) {
+            const index = expansions.findIndex(
+                (oldExpansion: Expansion) => oldExpansion.id === changedExpansion.id,
+            );
+
+            if (index >= 0) {
+                expansions[index] = changedExpansion;
+                continue;
+            }
+
+            expansions.push(changedExpansion);
+        }
+
+        await this.writeExpansions(expansions);
 
         return this.successful;
     }
@@ -129,6 +158,12 @@ export class DominionizerWikiBot {
         );
 
         return expansions;
+    }
+
+    private async readExpansions(): Promise<Expansion[]> {
+        return JSON.parse(
+            await readFile(`${this.targetPath}/data/expansions.json`, 'utf8'),
+        ) as Expansion[];
     }
 
     private async writeExpansions(expansions: Expansion[]): Promise<void> {
