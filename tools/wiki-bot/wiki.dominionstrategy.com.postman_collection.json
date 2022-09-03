@@ -319,7 +319,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&generator=recentchanges&grcend=2021-03-10T00:00:00Z&grctoponly=true&grclimit=1",
+					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&generator=recentchanges&grcend=2022-08-24T18:30:53.321Z&grctoponly=true&grcnamespace=0|6&grclimit=100&prop=categories&clcategories=Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols&cllimit=max",
 					"protocol": "http",
 					"host": [
 						"wiki",
@@ -344,15 +344,31 @@
 						},
 						{
 							"key": "grcend",
-							"value": "2021-03-10T00:00:00Z"
+							"value": "2022-08-24T18:30:53.321Z"
 						},
 						{
 							"key": "grctoponly",
 							"value": "true"
 						},
 						{
+							"key": "grcnamespace",
+							"value": "0|6"
+						},
+						{
 							"key": "grclimit",
-							"value": "1"
+							"value": "100"
+						},
+						{
+							"key": "prop",
+							"value": "categories"
+						},
+						{
+							"key": "clcategories",
+							"value": "Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols"
+						},
+						{
+							"key": "cllimit",
+							"value": "max"
 						}
 					]
 				}

@@ -48,3 +48,11 @@ export interface ImageInfo {
     url: string;
     mime: string;
 }
+
+export interface ChangedPage extends Page {
+    categories?: Category[];
+}
+
+export interface Category {
+    title: string;
+}

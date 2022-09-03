@@ -112,7 +112,18 @@ export class WikiClient {
             generator: 'recentchanges',
             grcend: since,
             grctoponly: 'true',
-            grclimit: 'max',
+            // 0 = main namespace, 6 = 'File:'
+            grcnamespace: '0|6',
+            // 'grclimit' multiplied with 'clcategories' amount should not exceed 'cllimit'.
+            // Otherwise it is theoretical possible that not all categories are fetched
+            // and the current implementation can't handle continuation information other
+            // than for 'generator'.
+            grclimit: '100',
+            prop: 'categories',
+            clcategories:
+                'Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols',
+            // max = 500
+            cllimit: 'max',
         };
 
         return await this.fetchPages(params);
