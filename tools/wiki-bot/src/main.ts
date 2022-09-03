@@ -20,8 +20,28 @@ import {
     ExpansionsValidator,
 } from './wiki-bot/validation/expansion-validators';
 import { ImagesValidator } from './wiki-bot/validation/image-validators';
+import { Command } from 'commander';
+
+interface Options {
+    skipImages: boolean;
+    update: boolean;
+}
 
 async function bootstrap(): Promise<void> {
+    const program = new Command()
+        .option(
+            '-u, --update',
+            'updates a previous generation with the wiki changes since then',
+            false,
+        )
+        .option(
+            '--skip-images',
+            'skips generation of images to speed up the process (mainly for local testing)',
+            false,
+        )
+        .parse();
+    const options: Options = program.opts();
+
     const axiosInstance = axios.create({
         baseURL: 'http://wiki.dominionstrategy.com/api.php',
         timeout: 60 * 1000,
@@ -75,7 +95,7 @@ async function bootstrap(): Promise<void> {
     );
 
     try {
-        await bot.generateAll();
+        await bot.generateAll(options.skipImages);
     } finally {
         imagePool.close();
     }
