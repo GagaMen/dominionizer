@@ -55,17 +55,23 @@ export class DominionizerWikiBot {
         await this.writeCurrentGenerationTime();
 
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
-        await this.generateExpansions(expansionPages);
-        await this.generateExpansionTranslations(expansionPages);
+        const expansions = this.generateExpansions(expansionPages);
+        await this.writeExpansions(expansions);
+        const expansionTranslations = this.generateExpansionTranslations(expansionPages);
+        await this.writeExpansionTranslations(expansionTranslations);
 
         const cardTypePages = await this.wikiClient.fetchAllCardTypePages();
-        const cardTypes = await this.generateCardTypes(cardTypePages);
-        await this.generateCardTypeTranslations(cardTypePages);
+        const cardTypes = this.generateCardTypes(cardTypePages);
+        await this.writeCardTypes(cardTypes);
+        const cardTypeTranslations = this.generateCardTypeTranslations(cardTypePages);
+        await this.writeCardTypeTranslations(cardTypeTranslations);
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages, cardTypePages);
         const cardPages = await this.wikiClient.fetchAllCardPages();
-        await this.generateCards(cardPages, cardTypePages, cardExpansionsMap, cardTypes);
-        await this.generateCardTranslations(cardPages);
+        const cards = this.generateCards(cardPages, cardTypePages, cardExpansionsMap, cardTypes);
+        await this.writeCards(cards);
+        const cardTranslations = this.generateCardTranslations(cardPages);
+        await this.writeCardTranslations(cardTranslations);
 
         if (skipImages) {
             return this.successful;
@@ -99,7 +105,7 @@ export class DominionizerWikiBot {
         await writeFile('./last-generation.json', JSON.stringify(this.currentGenerationTime));
     }
 
-    private async generateExpansions(expansionPages: ExpansionPage[]): Promise<Expansion[]> {
+    private generateExpansions(expansionPages: ExpansionPage[]): Expansion[] {
         console.log('Generating expansions...');
 
         let expansions: Expansion[] = [];
@@ -122,14 +128,16 @@ export class DominionizerWikiBot {
             this.expansionsValidator.validate(expansions, expansionPages),
         );
 
-        await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));
-
         return expansions;
     }
 
-    private async generateExpansionTranslations(
+    private async writeExpansions(expansions: Expansion[]): Promise<void> {
+        await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));
+    }
+
+    private generateExpansionTranslations(
         expansionPages: ExpansionPage[],
-    ): Promise<Map<string, ExpansionTranslation[]>> {
+    ): Map<string, ExpansionTranslation[]> {
         console.log('Generating expansion translations...');
 
         const translations: Map<string, ExpansionTranslation[]> = new Map();
@@ -152,19 +160,25 @@ export class DominionizerWikiBot {
             }
         }
 
-        for (const [language, translationsByLanguage] of translations) {
+        for (const [_, translationsByLanguage] of translations) {
             this.sortById(translationsByLanguage);
-
-            await writeFile(
-                `${this.targetPath}/data/expansions.${language.toLowerCase()}.json`,
-                JSON.stringify(translationsByLanguage),
-            );
         }
 
         return translations;
     }
 
-    private async generateCardTypes(cardTypePages: CardTypePage[]): Promise<CardType[]> {
+    private async writeExpansionTranslations(
+        expansionTranslations: Map<string, ExpansionTranslation[]>,
+    ): Promise<void> {
+        for (const [language, translationsByLanguage] of expansionTranslations) {
+            await writeFile(
+                `${this.targetPath}/data/expansions.${language.toLowerCase()}.json`,
+                JSON.stringify(translationsByLanguage),
+            );
+        }
+    }
+
+    private generateCardTypes(cardTypePages: CardTypePage[]): CardType[] {
         console.log('Generating card types...');
 
         let cardTypes: CardType[] = [];
@@ -180,14 +194,16 @@ export class DominionizerWikiBot {
 
         this.evaluateValidationResult(this.cardTypesValidator.validate(cardTypes, cardTypePages));
 
-        await writeFile(`${this.targetPath}/data/card-types.json`, JSON.stringify(cardTypes));
-
         return cardTypes;
     }
 
-    private async generateCardTypeTranslations(
+    private async writeCardTypes(cardTypes: CardType[]): Promise<void> {
+        await writeFile(`${this.targetPath}/data/card-types.json`, JSON.stringify(cardTypes));
+    }
+
+    private generateCardTypeTranslations(
         cardTypePages: CardTypePage[],
-    ): Promise<Map<string, CardTypeTranslation[]>> {
+    ): Map<string, CardTypeTranslation[]> {
         console.log('Generating card types translations...');
 
         const translations: Map<string, CardTypeTranslation[]> = new Map();
@@ -206,16 +222,22 @@ export class DominionizerWikiBot {
             }
         }
 
-        for (const [language, translationsByLanguage] of translations) {
+        for (const [_, translationsByLanguage] of translations) {
             this.sortById(translationsByLanguage);
+        }
 
+        return translations;
+    }
+
+    private async writeCardTypeTranslations(
+        cardTypeTranslations: Map<string, CardTypeTranslation[]>,
+    ): Promise<void> {
+        for (const [language, translationsByLanguage] of cardTypeTranslations) {
             await writeFile(
                 `${this.targetPath}/data/card-types.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
         }
-
-        return translations;
     }
 
     private generateCardExpansionsMap(
@@ -263,12 +285,12 @@ export class DominionizerWikiBot {
         return cardExpansionsMap;
     }
 
-    private async generateCards(
+    private generateCards(
         cardPages: CardPage[],
         cardTypePages: CardTypePage[],
         cardExpansionsMap: Map<string, number[]>,
         cardTypes: CardType[],
-    ): Promise<CardDto[]> {
+    ): CardDto[] {
         console.log('Generating cards...');
 
         let cards: CardDto[] = [];
@@ -304,14 +326,14 @@ export class DominionizerWikiBot {
 
         this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cardPages));
 
-        await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
-
         return cards;
     }
 
-    private async generateCardTranslations(
-        cardPages: CardPage[],
-    ): Promise<Map<string, CardTranslation[]>> {
+    private async writeCards(cards: CardDto[]): Promise<void> {
+        await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
+    }
+
+    private generateCardTranslations(cardPages: CardPage[]): Map<string, CardTranslation[]> {
         console.log('Generating card translations...');
 
         const translations: Map<string, CardTranslation[]> = new Map();
@@ -330,16 +352,22 @@ export class DominionizerWikiBot {
             }
         }
 
-        for (const [language, translationsByLanguage] of translations) {
+        for (const [_, translationsByLanguage] of translations) {
             this.sortById(translationsByLanguage);
+        }
 
+        return translations;
+    }
+
+    private async writeCardTranslations(
+        cardTranslations: Map<string, CardTranslation[]>,
+    ): Promise<void> {
+        for (const [language, translationsByLanguage] of cardTranslations) {
             await writeFile(
                 `${this.targetPath}/data/cards.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
         }
-
-        return translations;
     }
 
     private sortById(entities: { id: number }[]): void {
