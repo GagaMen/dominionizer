@@ -51,7 +51,7 @@ export class DominionizerWikiBot {
         private imageValidator: ImagesValidator,
     ) {}
 
-    async generateAll(): Promise<boolean> {
+    async generateAll(skipImages: boolean = false): Promise<boolean> {
         await this.writeCurrentGenerationTime();
 
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
@@ -66,6 +66,10 @@ export class DominionizerWikiBot {
         const cardPages = await this.wikiClient.fetchAllCardPages();
         await this.generateCards(cardPages, cardTypePages, cardExpansionsMap, cardTypes);
         await this.generateCardTranslations(cardPages);
+
+        if (skipImages) {
+            return this.successful;
+        }
 
         const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
         await this.generateImages(cardSymbolPages, 'card_symbols');

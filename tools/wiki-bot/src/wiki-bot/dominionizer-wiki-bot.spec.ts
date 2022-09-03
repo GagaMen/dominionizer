@@ -598,5 +598,15 @@ describe('DominionizerWikiBot', () => {
             );
             /* eslint-enable */
         });
+
+        it('with skipImages is true should not generate card symbols and card arts', async () => {
+            await dominionizerWikiBot.generateAll(true);
+
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(wikiClientSpy.fetchAllCardSymbolPages).not.toHaveBeenCalled();
+            expect(wikiClientSpy.fetchAllCardArtPages).not.toHaveBeenCalled();
+            expect(imageBuilderSpy.build).not.toHaveBeenCalled();
+            /* eslint-enable */
+        });
     });
 });
