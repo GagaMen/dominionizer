@@ -18,13 +18,7 @@ import { ExpansionTranslationBuilder } from './builder/expansion-translation-bui
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { DominionizerWikiBot } from './dominionizer-wiki-bot';
-import {
-    ExpansionPage,
-    CardPage,
-    ImagePage,
-    CardTypePage,
-    ChangedPage,
-} from './wiki-client/api-models';
+import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
 import { CardType } from '../../../../src/app/models/card-type';
@@ -70,16 +64,12 @@ describe('DominionizerWikiBot', () => {
             'fetchAllCardSymbolPages',
             'fetchAllCardArtPages',
             'fetchRecentChanges',
-            'fetchMultipleExpansionPages',
-            'fetchMultipleCardTypePages',
         ]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardArtPages.and.resolveTo([]);
-        wikiClientSpy.fetchRecentChanges.and.resolveTo([]);
-        wikiClientSpy.fetchMultipleExpansionPages.and.resolveTo([]);
 
         expansionBuilderSpy = jasmine.createSpyObj<ExpansionBuilder>('ExpansionBuilder', ['build']);
         expansionBuilderSpy.build.and.returnValue([]);
@@ -162,7 +152,6 @@ describe('DominionizerWikiBot', () => {
         writeFileSpy = spyOn(Fs, 'writeFile');
 
         readFileSpy = spyOn(Fs, 'readFile');
-        readFileSpy.and.resolveTo('[]');
         readFileSpy
             .withArgs('./last-generation.json', 'utf8')
             .and.resolveTo(JSON.stringify(lastGenerationTime));
@@ -646,122 +635,6 @@ describe('DominionizerWikiBot', () => {
             /* eslint-disable @typescript-eslint/unbound-method */
             expect(wikiClientSpy.fetchRecentChanges).toHaveBeenCalledWith(
                 lastGenerationTime.toISOString(),
-            );
-            /* eslint-enable */
-        });
-
-        it('with changed expansions should generate expansions', async () => {
-            const changedPages: ChangedPage[] = [
-                { pageid: 1, categories: [{ title: 'Category:Sets' }] } as ChangedPage,
-                { pageid: 3, categories: [{ title: 'Category:Sets' }] } as ChangedPage,
-            ];
-            const changedExpansionPages: ExpansionPage[] = [
-                { pageid: 1, title: 'Changed Expansion' } as ExpansionPage,
-                { pageid: 3, title: 'New Expansion' } as ExpansionPage,
-            ];
-            const changedExpansions: Expansion[] = [
-                { id: 1, name: 'Changed Expansion' } as Expansion,
-                { id: 3, name: 'New Expansion' } as Expansion,
-            ];
-            const oldExpansions: Expansion[] = [
-                { id: 1, name: 'Old Expansion' } as Expansion,
-                { id: 2 } as Expansion,
-            ];
-            const expectedExpansions: Expansion[] = [
-                { id: 1, name: 'Changed Expansion' } as Expansion,
-                { id: 2 } as Expansion,
-                { id: 3, name: 'New Expansion' } as Expansion,
-            ];
-            wikiClientSpy.fetchRecentChanges.and.resolveTo(changedPages);
-            wikiClientSpy.fetchMultipleExpansionPages
-                .withArgs([changedPages[0].pageid, changedPages[1].pageid])
-                .and.resolveTo(changedExpansionPages);
-            expansionBuilderSpy.build
-                .withArgs(changedExpansionPages[0])
-                .and.returnValue([changedExpansions[0]]);
-            expansionBuilderSpy.build
-                .withArgs(changedExpansionPages[1])
-                .and.returnValue([changedExpansions[1]]);
-            readFileSpy
-                .withArgs(`${targetPath}/data/expansions.json`, 'utf8')
-                .and.resolveTo(JSON.stringify(oldExpansions));
-
-            await dominionizerWikiBot.generateUpdate();
-
-            expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/data/expansions.json`,
-                JSON.stringify(expectedExpansions),
-            );
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(expansionValidatorSpy.validate).toHaveBeenCalledWith(
-                changedExpansions[0],
-                changedExpansionPages[0],
-            );
-            expect(expansionValidatorSpy.validate).toHaveBeenCalledWith(
-                changedExpansions[1],
-                changedExpansionPages[1],
-            );
-            expect(expansionsValidatorSpy.validate).toHaveBeenCalledWith(
-                changedExpansions,
-                changedExpansionPages,
-            );
-            /* eslint-enable */
-        });
-
-        it('with changed card types should generate card types', async () => {
-            const changedPages: ChangedPage[] = [
-                { pageid: 1000, categories: [{ title: 'Category:Card types' }] } as ChangedPage,
-                { pageid: 3000, categories: [{ title: 'Category:Card types' }] } as ChangedPage,
-            ];
-            const changedCardTypePages: CardTypePage[] = [
-                { pageid: 1000, title: 'Changed Card Type' } as CardTypePage,
-                { pageid: 3000, title: 'New Card Type' } as CardTypePage,
-            ];
-            const changedCardTypes: CardType[] = [
-                { id: 1000, name: 'Changed Card Type' },
-                { id: 3000, name: 'New Card Type' },
-            ];
-            const oldCardTypes: CardType[] = [
-                { id: 1000, name: 'Old Card Type' },
-                { id: 2000 } as CardType,
-            ];
-            const expectedCardTypes: CardType[] = [
-                { id: 1000, name: 'Changed Card Type' },
-                { id: 2000 } as CardType,
-                { id: 3000, name: 'New Card Type' },
-            ];
-            wikiClientSpy.fetchRecentChanges.and.resolveTo(changedPages);
-            wikiClientSpy.fetchMultipleCardTypePages
-                .withArgs([changedCardTypePages[0].pageid, changedCardTypePages[1].pageid])
-                .and.resolveTo(changedCardTypePages);
-            cardTypeBuilderSpy.build
-                .withArgs(changedCardTypePages[0])
-                .and.returnValue(changedCardTypes[0]);
-            cardTypeBuilderSpy.build
-                .withArgs(changedCardTypePages[1])
-                .and.returnValue(changedCardTypes[1]);
-            readFileSpy
-                .withArgs(`${targetPath}/data/card-types.json`, 'utf8')
-                .and.resolveTo(JSON.stringify(oldCardTypes));
-
-            await dominionizerWikiBot.generateUpdate();
-
-            expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/data/card-types.json`,
-                JSON.stringify(expectedCardTypes),
-            );
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
-                changedCardTypes[0],
-                changedCardTypePages[0],
-            );
-            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
-                changedCardTypes[1],
-                changedCardTypePages[1],
-            );
-            expect(cardTypesValidatorSpy.validate).toHaveBeenCalledWith(
-                changedCardTypes,
-                changedCardTypePages,
             );
             /* eslint-enable */
         });

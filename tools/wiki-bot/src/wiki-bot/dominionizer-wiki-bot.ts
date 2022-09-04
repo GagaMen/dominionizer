@@ -18,13 +18,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
-import {
-    ExpansionPage,
-    CardPage,
-    ImagePage,
-    CardTypePage,
-    ChangedPage,
-} from './wiki-client/api-models';
+import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
 import { ValidationResult } from './validation/validation-result';
@@ -96,30 +90,7 @@ export class DominionizerWikiBot {
         const lastGenerationTime = await this.readLastGenerationTime();
         await this.writeCurrentGenerationTime();
 
-        const changedPages = await this.wikiClient.fetchRecentChanges(
-            lastGenerationTime.toISOString(),
-        );
-        const pageIdsByCategory = this.determinePageIdsByCategory(changedPages);
-
-        if (pageIdsByCategory.has('Category:Sets')) {
-            const changedExpansionPages = await this.wikiClient.fetchMultipleExpansionPages(
-                pageIdsByCategory.get('Category:Sets') as number[],
-            );
-            const changedExpansions = this.generateExpansions(changedExpansionPages);
-            const expansions = await this.readExpansions();
-            this.mergeEntities(expansions, changedExpansions);
-            await this.writeExpansions(expansions);
-        }
-
-        if (pageIdsByCategory.has('Category:Card types')) {
-            const changedCardTypePages = await this.wikiClient.fetchMultipleCardTypePages(
-                pageIdsByCategory.get('Category:Card types') as number[],
-            );
-            const changedCardTypes = this.generateCardTypes(changedCardTypePages);
-            const cardTypes = await this.readCardTypes();
-            this.mergeEntities(cardTypes, changedCardTypes);
-            await this.writeCardTypes(cardTypes);
-        }
+        await this.wikiClient.fetchRecentChanges(lastGenerationTime.toISOString());
 
         return this.successful;
     }
@@ -132,37 +103,6 @@ export class DominionizerWikiBot {
 
     private async writeCurrentGenerationTime(): Promise<void> {
         await writeFile('./last-generation.json', JSON.stringify(this.currentGenerationTime));
-    }
-
-    private determinePageIdsByCategory(changedPages: ChangedPage[]): Map<string, number[]> {
-        const pageIds = new Map<string, number[]>();
-
-        for (const changedPage of changedPages) {
-            if (changedPage.categories === undefined) {
-                continue;
-            }
-
-            for (const category of changedPage.categories) {
-                const pageIdsOfCategory = pageIds.get(category.title) ?? [];
-                pageIdsOfCategory.push(changedPage.pageid);
-                pageIds.set(category.title, pageIdsOfCategory);
-            }
-        }
-
-        return pageIds;
-    }
-
-    private mergeEntities<T extends { id: number }>(entities: T[], changedEntities: T[]): void {
-        for (const changedEntity of changedEntities) {
-            const index = entities.findIndex((oldEntity: T) => oldEntity.id === changedEntity.id);
-
-            if (index >= 0) {
-                entities[index] = changedEntity;
-                continue;
-            }
-
-            entities.push(changedEntity);
-        }
     }
 
     private generateExpansions(expansionPages: ExpansionPage[]): Expansion[] {
@@ -189,12 +129,6 @@ export class DominionizerWikiBot {
         );
 
         return expansions;
-    }
-
-    private async readExpansions(): Promise<Expansion[]> {
-        return JSON.parse(
-            await readFile(`${this.targetPath}/data/expansions.json`, 'utf8'),
-        ) as Expansion[];
     }
 
     private async writeExpansions(expansions: Expansion[]): Promise<void> {
@@ -261,12 +195,6 @@ export class DominionizerWikiBot {
         this.evaluateValidationResult(this.cardTypesValidator.validate(cardTypes, cardTypePages));
 
         return cardTypes;
-    }
-
-    private async readCardTypes(): Promise<CardType[]> {
-        return JSON.parse(
-            await readFile(`${this.targetPath}/data/card-types.json`, 'utf8'),
-        ) as CardType[];
     }
 
     private async writeCardTypes(cardTypes: CardType[]): Promise<void> {

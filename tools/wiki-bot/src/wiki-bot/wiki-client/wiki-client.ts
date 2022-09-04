@@ -2,9 +2,9 @@ import { AxiosInstance } from 'axios';
 import {
     CardPage,
     CardTypePage,
-    ChangedPage,
     ExpansionPage,
     ImagePage,
+    Page,
     QueryParams,
     QueryResult,
 } from './api-models';
@@ -106,7 +106,7 @@ export class WikiClient {
         return await this.fetchPages(params, 'card symbol');
     }
 
-    async fetchRecentChanges(since: string): Promise<ChangedPage[]> {
+    async fetchRecentChanges(since: string): Promise<Page[]> {
         const params: QueryParams = {
             ...this.defaultParams,
             generator: 'recentchanges',
@@ -142,15 +142,6 @@ export class WikiClient {
         const params: QueryParams = {
             ...this.defaultParams,
             ...this.defaultPropParamsForCardPages,
-        };
-
-        return await this.fetchMultiplePages(pageIds, params);
-    }
-
-    async fetchMultipleCardTypePages(pageIds: number[]): Promise<CardTypePage[]> {
-        const params: QueryParams = {
-            ...this.defaultParams,
-            ...this.defaultPropParamsForCardTypePages,
         };
 
         return await this.fetchMultiplePages(pageIds, params);
