@@ -99,27 +99,27 @@ export class DominionizerWikiBot {
         const changedPages = await this.wikiClient.fetchRecentChanges(
             lastGenerationTime.toISOString(),
         );
+        const pageIdsByCategory = this.determinePageIdsByCategory(changedPages);
 
-        const pageIds = changedPages.map((changedPage: ChangedPage) => changedPage.pageid);
-        const changedExpansionPages = await this.wikiClient.fetchMultipleExpansionPages(pageIds);
-        const changedExpansions = this.generateExpansions(changedExpansionPages);
-
-        const expansions = await this.readExpansions();
-
-        for (const changedExpansion of changedExpansions) {
-            const index = expansions.findIndex(
-                (oldExpansion: Expansion) => oldExpansion.id === changedExpansion.id,
+        if (pageIdsByCategory.has('Category:Sets')) {
+            const changedExpansionPages = await this.wikiClient.fetchMultipleExpansionPages(
+                pageIdsByCategory.get('Category:Sets') as number[],
             );
-
-            if (index >= 0) {
-                expansions[index] = changedExpansion;
-                continue;
-            }
-
-            expansions.push(changedExpansion);
+            const changedExpansions = this.generateExpansions(changedExpansionPages);
+            const expansions = await this.readExpansions();
+            this.mergeEntities(expansions, changedExpansions);
+            await this.writeExpansions(expansions);
         }
 
-        await this.writeExpansions(expansions);
+        if (pageIdsByCategory.has('Category:Card types')) {
+            const changedCardTypePages = await this.wikiClient.fetchMultipleCardTypePages(
+                pageIdsByCategory.get('Category:Card types') as number[],
+            );
+            const changedCardTypes = this.generateCardTypes(changedCardTypePages);
+            const cardTypes = await this.readCardTypes();
+            this.mergeEntities(cardTypes, changedCardTypes);
+            await this.writeCardTypes(cardTypes);
+        }
 
         return this.successful;
     }
@@ -132,6 +132,37 @@ export class DominionizerWikiBot {
 
     private async writeCurrentGenerationTime(): Promise<void> {
         await writeFile('./last-generation.json', JSON.stringify(this.currentGenerationTime));
+    }
+
+    private determinePageIdsByCategory(changedPages: ChangedPage[]): Map<string, number[]> {
+        const pageIds = new Map<string, number[]>();
+
+        for (const changedPage of changedPages) {
+            if (changedPage.categories === undefined) {
+                continue;
+            }
+
+            for (const category of changedPage.categories) {
+                const pageIdsOfCategory = pageIds.get(category.title) ?? [];
+                pageIdsOfCategory.push(changedPage.pageid);
+                pageIds.set(category.title, pageIdsOfCategory);
+            }
+        }
+
+        return pageIds;
+    }
+
+    private mergeEntities<T extends { id: number }>(entities: T[], changedEntities: T[]): void {
+        for (const changedEntity of changedEntities) {
+            const index = entities.findIndex((oldEntity: T) => oldEntity.id === changedEntity.id);
+
+            if (index >= 0) {
+                entities[index] = changedEntity;
+                continue;
+            }
+
+            entities.push(changedEntity);
+        }
     }
 
     private generateExpansions(expansionPages: ExpansionPage[]): Expansion[] {
@@ -230,6 +261,12 @@ export class DominionizerWikiBot {
         this.evaluateValidationResult(this.cardTypesValidator.validate(cardTypes, cardTypePages));
 
         return cardTypes;
+    }
+
+    private async readCardTypes(): Promise<CardType[]> {
+        return JSON.parse(
+            await readFile(`${this.targetPath}/data/card-types.json`, 'utf8'),
+        ) as CardType[];
     }
 
     private async writeCardTypes(cardTypes: CardType[]): Promise<void> {

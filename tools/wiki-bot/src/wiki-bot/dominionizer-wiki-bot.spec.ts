@@ -71,6 +71,7 @@ describe('DominionizerWikiBot', () => {
             'fetchAllCardArtPages',
             'fetchRecentChanges',
             'fetchMultipleExpansionPages',
+            'fetchMultipleCardTypePages',
         ]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
@@ -703,6 +704,64 @@ describe('DominionizerWikiBot', () => {
             expect(expansionsValidatorSpy.validate).toHaveBeenCalledWith(
                 changedExpansions,
                 changedExpansionPages,
+            );
+            /* eslint-enable */
+        });
+
+        it('with changed card types should generate card types', async () => {
+            const changedPages: ChangedPage[] = [
+                { pageid: 1000, categories: [{ title: 'Category:Card types' }] } as ChangedPage,
+                { pageid: 3000, categories: [{ title: 'Category:Card types' }] } as ChangedPage,
+            ];
+            const changedCardTypePages: CardTypePage[] = [
+                { pageid: 1000, title: 'Changed Card Type' } as CardTypePage,
+                { pageid: 3000, title: 'New Card Type' } as CardTypePage,
+            ];
+            const changedCardTypes: CardType[] = [
+                { id: 1000, name: 'Changed Card Type' },
+                { id: 3000, name: 'New Card Type' },
+            ];
+            const oldCardTypes: CardType[] = [
+                { id: 1000, name: 'Old Card Type' },
+                { id: 2000 } as CardType,
+            ];
+            const expectedCardTypes: CardType[] = [
+                { id: 1000, name: 'Changed Card Type' },
+                { id: 2000 } as CardType,
+                { id: 3000, name: 'New Card Type' },
+            ];
+            wikiClientSpy.fetchRecentChanges.and.resolveTo(changedPages);
+            wikiClientSpy.fetchMultipleCardTypePages
+                .withArgs([changedCardTypePages[0].pageid, changedCardTypePages[1].pageid])
+                .and.resolveTo(changedCardTypePages);
+            cardTypeBuilderSpy.build
+                .withArgs(changedCardTypePages[0])
+                .and.returnValue(changedCardTypes[0]);
+            cardTypeBuilderSpy.build
+                .withArgs(changedCardTypePages[1])
+                .and.returnValue(changedCardTypes[1]);
+            readFileSpy
+                .withArgs(`${targetPath}/data/card-types.json`, 'utf8')
+                .and.resolveTo(JSON.stringify(oldCardTypes));
+
+            await dominionizerWikiBot.generateUpdate();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/data/card-types.json`,
+                JSON.stringify(expectedCardTypes),
+            );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
+                changedCardTypes[0],
+                changedCardTypePages[0],
+            );
+            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
+                changedCardTypes[1],
+                changedCardTypePages[1],
+            );
+            expect(cardTypesValidatorSpy.validate).toHaveBeenCalledWith(
+                changedCardTypes,
+                changedCardTypePages,
             );
             /* eslint-enable */
         });
