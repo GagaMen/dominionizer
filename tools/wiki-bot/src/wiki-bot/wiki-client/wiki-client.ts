@@ -147,6 +147,15 @@ export class WikiClient {
         return await this.fetchMultiplePages(pageIds, params);
     }
 
+    async fetchMultipleCardTypePages(pageIds: number[]): Promise<CardTypePage[]> {
+        const params: QueryParams = {
+            ...this.defaultParams,
+            ...this.defaultPropParamsForCardTypePages,
+        };
+
+        return await this.fetchMultiplePages(pageIds, params);
+    }
+
     async fetchMultipleImagePages(pageIds: number[]): Promise<ImagePage[]> {
         const params: QueryParams = {
             ...this.defaultParams,
