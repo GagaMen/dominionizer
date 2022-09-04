@@ -629,6 +629,14 @@ describe('DominionizerWikiBot', () => {
             );
         });
 
+        it('should generate all without images', async () => {
+            const generateAllSpy = spyOn(dominionizerWikiBot, 'generateAll');
+
+            await dominionizerWikiBot.generateUpdate();
+
+            expect(generateAllSpy).toHaveBeenCalledWith(true);
+        });
+
         it('should fetch recent changes correctly', async () => {
             await dominionizerWikiBot.generateUpdate();
 

@@ -90,6 +90,8 @@ export class DominionizerWikiBot {
         const lastGenerationTime = await this.readLastGenerationTime();
         await this.writeCurrentGenerationTime();
 
+        await this.generateAll(true);
+
         await this.wikiClient.fetchRecentChanges(lastGenerationTime.toISOString());
 
         return this.successful;
