@@ -87,7 +87,7 @@ export class DominionizerWikiBot {
         await this.generateImages(cardSymbolPages, 'card_symbols');
 
         const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
-        await this.generateImages(cardArtPages, 'card_arts');
+        await this.generateImages(cardArtPages, 'card_art');
 
         return this.successful;
     }
@@ -108,7 +108,7 @@ export class DominionizerWikiBot {
             groupedImagePages.get('Category:Card symbols') ?? [],
             'card_symbols',
         );
-        await this.generateImages(groupedImagePages.get('Category:Card art') ?? [], 'card_arts');
+        await this.generateImages(groupedImagePages.get('Category:Card art') ?? [], 'card_art');
 
         return this.successful;
     }

@@ -578,7 +578,7 @@ describe('DominionizerWikiBot', () => {
             /* eslint-enable */
         });
 
-        it('should generate card arts', async () => {
+        it('should generate card art', async () => {
             const cardArtPages: ImagePage[] = [
                 { pageid: 101, title: 'File:First.jpg' } as ImagePage,
                 { pageid: 201, title: 'File:Second.jpg' } as ImagePage,
@@ -600,11 +600,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_arts/${firstEncodedImage.fileName}`,
+                `${targetPath}/card_art/${firstEncodedImage.fileName}`,
                 firstEncodedImage.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_arts/${secondEncodedImage.fileName}`,
+                `${targetPath}/card_art/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
             /* eslint-disable @typescript-eslint/unbound-method */
@@ -684,7 +684,7 @@ describe('DominionizerWikiBot', () => {
                 encodedCardSymbol.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_arts/${encodedCardArt.fileName}`,
+                `${targetPath}/card_art/${encodedCardArt.fileName}`,
                 encodedCardArt.data,
             );
             /* eslint-disable @typescript-eslint/unbound-method */

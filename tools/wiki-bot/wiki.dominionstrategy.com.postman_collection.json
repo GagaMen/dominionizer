@@ -206,7 +206,7 @@
 			"response": []
 		},
 		{
-			"name": "All Card Arts",
+			"name": "All Card Art",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -510,7 +510,7 @@
 			"response": []
 		},
 		{
-			"name": "Multiple Card Arts",
+			"name": "Multiple Card Art",
 			"request": {
 				"method": "GET",
 				"header": [],
