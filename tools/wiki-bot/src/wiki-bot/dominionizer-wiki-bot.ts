@@ -18,7 +18,13 @@ import { readFile, writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
-import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
+import {
+    ExpansionPage,
+    CardPage,
+    ImagePage,
+    CardTypePage,
+    ChangedImagePage,
+} from './wiki-client/api-models';
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
 import { ValidationResult } from './validation/validation-result';
@@ -48,7 +54,7 @@ export class DominionizerWikiBot {
         private cardDtoValidator: CardDtoValidator,
         private cardDtosValidator: CardDtosValidator,
         private cardTranslationValidator: CardTranslationValidator,
-        private imageValidator: ImagesValidator,
+        private imagesValidator: ImagesValidator,
     ) {}
 
     async generateAll(skipImages: boolean = false): Promise<boolean> {
@@ -86,13 +92,23 @@ export class DominionizerWikiBot {
         return this.successful;
     }
 
-    async generateUpdate(): Promise<boolean> {
+    async generateUpdate(skipImages: boolean = false): Promise<boolean> {
         const lastGenerationTime = await this.readLastGenerationTime();
         await this.writeCurrentGenerationTime();
 
         await this.generateAll(true);
 
-        await this.wikiClient.fetchRecentImageChanges(lastGenerationTime);
+        if (skipImages) {
+            return this.successful;
+        }
+
+        const changedImagePages = await this.wikiClient.fetchRecentImageChanges(lastGenerationTime);
+        const groupedImagePages = this.groupChangedImagePagesByCategory(changedImagePages);
+        await this.generateImages(
+            groupedImagePages.get('Category:Card symbols') ?? [],
+            'card_symbols',
+        );
+        await this.generateImages(groupedImagePages.get('Category:Card art') ?? [], 'card_arts');
 
         return this.successful;
     }
@@ -105,6 +121,26 @@ export class DominionizerWikiBot {
 
     private async writeCurrentGenerationTime(): Promise<void> {
         await writeFile('./last-generation.json', JSON.stringify(this.currentGenerationTime));
+    }
+
+    private groupChangedImagePagesByCategory(
+        changedImagePages: ChangedImagePage[],
+    ): Map<string, ChangedImagePage[]> {
+        const groupedPages = new Map<string, ChangedImagePage[]>();
+
+        for (const page of changedImagePages) {
+            if (page.categories === undefined) {
+                continue;
+            }
+
+            for (const category of page.categories) {
+                const pagesOfCategory = groupedPages.get(category.title) ?? [];
+                pagesOfCategory.push(page);
+                groupedPages.set(category.title, pagesOfCategory);
+            }
+        }
+
+        return groupedPages;
     }
 
     private generateExpansions(expansionPages: ExpansionPage[]): Expansion[] {
@@ -382,10 +418,9 @@ export class DominionizerWikiBot {
     ): Promise<EncodedImage[]> {
         console.log(`Generating ${subFolder.replace('_', ' ')}...`);
 
-        const images: EncodedImage[] = [];
-
         await mkdir(`${this.targetPath}/${subFolder}`, { recursive: true });
 
+        const images: EncodedImage[] = [];
         for (const imagePage of imagePages) {
             const encodedImage = await this.imageBuilder.build(imagePage);
             images.push(encodedImage);
@@ -396,7 +431,7 @@ export class DominionizerWikiBot {
             );
         }
 
-        this.evaluateValidationResult(this.imageValidator.validate(images, imagePages));
+        this.evaluateValidationResult(this.imagesValidator.validate(images, imagePages));
 
         return images;
     }

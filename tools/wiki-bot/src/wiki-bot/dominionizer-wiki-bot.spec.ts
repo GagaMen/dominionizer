@@ -18,7 +18,13 @@ import { ExpansionTranslationBuilder } from './builder/expansion-translation-bui
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { DominionizerWikiBot } from './dominionizer-wiki-bot';
-import { ExpansionPage, CardPage, ImagePage, CardTypePage } from './wiki-client/api-models';
+import {
+    ExpansionPage,
+    CardPage,
+    ImagePage,
+    CardTypePage,
+    ChangedImagePage,
+} from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
 import { CardType } from '../../../../src/app/models/card-type';
@@ -70,6 +76,7 @@ describe('DominionizerWikiBot', () => {
         wikiClientSpy.fetchAllCardPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardArtPages.and.resolveTo([]);
+        wikiClientSpy.fetchRecentImageChanges.and.resolveTo([]);
 
         expansionBuilderSpy = jasmine.createSpyObj<ExpansionBuilder>('ExpansionBuilder', ['build']);
         expansionBuilderSpy.build.and.returnValue([]);
@@ -608,7 +615,7 @@ describe('DominionizerWikiBot', () => {
             /* eslint-enable */
         });
 
-        it('with skipImages is true should not generate card symbols and card arts', async () => {
+        it('with skipImages is true should not generate images', async () => {
             await dominionizerWikiBot.generateAll(true);
 
             /* eslint-disable @typescript-eslint/unbound-method */
@@ -637,11 +644,67 @@ describe('DominionizerWikiBot', () => {
             expect(generateAllSpy).toHaveBeenCalledWith(true);
         });
 
-        it('should fetch recent image changes correctly', async () => {
+        it('with changed image pages should generate those images', async () => {
+            const changedImagePages: ChangedImagePage[] = [
+                {
+                    pageid: 100,
+                    title: 'File:CardSymbol.png',
+                    categories: [{ title: 'Category:Card symbols' }],
+                } as ChangedImagePage,
+                {
+                    pageid: 200,
+                    title: 'File:CardArt.jpg',
+                    categories: [{ title: 'Category:Card art' }],
+                } as ChangedImagePage,
+                {
+                    pageid: 300,
+                    title: 'File:OtherImage.jpg',
+                } as ChangedImagePage,
+            ];
+            const encodedCardSymbol: EncodedImage = {
+                id: 100,
+                fileName: 'CardSymbol.png',
+                data: new Uint8Array([1, 2]),
+            };
+            const encodedCardArt: EncodedImage = {
+                id: 200,
+                fileName: 'CardArt.jpg',
+                data: new Uint8Array([3, 4]),
+            };
+            wikiClientSpy.fetchRecentImageChanges
+                .withArgs(lastGenerationTime)
+                .and.resolveTo(changedImagePages);
+            imageBuilderSpy.build.withArgs(changedImagePages[0]).and.resolveTo(encodedCardSymbol);
+            imageBuilderSpy.build.withArgs(changedImagePages[1]).and.resolveTo(encodedCardArt);
+
             await dominionizerWikiBot.generateUpdate();
 
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/card_symbols/${encodedCardSymbol.fileName}`,
+                encodedCardSymbol.data,
+            );
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/card_arts/${encodedCardArt.fileName}`,
+                encodedCardArt.data,
+            );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(wikiClientSpy.fetchRecentImageChanges).toHaveBeenCalledWith(lastGenerationTime);
+            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
+                [encodedCardSymbol],
+                [changedImagePages[0]],
+            );
+            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
+                [encodedCardArt],
+                [changedImagePages[1]],
+            );
+            /* eslint-enable */
+        });
+
+        it('with skipImages is true should not generate images', async () => {
+            await dominionizerWikiBot.generateUpdate(true);
+
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(wikiClientSpy.fetchRecentImageChanges).not.toHaveBeenCalled();
+            expect(imageBuilderSpy.build).not.toHaveBeenCalled();
             /* eslint-enable */
         });
     });
