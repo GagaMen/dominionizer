@@ -20,29 +20,10 @@ export class WikiClient {
         gcmlimit: 'max',
     };
 
-    private readonly defaultPropParamsForExpansionPages: QueryParams = {
-        prop: 'revisions',
-        rvprop: 'content',
-    };
-
-    private readonly defaultPropParamsForCardPages: QueryParams = {
-        prop: 'info|revisions',
-        inprop: 'url',
-        rvprop: 'content',
-    };
-
-    private readonly defaultPropParamsForCardTypePages: QueryParams = {
-        prop: 'info|revisions',
-        inprop: 'url',
-        rvprop: 'content',
-    };
-
     private readonly defaultPropParamsForImagePages: QueryParams = {
         prop: 'imageinfo',
         iiprop: 'url|mime',
     };
-
-    private readonly pageIdsLimit: number = 50;
 
     constructor(private axios: AxiosInstance) {}
 
@@ -52,7 +33,8 @@ export class WikiClient {
             ...this.defaultCategoryMembersParams,
             gcmtitle: 'Category:Sets',
             gcmtype: 'page',
-            ...this.defaultPropParamsForExpansionPages,
+            prop: 'revisions',
+            rvprop: 'content',
         };
 
         return await this.fetchPages(params, 'expansion');
@@ -64,7 +46,9 @@ export class WikiClient {
             ...this.defaultCategoryMembersParams,
             gcmtitle: 'Category:Cards',
             gcmtype: 'page',
-            ...this.defaultPropParamsForCardPages,
+            prop: 'info|revisions',
+            inprop: 'url',
+            rvprop: 'content',
         };
 
         return await this.fetchPages(params, 'card');
@@ -76,7 +60,9 @@ export class WikiClient {
             ...this.defaultCategoryMembersParams,
             gcmtitle: 'Category:Card types',
             gcmtype: 'page',
-            ...this.defaultPropParamsForCardTypePages,
+            prop: 'info|revisions',
+            inprop: 'url',
+            rvprop: 'content',
         };
 
         return await this.fetchPages(params, 'card type');
@@ -122,49 +108,6 @@ export class WikiClient {
         };
 
         return await this.fetchPages(params);
-    }
-
-    async fetchMultipleExpansionPages(pageIds: number[]): Promise<ExpansionPage[]> {
-        const params: QueryParams = {
-            ...this.defaultParams,
-            ...this.defaultPropParamsForExpansionPages,
-        };
-
-        return await this.fetchMultiplePages(pageIds, params);
-    }
-
-    async fetchMultipleCardPages(pageIds: number[]): Promise<CardPage[]> {
-        const params: QueryParams = {
-            ...this.defaultParams,
-            ...this.defaultPropParamsForCardPages,
-        };
-
-        return await this.fetchMultiplePages(pageIds, params);
-    }
-
-    async fetchMultipleImagePages(pageIds: number[]): Promise<ImagePage[]> {
-        const params: QueryParams = {
-            ...this.defaultParams,
-            ...this.defaultPropParamsForImagePages,
-        };
-
-        return await this.fetchMultiplePages(pageIds, params);
-    }
-
-    private async fetchMultiplePages<TPage>(
-        pageIds: number[],
-        params: QueryParams,
-    ): Promise<TPage[]> {
-        let pages: TPage[] = [];
-
-        for (let i = 0; i < pageIds.length / this.pageIdsLimit; i++) {
-            const startIndex = i * this.pageIdsLimit;
-            const endIndex = startIndex + this.pageIdsLimit;
-            params.pageids = pageIds.slice(startIndex, endIndex).join('|');
-            pages = pages.concat(await this.fetchPages(params));
-        }
-
-        return pages;
     }
 
     private async fetchPages<TPage>(
