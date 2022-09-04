@@ -95,6 +95,11 @@ async function bootstrap(): Promise<void> {
     );
 
     try {
+        if (options.update) {
+            await bot.generateUpdate(options.skipImages);
+            return;
+        }
+
         await bot.generateAll(options.skipImages);
     } finally {
         imagePool.close();
