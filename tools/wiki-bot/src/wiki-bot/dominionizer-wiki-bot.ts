@@ -92,7 +92,7 @@ export class DominionizerWikiBot {
 
         await this.generateAll(true);
 
-        await this.wikiClient.fetchRecentChanges(lastGenerationTime.toISOString());
+        await this.wikiClient.fetchRecentImageChanges(lastGenerationTime);
 
         return this.successful;
     }

@@ -7,7 +7,7 @@ import {
     QueryParams,
     ImagePage,
     CardTypePage,
-    ChangedPage,
+    ChangedImagePage,
 } from './api-models';
 
 describe('WikiClient', () => {
@@ -40,10 +40,16 @@ describe('WikiClient', () => {
             },
         ],
     };
-    const changedPage: ChangedPage = {
+    const changedImagePage: ChangedImagePage = {
         pageid: 1,
-        title: 'Changed',
-        categories: [{ title: 'Category:Cards' }, { title: 'Category:Card types' }],
+        title: 'Changed Image',
+        imageinfo: [
+            {
+                url: 'link/to/image',
+                mime: 'image/jpeg',
+            },
+        ],
+        categories: [{ title: 'Category:Card art' }],
     };
 
     function createPages<TPage>(pageIds: number[], page: TPage): { [k: string]: TPage } {
@@ -355,57 +361,57 @@ describe('WikiClient', () => {
         // is to low
     });
 
-    describe('fetchRecentChanges', () => {
-        const since = '2021-03-10T00:00:00Z';
-        const recentChangesParams: QueryParams = {
+    describe('fetchRecentImageChanges', () => {
+        const since = new Date('2021-03-10T00:00:00Z');
+        const recentImageChangesParams: QueryParams = {
             action: 'query',
             format: 'json',
             generator: 'recentchanges',
-            grcend: since,
+            grcend: since.toISOString(),
             grctoponly: 'true',
-            grcnamespace: '0|6',
-            grclimit: '100',
-            prop: 'categories',
-            clcategories:
-                'Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols',
+            grcnamespace: '6',
+            grclimit: 'max',
+            prop: 'imageinfo|categories',
+            iiprop: 'url|mime',
+            clcategories: 'Category:Card art|Category:Card symbols',
             cllimit: 'max',
         };
 
-        it('should fetch all changed pages correctly', async () => {
-            await wikiClient.fetchRecentChanges(since);
+        it('should fetch all changed image pages correctly', async () => {
+            await wikiClient.fetchRecentImageChanges(since);
 
             // eslint-disable-next-line @typescript-eslint/unbound-method
-            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: recentChangesParams });
+            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: recentImageChangesParams });
         });
 
-        it('with query result does not contain continuation data should return all changed pages', async () => {
-            const queryResult: QueryResult<ChangedPage> = {
+        it('with query result does not contain continuation data should return all changed image pages', async () => {
+            const queryResult: QueryResult<ChangedImagePage> = {
                 query: {
                     pages: {
-                        '1': changedPage,
-                        '2': changedPage,
+                        '1': changedImagePage,
+                        '2': changedImagePage,
                     },
                 },
             };
-            const axiosResponse: AxiosResponse<QueryResult<ChangedPage>> = {
+            const axiosResponse: AxiosResponse<QueryResult<ChangedImagePage>> = {
                 data: queryResult,
-            } as AxiosResponse<QueryResult<ChangedPage>>;
+            } as AxiosResponse<QueryResult<ChangedImagePage>>;
             axiosSpy.get.and.resolveTo(axiosResponse);
-            const expected = [changedPage, changedPage];
+            const expected = [changedImagePage, changedImagePage];
 
-            const actual = await wikiClient.fetchRecentChanges(since);
+            const actual = await wikiClient.fetchRecentImageChanges(since);
 
             expect(actual).toEqual(expected);
         });
 
-        it('with query result contains continuation data should continue fetching and return all changed pages', async () => {
+        it('with query result contains continuation data should continue fetching and return all changed image pages', async () => {
             const continueParamValue = 'continuation-data';
-            const firstParams: QueryParams = { ...recentChangesParams };
+            const firstParams: QueryParams = { ...recentImageChangesParams };
             const secondParams: QueryParams = {
-                ...recentChangesParams,
+                ...recentImageChangesParams,
                 grcstart: continueParamValue,
             };
-            const firstQueryResult: QueryResult<ChangedPage> = {
+            const firstQueryResult: QueryResult<ChangedImagePage> = {
                 'query-continue': {
                     recentchanges: {
                         grcstart: continueParamValue,
@@ -413,28 +419,28 @@ describe('WikiClient', () => {
                 },
                 query: {
                     pages: {
-                        '1': changedPage,
+                        '1': changedImagePage,
                     },
                 },
             };
-            const secondQueryResult: QueryResult<ChangedPage> = {
+            const secondQueryResult: QueryResult<ChangedImagePage> = {
                 query: {
                     pages: {
-                        '2': changedPage,
+                        '2': changedImagePage,
                     },
                 },
             };
-            const firstAxiosResponse: AxiosResponse<QueryResult<ChangedPage>> = {
+            const firstAxiosResponse: AxiosResponse<QueryResult<ChangedImagePage>> = {
                 data: firstQueryResult,
-            } as AxiosResponse<QueryResult<ChangedPage>>;
-            const secondAxiosResponse: AxiosResponse<QueryResult<ChangedPage>> = {
+            } as AxiosResponse<QueryResult<ChangedImagePage>>;
+            const secondAxiosResponse: AxiosResponse<QueryResult<ChangedImagePage>> = {
                 data: secondQueryResult,
-            } as AxiosResponse<QueryResult<ChangedPage>>;
+            } as AxiosResponse<QueryResult<ChangedImagePage>>;
             axiosSpy.get.withArgs('', { params: firstParams }).and.resolveTo(firstAxiosResponse);
             axiosSpy.get.withArgs('', { params: secondParams }).and.resolveTo(secondAxiosResponse);
-            const expected = [changedPage, changedPage];
+            const expected = [changedImagePage, changedImagePage];
 
-            const actual = await wikiClient.fetchRecentChanges(since);
+            const actual = await wikiClient.fetchRecentImageChanges(since);
 
             expect(actual).toEqual(expected);
         });

@@ -49,7 +49,7 @@ export interface ImageInfo {
     mime: string;
 }
 
-export interface ChangedPage extends Page {
+export interface ChangedImagePage extends ImagePage {
     categories?: Category[];
 }
 

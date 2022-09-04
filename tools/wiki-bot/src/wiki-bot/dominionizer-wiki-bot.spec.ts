@@ -63,7 +63,7 @@ describe('DominionizerWikiBot', () => {
             'fetchAllCardPages',
             'fetchAllCardSymbolPages',
             'fetchAllCardArtPages',
-            'fetchRecentChanges',
+            'fetchRecentImageChanges',
         ]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
@@ -637,13 +637,11 @@ describe('DominionizerWikiBot', () => {
             expect(generateAllSpy).toHaveBeenCalledWith(true);
         });
 
-        it('should fetch recent changes correctly', async () => {
+        it('should fetch recent image changes correctly', async () => {
             await dominionizerWikiBot.generateUpdate();
 
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(wikiClientSpy.fetchRecentChanges).toHaveBeenCalledWith(
-                lastGenerationTime.toISOString(),
-            );
+            expect(wikiClientSpy.fetchRecentImageChanges).toHaveBeenCalledWith(lastGenerationTime);
             /* eslint-enable */
         });
     });

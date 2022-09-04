@@ -2,9 +2,9 @@ import { AxiosInstance } from 'axios';
 import {
     CardPage,
     CardTypePage,
+    ChangedImagePage,
     ExpansionPage,
     ImagePage,
-    Page,
     QueryParams,
     QueryResult,
 } from './api-models';
@@ -106,23 +106,18 @@ export class WikiClient {
         return await this.fetchPages(params, 'card symbol');
     }
 
-    async fetchRecentChanges(since: string): Promise<Page[]> {
+    async fetchRecentImageChanges(since: Date): Promise<ChangedImagePage[]> {
         const params: QueryParams = {
             ...this.defaultParams,
             generator: 'recentchanges',
-            grcend: since,
+            grcend: since.toISOString(),
             grctoponly: 'true',
-            // 0 = main namespace, 6 = 'File:'
-            grcnamespace: '0|6',
-            // 'grclimit' multiplied with 'clcategories' amount should not exceed 'cllimit'.
-            // Otherwise it is theoretical possible that not all categories are fetched
-            // and the current implementation can't handle continuation information other
-            // than for 'generator'.
-            grclimit: '100',
-            prop: 'categories',
-            clcategories:
-                'Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols',
-            // max = 500
+            // 6 = 'File:'
+            grcnamespace: '6',
+            grclimit: 'max',
+            prop: 'imageinfo|categories',
+            iiprop: 'url|mime',
+            clcategories: 'Category:Card art|Category:Card symbols',
             cllimit: 'max',
         };
 
