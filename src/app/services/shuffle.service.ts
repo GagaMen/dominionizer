@@ -1,5 +1,5 @@
 import { SetService } from 'src/app/services/set.service';
-import { CardType } from 'src/app/models/card-type';
+import { CardType, CardTypeId } from 'src/app/models/card-type';
 import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
 import { Injectable } from '@angular/core';
@@ -28,10 +28,10 @@ export class ShuffleService {
 
     private randomizableCards$: Observable<RandomizableCards> = forkJoin({
         kingdomCards: this.cardService.findRandomizableKingdomCards(),
-        events: this.cardService.findByCardType(CardType.Event),
-        landmarks: this.cardService.findByCardType(CardType.Landmark),
-        projects: this.cardService.findByCardType(CardType.Project),
-        ways: this.cardService.findByCardType(CardType.Way),
+        events: this.cardService.findByCardType(CardTypeId.Event),
+        landmarks: this.cardService.findByCardType(CardTypeId.Landmark),
+        projects: this.cardService.findByCardType(CardTypeId.Project),
+        ways: this.cardService.findByCardType(CardTypeId.Way),
     });
 
     constructor(
@@ -130,15 +130,15 @@ export class ShuffleService {
         oldCard: Card,
         randomizableCards: RandomizableCards,
     ): Card[] {
-        const candidatesPerCardType: Map<CardType, Card[]> = new Map([
-            [CardType.Event, randomizableCards.events],
-            [CardType.Landmark, randomizableCards.landmarks],
-            [CardType.Project, randomizableCards.projects],
-            [CardType.Way, randomizableCards.ways],
+        const candidatesPerCardType: Map<CardTypeId, Card[]> = new Map([
+            [CardTypeId.Event, randomizableCards.events],
+            [CardTypeId.Landmark, randomizableCards.landmarks],
+            [CardTypeId.Project, randomizableCards.projects],
+            [CardTypeId.Way, randomizableCards.ways],
         ]);
 
-        for (const [cardType, candidates] of candidatesPerCardType) {
-            if (oldCard.types.some((type) => type === cardType)) {
+        for (const [typeId, candidates] of candidatesPerCardType) {
+            if (oldCard.types.some((type: CardType) => type.id === typeId)) {
                 return candidates;
             }
         }

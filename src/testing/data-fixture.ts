@@ -13,6 +13,7 @@ import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 export class DataFixture {
     private chance: Chance.Chance = new Chance();
     private expansionIdCount = 0;
+    private cardTypeIdCount = 0;
     private cardDtoIdCount = 0;
     private cardIdCount = 0;
 
@@ -37,6 +38,9 @@ export class DataFixture {
         return {
             id: this.cardDtoIdCount++,
             name: this.chance.word(),
+            description: this.chance.sentence(),
+            image: this.chance.string(),
+            wikiUrl: this.chance.url(),
             expansions: [this.chance.integer({ min: 1, max: 10 })],
             types: [this.chance.integer({ min: 1, max: 10 })],
             isKingdomCard: this.chance.bool(),
@@ -53,8 +57,12 @@ export class DataFixture {
         );
     }
 
-    createCardType(): CardType {
-        return this.chance.integer({ min: 1, max: 10 }) as CardType;
+    createCardType(cardType: Partial<CardType> = {}): CardType {
+        return {
+            id: this.cardTypeIdCount++,
+            name: this.chance.word(),
+            ...cardType,
+        };
     }
 
     createCardTypes(amount = 3): CardType[] {
@@ -65,6 +73,9 @@ export class DataFixture {
         return {
             id: this.cardIdCount++,
             name: this.chance.word(),
+            description: this.chance.sentence(),
+            image: this.chance.string(),
+            wikiUrl: this.chance.url(),
             expansions: [this.createExpansion()],
             types: [this.createCardType()],
             isKingdomCard: this.chance.bool(),

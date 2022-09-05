@@ -4,7 +4,7 @@ import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
 import { Expansion } from '../models/expansion';
 import { map } from 'rxjs/operators';
-import { CardType } from '../models/card-type';
+import { CardTypeId } from '../models/card-type';
 import { CardService } from './card.service';
 import { Card } from '../models/card';
 
@@ -46,7 +46,7 @@ export class ConfigurationService {
         this.configurationSubject.next(configuration);
     }
 
-    isCardTypeAvailable(type: CardType): Observable<boolean> {
+    isCardTypeAvailable(type: CardTypeId): Observable<boolean> {
         return combineLatest(this.cardService.findByCardType(type), this.enabledExpansions$).pipe(
             map(([cardsOfType, enabledExpansions]: [Card[], Expansion[]]) => {
                 return cardsOfType.some((card: Card) =>

@@ -8,7 +8,7 @@ import { CardService } from './card.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { SetService } from './set.service';
 import { ShuffleService } from './shuffle.service';
-import { CardType } from '../models/card-type';
+import { CardType, CardTypeId } from '../models/card-type';
 import { Card } from '../models/card';
 import { Expansion } from '../models/expansion';
 import { Configuration } from '../models/configuration';
@@ -87,35 +87,47 @@ describe('ShuffleService', () => {
             expansions: [configuredExpansion],
             specialCardsCount: { events: 0, landmarks: 0, projects: 0, ways: 0 },
         });
-        kingdomCards = createCards(CardType.Action, true, kingdomCardsCountOfConfiguredExpansions);
-        events = createCards(CardType.Event, false, singleSpecialCardsCountOfConfiguredExpansions);
+        kingdomCards = createCards(
+            dataFixture.createCardType({ id: CardTypeId.Action }),
+            true,
+            kingdomCardsCountOfConfiguredExpansions,
+        );
+        events = createCards(
+            dataFixture.createCardType({ id: CardTypeId.Event }),
+            false,
+            singleSpecialCardsCountOfConfiguredExpansions,
+        );
         landmarks = createCards(
-            CardType.Landmark,
+            dataFixture.createCardType({ id: CardTypeId.Landmark }),
             false,
             singleSpecialCardsCountOfConfiguredExpansions,
         );
         projects = createCards(
-            CardType.Project,
+            dataFixture.createCardType({ id: CardTypeId.Project }),
             false,
             singleSpecialCardsCountOfConfiguredExpansions,
         );
-        ways = createCards(CardType.Way, false, singleSpecialCardsCountOfConfiguredExpansions);
+        ways = createCards(
+            dataFixture.createCardType({ id: CardTypeId.Way }),
+            false,
+            singleSpecialCardsCountOfConfiguredExpansions,
+        );
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
             cold('(a|)', { a: kingdomCards }),
         );
         cardServiceSpy.findByCardType
-            .withArgs(CardType.Event)
+            .withArgs(CardTypeId.Event)
             .and.returnValue(cold('(a|)', { a: events }));
         cardServiceSpy.findByCardType
-            .withArgs(CardType.Landmark)
+            .withArgs(CardTypeId.Landmark)
             .and.returnValue(cold('(a|)', { a: landmarks }));
         cardServiceSpy.findByCardType
-            .withArgs(CardType.Project)
+            .withArgs(CardTypeId.Project)
             .and.returnValue(cold('(a|)', { a: projects }));
         cardServiceSpy.findByCardType
-            .withArgs(CardType.Way)
+            .withArgs(CardTypeId.Way)
             .and.returnValue(cold('(a|)', { a: ways }));
 
         configurationServiceSpy = TestBed.inject(

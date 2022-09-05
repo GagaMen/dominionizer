@@ -5,7 +5,7 @@ import { ExpansionService } from 'src/app/services/expansion.service';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { map } from 'rxjs/operators';
-import { CardType } from 'src/app/models/card-type';
+import { CardTypeId } from 'src/app/models/card-type';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { Expansion } from 'src/app/models/expansion';
@@ -63,10 +63,10 @@ export class ConfigurationComponent implements OnInit {
     private initSpecialCardSelectViewData(): void {
         this.specialCardSelectViewData$ = combineLatest(
             this.configurationService.configuration$,
-            this.configurationService.isCardTypeAvailable(CardType.Event),
-            this.configurationService.isCardTypeAvailable(CardType.Landmark),
-            this.configurationService.isCardTypeAvailable(CardType.Project),
-            this.configurationService.isCardTypeAvailable(CardType.Way),
+            this.configurationService.isCardTypeAvailable(CardTypeId.Event),
+            this.configurationService.isCardTypeAvailable(CardTypeId.Landmark),
+            this.configurationService.isCardTypeAvailable(CardTypeId.Project),
+            this.configurationService.isCardTypeAvailable(CardTypeId.Way),
         ).pipe(
             map(
                 ([

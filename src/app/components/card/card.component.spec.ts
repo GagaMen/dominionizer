@@ -11,7 +11,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { DataFixture } from 'src/testing/data-fixture';
 import { environment } from 'src/environments/environment';
-import { CardType } from 'src/app/models/card-type';
+import { CardTypeId } from 'src/app/models/card-type';
 import { By } from '@angular/platform-browser';
 
 describe('CardComponent', () => {
@@ -65,18 +65,17 @@ describe('CardComponent', () => {
         it('with card has one type should return correct label', () => {
             const type = dataFixture.createCardType();
             component.card = dataFixture.createCard({ types: [type] });
-            const expected = CardType[type];
 
             const actual = component.typesLabel;
 
-            expect(actual).toBe(expected);
+            expect(actual).toBe(type.name);
         });
 
         it('with card has multiple types should return correct label', () => {
             const firstType = dataFixture.createCardType();
             const secondType = dataFixture.createCardType();
             component.card = dataFixture.createCard({ types: [firstType, secondType] });
-            const expected = `${CardType[firstType]} - ${CardType[secondType]}`;
+            const expected = `${firstType.name} - ${secondType.name}`;
 
             const actual = component.typesLabel;
 
@@ -85,7 +84,7 @@ describe('CardComponent', () => {
     });
 
     describe('color', () => {
-        const calculateColor = (topCardType: CardType, bottomCardType?: CardType) => {
+        const calculateColor = (topCardType: CardTypeId, bottomCardType?: CardTypeId) => {
             const topColor = CardComponent.colorOfCardTypes.get(topCardType);
             const bottomColor = bottomCardType
                 ? CardComponent.colorOfCardTypes.get(bottomCardType)
@@ -100,103 +99,106 @@ describe('CardComponent', () => {
 
             return '';
         };
-        const cardTypeCompinations = [
-            { types: [CardType.Action], expected: calculateColor(CardType.Action) },
-            { types: [CardType.Duration], expected: calculateColor(CardType.Duration) },
-            { types: [CardType.Event], expected: calculateColor(CardType.Event) },
-            { types: [CardType.Landmark], expected: calculateColor(CardType.Landmark) },
-            { types: [CardType.Night], expected: calculateColor(CardType.Night) },
-            { types: [CardType.Project], expected: calculateColor(CardType.Project) },
-            { types: [CardType.Reaction], expected: calculateColor(CardType.Reaction) },
-            { types: [CardType.Reserve], expected: calculateColor(CardType.Reserve) },
-            { types: [CardType.Ruins], expected: calculateColor(CardType.Ruins) },
-            { types: [CardType.Shelter], expected: calculateColor(CardType.Shelter) },
-            { types: [CardType.Treasure], expected: calculateColor(CardType.Treasure) },
-            { types: [CardType.Victory], expected: calculateColor(CardType.Victory) },
-            { types: [CardType.Way], expected: calculateColor(CardType.Way) },
+        const cardTypeCompinations: { typeIds: CardTypeId[]; expected: string }[] = [
+            { typeIds: [CardTypeId.Action], expected: calculateColor(CardTypeId.Action) },
+            { typeIds: [CardTypeId.Duration], expected: calculateColor(CardTypeId.Duration) },
+            { typeIds: [CardTypeId.Event], expected: calculateColor(CardTypeId.Event) },
+            { typeIds: [CardTypeId.Landmark], expected: calculateColor(CardTypeId.Landmark) },
+            { typeIds: [CardTypeId.Night], expected: calculateColor(CardTypeId.Night) },
+            { typeIds: [CardTypeId.Project], expected: calculateColor(CardTypeId.Project) },
+            { typeIds: [CardTypeId.Reaction], expected: calculateColor(CardTypeId.Reaction) },
+            { typeIds: [CardTypeId.Reserve], expected: calculateColor(CardTypeId.Reserve) },
+            { typeIds: [CardTypeId.Ruins], expected: calculateColor(CardTypeId.Ruins) },
+            { typeIds: [CardTypeId.Shelter], expected: calculateColor(CardTypeId.Shelter) },
+            { typeIds: [CardTypeId.Treasure], expected: calculateColor(CardTypeId.Treasure) },
+            { typeIds: [CardTypeId.Victory], expected: calculateColor(CardTypeId.Victory) },
+            { typeIds: [CardTypeId.Way], expected: calculateColor(CardTypeId.Way) },
             {
-                types: [CardType.Action, CardType.Duration],
-                expected: calculateColor(CardType.Duration),
+                typeIds: [CardTypeId.Action, CardTypeId.Duration],
+                expected: calculateColor(CardTypeId.Duration),
             },
             {
-                types: [CardType.Action, CardType.Night],
-                expected: calculateColor(CardType.Action),
+                typeIds: [CardTypeId.Action, CardTypeId.Night],
+                expected: calculateColor(CardTypeId.Action),
             },
             {
-                types: [CardType.Action, CardType.Reaction],
-                expected: calculateColor(CardType.Reaction),
+                typeIds: [CardTypeId.Action, CardTypeId.Reaction],
+                expected: calculateColor(CardTypeId.Reaction),
             },
             {
-                types: [CardType.Action, CardType.Ruins],
-                expected: calculateColor(CardType.Ruins),
+                typeIds: [CardTypeId.Action, CardTypeId.Ruins],
+                expected: calculateColor(CardTypeId.Ruins),
             },
             {
-                types: [CardType.Action, CardType.Shelter],
-                expected: calculateColor(CardType.Action, CardType.Shelter),
+                typeIds: [CardTypeId.Action, CardTypeId.Shelter],
+                expected: calculateColor(CardTypeId.Action, CardTypeId.Shelter),
             },
             {
-                types: [CardType.Action, CardType.Treasure],
-                expected: calculateColor(CardType.Action, CardType.Treasure),
+                typeIds: [CardTypeId.Action, CardTypeId.Treasure],
+                expected: calculateColor(CardTypeId.Action, CardTypeId.Treasure),
             },
             {
-                types: [CardType.Action, CardType.Victory],
-                expected: calculateColor(CardType.Action, CardType.Victory),
+                typeIds: [CardTypeId.Action, CardTypeId.Victory],
+                expected: calculateColor(CardTypeId.Action, CardTypeId.Victory),
             },
             {
-                types: [CardType.Duration, CardType.Reaction],
-                expected: calculateColor(CardType.Duration, CardType.Reaction),
+                typeIds: [CardTypeId.Duration, CardTypeId.Reaction],
+                expected: calculateColor(CardTypeId.Duration, CardTypeId.Reaction),
             },
             {
-                types: [CardType.Night, CardType.Duration],
-                expected: calculateColor(CardType.Duration),
+                typeIds: [CardTypeId.Night, CardTypeId.Duration],
+                expected: calculateColor(CardTypeId.Duration),
             },
             {
-                types: [CardType.Reaction, CardType.Shelter],
-                expected: calculateColor(CardType.Reaction, CardType.Shelter),
+                typeIds: [CardTypeId.Reaction, CardTypeId.Shelter],
+                expected: calculateColor(CardTypeId.Reaction, CardTypeId.Shelter),
             },
             {
-                types: [CardType.Reserve, CardType.Victory],
-                expected: calculateColor(CardType.Reserve, CardType.Victory),
+                typeIds: [CardTypeId.Reserve, CardTypeId.Victory],
+                expected: calculateColor(CardTypeId.Reserve, CardTypeId.Victory),
             },
             {
-                types: [CardType.Treasure, CardType.Reserve],
-                expected: calculateColor(CardType.Treasure, CardType.Reserve),
+                typeIds: [CardTypeId.Treasure, CardTypeId.Reserve],
+                expected: calculateColor(CardTypeId.Treasure, CardTypeId.Reserve),
             },
             {
-                types: [CardType.Treasure, CardType.Victory],
-                expected: calculateColor(CardType.Treasure, CardType.Victory),
+                typeIds: [CardTypeId.Treasure, CardTypeId.Victory],
+                expected: calculateColor(CardTypeId.Treasure, CardTypeId.Victory),
             },
             {
-                types: [CardType.Treasure, CardType.Reaction],
-                expected: calculateColor(CardType.Treasure, CardType.Reaction),
+                typeIds: [CardTypeId.Treasure, CardTypeId.Reaction],
+                expected: calculateColor(CardTypeId.Treasure, CardTypeId.Reaction),
             },
             {
-                types: [CardType.Victory, CardType.Shelter],
-                expected: calculateColor(CardType.Victory, CardType.Shelter),
+                typeIds: [CardTypeId.Victory, CardTypeId.Shelter],
+                expected: calculateColor(CardTypeId.Victory, CardTypeId.Shelter),
             },
             {
-                types: [CardType.Victory, CardType.Reaction],
-                expected: calculateColor(CardType.Victory, CardType.Reaction),
+                typeIds: [CardTypeId.Victory, CardTypeId.Reaction],
+                expected: calculateColor(CardTypeId.Victory, CardTypeId.Reaction),
             },
             {
-                types: [CardType.Action, CardType.Duration, CardType.Reaction],
-                expected: calculateColor(CardType.Duration, CardType.Reaction),
+                typeIds: [CardTypeId.Action, CardTypeId.Duration, CardTypeId.Reaction],
+                expected: calculateColor(CardTypeId.Duration, CardTypeId.Reaction),
             },
             {
-                types: [CardType.Action, CardType.Reserve, CardType.Victory],
-                expected: calculateColor(CardType.Reserve, CardType.Victory),
+                typeIds: [CardTypeId.Action, CardTypeId.Reserve, CardTypeId.Victory],
+                expected: calculateColor(CardTypeId.Reserve, CardTypeId.Victory),
             },
         ];
 
         it('with card has given card types should return correct color', () => {
-            cardTypeCompinations.forEach(({ types, expected }) => {
-                component.card = dataFixture.createCard({ types: types });
+            cardTypeCompinations.forEach(({ typeIds, expected }) => {
+                const types = typeIds.map((typeId: CardTypeId) =>
+                    dataFixture.createCardType({ id: typeId }),
+                );
+                component.card = dataFixture.createCard({ types });
 
                 const actual = component.color;
 
                 expect(actual).toBe(
                     expected,
-                    `for types [${types.map((type) => CardType[type]).join(', ')}]`,
+                    `for types [${typeIds.map((type) => CardTypeId[type]).join(', ')}]`,
                 );
             });
         });

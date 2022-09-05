@@ -16,7 +16,7 @@ import { SpecialCardSelectStubComponent } from 'src/testing/components/special-c
 import { ExpansionService } from 'src/app/services/expansion.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { DataFixture } from 'src/testing/data-fixture';
-import { CardType } from 'src/app/models/card-type';
+import { CardTypeId } from 'src/app/models/card-type';
 import { cold } from 'jasmine-marbles';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
@@ -128,16 +128,16 @@ describe('ConfigurationComponent', () => {
             const expected$ = cold('             --f', { f: expected });
             configurationServiceSpy.configuration$ = configuration$;
             configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardType.Event)
+                .withArgs(CardTypeId.Event)
                 .and.returnValue(areEventsAvailable$);
             configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardType.Landmark)
+                .withArgs(CardTypeId.Landmark)
                 .and.returnValue(areLandmarksAvailable$);
             configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardType.Project)
+                .withArgs(CardTypeId.Project)
                 .and.returnValue(areProjectsAvailable$);
             configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardType.Way)
+                .withArgs(CardTypeId.Way)
                 .and.returnValue(areWaysAvailable$);
             fixture.detectChanges();
 

@@ -77,10 +77,10 @@ describe('ConfigurationService', () => {
             const card = dataFixture.createCard({ expansions: expansions, types: [cardType] });
             const findByCardType$ = cold('a', { a: [card] });
             const expected$ = cold('      a', { a: true });
-            cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(findByCardType$);
+            cardServiceSpy.findByCardType.withArgs(cardType.id).and.returnValue(findByCardType$);
             configurationService.updateExpansions(enabledExpansions);
 
-            const actual$ = configurationService.isCardTypeAvailable(cardType);
+            const actual$ = configurationService.isCardTypeAvailable(cardType.id);
 
             expect(actual$).toBeObservable(expected$);
         });
@@ -93,10 +93,10 @@ describe('ConfigurationService', () => {
             const card = dataFixture.createCard({ expansions: cardExpansions, types: [cardType] });
             const findByCardType$ = cold('a', { a: [card] });
             const expected$ = cold('      a', { a: false });
-            cardServiceSpy.findByCardType.withArgs(cardType).and.returnValue(findByCardType$);
+            cardServiceSpy.findByCardType.withArgs(cardType.id).and.returnValue(findByCardType$);
             configurationService.updateExpansions(enabledExpansions);
 
-            const actual$ = configurationService.isCardTypeAvailable(cardType);
+            const actual$ = configurationService.isCardTypeAvailable(cardType.id);
 
             expect(actual$).toBeObservable(expected$);
         });

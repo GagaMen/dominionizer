@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CardType } from '../models/card-type';
+import { CardType, CardTypeId } from '../models/card-type';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Card } from '../models/card';
 import { map, first } from 'rxjs/operators';
@@ -31,31 +31,32 @@ export class CardService {
         const [cardDtos, expansions] = data;
 
         return cardDtos.map((cardDto: CardDto) => {
-            return {
+            const card: Card = {
                 ...cardDto,
                 expansions: expansions.filter((expansion: Expansion) =>
                     cardDto.expansions.includes(expansion.id),
                 ),
+                types: [],
+                dependencies: undefined,
             };
+            return card;
         });
     }
 
     findRandomizableKingdomCards(): Observable<Card[]> {
         return this.cards$.pipe(
-            map((cards: Card[]) =>
-                cards.filter((card: Card) => {
-                    const cardIsBelowOfSplitPile =
-                        card.isPartOfSplitPile && !card.isOnTopOfSplitPile;
-
-                    return card.isKingdomCard && !cardIsBelowOfSplitPile;
-                }),
-            ),
+            // TODO: respect split piles
+            map((cards: Card[]) => cards.filter((card: Card) => card.isKingdomCard)),
         );
     }
 
-    findByCardType(type: CardType): Observable<Card[]> {
+    findByCardType(typeId: CardTypeId): Observable<Card[]> {
         return this.cards$.pipe(
-            map((cards: Card[]) => cards.filter((card: Card) => card.types.includes(type))),
+            map((cards: Card[]) =>
+                cards.filter((card: Card) =>
+                    card.types.some((type: CardType) => type.id === typeId),
+                ),
+            ),
         );
     }
 }
