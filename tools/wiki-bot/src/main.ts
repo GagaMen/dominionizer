@@ -21,6 +21,8 @@ import {
 } from './wiki-bot/validation/expansion-validators';
 import { ImagesValidator } from './wiki-bot/validation/image-validators';
 import { Command } from 'commander';
+import { exec } from 'child_process';
+import { exit } from 'process';
 
 interface Options {
     skipImages: boolean;
@@ -94,16 +96,21 @@ async function bootstrap(): Promise<void> {
         imageValidator,
     );
 
+    let successful: boolean;
+
     try {
         if (options.update) {
-            await bot.generateUpdate(options.skipImages);
-            return;
+            successful = await bot.generateUpdate(options.skipImages);
+        } else {
+            successful = await bot.generateAll(options.skipImages);
         }
 
-        await bot.generateAll(options.skipImages);
+        exec('npm run prettier');
     } finally {
         imagePool.close();
     }
+
+    exit(successful ? 0 : 1);
 }
 
 bootstrap();
