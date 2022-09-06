@@ -41,7 +41,7 @@ describe('CardComponent', () => {
             expect(actual).toBeNull();
         });
 
-        it('with first expansion of card has no icon should return null', () => {
+        it('with expansion of card has no icon should return null', () => {
             const expansion = dataFixture.createExpansion({ icon: '' });
             component.card = dataFixture.createCard({ expansions: [expansion] });
 
@@ -50,10 +50,29 @@ describe('CardComponent', () => {
             expect(actual).toBeNull();
         });
 
-        it('with first expansion of card has icon should return correct icon url', () => {
-            const expansion = dataFixture.createExpansion({ icon: '/expansion.png' });
+        it('with single expansion of card has icon should return correct icon url', () => {
+            const expansion = dataFixture.createExpansion({ icon: 'expansion.png' });
             component.card = dataFixture.createCard({ expansions: [expansion] });
-            const expected = `${environment.entryPoint}${expansion.icon}`;
+            const expected = `${environment.entryPoint}/assets/card_symbols/expansion.png`;
+
+            const actual = component.expansionIconUrl;
+
+            expect(actual).toBe(expected);
+        });
+
+        it('with multiple expansions of card have icon should return correct icon url', () => {
+            const firstEditionExpansion = dataFixture.createExpansion({
+                id: 1,
+                icon: 'old_expansion.png',
+            });
+            const secondEditionExpansion = dataFixture.createExpansion({
+                id: 1.1,
+                icon: 'expansion.png',
+            });
+            component.card = dataFixture.createCard({
+                expansions: [firstEditionExpansion, secondEditionExpansion],
+            });
+            const expected = `${environment.entryPoint}/assets/card_symbols/expansion.png`;
 
             const actual = component.expansionIconUrl;
 

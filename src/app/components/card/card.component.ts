@@ -29,8 +29,9 @@ export class CardComponent {
     @Output() reshuffle: EventEmitter<undefined> = new EventEmitter<undefined>();
 
     get expansionIconUrl(): string | null {
-        const icon = this.card.expansions[0]?.icon;
-        return icon ? `${environment.entryPoint}${icon}` : null;
+        // since the expansions are sorted in the data source we get the latest expansion this way
+        const icon = this.card.expansions[this.card.expansions.length - 1]?.icon;
+        return icon ? `${environment.entryPoint}/assets/card_symbols/${icon}` : null;
     }
 
     get typesLabel(): string {
