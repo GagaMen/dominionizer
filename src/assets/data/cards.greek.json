@@ -1,0 +1,31 @@
+[
+    { "id": 17, "name": "Παρεκκλήσι", "description": "" },
+    {
+        "id": 18,
+        "name": "Τάφρος",
+        "description": "'''+2 Kάρτες'''{{Divline}}Όταν κάποιος άλλος παίχτης παίξει μία κάρτα Επίθεσης, μπορείτε να δείξετε αυτή την κάρτα αν την έχετε στο χέρι σας. Αν το κάνετε, δεν σας επηρεάζει η Επίθεση."
+    },
+    {
+        "id": 19,
+        "name": "Καγκελάριος",
+        "description": "+{{Cost|2}}<br>Μπορείτε αμέσως να τοποθετήσετε την τράπουλά σας στα σκάρτα."
+    },
+    { "id": 24, "name": "Ξυλοκόπος", "description": "" },
+    { "id": 37, "name": "Γιορτή", "description": "" },
+    { "id": 38, "name": "Κήποι", "description": "" },
+    { "id": 39, "name": "Πολιτοφυλακή", "description": "" },
+    { "id": 40, "name": "Τοκογλύφος", "description": "" },
+    { "id": 42, "name": "Σιδεράς", "description": "" },
+    { "id": 43, "name": "Κατάσκοπος", "description": "" },
+    { "id": 45, "name": "Αίθουσα του θρόνου", "description": "" },
+    { "id": 48, "name": "Εργαστήριο", "description": "" },
+    { "id": 49, "name": "Βιβλιοθήκη", "description": "" },
+    { "id": 53, "name": "Τυχοδιώκτης", "description": "" },
+    { "id": 212, "name": "Κατάρα", "description": "" },
+    { "id": 517, "name": "Χάλκινο", "description": "" },
+    { "id": 525, "name": "Κτήμα", "description": "" },
+    { "id": 526, "name": "Ασημένιο", "description": "" },
+    { "id": 528, "name": "Δουκάτο", "description": "" },
+    { "id": 529, "name": "Χρυσό", "description": "" },
+    { "id": 530, "name": "Επαρχία", "description": "" }
+]

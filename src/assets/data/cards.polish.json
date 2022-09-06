@@ -1,0 +1,1013 @@
+[
+    { "id": 3, "name": "Tunel", "description": "" },
+    {
+        "id": 16,
+        "name": "Piwnica",
+        "description": "'''+1 akcja'''<br>Odrzuć dowolną liczbę kart. +1&nbsp;karta za każdą odrzuconą kartę."
+    },
+    {
+        "id": 17,
+        "name": "Kaplica",
+        "description": "Wyrzuć na śmietnisko maksymalnie 4 kartę z ręki."
+    },
+    {
+        "id": 18,
+        "name": "Fosa",
+        "description": "'''+2 karty'''{{Divline}}Kiedy inny gracz zagrywa kartę ataku, możesz odkryć tę kartę z ręki. Jeśli to zrobisz, to atak cię ominie."
+    },
+    {
+        "id": 19,
+        "name": "Kanclerz",
+        "description": "+{{Cost|2}}<br>Możesz natychmiast umieścić swoją talię na swoim stosie odrzuconych kart."
+    },
+    { "id": 20, "name": "Wioska", "description": "'''+1 karta <br> +2 akcje'''" },
+    { "id": 24, "name": "Drwal", "description": "'''+1 zakup'''<br>+{{Cost|2}}" },
+    {
+        "id": 25,
+        "name": "Warsztat",
+        "description": "Dodaj kartę kosztującą nie więcej niż {{Cost|4}}."
+    },
+    {
+        "id": 34,
+        "name": "Dziedziniec",
+        "description": "'''+3 karty'''<br>Odłóż kartę z ręki<br>na wierzch swojej talii."
+    },
+    {
+        "id": 36,
+        "name": "Urzędnik",
+        "description": "Dodaj kartę Srebrniki - połóż ją na wierzchu swojej talii. Każdy z pozostałych graczy odkrywa kartę zwycięstwa z ręki i kładzie ją na wierzchu swojej talii (lub odkrywa rękę bez kart zwycięstwa."
+    },
+    {
+        "id": 37,
+        "name": "Uczta",
+        "description": "Wyrzuć tę kartę na śmietnisko.<br>Dodaj kartę kosztującą<br>nie więcej niż {{Cost|5}}."
+    },
+    {
+        "id": 38,
+        "name": "Ogrody",
+        "description": "Ta karta jest warta 1{{VP}} za każde 10 kart twojej talii (zaokrąglając w dół)."
+    },
+    {
+        "id": 39,
+        "name": "Milicja",
+        "description": "+{{Cost|2}}<br>Każdy z pozostałych graczy odrzuca karty, aż będzie miał ich 3 na ręce."
+    },
+    {
+        "id": 40,
+        "name": "Lichwiarz",
+        "description": "Wyrzuć z ręki na śmietnisko kartę Miedziaka, aby otrzymać {{nowrap|+{{Cost|3}}}}"
+    },
+    {
+        "id": 41,
+        "name": "Przebudowa",
+        "description": "Wyrzuć na śmietnisko dowolną kartę z ręki. Dodaj kartę os koszcie większym maksymalnie o {{Cost|2}} od kosztu wyrzuconej karty."
+    },
+    { "id": 42, "name": "Kuźnia", "description": "'''+3 karty'''" },
+    {
+        "id": 43,
+        "name": "Szpieg",
+        "description": "'''+1 karta''' <br> '''+1 akcja''' <br> Każdy gracz (włączając ciebie) odkrywa wierzchnią kartę swojej talii. Następnie decydujesz, czy ma ją odłożyć z powrotem na wierzch talii, czy odrzucić."
+    },
+    {
+        "id": 44,
+        "name": "Złodziej",
+        "description": "Każdy z pozostałych graczy odkrywa 2 wierzchnie karty swojej talii. Jeśli odkryje jakiekolwiek karty skarbów, wybierasz jedną, którą musi wyrzucić na śmietnisko. Możesz dodać dowolną liczbę wyrzuconych w ten sposób kart. Wszystkie pozostałe odkryte karty należy odrzucić."
+    },
+    {
+        "id": 45,
+        "name": "Sala tronowa",
+        "description": "Wybierz kartę akcji z ręki. Zagraj ją dwukrotnie."
+    },
+    {
+        "id": 46,
+        "name": "Sala obrad",
+        "description": "'''+4 karty''' <br>'''+1 zakup'''<br>Każdy z pozostałych graczy dobiera kartę."
+    },
+    { "id": 47, "name": "Festyn", "description": "'''+2 akcje<br>+1 zakup'''<br>+{{Cost|2}}" },
+    { "id": 48, "name": "Laboratorium", "description": "'''+2 karty<br>+1 akcja'''" },
+    {
+        "id": 49,
+        "name": "Biblioteka",
+        "description": "Dobieraj karty, aż będziesz miał ich&nbsp;7 na ręce. W miarę dobierania możesz odkładać na bok kolejne dobrane karty akcji. Po zakończeniu dobierania odrzuć wszystkie odłożone karty."
+    },
+    {
+        "id": 50,
+        "name": "Targowisko",
+        "description": "'''+1 karta<br>+1 akcja<br>+1 zakup'''<br>+{{Cost|1}}"
+    },
+    {
+        "id": 51,
+        "name": "Kopalnia",
+        "description": "Wyrzuć z ręki na śmietnisko dowolną kartę skarbu. Dodaj kartę skarbu o koszcie większym maksymalnie o {{Cost|3}} od kosztu wyrzuconej karty. Weź nową kartę skarbu na rękę."
+    },
+    {
+        "id": 52,
+        "name": "Wiedźma",
+        "description": "'''+2 karty'''<br>Każdy z pozostałych graczy dodaje kartę Klątwa."
+    },
+    { "id": 53, "name": "Odkrywca", "description": "" },
+    {
+        "id": 72,
+        "name": "Giermek",
+        "description": "Wybierz dwie opcje:<br>+1 karta;<br>+1 akcja;<br>+1 zakup;<br>+{{Cost|1}}.<br>(Opcje muszą się różnić)."
+    },
+    {
+        "id": 73,
+        "name": "Tajna komnata",
+        "description": "Odrzuć dowolną liczbę kart.<br>+{{Cost|1}} za każdą odrzuconą kartę.{{divline}}Kiedy inny gracz zagrywa kartę Ataku, możesz odkryć tę kartę z ręki.<br>Jeśli to zrobisz: +2&nbsp;karty, po czym odłóż 2&nbsp;karty z ręki na wierzch talii."
+    },
+    {
+        "id": 74,
+        "name": "Westybul",
+        "description": "'''+1 karta<br>+1 akcja'''{{Divline}}{{VP|1|l}}"
+    },
+    {
+        "id": 75,
+        "name": "Maskarada",
+        "description": "'''+2 karty'''<br>Wszyscy gracze równocześnie przekazują kartę z ręki graczowi po lewej. Następnie możesz wyrzucić na śmietnisko jedną kartę z ręki."
+    },
+    {
+        "id": 76,
+        "name": "Rudera",
+        "description": "'''+2 akcje'''<br>Odkryj swoją rękę. Jeśli nie masz na ręce żadnych kart Akcji, +2&nbsp;karty."
+    },
+    {
+        "id": 77,
+        "name": "Zarządca",
+        "description": "Wybierz jedną opcję:<br>+2 karty lub +{{Cost|2}}<br>lub wyrzuć na śmietnisko <br>2&nbsp;karty z ręki."
+    },
+    {
+        "id": 78,
+        "name": "Kanciarz",
+        "description": "+{{Cost|2}}<br>Każdy z pozostałych graczy wyrzuca na śmietnisko wierzchnią kartę ze swojej talii i dodaje wybraną przez ciebe kartę o takim samym koszcie."
+    },
+    {
+        "id": 79,
+        "name": "Studnia życzeń",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Podaj nazwę karty. Odkryj wierzchnią kartę swojej talii. Jeśli wskazałeś właściwą kartę, weź ją na rękę."
+    },
+    {
+        "id": 80,
+        "name": "Baron",
+        "description": "'''+1 zakup'''<br>Możesz odrzucić kartę Posiadłości aby otrzymać {{Cost|4}}.<br>W przeciwnym wypadku dodajesz kartę Posiadłości."
+    },
+    {
+        "id": 81,
+        "name": "Most",
+        "description": "'''+1 zakup'''<br>+{{Cost|1}}<br>Wszystkie karty (wliczając karty na ręce u graczy) kosztują w tej kolejce o {{Cost|1}} mniej, lecz nie mniej niż {{Cost|0}}."
+    },
+    {
+        "id": 82,
+        "name": "Spiskowiec",
+        "description": "+{{Cost|2}}<br>Jeśli w tej turze zagrałeś co najmniej 3&nbsp;akcje (wliczając tę akcję): +1&nbsp;karta, +1&nbsp;akcja."
+    },
+    {
+        "id": 83,
+        "name": "Mennica",
+        "description": "Każdy zagrany w tej turze Miedziak produkuje dodatkowe {{Cost|1}}."
+    },
+    {
+        "id": 84,
+        "name": "Huta żelaza",
+        "description": "<p>Dodaj kartę o maksymalnym<br>koszcie {{Cost|4}}.</p>Jeśli jest to&hellip;<br>karta Akcji: +1&nbsp;akcja&emsp;&emsp;&emsp;<br>karta Skarbu: +{{Cost|1}}&emsp;&emsp;&emsp;&ensp;<br>karta Zwycięstwa: +1&nbsp;karta"
+    },
+    {
+        "id": 85,
+        "name": "Osada górnicza",
+        "description": "'''+1 karta<br>+2 akcje'''<br>Możesz natychmiast wyrzucić tą kartę na śmietnisko aby otrzymać {{nowrap|+{{Cost|2}}.}}"
+    },
+    {
+        "id": 86,
+        "name": "Zwiadowca",
+        "description": "'''+1 akcja'''<br>Odkryj 4 karty z wierzchu swojej talii. Weź odkryte karty Zwycięstwa na rękę. Pozostałe karty odłóż z powrotem na wierzch talii w dowolnej kolejności."
+    },
+    {
+        "id": 87,
+        "name": "Starosta",
+        "description": "Ta karta jest warta {{VP|1}} za każdy Powiat, jaki posiadasz."
+    },
+    {
+        "id": 88,
+        "name": "Sługus",
+        "description": "'''+1 akcja'''<br>Wybierz jedną opcję +{{Cost|2}}; lub odrzucasz wszystkie karty z ręki, otrzymujesz +4&nbsp;karty i każdy z pozostałych graczy z co najmniej 5&nbsp;kartami na ręce musi odrzucić wszystkie karty i pociągnąć 4&nbsp;karty."
+    },
+    { "id": 89, "name": "Sabotażysta", "description": "" },
+    {
+        "id": 90,
+        "name": "Oprawca",
+        "description": "'''+3 karty'''<br>Każdy z pozostałych graczy wybiera jedną opcję: odrzuca 2 karty lub dodaje kartę Klątwy, biorąc ją na rękę."
+    },
+    {
+        "id": 91,
+        "name": "Faktoria",
+        "description": "Wyrzuć na śmietnisko 2&nbsp;karty z ręki. Jeśli to zrobisz, dodaj kartę Srebrników i weź ją na rękę."
+    },
+    {
+        "id": 92,
+        "name": "Danina",
+        "description": "Gracz po twojej lewej odkrywa, a następnie odrzuca, 2&nbsp;karty z wierzchu swojej talii. Otrzymujesz za każdą inaczej nazwaną&hellip;<br>kartę Akcji: +2&nbsp;akcje&emsp;&emsp;&emsp;<br>kartę Skarbu: +{{Cost|2}}&emsp;&emsp;&emsp;&ensp;<br>kartę Zwycięstwa: +2&nbsp;karty"
+    },
+    {
+        "id": 93,
+        "name": "Rozbudowa",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Wyrzuć na śmietnisko kartę z ręki. Dodaj kartę o koszcie wyższym dokładnie o {{Cost|1}} od kosztu właśnie wyrzuconej karty."
+    },
+    { "id": 94, "name": "Harem", "description": "<p>{{Cost|2|l}}</p>{{VP|2|l}}" },
+    {
+        "id": 95,
+        "name": "Szlachta",
+        "description": "Wybierz jedną opcję:<br>+3 karty lub +2&nbsp;akcje.{{divline}}{{VP|2|l}}"
+    },
+    {
+        "id": 96,
+        "name": "Embargo",
+        "description": "+{{Cost|2}}<br>Wyrzuć tę kartę śmietnisko. Połóż żeton embarga na wybranym stosie kart w Zasobach.{{divline}}Kiedy gracz kupuje kartę ze stosu na którym leżą żetony embarga, dodaje Klątwę za każdy taki żeton."
+    },
+    {
+        "id": 97,
+        "name": "Przystań",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Odłóż na bok kartę z ręki awersem do dołu. Na początku twojej następnej tury weź tę kartę na rękę."
+    },
+    {
+        "id": 98,
+        "name": "Latarnia morska",
+        "description": "'''+1 akcja'''<br>Teraz i na początku twojej następnej tury: {{nowrap|+{{Cost|1}}}}{{Divline}}Kiedy ta karta znajduje się w grze, karty Ataku zagrywane przez innych graczy nie mają na ciebie wpływu."
+    },
+    {
+        "id": 99,
+        "name": "Wioska tubylców",
+        "description": "'''+2 akcje'''<br>Wybierz: odłóż awersem do dołu kartę z wierzchu twojej talii na podkładkę Wioski tubylców; albo weź na rękę wszystkie karty z tej podkładki.<br>Karty na podkładce Wioski tubylców możesz przeglądać w dowolnej chwili. Po zakończeniu rozgrywki wracają one do talii."
+    },
+    {
+        "id": 100,
+        "name": "Poławiacz pereł",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Podejrzyj kartę ze spodu swojej talii. Możesz położyć ją na wierzchu talii."
+    },
+    {
+        "id": 101,
+        "name": "Wioska rybacka",
+        "description": "'''+2 akcje'''<br>+{{Cost|1}}<br>Na początku twojej następnej tury:<br>'''+1 akcja'''<br>+{{Cost|1}}"
+    },
+    {
+        "id": 102,
+        "name": "Ambasador",
+        "description": "Odkryj kartę z ręki. Zwróć do Zasobów maksymalnie dwie jej kopie z ręki. Następnie każdy z pozostałych graczy dodaje kopię tej karty."
+    },
+    {
+        "id": 103,
+        "name": "Bocianie gniazdo",
+        "description": "'''+1 akcja'''<br>Podejrzyj 3 wierzchnie karty ze swojej talii. Jedną z nich wyrzuć na śmietnisko, jedną odrzuć, a jedną połóż na wierzchu swojej talii."
+    },
+    {
+        "id": 104,
+        "name": "Przemytnicy",
+        "description": "Dodaj kopię karty o koszcie {{Cost|6}} lub mniejszym, którą gracz po twojej prawej stronie dodał w swojej ostatniej turze."
+    },
+    {
+        "id": 105,
+        "name": "Magazyn",
+        "description": "'''+3 karty<br>+1 akcja'''<br>Odrzuć 3 karty."
+    },
+    {
+        "id": 106,
+        "name": "Karawana",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Na początku twojej następnej tury:<br>+1 karta."
+    },
+    {
+        "id": 107,
+        "name": "Kieszonkowiec",
+        "description": "+{{Cost|2}}<br>Każdy z pozostałych graczy odrzuca Miedziaka (lub odkrywa rękę bez Miedziaków)."
+    },
+    {
+        "id": 108,
+        "name": "Wyspa",
+        "description": "Odłóż na bok tę i jeszcze jedną kartę z ręki. Po zakończeniu rozgrywki karty te trafiają z powrotem do twojej talii.{{Divline}}{{VP|2|l}}"
+    },
+    {
+        "id": 109,
+        "name": "Nawigator",
+        "description": "+{{Cost|2}}<br>Podejrzyj 5 wierzchnich kart ze swojej talii. Odrzuć je wszystkie albo odłóż z powrotem na wierzch talii w dowolnej kolejności."
+    },
+    {
+        "id": 110,
+        "name": "Okręt piracki",
+        "description": "Wybierz: każdy z pozostałych graczy odkrywa 2&nbsp;wierzchnie karty ze swojej talii, wyrzuca na śmietnisko wybraną przez ciebie odkrytą kartę Skarbu i odrzuca resztę (jeżeli ktokolwiek wyrzucił kartę Skarbu, weź żeton monety); albo {{nowrap|+{{Cost|1}}}} za każdy żeton monety, jaki zdobyłeś w powyższy sposób w tej rozgrywce."
+    },
+    {
+        "id": 111,
+        "name": "Wyławiacz",
+        "description": "'''+1 zakup'''<br>Wyrzuć na śmietnisko kartę z ręki.<br>+{{Cost|1}} równe jej kosztowi."
+    },
+    {
+        "id": 112,
+        "name": "Morska wiedźma",
+        "description": "Każdy z pozostałych graczy odrzuca wierzchnią kartę ze swojej talii, a następnie dodaje Klątwę, którą kładzie na wierzchu swojej talii."
+    },
+    {
+        "id": 113,
+        "name": "Mapa skarbu",
+        "description": "Wyrzuć na śmietnisko tę i jeszcze jedną Mapę skarbu z ręki. Jeżeli wyrzuciłeś dwie Mapy skarbu, dodaj 4&nbsp;karty Złota i połóż je na wierzchu swojej talii."
+    },
+    {
+        "id": 114,
+        "name": "Zdobywca",
+        "description": "Możesz odkryć z ręki kartę Prowincji. Jeżeli to zrobisz, dodaj kartę Złota na rękę. W przeciwnym wypadku dodaj kartę Srebrników na rękę."
+    },
+    { "id": 115, "name": "Bazar", "description": "'''+1 karta<br>+2 akcje<br>'''+{{Cost|1}}" },
+    {
+        "id": 116,
+        "name": "Okręt widmo",
+        "description": "'''+2 karty'''<br>Każdy z pozostałych graczy, który ma na ręce co najmniej 4&nbsp;karty, odkłada karty na wierzch swojej talii, aż zostaną mu 3 na ręce."
+    },
+    {
+        "id": 117,
+        "name": "Okręt kupiecki",
+        "description": "Teraz i na początku twojej następnej tury: {{nowrap|+{{Cost|2}}.}}"
+    },
+    {
+        "id": 118,
+        "name": "Przyczółek",
+        "description": "W fazie porządków tej tury dobierasz 3&nbsp;karty (zamiast&nbsp;5). Po zakończeniu tej tury rozegraj dodatkową turę. Nie możesz dzięki tej karcie rozegrać więcej niż dwie tury z rzędu."
+    },
+    {
+        "id": 119,
+        "name": "Strateg",
+        "description": "Odrzuć wszystkie karty z ręki.<br>Jeżeli odrzuciłeś w ten sposób chociaż jedną kartę, to na początku twojej następnej tury:<br>+5&nbsp;kart, +1&nbsp;zakup i +1&nbsp;akcja."
+    },
+    {
+        "id": 120,
+        "name": "Skarbiec",
+        "description": "'''+1 karta<br>+1 akcja'''<br>+{{Cost|1}}{{divline}}Kiedy odrzucasz tę kartę z gry, możesz zamiast tego położyć ją na wierzchu swojej talii, jeżeli w tej turze nie kupiłeś żadnej karty Zwycięstwa."
+    },
+    {
+        "id": 121,
+        "name": "Nabrzeże",
+        "description": "Teraz i na początku twojej następnej tury:<br>'''+2 karty<br>+1 zakup'''"
+    },
+    { "id": 122, "name": "Zielarz", "description": "" },
+    { "id": 123, "name": "Uczeń", "description": "" },
+    { "id": 124, "name": "Transmutacja", "description": "" },
+    { "id": 126, "name": "Aptekarz", "description": "" },
+    { "id": 128, "name": "Uniwersytet", "description": "" },
+    { "id": 129, "name": "Alchemik", "description": "" },
+    { "id": 130, "name": "Chowaniec", "description": "" },
+    { "id": 131, "name": "Kamień filozoficzny", "description": "" },
+    { "id": 132, "name": "Golem", "description": "" },
+    { "id": 133, "name": "Opętanie", "description": "" },
+    { "id": 134, "name": "Czarny rynek", "description": "" },
+    {
+        "id": 135,
+        "name": "Poseł",
+        "description": "Odkryj 5 kart z wierzchu swojej talii. Gracz po twojej lewej stronie wskazuje jedną z nich, którą musisz odrzucić. Weź na rękę pozostałe karty."
+    },
+    {
+        "id": 136,
+        "name": "Kasztel",
+        "description": "'''+1 Karta<br>+2 Akcje'''{{divline}}Jeśli na początku fazy porządków masz tę kartę i nie więcej niż jedną inną kartę akcji w grze, możesz położyć tę kartę na wierzchu swojej talii."
+    },
+    {
+        "id": 137,
+        "name": "Gubernator",
+        "description": "'''+1 Akcja'''<br>Wybierz jedną z opcji (otrzymujesz wersję w nawiasie): Każdy z graczy dobiera +1 (+3) kartę; lub każdy z graczy dodaje Srebrnika (Złocisza); lub każdy z graczy może wyrzucić na śmietnisko kartę z ręki i dodać kartę o koszcie wyższym dokładnie o {{Cost|1}} ({{Cost|2}})."
+    },
+    {
+        "id": 138,
+        "name": "Zaskórniak",
+        "description": "{{Cost|2|l}}{{divline}}Kiedy tasujesz karty, możesz umieścić tę kartę w dowolnym miejscu swojej talii."
+    },
+    { "id": 212, "name": "Klątwa", "description": "" },
+    {
+        "id": 242,
+        "name": "Kredyt",
+        "description": "{{Cost|1|l}}<br>Po zagraniu odkrywaj karty ze swojej talii, aż natrafisz na kartę Skarbu. Odrzuć ją albo wyrzuć na śmietnisko. Odrzuć pozostałe odkryte karty."
+    },
+    {
+        "id": 245,
+        "name": "Szlak handlowy",
+        "description": "'''+1 zakup'''<br>+{{Cost|1}} za każdy żeton monety leżący na podkładce Szlaku handlowego.<br>Wyrzuć na śmietnisko kartę z ręki.{{Divline}}Przygotowanie do rozgrywki połóż żeton monety na każdym stosie kart Zwycięstwa w Zasobach. Kiedy gracz dodaje kartę z takiego stosu, należy przełożyć żeton na podkładkę Szlaku handlowego."
+    },
+    { "id": 246, "name": "Cyganka", "description": "" },
+    { "id": 247, "name": "Platyna", "description": "{{Cost|5}}" },
+    { "id": 317, "name": "Ołtarz", "description": "" },
+    { "id": 319, "name": "Obóz bandytów", "description": "" },
+    {
+        "id": 321,
+        "name": "Strażnica",
+        "description": "Dobieraj karty, aż będziesz miał ich&nbsp;6 na ręce.{{Divline}}Kiedy dodajesz kartę, możesz odkryć Strażnicę z ręki. Jeżeli to zrobisz, wyrzuć dodaną kartę na śmietnisko albo połóż ją na wierzchu swojej talii."
+    },
+    {
+        "id": 322,
+        "name": "Biskup",
+        "description": "+{{Cost|1}}<br>'''+{{VP|1}}'''<br>Wyrzuć na śmietnisko kartę z ręki.<br>+{{VP}} równe połowie kosztu tej karty (wyrażonego w monetach), zaokrąglając w dół.<br>Każdy z pozostałych graczy może wyrzucić na śmietnisko kartę z ręki."
+    },
+    { "id": 323, "name": "Monument", "description": "+{{Cost|2}}<br>'''+1'''{{VP}}" },
+    {
+        "id": 324,
+        "name": "Kamieniołom",
+        "description": "{{Cost|1|l}}{{divline}}Kiedy ta karta znajduje się w grze, wszystkie karty Akcji kosztują o {{Cost|2}} mniej (ale nie mniej niż {{nowrap|{{Cost|0}}).}}"
+    },
+    {
+        "id": 325,
+        "name": "Talizman",
+        "description": "{{Cost|1|l}}{{divline}}Kiedy ta karta znajduje się grze, a ty kupujesz kartę koszcie 4 lub mniejszym, która nie jest kartą Zwycięstwa, dodaj dodatkową kopię zakupionej karty."
+    },
+    {
+        "id": 326,
+        "name": "Wioska robotnicza",
+        "description": "'''+1 karta<br>+2 akcje<br>+1 zakup'''"
+    },
+    {
+        "id": 327,
+        "name": "Miasto",
+        "description": "'''+1 karta<br>+2 akcje'''<br>Jeżeli w Zasobach znajduje się co najmniej jeden pusty stos kart, +1&nbsp;karta.<br>Jeżeli w zasobach znajdują się co najmniej dwa puste stosy kart, {{nowrap|+{{Cost|1}} i}} +1&nbsp;zakup."
+    },
+    {
+        "id": 328,
+        "name": "Kontrabanda",
+        "description": "{{Cost|3|l}}<br>'''+1 zakup'''<br>Kiedy zagrywasz tę kartę, gracz po twojej lewej stronie wymienia nazwę karty. W tej turze nie możesz kupić karty o tej nazwie."
+    },
+    {
+        "id": 329,
+        "name": "Rachuba",
+        "description": "Przejrzyj swój stos kart odrzuconych i odkryj z niego dowolną liczbę Miedziaków. Następnie weź je na rękę."
+    },
+    {
+        "id": 330,
+        "name": "Mincerz",
+        "description": "Możesz odkryć kartę Skarbu z ręki. Dodaj jej kopię (na stos kart odrzuconych).{{divline}}Kiedy kupujesz tę kartę, wyrzuć na śmietnisko wszystkie karty Skarbu, jakie masz w grze."
+    },
+    {
+        "id": 331,
+        "name": "Szarlatan",
+        "description": "+{{Cost|2}}<br>Każdy z pozostałych graczy może odrzucić Klątwę. Jeżeli tego nie zrobi, dodaje Klątwę i Miedziaka."
+    },
+    {
+        "id": 332,
+        "name": "Motłoch",
+        "description": "'''+3 karty'''<br>Każdy z pozostałych graczy odkrywa 3&nbsp;wierzchnie karty ze swojej talii i odrzuca wszystkie odkryte karty Akcji i Skarbu. Resztę odkrytych kart odkłada w dowolnej kolejności z powrotem na wierzch swojej talii."
+    },
+    {
+        "id": 333,
+        "name": "Królewska pieczęć",
+        "description": "{{Cost|2|l}}{{divline}}Kiedy ta karta znajduje się w grze, a ty dodajesz kartę, możesz położyć ją na wierzchu swojej talii."
+    },
+    {
+        "id": 334,
+        "name": "Składnica",
+        "description": "'''+2 karty'''<br>Odrzuć dowolną liczbę kart z ręki.<br>+{{Cost|1}} za każdą odrzuconą kartę.<br>Każdy z pozostałych graczy może odrzucić 2&nbsp;karty. Jeśli to zrobi, dobiera kartę."
+    },
+    {
+        "id": 335,
+        "name": "Złoty interes",
+        "description": "{{Cost|1|l}}<br>Po zagraniu odkrywaj karty ze swojej talii, aż natrafisz na kartę Skarbu. Odrzuć pozostałe karty. Zagraj ten Skarb."
+    },
+    {
+        "id": 336,
+        "name": "Naciągacze",
+        "description": "'''+1 zakup'''<br>+{{Cost|2}}<br>Każdy z pozostałych graczy odrzuca karty, aż będzie miał ich&nbsp;3 na ręce.{{divline}}Kiedy ta karta znajduje się w grze, {{nowrap|{{VP|+1}}}} za każdym razem, gdy kupujesz kartę."
+    },
+    {
+        "id": 337,
+        "name": "Wielki targ",
+        "description": "'''+1 karta<br>+1 akcja<br>+1 zakup'''<br>+{{Cost|2}}{{divline}}Nie możesz kupić tej karty, jeżeli masz Miedziaka w grze."
+    },
+    {
+        "id": 338,
+        "name": "Krocie",
+        "description": "{{Cost|2|l}}{{divline}}Kiedy ta karta znajduje się w grze, dodaj Złoto za każdym razem, gdy kupujesz kartę Zwycięstwa."
+    },
+    {
+        "id": 339,
+        "name": "Bank",
+        "description": "Kiedy zagrywasz tę kartę, jest ona warta {{Cost|1}} za każdą kartę Skarbu, którą masz w grze (łącznie z tą kartą)."
+    },
+    {
+        "id": 340,
+        "name": "Modernizacja",
+        "description": "Wyzruć na śmietnisko kartę z ręki. Dodaj kartę o koszcie większym o maksymalnie {{Cost|3}} od kosztu wyrzuconej karty."
+    },
+    {
+        "id": 341,
+        "name": "Płatner",
+        "description": "Wyrzuć na śmietnisko dowolną liczbę kart z ręki. Dodaj kartę o koszcie równym sumie kosztów wszystkich kart (wyrażonych w monetach)."
+    },
+    {
+        "id": 342,
+        "name": "Rada królewska",
+        "description": "Możesz wybrać kartę Akcji z ręki. Zagraj ją trzy razy."
+    },
+    {
+        "id": 343,
+        "name": "Domokrążca",
+        "description": "'''+1 karta<br>+1 akcja'''<br>+{{Cost|1}}{{divline}}W fazie zakupu ta karta kosztuje o {{Cost|2}}<br>mniej za każdą kartę Akcji, jaką<br>masz w grze (ale nie mniej niż {{Cost|0}})."
+    },
+    {
+        "id": 353,
+        "name": "Folwark",
+        "description": "'''+1 Karta<br>+1 Akcja'''<br>Możesz odrzucić kartę z ręki, jeśli to zrobisz +1&nbsp;Akcja.<br>Możesz odrzucić kartę z ręki, jeśli to zrobisz +1&nbsp;Zakup."
+    },
+    {
+        "id": 358,
+        "name": "Menażeria",
+        "description": "'''+1 Akcja'''<br>Odkryj swoją rękę.<br>Jeżeli wszystkie karty na twojej ręce są o innych tytułach to +3&nbsp;karty. <br>W przeciwnym wypadku +1&nbsp;karta."
+    },
+    {
+        "id": 359,
+        "name": "Farma",
+        "description": "'''+2 akcje'''<br>Odkrywaj karty z wierzchu swojej talii, aż odkryjesz kartę Akcji lub Skarbu. Weź tę kartę na rękę i odrzuć pozostałe odkryte karty."
+    },
+    {
+        "id": 360,
+        "name": "Banda Koniokradów",
+        "description": "'''+1 Zakup'''<br>+{{Cost|3}}<br>'''Odrzuć 2 karty.'''{{divline}}Kiedy inny gracz zagrywa kartę ataku możesz odłożyć tę kartę z ręki. Jeśli to zrobisz, na początku swojej następnej kolejki +1&nbsp;karta i weź Bandę Koniokradów z powrotem na rękę."
+    },
+    {
+        "id": 361,
+        "name": "Rozbiórka",
+        "description": "Wykonaj to działanie dwukrotnie: wyrzuć na śmietnisko kartę z ręki, potem dodaj kartę kosztującą dokładnie {{Cost|1}} więcej niż wyrzucona na śmietnisko karta."
+    },
+    {
+        "id": 362,
+        "name": "Odpust",
+        "description": "Ta karta jest warta {{VP|2}} za każde 5&nbsp;kart o innych tytułach w twojej talii (zaokrąglając w dół)."
+    },
+    {
+        "id": 385,
+        "name": "Róg Obfitości",
+        "description": "{{Cost|0|l}}<br>Kiedy w fazie kupna zagrasz tę kartę, dodaj kartę o maksymalnym koszcie {{Cost|1}} za każdą twoją kartę w grze o innym tytule, wliczając też Róg Obfitości.<br>Jeśli dodasz kartę Zwycięstwa wyrzuć tę kartę na śmietnisko."
+    },
+    { "id": 386, "name": "Procesja", "description": "" },
+    { "id": 389, "name": "Katakumby", "description": "" },
+    { "id": 393, "name": "Trupi wóz", "description": "" },
+    { "id": 394, "name": "Pańszczyzna", "description": "" },
+    { "id": 396, "name": "Forteca", "description": "" },
+    { "id": 398, "name": "Pustelnik", "description": "" },
+    { "id": 400, "name": "Łowisko", "description": "" },
+    { "id": 401, "name": "Kupiec żelazny", "description": "" },
+    { "id": 405, "name": "Plac targowy", "description": "" },
+    { "id": 407, "name": "Mistyk", "description": "" },
+    { "id": 410, "name": "Rabunek", "description": "" },
+    { "id": 411, "name": "Przytułek", "description": "" },
+    { "id": 412, "name": "Szczury", "description": "" },
+    { "id": 414, "name": "Opryszek", "description": "" },
+    { "id": 419, "name": "Śmieciarz", "description": "" },
+    { "id": 420, "name": "Pachołek", "description": "" },
+    { "id": 421, "name": "Przechowalnia", "description": "" },
+    { "id": 425, "name": "Wędrowny bard", "description": "" },
+    {
+        "id": 426,
+        "name": "Zniwa",
+        "description": "Odkryj 4 wierzchnie karty ze swojej talii, a potem je odrzuć. {{nowrap|+{{Cost|1}}}} za każdą odkrytą kartę o innym tytule."
+    },
+    {
+        "id": 427,
+        "name": "Polowanie",
+        "description": "'''+1 Karta<br>+1 Akcja'''<br>Odkryj swoją rękę. Odkrywaj karty ze swojej talii, aż odkryjesz kartę o innym tytule niż te które masz na ręce. Weź te kartę na rękę i odrzuć pozostałe karty."
+    },
+    {
+        "id": 428,
+        "name": "Błazen",
+        "description": "+{{Cost|2}}<br>Każdy z pozostałych graczy odrzuca wierzchnią kartę swojej talii. Jeśli będzie to karta zwycięstwa gracz dodaje Klątwe. Jeśli nie, ty decydujesz, czy ty, czy też on ma dodać kopię odrzuconej karty."
+    },
+    {
+        "id": 429,
+        "name": "Turniej Rycerski",
+        "description": "'''+1 Akcja'''<br>Każdy gracz może odkryć ze swojej ręki kartę Prowincji. Jeśli ty to zrobisz odrzuć tę kartę i dodaj kartę Nagrody (ze stosu nagród) lub Powiat, kładąc dodaną kartę na wierzchu swojej talii. Jeśli odkryjesz kartę Prowincji, a nie zrobi tego nikt inny, +1&nbsp;karta, {{nowrap|+{{Cost|1}}.}}"
+    },
+    {
+        "id": 430,
+        "name": "Młoda Wiedźma",
+        "description": "'''+2 Karty'''<br>Odrzuć 2 karty. Każdy z pozostałych graczy może odkryć kartę Zguby ze swojej ręki. Jeśli tego nie zrobi dodaje Klątwę.{{divline}}Faza Przygotowania: dodaj do zasobów jeden dodatkowy stos kart królestwa o koszcie {{Cost|2}} lub {{Cost|3}}. Karty z tego stosu to karty Zguby."
+    },
+    {
+        "id": 432,
+        "name": "Worek Złota",
+        "description": "<p>'''+1 Akcja'''<br>Dodaj Złocisza. Połóż go na<br>wierzchu swojej talii.</p>''(Ta karta nie należy do Zapasów)''"
+    },
+    {
+        "id": 433,
+        "name": "Diadem",
+        "description": "<p>{{Cost|2|l}}<br>Kiedy zagrasz tę kartę {{nowrap|+{{Cost|1}}}} za każdą swoją niewykorzystaną akcję (Akcję, nie kartę Akcji).</p>''(Ta karta nie należy do Zapasów)''"
+    },
+    {
+        "id": 434,
+        "name": "Korowód",
+        "description": "'''+2 Karty'''<br>Dodaj Posiadłość. Każdy pozostałych graczy dodaje Klątwę i odrzuca karty, aż będzie miał ich 3 na ręcę.<br>''(Ta karta nie należy do zapasów)''"
+    },
+    {
+        "id": 435,
+        "name": "Księżniczka",
+        "description": "'''+1 Zakup'''{{divline}}<p>Póki ta karta jest w grze karty<br>kosztują {{Cost|2}} mniej, ale nie mniej niż {{Cost|0}}.</p>''(Ta karta nie należy do zapasów)''"
+    },
+    {
+        "id": 436,
+        "name": "Wierny Rumak",
+        "description": "<p>Wybierz dwie różne opcje: +2&nbsp;karty; +2&nbsp;akcje; {{nowrap|+{{Cost|2}};}} dodaj 4&nbsp;Srebrniki i umieść swoją talię na stosie odrzuconych kart. (wybrane opcje muszą się różnić)</p>''(Ta karta nie należy do zapasów)''"
+    },
+    { "id": 517, "name": "Miedziak", "description": "" },
+    { "id": 525, "name": "Posiadłość", "description": "" },
+    { "id": 526, "name": "Srebrnik", "description": "" },
+    { "id": 528, "name": "Powiat", "description": "" },
+    { "id": 529, "name": "Złocisz", "description": "" },
+    { "id": 530, "name": "Prowincja", "description": "" },
+    { "id": 531, "name": "Kolonia", "description": "{{VP|'''10'''}}" },
+    { "id": 601, "name": "Rozdroże", "description": "" },
+    { "id": 603, "name": "Złoto głupców", "description": "" },
+    { "id": 604, "name": "Rozwój", "description": "" },
+    { "id": 605, "name": "Oaza", "description": "" },
+    { "id": 606, "name": "Wyrocznia", "description": "" },
+    { "id": 609, "name": "Szlachetny rabuś", "description": "" },
+    { "id": 612, "name": "Zamorski kupiec", "description": "" },
+    { "id": 614, "name": "Skrytka", "description": "" },
+    { "id": 617, "name": "Przekupień", "description": "" },
+    { "id": 618, "name": "Gościniec", "description": "" },
+    { "id": 619, "name": "Brudny zysk", "description": "" },
+    { "id": 621, "name": "Gospoda", "description": "" },
+    { "id": 622, "name": "Murgrabia", "description": "" },
+    { "id": 623, "name": "Stadnina", "description": "" },
+    { "id": 624, "name": "Pogranicze", "description": "" },
+    { "id": 625, "name": "Pola uprawne", "description": "" },
+    { "id": 1318, "name": "Medyk", "description": "" },
+    { "id": 1319, "name": "Piekarz", "description": "" },
+    { "id": 1320, "name": "Czeladnik", "description": "" },
+    { "id": 1321, "name": "Rzeźnik", "description": "" },
+    { "id": 1327, "name": "Herold", "description": "" },
+    { "id": 1330, "name": "Wytwórca świec", "description": "" },
+    { "id": 1331, "name": "Kamieniarz", "description": "" },
+    { "id": 1332, "name": "Arcydzieło", "description": "" },
+    { "id": 1333, "name": "Doradca", "description": "" },
+    { "id": 1334, "name": "Rynek", "description": "" },
+    { "id": 1335, "name": "Poborca podatkowy", "description": "" },
+    { "id": 1336, "name": "Gildia kupców", "description": "" },
+    { "id": 1337, "name": "Wieszcz", "description": "" },
+    {
+        "id": 1504,
+        "name": "Książę",
+        "description": "Możesz odłożyć tę kartę na bok. Jeśli to zrobisz, odłóż z ręki na bok kartę Akcji kosztującą nie więcej niż {{nowrap|{{Cost|4}}.}} Na początku każdej swojej tury zagraj tę kartę Akcji i odłóż ją ponownie na bok gdy odrzucasz ją z gry (jeśli nie odłożysz jej na bok w turze, w której ją zagrywasz, to w następnej turze już jej nie zagrywasz)."
+    },
+    { "id": 2112, "name": "Zaginione miasto", "description": "" },
+    { "id": 2119, "name": "Moneta obiegowa", "description": "" },
+    { "id": 2121, "name": "Przewodnik", "description": "" },
+    { "id": 2123, "name": "Duplikat", "description": "" },
+    { "id": 2132, "name": "Przemiana", "description": "" },
+    { "id": 2137, "name": "Najemnik", "description": "" },
+    { "id": 2140, "name": "Amulet", "description": "" },
+    { "id": 2146, "name": "Posłaniec", "description": "" },
+    { "id": 2150, "name": "Misja", "description": "" },
+    { "id": 2164, "name": "Olbrzym", "description": "" },
+    { "id": 2194, "name": "Loch", "description": "" },
+    { "id": 2195, "name": "Narzędzia", "description": "" },
+    { "id": 2198, "name": "Skąpiec", "description": "" },
+    { "id": 2211, "name": "Ognisko", "description": "" },
+    { "id": 2212, "name": "Relikt", "description": "" },
+    { "id": 2214, "name": "Zaginiony skarb", "description": "" },
+    { "id": 2215, "name": "Sprzedawca wina", "description": "" },
+    { "id": 2216, "name": "Paź", "description": "" },
+    { "id": 2219, "name": "Chłop", "description": "" },
+    { "id": 2224, "name": "Szkolenie", "description": "" },
+    { "id": 2227, "name": "Najazd", "description": "" },
+    {
+        "id": 3214,
+        "name": "Dzielnica",
+        "description": "'''+2 akcje''' <br> Odkryj swoją rękę. '''+1&nbsp;karta''' za każdą odkrytą kartę Akcji."
+    },
+    {
+        "id": 3216,
+        "name": "Królewski kowal",
+        "description": "'''+5 kart'''<br> Odkryj swoją rękę; odrzuć wszystkie Miedziaki."
+    },
+    {
+        "id": 3218,
+        "name": "Kapitał",
+        "description": "{{Cost|6|l}}<br>'''+1 zakup'''{{divline}}Kiedy odrzucasz tę kartę z gry, weź {{Debt|6}}. Możesz natychmiast spłacić {{Debt}}."
+    },
+    {
+        "id": 3225,
+        "name": "Willa",
+        "description": "'''+2 akcje<br>+1 zakup'''<br>+{{Cost|1}}{{Divline}}Kiedy dodajesz tę kartę, weź ją na rękę, '''+1&nbsp;akcja''', a jeśli trwa twoja faza zakupu, wróć do fazy akcji."
+    },
+    {
+        "id": 3235,
+        "name": "Osadnicy",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Przejrzyj swój stos kart odrzuconych. Możesz odkryć z niego Miedziaka i wziąć go na rękę."
+    },
+    {
+        "id": 3237,
+        "name": "Gwarna wioska",
+        "description": "'''+1 karta<br>+3 akcje'''<br>Przejrzyj swój stos kart odrzuconych. Możesz odkryć z niego kartę Osadników i wziąć ją na rękę."
+    },
+    {
+        "id": 3239,
+        "name": "Katapulta",
+        "description": "+{{Cost|1}}<br>Wyrzuć na śmietnisko kartę z ręki. Jeżeli kosztuje {{Cost|3}} lub więcej, każdy z pozostałych graczy dodaje Klątwę; jeżeli jest to karta Skarbu, każdy z pozostałych graczy odrzuca karty, aż pozostaną mu 3 na ręce."
+    },
+    {
+        "id": 3241,
+        "name": "Głazy",
+        "description": "{{Cost|1|l}}{{Divline}}Kiedy dodajesz albo wyrzucasz na śmietnisko tę kartę, dodaj Srebrnika; jeżeli trwa twoja faza zakupu, połóż tego Srebrnika na wierzchu swojej talii, w przeciwnym wypadku weź go na rękę."
+    },
+    {
+        "id": 3244,
+        "name": "Fortuna",
+        "description": "'''+1 zakup'''<br>Kiedy zagrywasz tę kartę, podwój {{nowrap|swoje {{Cost|}},}} jeśli jeszcze tego nie zrobiłeś w bieżącej turze.{{Divline}}Kiedy dodajesz tę kartę, dodaj Złoto za każdego Gladiatora, którego masz w grze."
+    },
+    {
+        "id": 3246,
+        "name": "Gladiator",
+        "description": "+{{Cost|2}}<br>Odkryj kartę z ręki.<br>Gracz po twojej lewej stronie może odkryć z ręki kopię tej samej karty. Jeśli tego nie zrobi, {{nowrap|+{{Cost|1}}}} i wyrzuć na śmietnisko Gladiatora z Zasobów."
+    },
+    {
+        "id": 3251,
+        "name": "Korona",
+        "description": "Jeżeli trwa twoja faza akcji, możesz wybrać z ręki kartę Akcji i zagrać ją dwa razy.<br>Jeżeli trwa twoja faza zakupu, możesz wybrać z ręki kartę Skarbu i zagrać ją dwa razy."
+    },
+    {
+        "id": 3252,
+        "name": "Wyścig rydwanów",
+        "description": "'''+1 akcja'''<br>Odkryj kartę z wierzchu swojej talii i weź ją na rękę. Gracz po twojej lewej odkrywa kartę z wierzchu swojej talii. Jeżeli twoja karta jest droższa,<br>{{nowrap|+{{Cost|1}}}} i {{nowrap|'''+{{VP|1}}'''.}}"
+    },
+    {
+        "id": 3254,
+        "name": "Świątynia",
+        "description": "'''+1'''{{VP}}<br>Wyrzuć z ręki na śmietnisko od 1 do 3&nbsp;kart o różnych nazwach. Dołóż {{nowrap|'''1'''{{VP}}}} na stos Świątyni.{{divline}}Kiedy dodajesz tę kartę, weź wszystkie {{VP}} leżące na stosie Świątyni."
+    },
+    {
+        "id": 3256,
+        "name": "Ogrodnik",
+        "description": "'''+1 karta<br>+1 akcja'''{{Divline}}Kiedy ta karta znajduje się w grze, {{nowrap|'''+1'''{{VP}}}} za każdym razem, gdy dodajesz kartę Zwycięstwa."
+    },
+    {
+        "id": 3262,
+        "name": "Targ rolny",
+        "description": "'''+1 zakup'''<br>Jeżeli na stosie Targu rolnego leżą {{nowrap|'''4'''{{VP}}}} lub więcej, weź je i wyrzuć tę kartę na śmietnisko. W przeciwnym wypadku dołóż {{nowrap|'''1'''{{VP}}}} na stos Targu rolnego, a następnie {{nowrap|+{{Cost|1}}}} za każdy {{nowrap|'''1'''{{VP}}}} na tym stosie."
+    },
+    {
+        "id": 3264,
+        "name": "Czarodziejka",
+        "description": "Do twojej następnej tury za każdym razem, gdy inny gracz zagrywa w swojej turze pierwszą kartę Akcji, zamiast wykonywać jej polecenia otrzymuje '''+1&nbsp;kartę''' i '''+1&nbsp;akcję'''. Na początku twojej następnej tury '''+2&nbsp;karty'''."
+    },
+    {
+        "id": 3268,
+        "name": "Pole bitwy",
+        "description": "Kiedy dodajesz kartę Zwycięstwa, weź stąd {{nowrap|'''2'''{{VP}}}}{{divline}}Przygotowanie: połóż tutaj po {{nowrap|'''6'''{{VP}}}} na gracza."
+    },
+    { "id": 3271, "name": "Fontanna", "description": "" },
+    {
+        "id": 3273,
+        "name": "Twierdza",
+        "description": "Podczas punktowania '''5'''{{VP}} za każdą kartę Skarbu o innej nazwie, którą posiadasz, i której masz nie mniej niż którykolwiek z pozostałych graczy."
+    },
+    {
+        "id": 3275,
+        "name": "Grobowiec",
+        "description": "Kiedy wyrzucasz kartę na śmietnisko, {{nowrap|'''+1'''{{VP}}.}}"
+    },
+    { "id": 3277, "name": "Wilcze leże", "description": "" },
+    {
+        "id": 3282,
+        "name": "Triumf",
+        "description": "Dodaj Posiadłość.<br>Jeżeli to zrobiłeś, '''+1'''{{VP}} za każdą kartę, którą dodałeś w bieżącej turze."
+    },
+    { "id": 3286, "name": "Gratka", "description": "" },
+    {
+        "id": 3287,
+        "name": "Dominacja",
+        "description": "Dodaj Prowincję. Jeśli to zrobiłeś {{nowrap|'''+9'''{{VP}}.}}"
+    },
+    {
+        "id": 3288,
+        "name": "Skromny zamek",
+        "description": "{{Cost|1|l}}{{Divline}}Ta karta jest warta '''{{VP|1}}''' za każdy Zamek, jaki posiadasz."
+    },
+    {
+        "id": 3297,
+        "name": "Niszczejący zamek",
+        "description": "{{VP|1|l}}{{Divline}}Kiedy dodajesz lub wyrzucasz tę kartę na śmietnisko, {{VP|'''+1'''}} i&nbsp;dodaj Srebrnika."
+    },
+    {
+        "id": 3298,
+        "name": "Mały zamek",
+        "description": "Wyrzuć na śmietnisko tę kartę lub Zamek z ręki.<br>Jeśli to zrobisz, dodaj Zamek. {{Divline}}{{VP|2|l}}"
+    },
+    {
+        "id": 3299,
+        "name": "Nawiedzony zamek",
+        "description": "{{VP|2|l}}{{Divline}}Kiedy dodajesz tę kartę podczas swojej tury, dodaj Złoto, a każdy z pozostałych graczy z 5 lub więcej kartami na ręce odkłada 2&nbsp;karty na wierzch swojej talii."
+    },
+    {
+        "id": 3300,
+        "name": "Dostatni zamek",
+        "description": "Odrzuć dowolną liczbę kart Zwycięstwa. {{nowrap|+{{Cost|2}}}} za każdą odrzuconą kartę{{Divline}}{{VP|3|l}}"
+    },
+    {
+        "id": 3301,
+        "name": "Rozległy zamek",
+        "description": "{{VP|4|l}}{{Divline}}Kiedy dodajesz tę kartę, dodaj Powiat lub 3&nbsp;Posiadłości."
+    },
+    {
+        "id": 3302,
+        "name": "Okazały zamek",
+        "description": "{{VP|5|l}}{{Divline}}Kiedy dodajesz tę kartę, odkryj swoją rękę. {{VP|'''+1'''}} za każdą kartę Zwycięstwa na twojej ręce i/lub w grze."
+    },
+    {
+        "id": 3303,
+        "name": "Królewski zamek",
+        "description": "Ta karta jest warta {{nowrap|'''2'''{{VP}}}} za każdy Zamek, jaki posiadasz."
+    },
+    {
+        "id": 3327,
+        "name": "Archiwum",
+        "description": "'''+ 1 akcja'''<br>Odłóż na bok, awersem do dołu 3&nbsp;karty z wierzchu swojej talii (możesz na podejrzeć). Teraz i na początku twoich dwóch najbliższych tur weź jedną z tych kart na rękę."
+    },
+    {
+        "id": 3330,
+        "name": "Klejnot",
+        "description": "Kiedy zagrywasz tę kartę wybierz jedno: '''+1&nbsp;zakup''' i {{nowrap|+{{Cost|2}};}} albo kiedy następnym razem kupisz w tej turze kartę, możesz dodać kartę o innej nazwie i takim samym koszcie."
+    },
+    {
+        "id": 3332,
+        "name": "Emporium",
+        "description": "'''+1 karta<br>+1 akcja'''<br>+{{Cost|1}}{{divline}}Kiedy dodajesz tę kartę i masz w grze co najmniej 5&nbsp;kart Akcji, {{nowrap|'''+2'''{{VP}}.}}"
+    },
+    {
+        "id": 3334,
+        "name": "Obozowisko",
+        "description": "'''+2 karty<br>+2 akcje'''<br>Możesz odkryć z ręki kartę Złota lub Zdobyczy. Jeśli tego nie zrobiłeś, odłóż tę kartę na bok i zwróć ją do Zasobów na początku fazy porządków."
+    },
+    {
+        "id": 3337,
+        "name": "Inżynier",
+        "description": "Dodaj kartę nie droższą niż {{Cost|4}}. <br> Możesz wyrzucić tego Inżyniera na śmietnisko. <br> Jeśli to zrobisz, dodaj kartę nie droższą niż {{Cost|4}}."
+    },
+    {
+        "id": 3339,
+        "name": "Forum",
+        "description": "'''+3 karty<br>+1 akcja'''<br>Odrzuć 2&nbsp;karty.{{Divline}}Kiedy kupujesz tę kartę, '''+1&nbsp;zakup'''."
+    },
+    {
+        "id": 3341,
+        "name": "Legionista",
+        "description": "+{{Cost|3}}<br>Możesz odkryć z ręki kartę Złota. Jeżeli to zrobisz, każdy z pozostałych graczy odrzuca karty, aż pozostaną mu 2 na ręce, po czym dobiera kartę."
+    },
+    {
+        "id": 3343,
+        "name": "Władca",
+        "description": "Zagraj tę kartę, jakby była dowolną kartą Akcji z Zasobów nie droższą niż {{Cost|5}}. Władca pozostaje tą kartą, dopóki nie opuści gry."
+    },
+    { "id": 3345, "name": "Patrycjusz", "description": "" },
+    { "id": 3347, "name": "Zdobycz", "description": "<p>{{Cost|2|l}}</p>{{VP|'''+1'''}}" },
+    { "id": 3348, "name": "Mur", "description": "" },
+    {
+        "id": 3350,
+        "name": "Ofiara",
+        "description": "&ensp;Wyrzuć na śmietnisko kartę z ręki.<br>&emsp;&emsp;&emsp;&emsp;&emsp;Jeśli jest to&hellip;<br>karta Akcji: '''+2&nbsp;karty''',''' +2&nbsp;akcje'''<br>karta Skarbu: {{nowrap|+{{Cost|2}}}}<br>karta Zwycięstwa: {{nowrap|'''+2'''{{VP}}}}"
+    },
+    { "id": 3351, "name": "Łuk triumfalny", "description": "" },
+    { "id": 3352, "name": "Wieża", "description": "" },
+    {
+        "id": 3354,
+        "name": "Dziki gon",
+        "description": "Wybierz jedno: '''+3&nbsp;karty''' i dołóż {{nowrap|'''1'''{{VP}}}} na stos Dzikiego gonu; albo dodaj Posiadłość i jeśli to zrobiłeś weź wszystkie {{VP}} ze stosu Dzikiego gonu."
+    },
+    { "id": 3355, "name": "Pałac", "description": "" },
+    { "id": 3356, "name": "Sad", "description": "" },
+    { "id": 3357, "name": "Obelisk", "description": "" },
+    { "id": 3358, "name": "Muzeum", "description": "" },
+    {
+        "id": 3359,
+        "name": "Przełęcz",
+        "description": "Kiedy jako pierwszy dodasz Prowincję, po zakończeniu tej tury rozpoczyna się licytacja. Gracze kończą na tobie, licytując kolejno, maksymalnie do {{Debt|40}}. Zwycięzca bierze {{nowrap|'''+8'''{{VP}}}} i tyle {{Debt}}, ile zaoferował."
+    },
+    {
+        "id": 3360,
+        "name": "Labirynt",
+        "description": "Weź stąd '''2'''{{VP}}, kiedy dodajesz drugą kartę w swojej turze.{{divline}}Przygotowanie: połóż tutaj po {{nowrap|'''6'''{{VP}}}} na gracza."
+    },
+    {
+        "id": 3364,
+        "name": "Sprofanowane sanktuarium",
+        "description": "Kiedy dodajesz kartę Akcji, przenieś tutaj {{nowrap|'''1'''{{VP}}}} z jej stosu.<br>Kiedy kupujesz Klątwę, weź wszystkie leżące tu {{VP}}.{{Divline}}Przygotowanie: połóż '''{{VP|2}}''' na każdym stosie kart Akcji w Zasobach bez typu Gromadzenie."
+    },
+    {
+        "id": 3365,
+        "name": "Kolumnada",
+        "description": "Kiedy kupisz kartę Akcji, której kopię masz już w grze, weź stąd {{nowrap|'''2'''{{VP}}.}} {{Divline}}Przygotowanie: połóż tutaj po {{nowrap|'''6'''{{VP}}}} na gracza."
+    },
+    {
+        "id": 3366,
+        "name": "Łaźnia",
+        "description": "Po zakończeniu tury, w której nie dodałeś żadnej karty, weź stąd {{nowrap|'''2'''{{VP}}}}.{{divline}}Przygotowanie: połóż tutaj po {{nowrap|'''6'''{{VP}}}} na gracza."
+    },
+    {
+        "id": 3367,
+        "name": "Bazylika",
+        "description": "Kiedy kupujesz kartę, weź stąd {{nowrap|'''2'''{{VP}},}} jeżeli zostały ci co najmniej {{Cost|2}}.{{Divline}}Przygotowanie: połóż tutaj po {{nowrap|'''6'''{{VP}}} na gracza."
+    },
+    { "id": 3368, "name": "Awans", "description": "" },
+    { "id": 3369, "name": "Fort rozbójników", "description": "" },
+    {
+        "id": 3371,
+        "name": "Arena",
+        "description": "Na początku swojej fazy zakupu możesz odrzucić kartę Akcji. Jeśli to zrobisz, weź stąd {{nowrap|'''2'''{{VP}}}}.{{divline}}Przygotowanie: połóż tutaj po {{nowrap|'''6'''{{VP}}}} na gracza."
+    },
+    {
+        "id": 3372,
+        "name": "Akwedukt",
+        "description": "Kiedy dodajesz kartę Skarbu, przenieś tutaj {{nowrap|'''1'''{{VP}}}} z jej stosu. Kiedy dodajesz kartę Zwycięstwa, weź wszystkie leżące tu {{VP}}.{{divline}}Przygotowanie: połóż po {{nowrap|'''8'''{{VP}}}} na stosach Srebrników i Złota."
+    },
+    {
+        "id": 3374,
+        "name": "Aneksja",
+        "description": "Przejrzyj swój stos kart odrzuconych. Zostaw w nim do 5&nbsp;kart, a pozostałe wtasuj do swojej talii. Dodaj Powiat."
+    },
+    {
+        "id": 3376,
+        "name": "Datek",
+        "description": "Po zakończeniu bieżącej tury weź na rękę wszystkie karty ze swojej talii i ze stosu kart odrzuconych, wyrzuć na śmietnisko dowolną liczbę kart, a następnie przetasuj swoją rękę w talię i dobierz 5&nbsp;kart."
+    },
+    { "id": 3379, "name": "Bankiet", "description": "" },
+    {
+        "id": 3382,
+        "name": "Podbój",
+        "description": "Dodaj 2 Srebrniki.<br>'''+1'''{{VP}} za każdego Srebrnika, którego dodałeś w tej turze."
+    },
+    { "id": 3390, "name": "Zejście", "description": "" },
+    {
+        "id": 3401,
+        "name": "Podatek",
+        "description": "Dołóż {{Debt|2}} na dowolny stos kart w Zasobach. {{Divline}}Przygotowanie: połóż {{Debt|1}} na każdym stosie w Zasobach. Kiedy gracz kupuje kartę, bierze wszystkie {{Debt}} z jej stosu."
+    },
+    {
+        "id": 3403,
+        "name": "Rytuał",
+        "description": "Dodaj Klątwę. Jeżeli to zrobiłeś, wyrzuć na śmietnisko kartę z ręki. {{nowrap|'''+1'''{{VP}}}} za każde {{Cost|1}} w koszcie wyrzuconej karty."
+    },
+    {
+        "id": 3405,
+        "name": "Solna klątwa",
+        "description": "'''+1{{VP}}'''<br>Wyrzuć na śmietnisko kartę Zwycięstwa z Zasobów."
+    },
+    { "id": 3406, "name": "Zaślubiny", "description": "'''+1'''{{VP}}<br>Dodaj Złoto." },
+    {
+        "id": 3486,
+        "name": "Sauna",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Możesz zagrać Przerębel z ręki.{{Divline}}Kiedy ta karta znajduje się w grze i zagrywasz Srebrnika, możesz wyrzucić na śmietnisko kartę z ręki."
+    },
+    {
+        "id": 3487,
+        "name": "Przerębel",
+        "description": "'''+3 karty'''<br>Możesz zagrać Saunę z ręki."
+    },
+    { "id": 3496, "name": "Zwiastun", "description": "" },
+    { "id": 3497, "name": "Kupiec", "description": "" },
+    { "id": 3498, "name": "Wasal", "description": "" },
+    { "id": 3499, "name": "Kłusownik", "description": "" },
+    { "id": 3500, "name": "Bandyta", "description": "" },
+    { "id": 3501, "name": "Wartownik", "description": "" },
+    { "id": 3502, "name": "Rękodzielnik", "description": "" },
+    { "id": 3503, "name": "Intrygant", "description": "" },
+    { "id": 3504, "name": "Dyplomata", "description": "" },
+    { "id": 3505, "name": "Młyn", "description": "" },
+    { "id": 3509, "name": "Dworzanie", "description": "" },
+    { "id": 3510, "name": "Patrol", "description": "" },
+    { "id": 3511, "name": "Podmiana", "description": "" },
+    { "id": 5088, "name": "Bard", "description": "" },
+    { "id": 5166, "name": "Diabelski warsztat", "description": "" },
+    { "id": 5167, "name": "Miasto duchów", "description": "" },
+    { "id": 5224, "name": "Bożek", "description": "" },
+    { "id": 5230, "name": "Druid", "description": "" },
+    { "id": 5256, "name": "Dar ziemi", "description": "" },
+    { "id": 5257, "name": "Dar płomieni", "description": "" },
+    { "id": 5263, "name": "Dar lasu", "description": "" },
+    { "id": 5321, "name": "Przeklęta wioska", "description": "" },
+    { "id": 5336, "name": "Egzorcysta", "description": "" },
+    { "id": 5446, "name": "Nocny stróż", "description": "" },
+    { "id": 5451, "name": "Tajne zebranie", "description": "" },
+    { "id": 5453, "name": "Tragiczny bohater", "description": "" },
+    { "id": 6115, "name": "Jasnowidz", "description": "" },
+    { "id": 6116, "name": "Uczony", "description": "" },
+    { "id": 6141, "name": "Trupa aktorów", "description": "" },
+    { "id": 6143, "name": "Oficer werbunkowy", "description": "" },
+    { "id": 6154, "name": "Złoczyńca", "description": "" },
+    { "id": 6173, "name": "Chorąży", "description": "" },
+    { "id": 6174, "name": "Awanturniczka", "description": "" },
+    { "id": 6175, "name": "Skarbniczka", "description": "" },
+    { "id": 6225, "name": "Służba", "description": "" },
+    { "id": 6226, "name": "Frachtowiec", "description": "" },
+    { "id": 6303, "name": "Koszary", "description": "" },
+    { "id": 6309, "name": "Przedstawienie", "description": "" },
+    { "id": 6311, "name": "Sieć dróg", "description": "" },
+    { "id": 6747, "name": "Ośnieżona wioska", "description": "" },
+    { "id": 6751, "name": "Barka", "description": "" },
+    { "id": 6778, "name": "Rupiecie", "description": "" },
+    { "id": 6795, "name": "Zapasy", "description": "" },
+    { "id": 6816, "name": "Droga kreta", "description": "" },
+    { "id": 6834, "name": "Mozół", "description": "" },
+    { "id": 6845, "name": "Czarny kot", "description": "" },
+    { "id": 6874, "name": "Tabun", "description": "" },
+    { "id": 6921, "name": "Koń bojowy", "description": "" },
+    { "id": 6927, "name": "Przesiedlenie", "description": "" },
+    { "id": 6931, "name": "Sanktuarium", "description": "" },
+    { "id": 6932, "name": "Padok", "description": "" },
+    { "id": 6988, "name": "Droga foki", "description": "" }
+]

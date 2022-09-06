@@ -1,0 +1,14 @@
+[
+    { "id": 212, "name": "Kletba" },
+    { "id": 216, "name": "Akce" },
+    { "id": 217, "name": "Reakce" },
+    { "id": 218, "name": "Vítězné body" },
+    { "id": 219, "name": "Útok" },
+    { "id": 220, "name": "Peníze" },
+    { "id": 431, "name": "Odměna" },
+    { "id": 522, "name": "Útočiště" },
+    { "id": 550, "name": "Ruina" },
+    { "id": 577, "name": "Rytíři" },
+    { "id": 593, "name": "Dlouhodobá" },
+    { "id": 689, "name": "Plenitel" }
+]

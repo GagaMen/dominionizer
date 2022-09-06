@@ -1,0 +1,20 @@
+[
+    { "id": 212, "name": "Malédiction" },
+    { "id": 216, "name": "Action" },
+    { "id": 218, "name": "Victoire" },
+    { "id": 220, "name": "Trésor" },
+    { "id": 577, "name": "Chevalier" },
+    { "id": 593, "name": "Durée" },
+    { "id": 689, "name": "Pillard" },
+    { "id": 1583, "name": "Taverne" },
+    { "id": 2114, "name": "Itinérant" },
+    { "id": 3304, "name": "Châteaux" },
+    { "id": 4216, "name": "Nuit" },
+    { "id": 4217, "name": "Patrimoine" },
+    { "id": 4218, "name": "Destin" },
+    { "id": 4219, "name": "Fatalité" },
+    { "id": 4220, "name": "Aubaine" },
+    { "id": 4221, "name": "Sortilège" },
+    { "id": 5165, "name": "Esprit" },
+    { "id": 5356, "name": "Zombie" }
+]

@@ -1,0 +1,15 @@
+[
+    { "id": 212, "name": "Klątwa" },
+    { "id": 216, "name": "Akcja" },
+    { "id": 217, "name": "Reakcja" },
+    { "id": 218, "name": "Zwycięstwo" },
+    { "id": 219, "name": "Atak" },
+    { "id": 220, "name": "Skarb" },
+    { "id": 431, "name": "Nagroda" },
+    { "id": 577, "name": "Rycerze" },
+    { "id": 593, "name": "Następstwo" },
+    { "id": 1584, "name": "Zdarzenie" },
+    { "id": 2821, "name": "Krajobraz" },
+    { "id": 3258, "name": "Gromadzenie" },
+    { "id": 3304, "name": "Zamki" }
+]

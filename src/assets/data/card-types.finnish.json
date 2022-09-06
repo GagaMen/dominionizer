@@ -1,0 +1,19 @@
+[
+    { "id": 212, "name": "Kirous" },
+    { "id": 216, "name": "Toiminta" },
+    { "id": 217, "name": "Vastaveto" },
+    { "id": 218, "name": "Piste" },
+    { "id": 219, "name": "Hyökkäys" },
+    { "id": 220, "name": "Raha" },
+    { "id": 431, "name": "Palkinto" },
+    { "id": 522, "name": "Suoja" },
+    { "id": 550, "name": "Raunio" },
+    { "id": 577, "name": "Ritarit" },
+    { "id": 593, "name": "Toistuva" },
+    { "id": 689, "name": "Ryöstäjä" },
+    { "id": 1583, "name": "Reservi" },
+    { "id": 2114, "name": "Matkaaja" },
+    { "id": 2821, "name": "Maamerkki" },
+    { "id": 3258, "name": "Keräävä" },
+    { "id": 3304, "name": "Linnat" }
+]
