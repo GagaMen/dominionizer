@@ -37,7 +37,7 @@ export class ExpansionBuilder {
     }
 
     private buildIcon(expansionPage: ExpansionPage, currentRelease: boolean): string {
-        const name = this.extractName(expansionPage).replace(' ', '_');
+        const name = this.extractName(expansionPage).replace(/\s/g, '_');
         const suffix = currentRelease ? 'icon.png' : 'old_icon.png';
 
         return `${name}_${suffix}`;
