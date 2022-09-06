@@ -107,7 +107,7 @@ export class WikiClient {
             cllimit: 'max',
         };
 
-        return await this.fetchPages(params);
+        return await this.fetchPages(params, 'changed image');
     }
 
     private async fetchPages<TPage>(
