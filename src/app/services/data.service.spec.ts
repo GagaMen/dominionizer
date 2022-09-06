@@ -34,6 +34,17 @@ describe('DataService', () => {
         });
     });
 
+    describe('fetchCardTypes', () => {
+        it('should make correct HTTP request and return its response data', () => {
+            const get$ = cold('--(a|)');
+            httpClientSpy.get.withArgs(DataService.cardTypesUrl).and.returnValue(get$);
+
+            const actual$ = dataService.fetchCardTypes();
+
+            expect(actual$).toBeObservable(get$);
+        });
+    });
+
     describe('fetchCards', () => {
         it('should make correct HTTP request and return its response data', () => {
             const get$ = cold('--(a|)');

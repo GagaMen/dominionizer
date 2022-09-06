@@ -3,18 +3,19 @@ import { cold } from 'jasmine-marbles';
 
 import { CardService } from './card.service';
 import { DataService } from './data.service';
-import { Card } from '../models/card';
 import { SpyObj } from 'src/testing/spy-obj';
 import { CardDto } from '../dtos/card-dto';
-import { Expansion } from '../models/expansion';
 import { ExpansionService } from './expansion.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { CardTypeId } from '../models/card-type';
+import { CardTypeService } from './card-type.service';
+import { Card } from '../models/card';
 
 describe('CardService', () => {
     let cardService: CardService;
     let dataServiceSpy: SpyObj<DataService>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
+    let cardTypeServiceSpy: SpyObj<CardTypeService>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -25,6 +26,7 @@ describe('CardService', () => {
                     useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchCards']),
                 },
                 { provide: ExpansionService, useValue: {} },
+                { provide: CardTypeService, useValue: {} },
             ],
         });
 
@@ -34,32 +36,36 @@ describe('CardService', () => {
         dataServiceSpy.fetchCards.and.returnValue(
             cold('(a|)', { a: dataFixture.createCardDtos() }),
         );
+
         expansionServiceSpy = TestBed.inject(ExpansionService);
         expansionServiceSpy.expansions$ = cold('(a|)', { a: dataFixture.createExpansions() });
+
+        cardTypeServiceSpy = TestBed.inject(CardTypeService);
+        cardTypeServiceSpy.cardTypes$ = cold('(a|)', { a: dataFixture.createCardTypes() });
     });
 
     describe('cards$', () => {
         it('should map CardDto objects from server to their corresponding Card objects and complete', () => {
-            // TODO: test for types and dependencies
             const expansions = dataFixture.createExpansions();
+            const cardTypes = dataFixture.createCardTypes();
             const cardDtos = dataFixture.createCardDtos(3, {
-                expansions: [expansions[1].id, expansions[0].id],
+                expansions: [expansions[0].id, expansions[2].id],
+                types: [cardTypes[0].id, cardTypes[2].id],
             });
-            const expected = cardDtos.map((cardDto: CardDto) => {
+            const expected: Card[] = cardDtos.map((cardDto: CardDto) => {
                 return {
                     ...cardDto,
-                    expansions: (jasmine.arrayWithExactContents([
-                        expansions[1],
-                        expansions[0],
-                    ]) as unknown) as Expansion[],
-                    types: [],
+                    expansions: [expansions[0], expansions[2]],
+                    types: [cardTypes[0], cardTypes[2]],
                     dependencies: undefined,
-                } as Card;
+                };
             });
             const expansions$ = cold('-(a|)   ', { a: expansions });
-            const fetchCards$ = cold('----(a|)', { a: cardDtos });
-            const expected$ = cold('  ----(a|)', { a: expected });
+            const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
+            const fetchCards$ = cold('----(c|)', { c: cardDtos });
+            const expected$ = cold('  ----(d|)', { d: expected });
             expansionServiceSpy.expansions$ = expansions$;
+            cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
             cardService = TestBed.inject(CardService);
 
