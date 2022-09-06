@@ -20,7 +20,7 @@ export class ImageBuilder {
     }
 
     private buildFileName(imagePage: ImagePage): string {
-        return imagePage.title.replace('File:', '').replace('(expansion) ', '').replace(' ', '_');
+        return imagePage.title.replace('File:', '').replace('(expansion) ', '').replace(/\s/g, '_');
     }
 
     private async buildData(imagePage: ImagePage): Promise<Uint8Array> {
@@ -49,7 +49,9 @@ export class ImageBuilder {
     }
 
     private async buildDataForCardArt(image: Image): Promise<Uint8Array> {
-        const aspectRatio: number = image.decoded.bitmap.width / image.decoded.bitmap.height;
+        const decodedImage = await image.decoded;
+        const aspectRatio: number = decodedImage.bitmap.width / decodedImage.bitmap.height;
+
         let preprocessOptions: PreprocessOptions;
         if (aspectRatio < 1) {
             // supply card

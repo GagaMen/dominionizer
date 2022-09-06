@@ -189,7 +189,7 @@ declare module '@squoosh/lib' {
         constructor(workerPool: any, file: any);
         file: any;
         workerPool: any;
-        decoded: any;
+        decoded: Promise<{ bitmap: ImageData }>;
         encodedWith: { [key in keyof EncoderOptions]: Promise<EncodeResult> };
 
         /**

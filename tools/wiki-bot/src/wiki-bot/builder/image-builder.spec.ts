@@ -16,12 +16,12 @@ describe('ImageBuilder', () => {
 
         imageSpy = jasmine.createSpyObj<Image>('Image', ['preprocess', 'encode']);
         imageSpy.encodedWith = {};
-        imageSpy.decoded = {
+        imageSpy.decoded = Promise.resolve({
             bitmap: {
                 width: 100,
                 height: 100,
-            },
-        };
+            } as ImageData,
+        });
         imageSpy.encode.and.resolveTo({});
 
         imageBuilder = new ImageBuilder(wikiClientSpy, imagePoolSpy);
@@ -76,12 +76,6 @@ describe('ImageBuilder', () => {
                     },
                 ],
             };
-            imageSpy.decoded = {
-                bitmap: {
-                    width: 560,
-                    height: 585,
-                },
-            };
             const preprocessOptions = {
                 resize: {
                     width: 40,
@@ -98,11 +92,11 @@ describe('ImageBuilder', () => {
 
         it('with card art should build correctly encoded image', async () => {
             const imagePage: ImagePage = {
-                pageid: 1754,
-                title: 'File:Abandoned MineArt.jpg',
+                pageid: 1707,
+                title: 'File:Bag Of GoldArt.jpg',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/a/ae/Abandoned_MineArt.jpg',
+                        url: 'http://wiki.dominionstrategy.com/images/5/5a/Bag_Of_GoldArt.jpg',
                         mime: 'image/jpeg',
                     },
                 ],
@@ -117,8 +111,8 @@ describe('ImageBuilder', () => {
             } as EncodeResult);
 
             const expected: EncodedImage = {
-                id: 1754,
-                fileName: 'Abandoned_MineArt.jpg',
+                id: 1707,
+                fileName: 'Bag_Of_GoldArt.jpg',
                 data: encodedImageData,
             };
             wikiClientSpy.fetchImage
@@ -143,12 +137,12 @@ describe('ImageBuilder', () => {
                     },
                 ],
             };
-            imageSpy.decoded = {
+            imageSpy.decoded = Promise.resolve({
                 bitmap: {
                     width: 354,
                     height: 246,
-                },
-            };
+                } as ImageData,
+            });
             const preprocessOptions = {
                 resize: {
                     width: 300,
@@ -174,12 +168,12 @@ describe('ImageBuilder', () => {
                     },
                 ],
             };
-            imageSpy.decoded = {
+            imageSpy.decoded = Promise.resolve({
                 bitmap: {
                     width: 452,
                     height: 177,
-                },
-            };
+                } as ImageData,
+            });
             const preprocessOptions = {
                 resize: {
                     width: 300,
@@ -205,12 +199,12 @@ describe('ImageBuilder', () => {
                     },
                 ],
             };
-            imageSpy.decoded = {
+            imageSpy.decoded = Promise.resolve({
                 bitmap: {
                     width: 287,
                     height: 374,
-                },
-            };
+                } as ImageData,
+            });
             const preprocessOptions = {
                 resize: {
                     width: 150,
