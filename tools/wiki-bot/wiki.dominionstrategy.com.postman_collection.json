@@ -314,12 +314,12 @@
 			"response": []
 		},
 		{
-			"name": "Recent Changes",
+			"name": "Recent Image Changes",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&generator=recentchanges&grcend=2022-08-24T18:30:53.321Z&grctoponly=true&grcnamespace=0|6&grclimit=100&prop=categories&clcategories=Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols&cllimit=max",
+					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&generator=recentchanges&grcend=2022-08-24T18:30:53.321Z&grctoponly=true&grcnamespace=6&grclimit=max&prop=imageinfo|categories&iiprop=url|mime&clcategories=Category:Card art|Category:Card symbols&cllimit=max",
 					"protocol": "http",
 					"host": [
 						"wiki",
@@ -352,19 +352,23 @@
 						},
 						{
 							"key": "grcnamespace",
-							"value": "0|6"
+							"value": "6"
 						},
 						{
 							"key": "grclimit",
-							"value": "100"
+							"value": "max"
 						},
 						{
 							"key": "prop",
-							"value": "categories"
+							"value": "imageinfo|categories"
+						},
+						{
+							"key": "iiprop",
+							"value": "url|mime"
 						},
 						{
 							"key": "clcategories",
-							"value": "Category:Sets|Category:Cards|Category:Card types|Category:Card art|Category:Card symbols"
+							"value": "Category:Card art|Category:Card symbols"
 						},
 						{
 							"key": "cllimit",
@@ -376,12 +380,12 @@
 			"response": []
 		},
 		{
-			"name": "Multiple Expansions",
+			"name": "Single Page",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&pageids=1579|176&prop=revisions&rvprop=content",
+					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&titles=Split pile&prop=info|revisions&inprop=url&rvprop=content",
 					"protocol": "http",
 					"host": [
 						"wiki",
@@ -401,50 +405,8 @@
 							"value": "json"
 						},
 						{
-							"key": "pageids",
-							"value": "1579|176"
-						},
-						{
-							"key": "prop",
-							"value": "revisions"
-						},
-						{
-							"key": "rvprop",
-							"value": "content"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Multiple Cards",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&pageids=387|6302&prop=info|revisions&inprop=url&rvprop=content",
-					"protocol": "http",
-					"host": [
-						"wiki",
-						"dominionstrategy",
-						"com"
-					],
-					"path": [
-						"api.php"
-					],
-					"query": [
-						{
-							"key": "action",
-							"value": "query"
-						},
-						{
-							"key": "format",
-							"value": "json"
-						},
-						{
-							"key": "pageids",
-							"value": "387|6302"
+							"key": "titles",
+							"value": "Split pile"
 						},
 						{
 							"key": "prop",
@@ -457,136 +419,6 @@
 						{
 							"key": "rvprop",
 							"value": "content"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Multiple Card Types",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&pageids=212|216&prop=info|revisions&inprop=url&rvprop=content",
-					"protocol": "http",
-					"host": [
-						"wiki",
-						"dominionstrategy",
-						"com"
-					],
-					"path": [
-						"api.php"
-					],
-					"query": [
-						{
-							"key": "action",
-							"value": "query"
-						},
-						{
-							"key": "format",
-							"value": "json"
-						},
-						{
-							"key": "pageids",
-							"value": "212|216"
-						},
-						{
-							"key": "prop",
-							"value": "info|revisions"
-						},
-						{
-							"key": "inprop",
-							"value": "url"
-						},
-						{
-							"key": "rvprop",
-							"value": "content"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Multiple Card Art",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&pageids=1754|6230&prop=imageinfo&iiprop=url|mime",
-					"protocol": "http",
-					"host": [
-						"wiki",
-						"dominionstrategy",
-						"com"
-					],
-					"path": [
-						"api.php"
-					],
-					"query": [
-						{
-							"key": "action",
-							"value": "query"
-						},
-						{
-							"key": "format",
-							"value": "json"
-						},
-						{
-							"key": "pageids",
-							"value": "1754|6230"
-						},
-						{
-							"key": "prop",
-							"value": "imageinfo"
-						},
-						{
-							"key": "iiprop",
-							"value": "url|mime"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Multiple Card Symbols",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://wiki.dominionstrategy.com/api.php?action=query&format=json&pageids=2167|950&prop=imageinfo&iiprop=url|mime",
-					"protocol": "http",
-					"host": [
-						"wiki",
-						"dominionstrategy",
-						"com"
-					],
-					"path": [
-						"api.php"
-					],
-					"query": [
-						{
-							"key": "action",
-							"value": "query"
-						},
-						{
-							"key": "format",
-							"value": "json"
-						},
-						{
-							"key": "pageids",
-							"value": "2167|950"
-						},
-						{
-							"key": "prop",
-							"value": "imageinfo"
-						},
-						{
-							"key": "iiprop",
-							"value": "url|mime"
 						}
 					]
 				}

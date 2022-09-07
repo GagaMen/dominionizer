@@ -8,6 +8,7 @@ import {
     ImagePage,
     CardTypePage,
     ChangedImagePage,
+    ContentPage,
 } from './api-models';
 
 describe('WikiClient', () => {
@@ -50,6 +51,11 @@ describe('WikiClient', () => {
             },
         ],
         categories: [{ title: 'Category:Card art' }],
+    };
+    const contentPage: ContentPage = {
+        pageid: 1,
+        title: 'Content',
+        revisions: [{ '*': 'wiki text of any page' }],
     };
 
     beforeEach(() => {
@@ -436,6 +442,38 @@ describe('WikiClient', () => {
             const actual = await wikiClient.fetchRecentImageChanges(since);
 
             expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('fetchSingleContentPage', () => {
+        const singlePageParams: QueryParams = {
+            action: 'query',
+            format: 'json',
+            prop: 'revisions',
+            rvprop: 'content',
+        };
+
+        it('should fetch and return single content page correctly', async () => {
+            const title = 'Split pile';
+            const params = {
+                ...singlePageParams,
+                titles: 'Split pile',
+            };
+            const queryResult: QueryResult<ContentPage> = {
+                query: {
+                    pages: {
+                        '3247': contentPage,
+                    },
+                },
+            };
+            const axiosResponse: AxiosResponse<QueryResult<ContentPage>> = {
+                data: queryResult,
+            } as AxiosResponse<QueryResult<ContentPage>>;
+            axiosSpy.get.withArgs('', { params: params }).and.resolveTo(axiosResponse);
+
+            const actual = await wikiClient.fetchSingleContentPage(title);
+
+            expect(actual).toEqual(contentPage);
         });
     });
 

@@ -20,18 +20,18 @@ export interface Page {
     title: string;
 }
 
-export interface ExpansionPage extends Page {
+export interface ContentPage extends Page {
     revisions: Revision[];
 }
 
-export interface CardPage extends Page {
+export type ExpansionPage = ContentPage;
+
+export interface CardPage extends ContentPage {
     fullurl: string;
-    revisions: Revision[];
 }
 
-export interface CardTypePage extends Page {
+export interface CardTypePage extends ContentPage {
     fullurl: string;
-    revisions: Revision[];
 }
 
 export interface Revision {

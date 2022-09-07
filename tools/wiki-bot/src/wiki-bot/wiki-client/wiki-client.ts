@@ -3,6 +3,7 @@ import {
     CardPage,
     CardTypePage,
     ChangedImagePage,
+    ContentPage,
     ExpansionPage,
     ImagePage,
     QueryParams,
@@ -147,6 +148,21 @@ export class WikiClient {
         }
 
         return pages;
+    }
+
+    async fetchSingleContentPage(title: string): Promise<ContentPage> {
+        const params: QueryParams = {
+            ...this.defaultParams,
+            prop: 'revisions',
+            rvprop: 'content',
+            titles: title,
+        };
+
+        const response = await this.axios.get<QueryResult<ContentPage>>('', {
+            params: params,
+        });
+
+        return Object.values(response.data.query.pages)[0];
     }
 
     async fetchImage(url: string): Promise<Buffer> {
