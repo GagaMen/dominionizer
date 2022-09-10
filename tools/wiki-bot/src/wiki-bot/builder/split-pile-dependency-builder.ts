@@ -22,7 +22,9 @@ export class SplitPileDependencyBuilder {
         cardTypes: CardType[],
     ): void {
         for (const cardType of cardTypes) {
-            const randomizerCard = cardDtos.find((cardDto: CardDto) => cardDto.id === cardType.id);
+            const randomizerCard = cardDtos.find(
+                (cardDto: CardDto) => cardDto.isKingdomCard && cardDto.id === cardType.id,
+            );
 
             if (randomizerCard === undefined) {
                 continue;

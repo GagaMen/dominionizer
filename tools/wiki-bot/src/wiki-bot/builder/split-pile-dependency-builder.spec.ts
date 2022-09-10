@@ -19,16 +19,18 @@ describe('SplitPileDependencyBuilder', () => {
     describe('build', () => {
         it('should build split pile dependencies with card types correctly', () => {
             const cards: CardDto[] = [
-                { id: 1, types: [10] } as CardDto,
-                { id: 2, types: [2] } as CardDto,
-                { id: 3, types: [2, 10] } as CardDto,
+                { id: 1, types: [10], isKingdomCard: true } as CardDto,
+                { id: 2, types: [2], isKingdomCard: true } as CardDto,
+                { id: 3, types: [2, 10], isKingdomCard: true } as CardDto,
+                { id: 4, types: [4], isKingdomCard: false } as CardDto,
             ];
-            const cardTypes: CardType[] = [{ id: 2 } as CardType];
+            const cardTypes: CardType[] = [{ id: 2 } as CardType, { id: 4 } as CardType];
             const expected: CardDto[] = [
-                { id: 1, types: [10] } as CardDto,
+                { id: 1, types: [10], isKingdomCard: true } as CardDto,
                 {
                     id: 2,
                     types: [2],
+                    isKingdomCard: true,
                     dependencies: [
                         { id: 2, type: DependencyType.SplitPile },
                         { id: 3, type: DependencyType.SplitPile },
@@ -37,8 +39,10 @@ describe('SplitPileDependencyBuilder', () => {
                 {
                     id: 3,
                     types: [2, 10],
+                    isKingdomCard: true,
                     dependencies: [{ id: 2, type: DependencyType.SplitPile }],
                 } as CardDto,
+                { id: 4, types: [4], isKingdomCard: false } as CardDto,
             ];
 
             const actual = splitPileDependecyBuilder.build(cards, cardTypes, nullSplitPilePage);
