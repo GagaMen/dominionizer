@@ -128,14 +128,14 @@ export class WikiClient {
             });
             const queryResult = response.data;
 
-            if (Array.isArray(queryResult)) {
+            if (Array.isArray(queryResult) || queryResult.query === undefined) {
                 continueQuerying = false;
                 continue;
             }
 
             pages = pages.concat(Object.values(queryResult.query.pages));
 
-            if (!queryResult['query-continue']) {
+            if (queryResult['query-continue'] === undefined) {
                 continueQuerying = false;
                 continue;
             }
@@ -150,7 +150,7 @@ export class WikiClient {
         return pages;
     }
 
-    async fetchSingleContentPage(title: string): Promise<ContentPage> {
+    async fetchSingleContentPage(title: string): Promise<ContentPage | undefined> {
         const params: QueryParams = {
             ...this.defaultParams,
             prop: 'revisions',
@@ -161,6 +161,10 @@ export class WikiClient {
         const response = await this.axios.get<QueryResult<ContentPage>>('', {
             params: params,
         });
+
+        if (response.data.query === undefined) {
+            return undefined;
+        }
 
         return Object.values(response.data.query.pages)[0];
     }

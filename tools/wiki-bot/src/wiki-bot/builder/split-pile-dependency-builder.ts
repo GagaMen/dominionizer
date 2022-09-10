@@ -5,7 +5,7 @@ import { ContentPage, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 
 export class SplitPileDependencyBuilder {
-    build(cardDtos: CardDto[], cardTypes: CardType[], splitPilePage: ContentPage): CardDto[] {
+    build(cardDtos: CardDto[], cardTypes: CardType[], splitPilePage?: ContentPage): CardDto[] {
         const splitPiles: Map<number, CardDto[]> = new Map();
 
         this.buildSplitPilesWithCardTypes(splitPiles, cardDtos, cardTypes);
@@ -53,8 +53,12 @@ export class SplitPileDependencyBuilder {
     private buildSplitPilesWithSplitPilePage(
         splitPiles: Map<number, CardDto[]>,
         cardDtos: CardDto[],
-        splitPilePage: ContentPage,
+        splitPilePage?: ContentPage,
     ) {
+        if (splitPilePage === undefined) {
+            return;
+        }
+
         const wikiText: WikiText = splitPilePage.revisions[0]['*'] ?? '';
         const cardList: WikiText = extractSection(wikiText, 'List of split pile cards', 2);
 

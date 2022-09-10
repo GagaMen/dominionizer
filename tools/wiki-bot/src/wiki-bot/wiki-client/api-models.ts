@@ -4,7 +4,7 @@ export interface QueryParams {
 
 export interface QueryResult<TPage> {
     'query-continue'?: QueryContinuation;
-    query: QueryResultContent<TPage>;
+    query?: QueryResultContent<TPage>;
 }
 
 export interface QueryContinuation {
