@@ -2140,7 +2140,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 560,
@@ -2151,7 +2152,8 @@
         "expansions": [156],
         "types": [216, 219, 577, 218],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 562,
@@ -2162,7 +2164,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 564,
@@ -2173,7 +2176,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 566,
@@ -2184,7 +2188,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 568,
@@ -2195,7 +2200,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 570,
@@ -2206,7 +2212,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 572,
@@ -2217,7 +2224,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 573,
@@ -2228,7 +2236,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 575,
@@ -2239,7 +2248,8 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 577, "type": 3 }]
     },
     {
         "id": 577,
@@ -2250,7 +2260,20 @@
         "expansions": [156],
         "types": [216, 219, 577],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [
+            { "id": 577, "type": 3 },
+            { "id": 558, "type": 3 },
+            { "id": 560, "type": 3 },
+            { "id": 562, "type": 3 },
+            { "id": 564, "type": 3 },
+            { "id": 566, "type": 3 },
+            { "id": 568, "type": 3 },
+            { "id": 570, "type": 3 },
+            { "id": 572, "type": 3 },
+            { "id": 573, "type": 3 },
+            { "id": 575, "type": 3 }
+        ]
     },
     {
         "id": 601,
@@ -3397,7 +3420,11 @@
         "expansions": [2739],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 2
+        "cost": 2,
+        "dependencies": [
+            { "id": 3235, "type": 3 },
+            { "id": 3237, "type": 3 }
+        ]
     },
     {
         "id": 3237,
@@ -3408,7 +3435,8 @@
         "expansions": [2739],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 3235, "type": 3 }]
     },
     {
         "id": 3239,
@@ -3419,7 +3447,11 @@
         "expansions": [2739],
         "types": [216, 219],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 3239, "type": 3 },
+            { "id": 3241, "type": 3 }
+        ]
     },
     {
         "id": 3241,
@@ -3430,7 +3462,8 @@
         "expansions": [2739],
         "types": [220],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 3239, "type": 3 }]
     },
     {
         "id": 3244,
@@ -3442,7 +3475,8 @@
         "types": [220],
         "isKingdomCard": true,
         "cost": 8,
-        "debt": 8
+        "debt": 8,
+        "dependencies": [{ "id": 3246, "type": 3 }]
     },
     {
         "id": 3246,
@@ -3453,7 +3487,11 @@
         "expansions": [2739],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 3246, "type": 3 },
+            { "id": 3244, "type": 3 }
+        ]
     },
     {
         "id": 3251,
@@ -3619,7 +3657,8 @@
         "expansions": [2739],
         "types": [220, 218, 3304],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3297,
@@ -3630,7 +3669,8 @@
         "expansions": [2739],
         "types": [218, 3304],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3298,
@@ -3641,7 +3681,8 @@
         "expansions": [2739],
         "types": [216, 218, 3304],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3299,
@@ -3652,7 +3693,8 @@
         "expansions": [2739],
         "types": [218, 3304],
         "isKingdomCard": true,
-        "cost": 6
+        "cost": 6,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3300,
@@ -3663,7 +3705,8 @@
         "expansions": [2739],
         "types": [216, 218, 3304],
         "isKingdomCard": true,
-        "cost": 7
+        "cost": 7,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3301,
@@ -3674,7 +3717,8 @@
         "expansions": [2739],
         "types": [218, 3304],
         "isKingdomCard": true,
-        "cost": 8
+        "cost": 8,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3302,
@@ -3685,7 +3729,8 @@
         "expansions": [2739],
         "types": [218, 3304],
         "isKingdomCard": true,
-        "cost": 9
+        "cost": 9,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3303,
@@ -3696,7 +3741,8 @@
         "expansions": [2739],
         "types": [218, 3304],
         "isKingdomCard": true,
-        "cost": 10
+        "cost": 10,
+        "dependencies": [{ "id": 3304, "type": 3 }]
     },
     {
         "id": 3304,
@@ -3707,7 +3753,18 @@
         "expansions": [2739],
         "types": [218, 3304],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 3304, "type": 3 },
+            { "id": 3288, "type": 3 },
+            { "id": 3297, "type": 3 },
+            { "id": 3298, "type": 3 },
+            { "id": 3299, "type": 3 },
+            { "id": 3300, "type": 3 },
+            { "id": 3301, "type": 3 },
+            { "id": 3302, "type": 3 },
+            { "id": 3303, "type": 3 }
+        ]
     },
     {
         "id": 3327,
@@ -3740,7 +3797,8 @@
         "expansions": [2739],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 3345, "type": 3 }]
     },
     {
         "id": 3334,
@@ -3751,7 +3809,11 @@
         "expansions": [2739],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 2
+        "cost": 2,
+        "dependencies": [
+            { "id": 3334, "type": 3 },
+            { "id": 3347, "type": 3 }
+        ]
     },
     {
         "id": 3337,
@@ -3808,7 +3870,11 @@
         "expansions": [2739],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 2
+        "cost": 2,
+        "dependencies": [
+            { "id": 3345, "type": 3 },
+            { "id": 3332, "type": 3 }
+        ]
     },
     {
         "id": 3347,
@@ -3819,7 +3885,8 @@
         "expansions": [2739],
         "types": [220],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 3334, "type": 3 }]
     },
     {
         "id": 3348,
@@ -4141,7 +4208,11 @@
         "expansions": [206],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [
+            { "id": 3486, "type": 3 },
+            { "id": 3487, "type": 3 }
+        ]
     },
     {
         "id": 3487,
@@ -4152,7 +4223,8 @@
         "expansions": [206],
         "types": [216],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 3486, "type": 3 }]
     },
     {
         "id": 3496,
@@ -6681,7 +6753,14 @@
         "expansions": [7293],
         "types": [216, 8130],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 8130, "type": 3 },
+            { "id": 8138, "type": 3 },
+            { "id": 8139, "type": 3 },
+            { "id": 8140, "type": 3 },
+            { "id": 8141, "type": 3 }
+        ]
     },
     {
         "id": 8132,
@@ -6692,7 +6771,14 @@
         "expansions": [7293],
         "types": [216, 8132],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 8132, "type": 3 },
+            { "id": 8142, "type": 3 },
+            { "id": 8143, "type": 3 },
+            { "id": 8144, "type": 3 },
+            { "id": 8145, "type": 3 }
+        ]
     },
     {
         "id": 8137,
@@ -6714,7 +6800,8 @@
         "expansions": [7293],
         "types": [216, 8130],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 8130, "type": 3 }]
     },
     {
         "id": 8139,
@@ -6725,7 +6812,8 @@
         "expansions": [7293],
         "types": [216, 8130],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 8130, "type": 3 }]
     },
     {
         "id": 8140,
@@ -6736,7 +6824,8 @@
         "expansions": [7293],
         "types": [216, 219, 8130],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 8130, "type": 3 }]
     },
     {
         "id": 8141,
@@ -6747,7 +6836,8 @@
         "expansions": [7293],
         "types": [216, 8130],
         "isKingdomCard": true,
-        "cost": 6
+        "cost": 6,
+        "dependencies": [{ "id": 8130, "type": 3 }]
     },
     {
         "id": 8142,
@@ -6758,7 +6848,8 @@
         "expansions": [7293],
         "types": [216, 218, 8132],
         "isKingdomCard": true,
-        "cost": 6
+        "cost": 6,
+        "dependencies": [{ "id": 8132, "type": 3 }]
     },
     {
         "id": 8143,
@@ -6769,7 +6860,8 @@
         "expansions": [7293],
         "types": [220, 8132],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 8132, "type": 3 }]
     },
     {
         "id": 8144,
@@ -6780,7 +6872,8 @@
         "expansions": [7293],
         "types": [216, 593, 8132],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 8132, "type": 3 }]
     },
     {
         "id": 8145,
@@ -6791,7 +6884,8 @@
         "expansions": [7293],
         "types": [216, 8132],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 8132, "type": 3 }]
     },
     {
         "id": 8192,
@@ -6802,7 +6896,14 @@
         "expansions": [7293],
         "types": [216, 8192],
         "isKingdomCard": true,
-        "cost": 2
+        "cost": 2,
+        "dependencies": [
+            { "id": 8192, "type": 3 },
+            { "id": 8209, "type": 3 },
+            { "id": 8210, "type": 3 },
+            { "id": 8211, "type": 3 },
+            { "id": 8213, "type": 3 }
+        ]
     },
     {
         "id": 8205,
@@ -6857,7 +6958,8 @@
         "expansions": [7293],
         "types": [216, 8192],
         "isKingdomCard": true,
-        "cost": 2
+        "cost": 2,
+        "dependencies": [{ "id": 8192, "type": 3 }]
     },
     {
         "id": 8210,
@@ -6868,7 +6970,8 @@
         "expansions": [7293],
         "types": [216, 8192],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 8192, "type": 3 }]
     },
     {
         "id": 8211,
@@ -6879,7 +6982,8 @@
         "expansions": [7293],
         "types": [216, 8192],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 8192, "type": 3 }]
     },
     {
         "id": 8213,
@@ -6890,7 +6994,8 @@
         "expansions": [7293],
         "types": [216, 8192],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 8192, "type": 3 }]
     },
     {
         "id": 8236,
@@ -6901,7 +7006,14 @@
         "expansions": [7293],
         "types": [216, 8236],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 8236, "type": 3 },
+            { "id": 8249, "type": 3 },
+            { "id": 8250, "type": 3 },
+            { "id": 8251, "type": 3 },
+            { "id": 8253, "type": 3 }
+        ]
     },
     {
         "id": 8247,
@@ -6934,7 +7046,8 @@
         "expansions": [7293],
         "types": [216, 8236, 8084],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 8236, "type": 3 }]
     },
     {
         "id": 8250,
@@ -6945,7 +7058,8 @@
         "expansions": [7293],
         "types": [216, 593, 8236],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 8236, "type": 3 }]
     },
     {
         "id": 8251,
@@ -6956,7 +7070,8 @@
         "expansions": [7293],
         "types": [216, 219, 8236],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 8236, "type": 3 }]
     },
     {
         "id": 8253,
@@ -6967,7 +7082,8 @@
         "expansions": [7293],
         "types": [216, 8236],
         "isKingdomCard": true,
-        "cost": 6
+        "cost": 6,
+        "dependencies": [{ "id": 8236, "type": 3 }]
     },
     {
         "id": 8254,
@@ -7055,7 +7171,14 @@
         "expansions": [7293],
         "types": [216, 8377],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 8377, "type": 3 },
+            { "id": 8450, "type": 3 },
+            { "id": 8452, "type": 3 },
+            { "id": 8453, "type": 3 },
+            { "id": 8454, "type": 3 }
+        ]
     },
     {
         "id": 8378,
@@ -7066,7 +7189,14 @@
         "expansions": [7293],
         "types": [216, 8378],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [
+            { "id": 8378, "type": 3 },
+            { "id": 8455, "type": 3 },
+            { "id": 8456, "type": 3 },
+            { "id": 8457, "type": 3 },
+            { "id": 8459, "type": 3 }
+        ]
     },
     {
         "id": 8439,
@@ -7198,7 +7328,8 @@
         "expansions": [7293],
         "types": [216, 8377],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 8377, "type": 3 }]
     },
     {
         "id": 8452,
@@ -7209,7 +7340,8 @@
         "expansions": [7293],
         "types": [216, 593, 218, 8377],
         "isKingdomCard": true,
-        "cost": 6
+        "cost": 6,
+        "dependencies": [{ "id": 8377, "type": 3 }]
     },
     {
         "id": 8453,
@@ -7220,7 +7352,8 @@
         "expansions": [7293],
         "types": [216, 593, 8377],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 8377, "type": 3 }]
     },
     {
         "id": 8454,
@@ -7231,7 +7364,8 @@
         "expansions": [7293],
         "types": [216, 8377],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 8377, "type": 3 }]
     },
     {
         "id": 8455,
@@ -7242,7 +7376,8 @@
         "expansions": [7293],
         "types": [216, 593, 219, 8378],
         "isKingdomCard": true,
-        "cost": 5
+        "cost": 5,
+        "dependencies": [{ "id": 8378, "type": 3 }]
     },
     {
         "id": 8456,
@@ -7253,7 +7388,8 @@
         "expansions": [7293],
         "types": [216, 8378],
         "isKingdomCard": true,
-        "cost": 3
+        "cost": 3,
+        "dependencies": [{ "id": 8378, "type": 3 }]
     },
     {
         "id": 8457,
@@ -7264,7 +7400,8 @@
         "expansions": [7293],
         "types": [216, 219, 8378],
         "isKingdomCard": true,
-        "cost": 4
+        "cost": 4,
+        "dependencies": [{ "id": 8378, "type": 3 }]
     },
     {
         "id": 8459,
@@ -7275,7 +7412,8 @@
         "expansions": [7293],
         "types": [218, 8378],
         "isKingdomCard": true,
-        "cost": 6
+        "cost": 6,
+        "dependencies": [{ "id": 8378, "type": 3 }]
     },
     {
         "id": 8460,
