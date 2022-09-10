@@ -23,6 +23,7 @@ import { ImagesValidator } from './wiki-bot/validation/image-validators';
 import { Command } from 'commander';
 import { exec } from 'child_process';
 import { exit } from 'process';
+import { SplitPileDependencyBuilder } from './wiki-bot/builder/split-pile-dependency-builder';
 
 interface Options {
     skipImages: boolean;
@@ -57,6 +58,7 @@ async function bootstrap(): Promise<void> {
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();
     const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
     const cardDtoBuilder = new CardDtoBuilder();
+    const splitPileDependencyBuilder = new SplitPileDependencyBuilder();
     const cardTranslationBuilder = new CardTranslationBuilder();
     const cardTypeBuilder = new CardTypeBuilder();
     const cardTypeTranslationBuilder = new CardTypeTranslationBuilder(cardTranslationBuilder);
@@ -82,6 +84,7 @@ async function bootstrap(): Promise<void> {
         cardTypeTranslationBuilder,
         expansionCardsMapBuilder,
         cardDtoBuilder,
+        splitPileDependencyBuilder,
         cardTranslationBuilder,
         imageBuilder,
         expansionValidator,

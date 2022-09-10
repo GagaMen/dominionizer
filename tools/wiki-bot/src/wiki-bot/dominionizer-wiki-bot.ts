@@ -29,6 +29,7 @@ import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
 import { ValidationResult } from './validation/validation-result';
 import { red } from 'chalk';
+import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
 
 export class DominionizerWikiBot {
     private successful = true;
@@ -43,6 +44,7 @@ export class DominionizerWikiBot {
         private cardTypeTranslationBuilder: CardTypeTranslationBuilder,
         private expansionCardsMapBuilder: ExpansionCardsMapBuilder,
         private cardDtoBuilder: CardDtoBuilder,
+        private splitPileDependencyBuilder: SplitPileDependencyBuilder,
         private cardTranslationBuilder: CardTranslationBuilder,
         private imageBuilder: ImageBuilder,
         private expansionValidator: ExpansionValidator,
@@ -74,7 +76,12 @@ export class DominionizerWikiBot {
 
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages, cardTypePages);
         const cardPages = await this.wikiClient.fetchAllCardPages();
-        const cards = this.generateCards(cardPages, cardTypePages, cardExpansionsMap, cardTypes);
+        const cards = await this.generateCards(
+            cardPages,
+            cardTypePages,
+            cardExpansionsMap,
+            cardTypes,
+        );
         await this.writeCards(cards);
         const cardTranslations = this.generateCardTranslations(cardPages);
         await this.writeCardTranslations(cardTranslations);
@@ -323,12 +330,12 @@ export class DominionizerWikiBot {
         return cardExpansionsMap;
     }
 
-    private generateCards(
+    private async generateCards(
         cardPages: CardPage[],
         cardTypePages: CardTypePage[],
         cardExpansionsMap: Map<string, number[]>,
         cardTypes: CardType[],
-    ): CardDto[] {
+    ): Promise<CardDto[]> {
         console.log('Generating cards...');
 
         let cards: CardDto[] = [];
@@ -363,6 +370,9 @@ export class DominionizerWikiBot {
         this.sortById(cards);
 
         this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cardPages));
+
+        const splitPilePage = await this.wikiClient.fetchSingleContentPage('Split pile');
+        cards = this.splitPileDependencyBuilder.build(cards, cardTypes, splitPilePage);
 
         return cards;
     }

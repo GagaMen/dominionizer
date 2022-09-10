@@ -24,11 +24,13 @@ import {
     ImagePage,
     CardTypePage,
     ChangedImagePage,
+    ContentPage,
 } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as Fs from 'fs/promises';
 import { CardType } from '../../../../src/app/models/card-type';
 import { ValidationResult } from './validation/validation-result';
+import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -42,6 +44,7 @@ describe('DominionizerWikiBot', () => {
     let cardTypeTranslationBuilderSpy: jasmine.SpyObj<CardTypeTranslationBuilder>;
     let expansionCardsMapBuilderSpy: jasmine.SpyObj<ExpansionCardsMapBuilder>;
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
+    let splitPileDependencyBuilderSpy: jasmine.SpyObj<SplitPileDependencyBuilder>;
     let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
     let imageBuilderSpy: jasmine.SpyObj<ImageBuilder>;
     let expansionValidatorSpy: jasmine.SpyObj<ExpansionValidator>;
@@ -70,6 +73,7 @@ describe('DominionizerWikiBot', () => {
             'fetchAllCardSymbolPages',
             'fetchAllCardArtPages',
             'fetchRecentImageChanges',
+            'fetchSingleContentPage',
         ]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
@@ -105,6 +109,12 @@ describe('DominionizerWikiBot', () => {
 
         cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
         cardDtoBuilderSpy.build.and.returnValue(null);
+
+        splitPileDependencyBuilderSpy = jasmine.createSpyObj<SplitPileDependencyBuilder>(
+            'SplitPileDependencyBuilder',
+            ['build'],
+        );
+        splitPileDependencyBuilderSpy.build.and.returnValue([]);
 
         cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
             'CardTranslationBuilder',
@@ -175,6 +185,7 @@ describe('DominionizerWikiBot', () => {
             cardTypeTranslationBuilderSpy,
             expansionCardsMapBuilderSpy,
             cardDtoBuilderSpy,
+            splitPileDependencyBuilderSpy,
             cardTranslationBuilderSpy,
             imageBuilderSpy,
             expansionValidatorSpy,
@@ -423,9 +434,13 @@ describe('DominionizerWikiBot', () => {
                 { id: 20, name: 'Card 20', expansions: [1, 2] } as CardDto,
                 { id: 30, name: 'Card 30', expansions: [1] } as CardDto,
             ];
+            const splitPilePage: ContentPage = { pageid: 100, title: 'Split pile' } as ContentPage;
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
+            wikiClientSpy.fetchSingleContentPage
+                .withArgs('Split pile')
+                .and.resolveTo(splitPilePage);
             cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[0]);
             cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[1]);
             cardTypeBuilderSpy.build.withArgs(cardTypePages[2]).and.returnValue(cardTypes[2]);
@@ -459,6 +474,7 @@ describe('DominionizerWikiBot', () => {
             cardDtoBuilderSpy.build
                 .withArgs(cardTypePages[2], cardExpansionsMap, cardTypes)
                 .and.returnValue(null);
+            splitPileDependencyBuilderSpy.build.and.returnValue(cards);
 
             await dominionizerWikiBot.generateAll();
 
@@ -471,6 +487,11 @@ describe('DominionizerWikiBot', () => {
             expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1], cardPages[0]);
             expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[2], cardTypePages[1]);
             expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cardPages);
+            expect(splitPileDependencyBuilderSpy.build).toHaveBeenCalledWith(
+                cards,
+                cardTypes,
+                splitPilePage,
+            );
             /* eslint-enable */
         });
 
