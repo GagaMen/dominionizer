@@ -1,9 +1,10 @@
+@use '~@angular/material' as mat;
 @import './material-theme';
 @import '~material-design-icons/iconfont/material-icons.css';
 @import './material-components';
 
 ::selection {
-    background-color: mat-color($primary);
+    background-color: mat.get-color-from-palette($primary);
     color: $light-primary-text;
 }
 

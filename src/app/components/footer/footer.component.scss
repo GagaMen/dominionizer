@@ -1,7 +1,8 @@
+@use '~@angular/material' as mat;
 @import '../../../scss/material-theme';
 
 footer {
-    background: mat-color($primary, default);
+    background: mat.get-color-from-palette($primary, default);
     flex-shrink: 0;
     padding: 32px 0;
     text-align: center;

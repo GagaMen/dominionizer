@@ -1,13 +1,13 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 @import './palette';
 
-@include mat-core();
+@include mat.core();
 
-$primary: mat-palette($md-ochre);
-$accent: mat-palette($md-blue);
-$warn: mat-palette($mat-red);
+$primary: mat.define-palette($md-ochre);
+$accent: mat.define-palette($md-blue);
+$warn: mat.define-palette(mat.$red-palette);
 
-$app-theme: mat-light-theme(
+$app-theme: mat.define-light-theme(
     (
         color: (
             primary: $primary,
@@ -17,4 +17,4 @@ $app-theme: mat-light-theme(
     )
 );
 
-@include angular-material-theme($app-theme);
+@include mat.all-component-themes($app-theme);
