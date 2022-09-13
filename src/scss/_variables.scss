@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @use './palette';
 
 $primary: mat.define-palette(palette.$md-ochre);
