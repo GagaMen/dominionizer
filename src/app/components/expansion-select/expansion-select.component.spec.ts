@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpansionSelectComponent } from './expansion-select.component';
 import {
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule,
-    FormArray,
-    FormControl,
+    UntypedFormArray,
+    UntypedFormControl,
     FormControlName,
 } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
@@ -30,7 +30,7 @@ describe('ExpansionSelectComponent', () => {
         TestBed.configureTestingModule({
             imports: [ReactiveFormsModule, MatDividerModule, MatCheckboxModule],
             declarations: [ExpansionSelectComponent],
-            providers: [FormBuilder],
+            providers: [UntypedFormBuilder],
         });
 
         dataFixture = new DataFixture();
@@ -64,7 +64,7 @@ describe('ExpansionSelectComponent', () => {
 
             const actual = component.formGroup.get('all');
 
-            expect(actual).toBeInstanceOf(FormControl);
+            expect(actual).toBeInstanceOf(UntypedFormControl);
         });
 
         it('should have "expansions"-FormArray', () => {
@@ -72,16 +72,16 @@ describe('ExpansionSelectComponent', () => {
 
             const actual = component.formGroup.get('expansions');
 
-            expect(actual).toBeInstanceOf(FormArray);
+            expect(actual).toBeInstanceOf(UntypedFormArray);
         });
 
         it('should have FormControl per expansion inside the "expansions"-FormArray', () => {
             fixture.detectChanges();
             const expected = jasmine.arrayWithExactContents(
-                expansions.map(() => jasmine.any(FormControl)),
+                expansions.map(() => jasmine.any(UntypedFormControl)),
             );
 
-            const actual = (component.formGroup.get('expansions') as FormArray).controls;
+            const actual = (component.formGroup.get('expansions') as UntypedFormArray).controls;
 
             expect(actual).toEqual(expected);
         });

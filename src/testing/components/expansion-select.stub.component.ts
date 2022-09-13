@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Expansion } from 'src/app/models/expansion';
 
 @Component({
@@ -14,5 +14,5 @@ export class ExpansionSelectStubComponent {
     // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() readonly change: EventEmitter<Expansion[]> = new EventEmitter<Expansion[]>();
 
-    formGroup: FormGroup = new FormGroup({});
+    formGroup: UntypedFormGroup = new UntypedFormGroup({});
 }

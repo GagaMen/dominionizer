@@ -129,7 +129,6 @@
             }
         }
     },
-    "defaultProject": "dominionizer",
     "cli": {
         "analytics": false
     }

@@ -1,7 +1,7 @@
 import { SpecialCardsCount } from '../../models/special-cards-count';
 import { SpecialCardsAvailability } from '../../models/special-cards-availability';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-special-card-select',
@@ -22,9 +22,9 @@ export class SpecialCardSelectComponent implements OnInit {
     @Output()
     readonly change: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
 
-    formGroup: FormGroup = new FormGroup({});
+    formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: UntypedFormBuilder) {}
 
     ngOnInit(): void {
         this.formGroup = this.formBuilder.group({

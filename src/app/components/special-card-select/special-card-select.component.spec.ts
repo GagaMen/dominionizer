@@ -1,7 +1,7 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { MatSliderHarness } from '@angular/material/slider/testing';
@@ -28,7 +28,7 @@ describe('SpecialCardSelectComponent', () => {
                         'updateSpecialCardsCount',
                     ]),
                 },
-                FormBuilder,
+                UntypedFormBuilder,
             ],
         });
 

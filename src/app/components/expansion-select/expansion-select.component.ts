@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, ValidationErrors, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Expansion } from '../../models/expansion';
 
 @Component({
@@ -21,9 +21,9 @@ export class ExpansionSelectComponent implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() readonly change: EventEmitter<Expansion[]> = new EventEmitter<Expansion[]>();
 
-    formGroup: FormGroup = new FormGroup({});
+    formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: UntypedFormBuilder) {}
 
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
         const controlValues: boolean[] = Object.values(control.value);

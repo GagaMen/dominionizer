@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 
@@ -21,5 +21,5 @@ export class SpecialCardSelectStubComponent {
     @Output()
     readonly change: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
 
-    formGroup: FormGroup = new FormGroup({});
+    formGroup: UntypedFormGroup = new UntypedFormGroup({});
 }
