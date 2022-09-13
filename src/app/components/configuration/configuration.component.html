@@ -1,4 +1,4 @@
-<mat-vertical-stepper class="mat-elevation-z2">
+<mat-stepper orientation="vertical" class="mat-elevation-z2">
     <mat-step
         *ngIf="expansionSelectViewData$ | async as viewData"
         [stepControl]="expansionSelect.formGroup"
@@ -28,7 +28,7 @@
             (change)="configurationService.updateSpecialCardsCount($event)"
         ></app-special-card-select>
     </mat-step>
-</mat-vertical-stepper>
+</mat-stepper>
 
 <div class="stepper-actions">
     <div class="relative-container">
