@@ -2,7 +2,7 @@
 @use './variables';
 @use './material-theme';
 @use './material-components';
-@use '~material-design-icons/iconfont/material-icons';
+@use 'material-design-icons/iconfont/material-icons';
 
 ::selection {
     background-color: mat.get-color-from-palette(variables.$primary, 'default');
