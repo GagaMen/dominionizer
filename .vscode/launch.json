@@ -36,13 +36,6 @@
             }
         },
         {
-            "name": "app: e2e",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
-            "args": ["${workspaceFolder}/e2e/protractor.conf.js"]
-        },
-        {
             "name": "wiki-bot: start",
             "type": "node",
             "request": "launch",

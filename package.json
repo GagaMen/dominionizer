@@ -15,7 +15,6 @@
         "eslint": "eslint . --ignore-path .gitignore --ext .ts,.js,.json,.component.html",
         "stylelint": "stylelint \"**/*.scss\" --ignore-path .gitignore --cache",
         "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
-        "e2e": "ng e2e",
         "commitizen": "commitizen",
         "cm": "cz"
     },
@@ -65,7 +64,6 @@
         "@commitlint/config-conventional": "^17.1.0",
         "@types/chance": "^1.1.1",
         "@types/jasmine": "^4.3.0",
-        "@types/jasminewd2": "^2.0.8",
         "@types/node": "^16.11.58",
         "@typescript-eslint/eslint-plugin": "^5.36.2",
         "@typescript-eslint/parser": "^5.36.2",
@@ -98,7 +96,6 @@
         "lint-staged": "^13.0.3",
         "markdownlint-cli": "^0.32.2",
         "prettier": "^2.7.1",
-        "protractor": "~7.0.0",
         "stylelint": "^14.11.0",
         "stylelint-config-prettier": "^9.0.3",
         "stylelint-config-sass-guidelines": "^9.0.1",
