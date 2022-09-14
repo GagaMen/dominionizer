@@ -1,6 +1,4 @@
-import { Observable } from 'rxjs';
 import { DataFixture } from './../../testing/data-fixture';
-import { AppBarConfiguration } from './../models/app-bar-configuration';
 import { cold } from 'jasmine-marbles';
 import { TestBed } from '@angular/core/testing';
 
@@ -30,9 +28,7 @@ describe('AppBarService', () => {
     describe('updateConfiguration', () => {
         it('should update configuration', () => {
             const configuration = dataFixture.createAppBarConfiguration();
-            const expected$: Observable<AppBarConfiguration> = cold('a', {
-                a: configuration,
-            });
+            const expected$ = cold('a', { a: configuration });
 
             appBarService.updateConfiguration(configuration);
             const actual$ = appBarService.configuration$;

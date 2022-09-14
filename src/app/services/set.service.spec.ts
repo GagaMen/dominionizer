@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
-import { Observable } from 'rxjs';
 import { DataFixture } from 'src/testing/data-fixture';
 import { Card } from '../models/card';
 import { Set } from '../models/set';
@@ -40,7 +39,7 @@ describe('SetService', () => {
                     SetService.orderCards(a, b, groupingOption, sortingOption),
                 ),
             };
-            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+            const expected$ = cold('a', { a: expectedSet });
 
             const actual$ = setService.set$;
 
@@ -63,7 +62,7 @@ describe('SetService', () => {
                     SetService.orderCards(a, b, groupingOption, sortingOption),
                 ),
             };
-            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+            const expected$ = cold('a', { a: expectedSet });
 
             const actual$ = setService.set$;
 
@@ -167,7 +166,7 @@ describe('SetService', () => {
                 kingdomCards: dataFixture.createCards(1),
                 specialCards: [],
             });
-            const expected$: Observable<Set> = cold('a', { a: set });
+            const expected$ = cold('a', { a: set });
 
             setService.updateSet(set);
             const actual$ = setService.set$;
@@ -189,7 +188,7 @@ describe('SetService', () => {
                 ...initialSet,
                 kingdomCards: [newCard],
             };
-            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+            const expected$ = cold('a', { a: expectedSet });
 
             setService.updateSingleCard(oldCard, newCard);
             const actual$ = setService.set$;
@@ -209,7 +208,7 @@ describe('SetService', () => {
                 ...initialSet,
                 specialCards: [newCard],
             };
-            const expected$: Observable<Set> = cold('a', { a: expectedSet });
+            const expected$ = cold('a', { a: expectedSet });
 
             setService.updateSingleCard(oldCard, newCard);
             const actual$ = setService.set$;
@@ -221,7 +220,7 @@ describe('SetService', () => {
     describe('updateGroupingOption', () => {
         it('should update grouping option', () => {
             const groupingOption: GroupingOption = 'byExpansion';
-            const expected$: Observable<GroupingOption> = cold('a', { a: groupingOption });
+            const expected$ = cold('a', { a: groupingOption });
 
             setService.updateGroupingOption(groupingOption);
             const actual$ = setService.groupingOption$;
@@ -236,7 +235,7 @@ describe('SetService', () => {
     describe('updateSortingOption', () => {
         it('should update sorting option', () => {
             const sortingOption: SortingOption = 'byCost';
-            const expected$: Observable<SortingOption> = cold('a', { a: sortingOption });
+            const expected$ = cold('a', { a: sortingOption });
 
             setService.updateSortingOption(sortingOption);
             const actual$ = setService.sortingOption$;

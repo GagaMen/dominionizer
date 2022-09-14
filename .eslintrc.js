@@ -11,7 +11,6 @@ module.exports = {
                 'plugin:@typescript-eslint/recommended-requiring-type-checking',
                 'plugin:@angular-eslint/recommended',
                 'plugin:prettier/recommended',
-                'prettier/@typescript-eslint',
             ],
             rules: {
                 '@angular-eslint/component-selector': [

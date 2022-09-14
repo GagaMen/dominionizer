@@ -4,7 +4,6 @@ import { ConfigurationService } from './configuration.service';
 import { CardService } from './card.service';
 import { Configuration } from '../models/configuration';
 import { cold } from 'jasmine-marbles';
-import { Observable } from 'rxjs';
 import { SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 
@@ -42,7 +41,7 @@ describe('ConfigurationService', () => {
     describe('updateExpansions', () => {
         it('should update configuration.expansions', () => {
             const expansions = dataFixture.createExpansions();
-            const expected$: Observable<Configuration> = cold('a', {
+            const expected$ = cold('a', {
                 a: { ...ConfigurationService.defaultConfiguration, expansions: expansions },
             });
 
@@ -60,7 +59,7 @@ describe('ConfigurationService', () => {
                 ...ConfigurationService.defaultConfiguration,
                 specialCardsCount: count,
             };
-            const expected$: Observable<Configuration> = cold('a', { a: expected });
+            const expected$ = cold('a', { a: expected });
 
             configurationService.updateSpecialCardsCount(count);
             const actual$ = configurationService.configuration$;
