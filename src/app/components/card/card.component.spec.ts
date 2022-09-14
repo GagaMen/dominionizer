@@ -18,7 +18,7 @@ describe('CardComponent', () => {
     let component: CardComponent;
     let fixture: ComponentFixture<CardComponent>;
     let dataFixture: DataFixture;
-    const expansionIconUrl = '/assets/icons/expansion_dominion.png';
+    const expansionIconUrl = '/assets/card_symbols/Dominion_icon.png';
 
     beforeEach(() => {
         TestBed.configureTestingModule({

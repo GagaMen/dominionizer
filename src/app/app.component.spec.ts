@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterOutletStub } from 'src/testing/angular/router-outlet.stub';
 import { AppBarStubComponent } from 'src/testing/components/app-bar.stub.component';
+import { FooterStubComponent } from 'src/testing/components/footer.stub.component';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -9,7 +10,12 @@ describe('AppComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [AppComponent, AppBarStubComponent, RouterOutletStub],
+            declarations: [
+                AppComponent,
+                AppBarStubComponent,
+                RouterOutletStub,
+                FooterStubComponent,
+            ],
         });
 
         fixture = TestBed.createComponent(AppComponent);
