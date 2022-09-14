@@ -153,7 +153,7 @@ describe('SpecialCardSelectComponent', () => {
 
                 const actual = Number.parseInt(
                     fixture.debugElement.query(By.css('.special-cards-label span')).properties
-                        .innerText,
+                        .innerText as string,
                 );
 
                 expect(actual).toBe(expected);

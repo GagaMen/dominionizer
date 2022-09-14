@@ -65,7 +65,8 @@ export class CardDtoBuilder {
             return `${cardName.replace(/\s/g, '_')}Art.jpg`;
         }
 
-        const cardArtRegExp = /\[\[\s*Image:(.*?\.jpg)\s*\|.*?\|\s*Official (randomizer\s)?card art.*\]\]/;
+        const cardArtRegExp =
+            /\[\[\s*Image:(.*?\.jpg)\s*\|.*?\|\s*Official (randomizer\s)?card art.*\]\]/;
         return normalize(cardArtRegExp.exec(trivia)?.[1])
             .replace('{{PAGENAME}}', cardName)
             .replace(/\s/g, '_');

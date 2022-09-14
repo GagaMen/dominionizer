@@ -62,7 +62,8 @@ export class SplitPileDependencyBuilder {
         const wikiText: WikiText = splitPilePage.revisions[0]['*'] ?? '';
         const cardList: WikiText = extractSection(wikiText, 'List of split pile cards', 2);
 
-        const splitPilePairRegex = /{{\s*Card\s*\|([^|}]*)[^}]*?}}\s*\/\s*{{\s*Card\s*\|([^|}]*)[^}]*?}}/gi;
+        const splitPilePairRegex =
+            /{{\s*Card\s*\|([^|}]*)[^}]*?}}\s*\/\s*{{\s*Card\s*\|([^|}]*)[^}]*?}}/gi;
         let match: RegExpExecArray | null;
         while ((match = splitPilePairRegex.exec(cardList))) {
             const topCardName = normalize(match?.[1]);

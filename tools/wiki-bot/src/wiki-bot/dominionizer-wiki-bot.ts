@@ -59,7 +59,7 @@ export class DominionizerWikiBot {
         private imagesValidator: ImagesValidator,
     ) {}
 
-    async generateAll(skipImages: boolean = false): Promise<boolean> {
+    async generateAll(skipImages = false): Promise<boolean> {
         await this.writeCurrentGenerationTime();
 
         const expansionPages = await this.wikiClient.fetchAllExpansionPages();
@@ -99,7 +99,7 @@ export class DominionizerWikiBot {
         return this.successful;
     }
 
-    async generateUpdate(skipImages: boolean = false): Promise<boolean> {
+    async generateUpdate(skipImages = false): Promise<boolean> {
         const lastGenerationTime = await this.readLastGenerationTime();
         await this.writeCurrentGenerationTime();
 
@@ -123,7 +123,7 @@ export class DominionizerWikiBot {
     private async readLastGenerationTime(): Promise<Date> {
         const lastGenerationTimeJsonString = await readFile('./last-generation.json', 'utf8');
 
-        return new Date(JSON.parse(lastGenerationTimeJsonString));
+        return new Date(JSON.parse(lastGenerationTimeJsonString) as string);
     }
 
     private async writeCurrentGenerationTime(): Promise<void> {

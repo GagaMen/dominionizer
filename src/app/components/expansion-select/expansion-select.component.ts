@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, ValidationErrors, AbstractControl } from '@angular/forms';
+import {
+    UntypedFormGroup,
+    UntypedFormBuilder,
+    ValidationErrors,
+    AbstractControl,
+} from '@angular/forms';
 import { Expansion } from '../../models/expansion';
 
 @Component({
@@ -26,7 +31,7 @@ export class ExpansionSelectComponent implements OnInit {
     constructor(private formBuilder: UntypedFormBuilder) {}
 
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
-        const controlValues: boolean[] = Object.values(control.value);
+        const controlValues: boolean[] = Object.values(control.value as { [s: string]: boolean });
         const result = controlValues.reduce(
             (previousValue: boolean, currentValue: boolean) => previousValue || currentValue,
         );
@@ -55,8 +60,9 @@ export class ExpansionSelectComponent implements OnInit {
     }
 
     areSomeButNotAllSelected(): boolean {
-        const selectedExpansionCount: number = (this.formGroup.value
-            .expansions as boolean[]).filter((expansionSelected) => expansionSelected).length;
+        const selectedExpansionCount: number = (
+            this.formGroup.value.expansions as boolean[]
+        ).filter((expansionSelected) => expansionSelected).length;
 
         return selectedExpansionCount > 0 && selectedExpansionCount < this.expansions.length;
     }

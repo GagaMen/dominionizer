@@ -15,27 +15,25 @@ describe('AppBarComponent', () => {
     let appBarServiceSpy: SpyObj<AppBarService>;
     let dataFixture: DataFixture;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [MatToolbarModule, MatButtonModule, MatIconModule],
-                declarations: [AppBarComponent],
-                providers: [
-                    {
-                        provide: AppBarService,
-                        useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
-                            'configuration$',
-                        ]),
-                    },
-                ],
-            });
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [MatToolbarModule, MatButtonModule, MatIconModule],
+            declarations: [AppBarComponent],
+            providers: [
+                {
+                    provide: AppBarService,
+                    useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
+                        'configuration$',
+                    ]),
+                },
+            ],
+        });
 
-            dataFixture = new DataFixture();
-            appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
+        dataFixture = new DataFixture();
+        appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
-            fixture = TestBed.createComponent(AppBarComponent);
-        }),
-    );
+        fixture = TestBed.createComponent(AppBarComponent);
+    }));
 
     describe('template', () => {
         it('with no configuration should not display MatToolbar', () => {

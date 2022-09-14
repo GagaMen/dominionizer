@@ -34,8 +34,7 @@ describe('ImageBuilder', () => {
                 title: 'File:Menagerie (expansion) icon.png',
                 imageinfo: [
                     {
-                        url:
-                            'http://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
+                        url: 'http://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
                         mime: 'image/png',
                     },
                 ],
@@ -70,8 +69,7 @@ describe('ImageBuilder', () => {
                 title: 'File:Menagerie (expansion) icon.png',
                 imageinfo: [
                     {
-                        url:
-                            'http://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
+                        url: 'http://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
                         mime: 'image/png',
                     },
                 ],

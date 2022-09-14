@@ -38,11 +38,11 @@ describe('card translation validators', () => {
             });
 
             it('with invalid card translation should return Failure', () => {
-                const cardTranslation: CardTranslation = ({
+                const cardTranslation: CardTranslation = {
                     id: 1,
                     name: undefined,
                     description: undefined,
-                } as unknown) as CardTranslation;
+                } as unknown as CardTranslation;
                 const expected = ValidationResult.Failure(
                     'Card translation (Name: "Cellar", Language: "German"):\n' +
                         '"name" is required\n' +
