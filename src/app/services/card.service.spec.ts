@@ -134,6 +134,44 @@ describe('CardService', () => {
 
             expect(actual$).toBeObservable(expected$);
         });
+
+        it('should not contain special cards', () => {
+            const event = dataFixture.createCard({
+                id: 1,
+                isKingdomCard: true,
+                types: [dataFixture.createCardType({ id: CardTypeId.Event })],
+            });
+            const landmark = dataFixture.createCard({
+                id: 2,
+                isKingdomCard: true,
+                types: [dataFixture.createCardType({ id: CardTypeId.Landmark })],
+            });
+            const project = dataFixture.createCard({
+                id: 3,
+                isKingdomCard: true,
+                types: [dataFixture.createCardType({ id: CardTypeId.Project })],
+            });
+            const way = dataFixture.createCard({
+                id: 4,
+                isKingdomCard: true,
+                types: [dataFixture.createCardType({ id: CardTypeId.Way })],
+            });
+            const cards$ = cold('   (a|)', {
+                a: new Map([
+                    [1, event],
+                    [2, landmark],
+                    [3, project],
+                    [4, way],
+                ]),
+            });
+            const expected$ = cold('(a|)', { a: [] });
+            cardService = TestBed.inject(CardService);
+            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
+
+            const actual$ = cardService.findRandomizableKingdomCards();
+
+            expect(actual$).toBeObservable(expected$);
+        });
     });
 
     describe('findByCardType', () => {

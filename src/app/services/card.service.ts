@@ -23,6 +23,18 @@ export class CardService {
         return this.cardsSubject.pipe(first((cards: Map<number, Card>) => cards.size !== 0));
     }
 
+    private specialCardTypeIds: CardTypeId[] = [
+        CardTypeId.Event,
+        CardTypeId.Landmark,
+        CardTypeId.Project,
+        CardTypeId.Way,
+        CardTypeId.Artifact,
+        CardTypeId.Hex,
+        CardTypeId.Boon,
+        CardTypeId.State,
+        CardTypeId.Ally,
+    ];
+
     constructor(
         private dataService: DataService,
         private expansionService: ExpansionService,
@@ -92,6 +104,14 @@ export class CardService {
             map((cards: Map<number, Card>) =>
                 Array.from(cards.values()).filter((card: Card) => {
                     if (!card.isKingdomCard) {
+                        return false;
+                    }
+
+                    if (
+                        card.types.some((cardType: CardType) =>
+                            this.specialCardTypeIds.includes(cardType.id),
+                        )
+                    ) {
                         return false;
                     }
 
