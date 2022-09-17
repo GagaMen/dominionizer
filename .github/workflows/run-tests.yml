@@ -33,7 +33,7 @@ jobs:
               run: npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
 
             - name: Publish code coverage to code climate
-              uses: paambaati/codeclimate-action@v3
+              uses: paambaati/codeclimate-action@v3.0.0
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
