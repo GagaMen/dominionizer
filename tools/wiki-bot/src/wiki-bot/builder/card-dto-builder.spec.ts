@@ -182,17 +182,16 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*': '{{Infobox Event\n |kingdom = No\n}}',
+                        '*': '{{Infobox Card\n |kingdom = No\n}}',
                     },
                 ],
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                types: [1584],
                 isKingdomCard: false,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
 
             expect(actual).toEqual(expected);
         });
@@ -232,6 +231,186 @@ describe('CardDtoBuilder', () => {
             };
 
             const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains event infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Event\n |name=Save\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Save',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains landmark infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Landmark\n |name=Arena\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Arena',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains project infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Project\n |name=Canal\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Canal',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains way infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Way\n |name=Way of the Butterfly\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Way of the Butterfly',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains artifact infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Artifact\n |name=Flag\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Flag',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains hex infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Hex\n |name=Envy\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Envy',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains boon infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': "{{Infobox Boon\n |name=The Earth's Gift\n}}",
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: "The Earth's Gift",
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains state infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox State\n |name=Deluded\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Deluded',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with cardPage contains ally infobox should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Ally\n |name=Band of Nomads\n}}',
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Band of Nomads',
+                isKingdomCard: false,
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
 
             expect(actual).toEqual(expected);
         });

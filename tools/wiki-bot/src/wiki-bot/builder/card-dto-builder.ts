@@ -10,6 +10,18 @@ import {
 } from './helper-functions';
 
 export class CardDtoBuilder {
+    private specialInfoBoxTypes: string[] = [
+        'Event',
+        'Landmark',
+        'Project',
+        'Way',
+        'Artifact',
+        'Hex',
+        'Boon',
+        'State',
+        'Ally',
+    ];
+
     build(
         page: CardPage | CardTypePage,
         cardExpansionsMap: Map<string, number[]>,
@@ -105,6 +117,12 @@ export class CardDtoBuilder {
     }
 
     private extractIsKingdomCard(infoBox: WikiText): boolean {
+        const infoBoxType = normalize(/Infobox\s([^|]*)/.exec(infoBox)?.[1] ?? '');
+
+        if (this.specialInfoBoxTypes.includes(infoBoxType)) {
+            return false;
+        }
+
         const isKingdomCard: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'kingdom'));
 
         return isKingdomCard !== 'No';
