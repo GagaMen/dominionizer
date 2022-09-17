@@ -3,35 +3,37 @@ name: Run linters
 on:
     push:
         branches-ignore:
-            - release
+            - gh-pages
 
 jobs:
     setup-linters:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
                   path: workspace
 
-            - name: Use Node.js 14
-              uses: actions/setup-node@v2
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
               with:
-                  node-version: '14'
+                  node-version: 16
 
             - name: Cache Node.js modules
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
+                  # npm cache files are stored in `~/.npm` on Linux/macOS
                   path: ~/.npm
                   key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.OS }}-node-
 
             - name: Install dependencies
-              run: |
-                  cd workspace
-                  npm ci
+              working-directory: workspace
+              run: npm ci
 
             - name: Cache workspace
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
@@ -41,57 +43,53 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run commitlint
-              run: |
-                  cd workspace
-                  npx --no-install commitlint --verbose --from ${{ github.event.push.before }} --to HEAD
+              working-directory: workspace
+              run: npx --no commitlint --verbose --from ${{ github.event.push.before }} --to HEAD
 
     eslint:
         needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run eslint
-              run: |
-                  cd workspace
-                  npm run eslint
+              working-directory: workspace
+              run: npm run eslint
 
     stylelint:
         needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run stylelint
-              run: |
-                  cd workspace
-                  npm run stylelint
+              working-directory: workspace
+              run: npm run stylelint
 
     markdownlint:
         needs: setup-linters
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
 
             - name: Run markdownlint
-              run: |
-                  cd workspace
-                  npm run markdownlint
+              working-directory: workspace
+              run: npm run markdownlint
