@@ -50,7 +50,7 @@ jobs:
 
             - name: Run commitlint
               working-directory: workspace
-              run: npx --no commitlint --verbose --from ${{ github.event.push.before }} --to HEAD
+              run: npx --no -- commitlint --from ${{ github.event.before }} --to HEAD --verbose
 
     eslint:
         needs: setup-linters

@@ -133,7 +133,7 @@ export class WikiClient {
                 continue;
             }
 
-            pages = pages.concat(Object.values(queryResult.query.pages));
+            pages = pages.concat(Object.values<TPage>(queryResult.query.pages));
 
             if (queryResult['query-continue'] === undefined) {
                 continueQuerying = false;
@@ -141,8 +141,8 @@ export class WikiClient {
             }
 
             const continueParam = queryResult['query-continue'][params.generator];
-            const continueParamKey = Object.keys(continueParam)[0];
-            const continueParamValue = Object.values(continueParam)[0];
+            const continueParamKey: string = Object.keys(continueParam)[0];
+            const continueParamValue: string = Object.values(continueParam)[0];
 
             params[continueParamKey] = continueParamValue;
         }
@@ -166,10 +166,11 @@ export class WikiClient {
             return undefined;
         }
 
-        return Object.values(response.data.query.pages)[0];
+        return Object.values<ContentPage>(response.data.query.pages)[0];
     }
 
     async fetchImage(url: string): Promise<Buffer> {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return (await this.axios.get<Buffer>(url, { responseType: 'arraybuffer' })).data;
     }
 }
