@@ -12,6 +12,8 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
               with:
+                  # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
+                  fetch-depth: 0
                   path: workspace
 
             - name: Setup Node.js
