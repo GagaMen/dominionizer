@@ -175,48 +175,6 @@ describe('SetService', () => {
         });
     });
 
-    describe('updateSingleCard', () => {
-        it('with card is kingdom card should update set correctly', () => {
-            const initialSet = dataFixture.createSet({
-                kingdomCards: dataFixture.createCards(1, { isKingdomCard: true }),
-                specialCards: [],
-            });
-            setService.updateSet(initialSet);
-            const oldCard = initialSet.kingdomCards[0];
-            const newCard = dataFixture.createCard();
-            const expectedSet: Set = {
-                ...initialSet,
-                kingdomCards: [newCard],
-            };
-            const expected$ = cold('a', { a: expectedSet });
-
-            setService.updateSingleCard(oldCard, newCard);
-            const actual$ = setService.set$;
-
-            expect(actual$).toBeObservable(expected$);
-        });
-
-        it('with card is special card should update set correctly', () => {
-            const initialSet = dataFixture.createSet({
-                kingdomCards: [],
-                specialCards: dataFixture.createCards(1, { isKingdomCard: false }),
-            });
-            setService.updateSet(initialSet);
-            const oldCard = initialSet.specialCards[0];
-            const newCard = dataFixture.createCard();
-            const expectedSet: Set = {
-                ...initialSet,
-                specialCards: [newCard],
-            };
-            const expected$ = cold('a', { a: expectedSet });
-
-            setService.updateSingleCard(oldCard, newCard);
-            const actual$ = setService.set$;
-
-            expect(actual$).toBeObservable(expected$);
-        });
-    });
-
     describe('updateGroupingOption', () => {
         it('should update grouping option', () => {
             const groupingOption: GroupingOption = 'byExpansion';

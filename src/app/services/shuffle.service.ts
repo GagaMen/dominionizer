@@ -17,6 +17,7 @@ interface RandomizableCards {
     landmarks: Card[];
     projects: Card[];
     ways: Card[];
+    allies: Card[];
 }
 
 @Injectable({
@@ -32,6 +33,7 @@ export class ShuffleService {
         landmarks: this.cardService.findByCardType(CardTypeId.Landmark),
         projects: this.cardService.findByCardType(CardTypeId.Project),
         ways: this.cardService.findByCardType(CardTypeId.Way),
+        allies: this.cardService.findByCardType(CardTypeId.Ally),
     });
 
     constructor(
@@ -57,12 +59,18 @@ export class ShuffleService {
     }
 
     private pickRandomSet(randomizableCards: RandomizableCards, configuration: Configuration): Set {
+        const kingdomCards = this.pickRandomCards(
+            randomizableCards.kingdomCards,
+            configuration.expansions,
+            10,
+        );
+        const containsCardOfTypeLiaison = this.containsCardOfType(kingdomCards, CardTypeId.Liaison);
+        const allies: Card[] = containsCardOfTypeLiaison
+            ? this.pickRandomCards(randomizableCards.allies, configuration.expansions, 1, [])
+            : [];
+
         return {
-            kingdomCards: this.pickRandomCards(
-                randomizableCards.kingdomCards,
-                configuration.expansions,
-                10,
-            ),
+            kingdomCards,
             specialCards: [
                 ...this.pickRandomCards(
                     randomizableCards.events,
@@ -84,6 +92,7 @@ export class ShuffleService {
                     configuration.expansions,
                     configuration.specialCardsCount.ways,
                 ),
+                ...allies,
             ],
         };
     }
@@ -99,9 +108,20 @@ export class ShuffleService {
                     randomizableCards: RandomizableCards,
                     configuration: Configuration,
                     currentSet: Set,
-                ) => this.pickRandomCard(oldCard, randomizableCards, configuration, currentSet),
+                ) => {
+                    const newCard = this.pickRandomCard(
+                        oldCard,
+                        randomizableCards,
+                        configuration,
+                        currentSet,
+                    );
+                    this.updateSingleCard(currentSet, oldCard, newCard);
+                    this.updateAllyCard(currentSet, randomizableCards, configuration);
+
+                    return currentSet;
+                },
             ),
-            map(([oldCard, newCard]) => this.setService.updateSingleCard(oldCard, newCard)),
+            map((set: Set) => this.setService.updateSet(set)),
         );
     }
 
@@ -110,20 +130,13 @@ export class ShuffleService {
         randomizableCards: RandomizableCards,
         configuration: Configuration,
         currentSet: Set,
-    ): [Card, Card] {
+    ): Card {
         const candidates = this.determineCandidatesFromOldCard(oldCard, randomizableCards);
         const cardsToIgnore = oldCard.isKingdomCard
             ? currentSet.kingdomCards
             : currentSet.specialCards;
 
-        const newCard = this.pickRandomCards(
-            candidates,
-            configuration.expansions,
-            1,
-            cardsToIgnore,
-        )[0];
-
-        return [oldCard, newCard];
+        return this.pickRandomCards(candidates, configuration.expansions, 1, cardsToIgnore)[0];
     }
 
     private determineCandidatesFromOldCard(
@@ -135,6 +148,7 @@ export class ShuffleService {
             [CardTypeId.Landmark, randomizableCards.landmarks],
             [CardTypeId.Project, randomizableCards.projects],
             [CardTypeId.Way, randomizableCards.ways],
+            [CardTypeId.Ally, randomizableCards.allies],
         ]);
 
         for (const [typeId, candidates] of candidatesPerCardType) {
@@ -144,6 +158,53 @@ export class ShuffleService {
         }
 
         return randomizableCards.kingdomCards;
+    }
+
+    private updateSingleCard(set: Set, oldCard: Card, newCard: Card | undefined): void {
+        const setPart: Card[] = oldCard.isKingdomCard ? set.kingdomCards : set.specialCards;
+        const cardIndex = setPart.indexOf(oldCard);
+
+        if (newCard === undefined) {
+            setPart.splice(cardIndex, 1);
+            return;
+        }
+
+        setPart[cardIndex] = newCard;
+    }
+
+    private updateAllyCard(
+        currentSet: Set,
+        randomizableCards: RandomizableCards,
+        configuration: Configuration,
+    ): void {
+        const allyCard = currentSet.specialCards.find((card) =>
+            card.types.some((type) => type.id === CardTypeId.Ally),
+        );
+        const containsCardOfTypeLiaison = this.containsCardOfType(
+            currentSet.kingdomCards,
+            CardTypeId.Liaison,
+        );
+
+        if (containsCardOfTypeLiaison && allyCard === undefined) {
+            const allyCard = this.pickRandomCards(
+                randomizableCards.allies,
+                configuration.expansions,
+                1,
+                [],
+            )[0];
+
+            currentSet.specialCards.push(allyCard);
+        }
+
+        if (!containsCardOfTypeLiaison && allyCard !== undefined) {
+            this.updateSingleCard(currentSet, allyCard, undefined);
+        }
+    }
+
+    private containsCardOfType(cards: Card[], cardTypeId: CardTypeId) {
+        return cards.some((card: Card) =>
+            card.types.some((cardType: CardType) => cardType.id === cardTypeId),
+        );
     }
 
     private pickRandomCards(

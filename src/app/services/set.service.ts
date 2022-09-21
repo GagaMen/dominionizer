@@ -74,15 +74,6 @@ export class SetService {
         this.setSubject.next(set);
     }
 
-    updateSingleCard(oldCard: Card, newCard: Card): void {
-        const set = this.setSubject.value;
-        const setPart: Card[] = oldCard.isKingdomCard ? set.kingdomCards : set.specialCards;
-        const cardIndex = setPart.indexOf(oldCard);
-        setPart[cardIndex] = newCard;
-
-        this.setSubject.next(set);
-    }
-
     updateGroupingOption(groupingOption: GroupingOption): void {
         this.groupingOptionSubject.next(groupingOption);
     }
