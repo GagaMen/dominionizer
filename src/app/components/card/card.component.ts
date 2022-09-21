@@ -23,6 +23,7 @@ export class CardComponent {
         [CardTypeId.Treasure, '#fff095'],
         [CardTypeId.Victory, '#adcd2a'],
         [CardTypeId.Way, '#d3eef9'],
+        [CardTypeId.Ally, '#ddc6a7'],
     ]);
 
     @Input() card: Card = NullCard;
@@ -51,6 +52,7 @@ export class CardComponent {
             CardTypeId.Landmark,
             CardTypeId.Project,
             CardTypeId.Way,
+            CardTypeId.Ally,
         ];
         const orderedSecondaryCardTypes = [CardTypeId.Action, CardTypeId.Night];
 
