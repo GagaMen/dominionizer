@@ -14,14 +14,13 @@ mat-stepper {
 
 .mdc-fab--extended {
     bottom: 16px;
-    left: 0;
+    left: 16px;
     margin: 0 auto;
     position: absolute;
-    right: 0;
+    right: 16px;
 
     @media (min-width: 576px) {
         left: unset;
         margin: 0;
-        right: 16px;
     }
 }
