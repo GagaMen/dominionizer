@@ -1,6 +1,8 @@
 {
     "name": "Dominionizer",
     "short_name": "Dominionizer",
+    "description": "Generate your next Dominion set - random, customized and offline.",
+    "categories": ["games", "utilities"],
     "theme_color": "#dad9bd",
     "background_color": "#dad9bd",
     "display": "standalone",
@@ -8,14 +10,14 @@
     "start_url": "./",
     "icons": [
         {
-            "src": "assets/logo/favicon-192x192.png",
-            "sizes": "192x192",
+            "src": "assets/logo/logo-1024x1024.png",
+            "sizes": "1024x1024",
             "type": "image/png",
-            "purpose": "maskable"
+            "purpose": "any"
         },
         {
-            "src": "assets/logo/favicon-512x512.png",
-            "sizes": "512x512",
+            "src": "assets/logo/logo-maskable-1024x1024.png",
+            "sizes": "1024x1024",
             "type": "image/png",
             "purpose": "maskable"
         }
