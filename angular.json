@@ -23,7 +23,8 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
-                            "src/assets",
+                            "src/assets/card_art",
+                            "src/assets/card_symbols",
                             "src/favicon.ico",
                             "src/manifest.webmanifest",
                             "src/CNAME"
@@ -65,18 +66,20 @@
                             "sourceMap": true,
                             "namedChunks": true
                         }
-                    }
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-builders/custom-webpack:dev-server",
-                    "options": {
-                        "browserTarget": "dominionizer:build"
-                    },
                     "configurations": {
                         "production": {
                             "browserTarget": "dominionizer:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "dominionizer:build:development"
                         }
-                    }
+                    },
+                    "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
