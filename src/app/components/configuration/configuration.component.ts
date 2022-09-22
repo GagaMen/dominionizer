@@ -1,3 +1,4 @@
+import { CardService } from './../../services/card.service';
 import { AppBarService } from './../../services/app-bar.service';
 import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -9,6 +10,7 @@ import { CardTypeId } from 'src/app/models/card-type';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { Expansion } from 'src/app/models/expansion';
+import { Card } from 'src/app/models/card';
 
 export interface ExpansionSelectViewData {
     expansions: Expansion[];
@@ -34,6 +36,7 @@ export class ConfigurationComponent implements OnInit {
         private appBarService: AppBarService,
         public expansionService: ExpansionService,
         public configurationService: ConfigurationService,
+        public cardService: CardService,
     ) {}
 
     ngOnInit(): void {
@@ -46,28 +49,39 @@ export class ConfigurationComponent implements OnInit {
     }
 
     private initExpansionSelectViewData(): void {
-        this.expansionSelectViewData$ = combineLatest(
+        this.expansionSelectViewData$ = combineLatest([
             this.expansionService.expansions$,
             this.configurationService.configuration$,
-        ).pipe(
-            map(([expansions, configuration]) => {
+            this.cardService.cards$,
+        ]).pipe(
+            map(([expansions, configuration, cards]) => {
+                // remove expansions which do not have cards yet
+                const expansionsWithCards = expansions.filter((expansion: Expansion) =>
+                    Array.from(cards.values()).some((card: Card) =>
+                        card.expansions.some(
+                            (cardExpansion: Expansion) => cardExpansion.id === expansion.id,
+                        ),
+                    ),
+                );
+
                 const viewData: ExpansionSelectViewData = {
-                    expansions: expansions,
+                    expansions: expansionsWithCards,
                     initialValue: configuration.expansions,
                 };
+
                 return viewData;
             }),
         );
     }
 
     private initSpecialCardSelectViewData(): void {
-        this.specialCardSelectViewData$ = combineLatest(
+        this.specialCardSelectViewData$ = combineLatest([
             this.configurationService.configuration$,
             this.configurationService.isCardTypeAvailable(CardTypeId.Event),
             this.configurationService.isCardTypeAvailable(CardTypeId.Landmark),
             this.configurationService.isCardTypeAvailable(CardTypeId.Project),
             this.configurationService.isCardTypeAvailable(CardTypeId.Way),
-        ).pipe(
+        ]).pipe(
             map(
                 ([
                     configuration,

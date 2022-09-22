@@ -1,3 +1,4 @@
+import { CardService } from './../../services/card.service';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarConfiguration } from './../../models/app-bar-configuration';
 import { AppBarService } from './../../services/app-bar.service';
@@ -29,6 +30,7 @@ import {
 } from '@angular/material/stepper/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Card } from 'src/app/models/card';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -37,6 +39,7 @@ describe('ConfigurationComponent', () => {
     let appBarServiceSpy: SpyObj<AppBarService>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
+    let cardServiceSpy: SpyObj<CardService>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -70,6 +73,10 @@ describe('ConfigurationComponent', () => {
                         'updateSpecialCardsCount',
                     ]),
                 },
+                {
+                    provide: CardService,
+                    useValue: {},
+                },
             ],
         });
 
@@ -86,6 +93,11 @@ describe('ConfigurationComponent', () => {
         configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
         configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(true));
 
+        cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
+        cardServiceSpy.cards$ = of(
+            new Map<number, Card>(dataFixture.createCards().map((card: Card) => [card.id, card])),
+        );
+
         fixture = TestBed.createComponent(ConfigurationComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
@@ -95,15 +107,49 @@ describe('ConfigurationComponent', () => {
         it('should emit correct ExpansionSelectViewData', () => {
             const expansions = dataFixture.createExpansions();
             const configuration = dataFixture.createConfiguration();
+            const cards = new Map<number, Card>(
+                dataFixture
+                    .createCards(10, { expansions: expansions })
+                    .map((card: Card) => [card.id, card]),
+            );
             const expected: ExpansionSelectViewData = {
                 expansions: expansions,
                 initialValue: configuration.expansions,
             };
             const expansions$ = cold('   --a', { a: expansions });
             const configuration$ = cold('--b', { b: configuration });
-            const expected$ = cold('     --c', { c: expected });
+            const cards$ = cold('--c', { c: cards });
+            const expected$ = cold('     --d', { d: expected });
             expansionServiceSpy.expansions$ = expansions$;
             configurationServiceSpy.configuration$ = configuration$;
+            cardServiceSpy.cards$ = cards$;
+            fixture.detectChanges();
+
+            const actual$ = component.expansionSelectViewData$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with expansions has no cards should emit correct ExpansionSelectViewData', () => {
+            const expansionWithCards = dataFixture.createExpansion({ id: 1 });
+            const expansionWithoutCards = dataFixture.createExpansion({ id: 2 });
+            const configuration = dataFixture.createConfiguration();
+            const cards = new Map<number, Card>(
+                dataFixture
+                    .createCards(10, { expansions: [expansionWithCards] })
+                    .map((card: Card) => [card.id, card]),
+            );
+            const expected: ExpansionSelectViewData = {
+                expansions: [expansionWithCards],
+                initialValue: configuration.expansions,
+            };
+            const expansions$ = cold('   --a', { a: [expansionWithCards, expansionWithoutCards] });
+            const configuration$ = cold('--b', { b: configuration });
+            const cards$ = cold('--c', { c: cards });
+            const expected$ = cold('     --d', { d: expected });
+            expansionServiceSpy.expansions$ = expansions$;
+            configurationServiceSpy.configuration$ = configuration$;
+            cardServiceSpy.cards$ = cards$;
             fixture.detectChanges();
 
             const actual$ = component.expansionSelectViewData$;
