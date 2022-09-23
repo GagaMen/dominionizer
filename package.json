@@ -6,6 +6,7 @@
         "npm": "^8"
     },
     "scripts": {
+        "prepare": "husky install",
         "start": "ng serve",
         "start:prod": "npm run build && http-server -p 8080 -o -c-1 ./dist",
         "build": "ng build",
@@ -22,12 +23,6 @@
         "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
         "*.scss": "stylelint --ignore-path .gitignore --cache",
         "*.md": "markdownlint --ignore-path .gitignore"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
     },
     "private": true,
     "dependencies": {
