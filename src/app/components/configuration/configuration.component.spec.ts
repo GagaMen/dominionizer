@@ -118,7 +118,7 @@ describe('ConfigurationComponent', () => {
             };
             const expansions$ = cold('   --a', { a: expansions });
             const configuration$ = cold('--b', { b: configuration });
-            const cards$ = cold('--c', { c: cards });
+            const cards$ = cold('        --c', { c: cards });
             const expected$ = cold('     --d', { d: expected });
             expansionServiceSpy.expansions$ = expansions$;
             configurationServiceSpy.configuration$ = configuration$;
@@ -145,7 +145,7 @@ describe('ConfigurationComponent', () => {
             };
             const expansions$ = cold('   --a', { a: [expansionWithCards, expansionWithoutCards] });
             const configuration$ = cold('--b', { b: configuration });
-            const cards$ = cold('--c', { c: cards });
+            const cards$ = cold('        --c', { c: cards });
             const expected$ = cold('     --d', { d: expected });
             expansionServiceSpy.expansions$ = expansions$;
             configurationServiceSpy.configuration$ = configuration$;
@@ -161,7 +161,9 @@ describe('ConfigurationComponent', () => {
     describe('specialCardSelectViewData$', () => {
         it('with special cards are available should emit correct SpecialCardSelectViewData', () => {
             const configuration = dataFixture.createConfiguration();
-            const availability = dataFixture.createSpecialCardsAvailability();
+            const availability = dataFixture.createSpecialCardsAvailability({
+                events: true,
+            });
             const expected: SpecialCardSelectViewData = {
                 initialValue: configuration.specialCardsCount,
                 availability: availability,
