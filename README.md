@@ -1,6 +1,7 @@
 # ![Dominionizer](/src/assets/logo/logo.svg)
 
-[![Build Status](https://travis-ci.com/GagaMen/dominionizer.svg?branch=master)](https://travis-ci.com/GagaMen/dominionizer)
+![Lint workflow](https://github.com/GagaMen/dominionizer/actions/workflows/run-linters.yml/badge.svg)
+![Test workflow](https://github.com/GagaMen/dominionizer/actions/workflows/run-tests.yml/badge.svg)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/test_coverage)](https://codeclimate.com/github/GagaMen/dominionizer/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/maintainability)](https://codeclimate.com/github/GagaMen/dominionizer/maintainability)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
@@ -24,11 +25,13 @@ The easiest way to contribute is telling your friends about this app. If you wan
 
 Firstly, we want to thank Donald X. Vaccarino, the father of Dominion, and [Rio Grande Games](https://www.riograndegames.com/) for creating and publishing this game we love to play ourselves.
 
-We also want to thank [@sumpfork](https://github.com/sumpfork) and all the contributors of [dominiontabs](https://github.com/sumpfork/dominiontabs), which is a divider generator you can use to build your custom Dominion box. They maintain an exhaustive dataset about all dominion cards, that we use as data source for Dominionizer.
+We also want to thank [@sumpfork](https://github.com/sumpfork) and all the contributors of [dominiontabs](https://github.com/sumpfork/dominiontabs), which is a divider generator you can use to build your custom Dominion box. They maintain an exhaustive dataset about all dominion cards, that we use in the past as data source for Dominionizer.
+
+Lastly, we would like to thank the community, who are responsible for maintaining the [wiki](http://wiki.dominionstrategy.com/) we currently use as a data source for Dominionizer.
 
 ## License
 
-Copyright (C) 2020 Felix Dimmel, Tobias Dimmel and contributors
+Copyright (C) 2022 Felix Dimmel, Tobias Dimmel and contributors
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GNU Affero General Public License](/LICENSE) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
