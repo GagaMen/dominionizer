@@ -19,11 +19,6 @@
         "commitizen": "commitizen",
         "cm": "cz"
     },
-    "lint-staged": {
-        "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
-        "*.scss": "stylelint --ignore-path .gitignore --cache",
-        "*.md": "markdownlint --ignore-path .gitignore"
-    },
     "private": true,
     "dependencies": {
         "@angular/animations": "^14.2.1",
