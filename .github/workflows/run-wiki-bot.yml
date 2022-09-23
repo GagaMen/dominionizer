@@ -44,6 +44,7 @@ jobs:
                   title: Wiki bot update
                   add-paths: |
                       src/assets/**/*
+                      tools/wiki-bot/last-generation.json
                   commit-message: 'chore(assets): update assets build with WikiBot'
                   branch: wiki-bot-update
                   branch-suffix: timestamp
