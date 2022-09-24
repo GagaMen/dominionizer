@@ -24,6 +24,7 @@ import { Command } from 'commander';
 import { exec } from 'child_process';
 import { exit } from 'process';
 import { SplitPileDependencyBuilder } from './wiki-bot/builder/split-pile-dependency-builder';
+import { promisify } from 'util';
 
 interface Options {
     skipImages: boolean;
@@ -108,7 +109,12 @@ async function bootstrap(): Promise<void> {
             successful = await bot.generateAll(options.skipImages);
         }
 
-        exec('npm run prettier');
+        // this is necessary so that we can wait for the end of the child process
+        // otherwise the exit function in this file will kill the process before it is finished
+        const execPromise = promisify(exec);
+        const { stdout, stderr } = await execPromise('npm run prettier');
+        console.log(stdout);
+        console.log(stderr);
     } finally {
         imagePool.close();
     }
