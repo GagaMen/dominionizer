@@ -40,7 +40,7 @@ jobs:
 
             - name: Detect changes in assets folder
               id: changes
-              run: echo "::set-ouput name=changed::${git diff --quiet --stat HEAD -- ./src/assets || echo 'true'}"
+              run: echo "::set-ouput name=changed::$(git diff --quiet --stat HEAD -- ./src/assets || echo 'true')"
 
             - name: Create Pull Request
               # Create PR only if there are changes in the src/assets folder otherwise skip
