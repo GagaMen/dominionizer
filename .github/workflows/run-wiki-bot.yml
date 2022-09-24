@@ -38,7 +38,13 @@ jobs:
               working-directory: ${{github.workspace}}/tools/wiki-bot
               run: npm start -- --update
 
+            - name: Detect changes in assets folder
+              id: changes
+              run: echo "::set-ouput name=changed::${git diff --quiet --stat HEAD -- ./src/assets || echo 'true'}"
+
             - name: Create Pull Request
+              # Create PR only if there are changes in the src/assets folder otherwise skip
+              if: steps.cahnges.outputs.changed == 'true'
               uses: peter-evans/create-pull-request@v4
               with:
                   title: Wiki bot update
