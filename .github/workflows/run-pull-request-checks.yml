@@ -1,14 +1,12 @@
-name: Run linters
+name: Run pull request checks
 
 on:
-    push:
-        branches-ignore:
-            - gh-pages
-            # ignore wiki-bot-update branches, because internal pull requests trigger both the on push and the on pull request event
-            - wiki-bot-update-*
+    pull_request:
+        branches:
+            - master
 
 jobs:
-    setup-linters:
+    setup-pr-checks:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -42,8 +40,21 @@ jobs:
                   path: workspace
                   key: workspace-${{ github.sha }}
 
+    test:
+        needs: setup-pr-checks
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cache workspace
+              uses: actions/cache@v3
+              with:
+                  path: workspace
+                  key: workspace-${{ github.sha }}
+
+            - name: Run tests
+              run: npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
+
     commitlint:
-        needs: setup-linters
+        needs: setup-pr-checks
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -54,10 +65,10 @@ jobs:
 
             - name: Run commitlint
               working-directory: workspace
-              run: npx --no -- commitlint --from ${{ github.event.before }} --to HEAD --verbose
+              run: npx --no -- commitlint --from ${{ github.event.pull_request.base.sha }} --verbose
 
     eslint:
-        needs: setup-linters
+        needs: setup-pr-checks
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -71,7 +82,7 @@ jobs:
               run: npm run eslint
 
     stylelint:
-        needs: setup-linters
+        needs: setup-pr-checks
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -85,7 +96,7 @@ jobs:
               run: npm run stylelint
 
     markdownlint:
-        needs: setup-linters
+        needs: setup-pr-checks
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace

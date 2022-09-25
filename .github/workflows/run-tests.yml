@@ -4,6 +4,8 @@ on:
     push:
         branches-ignore:
             - gh-pages
+            # ignore wiki-bot-update branches, because internal pull requests trigger both the on push and the on pull request event
+            - wiki-bot-update-*
 
 jobs:
     test:
