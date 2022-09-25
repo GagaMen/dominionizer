@@ -47,6 +47,7 @@ jobs:
               if: steps.changes.outputs.changed == 'true'
               uses: peter-evans/create-pull-request@v4
               with:
+                  token: ${{ secrets.WIKI_BOT_TOKEN }}
                   title: Wiki bot update
                   body: Updates data extracted from [wiki.dominionstrategy.com/](http://wiki.dominionstrategy.com/)
                   add-paths: |
