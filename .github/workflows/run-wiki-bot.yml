@@ -48,6 +48,7 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                   title: Wiki bot update
+                  body: Updates data extracted from [wiki.dominionstrategy.com/](http://wiki.dominionstrategy.com/)
                   add-paths: |
                       src/assets/**/*
                       tools/wiki-bot/last-generation.json
