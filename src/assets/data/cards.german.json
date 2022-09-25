@@ -2812,7 +2812,7 @@
     {
         "id": 8127,
         "name": "Handwerkergilde",
-        "description": "Zu Beginn deines Zuges darfst du 2&nbsp;Gefallen einlösen, um eine Karte, die bis zu {{Cost|4}} kostet, auf deinen Nachziehstapel zu nehmen."
+        "description": "Zu Beginn deines Zuges darfst du 2&nbsp;Gefallen einlösen, um eine Karte,<br>die bis zu {{Cost|4}} kostet, auf deinen Nachziehstapel zu nehmen."
     },
     {
         "id": 8137,
@@ -2964,7 +2964,11 @@
         "name": "Taschendiebe",
         "description": "Zu Beginn deines Zuges: Lege deine Handkarten bis auf&nbsp;4 ab, es sei denn, du löst 1&nbsp;Gefallen ein."
     },
-    { "id": 8439, "name": "Wächter", "description": "" },
+    {
+        "id": 8439,
+        "name": "Wächter",
+        "description": "Sieh die obersten 5&nbsp;Karten deines Nachziehstapels an. Du darfst bis zu 2 davon entsorgen. Lege den Rest in beliebiger Reihenfolge zurück."
+    },
     {
         "id": 8440,
         "name": "Schreinerin",
@@ -3002,7 +3006,11 @@
         "name": "Spezialistin",
         "description": "Du darfst eine Aktions- oder Geldkarte aus deiner Hand spielen.<br>Wähle eins:<br>Spiele sie noch einmal oder nimm eine gleiche Karte."
     },
-    { "id": 8449, "name": "Marquis", "description": "" },
+    {
+        "id": 8449,
+        "name": "Marquis",
+        "description": "'''+1 Kauf<br>+1 Karte''' pro Karte auf deiner Hand.<br>Lege deine Handkarten bis auf 10&nbsp;ab."
+    },
     {
         "id": 8450,
         "name": "Zelt",
@@ -3026,17 +3034,17 @@
     {
         "id": 8455,
         "name": "Kriegsherr",
-        "description": "'''+1 Aktion'''<br>Zu Beginn deines nächsten Zuges: '''+2&nbsp;Karten.''' Bis dahin dürfen Mitspieler keine Aktionskarten aus ihrer Hand spielen, von der sie 2 oder mehr gleiche Karten im Spiel haben."
+        "description": "'''+1 Aktion'''<br>Zu Beginn deines nächsten Zuges:<br>'''+2&nbsp;Karten.''' Bis dahin dürfen<br>Mitspieler keine Aktionskarten aus ihrer<br>Hand spielen, von der sie 2 oder mehr<br>gleiche Karten im Spiel haben."
     },
     {
         "id": 8456,
         "name": "Schlachtplan",
-        "description": "<p>'''+1 Karte<br>+1 Aktion'''<br>Du darfst eine Angriffskarte aus deiner Hand aufdecken für '''+1&nbsp;Karte'''.</p>Du darfst einen beliebigen Vorratsstapel rotieren."
+        "description": "<p>'''+1 Karte<br>+1 Aktion'''<br>Du darfst eine Angriffskarte aus<br>deiner Hand aufdecken für '''+1&nbsp;Karte'''.</p>Du darfst einen beliebigen<br>Vorratsstapel rotieren."
     },
     {
         "id": 8457,
         "name": "Bogenschützin",
-        "description": "+{{Cost|2}}<br>Jeder Mitspieler mit 5 oder mehr Handkarten deckt sie alle außer einer auf und legt davon eine ab, die du wählst."
+        "description": "+{{Cost|2}}<br>Jeder Mitspieler mit 5 oder mehr<br>Handkarten deckt sie alle außer einer<br>auf und legt davon eine ab,<br>die du wählst."
     },
     {
         "id": 8459,
