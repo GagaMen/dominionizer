@@ -51,6 +51,7 @@ jobs:
                   key: workspace-${{ github.sha }}
 
             - name: Run tests
+              working-directory: workspace
               run: npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
 
     commitlint:
