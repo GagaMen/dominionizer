@@ -1,12 +1,17 @@
-name: Run pull request checks
+name: Run checks
 
 on:
+    push:
+        branches-ignore:
+            - gh-pages
+            # ignore wiki-bot-update branches, because internal pull requests trigger both the on push and the on pull request event
+            - wiki-bot-update-*
     pull_request:
         branches:
             - master
 
 jobs:
-    setup-pr-checks:
+    setup:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -41,7 +46,7 @@ jobs:
                   key: workspace-${{ github.sha }}
 
     test:
-        needs: setup-pr-checks
+        needs: setup
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -52,10 +57,10 @@ jobs:
 
             - name: Run tests
               working-directory: workspace
-              run: npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI
+              run: npm run test:ci
 
     commitlint:
-        needs: setup-pr-checks
+        needs: setup
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -64,12 +69,18 @@ jobs:
                   path: workspace
                   key: workspace-${{ github.sha }}
 
-            - name: Run commitlint
+            - name: Run commitlint on push
+              if: github.event_name == 'push'
+              working-directory: workspace
+              run: npx --no -- commitlint --from ${{ github.event.before }} --to HEAD --verbose
+
+            - name: Run commitlint on pull request
+              if: github.event_name == 'pull_request'
               working-directory: workspace
               run: npx --no -- commitlint --from ${{ github.event.pull_request.base.sha }} --verbose
 
     eslint:
-        needs: setup-pr-checks
+        needs: setup
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -83,7 +94,7 @@ jobs:
               run: npm run eslint
 
     stylelint:
-        needs: setup-pr-checks
+        needs: setup
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
@@ -97,7 +108,7 @@ jobs:
               run: npm run stylelint
 
     markdownlint:
-        needs: setup-pr-checks
+        needs: setup
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace

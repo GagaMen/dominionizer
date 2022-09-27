@@ -13,6 +13,7 @@
         "build:changelog": "conventional-changelog -i CHANGELOG.md -s",
         "test": "ng test",
         "test:coverage": "npm run test -- --no-watch --code-coverage",
+        "test:ci": "npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI",
         "eslint": "eslint . --ignore-path .gitignore --ext .ts,.js,.json,.component.html",
         "stylelint": "stylelint \"**/*.scss\" --ignore-path .gitignore --cache",
         "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
