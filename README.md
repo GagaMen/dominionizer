@@ -1,7 +1,8 @@
 # ![Dominionizer](/src/assets/logo/logo.svg)
 
-![Lint workflow](https://github.com/GagaMen/dominionizer/actions/workflows/run-linters.yml/badge.svg)
-![Test workflow](https://github.com/GagaMen/dominionizer/actions/workflows/run-tests.yml/badge.svg)
+[![Deploy release](https://github.com/GagaMen/dominionizer/actions/workflows/deploy-release.yml/badge.svg)](https://github.com/GagaMen/dominionizer/actions/workflows/deploy-release.yml)
+[![Run checks](https://github.com/GagaMen/dominionizer/actions/workflows/run-checks.yml/badge.svg)](https://github.com/GagaMen/dominionizer/actions/workflows/run-checks.yml)
+[![Run wiki bot](https://github.com/GagaMen/dominionizer/actions/workflows/run-wiki-bot.yml/badge.svg)](https://github.com/GagaMen/dominionizer/actions/workflows/run-wiki-bot.yml)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/test_coverage)](https://codeclimate.com/github/GagaMen/dominionizer/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a4e86861e7f074d736f3/maintainability)](https://codeclimate.com/github/GagaMen/dominionizer/maintainability)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
