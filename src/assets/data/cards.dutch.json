@@ -594,5 +594,10 @@
         "name": "Ouderling",
         "description": "+{{Cost|2}}<br>Je mag een actiekaart uit je hand spelen. Geeft deze je deze beurt een keuze uit opties (bijvoorbeeld &ldquo;kies 1&ldquo;), dan mag je een extra (verschillende) optie kiezen."
     },
-    { "id": 8447, "name": "Gildenmeester", "description": "" }
+    { "id": 8447, "name": "Gildenmeester", "description": "" },
+    {
+        "id": 8449,
+        "name": "Markies",
+        "description": "'''+1 Aanschaf<br>+1 Kaart''' per kaart in je hand.<br>Leg dan kaarten af totdat je niet meer dan 10&nbsp;kaarten in je hand hebt."
+    }
 ]
