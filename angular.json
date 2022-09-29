@@ -13,6 +13,27 @@
                     "style": "scss"
                 }
             },
+            "i18n": {
+                "sourceLocale": "en",
+                "locales": {
+                    "zh": "src/locale/translations.zh.xlf",
+                    "cs": "src/locale/translations.cs.xlf",
+                    "nl": "src/locale/translations.nl.xlf",
+                    "fi": "src/locale/translations.fi.xlf",
+                    "fr": "src/locale/translations.fr.xlf",
+                    "de": "src/locale/translations.de.xlf",
+                    "el": "src/locale/translations.el.xlf",
+                    "hu": "src/locale/translations.hu.xlf",
+                    "it": "src/locale/translations.it.xlf",
+                    "ja": "src/locale/translations.ja.xlf",
+                    "ko": "src/locale/translations.ko.xlf",
+                    "no": "src/locale/translations.no.xlf",
+                    "pl": "src/locale/translations.pl.xlf",
+                    "ro": "src/locale/translations.ro.xlf",
+                    "ru": "src/locale/translations.ru.xlf",
+                    "es": "src/locale/translations.es.xlf"
+                }
+            },
             "architect": {
                 "build": {
                     "builder": "@angular-builders/custom-webpack:browser",
@@ -64,7 +85,56 @@
                             "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,
-                            "namedChunks": true
+                            "namedChunks": true,
+                            "localize": ["en"]
+                        },
+                        "zh": {
+                            "localize": ["zh"]
+                        },
+                        "cs": {
+                            "localize": ["cs"]
+                        },
+                        "nl": {
+                            "localize": ["nl"]
+                        },
+                        "fi": {
+                            "localize": ["fi"]
+                        },
+                        "fr": {
+                            "localize": ["fr"]
+                        },
+                        "de": {
+                            "localize": ["de"]
+                        },
+                        "el": {
+                            "localize": ["el"]
+                        },
+                        "hu": {
+                            "localize": ["hu"]
+                        },
+                        "it": {
+                            "localize": ["it"]
+                        },
+                        "ja": {
+                            "localize": ["ja"]
+                        },
+                        "ko": {
+                            "localize": ["ko"]
+                        },
+                        "no": {
+                            "localize": ["no"]
+                        },
+                        "pl": {
+                            "localize": ["pl"]
+                        },
+                        "ro": {
+                            "localize": ["ro"]
+                        },
+                        "ru": {
+                            "localize": ["ru"]
+                        },
+                        "es": {
+                            "localize": ["es"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -77,6 +147,54 @@
                         },
                         "development": {
                             "browserTarget": "dominionizer:build:development"
+                        },
+                        "zh": {
+                            "browserTarget": "dominionizer:build:development,zh"
+                        },
+                        "cs": {
+                            "browserTarget": "dominionizer:build:development,cs"
+                        },
+                        "nl": {
+                            "browserTarget": "dominionizer:build:development,nl"
+                        },
+                        "fi": {
+                            "browserTarget": "dominionizer:build:development,fi"
+                        },
+                        "fr": {
+                            "browserTarget": "dominionizer:build:development,fr"
+                        },
+                        "de": {
+                            "browserTarget": "dominionizer:build:development,de"
+                        },
+                        "el": {
+                            "browserTarget": "dominionizer:build:development,el"
+                        },
+                        "hu": {
+                            "browserTarget": "dominionizer:build:development,hu"
+                        },
+                        "it": {
+                            "browserTarget": "dominionizer:build:development,it"
+                        },
+                        "ja": {
+                            "browserTarget": "dominionizer:build:development,ja"
+                        },
+                        "ko": {
+                            "browserTarget": "dominionizer:build:development,ko"
+                        },
+                        "no": {
+                            "browserTarget": "dominionizer:build:development,no"
+                        },
+                        "pl": {
+                            "browserTarget": "dominionizer:build:development,pl"
+                        },
+                        "ro": {
+                            "browserTarget": "dominionizer:build:development,ro"
+                        },
+                        "ru": {
+                            "browserTarget": "dominionizer:build:development,ru"
+                        },
+                        "es": {
+                            "browserTarget": "dominionizer:build:development,es"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -84,7 +202,9 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "dominionizer:build"
+                        "browserTarget": "dominionizer:build",
+                        "outputPath": "src/locale",
+                        "outFile": "translations.xlf"
                     }
                 },
                 "test": {

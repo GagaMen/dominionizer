@@ -2,10 +2,11 @@
     <mat-step
         *ngIf="expansionSelectViewData$ | async as viewData"
         [stepControl]="expansionSelect.formGroup"
+        i18n-errorMessage
         errorMessage="Choose at least one expansion"
     >
         <ng-template matStepLabel>
-            <span class="white-space-normal">Expansions</span>
+            <span class="white-space-normal" i18n>Expansions</span>
         </ng-template>
         <app-expansion-select
             #expansionSelect
@@ -19,7 +20,7 @@
         [stepControl]="specialCardSelect.formGroup"
     >
         <ng-template matStepLabel>
-            <span class="white-space-normal">Special Cards</span>
+            <span class="white-space-normal" i18n>Special Cards</span>
         </ng-template>
         <app-special-card-select
             #specialCardSelect
@@ -35,7 +36,7 @@
         <button class="mdc-fab mdc-fab--extended" routerLink="set">
             <div class="mdc-fab__ripple"></div>
             <span class="material-icons mdc-fab__icon">casino</span>
-            <span class="mdc-fab__label">generate</span>
+            <span class="mdc-fab__label" i18n>generate</span>
         </button>
     </div>
 </div>

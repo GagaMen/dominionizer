@@ -1,12 +1,12 @@
 <mat-menu xPosition="before">
-    <div class="mat-menu-headline">Grouping</div>
+    <div class="mat-menu-headline" i18n>Grouping</div>
     <button mat-menu-item (click)="onGroup('without')">
         <mat-icon>
             <ng-container *ngIf="(setService.groupingOption$ | async) === 'without'">
                 check
             </ng-container>
         </mat-icon>
-        <span>Without</span>
+        <span i18n>Without</span>
     </button>
     <button mat-menu-item (click)="onGroup('byExpansion')">
         <mat-icon>
@@ -14,17 +14,17 @@
                 check
             </ng-container>
         </mat-icon>
-        <span>By Expansion</span>
+        <span i18n>By Expansion</span>
     </button>
     <mat-divider></mat-divider>
-    <div class="mat-menu-headline">Sorting</div>
+    <div class="mat-menu-headline" i18n>Sorting</div>
     <button mat-menu-item (click)="onSort('byName')">
         <mat-icon>
             <ng-container *ngIf="(setService.sortingOption$ | async) === 'byName'">
                 check
             </ng-container>
         </mat-icon>
-        <span>By Name</span>
+        <span i18n>By Name</span>
     </button>
     <button mat-menu-item (click)="onSort('byCost')">
         <mat-icon>
@@ -32,6 +32,6 @@
                 check
             </ng-container>
         </mat-icon>
-        <span>By Cost</span>
+        <span i18n>By Cost</span>
     </button>
 </mat-menu>

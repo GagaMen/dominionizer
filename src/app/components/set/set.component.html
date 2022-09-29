@@ -1,14 +1,14 @@
 <mat-accordion *ngIf="setService.set$ | async as set" multi>
     <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
-            <mat-panel-title>Kingdom Cards</mat-panel-title>
+            <mat-panel-title i18n>Kingdom Cards</mat-panel-title>
         </mat-expansion-panel-header>
         <app-card-list [cardList]="set.kingdomCards"></app-card-list>
     </mat-expansion-panel>
 
     <mat-expansion-panel *ngIf="set.specialCards.length > 0" expanded>
         <mat-expansion-panel-header>
-            <mat-panel-title>Special Cards</mat-panel-title>
+            <mat-panel-title i18n>Special Cards</mat-panel-title>
         </mat-expansion-panel-header>
         <app-card-list [cardList]="set.specialCards"></app-card-list>
     </mat-expansion-panel>

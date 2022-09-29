@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="cs" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="0f445c377d28915086f64766b94c009424c23baf" datatype="html">
+        <source>Choose at least one expansion</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
+          <context context-type="linenumber">6,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c4a05f6770d4be560828e2344d28cb25e44aef00" datatype="html">
+        <source>Expansions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
+          <context context-type="linenumber">9,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eadfa1ff79643763df7bbcb5b9e1b9791f9dea82" datatype="html">
+        <source>Special Cards</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
+          <context context-type="linenumber">23,26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set/set.component.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="226e1f9e51e00591443d393a5c38216c8420f186" datatype="html">
+        <source>generate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
+          <context context-type="linenumber">39,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dfc3c34e182ea73c5d784ff7c8135f087992dac1" datatype="html">
+        <source>All</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/expansion-select/expansion-select.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c0f9562b480c315e20f4739a644affa6c5e0f2f" datatype="html">
+        <source>Felix Dimmel, Tobias Dimmel and contributors</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="15bdfa7e753e80e9f158a0d23194cb33eb63088f" datatype="html">
+        <source>License</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8658ad3b268c50fe2c1106dfb7bccdaa2e4290b2" datatype="html">
+        <source>Grouping</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e747840ac827edb57d65ba3a4ec12f7dcede1bcc" datatype="html">
+        <source>Without</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
+          <context context-type="linenumber">9,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8009fdb070557359e132608cf817976263770c22" datatype="html">
+        <source>By Expansion</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2a63d63538326cdbebb382ee400f9c2ac4ba26eb" datatype="html">
+        <source>Sorting</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="191fe58f44047b351abc339046075a3f948f0d94" datatype="html">
+        <source>By Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d3252c81705e60c0d393bbb1b34239be5e22f9d2" datatype="html">
+        <source>By Cost</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
+          <context context-type="linenumber">35,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98cda8876317d9d0b20721f6e52fb699bf04dd03" datatype="html">
+        <source>Kingdom Cards</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/set/set.component.html</context>
+          <context context-type="linenumber">4,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="af88c1e95a1d16d3cdbb7210981e0bfb6dc1d137" datatype="html">
+        <source>Events</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="96f1c835d2efba994fbbca52c31d34b379ae7ea8" datatype="html">
+        <source>Landmarks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d2a7deb7096cada2c3177157652680fe7e6de0ed" datatype="html">
+        <source>Projects</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="840756e76d1b89b0132c5d84e33fe89f679f03f2" datatype="html">
+        <source>Ways</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
