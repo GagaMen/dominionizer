@@ -111,7 +111,7 @@ export class DataFixture {
     ): CardTypeTranslation[] {
         return this.createMultiple(
             (cardTypeTranslation?: Partial<CardTypeTranslation>) =>
-                this.createCardTranslation(cardTypeTranslation),
+                this.createCardTypeTranslation(cardTypeTranslation),
             amount,
             cardTypeTranslation,
         );
