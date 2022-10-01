@@ -1,3 +1,6 @@
+import { CardTypeTranslation } from './../app/models/card-type';
+import { ExpansionTranslation } from './../app/models/expansion';
+import { CardTranslation } from './../app/models/card';
 import { AppBarConfiguration, NavigationAction } from './../app/models/app-bar-configuration';
 import { Expansion } from 'src/app/models/expansion';
 import { Chance } from 'chance';
@@ -16,6 +19,9 @@ export class DataFixture {
     private cardTypeIdCount = 0;
     private cardDtoIdCount = 0;
     private cardIdCount = 0;
+    private expansionTranslationIdCount = 0;
+    private cardTypeTranslationIdCount = 0;
+    private cardTranslationIdCount = 0;
 
     createExpansion(expansion: Partial<Expansion> = {}): Expansion {
         return {
@@ -31,6 +37,28 @@ export class DataFixture {
             (expansion?: Partial<Expansion>) => this.createExpansion(expansion),
             amount,
             expansion,
+        );
+    }
+
+    createExpansionTranslation(
+        expansionTranslation: Partial<ExpansionTranslation> = {},
+    ): ExpansionTranslation {
+        return {
+            id: this.expansionTranslationIdCount++,
+            name: this.chance.word(),
+            ...expansionTranslation,
+        };
+    }
+
+    createExpansionTranslations(
+        amount = 3,
+        expansionTranslation: Partial<ExpansionTranslation> = {},
+    ): ExpansionTranslation[] {
+        return this.createMultiple(
+            (expansionTranslation?: Partial<ExpansionTranslation>) =>
+                this.createExpansionTranslation(expansionTranslation),
+            amount,
+            expansionTranslation,
         );
     }
 
@@ -69,6 +97,26 @@ export class DataFixture {
         return this.createMultiple(() => this.createCardType(), amount);
     }
 
+    createCardTypeTranslation(cardTranslation: Partial<CardTranslation> = {}): CardTypeTranslation {
+        return {
+            id: this.cardTypeTranslationIdCount++,
+            name: this.chance.word(),
+            ...cardTranslation,
+        };
+    }
+
+    createCardTypeTranslations(
+        amount = 3,
+        cardTypeTranslation: Partial<CardTypeTranslation> = {},
+    ): CardTypeTranslation[] {
+        return this.createMultiple(
+            (cardTypeTranslation?: Partial<CardTypeTranslation>) =>
+                this.createCardTranslation(cardTypeTranslation),
+            amount,
+            cardTypeTranslation,
+        );
+    }
+
     createCard(card: Partial<Card> = {}): Card {
         return {
             id: this.cardIdCount++,
@@ -86,6 +134,27 @@ export class DataFixture {
 
     createCards(amount = 3, card: Partial<Card> = {}): Card[] {
         return this.createMultiple((card?: Partial<Card>) => this.createCard(card), amount, card);
+    }
+
+    createCardTranslation(cardTranslation: Partial<CardTranslation> = {}): CardTranslation {
+        return {
+            id: this.cardTranslationIdCount++,
+            name: this.chance.word(),
+            description: this.chance.sentence(),
+            ...cardTranslation,
+        };
+    }
+
+    createCardTranslations(
+        amount = 3,
+        cardTranslation: Partial<CardTranslation> = {},
+    ): CardTranslation[] {
+        return this.createMultiple(
+            (cardTranslation?: Partial<CardTranslation>) =>
+                this.createCardTranslation(cardTranslation),
+            amount,
+            cardTranslation,
+        );
     }
 
     createConfiguration(configuration: Partial<Configuration> = {}): Configuration {
