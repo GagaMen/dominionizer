@@ -11,12 +11,14 @@ import { DataFixture } from 'src/testing/data-fixture';
 import { CardTypeId } from '../models/card-type';
 import { CardTypeService } from './card-type.service';
 import { Card } from '../models/card';
+import { TranslationService } from './translation.service';
 
 describe('CardService', () => {
     let cardService: CardService;
     let dataServiceSpy: SpyObj<DataService>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
     let cardTypeServiceSpy: SpyObj<CardTypeService>;
+    let translationServiceSpy: SpyObj<TranslationService>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -28,6 +30,12 @@ describe('CardService', () => {
                 },
                 { provide: ExpansionService, useValue: {} },
                 { provide: CardTypeService, useValue: {} },
+                {
+                    provide: TranslationService,
+                    useValue: jasmine.createSpyObj<TranslationService>('TranslationService', [
+                        'getCardTranslations',
+                    ]),
+                },
             ],
         });
 
@@ -43,6 +51,11 @@ describe('CardService', () => {
 
         cardTypeServiceSpy = TestBed.inject(CardTypeService);
         cardTypeServiceSpy.cardTypes$ = cold('(a|)', { a: dataFixture.createCardTypes() });
+
+        translationServiceSpy = TestBed.inject(
+            TranslationService,
+        ) as jasmine.SpyObj<TranslationService>;
+        translationServiceSpy.getCardTranslations.and.returnValue(cold('(a|)', { a: [] }));
     });
 
     describe('cards$', () => {
@@ -92,6 +105,76 @@ describe('CardService', () => {
             expansionServiceSpy.expansions$ = expansions$;
             cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
+            cardService = TestBed.inject(CardService);
+
+            const actual$ = cardService.cards$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with translations should return correct translated data and complete', () => {
+            const expansions = dataFixture.createExpansions(2);
+            const cardTypes = dataFixture.createCardTypes(2);
+            const cardDto = dataFixture.createCardDto({
+                id: 1,
+                expansions: [expansions[0].id, expansions[1].id],
+                types: [cardTypes[0].id, cardTypes[1].id],
+            });
+            const cardTranslation = dataFixture.createCardTranslation({ id: 1 });
+            const expected: Map<number, Card> = new Map();
+            expected.set(1, {
+                ...cardDto,
+                name: cardTranslation.name,
+                description: cardTranslation.description,
+                expansions: [expansions[0], expansions[1]],
+                types: [cardTypes[0], cardTypes[1]],
+                dependencies: undefined,
+            });
+            const expansions$ = cold('-(a|)   ', { a: expansions });
+            const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
+            const fetchCards$ = cold('----(c|)', { c: [cardDto] });
+            const cardTranslations$ = cold('---(a|)', { a: [cardTranslation] });
+            const expected$ = cold('  ----(d|)', { d: expected });
+            expansionServiceSpy.expansions$ = expansions$;
+            cardTypeServiceSpy.cardTypes$ = cardTypes$;
+            dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
+            translationServiceSpy.getCardTranslations.and.returnValue(cardTranslations$);
+            cardService = TestBed.inject(CardService);
+
+            const actual$ = cardService.cards$;
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
+        it('with translation contains empty name and empty description should return source locale data and complete', () => {
+            const expansions = dataFixture.createExpansions(2);
+            const cardTypes = dataFixture.createCardTypes(2);
+            const cardDto = dataFixture.createCardDto({
+                id: 1,
+                expansions: [expansions[0].id, expansions[1].id],
+                types: [cardTypes[0].id, cardTypes[1].id],
+            });
+            const cardTranslation = dataFixture.createCardTranslation({
+                id: 1,
+                name: '',
+                description: '',
+            });
+            const expected: Map<number, Card> = new Map();
+            expected.set(1, {
+                ...cardDto,
+                expansions: [expansions[0], expansions[1]],
+                types: [cardTypes[0], cardTypes[1]],
+                dependencies: undefined,
+            });
+            const expansions$ = cold('-(a|)   ', { a: expansions });
+            const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
+            const fetchCards$ = cold('----(c|)', { c: [cardDto] });
+            const cardTranslations$ = cold('---(a|)', { a: [cardTranslation] });
+            const expected$ = cold('  ----(d|)', { d: expected });
+            expansionServiceSpy.expansions$ = expansions$;
+            cardTypeServiceSpy.cardTypes$ = cardTypes$;
+            dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
+            translationServiceSpy.getCardTranslations.and.returnValue(cardTranslations$);
             cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.cards$;

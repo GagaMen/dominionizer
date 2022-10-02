@@ -1,3 +1,5 @@
+import { CardTranslation } from 'src/app/models/card';
+import { TranslationService } from './translation.service';
 import { DependencyDto } from './../dtos/dependency-dto';
 import { CardDto } from './../dtos/card-dto';
 import { Dependency, DependencyType, SplitPileDependency } from './../models/dependency';
@@ -27,14 +29,39 @@ export class CardService {
         private dataService: DataService,
         private expansionService: ExpansionService,
         private cardTypeService: CardTypeService,
+        private translationService: TranslationService,
     ) {
         forkJoin({
             cardDtos: this.dataService.fetchCards(),
             expansions: this.expansionService.expansions$,
             cardTypes: this.cardTypeService.cardTypes$,
-        }).subscribe(({ cardDtos, expansions, cardTypes }) =>
-            this.cardsSubject.next(this.mapCardDtosToCards(cardDtos, expansions, cardTypes)),
-        );
+            translations: this.translationService.getCardTranslations(),
+        })
+            .pipe(
+                map(({ cardDtos, expansions, cardTypes, translations }) => {
+                    cardDtos.forEach((cardDto: CardDto) => {
+                        const translation = translations.find(
+                            (translation: CardTranslation) => translation.id === cardDto.id,
+                        );
+                        if (translation === undefined) {
+                            return;
+                        }
+
+                        if (translation.name.trim().length > 0) {
+                            cardDto.name = translation.name;
+                        }
+
+                        if (translation.description.trim().length > 0) {
+                            cardDto.description = translation.description;
+                        }
+                    });
+
+                    return { cardDtos, expansions, cardTypes };
+                }),
+            )
+            .subscribe(({ cardDtos, expansions, cardTypes }) =>
+                this.cardsSubject.next(this.mapCardDtosToCards(cardDtos, expansions, cardTypes)),
+            );
     }
 
     private mapCardDtosToCards(
