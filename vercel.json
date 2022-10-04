@@ -1,0 +1,211 @@
+{
+    "github": {
+        "enable": false,
+        "silent": true
+    },
+    "buildCommand": "npm run build",
+    "devCommand": "npm start",
+    "framework": "angular",
+    "installCommand": "npm ci",
+    "outputDirectory": "dist",
+    "redirects": [
+        {
+            "source": "/:path((?!zh/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "CN"
+                }
+            ],
+            "destination": "/zh/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!cs/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "CZ"
+                }
+            ],
+            "destination": "/cs/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!nl/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "NL"
+                }
+            ],
+            "destination": "/nl/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!fi/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "FI"
+                }
+            ],
+            "destination": "/fi/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!fr/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "FR"
+                }
+            ],
+            "destination": "/fr/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!de/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "DE"
+                }
+            ],
+            "destination": "/de/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!el/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "GR"
+                }
+            ],
+            "destination": "/el/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!hu/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "HU"
+                }
+            ],
+            "destination": "/hu/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!it/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "IT"
+                }
+            ],
+            "destination": "/it/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!ja/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "JP"
+                }
+            ],
+            "destination": "/ja/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!ko/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "KR"
+                }
+            ],
+            "destination": "/ko/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!no/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "NO"
+                }
+            ],
+            "destination": "/no/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!pl/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "PL"
+                }
+            ],
+            "destination": "/pl/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!ro/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "RO"
+                }
+            ],
+            "destination": "/ro/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!ru/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "RU"
+                }
+            ],
+            "destination": "/ru/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!es/).*)",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "ES"
+                }
+            ],
+            "destination": "/es/:path*",
+            "permanent": false
+        },
+        {
+            "source": "/:path((?!zh/).*|(?!cs/).*|(?!nl/).*|(?!fi/).*|(?!fr/).*|(?!de/).*|(?!el/).*|(?!hu/).*|(?!it/).*|(?!ja/).*|(?!ko/).*|(?!no/).*|(?!pl/).*|(?!ro/).*|(?!ru/).*|(?!es/).*)",
+            "destination": "/en/:path*",
+            "permanent": false
+        }
+    ],
+    "trailingSlash": false
+}
