@@ -18,8 +18,7 @@
                     "value": "CN"
                 }
             ],
-            "destination": "/zh/index.html",
-            "permanent": false
+            "destination": "/zh/index.html"
         },
         {
             "source": "/:path((?!cs/).*)",
@@ -30,8 +29,7 @@
                     "value": "CZ"
                 }
             ],
-            "destination": "/cs/index.html",
-            "permanent": false
+            "destination": "/cs/index.html"
         },
         {
             "source": "/:path((?!nl/).*)",
@@ -42,8 +40,7 @@
                     "value": "NL"
                 }
             ],
-            "destination": "/nl/index.html",
-            "permanent": false
+            "destination": "/nl/index.html"
         },
         {
             "source": "/:path((?!fi/).*)",
@@ -54,8 +51,7 @@
                     "value": "FI"
                 }
             ],
-            "destination": "/fi/index.html",
-            "permanent": false
+            "destination": "/fi/index.html"
         },
         {
             "source": "/:path((?!fr/).*)",
@@ -66,8 +62,7 @@
                     "value": "FR"
                 }
             ],
-            "destination": "/fr/index.html",
-            "permanent": false
+            "destination": "/fr/index.html"
         },
         {
             "source": "/:path((?!de/).*)",
@@ -78,8 +73,7 @@
                     "value": "DE"
                 }
             ],
-            "destination": "/de/index.html",
-            "permanent": false
+            "destination": "/de/index.html"
         },
         {
             "source": "/:path((?!el/).*)",
@@ -90,8 +84,7 @@
                     "value": "GR"
                 }
             ],
-            "destination": "/el/index.html",
-            "permanent": false
+            "destination": "/el/index.html"
         },
         {
             "source": "/:path((?!hu/).*)",
@@ -102,8 +95,7 @@
                     "value": "HU"
                 }
             ],
-            "destination": "/hu/index.html",
-            "permanent": false
+            "destination": "/hu/index.html"
         },
         {
             "source": "/:path((?!it/).*)",
@@ -114,8 +106,7 @@
                     "value": "IT"
                 }
             ],
-            "destination": "/it/index.html",
-            "permanent": false
+            "destination": "/it/index.html"
         },
         {
             "source": "/:path((?!ja/).*)",
@@ -126,8 +117,7 @@
                     "value": "JP"
                 }
             ],
-            "destination": "/ja/index.html",
-            "permanent": false
+            "destination": "/ja/index.html"
         },
         {
             "source": "/:path((?!ko/).*)",
@@ -138,8 +128,7 @@
                     "value": "KR"
                 }
             ],
-            "destination": "/ko/index.html",
-            "permanent": false
+            "destination": "/ko/index.html"
         },
         {
             "source": "/:path((?!no/).*)",
@@ -150,8 +139,7 @@
                     "value": "NO"
                 }
             ],
-            "destination": "/no/index.html",
-            "permanent": false
+            "destination": "/no/index.html"
         },
         {
             "source": "/:path((?!pl/).*)",
@@ -162,8 +150,7 @@
                     "value": "PL"
                 }
             ],
-            "destination": "/pl/index.html",
-            "permanent": false
+            "destination": "/pl/index.html"
         },
         {
             "source": "/:path((?!ro/).*)",
@@ -174,8 +161,7 @@
                     "value": "RO"
                 }
             ],
-            "destination": "/ro/index.html",
-            "permanent": false
+            "destination": "/ro/index.html"
         },
         {
             "source": "/:path((?!ru/).*)",
@@ -186,8 +172,7 @@
                     "value": "RU"
                 }
             ],
-            "destination": "/ru/index.html",
-            "permanent": false
+            "destination": "/ru/index.html"
         },
         {
             "source": "/:path((?!es/).*)",
@@ -198,8 +183,7 @@
                     "value": "ES"
                 }
             ],
-            "destination": "/es/index.html",
-            "permanent": false
+            "destination": "/es/index.html"
         },
         {
             "source": "/:path((?!en/).*)",
@@ -210,8 +194,7 @@
                     "value": "^(?!.*(CN|CZ|NL|FI|FR|DE|GR|HU|IT|JP|KR|NO|PL|RO|RU|ES)).*$"
                 }
             ],
-            "destination": "/en/index.html",
-            "permanent": false
+            "destination": "/en/index.html"
         }
     ],
     "trailingSlash": false
