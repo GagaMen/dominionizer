@@ -202,7 +202,14 @@
             "permanent": false
         },
         {
-            "source": "/:path((?!zh/).*|(?!cs/).*|(?!nl/).*|(?!fi/).*|(?!fr/).*|(?!de/).*|(?!el/).*|(?!hu/).*|(?!it/).*|(?!ja/).*|(?!ko/).*|(?!no/).*|(?!pl/).*|(?!ro/).*|(?!ru/).*|(?!es/).*)",
+            "source": "/:path",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "x-vercel-ip-country",
+                    "value": "^(?!.*(CN|CZ|NL|FI|FR|DE|GR|HU|IT|JP|KR|NO|PL|RO|RU|ES)).*$"
+                }
+            ],
             "destination": "/en/:path*",
             "permanent": false
         }
