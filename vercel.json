@@ -8,7 +8,7 @@
     "framework": "angular",
     "installCommand": "npm ci",
     "outputDirectory": "dist",
-    "rewrites": [
+    "redirects": [
         {
             "source": "/:path((?!zh/).*)",
             "has": [
@@ -186,7 +186,7 @@
             "destination": "/es/index.html"
         },
         {
-            "source": "/:path((?!en/).*)",
+            "source": "/:path(.*)",
             "has": [
                 {
                     "type": "header",
@@ -194,7 +194,7 @@
                     "value": "^(?!.*(CN|CZ|NL|FI|FR|DE|GR|HU|IT|JP|KR|NO|PL|RO|RU|ES)).*$"
                 }
             ],
-            "destination": "/en/index.html"
+            "destination": "en/index.html"
         }
     ],
     "trailingSlash": false
