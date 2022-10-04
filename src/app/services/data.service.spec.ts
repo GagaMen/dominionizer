@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DataService } from './data.service';
 import { cold } from 'jasmine-marbles';
+import { LOCALE_ID } from '@angular/core';
 
 describe('DataService', () => {
     let dataService: DataService;
@@ -16,6 +17,10 @@ describe('DataService', () => {
                     provide: HttpClient,
                     useValue: jasmine.createSpyObj<HttpClient>('HttpClient', ['get']),
                 },
+                {
+                    provide: LOCALE_ID,
+                    useValue: 'en',
+                },
             ],
         });
 
@@ -26,7 +31,7 @@ describe('DataService', () => {
     describe('fetchExpansions', () => {
         it('should make correct HTTP request and return its response data', () => {
             const get$ = cold('--(a|)');
-            httpClientSpy.get.withArgs(DataService.expansionsUrl).and.returnValue(get$);
+            httpClientSpy.get.withArgs(dataService.expansionsUrl).and.returnValue(get$);
 
             const actual$ = dataService.fetchExpansions();
 
@@ -39,7 +44,7 @@ describe('DataService', () => {
             const get$ = cold('--(a|)');
             const translationFileName = 'expansions.german.json';
             httpClientSpy.get
-                .withArgs(`${DataService.dataPath}/${translationFileName}`)
+                .withArgs(`${dataService.dataPath}/${translationFileName}`)
                 .and.returnValue(get$);
 
             const actual$ = dataService.fetchExpansionTranslations(translationFileName);
@@ -51,7 +56,7 @@ describe('DataService', () => {
     describe('fetchCardTypes', () => {
         it('should make correct HTTP request and return its response data', () => {
             const get$ = cold('--(a|)');
-            httpClientSpy.get.withArgs(DataService.cardTypesUrl).and.returnValue(get$);
+            httpClientSpy.get.withArgs(dataService.cardTypesUrl).and.returnValue(get$);
 
             const actual$ = dataService.fetchCardTypes();
 
@@ -64,7 +69,7 @@ describe('DataService', () => {
             const get$ = cold('--(a|)');
             const translationFileName = 'card-types.german.json';
             httpClientSpy.get
-                .withArgs(`${DataService.dataPath}/${translationFileName}`)
+                .withArgs(`${dataService.dataPath}/${translationFileName}`)
                 .and.returnValue(get$);
 
             const actual$ = dataService.fetchCardTypeTranslations(translationFileName);
@@ -76,7 +81,7 @@ describe('DataService', () => {
     describe('fetchCards', () => {
         it('should make correct HTTP request and return its response data', () => {
             const get$ = cold('--(a|)');
-            httpClientSpy.get.withArgs(DataService.cardsUrl).and.returnValue(get$);
+            httpClientSpy.get.withArgs(dataService.cardsUrl).and.returnValue(get$);
 
             const actual$ = dataService.fetchCards();
 
@@ -89,7 +94,7 @@ describe('DataService', () => {
             const get$ = cold('--(a|)');
             const translationFileName = 'card.german.json';
             httpClientSpy.get
-                .withArgs(`${DataService.dataPath}/${translationFileName}`)
+                .withArgs(`${dataService.dataPath}/${translationFileName}`)
                 .and.returnValue(get$);
 
             const actual$ = dataService.fetchCardTranslations(translationFileName);
