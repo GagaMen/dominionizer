@@ -997,6 +997,11 @@
     { "id": 6303, "name": "Koszary", "description": "" },
     { "id": 6309, "name": "Przedstawienie", "description": "" },
     { "id": 6311, "name": "Sieć dróg", "description": "" },
+    {
+        "id": 6400,
+        "name": "Kapitan",
+        "description": "Teraz i na początku twojej następnej tury: zagraj z Zasobów (i pozostaw ją tam) kartę Akcji kosztującą do {{Cost|4}}, niebędącą kartą Następstwa ani Rozkazu."
+    },
     { "id": 6747, "name": "Ośnieżona wioska", "description": "" },
     { "id": 6751, "name": "Barka", "description": "" },
     { "id": 6778, "name": "Rupiecie", "description": "" },
