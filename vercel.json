@@ -186,7 +186,7 @@
             "destination": "/es/index.html"
         },
         {
-            "source": "/:path(.*)",
+            "source": "/:path((?!en/).*)",
             "has": [
                 {
                     "type": "header",
