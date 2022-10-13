@@ -18,7 +18,7 @@ export class TranslationService {
         ['de', 'german'],
         ['el', 'greek'],
         ['hu', 'hungarian'],
-        ['it', 'itatian'],
+        ['it', 'italian'],
         ['ja', 'japanese'],
         ['ko', 'korean'],
         ['no', 'norwegian'],
