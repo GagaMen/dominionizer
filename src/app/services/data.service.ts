@@ -1,7 +1,7 @@
 import { CardTypeTranslation } from './../models/card-type';
 import { ExpansionTranslation } from './../models/expansion';
 import { environment } from './../../environments/environment';
-import { Inject, Injectable, LOCALE_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Expansion } from '../models/expansion';
@@ -13,12 +13,12 @@ import { CardTranslation } from '../models/card';
     providedIn: 'root',
 })
 export class DataService {
-    public dataPath = `${environment.entryPoint}/${this.locale}/assets/data`;
-    public expansionsUrl = `${environment.entryPoint}/${this.locale}/assets/data/expansions.json`;
-    public cardTypesUrl = `${environment.entryPoint}/${this.locale}/assets/data/card-types.json`;
-    public cardsUrl = `${environment.entryPoint}/${this.locale}/assets/data/cards.json`;
+    public dataPath = `${environment.entryPoint}/assets/data`;
+    public expansionsUrl = `${this.dataPath}/expansions.json`;
+    public cardTypesUrl = `${this.dataPath}/card-types.json`;
+    public cardsUrl = `${this.dataPath}/cards.json`;
 
-    constructor(private http: HttpClient, @Inject(LOCALE_ID) private locale: string) {}
+    constructor(private http: HttpClient) {}
 
     fetchExpansions(): Observable<Expansion[]> {
         return this.http.get<Expansion[]>(this.expansionsUrl);
