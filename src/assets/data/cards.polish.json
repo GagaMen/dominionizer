@@ -231,7 +231,7 @@
     {
         "id": 98,
         "name": "Latarnia morska",
-        "description": "'''+1 akcja'''<br>Teraz i na początku twojej następnej tury: {{nowrap|+{{Cost|1}}}}{{Divline}}Kiedy ta karta znajduje się w grze, karty Ataku zagrywane przez innych graczy nie mają na ciebie wpływu."
+        "description": "'''+1 akcja'''<br>+{{Cost|1}}<br>Na początku twojej następnej tury: {{nowrap|+{{Cost|1}}}}. Do tego czasu, ilekroć inny gracz zagra kartę Ataku, nie ma ona na ciebie wpływu."
     },
     {
         "id": 99,
@@ -1014,5 +1014,15 @@
     { "id": 6927, "name": "Przesiedlenie", "description": "" },
     { "id": 6931, "name": "Sanktuarium", "description": "" },
     { "id": 6932, "name": "Padok", "description": "" },
-    { "id": 6988, "name": "Droga foki", "description": "" }
+    { "id": 6988, "name": "Droga foki", "description": "" },
+    {
+        "id": 8611,
+        "name": "Astrolabium",
+        "description": "Teraz i na początku twojej następnej tury:<br>{{Cost|1|l}}<br>'''+1 zakup'''"
+    },
+    {
+        "id": 8628,
+        "name": "Morska czarownica",
+        "description": "<p>'''+2 karty'''<br>Każdy z pozostałych graczy dodaje Klątwę.</p>Na początku twojej następnej tury: '''+2 karty''', a następnie odrzuć 2 karty."
+    }
 ]
