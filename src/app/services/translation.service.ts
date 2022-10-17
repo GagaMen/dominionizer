@@ -1,3 +1,4 @@
+import { Language } from './../models/language';
 import { CardTypeTranslation } from './../models/card-type';
 import { ExpansionTranslation } from './../models/expansion';
 import { Observable, of } from 'rxjs';
@@ -10,22 +11,22 @@ import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 })
 export class TranslationService {
     private localeTranslationFileSuffixMap = new Map<string, string>([
-        ['zh', 'chinese'],
-        ['cs', 'czech'],
-        ['nl', 'dutch'],
-        ['fi', 'finnish'],
-        ['fr', 'french'],
-        ['de', 'german'],
-        ['el', 'greek'],
-        ['hu', 'hungarian'],
-        ['it', 'italian'],
-        ['ja', 'japanese'],
-        ['ko', 'korean'],
-        ['no', 'norwegian'],
-        ['pl', 'polish'],
-        ['ro', 'romanian'],
-        ['ru', 'russian'],
-        ['es', 'spanish'],
+        [Language.Chinese, 'chinese'],
+        [Language.Czech, 'czech'],
+        [Language.Dutch, 'dutch'],
+        [Language.Finnish, 'finnish'],
+        [Language.French, 'french'],
+        [Language.German, 'german'],
+        [Language.Greek, 'greek'],
+        [Language.Hungarian, 'hungarian'],
+        [Language.Italian, 'italian'],
+        [Language.Japanese, 'japanese'],
+        [Language.Korean, 'korean'],
+        [Language.Norwegian, 'norwegian'],
+        [Language.Polish, 'polish'],
+        [Language.Romanian, 'romanian'],
+        [Language.Russian, 'russian'],
+        [Language.Spanish, 'spanish'],
     ]);
 
     constructor(@Inject(LOCALE_ID) private locale: string, private dataService: DataService) {}

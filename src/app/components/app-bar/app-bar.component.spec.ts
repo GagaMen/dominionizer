@@ -1,3 +1,5 @@
+import { LanguageMenuComponent } from './../language-menu/language-menu.component';
+import { LanguageMenuStubComponent } from './../../../testing/components/language-menu.stub.component';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
 import { MatButton, MatButtonModule, MatAnchor } from '@angular/material/button';
@@ -18,7 +20,7 @@ describe('AppBarComponent', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [MatToolbarModule, MatButtonModule, MatIconModule],
-            declarations: [AppBarComponent],
+            declarations: [AppBarComponent, LanguageMenuStubComponent],
             providers: [
                 {
                     provide: AppBarService,
@@ -34,6 +36,21 @@ describe('AppBarComponent', () => {
 
         fixture = TestBed.createComponent(AppBarComponent);
     }));
+
+    describe('languageMenu', () => {
+        it('should be resolved before change detection runs', () => {
+            appBarServiceSpy.configuration$ = cold('a', {
+                a: dataFixture.createAppBarConfiguration(),
+            });
+            fixture.detectChanges();
+            getTestScheduler().flush();
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.directive(LanguageMenuComponent));
+
+            expect(actual).not.toBeNull();
+        });
+    });
 
     describe('template', () => {
         it('with no configuration should not display MatToolbar', () => {
@@ -96,7 +113,7 @@ describe('AppBarComponent', () => {
             expect(actualText).toBe('arrow_back');
         });
 
-        it('with configuration.actions is empty should display no action container', () => {
+        it('with configuration.actions is empty should display only language menu', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({
                     actions: [],
@@ -106,9 +123,11 @@ describe('AppBarComponent', () => {
             getTestScheduler().flush();
             fixture.detectChanges();
 
-            const actualElement = fixture.debugElement.query(By.css('.actions'));
+            const actions = fixture.debugElement.query(By.css('.actions'));
+            const languageMenu = fixture.debugElement.query(By.directive(LanguageMenuComponent));
 
-            expect(actualElement).toBeNull();
+            expect(actions.children.length).toBe(1);
+            expect(languageMenu).toBeDefined();
         });
 
         it('with configuration.actions contains actions should display corresponding MatButtons with MatIcon', () => {

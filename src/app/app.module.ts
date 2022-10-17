@@ -32,6 +32,7 @@ import { SetOrderingMenuComponent } from './components/set-ordering-menu/set-ord
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FooterComponent } from './components/footer/footer.component';
+import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { FooterComponent } from './components/footer/footer.component';
         SpecialCardSelectComponent,
         SetOrderingMenuComponent,
         FooterComponent,
+        LanguageMenuComponent,
     ],
     imports: [
         BrowserModule,
