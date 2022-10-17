@@ -10,7 +10,7 @@
     "outputDirectory": "dist",
     "redirects": [
         {
-            "source": "/:path((?!zh/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -21,7 +21,7 @@
             "destination": "/zh/index.html"
         },
         {
-            "source": "/:path((?!cs/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -32,7 +32,7 @@
             "destination": "/cs/index.html"
         },
         {
-            "source": "/:path((?!nl/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -43,7 +43,7 @@
             "destination": "/nl/index.html"
         },
         {
-            "source": "/:path((?!fi/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -54,7 +54,7 @@
             "destination": "/fi/index.html"
         },
         {
-            "source": "/:path((?!fr/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -65,7 +65,7 @@
             "destination": "/fr/index.html"
         },
         {
-            "source": "/:path((?!de/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -76,7 +76,7 @@
             "destination": "/de/index.html"
         },
         {
-            "source": "/:path((?!el/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -87,7 +87,7 @@
             "destination": "/el/index.html"
         },
         {
-            "source": "/:path((?!hu/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -98,7 +98,7 @@
             "destination": "/hu/index.html"
         },
         {
-            "source": "/:path((?!it/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -109,7 +109,7 @@
             "destination": "/it/index.html"
         },
         {
-            "source": "/:path((?!ja/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -120,7 +120,7 @@
             "destination": "/ja/index.html"
         },
         {
-            "source": "/:path((?!ko/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -131,7 +131,7 @@
             "destination": "/ko/index.html"
         },
         {
-            "source": "/:path((?!no/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -142,7 +142,7 @@
             "destination": "/no/index.html"
         },
         {
-            "source": "/:path((?!pl/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -153,7 +153,7 @@
             "destination": "/pl/index.html"
         },
         {
-            "source": "/:path((?!ro/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -164,7 +164,7 @@
             "destination": "/ro/index.html"
         },
         {
-            "source": "/:path((?!ru/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -175,7 +175,7 @@
             "destination": "/ru/index.html"
         },
         {
-            "source": "/:path((?!es/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -186,7 +186,7 @@
             "destination": "/es/index.html"
         },
         {
-            "source": "/:path((?!en/).*)",
+            "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
             "has": [
                 {
                     "type": "header",
@@ -194,7 +194,7 @@
                     "value": "^(?!.*(CN|CZ|NL|FI|FR|DE|GR|HU|IT|JP|KR|NO|PL|RO|RU|ES)).*$"
                 }
             ],
-            "destination": "en/index.html"
+            "destination": "/en/index.html"
         }
     ],
     "trailingSlash": false
