@@ -216,7 +216,8 @@
                         "karmaConfig": "karma.conf.js",
                         "styles": ["src/scss/styles.scss"],
                         "scripts": [],
-                        "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"]
+                        "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],
+                        "codeCoverageExclude": ["src/testing/**/*"]
                     }
                 },
                 "lint": {
