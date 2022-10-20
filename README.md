@@ -22,7 +22,7 @@ npm start
 
 The easiest way to contribute is telling your friends about this app. If you want to go further and report a bug, request a feature or even contribute code, please check out our [contributing guidelines](/CONTRIBUTING.md) first.
 
-## Special Tanks
+## Special Thanks
 
 Firstly, we want to thank Donald X. Vaccarino, the father of Dominion, and [Rio Grande Games](https://www.riograndegames.com/) for creating and publishing this game we love to play ourselves.
 
