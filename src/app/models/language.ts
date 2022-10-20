@@ -2,6 +2,7 @@ export enum Language {
     Chinese = 'zh',
     Czech = 'cs',
     Dutch = 'nl',
+    English = 'en',
     Finnish = 'fi',
     French = 'fr',
     German = 'de',
