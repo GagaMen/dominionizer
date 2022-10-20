@@ -202,5 +202,11 @@
             "destination": "/en/:path*",
             "permanent": false
         }
+    ],
+    "rewrites": [
+        {
+            "source": "/:language/(.*)",
+            "destination": "/:language/index.html"
+        }
     ]
 }
