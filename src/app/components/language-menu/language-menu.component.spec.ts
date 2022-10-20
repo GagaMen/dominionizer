@@ -54,7 +54,7 @@ describe('LanguageMenuComponent', () => {
                 const href = await host.getAttribute('href');
 
                 expect(actual).not.toBeNull();
-                expect(href).toBe(`/${redirectionTarget}/index.html`);
+                expect(href).toBe(`/${redirectionTarget}/`);
             });
         }
     });

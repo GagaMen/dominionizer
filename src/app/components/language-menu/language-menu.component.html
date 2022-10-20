@@ -3,6 +3,6 @@
 </button>
 <mat-menu #menu="matMenu">
     <ng-container *ngFor="let language of languages">
-        <a mat-menu-item href="/{{ language[1] }}/index.html">{{ language[0] }}</a>
+        <a mat-menu-item href="/{{ language[1] }}/">{{ language[0] }}</a>
     </ng-container>
 </mat-menu>
