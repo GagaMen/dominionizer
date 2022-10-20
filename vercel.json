@@ -1,8 +1,4 @@
 {
-    "github": {
-        "enable": false,
-        "silent": true
-    },
     "buildCommand": "npm run build",
     "devCommand": "npm start",
     "framework": "angular",
@@ -18,7 +14,8 @@
                     "value": "CN"
                 }
             ],
-            "destination": "/zh/index.html"
+            "destination": "/zh/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -29,7 +26,8 @@
                     "value": "CZ"
                 }
             ],
-            "destination": "/cs/index.html"
+            "destination": "/cs/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -40,7 +38,8 @@
                     "value": "NL"
                 }
             ],
-            "destination": "/nl/index.html"
+            "destination": "/nl/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -51,7 +50,8 @@
                     "value": "FI"
                 }
             ],
-            "destination": "/fi/index.html"
+            "destination": "/fi/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -62,7 +62,8 @@
                     "value": "FR"
                 }
             ],
-            "destination": "/fr/index.html"
+            "destination": "/fr/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -73,7 +74,8 @@
                     "value": "DE"
                 }
             ],
-            "destination": "/de/index.html"
+            "destination": "/de/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -84,7 +86,8 @@
                     "value": "GR"
                 }
             ],
-            "destination": "/el/index.html"
+            "destination": "/el/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -95,7 +98,8 @@
                     "value": "HU"
                 }
             ],
-            "destination": "/hu/index.html"
+            "destination": "/hu/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -106,7 +110,8 @@
                     "value": "IT"
                 }
             ],
-            "destination": "/it/index.html"
+            "destination": "/it/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -117,7 +122,8 @@
                     "value": "JP"
                 }
             ],
-            "destination": "/ja/index.html"
+            "destination": "/ja/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -128,7 +134,8 @@
                     "value": "KR"
                 }
             ],
-            "destination": "/ko/index.html"
+            "destination": "/ko/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -139,7 +146,8 @@
                     "value": "NO"
                 }
             ],
-            "destination": "/no/index.html"
+            "destination": "/no/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -150,7 +158,8 @@
                     "value": "PL"
                 }
             ],
-            "destination": "/pl/index.html"
+            "destination": "/pl/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -161,7 +170,8 @@
                     "value": "RO"
                 }
             ],
-            "destination": "/ro/index.html"
+            "destination": "/ro/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -172,7 +182,8 @@
                     "value": "RU"
                 }
             ],
-            "destination": "/ru/index.html"
+            "destination": "/ru/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
@@ -183,19 +194,13 @@
                     "value": "ES"
                 }
             ],
-            "destination": "/es/index.html"
+            "destination": "/es/:path*",
+            "permanent": false
         },
         {
             "source": "/:path((?!zh/)(?!cs/)(?!nl/)(?!fi/)(?!fr/)(?!de/)(?!el/)(?!hu/)(?!it/)(?!ja/)(?!ko/)(?!no/)(?!pl/)(?!ro/)(?!ru/)(?!es/)(?!en/).*)",
-            "has": [
-                {
-                    "type": "header",
-                    "key": "x-vercel-ip-country",
-                    "value": "^(?!.*(CN|CZ|NL|FI|FR|DE|GR|HU|IT|JP|KR|NO|PL|RO|RU|ES)).*$"
-                }
-            ],
-            "destination": "/en/index.html"
+            "destination": "/en/:path*",
+            "permanent": false
         }
-    ],
-    "trailingSlash": false
+    ]
 }
