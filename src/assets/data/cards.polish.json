@@ -1021,8 +1021,43 @@
         "description": "Teraz i na początku twojej następnej tury:<br>{{Cost|1|l}}<br>'''+1 zakup'''"
     },
     {
+        "id": 8612,
+        "name": "Blokada",
+        "description": "<p>Dodaj kartę kosztującą do {{Cost|4}} odkładając ją na bok.</p>Na początku twojej następnej tury weź ją na rękę. Dopóki jest ona odłożona na bok, ilekroć inny gracz w swojej turze doda jej kopię, dodaje także Klątwę."
+    },
+    {
+        "id": 8613,
+        "name": "Małpa",
+        "description": "<p>Do twojej następnej tury, ilekroć gracz po twojej prawej stronie doda kartę, '''+1&nbsp;karta'''.</p>Na początku twojej następnej tury: '''+1&nbsp;karta'''."
+    },
+    {
+        "id": 8626,
+        "name": "Mapa morska",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Odkryj kartę z wierzchu swojej talii. Weź ją na rękę, jeśli masz jej kopię w grze."
+    },
+    {
+        "id": 8627,
+        "name": "Baseny pływowe",
+        "description": "'''+3 karty'''<br>'''+1 akcja'''<br>Na początku twojej następnej tury: odrzuć 2 karty."
+    },
+    {
         "id": 8628,
         "name": "Morska czarownica",
         "description": "<p>'''+2 karty'''<br>Każdy z pozostałych graczy dodaje Klątwę.</p>Na początku twojej następnej tury: '''+2 karty''', a następnie odrzuć 2 karty."
+    },
+    {
+        "id": 8651,
+        "name": "Pirat",
+        "description": "Na początku twojej następnej tury dodaj na rękę kartę Skarbu kosztującą do {{Cost|6}}.{{divline}}Możesz zagrać tę kartę z ręki, gdy dowolny gracz doda kartę Skarbu."
+    },
+    {
+        "id": 8652,
+        "name": "Korsarz",
+        "description": "+{{Cost|2}}<br>Na początku twojej następnej tury, '''+1 karta'''. Do tego czasu każdy z pozostałych graczy wyrzuca na Śmietnisko pierwszą kartę Srebrników lub Złota, którą zagra w każdej swojej turze."
+    },
+    {
+        "id": 8653,
+        "name": "Żeglarz",
+        "description": "<p>'''+1 akcja'''<br>Raz w tej turze, gdy dodasz kartę Następstwa, możesz ją zagrać.</p>Na początku twojej następnej tury: +{{Cost|2}} i możesz wyrzucić na Śmietnisko kartę z ręki."
     }
 ]
