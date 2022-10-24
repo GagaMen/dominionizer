@@ -1,5 +1,3 @@
-import { LanguageMenuComponent } from './../language-menu/language-menu.component';
-import { LanguageMenuStubComponent } from './../../../testing/components/language-menu.stub.component';
 import { cold, getTestScheduler } from 'jasmine-marbles';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
 import { MatButton, MatButtonModule, MatAnchor } from '@angular/material/button';
@@ -20,7 +18,7 @@ describe('AppBarComponent', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [MatToolbarModule, MatButtonModule, MatIconModule],
-            declarations: [AppBarComponent, LanguageMenuStubComponent],
+            declarations: [AppBarComponent],
             providers: [
                 {
                     provide: AppBarService,
@@ -37,21 +35,6 @@ describe('AppBarComponent', () => {
         fixture = TestBed.createComponent(AppBarComponent);
     }));
 
-    describe('languageMenu', () => {
-        it('should be resolved before change detection runs', () => {
-            appBarServiceSpy.configuration$ = cold('a', {
-                a: dataFixture.createAppBarConfiguration(),
-            });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
-
-            const actual = fixture.debugElement.query(By.directive(LanguageMenuComponent));
-
-            expect(actual).not.toBeNull();
-        });
-    });
-
     describe('template', () => {
         it('with no configuration should not display MatToolbar', () => {
             appBarServiceSpy.configuration$ = NEVER;
@@ -62,7 +45,7 @@ describe('AppBarComponent', () => {
             expect(actual).toBeNull();
         });
 
-        it('with configuration.navigationAction is "none" should display no MatButton and MatAnchor', () => {
+        it('with configuration.navigationAction is "none" should display no action container', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'none' }),
             });
@@ -70,13 +53,9 @@ describe('AppBarComponent', () => {
             getTestScheduler().flush();
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(
-                By.css(
-                    '.navigation-action > button[mat-icon-button], .navigation-action > a[mat-icon-button]',
-                ),
-            );
+            const actualElement = fixture.debugElement.query(By.css('.actions'));
 
-            expect(actual).toBeNull();
+            expect(actualElement).toBeNull();
         });
 
         it('with configuration.navigationAction is "sidenav" should display MatButton with "menu" icon', () => {
@@ -111,23 +90,6 @@ describe('AppBarComponent', () => {
 
             expect(actualElement.length).toBe(1);
             expect(actualText).toBe('arrow_back');
-        });
-
-        it('with configuration.actions is empty should display only language menu', () => {
-            appBarServiceSpy.configuration$ = cold('-a-', {
-                a: dataFixture.createAppBarConfiguration({
-                    actions: [],
-                }),
-            });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
-
-            const actions = fixture.debugElement.query(By.css('.actions'));
-            const languageMenu = fixture.debugElement.query(By.directive(LanguageMenuComponent));
-
-            expect(actions.children.length).toBe(1);
-            expect(languageMenu).toBeDefined();
         });
 
         it('with configuration.actions contains actions should display corresponding MatButtons with MatIcon', () => {
