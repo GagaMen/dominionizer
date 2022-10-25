@@ -1,7 +1,7 @@
 <div>
-    <a [mat-menu-trigger-for]="menu" i18n>
+    <a [mat-menu-trigger-for]="menu">
         <mat-icon inline="true">language</mat-icon>
-        <span>Switch language</span>
+        <span i18n>Switch language</span>
     </a>
     <mat-menu #menu="matMenu">
         <ng-container *ngFor="let language of languages">
