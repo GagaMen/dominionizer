@@ -1,4 +1,5 @@
-import { cold, getTestScheduler } from 'jasmine-marbles';
+import { detectChangesAndFlush } from 'src/testing/utilities';
+import { cold } from 'jasmine-marbles';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
 import { MatButton, MatButtonModule, MatAnchor } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
@@ -49,9 +50,7 @@ describe('AppBarComponent', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'none' }),
             });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
+            detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement.query(By.css('.actions'));
 
@@ -62,9 +61,7 @@ describe('AppBarComponent', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'sidenav' }),
             });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
+            detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement
                 .query(By.directive(MatButton))
@@ -79,9 +76,7 @@ describe('AppBarComponent', () => {
             appBarServiceSpy.configuration$ = cold('-a-', {
                 a: dataFixture.createAppBarConfiguration({ navigationAction: 'back' }),
             });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
+            detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement
                 .query(By.directive(MatAnchor))
@@ -101,9 +96,7 @@ describe('AppBarComponent', () => {
                     ],
                 }),
             });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
+            detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement.queryAll(
                 By.css('.actions > [mat-icon-button] mat-icon'),
@@ -119,9 +112,7 @@ describe('AppBarComponent', () => {
                     actions: [{ icon: 'icon', onClick: () => clickCounter++ }],
                 }),
             });
-            fixture.detectChanges();
-            getTestScheduler().flush();
-            fixture.detectChanges();
+            detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement.query(
                 By.css('.actions > [mat-icon-button]'),
