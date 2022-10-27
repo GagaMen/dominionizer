@@ -4,7 +4,11 @@
             <button *ngIf="configuration.navigationAction === 'sidenav'" mat-icon-button>
                 <mat-icon>menu</mat-icon>
             </button>
-            <a *ngIf="configuration.navigationAction === 'back'" routerLink="/" mat-icon-button>
+            <a
+                *ngIf="configuration.navigationAction === 'back'"
+                routerLink="/configuration"
+                mat-icon-button
+            >
                 <mat-icon>arrow_back</mat-icon>
             </a>
         </div>

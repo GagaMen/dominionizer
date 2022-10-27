@@ -1,0 +1,73 @@
+@use '@angular/material' as mat;
+@use '../../../scss/variables';
+
+header {
+    background: linear-gradient(
+        180deg,
+        mat.get-color-from-palette(variables.$primary, 900),
+        mat.get-color-from-palette(variables.$primary, 300)
+    );
+    padding-bottom: 30px;
+    position: relative;
+
+    @media (min-width: 800px) {
+        padding-bottom: 50px;
+    }
+
+    .triangle-left {
+        bottom: 0;
+        height: 30px;
+        left: 0;
+        position: absolute;
+        width: 50%;
+
+        @media (min-width: 800px) {
+            height: 50px;
+        }
+    }
+
+    .triangle-right {
+        bottom: 0;
+        height: 30px;
+        position: absolute;
+        right: 0;
+        width: 50%;
+
+        @media (min-width: 800px) {
+            height: 50px;
+        }
+    }
+}
+
+.header-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 4rem;
+    padding-top: 6rem;
+    width: 80%;
+
+    @media (min-width: 800px) {
+        max-width: 800px;
+    }
+
+    object {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    a {
+        text-transform: uppercase;
+    }
+}
+
+.mat-headline {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    div {
+        margin-bottom: 0.5rem;
+    }
+}

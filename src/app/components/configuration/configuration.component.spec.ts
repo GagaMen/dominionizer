@@ -340,7 +340,7 @@ describe('ConfigurationComponent', () => {
 
         it('should render shuffle button correctly', () => {
             const button = fixture.debugElement.query(
-                By.css('.mdc-fab.mdc-fab--extended[routerLink="set"]'),
+                By.css('.mdc-fab.mdc-fab--extended[routerLink="/set"]'),
             );
             const icon = button.query(By.css('.material-icons.mdc-fab__icon'));
             const label = button.query(By.css('.mdc-fab__label'));
