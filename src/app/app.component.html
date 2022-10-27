@@ -1,5 +1,5 @@
 <div class="page">
-    <app-bar class="mat-elevation-z4"></app-bar>
+    <app-bar *ngIf="router.url !== '/'" class="mat-elevation-z4"></app-bar>
     <div class="content container">
         <router-outlet></router-outlet>
     </div>

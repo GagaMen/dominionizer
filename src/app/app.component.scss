@@ -15,13 +15,12 @@ app-bar {
     right: 0;
     top: 0;
     z-index: 4;
-}
 
-:host {
-    display: block;
-    padding-top: 56px;
+    + .content {
+        margin-top: 56px;
 
-    @media (min-width: 600px) {
-        padding-top: 64px;
+        @media (min-width: 600px) {
+            margin-top: 64px;
+        }
     }
 }

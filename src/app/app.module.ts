@@ -33,6 +33,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FooterComponent } from './components/footer/footer.component';
 import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { LanguageMenuComponent } from './components/language-menu/language-menu.
         SetOrderingMenuComponent,
         FooterComponent,
         LanguageMenuComponent,
+        HomeComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,4 +1,5 @@
 import { InstallService } from './services/install.service';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
     constructor(
         @Inject(LOCALE_ID) private locale: string,
         private installService: InstallService,
+        public router: Router,
     ) {}
 
     ngOnInit(): void {
