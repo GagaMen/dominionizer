@@ -643,7 +643,7 @@
     {
         "id": 1504,
         "name": "Książę",
-        "description": "Możesz odłożyć tę kartę na bok. Jeśli to zrobisz, odłóż z ręki na bok kartę Akcji kosztującą nie więcej niż {{nowrap|{{Cost|4}}.}} Na początku każdej swojej tury zagraj tę kartę Akcji i odłóż ją ponownie na bok gdy odrzucasz ją z gry (jeśli nie odłożysz jej na bok w turze, w której ją zagrywasz, to w następnej turze już jej nie zagrywasz)."
+        "description": "Możesz odłożyć z ręki na bok (na tę kartę) kartę Akcji kosztującą do {{Cost|4}}, niebędącą kartą Następstwa ani Rozkazu. Na początku każdej twojej tury: zagraj ją, pozostawiając ją odłożoną na bok."
     },
     { "id": 2112, "name": "Zaginione miasto", "description": "" },
     { "id": 2119, "name": "Moneta obiegowa", "description": "" },
