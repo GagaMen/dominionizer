@@ -71,3 +71,59 @@ header {
         margin-bottom: 0.5rem;
     }
 }
+
+article {
+    padding: 0 1rem;
+}
+
+section {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem auto;
+}
+
+.text-container {
+    order: 2;
+
+    @media (min-width: 800px) {
+        flex-basis: 60%;
+        flex-grow: 1;
+        order: unset;
+    }
+
+    h3 {
+        color: mat.get-color-from-palette(variables.$accent);
+        flex-basis: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.section-content {
+    line-height: 2rem;
+}
+
+.section-image {
+    margin: 0 auto;
+    max-width: 400px;
+    order: 1;
+    width: 100%;
+
+    @media (min-width: 800px) {
+        flex-basis: 30%;
+        flex-grow: 1;
+        margin: unset;
+        max-width: unset;
+        order: unset;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+mat-divider {
+    margin: 0.5rem 0;
+}
