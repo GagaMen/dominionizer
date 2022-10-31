@@ -10,9 +10,6 @@ module.exports = {
                     context: 'src/assets/',
                     from: '**/*',
                     to: 'assets/',
-                    globOptions: {
-                        ignore: ['**/card_art/**', '**/card_symbols/**'],
-                    },
                 },
             ],
         }),

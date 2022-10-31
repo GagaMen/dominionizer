@@ -43,13 +43,7 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": [
-                            "src/assets/card_art",
-                            "src/assets/card_symbols",
-                            "src/favicon.ico",
-                            "src/manifest.webmanifest",
-                            "src/CNAME"
-                        ],
+                        "assets": ["src/favicon.ico", "src/manifest.webmanifest", "src/CNAME"],
                         "styles": ["src/scss/styles.scss"],
                         "scripts": [],
                         "customWebpackConfig": {
