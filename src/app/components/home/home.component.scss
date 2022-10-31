@@ -63,7 +63,7 @@ header {
     }
 }
 
-.mat-headline {
+.mat-h1 {
     margin-bottom: 2rem;
     text-align: center;
 
@@ -94,7 +94,7 @@ section {
         order: unset;
     }
 
-    h3 {
+    .mat-h2 {
         color: mat.get-color-from-palette(variables.$accent);
         flex-basis: 100%;
         margin-bottom: 0.5rem;
