@@ -70,6 +70,10 @@ header {
     div {
         margin-bottom: 0.5rem;
     }
+
+    div:nth-child(2) {
+        line-height: 0;
+    }
 }
 
 article {
