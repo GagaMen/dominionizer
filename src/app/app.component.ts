@@ -1,15 +1,23 @@
+import { InstallService } from './services/install.service';
 import { environment } from 'src/environments/environment';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-    constructor(@Inject(LOCALE_ID) private locale: string) {
+export class AppComponent implements OnInit {
+    constructor(
+        @Inject(LOCALE_ID) private locale: string,
+        private installService: InstallService,
+    ) {}
+
+    ngOnInit(): void {
         if (environment.production) {
             environment.entryPoint = `/${this.locale}`;
         }
+
+        this.installService.activate().subscribe();
     }
 }

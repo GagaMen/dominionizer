@@ -17,14 +17,26 @@
             }
         },
         {
-            "name": "assets",
+            "name": "data",
+            "installMode": "prefetch",
+            "resources": {
+                "files": ["/assets/data/**"]
+            }
+        },
+        {
+            "name": "logo",
             "installMode": "lazy",
             "updateMode": "prefetch",
             "resources": {
-                "files": [
-                    "/assets/**",
-                    "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|json)"
-                ]
+                "files": ["/assets/logo/**"]
+            }
+        },
+        {
+            "name": "images",
+            "installMode": "lazy",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": ["/assets/card_art/**", "/assets/card_symbols/**"]
             }
         }
     ]
