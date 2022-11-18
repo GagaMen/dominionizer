@@ -11,5 +11,7 @@
     { "id": 1584, "name": "Zdarzenie" },
     { "id": 2821, "name": "Krajobraz" },
     { "id": 3258, "name": "Gromadzenie" },
-    { "id": 3304, "name": "Zamki" }
+    { "id": 3304, "name": "Zamki" },
+    { "id": 4220, "name": "Łaska" },
+    { "id": 4221, "name": "Urok" }
 ]
