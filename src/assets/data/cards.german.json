@@ -3146,7 +3146,7 @@
     {
         "id": 8712,
         "name": "Geldanlage",
-        "description": "Entsorge eine deiner Handkarten.<br>Wähle eins: +{{Cost|1}} oder entsorge diese Karte, um deine Handkarten aufzudecken für {{nowrap|'''+1'''{{VP}}}} pro Geldkarte unterschiedlichen Namens darunter."
+        "description": "Entsorge eine deiner Handkarten.<br>Wähle eins: +{{Cost|1}} oder entsorge diese Karte, um deine Handkarten aufzudecken für {{nowrap|'''+1'''{{VP}}}} pro Geldkarte unterschiedlichen Namens davon."
     },
     {
         "id": 8713,
