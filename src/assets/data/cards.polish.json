@@ -974,13 +974,52 @@
     { "id": 5088, "name": "Bard", "description": "" },
     { "id": 5166, "name": "Diabelski warsztat", "description": "" },
     { "id": 5167, "name": "Miasto duchów", "description": "" },
+    {
+        "id": 5198,
+        "name": "Wierny pies",
+        "description": "'''+2 karty''' {{divline}} Kiedy odrzucasz tę kartę poza fazą porządków, możesz odłożyć ją na bok, aby wziąć ją na rękę na koniec tury."
+    },
     { "id": 5224, "name": "Bożek", "description": "" },
-    { "id": 5230, "name": "Druid", "description": "" },
+    {
+        "id": 5230,
+        "name": "Druid",
+        "description": "'''+1 zakup'''<br>Otrzymaj jedną z odłożonych na bok Łask (pozostaw ją na miejscu).{{divline}}Przygotowanie: odłóż na bok (awersem do góry) 3 Łaski z wierzchu stosu."
+    },
+    {
+        "id": 5238,
+        "name": "Głupiec",
+        "description": "Jeśli nie posiadasz Stanu ''Zagubiony w lesie'': weź go, weź także 3 Łaski i otrzymaj je w dowolnej kolejności.<br><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Szczęśliwa moneta&nbsp;&nbsp;''</span>"
+    },
     { "id": 5256, "name": "Dar ziemi", "description": "" },
     { "id": 5257, "name": "Dar płomieni", "description": "" },
     { "id": 5263, "name": "Dar lasu", "description": "" },
     { "id": 5321, "name": "Przeklęta wioska", "description": "" },
     { "id": 5336, "name": "Egzorcysta", "description": "" },
+    {
+        "id": 5337,
+        "name": "Wróżka",
+        "description": "'''+1 karta<br>+1 akcja'''<br>Odrzuć Łaskę z wierzchu stosu Łask. Możesz wyrzucić tę Wróżkę na Śmietnisko aby dwukrotnie otrzymać tę Łaskę.<br><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Koza''&nbsp;&nbsp;</span>"
+    },
+    {
+        "id": 5413,
+        "name": "Obrońca",
+        "description": "Do twojej następnej tury, ilekroć inny gracz zagra kartę Ataku, nie ma ona na ciebie wpływu. Na początku twojej następnej tury: +{{Cost|1}}.{{divline}}Tę kartę dodaje się na rękę (a nie na stos kart odrzuconych)."
+    },
+    {
+        "id": 5414,
+        "name": "Odmieniec",
+        "description": "Wyrzuć tę kartę na Śmietnisko. Dodaj kopię karty, którą masz w grze.{{divline}}W rozgrywkach z tą kartą, ilekroć dodajesz kartę kosztującą {{Cost|3}} lub więcej, możesz wymienić ją na Odmieńca."
+    },
+    {
+        "id": 5415,
+        "name": "Klasztor",
+        "description": "Za każdą kartę, którą dodałeś w tej turze, możesz wyrzucić na Śmietnisko kartę z ręki lub kartę Miedziaków, którą masz w grze."
+    },
+    {
+        "id": 5430,
+        "name": "Tropiciel",
+        "description": "+{{Cost|1}}<br>Otrzymaj Łaskę.<br>Ilekroć w tej turze dodasz kartę, moższ ją odłożyć na wierzch swojej talii.<br><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Mieszek&nbsp;&nbsp;''</span>"
+    },
     { "id": 5446, "name": "Nocny stróż", "description": "" },
     { "id": 5451, "name": "Tajne zebranie", "description": "" },
     { "id": 5453, "name": "Tragiczny bohater", "description": "" },
