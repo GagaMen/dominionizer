@@ -6,7 +6,7 @@ import { AppBarService } from '../../services/app-bar.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetComponent } from './set.component';
-import { MatMenu } from '@angular/material/menu';
+import { MatLegacyMenu as MatMenu } from '@angular/material/legacy-menu';
 import { cold } from 'jasmine-marbles';
 import { DataFixture } from 'src/testing/data-fixture';
 import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';

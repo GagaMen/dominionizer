@@ -1,4 +1,4 @@
-import { MatMenu } from '@angular/material/menu';
+import { MatLegacyMenu as MatMenu } from '@angular/material/legacy-menu';
 
 export type NavigationAction = 'back' | 'sidenav' | 'none';
 

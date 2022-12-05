@@ -1,4 +1,4 @@
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { LanguageMenuStubComponent } from './../../../testing/components/language-menu.stub.component';
 import { FooterComponent } from './footer.component';
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
