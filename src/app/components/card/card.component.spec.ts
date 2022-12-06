@@ -80,6 +80,66 @@ describe('CardComponent', () => {
         });
     });
 
+    describe('costIconUrls', () => {
+        it('with card has cost should return correct icon urls', () => {
+            component.card = dataFixture.createCard({ cost: 2 });
+            const expected = [`${environment.entryPoint}/assets/card_symbols/Coin2.png`];
+
+            const actual = component.costIconUrls;
+
+            expect(actual).toEqual(expected);
+        });
+
+        const costModifiers = [
+            ['P', 'Potion.png'],
+            ['*', 'Coin0star.png'],
+            ['+', 'Coin0plus.png'],
+        ];
+        for (const [costModifier, image] of costModifiers) {
+            it(`with card has '${costModifier}' cost modifier should return correct icon urls`, () => {
+                component.card = dataFixture.createCard({ cost: 0, costModifier });
+                const expected = [`${environment.entryPoint}/assets/card_symbols/${image}`];
+
+                const actual = component.costIconUrls;
+
+                expect(actual).toEqual(expected);
+            });
+        }
+
+        it(`with card has cost and 'P' cost modifier should return correct icon urls`, () => {
+            component.card = dataFixture.createCard({ cost: 3, costModifier: 'P' });
+            const expected = [
+                `${environment.entryPoint}/assets/card_symbols/Coin3.png`,
+                `${environment.entryPoint}/assets/card_symbols/Potion.png`,
+            ];
+
+            const actual = component.costIconUrls;
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with card has cost equals zero and debt greater than zero should return correct icon urls', () => {
+            component.card = dataFixture.createCard({ cost: 0, debt: 8 });
+            const expected = [`${environment.entryPoint}/assets/card_symbols/Debt8.png`];
+
+            const actual = component.costIconUrls;
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with card has cost and debt greater than zero should return correct icon urls', () => {
+            component.card = dataFixture.createCard({ cost: 4, debt: 4 });
+            const expected = [
+                `${environment.entryPoint}/assets/card_symbols/Coin4.png`,
+                `${environment.entryPoint}/assets/card_symbols/Debt4.png`,
+            ];
+
+            const actual = component.costIconUrls;
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
     describe('typesLabel', () => {
         it('with card has one type should return correct label', () => {
             const type = dataFixture.createCardType();

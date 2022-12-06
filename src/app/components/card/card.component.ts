@@ -36,6 +36,49 @@ export class CardComponent {
         return icon ? `${environment.entryPoint}/assets/card_symbols/${icon}` : null;
     }
 
+    get costIconUrls(): string[] {
+        const baseUrl = `${environment.entryPoint}/assets/card_symbols`;
+        const urls: string[] = [];
+
+        if (this.shouldDisplayBasicCostIcon()) {
+            urls.push(`${baseUrl}/Coin${this.card.cost}.png`);
+        }
+
+        switch (this.card.costModifier) {
+            case 'P':
+                urls.push(`${baseUrl}/Potion.png`);
+                break;
+            case '*':
+                urls.push(`${baseUrl}/Coin${this.card.cost}star.png`);
+                break;
+            case '+':
+                urls.push(`${baseUrl}/Coin${this.card.cost}plus.png`);
+                break;
+        }
+
+        if (this.card.debt) {
+            urls.push(`${baseUrl}/Debt${this.card.debt}.png`);
+        }
+
+        return urls;
+    }
+
+    private shouldDisplayBasicCostIcon() {
+        if (this.card.costModifier === 'P' && this.card.cost === 0) {
+            return false;
+        }
+
+        if (this.card.costModifier && this.card.costModifier !== 'P') {
+            return false;
+        }
+
+        if (this.card.debt && this.card.cost === 0) {
+            return false;
+        }
+
+        return true;
+    }
+
     get typesLabel(): string {
         return this.card.types.map<string>((type: CardType) => type.name).join(' - ');
     }
