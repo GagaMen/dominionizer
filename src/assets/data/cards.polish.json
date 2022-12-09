@@ -370,11 +370,7 @@
         "name": "Gubernator",
         "description": "'''+1 Akcja'''<br>Wybierz jedną z opcji (otrzymujesz wersję w nawiasie): Każdy z graczy dobiera +1 (+3) kartę; lub każdy z graczy dodaje Srebrnika (Złocisza); lub każdy z graczy może wyrzucić na śmietnisko kartę z ręki i dodać kartę o koszcie wyższym dokładnie o {{Cost|1}} ({{Cost|2}})."
     },
-    {
-        "id": 138,
-        "name": "Zaskórniak",
-        "description": "{{Cost|2|l}}{{divline}}Kiedy tasujesz karty, możesz umieścić tę kartę w dowolnym miejscu swojej talii."
-    },
+    { "id": 138, "name": "", "description": "2022" },
     { "id": 212, "name": "Klątwa", "description": "" },
     {
         "id": 242,

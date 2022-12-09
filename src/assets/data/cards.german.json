@@ -432,11 +432,7 @@
         "name": "Gouverneur",
         "description": "'''+1 Aktion'''<br>Wähle eins, für dich gelten die Angaben in Klammern:<br>Jeder Spieler bekommt '''+1 (+3) Karten'''; oder jeder Spieler nimmt sich ein Silber (Gold); oder jeder Spieler darf eine Karte aus seiner Hand entsorgen und sich eine Karte nehmen, die genau {{Cost|1}} ({{Cost|2}}) mehr kostet."
     },
-    {
-        "id": 138,
-        "name": "Geldversteck",
-        "description": "{{Cost|2|l}}{{divline}}Wenn du diese Karte mischst, darfst du deinen vorhandenen Nachziehstapel durchsehen und diese Karte an eine beliebige Stelle in die gemischten Karten stecken."
-    },
+    { "id": 138, "name": "", "description": "Einsteiger-Bigbox 2019]];<br>Sammler-Box 2019" },
     {
         "id": 155,
         "name": "Bettler",
