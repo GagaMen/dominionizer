@@ -300,6 +300,29 @@ describe('ExpansionMapBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with traits should return correct map', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 9040,
+                title: 'Plunder',
+                revisions: [
+                    {
+                        '*':
+                            '== Contents ==\n' +
+                            '=== Kingdom cards ===\n' +
+                            '* {{Cost|2}} {{Card|Cage}}\n\n' +
+                            '=== [[Trait]]s ===\n' +
+                            `<p>''15, 1 of each:''` +
+                            `<br>{{Trait|Cheap}}, {{Trait|Cursed}}`,
+                    },
+                ],
+            };
+            const expected: Map<number, string[]> = new Map([[9040, ['Cage', `Cheap`, 'Cursed']]]);
+
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with promo cards should return correct map', () => {
             const expansionPage: ExpansionPage = {
                 pageid: 206,
