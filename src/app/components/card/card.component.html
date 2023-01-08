@@ -1,17 +1,22 @@
 <mat-card [style.background]="color">
     <mat-card-header>
-        <img
-            *ngIf="expansionIconUrl !== null"
-            mat-card-avatar
-            [src]="expansionIconUrl"
-            alt="Expansion Icon"
-            class="expansion-icon"
-        />
+        <div class="icons">
+            <img
+                *ngIf="expansionIconUrl !== null"
+                [src]="expansionIconUrl"
+                alt="Expansion Icon"
+                class="expansion-icon"
+            />
+            <div class="cost-icons">
+                <ng-container *ngFor="let costIconUrl of costIconUrls">
+                    <img [src]="costIconUrl" alt="cost-icon" class="cost-icon" />
+                </ng-container>
+            </div>
+        </div>
         <mat-card-title-group>
-            <mat-card-title>{{ card.name }} ({{ card.cost }})</mat-card-title>
+            <mat-card-title>{{ card.name }}</mat-card-title>
             <mat-card-subtitle>{{ typesLabel }}</mat-card-subtitle>
         </mat-card-title-group>
-        <div class="spacer"></div>
         <button mat-icon-button (click)="reshuffle.emit()">
             <mat-icon>casino</mat-icon>
         </button>

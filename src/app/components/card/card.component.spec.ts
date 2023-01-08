@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardComponent } from './card.component';
 import {
     MatLegacyCardModule as MatCardModule,
-    MatLegacyCardAvatar as MatCardAvatar,
     MatLegacyCardTitle as MatCardTitle,
     MatLegacyCardSubtitle as MatCardSubtitle,
     MatLegacyCard as MatCard,
@@ -291,10 +290,13 @@ describe('CardComponent', () => {
 
     describe('template', () => {
         let expansionIconUrlSpy: jasmine.Spy;
+        let costIconUrlsSpy: jasmine.Spy;
 
         beforeEach(() => {
             expansionIconUrlSpy = spyOnProperty(component, 'expansionIconUrl');
             expansionIconUrlSpy.and.returnValue(expansionIconUrl);
+            costIconUrlsSpy = spyOnProperty(component, 'costIconUrls');
+            costIconUrlsSpy.and.returnValue([]);
         });
 
         it('should bind "background" style of MatCard correctly', () => {
@@ -308,44 +310,55 @@ describe('CardComponent', () => {
             expect(actual).toBe(expected);
         });
 
-        it('with expansionIconUrl is null should not display MatCardAvatar', () => {
+        it('with expansionIconUrl is null should not display expansion icon', () => {
             expansionIconUrlSpy.and.returnValue(null);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardAvatar));
+            const actual = fixture.debugElement.query(By.css('.expansion-icon'));
 
             expect(actual).toBeNull();
         });
 
-        it('with expansionIconUrl is not null should display MatCardAvatar', () => {
+        it('with expansionIconUrl is not null should display expansion icon', () => {
             expansionIconUrlSpy.and.returnValue(expansionIconUrl);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardAvatar));
+            const actual = fixture.debugElement.query(By.css('.expansion-icon'));
 
             expect(actual).not.toBeNull();
         });
 
-        it('with expansionIconUrl is not null should bind MatCardAvatar.src correctly', () => {
+        it('with expansionIconUrl is not null should bind src of expansion icon correctly', () => {
             const expected = expansionIconUrl;
             expansionIconUrlSpy.and.returnValue(expected);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardAvatar)).properties.src;
+            const actual = fixture.debugElement.query(By.css('.expansion-icon')).properties.src;
 
             expect(actual).toBe(expected);
+        });
+
+        it('should display cost icons correctly', () => {
+            const expected = ['/assets/card_symbols/Coin1.png', '/assets/card_symbols/Potion.png'];
+            costIconUrlsSpy.and.returnValue(expected);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement
+                .queryAll(By.css('.cost-icon'))
+                .map((costIcon) => costIcon.properties.src as string);
+
+            expect(actual).toEqual(expected);
         });
 
         it('should bind content of MatCardTitle correctly', () => {
             const card = dataFixture.createCard();
             component.card = card;
-            const expected = `${card.name} (${card.cost})`;
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.directive(MatCardTitle)).properties
                 .innerText;
 
-            expect(actual).toBe(expected);
+            expect(actual).toBe(card.name);
         });
 
         it('should bind content of MatCardSubtitle correctly', () => {

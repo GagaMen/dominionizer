@@ -1,11 +1,48 @@
+:host ::ng-deep .mat-card-header-text {
+    margin: 0;
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 44px;
+    margin-right: 16px;
+    width: 44px;
+}
+
+.cost-icons {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
 .expansion-icon {
-    border-radius: unset;
-    object-fit: contain;
+    align-self: center;
+    height: 20px;
+    width: 20px;
+}
+
+.cost-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.mat-card-title-group {
+    flex-grow: 1;
+    justify-content: center;
 }
 
 .mat-card-title {
     font-size: 1rem;
     font-weight: 700;
+    text-align: center;
+}
+
+.mat-card-subtitle {
+    // this removes the default margin of 16px
+    margin-bottom: 0;
+    text-align: center;
 }
 
 // TODO: fix use of 'type-...' classes after refactoring of background calculation
@@ -23,13 +60,4 @@
     [mat-icon-button] {
         color: #fff;
     }
-}
-
-.mat-card-subtitle {
-    // this removes the default margin of 16px
-    margin-bottom: 0;
-}
-
-.spacer {
-    flex-grow: 1;
 }
