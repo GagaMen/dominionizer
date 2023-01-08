@@ -32,7 +32,10 @@ describe('CardTypeTranslationBuilder', () => {
                             `* Finnish: Palkinto\n` +
                             `* German: Preis\n` +
                             `* Polish: Nagroda\n` +
-                            `* Russian: Трофей (pron. ''trofyey'', lit. ''trophy'')`,
+                            `* Russian: Трофей (pron. ''trofyey'', lit. ''trophy'')\n` +
+                            `<!--* Chinese: \n` +
+                            `* French: \n` +
+                            `-->\n`,
                     },
                 ],
             };

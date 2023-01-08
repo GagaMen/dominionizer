@@ -8,7 +8,7 @@ export class CardTypeTranslationBuilder {
 
     build(cardTypePage: CardTypePage): Map<string, CardTypeTranslation> {
         const wikiText: WikiText = cardTypePage.revisions[0]['*'] ?? '';
-        const inOtherLanguages: WikiText = extractSection(wikiText, 'In other languages', 3);
+        let inOtherLanguages: WikiText = extractSection(wikiText, 'In other languages', 3);
 
         if (inOtherLanguages === '') {
             const cardTranslations = this.cardTranslationBuilder.build(cardTypePage);
@@ -20,6 +20,8 @@ export class CardTypeTranslationBuilder {
 
             return cardTypeTranslations;
         }
+
+        inOtherLanguages = inOtherLanguages.replace(/<!--.*?-->/gs, '');
 
         const languageCandidates: WikiText[] = inOtherLanguages.split(/\n\*\s/).slice(1);
         return new Map<string, CardTypeTranslation>(
