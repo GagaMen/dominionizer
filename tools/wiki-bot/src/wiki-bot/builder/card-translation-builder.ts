@@ -23,17 +23,14 @@ export class CardTranslationBuilder {
         while ((languageVersion = rowRegex.exec(tableBody))) {
             const language = /!\s*(?:rowspan="?\d"?\s*\|)?([^|\\]*)/.exec(languageVersion[0])?.[1];
 
-            // use last row of language, because this is the most up to date one
-            const translationVersion = languageVersion[0]
-                .split(/\s*\|-\s*\n/)
-                .filter((entry) => entry !== '')
-                .pop();
-            const columns = translationVersion?.split('||') ?? [];
+            const latestTranslationVersion = this.findLatestTranslationVersion(languageVersion[0]);
 
-            const cardName = this.extractCardName(columns[0]);
+            const cardName = this.extractCardName(latestTranslationVersion.at(0));
             // textColumnIndex - 1, because split with '||' returns the first two columns combined
             // in the first array element
-            const cardDescription = this.extractCardDescription(columns[textColumnIndex - 1]);
+            const cardDescription = this.extractCardDescription(
+                latestTranslationVersion.at(textColumnIndex - 1),
+            );
 
             translations.set(normalize(language), {
                 id: cardPage.pageid,
@@ -50,6 +47,25 @@ export class CardTranslationBuilder {
         return tableHeader
             .split('!!')
             .findIndex((columnLabel) => normalize(columnLabel).includes('Text'));
+    }
+
+    private findLatestTranslationVersion(languageVersion: WikiText): WikiText[] {
+        const translationVersions: Array<WikiText[]> = languageVersion
+            .split(/\s*\|-\s*\n/)
+            .filter((entry) => entry !== '')
+            .map((translationVersion: WikiText) => translationVersion?.split('||') ?? []);
+
+        // we ensure that the latest translation version contains columns that span multiple rows
+        const firstTranslationVersion = translationVersions.at(0);
+        let latestTranslationVersion = translationVersions.at(-1);
+        const diff =
+            (firstTranslationVersion?.length ?? 0) - (latestTranslationVersion?.length ?? 0);
+        if (diff > 0) {
+            const missingColumns = firstTranslationVersion?.slice(0, diff);
+            latestTranslationVersion = missingColumns?.concat(latestTranslationVersion ?? []);
+        }
+
+        return latestTranslationVersion ?? [];
     }
 
     private extractCardName(name: WikiText | undefined): string {

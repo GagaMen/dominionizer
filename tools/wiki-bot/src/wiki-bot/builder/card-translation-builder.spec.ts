@@ -342,5 +342,52 @@ describe('CardTranslationBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        it('with rowspan for card name should return correct translation', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*':
+                            `===Other language versions===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                            `|-\n` +
+                            `!rowspan=3|German\n| rowspan=3|Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten... ||\n` +
+                            `|- \n` +
+                            `| || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten... ||\n` +
+                            `|- \n` +
+                            `| || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten... || \n` +
+                            `|- \n` +
+                            `! rowspan="2" |Russian \n| rowspan="2" |Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}... ||\n` +
+                            `|-\n` +
+                            `| || || '''+1 Покупка'''<br>+{{Cost|1}}В этом... ||\n` +
+                            `|}`,
+                    },
+                ],
+            };
+            const expected: Map<string, CardTranslation> = new Map([
+                [
+                    'German',
+                    {
+                        id: cardPage.pageid,
+                        name: 'Brücke',
+                        description: `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten...`,
+                    },
+                ],
+                [
+                    'Russian',
+                    {
+                        id: cardPage.pageid,
+                        name: 'Мост',
+                        description: `'''+1 Покупка'''<br>+{{Cost|1}}В этом...`,
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage);
+
+            expect(actual).toEqual(expected);
+        });
     });
 });
