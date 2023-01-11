@@ -39,7 +39,10 @@ describe('ExpansionTranslationBuilder', () => {
                             `* Romanian: Dominion\n` +
                             `* Russian: Доминион (pron. ''dominion'')\n` +
                             `* Spanish: Dominion\n` +
-                            `* Swedish: Dominion: Spelet om kungadömet (lit. ''The game of the kingdom'')`,
+                            `* Swedish: Dominion: Spelet om kungadömet (lit. ''The game of the kingdom'')\n` +
+                            `<!--* Mexican: \n` +
+                            `* Portuguese: \n` +
+                            `-->\n`,
                     },
                 ],
             };
