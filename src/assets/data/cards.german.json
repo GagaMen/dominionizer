@@ -2,7 +2,7 @@
     {
         "id": 3,
         "name": "Tunnel",
-        "description": "{{VP|2|l}}{{divline}}Wenn du diese Karte außerhalb deiner Aufräumphase ablegst, darfst du sie aufdecken, um ein Gold zu nehmen."
+        "description": "{{VP|2|l}}{{divline}}Wenn du diese Karte außerhalb der Aufräumphase ablegst, darfst du sie aufdecken, um ein Gold zu nehmen."
     },
     {
         "id": 16,
@@ -482,7 +482,7 @@
     {
         "id": 321,
         "name": "Wachturm",
-        "description": "Ziehe, bis du 6&nbsp;Karten auf deiner Hand hast.{{Divline}}Wenn du eine Karte nimmst, darfst du diese Karte aus deiner Hand aufdecken, um entweder jene Karte zu entsorgen oder sie auf deinen Nachziehstapel zu legen."
+        "description": "Ziehe, bis du 6&nbsp;Karten auf deiner Hand hast.{{Divline}}Wenn du eine Karte nimmst, darfst du diese Karte aus deiner Hand aufdecken, um jene Karte entweder zu entsorgen oder sie auf deinen Nachziehstapel zu legen."
     },
     {
         "id": 322,
@@ -537,7 +537,7 @@
     {
         "id": 332,
         "name": "Gesindel",
-        "description": "'''+3 Karten'''<br>Jeder Mitspieler deckt die obersten 3&nbsp;Karten seines Nachziehstapels auf, legt alle Aktions- und Geldkarten davon ab und den Rest in beliebiger Reihenfolge zurück."
+        "description": "'''+3 Karten'''<br>Jeder Mitspieler deckt die obersten 3&nbsp;Karten seines Nachziehstapels auf, legt alle Aktions- und Geldkarten davon ab und den Rest in einer Reihenfolge seiner Wahl zurück."
     },
     {
         "id": 333,
@@ -3212,5 +3212,422 @@
         "id": 8832,
         "name": "Pfad",
         "description": "'''+1 Karte<br>+1 Aktion'''{{Divline}}Wenn du diese Karte außerhalb der Aufräum&shy;phase nimmst, entsorgst oder ablegst, darfst du sie spielen."
+    },
+    {
+        "id": 9213,
+        "name": "Werkzeug",
+        "description": "Nimm eine Karte,<br>von der irgendjemand<br>eine gleiche Karte <br>im Spiel hat."
+    },
+    {
+        "id": 9221,
+        "name": "Anhänger",
+        "description": "+{{Cost|1}} pro Geldkarte mit<br>unterschiedlichem Namen,<br>die du im Spiel hast."
+    },
+    {
+        "id": 9222,
+        "name": "Seil",
+        "description": "{{Cost|1|l}}<br>'''+1 Kauf'''<br>Zu Beginn deines nächsten Zuges: '''+1&nbsp;Karte''', und du darfst eine deiner Hand&shy;karten entsorgen."
+    },
+    {
+        "id": 9223,
+        "name": "Bergbaustraße",
+        "description": "'''+1 Aktion<br>+1 Kauf'''<br>+{{Cost|2}}<br>Einmal in diesem Zug:<br>Wenn du eine Geldkarte<br>nimmst, darfst du sie spielen."
+    },
+    {
+        "id": 9224,
+        "name": "Vergraben",
+        "description": "'''+1 Kauf'''<br>Lege eine beliebige Karte deines<br>Ablagestapels unter deinen Nachziehstapel."
+    },
+    {
+        "id": 9225,
+        "name": "Mahlstrom",
+        "description": "Entsorge 3 deiner Handkarten. Jeder Mitspieler<br>mit 5 oder mehr Handkarten entsorgt eine von ihnen."
+    },
+    {
+        "id": 9226,
+        "name": "Vorbereitung",
+        "description": "Lege deine Handkarten mit der Bildseite nach oben<br>zur Seite. Zu Beginn deines nächsten Zuges spiele<br>die Aktions- und Geldkarten davon in beliebiger<br>Reihenfolge, lege dann den Rest ab."
+    },
+    {
+        "id": 9272,
+        "name": "Sumpfhütten",
+        "description": "'''+2 Aktionen<br>+1 Karte''' pro 3 Karten, die du in Spiel hast (abgerundet)."
+    },
+    {
+        "id": 9273,
+        "name": "Vergrabener Schatz",
+        "description": "Zu Beginn deines nächsten<br>Zuges: '''+1 Kauf''' und +{{Cost|3}}.{{divline}}Wenn du diese Karte<br>nimmst, spiele sie."
+    },
+    {
+        "id": 9274,
+        "name": "Sirene",
+        "description": "Jeder Mitspieler nimmt einen Fluch.<br>Zieh zu Beginn deines nächsten<br>Zuges, bis du 8 Handkarten hast.{{divline}}Wenn du diese Karte nimmst,<br>entsorge sie, es sei denn, du<br>entsorgst eine Aktionskarte<br>aus deiner Hand."
+    },
+    {
+        "id": 9275,
+        "name": "Blinder Passagier",
+        "description": "Zu Beginn deines<br>nächsten Zuges:<br> '''+2 Karten.'''{{divline}}Wenn irgendjemand eine<br>Dauerkarte nimmt, darfst<br>du diese Karte aus deiner<br>Hand spielen."
+    },
+    {
+        "id": 9276,
+        "name": "Aufdringlich",
+        "description": "Wenn du eine Provinz nimmst,<br>nimm eine Aufdringliche Karte."
+    },
+    {
+        "id": 9277,
+        "name": "Fromm",
+        "description": "Wenn du eine Fromme Karte nimmst,<br>darfst du eine deiner Handkarten entsorgen."
+    },
+    {
+        "id": 9278,
+        "name": "Scheu",
+        "description": "Zu Beginn deines Zuges darfst du<br>1 Scheue Karte für '''+2 Karten''' ablegen."
+    },
+    { "id": 9302, "name": "Billig", "description": "Billige Karten kosten {{Cost|1}} weniger." },
+    {
+        "id": 9303,
+        "name": "Riskieren",
+        "description": "Du darfst eine Aktionskarte aus deiner Hand entsorgen<br>um eine Kostbarkeit zu nehmen."
+    },
+    {
+        "id": 9304,
+        "name": "Aufblühen",
+        "description": "Nimm eine Kostbarkeit und zusätzlich beliebig<br>viele Geldkarten mit unterschiedlichen Namen."
+    },
+    {
+        "id": 9305,
+        "name": "Sack voll Kostbarkeiten",
+        "description": "{{Cost|1|l}}<br>'''+1 Kauf'''<br>Nimm eine Kostbarkeit."
+    },
+    {
+        "id": 9306,
+        "name": "Spitzhacke",
+        "description": "{{Cost|1|l}}<br>Entsorge eine deiner Hand-<br>karten. Wenn sie {{Cost|3}} oder<br>mehr kostet, nimm eine<br>Kostbarkeit auf die Hand."
+    },
+    {
+        "id": 9307,
+        "name": "Wohlhabendes Dorf",
+        "description": "'''+1 Karte<br>+2 Aktionen'''{{divline}}Wenn du diese Karte nimmst:<br>Hast du mindestens 3&nbsp;Geld&shy;karten mit unterschied&shy;lichen Namen im Spiel, nimm eine Kostbar&shy;keit."
+    },
+    {
+        "id": 9308,
+        "name": "Juwelen-Ei",
+        "description": "{{Cost|1|l}}<br>'''+1 Kauf'''{{divline}}Wenn du diese Karte<br>entsorgst, nimm eine<br>Kostbarkeit"
+    },
+    {
+        "id": 9309,
+        "name": "Amphore",
+        "description": "Entweder jetzt oder zu<br>Beginn deine nächsten<br>Zuges:<br>'''+1 Kauf''' und +{{Cost|3}}."
+    },
+    {
+        "id": 9310,
+        "name": "Dublonen",
+        "description": "{{Cost|3}}{{divline}}Wenn du diese Karte<br>nimmst, nimm ein Gold."
+    },
+    {
+        "id": 9311,
+        "name": "Endloser Kelch",
+        "description": "Jetzt und zu Beginn<br>aller deiner Züge bis<br>zum Spielende:<br>{{Cost|1|l}}<br>'''+1 Kauf'''"
+    },
+    {
+        "id": 9312,
+        "name": "Galionsfigur",
+        "description": "{{Cost|3|l}}<br>Zu Beginn deines<br>nächsten Zuges:<br>'''+2 Karten'''."
+    },
+    {
+        "id": 9313,
+        "name": "Hammer",
+        "description": "{{Cost|3|l}}<br>Nimm eine Karte,<br>die bis zu {{Cost|4}} kostet."
+    },
+    {
+        "id": 9314,
+        "name": "Insignien",
+        "description": "{{Cost|3|l}}<br>Wenn du in diesem Zug<br>eine Karte nimmst, darfst<br>du sie auf deinen Nachzieh-<br>stapel legen."
+    },
+    {
+        "id": 9315,
+        "name": "Juwelen",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''<br>Zu Beginn deines nächsten<br>Zuges lege diese Karte unter<br>deinen Nachziehstapel."
+    },
+    {
+        "id": 9316,
+        "name": "Kugel",
+        "description": "Sieh deinen Ablagestapel durch.<br>Wähle eins: Spiele daraus eine Aktions- oder eine Geld&shy;karte<br>oder<br>'''+1 Kauf''' und {{nowrap|+{{Cost|3}}.}}"
+    },
+    {
+        "id": 9317,
+        "name": "Zuchtziege",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''<br>Du darfst eine deiner<br>Handkarten entsorgen."
+    },
+    {
+        "id": 9318,
+        "name": "Rätselschatulle",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''<br>Du darfst eine deiner Hand-<br>karten verdeckt zur Seite<br>legen. Nimm sie am Ende<br>des Zuges auf deine Hand."
+    },
+    {
+        "id": 9319,
+        "name": "Sextant",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''<br>Sieh die obersten 5&nbsp;Karten deines Nachzieh&shy;stapels an. Lege beliebig viele davon ab und den Rest in beliebiger Reihen&shy;folge zurück."
+    },
+    {
+        "id": 9320,
+        "name": "Schild",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''{{divline}}Spielt ein Mitspieler eine An-<br>griffskarte, darfst du zuerst diese<br>Karte aus deiner Hand aufde-<br>cken, um nicht betroffen zu sein."
+    },
+    {
+        "id": 9321,
+        "name": "Zauberrolle",
+        "description": "Entsorge diese Karte, um eine<br>billigere Karte zu nehmen.<br><br>Wenn jene eine Aktions-<br>oder Geldkarte ist, darfst<br>du sie spielen."
+    },
+    {
+        "id": 9322,
+        "name": "Stab",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''<br>Du darfst eine<br>Aktionskarte aus<br>deiner Hand spielen."
+    },
+    {
+        "id": 9323,
+        "name": "Schwert",
+        "description": "{{Cost|3|l}}<br>'''+1 Kauf'''<br>Jeder Mitspieler legt seine<br>Handkarten bis auf 4 ab."
+    },
+    {
+        "id": 9349,
+        "name": "Landungstrupp",
+        "description": "'''+2 Karten<br>+2 Aktionen'''<br>Das nächste Mal, wenn du als<br>erste Karte in einem Zug eine<br>Geldkarte spielst, lege diese<br>Karte danach auf deinen<br>Nachziehstapel."
+    },
+    {
+        "id": 9350,
+        "name": "Einsamer Schrein",
+        "description": "+{{Cost|1}}<br>Das nächste Mal, wenn du<br>eine Geldkarte nimmst,<br>entsorge bis zu 2 deiner<br>Handkarten."
+    },
+    {
+        "id": 9351,
+        "name": "Überfluss",
+        "description": "Das nächste<br>Mal, wenn du eine<br>Aktionskarte nimmst:<br>'''+1 Kauf''' und +{{Cost|3}}."
+    },
+    {
+        "id": 9352,
+        "name": "Flaggschiff",
+        "description": "+{{Cost|2}}<br>Das nächste Mal, wenn du eine Aktionskarte spielst, die keine Befehlskarte ist, spiele sie erneut."
+    },
+    {
+        "id": 9353,
+        "name": "Geerbt",
+        "description": "Spielvorbereitung: Du beginnst das Spiel mit<br>einer Geerbten Karte anstelle einer Startkarte deiner Wahl."
+    },
+    {
+        "id": 9354,
+        "name": "Eilig",
+        "description": "Wenn du eine Eilige Karte nimmst,<br>lege sie zur Seite und spiele sie zu<br>Beginn deine nächsten Zuges."
+    },
+    {
+        "id": 9355,
+        "name": "Beeilung",
+        "description": "'''+1 Kauf'''<br>Das nächste Mal, wenn du in diesem<br>Zug eine Aktionskarte nimmst, spiele sie."
+    },
+    {
+        "id": 9363,
+        "name": "Vorarbeiter",
+        "description": "'''+1 Aktion''', {{nowrap|+{{Cost|1}}}} und, wenn du in diesem Zug eine Karte nimmst, die genau {{Cost|5}} kostet, wiederhole diese Fähigkeit zu Beginn deines nächsten Zuges."
+    },
+    {
+        "id": 9364,
+        "name": "Königstruhe",
+        "description": "Du darfst eine Geldkarte aus deiner Hand dreimal spielen."
+    },
+    {
+        "id": 9365,
+        "name": "Erste Maatin",
+        "description": "Spiele beliebig viele Aktionskarten mit gleichem Namen aus deiner Hand, dann zieh, bis du 6&nbsp;Handkarten hast."
+    },
+    {
+        "id": 9366,
+        "name": "Schamanin",
+        "description": "'''+1 Aktion'''<br>+{{Cost|1}}<br>Du darfst eine deiner Handkarten<br>entsorgen.{{divline}}In Spielen mit dieser Karte nimm zu<br>Beginn deines Zuges eine Karte aus<br>dem Müll, die bis zu {{Cost|6}} kostet."
+    },
+    {
+        "id": 9367,
+        "name": "Reise",
+        "description": "Einmal pro Zug: Wenn der vorherige Zug<br>nicht deiner war, legst du in diesem Zug in<br>der Aufräumphase keine Karten aus dem Spiel ab,<br>und du führst nach diesem Zug einen Extrazug aus."
+    },
+    {
+        "id": 9368,
+        "name": "Verflucht",
+        "description": "Wenn du eine Verfluchte Karte nimmst,<br>nimm eine Kostbarkeit und einen Fluch."
+    },
+    {
+        "id": 9369,
+        "name": "Geduldig",
+        "description": "Zu Beginn deiner Aufräumphase darfst du<br>Geduldige Karten aus deiner Hand zur Seite legen,<br>um sie zu Beginn deines nächsten Zuges zu spielen."
+    },
+    {
+        "id": 9413,
+        "name": "Spiegeln",
+        "description": "'''+1 Kauf'''<br>Das nächste Mal, wenn du in diesem Zug eine<br>Aktionskarte nimmst, nimm eine gleiche Karte."
+    },
+    {
+        "id": 9414,
+        "name": "Vorherbestimmt",
+        "description": "Beim Mischen darfst du die Karten durchsehen<br>und Vorherbestimmte Karten aufdecken,<br>um sie nach oben oder unten zu legen."
+    },
+    {
+        "id": 9415,
+        "name": "Freundlich",
+        "description": "Zu Beginn deiner Aufräumphase<br>darfst du 1 Freundliche Karte ablegen,<br>um 1 Freundliche Karte zu nehmen."
+    },
+    {
+        "id": 9416,
+        "name": "Inspirierend",
+        "description": "Nachdem du in deinem Zug eine Inspirierende Karte<br>gespielt hast, darfst du eine Aktionskarte aus deiner<br>Hand spielen, von der du keine gleiche im Spiel hast."
+    },
+    {
+        "id": 9417,
+        "name": "Benachbart",
+        "description": "Wenn du eine Benachbarte Karte nimmst:<br>'''+1 Kauf'''."
+    },
+    {
+        "id": 9418,
+        "name": "Waghalsig",
+        "description": "Befolge die Anweisungen der gespielten Waghalsigen<br>Karten zweimal. Wenn du eine Waghalsige Karte aus<br>dem Spiel ablegst, lege sie auf ihren Stapel zurück."
+    },
+    {
+        "id": 9419,
+        "name": "Reich",
+        "description": "Wenn du eine Reiche Karte<br>nimmst, nimm ein Silber."
+    },
+    {
+        "id": 9420,
+        "name": "Unermüdlich",
+        "description": "Wenn du eine Unermüdliche Karte aus dem<br>Spiel ablegst, lege sie zur Seite, und lege sie<br>am Ende des Zuges auf deinen Nachziehstapel."
+    },
+    {
+        "id": 9421,
+        "name": "Ausweichen",
+        "description": "'''+1 Kauf'''<br>Wenn du in diesem Zug zum nächsten Mal mischst, wähle bis zu 3 jener Karten und lege sie auf deinen Ablage&shy;stapel."
+    },
+    {
+        "id": 9422,
+        "name": "Zustellung",
+        "description": "'''+1 Kauf'''<br>Jedes Mal, wenn du in diesem Zug eine Karte nimmst, lege sie<br>zur Seite und nimm sie am Ende des Zuges auf deine Hand."
+    },
+    {
+        "id": 9423,
+        "name": "Brandschatzung",
+        "description": "Lege 3 Karten aufgedeckt ab. Wenn sie 3<br>unterschiedliche Namen haben, nimm eine Kostbarkeit."
+    },
+    {
+        "id": 9424,
+        "name": "In See stechen",
+        "description": "Einmal pro Zug: Kehre in deine Aktionsphase zurück.<br>'''+1 Karte''', '''+1 Aktion''' und '''+1 Kauf'''."
+    },
+    {
+        "id": 9425,
+        "name": "Herumsuchen",
+        "description": "Wähle eins: Entsorge eine deiner Handkarten oder<br>nimm ein Anwesen aus dem Müll und wenn du das<br>getan hast, nimm eine Karte, die bis zu {{Cost|5}} kostet."
+    },
+    { "id": 9426, "name": "Plünderung", "description": "Nimm eine Kostbarkeit." },
+    {
+        "id": 9427,
+        "name": "Invasion",
+        "description": "Du darfst eine Angriffskarte aus deiner Hand spielen.<br>Nimm ein Herzogtum. Nimm eine Aktionskarte auf<br>deinen Nachziehstapel. Nimm eine Kostbarkeit; spiele sie."
+    },
+    {
+        "id": 9428,
+        "name": "Käfig",
+        "description": "Lege bis zu 4 deiner Hand-<br>karten verdeckt zur Seite<br>(auf diese Karte).<br>Das nächste Mal, wenn<br>du eine Punktekarte nimmst,<br>entsorge diese Karte und nimm<br>die zur Seite gelegten Karten am<br>Ende des Zuges auf deine Hand."
+    },
+    {
+        "id": 9429,
+        "name": "Grotte",
+        "description": "'''+1 Aktion'''<br>Lege bis zu 4 deiner Handkarten<br>verdeckt zur Seite (auf<br>diese Karte).<br><br>Zu Beginn deines nächsten<br>Zuges lege sie ab, ziehe dann<br>gleich viele."
+    },
+    {
+        "id": 9430,
+        "name": "Suche",
+        "description": "+{{Cost|2}}<br>Das nächste Mal, wenn<br>ein Vorratsstapel leer wird,<br>entsorge diese Karte und<br>nimm eine Kostbarkeit."
+    },
+    {
+        "id": 9431,
+        "name": "Schiffsjunge",
+        "description": "'''+1 Karte<br>+1 Aktion'''<br>Zu Beginn deines nächsten<br>Zuges wähle eins: +{{Cost|2}} oder<br>entsorge diese Karte, um<br>eine Dauerkarte zu nehmen."
+    },
+    {
+        "id": 9432,
+        "name": "Schmelztiegel",
+        "description": "Entsorge eine deiner Handkarten.<br> +{{Cost|1}} pro {{Cost|1}}, das sie kostet."
+    },
+    {
+        "id": 9433,
+        "name": "Abenteurerin",
+        "description": "+{{Cost|2}}<br>Sieh dir die obersten 3 Karten<br>deines Nachziehstapels an.<br>Du darfst eine Geldkarte von<br>ihnen spielen. Lege den Rest in<br>beliebiger Reihenfolge zurück."
+    },
+    {
+        "id": 9434,
+        "name": "Gondel",
+        "description": "Entweder jetzt oder zu Beginn<br>deine nächsten Zuges: +{{Cost|2}}.{{divline}}Wenn du diese Karte nimmst,<br>darfst du eine Aktionskarte<br>aus deiner Hand spielen."
+    },
+    {
+        "id": 9435,
+        "name": "Hafendorf",
+        "description": "'''+1 Karte<br>+2 Aktionen'''<br>Nach der nächsten Aktions-<br>karte, die du in diesem Zug<br>spielst: Wenn sie dir +{{Cost}}<br>gab: +{{Cost|1}}."
+    },
+    {
+        "id": 9436,
+        "name": "Kartenzeichnerin",
+        "description": "Sieh dir die obersten 4&nbsp;Karten deines Nachzieh&shy;stapels an. Nimm 2 auf deine Hand und lege den Rest ab.{{divline}}Wenn ein Spieler eine Punkte&shy;karte nimmt, darfst du diese Karte aus deiner Hand spielen."
+    },
+    {
+        "id": 9437,
+        "name": "Ausgesetzter",
+        "description": "Entsorge eine deiner Handkarten.<br>'''+2 Karten''' pro Kartentyp, den sie hat (Aktion, Angriff, usw.)."
+    },
+    {
+        "id": 9438,
+        "name": "Mannschaft",
+        "description": "'''+3 Karten'''<br>Zu Beginn deines nächsten<br>Zuges lege diese Karte auf<br>deinen Nachziehstapel."
+    },
+    {
+        "id": 9474,
+        "name": "Vergrößerung",
+        "description": "Jetzt und zu Beginn deinen nächsten Zuges: <br> Entsorge eine deiner Hand&shy;karten und nimm eine Karte, die bis zu {{cost|2}} mehr kostet."
+    },
+    {
+        "id": 9475,
+        "name": "Meuchlerin",
+        "description": "<p>Jeder Mitspieler legt seine Hand&shy;karten bis auf&nbsp;3 ab.</p>Das nächste Mal, wenn irgend&shy;jemand eine Geldkarte nimmt, die {{Cost|5}} oder mehr kostet, nimm eine Kostbar&shy;keit."
+    },
+    {
+        "id": 9476,
+        "name": "Figurine",
+        "description": "'''+2 Karten'''<br>Du darfst eine Aktionskarte ablegen für '''+1&nbsp;Kauf''' und {{nowrap|+{{Cost|1}}.}}"
+    },
+    {
+        "id": 9477,
+        "name": "Fregatte",
+        "description": "+{{Cost|3}}<br>Bis zum Beginn deines nächsten Zuges:<br>Jedes Mal, wenn ein Mitspieler eine Aktions&shy;karte spielt, legt er danach seine Handkarten bis auf 4 ab."
+    },
+    {
+        "id": 9478,
+        "name": "Langschiff",
+        "description": "'''+2 Aktionen'''<br>Zu Beginn deines<br>nächsten Zuges:<br>'''+2 Karten'''."
+    },
+    {
+        "id": 9479,
+        "name": "Pilger",
+        "description": "'''+4 Karten'''<br>Lege eine deiner<br>Handkarten auf deinen<br>Nachziehstapel."
+    },
+    {
+        "id": 9480,
+        "name": "Quartiermeister",
+        "description": "Zu Beginn jedes deiner Züge bis zum Spielende wähle eins:<br>Nimm eine Karte, die bis zu {{Cost|4}} kostet, direkt zur Seite (auf diese Karte) oder nimm eine auf diese Karte gelegte Karte auf deine Hand."
+    },
+    {
+        "id": 9481,
+        "name": "Silbermine",
+        "description": "Nimm eine Geldkarte<br>auf deine Hand, die weniger<br>kostet als diese Karte."
+    },
+    {
+        "id": 9482,
+        "name": "Gauner",
+        "description": "<p>Jeder Mitspieler nimmt einen Fluch. </p>Einmal in diesem Zug darfst du, wenn du eine Geldkarte aus dem Spiel ablegst, jene zur Seite legen. Nimm sie am Ende des Zuges auf deine Hand."
     }
 ]

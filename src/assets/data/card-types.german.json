@@ -36,5 +36,7 @@
     { "id": 8192, "name": "Bürger" },
     { "id": 8236, "name": "Zauberer" },
     { "id": 8377, "name": "Bastionen" },
-    { "id": 8378, "name": "Konflikte" }
+    { "id": 8378, "name": "Konflikte" },
+    { "id": 9293, "name": "Merkmal" },
+    { "id": 9346, "name": "Kostbarkeit" }
 ]

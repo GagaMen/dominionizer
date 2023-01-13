@@ -37,5 +37,7 @@
     { "id": 8192, "name": "Townsfolk" },
     { "id": 8236, "name": "Wizard" },
     { "id": 8377, "name": "Fort" },
-    { "id": 8378, "name": "Clash" }
+    { "id": 8378, "name": "Clash" },
+    { "id": 9293, "name": "Trait" },
+    { "id": 9346, "name": "Loot" }
 ]
