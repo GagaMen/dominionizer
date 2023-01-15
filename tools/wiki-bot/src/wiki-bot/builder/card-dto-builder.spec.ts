@@ -179,7 +179,7 @@ describe('CardDtoBuilder', () => {
         });
 
         it('with cardPage of non-kingdom card should return correct card', () => {
-            const cardPage: CardPage = {
+            const cardPageOne: CardPage = {
                 ...nullCardPage,
                 revisions: [
                     {
@@ -187,12 +187,29 @@ describe('CardDtoBuilder', () => {
                     },
                 ],
             };
-            const expected: CardDto = {
-                ...nullCardDto,
-                isKingdomCard: false,
+            const cardPageTwo: CardPage = {
+                ...nullCardPage,
+                revisions: [
+                    {
+                        '*': '{{Infobox Card\n |kingdom = no\n}}',
+                    },
+                ],
             };
+            const expected: CardDto[] = [
+                {
+                    ...nullCardDto,
+                    isKingdomCard: false,
+                },
+                {
+                    ...nullCardDto,
+                    isKingdomCard: false,
+                },
+            ];
 
-            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+            const actual = [
+                cardDtoBuilder.build(cardPageOne, new Map(), []),
+                cardDtoBuilder.build(cardPageTwo, new Map(), []),
+            ];
 
             expect(actual).toEqual(expected);
         });

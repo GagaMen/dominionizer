@@ -111,9 +111,11 @@ export class CardDtoBuilder {
             return false;
         }
 
-        const isKingdomCard: WikiText = normalize(extractTemplatePropertyValue(infoBox, 'kingdom'));
+        const isKingdomCard: WikiText = normalize(
+            extractTemplatePropertyValue(infoBox, 'kingdom'),
+        ).toLowerCase();
 
-        return isKingdomCard !== 'No';
+        return isKingdomCard !== 'no';
     }
 
     private extractCost(infoBox: WikiText): number {
