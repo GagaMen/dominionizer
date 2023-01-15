@@ -173,7 +173,8 @@ describe('ConfigurationComponent', () => {
             const areLandmarksAvailable$ = cold('--c', { c: availability.landmarks });
             const areProjectsAvailable$ = cold(' --d', { d: availability.projects });
             const areWaysAvailable$ = cold('     --e', { e: availability.ways });
-            const expected$ = cold('             --f', { f: expected });
+            const areTraitsAvailable$ = cold('   --f', { f: availability.traits });
+            const expected$ = cold('             --g', { g: expected });
             configurationServiceSpy.configuration$ = configuration$;
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Event)
@@ -187,6 +188,9 @@ describe('ConfigurationComponent', () => {
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Way)
                 .and.returnValue(areWaysAvailable$);
+            configurationServiceSpy.isCardTypeAvailable
+                .withArgs(CardTypeId.Trait)
+                .and.returnValue(areTraitsAvailable$);
             fixture.detectChanges();
 
             const actual$ = component.specialCardSelectViewData$;

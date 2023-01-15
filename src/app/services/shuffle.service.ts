@@ -17,6 +17,7 @@ interface RandomizableCards {
     landmarks: Card[];
     projects: Card[];
     ways: Card[];
+    traits: Card[];
     allies: Card[];
 }
 
@@ -33,6 +34,7 @@ export class ShuffleService {
         landmarks: this.cardService.findByCardType(CardTypeId.Landmark),
         projects: this.cardService.findByCardType(CardTypeId.Project),
         ways: this.cardService.findByCardType(CardTypeId.Way),
+        traits: this.cardService.findByCardType(CardTypeId.Trait),
         allies: this.cardService.findByCardType(CardTypeId.Ally),
     });
 
@@ -92,6 +94,11 @@ export class ShuffleService {
                     configuration.expansions,
                     configuration.specialCardsCount.ways,
                 ),
+                ...this.pickRandomCards(
+                    randomizableCards.traits,
+                    configuration.expansions,
+                    configuration.specialCardsCount.traits,
+                ),
                 ...allies,
             ],
         };
@@ -148,6 +155,7 @@ export class ShuffleService {
             [CardTypeId.Landmark, randomizableCards.landmarks],
             [CardTypeId.Project, randomizableCards.projects],
             [CardTypeId.Way, randomizableCards.ways],
+            [CardTypeId.Trait, randomizableCards.traits],
             [CardTypeId.Ally, randomizableCards.allies],
         ]);
 

@@ -132,6 +132,7 @@ describe('CardComponent', () => {
             { typeIds: [CardTypeId.Treasure], expected: calculateColor(CardTypeId.Treasure) },
             { typeIds: [CardTypeId.Victory], expected: calculateColor(CardTypeId.Victory) },
             { typeIds: [CardTypeId.Way], expected: calculateColor(CardTypeId.Way) },
+            { typeIds: [CardTypeId.Trait], expected: calculateColor(CardTypeId.Trait) },
             { typeIds: [CardTypeId.Ally], expected: calculateColor(CardTypeId.Ally) },
             {
                 typeIds: [CardTypeId.Action, CardTypeId.Duration],

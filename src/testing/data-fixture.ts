@@ -171,6 +171,7 @@ export class DataFixture {
             landmarks: this.chance.integer({ min: 0, max: 5 }),
             projects: this.chance.integer({ min: 0, max: 5 }),
             ways: this.chance.integer({ min: 0, max: 5 }),
+            traits: this.chance.integer({ min: 0, max: 5 }),
             ...count,
         };
     }
@@ -183,6 +184,7 @@ export class DataFixture {
             landmarks: this.chance.bool(),
             projects: this.chance.bool(),
             ways: this.chance.bool(),
+            traits: this.chance.bool(),
             ...availability,
         };
     }

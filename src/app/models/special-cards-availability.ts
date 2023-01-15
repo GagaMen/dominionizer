@@ -3,4 +3,5 @@ export interface SpecialCardsAvailability {
     landmarks: boolean;
     projects: boolean;
     ways: boolean;
+    traits: boolean;
 }

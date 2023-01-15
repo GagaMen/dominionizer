@@ -30,4 +30,12 @@
         </div>
         <mat-slider formControlName="ways" min="0" max="5" tickInterval="1"></mat-slider>
     </div>
+
+    <div *ngIf="availability.traits">
+        <div class="special-cards-label">
+            <label i18n>Traits</label>
+            <span>{{ formGroup.value.traits }}</span>
+        </div>
+        <mat-slider formControlName="traits" min="0" max="5" tickInterval="1"></mat-slider>
+    </div>
 </form>

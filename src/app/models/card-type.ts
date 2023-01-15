@@ -45,4 +45,6 @@ export enum CardTypeId {
     Wizard = 8236,
     Fort = 8377,
     Clash = 8378,
+    Trait = 9293,
+    Loot = 9346,
 }

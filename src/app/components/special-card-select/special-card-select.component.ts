@@ -14,9 +14,16 @@ export class SpecialCardSelectComponent implements OnInit {
         landmarks: false,
         projects: false,
         ways: false,
+        traits: false,
     };
 
-    @Input() initialValue: SpecialCardsCount = { events: 0, landmarks: 0, projects: 0, ways: 0 };
+    @Input() initialValue: SpecialCardsCount = {
+        events: 0,
+        landmarks: 0,
+        projects: 0,
+        ways: 0,
+        traits: 0,
+    };
 
     @Output()
     // eslint-disable-next-line @angular-eslint/no-output-native
@@ -32,6 +39,7 @@ export class SpecialCardSelectComponent implements OnInit {
             landmarks: [this.initialValue.landmarks],
             projects: [this.initialValue.projects],
             ways: [this.initialValue.ways],
+            traits: [this.initialValue.traits],
         });
 
         this.formGroup.valueChanges.subscribe((specialCardsCount: SpecialCardsCount) =>

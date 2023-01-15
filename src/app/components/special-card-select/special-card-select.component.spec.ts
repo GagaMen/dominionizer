@@ -49,6 +49,7 @@ describe('SpecialCardSelectComponent', () => {
             expect(actual.contains('landmarks')).withContext('landmarks').toBeTrue();
             expect(actual.contains('projects')).withContext('projects').toBeTrue();
             expect(actual.contains('ways')).withContext('ways').toBeTrue();
+            expect(actual.contains('traits')).withContext('traits').toBeTrue();
         });
 
         it('should have correct initial value', () => {
@@ -68,6 +69,7 @@ describe('SpecialCardSelectComponent', () => {
                 landmarks: true,
                 projects: true,
                 ways: true,
+                traits: true,
             };
             const expected = dataFixture.createSpecialCardsCount();
             const emitSpy = spyOn(component.change, 'emit');
@@ -95,6 +97,7 @@ describe('SpecialCardSelectComponent', () => {
             'landmarks',
             'projects',
             'ways',
+            'traits',
         ];
         specialCards.forEach((specialCards) => {
             it(`with ${specialCards} are available should render corresponding slider correctly`, async () => {
@@ -103,6 +106,7 @@ describe('SpecialCardSelectComponent', () => {
                     landmarks: false,
                     projects: false,
                     ways: false,
+                    traits: false,
                 };
                 availability[specialCards] = true;
                 component.availability = availability;
@@ -126,6 +130,7 @@ describe('SpecialCardSelectComponent', () => {
                     landmarks: false,
                     projects: false,
                     ways: false,
+                    traits: false,
                 };
                 availability[specialCards] = true;
                 component.availability = availability;
@@ -145,6 +150,7 @@ describe('SpecialCardSelectComponent', () => {
                     landmarks: false,
                     projects: false,
                     ways: false,
+                    traits: false,
                 };
                 availability[specialCards] = true;
                 component.availability = availability;

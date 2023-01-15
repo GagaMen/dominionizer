@@ -29,6 +29,7 @@ describe('ShuffleService', () => {
     let landmarks: Card[];
     let projects: Card[];
     let ways: Card[];
+    let traits: Card[];
     let allies: Card[];
     const kingdomCardsCountOfConfiguredExpansions = 20;
     const singleSpecialCardsCountOfConfiguredExpansions = 5;
@@ -83,7 +84,7 @@ describe('ShuffleService', () => {
         nonConfiguredExpansion = dataFixture.createExpansion();
         configuration = dataFixture.createConfiguration({
             expansions: [configuredExpansion],
-            specialCardsCount: { events: 0, landmarks: 0, projects: 0, ways: 0 },
+            specialCardsCount: { events: 0, landmarks: 0, projects: 0, ways: 0, traits: 0 },
         });
         kingdomCards = createCards(
             dataFixture.createCardType({ id: CardTypeId.Liaison }),
@@ -110,6 +111,11 @@ describe('ShuffleService', () => {
             false,
             singleSpecialCardsCountOfConfiguredExpansions,
         );
+        traits = createCards(
+            dataFixture.createCardType({ id: CardTypeId.Trait }),
+            false,
+            singleSpecialCardsCountOfConfiguredExpansions,
+        );
         allies = createCards(
             dataFixture.createCardType({ id: CardTypeId.Ally }),
             false,
@@ -132,6 +138,9 @@ describe('ShuffleService', () => {
         cardServiceSpy.findByCardType
             .withArgs(CardTypeId.Way)
             .and.returnValue(cold('(a|)', { a: ways }));
+        cardServiceSpy.findByCardType
+            .withArgs(CardTypeId.Trait)
+            .and.returnValue(cold('(a|)', { a: traits }));
         cardServiceSpy.findByCardType
             .withArgs(CardTypeId.Ally)
             .and.returnValue(cold('(a|)', { a: allies }));
@@ -182,6 +191,7 @@ describe('ShuffleService', () => {
                 ['landmarks', () => landmarks],
                 ['projects', () => projects],
                 ['ways', () => ways],
+                ['traits', () => traits],
             ] as [keyof SpecialCardsCount, () => Card[]][]
         ).forEach(([specialCards, getSpecialCards]) => {
             it(`with ${specialCards} are available in configured expansions should pick configured number of random ${specialCards}`, () => {
@@ -283,6 +293,7 @@ describe('ShuffleService', () => {
                 ['landmark', () => landmarks],
                 ['project', () => projects],
                 ['way', () => ways],
+                ['trait', () => traits],
                 ['ally', () => allies],
             ] as [string, () => Card[]][]
         ).forEach(([specialCard, getSpecialCards]) => {

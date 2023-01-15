@@ -81,6 +81,7 @@ export class ConfigurationComponent implements OnInit {
             this.configurationService.isCardTypeAvailable(CardTypeId.Landmark),
             this.configurationService.isCardTypeAvailable(CardTypeId.Project),
             this.configurationService.isCardTypeAvailable(CardTypeId.Way),
+            this.configurationService.isCardTypeAvailable(CardTypeId.Trait),
         ]).pipe(
             map(
                 ([
@@ -89,13 +90,15 @@ export class ConfigurationComponent implements OnInit {
                     areLandmarksAvailable,
                     areProjectsAvailable,
                     areWaysAvailable,
+                    areTraitsAvailable,
                 ]) => {
                     if (
                         !(
                             areEventsAvailable ||
                             areLandmarksAvailable ||
                             areProjectsAvailable ||
-                            areWaysAvailable
+                            areWaysAvailable ||
+                            areTraitsAvailable
                         )
                     ) {
                         return null;
@@ -108,6 +111,7 @@ export class ConfigurationComponent implements OnInit {
                             landmarks: areLandmarksAvailable,
                             projects: areProjectsAvailable,
                             ways: areWaysAvailable,
+                            traits: areTraitsAvailable,
                         },
                     };
                     return viewData;

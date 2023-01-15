@@ -23,6 +23,7 @@ export class CardComponent {
         [CardTypeId.Treasure, '#fff095'],
         [CardTypeId.Victory, '#adcd2a'],
         [CardTypeId.Way, '#d3eef9'],
+        [CardTypeId.Trait, '#cbc9e1'],
         [CardTypeId.Ally, '#ddc6a7'],
     ]);
 
@@ -52,6 +53,7 @@ export class CardComponent {
             CardTypeId.Landmark,
             CardTypeId.Project,
             CardTypeId.Way,
+            CardTypeId.Trait,
             CardTypeId.Ally,
         ];
         const orderedSecondaryCardTypes = [CardTypeId.Action, CardTypeId.Night];

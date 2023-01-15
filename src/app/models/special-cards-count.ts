@@ -3,4 +3,5 @@ export interface SpecialCardsCount {
     landmarks: number;
     projects: number;
     ways: number;
+    traits: number;
 }

@@ -19,6 +19,7 @@ export class ConfigurationService {
             landmarks: 0,
             projects: 0,
             ways: 0,
+            traits: 0,
         },
     };
 
