@@ -9,39 +9,33 @@
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}",
-            "sourceMapPathOverrides": {
-                "webpack:/*": "${webRoot}/*",
-                "/./*": "${webRoot}/*",
-                "/src/*": "${webRoot}/*",
-                "/*": "*",
-                "/./~/*": "${webRoot}/node_modules/*"
-            }
+            "webRoot": "${workspaceFolder}"
         },
         {
             "name": "app: test",
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:9876/debug.html",
-            "webRoot": "${workspaceFolder}",
-            "pathMapping": {
-                "/_karma_webpack_": "${workspaceFolder}"
-            },
-            "sourceMapPathOverrides": {
-                "webpack:/*": "${webRoot}/*",
-                "/./*": "${webRoot}/*",
-                "/src/*": "${webRoot}/*",
-                "/*": "*",
-                "/./~/*": "${webRoot}/node_modules/*"
-            }
+            "webRoot": "${workspaceFolder}"
         },
         {
             "name": "wiki-bot: start",
             "type": "node",
             "request": "launch",
             "localRoot": "${workspaceFolder}/tools/wiki-bot",
-            "runtimeArgs": ["-r", "ts-node/register"],
-            "args": ["./src/main.ts"],
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "start"],
+            "skipFiles": ["<node_internals>/**"],
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": "wiki-bot: test:ci",
+            "type": "node",
+            "request": "launch",
+            "localRoot": "${workspaceFolder}/tools/wiki-bot",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "test:ci"],
+            "skipFiles": ["<node_internals>/**"],
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
