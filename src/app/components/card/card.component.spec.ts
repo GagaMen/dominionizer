@@ -203,6 +203,10 @@ describe('CardComponent', () => {
                 expected: calculateColor(CardTypeId.Duration, CardTypeId.Reaction),
             },
             {
+                typeIds: [CardTypeId.Treasure, CardTypeId.Duration],
+                expected: calculateColor(CardTypeId.Treasure, CardTypeId.Duration),
+            },
+            {
                 typeIds: [CardTypeId.Action, CardTypeId.Reserve, CardTypeId.Victory],
                 expected: calculateColor(CardTypeId.Reserve, CardTypeId.Victory),
             },

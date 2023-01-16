@@ -42,8 +42,8 @@ export class CardComponent {
 
     get color(): string {
         const orderedPrimaryCardTypes = [
-            CardTypeId.Duration,
             CardTypeId.Treasure,
+            CardTypeId.Duration,
             CardTypeId.Reserve,
             CardTypeId.Victory,
             CardTypeId.Reaction,
