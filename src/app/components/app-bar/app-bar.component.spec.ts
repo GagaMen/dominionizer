@@ -1,7 +1,11 @@
 import { detectChangesAndFlush } from 'src/testing/utilities';
 import { cold } from 'jasmine-marbles';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
-import { MatButton, MatButtonModule, MatAnchor } from '@angular/material/button';
+import {
+    MatLegacyButton as MatButton,
+    MatLegacyButtonModule as MatButtonModule,
+    MatLegacyAnchor as MatAnchor,
+} from '@angular/material/legacy-button';
 import { DataFixture } from './../../../testing/data-fixture';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { SpyObj } from './../../../testing/spy-obj';

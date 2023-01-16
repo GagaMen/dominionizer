@@ -1,6 +1,6 @@
 import { Language } from './../../models/language';
 import { Component, ViewChild } from '@angular/core';
-import { MatMenu } from '@angular/material/menu';
+import { MatLegacyMenu as MatMenu } from '@angular/material/legacy-menu';
 
 @Component({
     selector: 'app-language-menu',

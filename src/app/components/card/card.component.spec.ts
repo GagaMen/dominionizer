@@ -2,12 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
 import {
-    MatCardModule,
-    MatCardAvatar,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCard,
-} from '@angular/material/card';
+    MatLegacyCardModule as MatCardModule,
+    MatLegacyCardAvatar as MatCardAvatar,
+    MatLegacyCardTitle as MatCardTitle,
+    MatLegacyCardSubtitle as MatCardSubtitle,
+    MatLegacyCard as MatCard,
+} from '@angular/material/legacy-card';
 import { MatIconModule } from '@angular/material/icon';
 import { DataFixture } from 'src/testing/data-fixture';
 import { environment } from 'src/environments/environment';

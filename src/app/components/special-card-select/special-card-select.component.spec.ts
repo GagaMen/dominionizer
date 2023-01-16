@@ -4,10 +4,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UntypedFormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { ConfigurationService } from 'src/app/services/configuration.service';
-import { MatSliderHarness } from '@angular/material/slider/testing';
+import { MatLegacySliderHarness as MatSliderHarness } from '@angular/material/legacy-slider/testing';
 
 import { SpecialCardSelectComponent } from './special-card-select.component';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatLegacySliderModule as MatSliderModule } from '@angular/material/legacy-slider';
 import { By } from '@angular/platform-browser';
 import { DataFixture } from 'src/testing/data-fixture';
 

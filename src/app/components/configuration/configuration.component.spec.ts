@@ -29,7 +29,7 @@ import {
     StepperOrientation,
 } from '@angular/material/stepper/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { Card } from 'src/app/models/card';
 
 describe('ConfigurationComponent', () => {

@@ -12,6 +12,9 @@ module.exports = {
                 'plugin:@angular-eslint/recommended',
                 'plugin:prettier/recommended',
             ],
+            parserOptions: {
+                project: 'tsconfig.json',
+            },
             rules: {
                 '@angular-eslint/component-selector': [
                     'error',
