@@ -1,5 +1,9 @@
 {
     "name": "dominionizer-wiki-bot",
+    "engines": {
+        "node": "^16",
+        "npm": "^8"
+    },
     "scripts": {
         "start": "ts-node ./src/main.ts",
         "prettier": "prettier --write --loglevel warn ../../src/assets/data",
