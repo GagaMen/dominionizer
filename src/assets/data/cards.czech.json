@@ -99,7 +99,11 @@
     { "id": 134, "name": "Černý trh", "description": "" },
     { "id": 135, "name": "Posel", "description": "" },
     { "id": 136, "name": "Hrazená vesnice", "description": "" },
-    { "id": 138, "name": "Tajná skrýš", "description": "" },
+    {
+        "id": 138,
+        "name": "Tajná skrýš",
+        "description": "{{Cost|2|l}}{{divline}}Po zamíchání můžeš změnit pozici této karty ve svém balíčku."
+    },
     {
         "id": 155,
         "name": "Žebrák",
