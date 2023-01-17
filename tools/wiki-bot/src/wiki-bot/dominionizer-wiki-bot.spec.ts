@@ -31,6 +31,7 @@ import * as Fs from 'fs/promises';
 import { CardType } from '../../../../src/app/models/card-type';
 import { ValidationResult } from './validation/validation-result';
 import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
+import { DataFixture } from '../../../../src/testing/data-fixture';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -59,8 +60,11 @@ describe('DominionizerWikiBot', () => {
     let imageValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let writeFileSpy: jasmine.Spy;
     let readFileSpy: jasmine.Spy;
+    let dataFixture: DataFixture;
 
     beforeEach(() => {
+        dataFixture = new DataFixture();
+
         lastGenerationTime = new Date('2022-09-03T09:18:53.321Z');
         currentGenerationTime = new Date();
 
@@ -416,9 +420,9 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 40, title: 'Card 40' } as CardTypePage,
             ];
             const cardTypes: CardType[] = [
-                { id: 10 } as CardType,
-                { id: 30 } as CardType,
-                { id: 40 } as CardType,
+                dataFixture.createCardType({ id: 10 }),
+                dataFixture.createCardType({ id: 30 }),
+                dataFixture.createCardType({ id: 40 }),
             ];
             const cardPages: CardPage[] = [
                 { pageid: 20, title: 'Card 20' } as CardPage,

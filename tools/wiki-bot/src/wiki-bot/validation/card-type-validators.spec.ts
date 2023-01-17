@@ -1,9 +1,16 @@
+import { DataFixture } from '../../../../../src/testing/data-fixture';
 import { CardType } from '../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
 import { CardTypesValidator, CardTypeValidator } from './card-type-validators';
 import { ValidationResult } from './validation-result';
 
 describe('card type validators', () => {
+    let dataFixture: DataFixture;
+
+    beforeEach(() => {
+        dataFixture = new DataFixture();
+    });
+
     describe('CardTypeValidator', () => {
         const validator = new CardTypeValidator();
 
@@ -42,7 +49,10 @@ describe('card type validators', () => {
 
         describe('validate', () => {
             it('with valid card type amount should return Success', () => {
-                const cardTypes: CardType[] = [{ id: 1 } as CardType, { id: 2 } as CardType];
+                const cardTypes: CardType[] = [
+                    dataFixture.createCardType({ id: 1 }),
+                    dataFixture.createCardType({ id: 2 }),
+                ];
                 const cardTypePages: CardTypePage[] = [
                     { pageid: 1 } as CardTypePage,
                     { pageid: 2 } as CardTypePage,
@@ -55,7 +65,7 @@ describe('card type validators', () => {
             });
 
             it('with no card type for card type page should return Failure', () => {
-                const cardTypes: CardType[] = [{ id: 1 } as CardType];
+                const cardTypes: CardType[] = [dataFixture.createCardType({ id: 1 })];
                 const cardTypePages: CardTypePage[] = [
                     { pageid: 1 } as CardTypePage,
                     { pageid: 2, title: 'Card Type 2' } as CardTypePage,

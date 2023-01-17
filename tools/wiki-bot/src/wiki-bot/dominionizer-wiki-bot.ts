@@ -28,7 +28,7 @@ import {
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
 import { ValidationResult } from './validation/validation-result';
-import { red } from 'chalk';
+import chalk from 'chalk';
 import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
 
 export class DominionizerWikiBot {
@@ -451,7 +451,7 @@ export class DominionizerWikiBot {
             return;
         }
 
-        console.error(red(validationResult.failureMessage));
+        console.error(chalk.red(validationResult.failureMessage ?? ''));
         this.successful = false;
     }
 }
