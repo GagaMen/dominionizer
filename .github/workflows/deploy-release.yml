@@ -19,6 +19,9 @@ jobs:
               with:
                   node-version: 18
 
+            - name: Setup npm
+              run: npm install -g npm@9
+
             - name: Cache Node.js modules
               uses: actions/cache@v3
               with:
