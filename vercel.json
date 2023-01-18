@@ -2,7 +2,6 @@
     "buildCommand": "npm run build",
     "devCommand": "npm start",
     "framework": "angular",
-    "installCommand": "npm ci",
     "outputDirectory": "dist",
     "redirects": [
         {
