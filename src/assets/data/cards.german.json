@@ -447,7 +447,7 @@
         "name": "Beute",
         "description": "{{Cost|3|l}}<br>Wenn du diese Karte ausspielst, lege sie zurück auf den Beute-Stapel.<br>''(Diese Karte ist nicht Teil des Vorrats.)''"
     },
-    { "id": 212, "name": "Fluch", "description": "{{VP|-1|xl}}" },
+    { "id": 212, "name": "Fluch", "description": "{{VP|-1|l}}" },
     {
         "id": 242,
         "name": "Lohn",
@@ -512,7 +512,7 @@
     {
         "id": 327,
         "name": "Stadt",
-        "description": "'''+1 Karte'''<br>'''+2 Aktionen'''<br>Wenn 1 oder mehr Vorratsstapel leer sind: '''+1&nbsp;Karte'''. Wenn 2 oder mehr Vorratsstapel leer sind (zus&auml;tzlich): '''+1&nbsp;Kauf''' und {{nowrap|+{{Cost|1}}.}}"
+        "description": "'''+1 Karte<br>+2 Aktionen'''<br>Wenn 1 oder mehr Vorratsstapel leer sind: '''+1&nbsp;Karte'''.<br>Wenn 2 oder mehr Vorratsstapel leer sind: zus&auml;tz&shy;lich '''+1&nbsp;Kauf''' und {{nowrap|+{{Cost|1}}.}}"
     },
     {
         "id": 328,
@@ -860,12 +860,12 @@
         "description": "<p>Wähle zwei verschiedene:<br>'''+2 Karten'''<br>oder '''+2 Aktionen'''<br>oder +{{Cost|2}}<br>oder nimm 4 Silber und lege deinen<br>Nachziehstapel auf deinen Ablagestapel.</p>''(Diese Karte gehört nicht zum Vorrat.)''"
     },
     { "id": 517, "name": "Kupfer", "description": "{{Cost|1|xl}}" },
-    { "id": 525, "name": "Anwesen", "description": "{{VP|1|xl}}" },
+    { "id": 525, "name": "Anwesen", "description": "{{VP|1|l}}" },
     { "id": 526, "name": "Silber", "description": "{{Cost|2|xl}}" },
     { "id": 527, "name": "Trank", "description": "{{Cost|P|m}}" },
-    { "id": 528, "name": "Herzogtum", "description": "{{VP|3|xl}}" },
+    { "id": 528, "name": "Herzogtum", "description": "{{VP|3|l}}" },
     { "id": 529, "name": "Gold", "description": "{{Cost|3|xl}}" },
-    { "id": 530, "name": "Provinz", "description": "{{VP|6|xl}}" },
+    { "id": 530, "name": "Provinz", "description": "{{VP|6|l}}" },
     { "id": 531, "name": "Kolonie", "description": "{{VP|10|l}}" },
     {
         "id": 558,
@@ -1590,7 +1590,7 @@
     {
         "id": 3337,
         "name": "Ingenieurin",
-        "description": "Nimm eine Karte, die bis zu {{Cost|4}} kostet.<br>Du darfst diese Ingenieurin entsorgen.<br>Wenn du das tust:<br>Nimm eine Karte, die bis zu {{Cost|4}} kostet."
+        "description": "Nimm eine Karte, die bis zu {{Cost|4}} kostet. Du darfst diese Karte entsorgen. Wenn du das tust, nimm eine Karte, die bis zu {{Cost|4}} kostet."
     },
     {
         "id": 3339,
@@ -1763,12 +1763,12 @@
     {
         "id": 3497,
         "name": "Händlerin",
-        "description": "'''+1 Karte<br>+1 Aktion'''<br>Spielst du in diesem Zug das erste Mal ein Silber aus: {{nowrap|+{{Cost|1}}}}"
+        "description": "'''+1 Karte<br>+1 Aktion'''<br>Spielst du in diesem Zug das erste Mal ein Silber:<br> {{nowrap|+{{Cost|1}}}}"
     },
     {
         "id": 3498,
         "name": "Vasall",
-        "description": "+{{Cost|2}}<br>Lege die oberste Karte deines Nachziehstapels ab. Ist es eine Aktionskarte, darfst du sie ausspielen."
+        "description": "+{{Cost|2}}<br>Lege die oberste Karte deines Nachziehstapels ab. Ist es eine Aktionskarte, darfst du sie spielen."
     },
     {
         "id": 3499,
@@ -1899,7 +1899,7 @@
     {
         "id": 5224,
         "name": "Götze",
-        "description": "{{Cost|2|l}}<br>Wenn du eine ungerade Anzahl Götzen im Spiel hast, empfängst du eine Gabe; anderenfalls nimmt jeder Mitspieler einen Fluch."
+        "description": "{{Cost|2|l}}<br>Wenn du eine ungerade Anzahl<br>Götzen im Spiel hast, empfängst<br>du eine Gabe; anderenfalls nimmt<br>jeder Mitspieler einen Fluch."
     },
     { "id": 5226, "name": "Geschenk des Meeres", "description": "'''+ 1 Karte'''" },
     {
@@ -2306,7 +2306,7 @@
     {
         "id": 6223,
         "name": "Laterne",
-        "description": "Grenzposten die du spielst decken 3&nbsp;Karten auf und legen&nbsp;2 ab. Nur wenn alle&nbsp;3 aufgedeckten Karten Aktionen sind, kannst du das Horn erhalten."
+        "description": "Grenzposten, die du spielst, decken 3&nbsp;Karten auf und legen&nbsp;2 ab. (Alle&nbsp;3 müssen Aktionskarten sein, um das Horn zu erhalten.)"
     },
     {
         "id": 6224,
@@ -2331,7 +2331,7 @@
     {
         "id": 6228,
         "name": "Zepter",
-        "description": "Wenn du diese Karte ausspielst, wähle eins: +{{Cost|2}} oder spiele eine Aktionskarte, die du in diesem Zug ausgespielt hast und die noch im Spiel ist, noch einmal aus."
+        "description": "Wähle eins: +{{Cost|2}} oder spiele eine Aktionskarte, die du in diesem Zug gespielt hast und die noch im Spiel ist, noch einmal."
     },
     {
         "id": 6229,
@@ -2412,7 +2412,7 @@
     {
         "id": 6309,
         "name": "Festzug",
-        "description": "Am Ende deiner Kaufphase kannst du {{Cost|1}} zahlen für '''+1 Taler'''."
+        "description": "Am Ende deiner Kaufphase darfst du {{Cost|1}} zahlen für '''+1&nbsp;Taler'''."
     },
     {
         "id": 6310,
@@ -2762,7 +2762,7 @@
     {
         "id": 8011,
         "name": "Höhlenhafen",
-        "description": "Beim Ablegen deiner Handkarten in der Aufräumphase darfst du beliebig viele Gefallen einlösen, um genauso viele Karten für den nächsten Zug auf deiner Hand zu behalten (du ziehst trotzdem 5)."
+        "description": "Beim Ablegen deiner Handkarten in der Aufräumphase darfst du beliebig viele Gefallen einlösen, um genauso viele Karten für den nächsten Zug auf deiner Hand zu behalten (du ziehst trotzdem&nbsp;5)."
     },
     {
         "id": 8075,
@@ -2957,7 +2957,7 @@
     {
         "id": 8278,
         "name": "Erfinderfamilie",
-        "description": "Zu Beginn deiner Kaufphase darfst du 1 deiner Gefallen-Marker auf einen Nicht-Punkte-Vorratsstapel legen.<br>Karten kosten {{Cost|1}} weniger pro Gefallen-Marker auf ihrem Stapel."
+        "description": "Zu Beginn deiner Kaufphase darfst du 1&nbsp;deiner Gefallen-Marker auf einen Nicht-Punkte-Vorratsstapel legen.<br>Karten kosten {{Cost|1}} weniger pro Gefallen-Marker auf ihrem Stapel."
     },
     {
         "id": 8279,
@@ -3051,23 +3051,51 @@
         "name": "Territorium",
         "description": "Wert {{VP|'''1'''}} pro Punktekarte mit unterschiedlichem Namen im eigenen Kartensatz.{{Divline}}Wenn du diese Karte nimmst, nimm ein Gold pro leerem Vorratsstapel."
     },
-    { "id": 8460, "name": "Hexenbund", "description": "" },
-    { "id": 8461, "name": "Wüstenführer", "description": "" },
+    {
+        "id": 8460,
+        "name": "Hexenbund",
+        "description": "Nachdem du eine Kontaktkarte gespielt hast, darfst du 3 Gefallen einlösen. Tust du das, nimmt jeder Mitspieler einen Fluch."
+    },
+    {
+        "id": 8461,
+        "name": "Wüstenführer",
+        "description": "Zu Beginn deines Zuges darfst du 1&nbsp;Gefallen einlösen,<br>um deine Handkarten abzulegen und 5&nbsp;Karten zu ziehen.<br>Wiederhole das beliebig oft."
+    },
     {
         "id": 8462,
         "name": "Gefolgschaft der Schreiber",
-        "description": "Hast du 4 oder weniger Handkarten, nachdem du eine Aktionskarte gespielt hast, darfst du 1&nbsp;Gefallen einlösen für '''+1&nbsp;Karte'''."
+        "description": "Hast du 4&nbsp;oder weniger Handkarten, nachdem du eine Aktionskarte gespielt hast, darfst du 1&nbsp;Gefallen einlösen für '''+1&nbsp;Karte'''."
     },
-    { "id": 8463, "name": "Waldbewohner", "description": "" },
+    {
+        "id": 8463,
+        "name": "Waldbewohner",
+        "description": "Zu Beginn deines Zuges darfst du 1&nbsp;Gefallen einlösen, um die<br>obersten 3&nbsp;Karten deines Nachziehstapels anzusehen, beliebig viele<br>davon ab- und den Rest in beliebiger Reihenfolge zurückzulegen."
+    },
     {
         "id": 8464,
         "name": "Bund der Ladenbesitzer",
         "description": "Nachdem du eine Kontaktkarte gespielt hast:<br>Hast du 5 oder mehr Gefallen: {{nowrap|+{{Cost|1}};}} und hast du 10 oder mehr: '''+1&nbsp;Aktion''' und '''+1&nbsp;Kauf'''."
     },
-    { "id": 8465, "name": "Marktstädte", "description": "" },
-    { "id": 8466, "name": "Bergvolk", "description": "" },
-    { "id": 8467, "name": "Sterndeuterorden", "description": "" },
-    { "id": 8468, "name": "Hütte der Fallensteller", "description": "" },
+    {
+        "id": 8465,
+        "name": "Marktstädte",
+        "description": "Zu Beginn deiner Kaufphase darfst du 1&nbsp;Gefallen einlösen,<br>um eine Aktioskarte aus deiner Hand zu spielen <br>Wiederhole das beliebig oft."
+    },
+    {
+        "id": 8466,
+        "name": "Bergvolk",
+        "description": "Zu Beginn deines Zuges darfst du 5&nbsp;Gefallen einlösen<br>für  '''+3&nbsp;Karten'''."
+    },
+    {
+        "id": 8467,
+        "name": "Sterndeuterorden",
+        "description": "Wenn du mischt, darfst du pro Gefallen, den du einlöst,<br>eine der zu mischenden Karten auswählen,<br>um sie nach dem Mischen nach oben zu legen."
+    },
+    {
+        "id": 8468,
+        "name": "Hütte der Fallensteller",
+        "description": "Wenn du eine Karte nimmst, darfst du 1&nbsp;Gefallen einlösen,<br>um sie auf deinen Nachziehstapel zu legen."
+    },
     {
         "id": 8469,
         "name": "Holzarbeitergilde",
@@ -3538,7 +3566,7 @@
     {
         "id": 9429,
         "name": "Grotte",
-        "description": "'''+1 Aktion'''<br>Lege bis zu 4 deiner Handkarten<br>verdeckt zur Seite (auf<br>diese Karte).<br><br>Zu Beginn deines nächsten<br>Zuges lege sie ab, ziehe dann<br>gleich viele."
+        "description": "'''+1 Aktion'''<br>Lege bis zu 4 deiner Handkarten verdeckt zur Seite (auf diese Karte).<br>Zu Beginn deines nächsten Zuges lege sie ab, ziehe dann gleich viele."
     },
     {
         "id": 9430,
