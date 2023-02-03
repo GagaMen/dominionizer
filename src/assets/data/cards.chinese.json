@@ -5,7 +5,11 @@
         "description": "'''＋1 行動'''。<br>棄掉任意張數的卡片，抽取相同數量的卡片。"
     },
     { "id": 17, "name": "禮拜堂", "description": "移除你手上至多四張卡片。" },
-    { "id": 18, "name": "護城河", "description": "" },
+    {
+        "id": 18,
+        "name": "護城河",
+        "description": "'''+2 卡片'''{{Divline}}當其他玩家打出攻擊卡時，你可以先展示手上的此卡，來無效對你的影響。"
+    },
     { "id": 19, "name": "大臣", "description": "" },
     { "id": 20, "name": "村莊", "description": "" },
     { "id": 24, "name": "伐木工", "description": "" },
