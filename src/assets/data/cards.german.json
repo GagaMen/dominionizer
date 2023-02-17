@@ -1190,7 +1190,7 @@
     {
         "id": 2152,
         "name": "Handel",
-        "description": "Entsorge bis zu 2 Handkarten. Nimm dir für jede entsorgte Karte ein Silber."
+        "description": "Entsorge bis zu 2 deiner Handkarten. Nimm pro so entsorgter Karte ein Silber."
     },
     {
         "id": 2158,
@@ -1215,12 +1215,12 @@
     {
         "id": 2183,
         "name": "Quest",
-        "description": "Du darfst eine Angriffskarte oder 2 Flüche oder 6 beliebige Karten ablegen. Wenn du das tust, nimm dir ein Gold."
+        "description": "Du darfst eine Angriffskarte, zwei Flüche oder sechs Karten ablegen. Wenn du das tust, nimm ein Gold."
     },
     {
         "id": 2184,
         "name": "Spähtrupp",
-        "description": "'''+1 Kauf'''<br>Sieh dir die obersten 5 Karten deines Nachziehstapels an. Lege 3 davon ab und den Rest in beliebiger Reihenfolge zurück auf den Nachziehstapel."
+        "description": "'''+1 Kauf'''<br>Sieh die obersten 5&nbsp;Karten deines Nachzieh&shy;stapels an. Lege drei davon ab und den Rest in beliebiger Reihen&shy;folge zurück."
     },
     {
         "id": 2190,
@@ -3420,7 +3420,7 @@
     {
         "id": 9349,
         "name": "Landungstrupp",
-        "description": "'''+2 Karten<br>+2 Aktionen'''<br>Das nächste Mal, wenn du als<br>erste Karte in einem Zug eine<br>Geldkarte spielst, lege diese<br>Karte danach auf deinen<br>Nachziehstapel."
+        "description": "'''+2 Karten<br>+2 Aktionen'''<br>Das nächste Mal, wenn du als erste Karte in einem Zug eine Geldkarte spielst, lege diese Karte danach auf deinen Nachzieh&shy;stapel."
     },
     {
         "id": 9350,
@@ -3475,7 +3475,7 @@
     {
         "id": 9367,
         "name": "Reise",
-        "description": "Einmal pro Zug: Wenn der vorherige Zug<br>nicht deiner war, legst du in diesem Zug in<br>der Aufräumphase keine Karten aus dem Spiel ab,<br>und du führst nach diesem Zug einen Extrazug aus."
+        "description": "Einmal pro Zug: Wenn der vorherige Zug nicht deiner war, legst du in diesem Zug in der Aufräum&shy;phase keine Karten aus dem Spiel ab, und du führst nach diesem Zug einen Extrazug aus."
     },
     {
         "id": 9368,
@@ -3596,7 +3596,7 @@
     {
         "id": 9435,
         "name": "Hafendorf",
-        "description": "'''+1 Karte<br>+2 Aktionen'''<br>Nach der nächsten Aktions-<br>karte, die du in diesem Zug<br>spielst: Wenn sie dir +{{Cost}}<br>gab: +{{Cost|1}}."
+        "description": "'''+1 Karte<br>+2 Aktionen'''<br>Nach der nächsten Aktionskarte, die du in diesem Zug spielst:<br>Wenn sie dir +{{Cost}} gab: {{nowrap|+{{Cost|1}}.}}"
     },
     {
         "id": 9436,

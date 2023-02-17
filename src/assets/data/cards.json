@@ -2943,7 +2943,7 @@
     {
         "id": 2184,
         "name": "Scouting Party",
-        "description": "'''+1 Buy'''<br>Look at the top 5 cards of your deck.  Discard 3 and put the rest back in any order.",
+        "description": "'''+1 Buy'''<br>Look at the top 5 cards of your deck.<br> Discard 3 and put the rest back in any order.",
         "image": "ScoutingPartyArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Scouting_Party",
         "expansions": [1579],
