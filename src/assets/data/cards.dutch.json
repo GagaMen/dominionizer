@@ -3,7 +3,7 @@
     {
         "id": 16,
         "name": "Kelder",
-        "description": "'''+1 Actie'''<br>Leg een aantal kaarten naar keuze af. +1&nbsp;kaart per afgelegde kaart."
+        "description": "'''+1 Actie'''<br>Leg een aantal kaarten naar keuze af. '''+1&nbsp;Kaart''' per afgelegde kaart."
     },
     { "id": 17, "name": "Kapel", "description": "Vernietig 4 of minder kaarten uit je hand." },
     {
