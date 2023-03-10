@@ -94,7 +94,7 @@
     {
         "id": 51,
         "name": "Mijn",
-        "description": "Vernietig een geldkaart uit je hand. <br> Neem een geldkaart die ten hoogste {{Cost|3}} meer waard is en neem deze op handen."
+        "description": "Je mag een geldkaart uit je hand vernietigen. <br> Neem een geldkaart die ten hoogste {{Cost|3}} meer kost en neem deze op handen."
     },
     {
         "id": 52,
