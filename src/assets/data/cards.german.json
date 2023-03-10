@@ -2630,7 +2630,7 @@
     {
         "id": 6925,
         "name": "Fischer",
-        "description": "'''+1 Karte<br>+1 Aktion'''<br>+{{Cost|1}}{{divline}}Während deiner Züge:<br>Ist dein Ablagestapel leer, kostet diese Karte {{Cost|3}} weniger."
+        "description": "'''+1 Karte<br>+1 Aktion'''<br>+{{Cost|1}}{{Divline}}Während deiner Züge:<br>Ist dein Ablagestapel leer, kostet diese Karte {{Cost|3}} weniger."
     },
     {
         "id": 6926,
@@ -3259,7 +3259,7 @@
     {
         "id": 9223,
         "name": "Bergbaustraße",
-        "description": "'''+1 Aktion<br>+1 Kauf'''<br>+{{Cost|2}}<br>Einmal in diesem Zug:<br>Wenn du eine Geldkarte<br>nimmst, darfst du sie spielen."
+        "description": "'''+1 Aktion<br>+1 Kauf'''<br>+{{Cost|2}}<br>Einmal in diesem Zug: Wenn du eine Geldkarte nimmst, darfst du sie spielen."
     },
     {
         "id": 9224,
@@ -3284,7 +3284,7 @@
     {
         "id": 9273,
         "name": "Vergrabener Schatz",
-        "description": "Zu Beginn deines nächsten<br>Zuges: '''+1 Kauf''' und +{{Cost|3}}.{{divline}}Wenn du diese Karte<br>nimmst, spiele sie."
+        "description": "Zu Beginn deines nächsten Zuges: '''+1&nbsp;Kauf''' und {{nowrap|+{{Cost|3}}.}}{{divline}}Wenn du diese Karte nimmst, spiele sie."
     },
     {
         "id": 9274,
@@ -3405,7 +3405,7 @@
     {
         "id": 9321,
         "name": "Zauberrolle",
-        "description": "Entsorge diese Karte, um eine<br>billigere Karte zu nehmen.<br><br>Wenn jene eine Aktions-<br>oder Geldkarte ist, darfst<br>du sie spielen."
+        "description": "Entsorge diese Karte, um eine billigere Karte zu nehmen.<br>Wenn jene Karte eine Aktions- oder Geldkarte ist, darfst du sie spielen."
     },
     {
         "id": 9322,
