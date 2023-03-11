@@ -4,10 +4,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UntypedFormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { ConfigurationService } from 'src/app/services/configuration.service';
-import { MatLegacySliderHarness as MatSliderHarness } from '@angular/material/legacy-slider/testing';
+import { MatSliderHarness, MatSliderThumbHarness } from '@angular/material/slider/testing';
 
 import { SpecialCardSelectComponent } from './special-card-select.component';
-import { MatLegacySliderModule as MatSliderModule } from '@angular/material/legacy-slider';
+import { MatSliderModule } from '@angular/material/slider';
 import { By } from '@angular/platform-browser';
 import { DataFixture } from 'src/testing/data-fixture';
 
@@ -62,7 +62,7 @@ describe('SpecialCardSelectComponent', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with value changes should emit change event correctly', () => {
+        it('with value changes should emit valueChange event correctly', () => {
             fixture.detectChanges();
             component.availability = {
                 events: true,
@@ -72,7 +72,7 @@ describe('SpecialCardSelectComponent', () => {
                 traits: true,
             };
             const expected = dataFixture.createSpecialCardsCount();
-            const emitSpy = spyOn(component.change, 'emit');
+            const emitSpy = spyOn(component.valueChange, 'emit');
 
             component.formGroup.setValue(expected);
 
@@ -112,16 +112,20 @@ describe('SpecialCardSelectComponent', () => {
                 component.availability = availability;
 
                 const matSlider = await harnessLoader.getHarness(MatSliderHarness);
+                const matSliderThumb = await harnessLoader.getHarness(MatSliderThumbHarness);
 
-                expect(await (await matSlider.host()).getAttribute('formControlName'))
-                    .withContext('formControlName')
-                    .toBe(specialCards);
                 expect(await matSlider.getMinValue())
                     .withContext('minValue')
                     .toBe(0);
                 expect(await matSlider.getMaxValue())
                     .withContext('maxValue')
                     .toBe(5);
+                expect(await matSlider.getStep())
+                    .withContext('step')
+                    .toBe(1);
+                expect(await (await matSliderThumb.host()).getAttribute('formControlName'))
+                    .withContext('formControlName')
+                    .toBe(specialCards);
             });
 
             it(`with ${specialCards} are available should render corresponding label correctly`, () => {
@@ -155,7 +159,7 @@ describe('SpecialCardSelectComponent', () => {
                 availability[specialCards] = true;
                 component.availability = availability;
                 const expected = 1;
-                await (await harnessLoader.getHarness(MatSliderHarness)).setValue(expected);
+                await (await harnessLoader.getHarness(MatSliderThumbHarness)).setValue(expected);
 
                 const actual = Number.parseInt(
                     fixture.debugElement.query(By.css('.special-cards-label span')).properties

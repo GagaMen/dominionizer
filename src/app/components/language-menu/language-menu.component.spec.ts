@@ -1,14 +1,11 @@
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Language } from './../../models/language';
-import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LanguageMenuComponent } from './language-menu.component';
-import {
-    MatLegacyMenuHarness as MatMenuHarness,
-    MatLegacyMenuItemHarness as MatMenuItemHarness,
-} from '@angular/material/legacy-menu/testing';
+import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { getTestScheduler } from 'jasmine-marbles';
 import { LanguageMenuHostComponent } from 'src/testing/components/language-menu.host.component';

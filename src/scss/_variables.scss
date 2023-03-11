@@ -4,6 +4,7 @@
 $primary: mat.define-palette(palette.$md-ochre);
 $accent: mat.define-palette(palette.$md-blue);
 $warn: mat.define-palette(mat.$red-palette);
+$typography: mat.define-typography-config();
 
 $theme: mat.define-light-theme(
     (
@@ -12,5 +13,6 @@ $theme: mat.define-light-theme(
             accent: $accent,
             warn: $warn,
         ),
+        typography: $typography,
     )
 );

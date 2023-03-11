@@ -9,18 +9,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { MatLegacySlideToggleModule as MatSlideToggleModule } from '@angular/material/legacy-slide-toggle';
-import { MatLegacySliderModule as MatSliderModule } from '@angular/material/legacy-slider';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
-import { MatLegacyRadioModule as MatRadioModule } from '@angular/material/legacy-radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { CardComponent } from './components/card/card.component';
@@ -52,25 +48,21 @@ import { HomeComponent } from './components/home/home.component';
     ],
     imports: [
         BrowserModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         CommonModule,
+        FormsModule,
+        HttpClientModule,
         ReactiveFormsModule,
-        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatDividerModule,
+        MatExpansionModule,
         MatIconModule,
         MatMenuModule,
-        MatButtonModule,
-        MatExpansionModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatSlideToggleModule,
         MatSliderModule,
-        MatCardModule,
-        MatDividerModule,
         MatStepperModule,
-        MatCheckboxModule,
-        MatRadioModule,
-        FormsModule,
+        MatToolbarModule,
         AppRoutingModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],

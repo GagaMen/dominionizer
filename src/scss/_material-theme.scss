@@ -1,15 +1,19 @@
 @use '@angular/material' as mat;
 @use './variables';
 
-// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
-//  The following line adds:
-//    1. Default typography styles for all components
-//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
-//  If you specify typography styles for the components you use elsewhere, you should delete this line.
-//  If you don't need the default component typographies but still want the hierarchy styles,
-//  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+@include mat.core();
+@include mat.core-theme(variables.$theme);
+@include mat.typography-hierarchy(variables.$typography);
 
-@include mat.all-legacy-component-themes(variables.$theme);
+@include mat.button-theme(variables.$theme);
+@include mat.card-theme(variables.$theme);
+@include mat.checkbox-theme(variables.$theme);
+@include mat.divider-theme(variables.$theme);
+@include mat.expansion-theme(variables.$theme);
+@include mat.fab-theme(variables.$theme);
+@include mat.icon-theme(variables.$theme);
+@include mat.icon-button-theme(variables.$theme);
+@include mat.menu-theme(variables.$theme);
+@include mat.slider-theme(variables.$theme);
+@include mat.stepper-theme(variables.$theme);
+@include mat.toolbar-theme(variables.$theme);

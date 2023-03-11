@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatLegacyMenu as MatMenu } from '@angular/material/legacy-menu';
+import { MatMenu } from '@angular/material/menu';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 
 @Component({

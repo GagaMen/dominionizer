@@ -2,13 +2,10 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 import { SpyObj } from 'src/testing/spy-obj';
-import {
-    MatLegacyMenuHarness as MatMenuHarness,
-    MatLegacyMenuItemHarness as MatMenuItemHarness,
-} from '@angular/material/legacy-menu/testing';
+import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testing';
 import { MatIconHarness } from '@angular/material/icon/testing';
 
 import { SetOrderingMenuComponent } from './set-ordering-menu.component';

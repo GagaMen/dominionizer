@@ -1,6 +1,5 @@
 .expansions {
     display: grid;
-    gap: 0.5rem;
 
     @media (min-width: 450px) {
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));

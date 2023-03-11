@@ -13,11 +13,8 @@ import { Expansion } from '../../models/expansion';
 import { DataFixture } from 'src/testing/data-fixture';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatLegacyCheckboxHarness as MatCheckboxHarness } from '@angular/material/legacy-checkbox/testing';
-import {
-    MatLegacyCheckbox as MatCheckbox,
-    MatLegacyCheckboxModule as MatCheckboxModule,
-} from '@angular/material/legacy-checkbox';
+import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
 import { Chance } from 'chance';
 

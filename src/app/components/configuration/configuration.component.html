@@ -27,18 +27,12 @@
                 #specialCardSelect
                 [initialValue]="viewData.initialValue"
                 [availability]="viewData.availability"
-                (change)="configurationService.updateSpecialCardsCount($event)"
+                (valueChange)="configurationService.updateSpecialCardsCount($event)"
             ></app-special-card-select>
         </mat-step>
     </mat-stepper>
 
     <div class="stepper-actions">
-        <div class="relative-container">
-            <button class="mdc-fab mdc-fab--extended" routerLink="/set">
-                <div class="mdc-fab__ripple"></div>
-                <span class="material-icons mdc-fab__icon">casino</span>
-                <span class="mdc-fab__label" i18n>generate</span>
-            </button>
-        </div>
+        <button mat-fab extended routerLink="/set"><mat-icon>casino</mat-icon>generate</button>
     </div>
 </div>

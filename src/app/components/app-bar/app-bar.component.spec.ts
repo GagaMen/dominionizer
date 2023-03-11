@@ -1,11 +1,7 @@
 import { detectChangesAndFlush } from 'src/testing/utilities';
 import { cold } from 'jasmine-marbles';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
-import {
-    MatLegacyButton as MatButton,
-    MatLegacyButtonModule as MatButtonModule,
-    MatLegacyAnchor as MatAnchor,
-} from '@angular/material/legacy-button';
+import { MatButtonModule, MatIconAnchor, MatIconButton } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { SpyObj } from './../../../testing/spy-obj';
@@ -68,7 +64,7 @@ describe('AppBarComponent', () => {
             detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement
-                .query(By.directive(MatButton))
+                .query(By.directive(MatIconButton))
                 .queryAll(By.directive(MatIcon));
             const actualText = actualElement[0].nativeElement.textContent;
 
@@ -83,7 +79,7 @@ describe('AppBarComponent', () => {
             detectChangesAndFlush(fixture);
 
             const actualElement = fixture.debugElement
-                .query(By.directive(MatAnchor))
+                .query(By.directive(MatIconAnchor))
                 .queryAll(By.directive(MatIcon));
             const actualText = actualElement[0].nativeElement.textContent;
 

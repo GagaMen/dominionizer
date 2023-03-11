@@ -25,8 +25,7 @@ export class SpecialCardSelectStubComponent {
     };
 
     @Output()
-    // eslint-disable-next-line @angular-eslint/no-output-native
-    readonly change: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
+    readonly valueChange: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 }

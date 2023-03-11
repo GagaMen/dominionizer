@@ -26,8 +26,7 @@ export class SpecialCardSelectComponent implements OnInit {
     };
 
     @Output()
-    // eslint-disable-next-line @angular-eslint/no-output-native
-    readonly change: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
+    readonly valueChange: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
@@ -43,7 +42,7 @@ export class SpecialCardSelectComponent implements OnInit {
         });
 
         this.formGroup.valueChanges.subscribe((specialCardsCount: SpecialCardsCount) =>
-            this.change.emit(specialCardsCount),
+            this.valueChange.emit(specialCardsCount),
         );
     }
 }

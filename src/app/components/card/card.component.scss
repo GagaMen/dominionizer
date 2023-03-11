@@ -1,7 +1,3 @@
-:host ::ng-deep .mat-card-header-text {
-    margin: 0;
-}
-
 .icons {
     display: flex;
     flex-direction: column;
@@ -28,36 +24,22 @@
     width: 20px;
 }
 
-.mat-card-title-group {
+.mat-mdc-card-header {
+    align-items: center;
+    padding: 16px;
+}
+
+.mat-mdc-card-title-group {
     flex-grow: 1;
     justify-content: center;
 }
 
-.mat-card-title {
+.mat-mdc-card-title {
     font-size: 1rem;
     font-weight: 700;
     text-align: center;
 }
 
-.mat-card-subtitle {
-    // this removes the default margin of 16px
-    margin-bottom: 0;
+.mat-mdc-card-subtitle {
     text-align: center;
-}
-
-// TODO: fix use of 'type-...' classes after refactoring of background calculation
-/* stylelint-disable-next-line selector-max-compound-selectors */
-:host ::ng-deep .type-night:not(.type-duration) .mat-button-focus-overlay {
-    background: #fff;
-}
-
-.type-night:not(.type-duration) {
-    .mat-card-title,
-    .mat-card-subtitle {
-        color: #fff;
-    }
-
-    [mat-icon-button] {
-        color: #fff;
-    }
 }

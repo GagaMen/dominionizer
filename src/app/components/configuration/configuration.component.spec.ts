@@ -29,8 +29,10 @@ import {
     StepperOrientation,
 } from '@angular/material/stepper/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonHarness } from '@angular/material/button/testing';
 import { Card } from 'src/app/models/card';
+import { MatIconHarness } from '@angular/material/icon/testing';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -330,28 +332,30 @@ describe('ConfigurationComponent', () => {
             expect(actual.availability).withContext('availability').toBe(availability);
         });
 
-        it('should bind change event of SpecialCardSelectComponent correctly', () => {
+        it('should bind valueChange event of SpecialCardSelectComponent correctly', () => {
             fixture.detectChanges();
             const count = dataFixture.createSpecialCardsCount();
 
             const specialCardSelectComponent = fixture.debugElement
                 .query(By.directive(SpecialCardSelectStubComponent))
                 .injector.get(SpecialCardSelectStubComponent);
-            specialCardSelectComponent.change.emit(count);
+            specialCardSelectComponent.valueChange.emit(count);
 
             expect(configurationServiceSpy.updateSpecialCardsCount).toHaveBeenCalledWith(count);
         });
 
-        it('should render shuffle button correctly', () => {
-            const button = fixture.debugElement.query(
-                By.css('.mdc-fab.mdc-fab--extended[routerLink="/set"]'),
+        it('should render shuffle button correctly', async () => {
+            const actual = await harnessLoader.getHarness(
+                MatButtonHarness.with({ variant: 'fab' }),
             );
-            const icon = button.query(By.css('.material-icons.mdc-fab__icon'));
-            const label = button.query(By.css('.mdc-fab__label'));
+            const actualHost = await actual.host();
+            const actualIcon = await actual.getHarness(MatIconHarness.with({ name: 'casino' }));
 
-            expect(button).toBeTruthy();
-            expect(icon.nativeElement.textContent).withContext('icon').toBe('casino');
-            expect(label.nativeElement.textContent).withContext('label').toBe('generate');
+            expect(actual).toBeInstanceOf(MatButtonHarness);
+            expect(await actualHost.getAttribute('extended')).toBeDefined();
+            expect(await actualHost.getAttribute('routerLink')).toBe('/set');
+            expect(actualIcon).toBeInstanceOf(MatIconHarness);
+            expect(await actual.getText()).toBe('casino' + 'generate');
         });
     });
 });
