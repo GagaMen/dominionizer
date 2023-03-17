@@ -131,7 +131,11 @@
     { "id": 94, "name": "Harem", "description": "" },
     { "id": 95, "name": "Adel", "description": "" },
     { "id": 96, "name": "Embargo", "description": "" },
-    { "id": 97, "name": "Haven", "description": "" },
+    {
+        "id": 97,
+        "name": "Haven",
+        "description": "'''+1 Kaart<br>+1 Actie'''<br>Leg een kaart uit je hand gedekt opzij (onder deze kaart). Aan het begin van je volgende beurt; doe de kaart in je hand."
+    },
     { "id": 98, "name": "Vuurtoren", "description": "" },
     { "id": 99, "name": "Inheems Dorp", "description": "" },
     { "id": 100, "name": "Parelduiker", "description": "" },
