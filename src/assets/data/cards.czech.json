@@ -112,7 +112,7 @@
     {
         "id": 158,
         "name": "Kořist",
-        "description": "{{Cost|3|l}}<br>Když tuto kartu zahraješ, vrať ji na jeji balíček.<br>''(Nepatři do společné zásoby.)''"
+        "description": "<p>{{Cost|3|l}}<br>Když tuto kartu zahraješ, vrať ji na jeji balíček.</p>''(Nepatři do společné zásoby.)''"
     },
     { "id": 212, "name": "Kletba", "description": "" },
     { "id": 242, "name": "Půjčka", "description": "" },

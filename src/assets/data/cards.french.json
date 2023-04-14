@@ -9,21 +9,29 @@
         "name": "Cave",
         "description": "'''+1 Action'''<br>Défaussez autant de cartes que vous voulez, puis piochez-en le même nombre."
     },
-    { "id": 17, "name": "Chapelle", "description": "" },
-    { "id": 18, "name": "Douves", "description": "" },
+    { "id": 17, "name": "Chapelle", "description": "Écartez jusqu'a 4 cartes de votre main." },
+    {
+        "id": 18,
+        "name": "Douves",
+        "description": "'''+2 Cartes'''{{Divline}}Lorsqu'un adversaire joue une carte Attaque, vous pouvez dévoiler catte carte de votre main. Dans ce cas, l'attaque n'a pas d'effet sur vous."
+    },
     {
         "id": 19,
         "name": "Chancelier",
         "description": "+{{Cost|2}}<br>Vous pouvez immédiatement défausser votre deck."
     },
-    { "id": 20, "name": "Village", "description": "" },
+    { "id": 20, "name": "Village", "description": "'''+1 Carte'''<br>'''+2 Actions'''" },
     { "id": 24, "name": "Bûcheron", "description": "" },
-    { "id": 25, "name": "Atelier", "description": "" },
+    { "id": 25, "name": "Atelier", "description": "Recevez une carte coûtant jusqu'à {{Cost|4}}" },
     { "id": 34, "name": "Cour", "description": "" },
     { "id": 36, "name": "Bureaucrate", "description": "" },
     { "id": 37, "name": "Festin", "description": "" },
     { "id": 38, "name": "Jardins", "description": "" },
-    { "id": 39, "name": "Milice", "description": "" },
+    {
+        "id": 39,
+        "name": "Milice",
+        "description": "+{{Cost|2}}<br>Tous vos adversaires défaussent jusqu'à avoir 3 cartes en main."
+    },
     { "id": 40, "name": "Prêteur sur gages", "description": "" },
     { "id": 41, "name": "Rénovation", "description": "" },
     { "id": 42, "name": "Forgeron", "description": "" },
@@ -117,7 +125,11 @@
     { "id": 116, "name": "Vaisseau fantôme", "description": "" },
     { "id": 117, "name": "Navire marchand", "description": "" },
     { "id": 118, "name": "Avant-poste", "description": "" },
-    { "id": 119, "name": "Tacticien", "description": "" },
+    {
+        "id": 119,
+        "name": "Tacticien",
+        "description": "Si vous avez au moins enu carte en main, défaussez votre main, et au dé do votre prochain tour, +5 Cartes, +1 Action, et +1 Achat."
+    },
     { "id": 120, "name": "Trésorerie", "description": "" },
     { "id": 121, "name": "Quai", "description": "" },
     { "id": 122, "name": "Herboriste", "description": "" },
@@ -722,8 +734,16 @@
         "description": "'''+3 Cartes'''<br>Vous pouvez jouer un Sauna de votre main."
     },
     { "id": 3496, "name": "Présage", "description": "" },
-    { "id": 3497, "name": "Marchand", "description": "" },
-    { "id": 3498, "name": "Vassal", "description": "" },
+    {
+        "id": 3497,
+        "name": "Marchand",
+        "description": "'''+1 Carte'''<br>'''+1 Action'''<br>La premiére fois que vous jouez un Argent ce tour-ci, +{{Cost|1}}."
+    },
+    {
+        "id": 3498,
+        "name": "Vassal",
+        "description": "+{{Cost|2}}<br>Défaussez la carte du haut de votre pioche. Si c'est une carte Action, vous pouvez la jouer."
+    },
     { "id": 3499, "name": "Braconnier", "description": "" },
     { "id": 3500, "name": "Brigand", "description": "" },
     { "id": 3501, "name": "Sentinelle", "description": "" },
@@ -805,7 +825,7 @@
     {
         "id": 5232,
         "name": "Feu follet",
-        "description": "'''+ 1 Carte<br>+ 1 Action'''<br>Dévoilez la carte du haut de votre pioche. Si elle coûte {{Cost|2}} ou moins, prenez-la en main.<br>(Ne fait pas partie de la réserve)."
+        "description": "<p>'''+ 1 Carte<br>+ 1 Action'''<br>Dévoilez la carte du haut de votre pioche. Si elle coûte {{Cost|2}} ou moins, prenez-la en main.</p>''(Ne fait pas partie de la réserve.)''"
     },
     {
         "id": 5238,

@@ -314,7 +314,7 @@
     {
         "id": 113,
         "name": "Schatzkarte",
-        "description": "Entsorge diese Karte und eine Schatzkarte aus deiner Hand.<br>Wenn du zwei Schatzkarten entsorgt hast, nimm 4&nbsp;Gold auf deinen Nachziehstapel."
+        "description": "Entsorge diese Karte und eine Schatzkarte aus deiner Hand.<br>Wenn du 2&nbsp;Schatzkarten entsorgt hast, nimm 4&nbsp;Gold auf deinen Nachziehstapel."
     },
     {
         "id": 114,
@@ -445,7 +445,7 @@
     {
         "id": 158,
         "name": "Beute",
-        "description": "{{Cost|3|l}}<br>Wenn du diese Karte ausspielst, lege sie zurück auf den Beute-Stapel.<br>''(Diese Karte ist nicht Teil des Vorrats.)''"
+        "description": "<p>{{Cost|3|l}}<br>Wenn du diese Karte ausspielst, lege sie zurück auf den Beute-Stapel.</p>''(Diese Karte gehört nicht zum Vorrat.)''"
     },
     { "id": 212, "name": "Fluch", "description": "{{VP|-1|l}}" },
     {
@@ -1915,7 +1915,7 @@
     {
         "id": 5232,
         "name": "Irrlicht",
-        "description": "'''+1 Karte<br>+1 Aktion'''<br>Decke die oberste Karte deines Nachziehstapels auf.<br>Wenn sie {{Cost|2}} oder weniger kostet, nimm sie auf die Hand.<br>''(Diese Karte gehört nicht zum Vorrat.)''"
+        "description": "<p>'''+1 Karte<br>+1 Aktion'''<br>Decke die oberste Karte deines Nachziehstapels auf.<br>Wenn sie {{Cost|2}} oder weniger kostet, nimm sie auf die Hand.</p>''(Diese Karte gehört nicht zum Vorrat.)''"
     },
     {
         "id": 5238,
@@ -2068,7 +2068,7 @@
     {
         "id": 5321,
         "name": "Verfluchtes Dorf",
-        "description": "'''+2 Aktionen'''<br>Ziehe, bis du 6&nbsp;Karten auf der Hand hast.{{divline}}Wenn du diese Karte nimmst, empfange eine Plage."
+        "description": "'''+2 Aktionen'''<br>Ziehe, bis du 6&nbsp;Karten auf der Hand hast.{{Divline}}Wenn du diese Karte nimmst, empfange eine Plage."
     },
     {
         "id": 5322,

@@ -1057,7 +1057,7 @@
     {
         "id": 158,
         "name": "Spoils",
-        "description": "{{Cost|3|l}}<br>When you play this, return it to the Spoils pile.<br>(This is not in the Supply.)",
+        "description": "<p>{{Cost|3|l}}<br>When you play this, return it to the Spoils pile.</p>(This is not in the Supply.)",
         "image": "SpoilsArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Spoils",
         "expansions": [156],
@@ -1986,7 +1986,7 @@
     {
         "id": 432,
         "name": "Bag of Gold",
-        "description": "'''+1 Action'''<br>Gain a Gold onto your deck.<br>(This is not in the Supply.)",
+        "description": "<p>'''+1 Action'''<br>Gain a Gold onto your deck.</p>(This is not in the Supply.)",
         "image": "Bag_Of_GoldArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Bag_of_Gold",
         "expansions": [180],
@@ -4605,7 +4605,7 @@
     {
         "id": 5232,
         "name": "Will-o'-Wisp",
-        "description": "'''+1 Card'''<br>'''+1 Action'''<br>Reveal the top card of your deck. If it costs {{Cost|2}} or less, put it into your hand.<br>(This is not in the Supply.)",
+        "description": "<p>'''+1 Card<br>+1 Action'''<br>Reveal the top card of your deck. If it costs {{Cost|2}} or less, put it into your hand.</p>(This is not in the Supply.)",
         "image": "Will-o'-WispArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Will-o%27-Wisp",
         "expansions": [4213],
