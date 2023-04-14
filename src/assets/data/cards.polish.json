@@ -306,7 +306,7 @@
     {
         "id": 113,
         "name": "Mapa skarbu",
-        "description": "Wyrzuć na śmietnisko tę i jeszcze jedną Mapę skarbu z ręki. Jeżeli wyrzuciłeś dwie Mapy skarbu, dodaj 4&nbsp;karty Złota i połóż je na wierzchu swojej talii."
+        "description": "Wyrzuć na Śmietnisko tę i jeszcze jedną Mapę skarbu z ręki. Jeśli wyrzuciłeś dwie Mapy skarbu, dodaj 4 karty Złota na wierzch swojej talii."
     },
     {
         "id": 114,
@@ -986,6 +986,11 @@
         "description": "'''+1 zakup'''<br>Otrzymaj jedną z odłożonych na bok Łask (pozostaw ją na miejscu).{{divline}}Przygotowanie: odłóż na bok (awersem do góry) 3 Łaski z wierzchu stosu."
     },
     {
+        "id": 5232,
+        "name": "Błędny ognik",
+        "description": "<p>'''+1 karta<br>+1 akcja'''<br>Odkryj kartę z wierzchu swojej talii. Jeśli kosztuje ona {{Cost|2}} lub mniej, weź ją na rękę.</p>''(Ta karta nie należy do Zasobów.)''"
+    },
+    {
         "id": 5238,
         "name": "Głupiec",
         "description": "Jeśli nie posiadasz Stanu ''Zagubiony w lesie'': weź go, weź także 3 Łaski i otrzymaj je w dowolnej kolejności.<br><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Szczęśliwa moneta&nbsp;&nbsp;''</span>"
@@ -997,12 +1002,30 @@
     },
     { "id": 5257, "name": "Dar płomieni", "description": "" },
     { "id": 5263, "name": "Dar lasu", "description": "" },
-    { "id": 5321, "name": "Przeklęta wioska", "description": "" },
-    { "id": 5336, "name": "Egzorcysta", "description": "" },
+    {
+        "id": 5318,
+        "name": "Życzenie",
+        "description": "<p>'''+1 akcja'''<br>Odłóż tę kartę na jej stos. Jeśli to zrobisz, dodaj na rękę kartę kosztującą do {{Cost|6}}.</p>''(Ta karta nie należy do Zasobów.)''"
+    },
+    {
+        "id": 5321,
+        "name": "Przeklęta wioska",
+        "description": "'''+2 akcje'''<br>Dobieraj karty, aż będziesz miał ich 6 na ręce.{{Divline}}Kiedy dodajesz tę kartę, otrzymujesz Urok."
+    },
+    {
+        "id": 5336,
+        "name": "Egzorcysta",
+        "description": "Wyrzuć na Śmietnisko kartę z ręki. Dodaj tańszego od niej Ducha z jednego ze stosów Duchów."
+    },
     {
         "id": 5337,
         "name": "Wróżka",
         "description": "'''+1 karta<br>+1 akcja'''<br>Odrzuć Łaskę z wierzchu stosu Łask. Możesz wyrzucić tę Wróżkę na Śmietnisko aby dwukrotnie otrzymać tę Łaskę.<br><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Koza''&nbsp;&nbsp;</span>"
+    },
+    {
+        "id": 5341,
+        "name": "Nekromanta",
+        "description": "Wybierz ze Śmietniska leżącą awersem do góry kartę Akcji, niebędącą kartą Następstwa. Odwróć ją awersem do dołu na czas trwania bieżącej tury i zagraj, pozostawiając ją na Śmietnisku.{{Divline}}Przygotowanie: umieść na Śmietnisku 3 karty Zombie."
     },
     {
         "id": 5413,
