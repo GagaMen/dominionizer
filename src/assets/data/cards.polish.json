@@ -337,7 +337,7 @@
     {
         "id": 120,
         "name": "Skarbiec",
-        "description": "'''+1 karta<br>+1 akcja'''<br>+{{Cost|1}}{{divline}}Kiedy odrzucasz tę kartę z gry, możesz zamiast tego położyć ją na wierzchu swojej talii, jeżeli w tej turze nie kupiłeś żadnej karty Zwycięstwa."
+        "description": "'''+1 karta<br>+1 akcja<br>'''+{{Cost|1}}<br>Na koniec fazy zakupu w tej turze możesz odłożyć tę kartę na wierzch swojej talii, jeśli nie dodałeś w tej fazie zakupu żadnej karty Zwycięstwa."
     },
     {
         "id": 121,
