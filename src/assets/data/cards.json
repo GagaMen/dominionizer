@@ -3803,7 +3803,7 @@
     {
         "id": 3334,
         "name": "Encampment",
-        "description": "'''+2 Cards<br>+2 Actions'''<br>You may reveal a Gold or Plunder from your hand. If you do not, set this aside, and return it to the Supply at the start of Clean-up.",
+        "description": "'''+2 Cards<br>+2 Actions'''<br>You may reveal a Gold or Plunder from your hand. If you do not, set this aside, and return it to its pile at the start of Clean-up.",
         "image": "EncampmentArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Encampment",
         "expansions": [2739],
@@ -4617,7 +4617,7 @@
     {
         "id": 5238,
         "name": "Fool",
-        "description": "<p>If you aren't the player with Lost in the Woods, take it, take 3 Boons, and receive the Boons in any order.</p>Heirloom: Lucky Coin",
+        "description": "<p>If you aren't the player with Lost in the Woods: take it, take 3 Boons, and receive the Boons in any order.</p>Heirloom: Lucky Coin",
         "image": "FoolArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Fool",
         "expansions": [4213],
@@ -5631,7 +5631,7 @@
     {
         "id": 6292,
         "name": "Patron",
-        "description": "'''+1 Villager'''<br>+{{Cost|2}}{{divline}}When something causes you to reveal this (using the word &ldquo;reveal&rdquo;) in an Action phase, '''+1 Coffers'''.",
+        "description": "'''+1 Villager'''<br>+{{Cost|2}}{{divline}}When something causes you to reveal this in an Action phase (using the word &ldquo;reveal&rdquo;), '''+1&nbsp;Coffers'''.",
         "image": "PatronArt.jpg",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Patron",
         "expansions": [6098],

@@ -632,7 +632,7 @@
     {
         "id": 386,
         "name": "Prozession",
-        "description": "Du darfst eine Aktionskarte aus deiner Hand, die keine Dauerkarte ist, zweimal spielen. Entsorge sie. Nimm dir eine Aktionskarte, die genau {{Cost|1}} mehr kostet."
+        "description": "Du darfst eine Aktionskarte aus deiner Hand, die keine Dauerkarte ist, zweimal spielen. Entsorge sie.<br>Nimm eine Aktionskarte, die genau {{Cost|1}} mehr als jene Karte kostet."
     },
     { "id": 387, "name": "Verlassene Mine", "description": "+{{Cost|1}}" },
     {
@@ -663,7 +663,7 @@
     {
         "id": 393,
         "name": "Leichenkarren",
-        "description": "Du darfst diese Karte oder eine Aktionskarte aus deiner Hand für {{nowrap|+{{Cost|5}}}} entsorgen.{{divline}}Wenn du diese Karte nimmst, nimm dir 2&nbsp;Ruinen."
+        "description": "Du darfst diese Karte oder eine Aktionskarte aus deiner Hand für {{nowrap|+{{Cost|5}}}} entsorgen.{{divline}}Wenn du diese Karte nimmst, nimm 2&nbsp;Ruinen."
     },
     {
         "id": 394,
@@ -744,7 +744,7 @@
     {
         "id": 410,
         "name": "Raubzug",
-        "description": "Entsorge diese Karte.<br>Wenn du das gemacht hast, nimm dir 2&nbsp;Beuten und jeder andere Spieler mit 5 oder mehr Handkarten deckt seine Hand auf und legt eine Karte deiner Wahl ab."
+        "description": "Entsorge diese Karte.<br>Wenn du das getan hast, nimm 2&nbsp;Beuten und jeder Mitspieler mit 5 oder mehr Handkarten deckt diese auf und legt eine Karte deiner Wahl ab."
     },
     {
         "id": 411,
@@ -859,12 +859,12 @@
         "name": "Streitross",
         "description": "<p>Wähle zwei verschiedene:<br>'''+2 Karten'''<br>oder '''+2 Aktionen'''<br>oder +{{Cost|2}}<br>oder nimm 4 Silber und lege deinen<br>Nachziehstapel auf deinen Ablagestapel.</p>''(Diese Karte gehört nicht zum Vorrat.)''"
     },
-    { "id": 517, "name": "Kupfer", "description": "{{Cost|1|xl}}" },
+    { "id": 517, "name": "Kupfer", "description": "{{Cost|1|l}}" },
     { "id": 525, "name": "Anwesen", "description": "{{VP|1|l}}" },
-    { "id": 526, "name": "Silber", "description": "{{Cost|2|xl}}" },
+    { "id": 526, "name": "Silber", "description": "{{Cost|2|l}}" },
     { "id": 527, "name": "Trank", "description": "{{Cost|P|m}}" },
     { "id": 528, "name": "Herzogtum", "description": "{{VP|3|l}}" },
-    { "id": 529, "name": "Gold", "description": "{{Cost|3|xl}}" },
+    { "id": 529, "name": "Gold", "description": "{{Cost|3|l}}" },
     { "id": 530, "name": "Provinz", "description": "{{VP|6|l}}" },
     { "id": 531, "name": "Kolonie", "description": "{{VP|10|l}}" },
     {
@@ -1130,7 +1130,7 @@
     {
         "id": 2117,
         "name": "Geschichtenerzähler",
-        "description": "'''+1 Aktion'''<br>Spiele bis zu 3&nbsp;Geldkarten aus deiner Hand. Dann '''+1&nbsp;Karte''' und bezahle alle {{nowrap|deine {{Cost}}}} und '''+1&nbsp;Karte''' pro {{Cost|1}}, das du bezahlt hast."
+        "description": "'''+1 Aktion'''<br>Spiele bis zu 3&nbsp;Geldkarten aus deiner Hand. Dann '''+1&nbsp;Karte''', zahle alle {{nowrap|deine {{Cost}}}} und '''+1&nbsp;Karte''' pro gezahltem {{Cost|1}}."
     },
     {
         "id": 2119,
@@ -1380,7 +1380,7 @@
     {
         "id": 2259,
         "name": "Champion",
-        "description": "<p>'''+1 Aktion'''<br>Für den Rest des Spiels, wenn ein Mitspieler eine Angriffskarte spielt, bist du davon nicht betroffen, und wenn du eine Aktionskarte spielst, erhältst du zuerst '''+1&nbsp;Aktion'''.</p> ''(Diese Karte gehört nicht zum Vorrat.)''"
+        "description": "<p>'''+1 Aktion'''<br>Bis zum Spielende: Spielt ein Mitspieler eine Angriffskarte, bist du von ihr nicht betroffen, und, wenn du eine Aktionskarte spielst, erhältst du zuerst '''+1&nbsp;Aktion'''.</p> ''(Diese Karte gehört nicht zum Vorrat.)''"
     },
     {
         "id": 2260,
@@ -1395,7 +1395,7 @@
     {
         "id": 2262,
         "name": "Schüler",
-        "description": "Du darfst eine Aktionskarte aus deiner Hand zweimal spielen. Nimm von jener Karte eine gleiche.{{divline}}Wenn du diese Karte aus dem Spiel ablegst, darfst du sie in einen Lehrer eintauschen.<br>''(Diese Karte gehört nicht zum Vorrat.)''"
+        "description": "<p>Du darfst eine Aktionskarte aus deiner Hand zweimal spielen. Nimm von jener Karte eine gleiche.{{Divline}}Wenn du diese Karte aus dem Spiel ablegst, darfst du sie in einen Lehrer eintauschen.</p>''(Diese Karte gehört nicht zum Vorrat.)''"
     },
     {
         "id": 2263,
@@ -1605,7 +1605,7 @@
     {
         "id": 3343,
         "name": "Lehnsherr",
-        "description": "Spiele eine Nicht-Befehl Aktionskarte aus dem Vorrat, die bis zu {{Cost|5}} kostet; lasse sie dort liegen."
+        "description": "Spiele eine Nicht-Befehl-Aktions&shy;karte aus dem Vorrat, die bis zu {{Cost|5}} kostet; lasse sie dort liegen."
     },
     {
         "id": 3345,
@@ -1920,7 +1920,7 @@
     {
         "id": 5238,
         "name": "Narr",
-        "description": "<p>Wenn du nicht '''Im Wald verirrt''' hast, erhalte es, erhalte 3&nbsp;Gaben und empfange sie in beliebiger Reihenfolge.</p><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Erbst&uuml;ck: {{Card|Lucky CoinGerman|Gl&uuml;ckstaler}} &nbsp;&nbsp;''</span>"
+        "description": "<p>Wenn du nicht '''Im Wald verirrt''' hast: Erhalte es, erhalte 3&nbsp;Gaben und empfange sie in beliebiger Reihenfolge.</p><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Erbst&uuml;ck: {{Card|Lucky CoinGerman|Gl&uuml;ckstaler}} &nbsp;&nbsp;''</span>"
     },
     {
         "id": 5256,
@@ -3425,12 +3425,12 @@
     {
         "id": 9350,
         "name": "Einsamer Schrein",
-        "description": "+{{Cost|1}}<br>Das nächste Mal, wenn du<br>eine Geldkarte nimmst,<br>entsorge bis zu 2 deiner<br>Handkarten."
+        "description": "+{{Cost|1}}<br>Das nächste Mal, wenn du eine Geldkarte nimmst, entsorge bis zu 2 deiner Handkarten."
     },
     {
         "id": 9351,
         "name": "Überfluss",
-        "description": "Das nächste<br>Mal, wenn du eine<br>Aktionskarte nimmst:<br>'''+1 Kauf''' und +{{Cost|3}}."
+        "description": "Das nächste Mal, wenn du eine Aktionskarte nimmst:<br>'''+1 Kauf''' und {{nowrap|+{{Cost|3}}.}}"
     },
     {
         "id": 9352,
@@ -3561,7 +3561,7 @@
     {
         "id": 9428,
         "name": "Käfig",
-        "description": "Lege bis zu 4 deiner Hand-<br>karten verdeckt zur Seite<br>(auf diese Karte).<br>Das nächste Mal, wenn<br>du eine Punktekarte nimmst,<br>entsorge diese Karte und nimm<br>die zur Seite gelegten Karten am<br>Ende des Zuges auf deine Hand."
+        "description": "Lege bis zu 4 deiner Handkarten verdeckt zur Seite (auf diese Karte).<br>Das nächste Mal, wenn du eine Punktekarte nimmst, entsorge diese Karte und nimm die zur Seite gelegten Karten am Ende des Zuges auf deine Hand."
     },
     {
         "id": 9429,
@@ -3571,7 +3571,7 @@
     {
         "id": 9430,
         "name": "Suche",
-        "description": "+{{Cost|2}}<br>Das nächste Mal, wenn<br>ein Vorratsstapel leer wird,<br>entsorge diese Karte und<br>nimm eine Kostbarkeit."
+        "description": "+{{Cost|2}}<br>Das nächste Mal, wenn ein Vorrats&shy;stapel leer wird, entsorge diese Karte und nimm eine Kostbarkeit."
     },
     {
         "id": 9431,

@@ -281,7 +281,7 @@
     {
         "id": 108,
         "name": "Wyspa",
-        "description": "Odłóż na bok tę i jeszcze jedną kartę z ręki. Po zakończeniu rozgrywki karty te trafiają z powrotem do twojej talii.{{Divline}}{{VP|2|l}}"
+        "description": "Odłóż na podkładkę Wyspy tę i jeszcze jedną kartę z ręki.{{Divline}}{{VP|2|l}}"
     },
     {
         "id": 109,
@@ -327,12 +327,12 @@
     {
         "id": 118,
         "name": "Przyczółek",
-        "description": "W fazie porządków tej tury dobierasz 3&nbsp;karty (zamiast&nbsp;5). Po zakończeniu tej tury rozegraj dodatkową turę. Nie możesz dzięki tej karcie rozegrać więcej niż dwie tury z rzędu."
+        "description": "Jeśli zagrałeś Przyczółek po raz pierwszy w tej {{nowrap|turze –}} i jeśli poprzednia tura nie była {{nowrap|twoja –}} to po zakończeniu bieżącej tury rozegraj dodatkową turę, dobierając tylko 3&nbsp;karty na rękę."
     },
     {
         "id": 119,
         "name": "Strateg",
-        "description": "Odrzuć wszystkie karty z ręki.<br>Jeżeli odrzuciłeś w ten sposób chociaż jedną kartę, to na początku twojej następnej tury:<br>+5&nbsp;kart, +1&nbsp;zakup i +1&nbsp;akcja."
+        "description": "Jeżeli masz na ręce przynajmniej jedną kartę: odrzuć wszystkie karty z ręki, a na początku twojej następnej tury:<br>'''+5&nbsp;kart''', '''+1&nbsp;akcja''' oraz '''+1&nbsp;zakup'''."
     },
     {
         "id": 120,
@@ -375,7 +375,7 @@
         "name": "Zaskórniak",
         "description": "{{Cost|2|l}}{{divline}}Kiedy tasujesz tę kartę, możesz przejrzeć pozostałe karty w swojej talii i możesz umieścić tę kartę w dowolnym miejscu wśród tasowanych kart."
     },
-    { "id": 212, "name": "Klątwa", "description": "" },
+    { "id": 212, "name": "Klątwa", "description": "{{VP|-1|l}}" },
     {
         "id": 242,
         "name": "Kredyt",
@@ -387,7 +387,7 @@
         "description": "'''+1 zakup'''<br>+{{Cost|1}} za każdy żeton monety leżący na podkładce Szlaku handlowego.<br>Wyrzuć na śmietnisko kartę z ręki.{{Divline}}Przygotowanie do rozgrywki połóż żeton monety na każdym stosie kart Zwycięstwa w Zasobach. Kiedy gracz dodaje kartę z takiego stosu, należy przełożyć żeton na podkładkę Szlaku handlowego."
     },
     { "id": 246, "name": "Cyganka", "description": "" },
-    { "id": 247, "name": "Platyna", "description": "{{Cost|5}}" },
+    { "id": 247, "name": "Platyna", "description": "{{Cost|5|l}}" },
     { "id": 317, "name": "Ołtarz", "description": "" },
     { "id": 319, "name": "Obóz bandytów", "description": "" },
     {
@@ -419,7 +419,7 @@
     {
         "id": 327,
         "name": "Miasto",
-        "description": "'''+1 karta<br>+2 akcje'''<br>Jeżeli w Zasobach znajduje się co najmniej jeden pusty stos kart, +1&nbsp;karta.<br>Jeżeli w zasobach znajdują się co najmniej dwa puste stosy kart, {{nowrap|+{{Cost|1}} i}} +1&nbsp;zakup."
+        "description": "'''+1 karta<br>+2 akcje'''<br>Jeżeli w Zasobach jest co najmniej jeden pusty stos kart, '''+1&nbsp;karta'''.<br>Jeżeli w Zasobach są co najmniej dwa puste stosy kart, {{nowrap|'''+1 zakup''' i +{{Cost|1}}}}."
     },
     {
         "id": 328,
@@ -434,7 +434,7 @@
     {
         "id": 330,
         "name": "Mincerz",
-        "description": "Możesz odkryć kartę Skarbu z ręki. Dodaj jej kopię (na stos kart odrzuconych).{{divline}}Kiedy kupujesz tę kartę, wyrzuć na śmietnisko wszystkie karty Skarbu, jakie masz w grze."
+        "description": "Możesz odkryć kartę Skarbu z ręki. Dodaj jej kopię.{{divline}}Kiedy dodajesz tę kartę, wyrzuć na Śmietnisko wszystkie karty Skarbu (niebędące kartami Następstwa), które masz w grze."
     },
     {
         "id": 331,
@@ -474,7 +474,7 @@
     {
         "id": 338,
         "name": "Krocie",
-        "description": "{{Cost|2|l}}{{divline}}Kiedy ta karta znajduje się w grze, dodaj Złoto za każdym razem, gdy kupujesz kartę Zwycięstwa."
+        "description": "{{Cost|2|l}}<br>Ilekroć w tej turze dodasz kartę Zwycięstwa – ale tylko jeśli ją kupiłeś – dodaj także Złoto."
     },
     {
         "id": 339,
@@ -488,8 +488,8 @@
     },
     {
         "id": 341,
-        "name": "Płatner",
-        "description": "Wyrzuć na śmietnisko dowolną liczbę kart z ręki. Dodaj kartę o koszcie równym sumie kosztów wszystkich kart (wyrażonych w monetach)."
+        "name": "Płatnerz",
+        "description": "Wyrzuć na Śmietnisko dowolną liczbę kart z ręki. Dodaj kartę o&nbsp;koszcie równym sumie kosztów (wyrażonych {{nowrap|w {{Cost}})}} wyrzuconych kart."
     },
     {
         "id": 342,
@@ -604,13 +604,13 @@
         "name": "Wierny Rumak",
         "description": "<p>Wybierz dwie różne opcje: +2&nbsp;karty; +2&nbsp;akcje; {{nowrap|+{{Cost|2}};}} dodaj 4&nbsp;Srebrniki i umieść swoją talię na stosie odrzuconych kart. (wybrane opcje muszą się różnić)</p>''(Ta karta nie należy do zapasów)''"
     },
-    { "id": 517, "name": "Miedziak", "description": "" },
+    { "id": 517, "name": "Miedziaki", "description": "{{Cost|1|l}}" },
     { "id": 525, "name": "Posiadłość", "description": "" },
-    { "id": 526, "name": "Srebrnik", "description": "" },
+    { "id": 526, "name": "Srebrniki", "description": "{{Cost|2|l}}" },
     { "id": 528, "name": "Powiat", "description": "" },
-    { "id": 529, "name": "Złocisz", "description": "" },
+    { "id": 529, "name": "Złoto", "description": "{{Cost|3|l}}" },
     { "id": 530, "name": "Prowincja", "description": "" },
-    { "id": 531, "name": "Kolonia", "description": "{{VP|'''10'''}}" },
+    { "id": 531, "name": "Kolonia", "description": "{{VP|'''10'''|l}}" },
     { "id": 601, "name": "Rozdroże", "description": "" },
     { "id": 603, "name": "Złoto głupców", "description": "" },
     { "id": 604, "name": "Rozwój", "description": "" },
@@ -993,7 +993,7 @@
     {
         "id": 5238,
         "name": "Głupiec",
-        "description": "Jeśli nie posiadasz Stanu ''Zagubiony w lesie'': weź go, weź także 3 Łaski i otrzymaj je w dowolnej kolejności.<br><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Szczęśliwa moneta&nbsp;&nbsp;''</span>"
+        "description": "<p>Jeśli nie posiadasz Stanu ''Zagubiony w lesie'': weź go, weź także 3 Łaski i otrzymaj je w dowolnej kolejności.</p><span style=\"background-color:LemonChiffon\">&nbsp;&nbsp;''Pamiątka: Szczęśliwa moneta&nbsp;&nbsp;''</span>"
     },
     {
         "id": 5256,
@@ -1002,6 +1002,21 @@
     },
     { "id": 5257, "name": "Dar płomieni", "description": "" },
     { "id": 5263, "name": "Dar lasu", "description": "" },
+    {
+        "id": 5273,
+        "name": "Zagubiony w lesie",
+        "description": "Na początku swojej tury możesz odrzucić kartę, aby otrzymać Łaskę."
+    },
+    {
+        "id": 5308,
+        "name": "Zazdrosny",
+        "description": "Na początku twojej fazy zakupu: zwróć tę kartę i w tej turze karty Srebrników i Złota są warte {{Cost|1}}."
+    },
+    {
+        "id": 5309,
+        "name": "Omamiony",
+        "description": "Na początku twojej fazy zakupu: zwróć tę kartę i w tej turze nie możesz kupować kart Akcji."
+    },
     {
         "id": 5318,
         "name": "Życzenie",
@@ -1125,5 +1140,40 @@
         "id": 8653,
         "name": "Żeglarz",
         "description": "<p>'''+1 akcja'''<br>Raz w tej turze, gdy dodasz kartę Następstwa, możesz ją zagrać.</p>Na początku twojej następnej tury: +{{Cost|2}} i możesz wyrzucić na Śmietnisko kartę z ręki."
+    },
+    {
+        "id": 9349,
+        "name": "Zejście na ląd",
+        "description": "'''+2 karty<br>+2 akcje'''<br>Kiedy następnym razem jako pierwszą kartę w turze zagrasz kartę Skarbu, po jej zagraniu odłóż to Zejście na ląd na wierzch swojej talii."
+    },
+    {
+        "id": 9350,
+        "name": "Ustronna kapliczka",
+        "description": "+{{Cost|1}}<br>Kiedy następnym razem dodasz kartę Skarbu, wyrzuć na Śmietnisko maksymalnie 2&nbsp;karty z ręki."
+    },
+    {
+        "id": 9351,
+        "name": "Urodzaj",
+        "description": "Kiedy następnym razem dodasz kartę Akcji: '''+1&nbsp;zakup''' i {{nowrap|+{{Cost|3}}.}}"
+    },
+    {
+        "id": 9352,
+        "name": "Okręt flagowy",
+        "description": "+{{Cost|2}}<br>Kiedy następnym razem zagrasz kartę Akcji niebędącą kartą Rozkazu, zagraj ją ponownie."
+    },
+    {
+        "id": 9428,
+        "name": "Klatka",
+        "description": "Odłóż na bok (na tę kartę) maksymalnie 4&nbsp;karty z ręki, awersem do dołu. Kiedy następnym razem dodasz kartę Zwycięstwa, wyrzuć tę Klatkę na Śmietnisko, a na koniec tury weź na rękę odłożone na niej karty."
+    },
+    {
+        "id": 9430,
+        "name": "Poszukiwania",
+        "description": "+{{Cost|2}}<br>Kiedy następnym razem wyczerpie się stos w Zasobach, wyrzuć tę kartę na Śmietnisko i dodaj Łup."
+    },
+    {
+        "id": 9475,
+        "name": "Rzezimieszek",
+        "description": "<p>Każdy z pozostałych graczy odrzuca karty, aż będzie miał ich&nbsp;3 na ręce.</p>Kiedy następnym razem dowolny gracz doda kartę Skarbu kosztującą {{Cost|5}} lub więcej, dodaj Łup."
     }
 ]
