@@ -592,7 +592,7 @@
     {
         "id": 343,
         "name": "Hausiererin /",
-        "description": "'''+1 Karte<br>+1 Aktion'''<br>+{{Cost|1}}{{divline}}Während der Kaufphase eines Spielers<br>kostet diese Karte {{Cost|2}} weniger pro<br>Aktionskarte, die er im Spiel hat."
+        "description": "'''+1 Karte<br>+1 Aktion'''<br>+{{Cost|1}}{{divline}}Während der Kaufphase eines Spielers kostet diese Karte {{Cost|2}} weniger pro Aktionskarte, die er im Spiel hat."
     },
     {
         "id": 353,
@@ -632,7 +632,7 @@
     {
         "id": 386,
         "name": "Prozession",
-        "description": "Du darfst eine Aktionskarte aus deiner Hand, die keine Dauerkarte ist, zweimal spielen. Entsorge sie.<br>Nimm eine Aktionskarte, die genau {{Cost|1}} mehr als jene Karte kostet."
+        "description": "Du darfst eine Aktionskarte, die keine Dauerkarte ist, aus deiner Hand zweimal spielen. Entsorge sie.<br>Nimm eine Aktionskarte, die genau {{Cost|1}} mehr als jene Karte kostet."
     },
     { "id": 387, "name": "Verlassene Mine", "description": "+{{Cost|1}}" },
     {
@@ -1834,7 +1834,7 @@
     {
         "id": 5164,
         "name": "Plünderer",
-        "description": "Jeder Mitspieler mit 5 oder mehr Handkarten legt eine Karte ab, von der du bereits eine gleiche im Spiel hast (oder zeigt vor, dass er das nicht kann).<br>Zu Beginn deines nächsten Zuges: {{nowrap|+{{Cost|3}}.}}"
+        "description": "<p>Jeder Mitspieler mit 5 oder mehr Handkarten legt eine Karte ab, von der du bereits eine gleiche im Spiel hast (oder zeigt vor, dass er das nicht kann).</p>Zu Beginn deines nächsten Zuges: {{nowrap|+{{Cost|3}}.}}"
     },
     {
         "id": 5166,
@@ -2053,7 +2053,7 @@
     {
         "id": 5312,
         "name": "Kobold",
-        "description": "Nimm ein Gold. Wenn du genau 7 Karten im Spiel hast, nimm einen Wunsch vom Wunsch-Stapel. Ansonsten empfange eine Plage."
+        "description": "Nimm ein Gold. Wenn du genau 7&nbsp;Karten im Spiel hast, nimm einen Wunsch vom Wunsch-Stapel. Ansonsten empfange eine Plage."
     },
     {
         "id": 5318,
@@ -3289,7 +3289,7 @@
     {
         "id": 9274,
         "name": "Sirene",
-        "description": "Jeder Mitspieler nimmt einen Fluch.<br>Zieh zu Beginn deines nächsten<br>Zuges, bis du 8 Handkarten hast.{{divline}}Wenn du diese Karte nimmst,<br>entsorge sie, es sei denn, du<br>entsorgst eine Aktionskarte<br>aus deiner Hand."
+        "description": "Jeder Mitspieler nimmt einen Fluch. Zieh zu Beginn deines nächsten Zuges, bis du 8&nbsp;Handkarten hast.{{Divline}}Wenn du diese Karte nimmst, entsorge sie, es sei denn, du entsorgst eine Aktionskarte aus deiner Hand."
     },
     {
         "id": 9275,
@@ -3450,7 +3450,7 @@
     {
         "id": 9355,
         "name": "Beeilung",
-        "description": "'''+1 Kauf'''<br>Das nächste Mal, wenn du in diesem<br>Zug eine Aktionskarte nimmst, spiele sie."
+        "description": "'''+1 Kauf'''<br>Das nächste Mal, wenn du in diesem Zug eine Aktions&shy;karte nimmst, spiele sie."
     },
     {
         "id": 9363,

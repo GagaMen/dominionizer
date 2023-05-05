@@ -499,7 +499,7 @@
     {
         "id": 343,
         "name": "Domokrążca",
-        "description": "'''+1 karta<br>+1 akcja'''<br>+{{Cost|1}}{{divline}}W fazie zakupu ta karta kosztuje o {{Cost|2}}<br>mniej za każdą kartę Akcji, jaką<br>masz w grze (ale nie mniej niż {{Cost|0}})."
+        "description": "'''+1 karta<br>+1 akcja'''<br>+{{Cost|1}}{{divline}}W fazie zakupu dowolnego gracza ta karta kosztuje o {{Cost|2}} mniej za każdą kartę Akcji, którą {{nowrap|ma on w grze}}."
     },
     {
         "id": 353,
@@ -972,6 +972,11 @@
     { "id": 3510, "name": "Patrol", "description": "" },
     { "id": 3511, "name": "Podmiana", "description": "" },
     { "id": 5088, "name": "Bard", "description": "" },
+    {
+        "id": 5164,
+        "name": "Najeźdźca",
+        "description": "Każdy z pozostałych graczy z co najmniej 5&nbsp;kartami na ręce, odrzuca kopię jednej z kart, które masz w grze (lub odkrywa rękę, by udowodnić, że nie może tego zrobić).<br>Na początku twojej następnej tury: {{nowrap|+{{Cost|3}}.}}"
+    },
     { "id": 5166, "name": "Diabelski warsztat", "description": "" },
     { "id": 5167, "name": "Miasto duchów", "description": "" },
     {
@@ -1016,6 +1021,11 @@
         "id": 5309,
         "name": "Omamiony",
         "description": "Na początku twojej fazy zakupu: zwróć tę kartę i w tej turze nie możesz kupować kart Akcji."
+    },
+    {
+        "id": 5312,
+        "name": "Złoto",
+        "description": "Dodaj Złoto. Jeśli masz w grze dokładnie 7&nbsp;kart, dodaj Życzenie. W&nbsp;przeciwnym razie otrzymujesz Urok."
     },
     {
         "id": 5318,
@@ -1142,6 +1152,11 @@
         "description": "<p>'''+1 akcja'''<br>Raz w tej turze, gdy dodasz kartę Następstwa, możesz ją zagrać.</p>Na początku twojej następnej tury: +{{Cost|2}} i możesz wyrzucić na Śmietnisko kartę z ręki."
     },
     {
+        "id": 9274,
+        "name": "Syrena",
+        "description": "Każdy z pozostałych graczy dodaje Klątwę. Na początku twojej następnej tury: dobieraj karty aż będziesz miał ich 8 na ręce.{{Divline}}Kiedy dodajesz tę kartę, wyrzuć ją na Śmietnisko, chyba że wyrzucisz na Śmietnisko kartę Akcji z ręki."
+    },
+    {
         "id": 9349,
         "name": "Zejście na ląd",
         "description": "'''+2 karty<br>+2 akcje'''<br>Kiedy następnym razem jako pierwszą kartę w turze zagrasz kartę Skarbu, po jej zagraniu odłóż to Zejście na ląd na wierzch swojej talii."
@@ -1162,6 +1177,16 @@
         "description": "+{{Cost|2}}<br>Kiedy następnym razem zagrasz kartę Akcji niebędącą kartą Rozkazu, zagraj ją ponownie."
     },
     {
+        "id": 9355,
+        "name": "Pośpiech",
+        "description": "'''+1 zakup'''<br>Kiedy następnym razem dodasz w tej turze kartę Akcji, zagraj ją."
+    },
+    {
+        "id": 9363,
+        "name": "Nadzorca",
+        "description": "'''+1 akcja''', {{nowrap|+{{Cost|1}},}} i jeśli w tej turze dodasz kartę kosztującą dokładnie {{nowrap|{{Cost|5}},}} na początku swojej następnej tury rozpatrz ten efekt ponownie."
+    },
+    {
         "id": 9428,
         "name": "Klatka",
         "description": "Odłóż na bok (na tę kartę) maksymalnie 4&nbsp;karty z ręki, awersem do dołu. Kiedy następnym razem dodasz kartę Zwycięstwa, wyrzuć tę Klatkę na Śmietnisko, a na koniec tury weź na rękę odłożone na niej karty."
@@ -1175,5 +1200,10 @@
         "id": 9475,
         "name": "Rzezimieszek",
         "description": "<p>Każdy z pozostałych graczy odrzuca karty, aż będzie miał ich&nbsp;3 na ręce.</p>Kiedy następnym razem dowolny gracz doda kartę Skarbu kosztującą {{Cost|5}} lub więcej, dodaj Łup."
+    },
+    {
+        "id": 9480,
+        "name": "Kwatermistrz",
+        "description": "Do końca gry, na początku każdej twojej tury wybierz jedno:<br>dodaj kartę kosztującą do {{nowrap|{{Cost|4}},}} odkładając ją na bok (na tego Kwatermistrza); albo weź na rękę jedną z odłożonych tu kart."
     }
 ]
