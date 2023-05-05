@@ -764,7 +764,7 @@
     {
         "id": 5164,
         "name": "Razzia",
-        "description": "Tous vos adversaires ayant au moins 5&nbsp;cartes en main défaussent un exemplaire d'une carte que vous avez en jeu (ou montrent qu'ils ne peuvent pas). Au début de votre prochain tour, {{nowrap|+{{Cost|3}}.}}"
+        "description": "<p>Tous vos adversaires ayant au moins 5&nbsp;cartes en main défaussent un exemplaire d'une carte que vous avez en jeu (ou montrent qu'ils ne peuvent pas). </p>Au début de votre prochain tour, {{nowrap|+{{Cost|3}}.}}"
     },
     {
         "id": 5166,
