@@ -7,7 +7,7 @@
 -   top cards + bottom cards
 -   have extra randomizer card with different card art (but card art is not on the wiki)
 -   split pile cards can't be detected via card page directly (unless you look for a link to the split pile page in the introduction)
--   all split pile cards are listed on the [split pile page](http://wiki.dominionstrategy.com/index.php/Split_pile)
+-   all split pile cards are listed on the [split pile page](https://wiki.dominionstrategy.com/index.php/Split_pile)
 
 ### Curser
 
@@ -66,13 +66,13 @@
 
 -   "Knight" is a card type with ten different cards that build one pile
 -   special randomizer card that has no card page on the wiki
--   but there is a [card type page](http://wiki.dominionstrategy.com/index.php/Knight) that has all necessary information
+-   but there is a [card type page](https://wiki.dominionstrategy.com/index.php/Knight) that has all necessary information
 
 ### Castles
 
 -   "Castle" is a card type with eight different cards that build one pile
 -   special randomizer card that has no card page on the wiki
--   but there is a [card type page](http://wiki.dominionstrategy.com/index.php/Castle) that has all necessary information
+-   but there is a [card type page](https://wiki.dominionstrategy.com/index.php/Castle) that has all necessary information
 
 ### Zombies
 
@@ -141,41 +141,41 @@
 -   detectable through the name or symbol of the specific token in their card text (or for Debt also in their cost property)
 -   an exception are the wooden cubes from "Renaissance" that are used to track "Projects"
 
-| Token     | Expression                | Example                                                                   |
-| --------- | ------------------------- | ------------------------------------------------------------------------- |
-| Victory   | `'''+1'''{{VP}}`          | [Bishop](http://wiki.dominionstrategy.com/index.php/Bishop)               |
-|           | `add '''1'''{{VP}}`       | [Wild Hunt](http://wiki.dominionstrategy.com/index.php/Wild_Hunt)         |
-|           | `Put '''6'''{{VP}}`       | [Arena](http://wiki.dominionstrategy.com/index.php/Arena)                 |
-| Coin      | `Coin token`              | [Pirate Ship](http://wiki.dominionstrategy.com/index.php/Pirate_Ship)     |
-| Embargo   | `Embargo token`           | [Embargo](http://wiki.dominionstrategy.com/index.php/Embargo)             |
-| Coffers   | `Coffers`                 | [Plaza](http://wiki.dominionstrategy.com/index.php/Plaza)                 |
-| Villagers | `Villager(s)`             | [Lackeys](http://wiki.dominionstrategy.com/index.php/Lackeys)             |
-| Undefined | `token`                   | [Sinister Plot](http://wiki.dominionstrategy.com/index.php/Sinister_Plot) |
-| Trashing  | `Trashing token`          | [Plan](http://wiki.dominionstrategy.com/index.php/Plan)                   |
-| Journey   | `Journey token`           | [Ranger](http://wiki.dominionstrategy.com/index.php/Ranger)               |
-| Estate    | `Estate token`            | [Inheritance](http://wiki.dominionstrategy.com/index.php/Inheritance)     |
-| +1 Action | `+1 Action token`         | [Lost Arts](http://wiki.dominionstrategy.com/index.php/Lost_Arts)         |
-| +1 Buy    | `+1 Buy token`            | [Seaway](http://wiki.dominionstrategy.com/index.php/Seaway)               |
-| +1 Card   | `+1 Card token`           | [Pathfinding](http://wiki.dominionstrategy.com/index.php/Pathfinding)     |
-| +1 Coin   | `+{{Cost\|1}} token`      | [Training](http://wiki.dominionstrategy.com/index.php/Training)           |
-| -2 Cost   | `-{{Cost\|2}} cost token` | [Ferry](http://wiki.dominionstrategy.com/index.php/Ferry)                 |
-| -1 Card   | `–1 Card token`           | [Relic](http://wiki.dominionstrategy.com/index.php/Relic)                 |
-| -1 Coin   | `–{{Cost\|1}} token`      | [Ball](http://wiki.dominionstrategy.com/index.php/Ball)                   |
-| Debt      | `\|cost2 = 4`             | [Engineer](http://wiki.dominionstrategy.com/index.php/Engineer)           |
-|           | `{{Debt\|6}}`             | [Capital](http://wiki.dominionstrategy.com/index.php/Capital)             |
+| Token     | Expression                | Example                                                                    |
+| --------- | ------------------------- | -------------------------------------------------------------------------- |
+| Victory   | `'''+1'''{{VP}}`          | [Bishop](https://wiki.dominionstrategy.com/index.php/Bishop)               |
+|           | `add '''1'''{{VP}}`       | [Wild Hunt](https://wiki.dominionstrategy.com/index.php/Wild_Hunt)         |
+|           | `Put '''6'''{{VP}}`       | [Arena](https://wiki.dominionstrategy.com/index.php/Arena)                 |
+| Coin      | `Coin token`              | [Pirate Ship](https://wiki.dominionstrategy.com/index.php/Pirate_Ship)     |
+| Embargo   | `Embargo token`           | [Embargo](https://wiki.dominionstrategy.com/index.php/Embargo)             |
+| Coffers   | `Coffers`                 | [Plaza](https://wiki.dominionstrategy.com/index.php/Plaza)                 |
+| Villagers | `Villager(s)`             | [Lackeys](https://wiki.dominionstrategy.com/index.php/Lackeys)             |
+| Undefined | `token`                   | [Sinister Plot](https://wiki.dominionstrategy.com/index.php/Sinister_Plot) |
+| Trashing  | `Trashing token`          | [Plan](https://wiki.dominionstrategy.com/index.php/Plan)                   |
+| Journey   | `Journey token`           | [Ranger](https://wiki.dominionstrategy.com/index.php/Ranger)               |
+| Estate    | `Estate token`            | [Inheritance](https://wiki.dominionstrategy.com/index.php/Inheritance)     |
+| +1 Action | `+1 Action token`         | [Lost Arts](https://wiki.dominionstrategy.com/index.php/Lost_Arts)         |
+| +1 Buy    | `+1 Buy token`            | [Seaway](https://wiki.dominionstrategy.com/index.php/Seaway)               |
+| +1 Card   | `+1 Card token`           | [Pathfinding](https://wiki.dominionstrategy.com/index.php/Pathfinding)     |
+| +1 Coin   | `+{{Cost\|1}} token`      | [Training](https://wiki.dominionstrategy.com/index.php/Training)           |
+| -2 Cost   | `-{{Cost\|2}} cost token` | [Ferry](https://wiki.dominionstrategy.com/index.php/Ferry)                 |
+| -1 Card   | `–1 Card token`           | [Relic](https://wiki.dominionstrategy.com/index.php/Relic)                 |
+| -1 Coin   | `–{{Cost\|1}} token`      | [Ball](https://wiki.dominionstrategy.com/index.php/Ball)                   |
+| Debt      | `\|cost2 = 4`             | [Engineer](https://wiki.dominionstrategy.com/index.php/Engineer)           |
+|           | `{{Debt\|6}}`             | [Capital](https://wiki.dominionstrategy.com/index.php/Capital)             |
 
 ### Player Mats
 
 -   cards that interact with player mats
 -   detectable through the name of the specific mat in their card text
 
-| Mat            | Expression           | Example                                                                     |
-| -------------- | -------------------- | --------------------------------------------------------------------------- |
-| Island         | `Island mat`         | [Island](http://wiki.dominionstrategy.com/index.php/Island)                 |
-| Pirate Ship    | `Pirate Ship mat`    | [Pirate Ship](http://wiki.dominionstrategy.com/index.php/Pirate_Ship)       |
-| Native Village | `Native Village mat` | [Native Village](http://wiki.dominionstrategy.com/index.php/Native_Village) |
-| Trade Route    | `Trade Route mat`    | [Trade Route](http://wiki.dominionstrategy.com/index.php/Trade_Route)       |
-| Tavern         | `Tavern mat`         | [Guide](http://wiki.dominionstrategy.com/index.php/Guide)                   |
-| Coffers        | `Coffers`            | [Plaza](http://wiki.dominionstrategy.com/index.php/Plaza)                   |
-| Villagers      | `Villager(s)`        | [Lackeys](http://wiki.dominionstrategy.com/index.php/Lackeys)               |
-| Exile          | `Exile(s)`           | [Camel Train](http://wiki.dominionstrategy.com/index.php/Camel_Train)       |
+| Mat            | Expression           | Example                                                                      |
+| -------------- | -------------------- | ---------------------------------------------------------------------------- |
+| Island         | `Island mat`         | [Island](https://wiki.dominionstrategy.com/index.php/Island)                 |
+| Pirate Ship    | `Pirate Ship mat`    | [Pirate Ship](https://wiki.dominionstrategy.com/index.php/Pirate_Ship)       |
+| Native Village | `Native Village mat` | [Native Village](https://wiki.dominionstrategy.com/index.php/Native_Village) |
+| Trade Route    | `Trade Route mat`    | [Trade Route](https://wiki.dominionstrategy.com/index.php/Trade_Route)       |
+| Tavern         | `Tavern mat`         | [Guide](https://wiki.dominionstrategy.com/index.php/Guide)                   |
+| Coffers        | `Coffers`            | [Plaza](https://wiki.dominionstrategy.com/index.php/Plaza)                   |
+| Villagers      | `Villager(s)`        | [Lackeys](https://wiki.dominionstrategy.com/index.php/Lackeys)               |
+| Exile          | `Exile(s)`           | [Camel Train](https://wiki.dominionstrategy.com/index.php/Camel_Train)       |

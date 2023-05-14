@@ -47,7 +47,7 @@ async function bootstrap(): Promise<void> {
     const options: Options = program.opts();
 
     const axiosInstance = axios.create({
-        baseURL: 'http://wiki.dominionstrategy.com/api.php',
+        baseURL: 'https://wiki.dominionstrategy.com/api.php',
         timeout: 60 * 1000,
     });
     const imagePool = new ImagePool();

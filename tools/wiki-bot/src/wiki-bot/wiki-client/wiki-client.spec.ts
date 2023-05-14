@@ -28,7 +28,7 @@ describe('WikiClient', () => {
     const cardTypePage: CardTypePage = {
         pageid: 1,
         title: 'Card Type',
-        fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
+        fullurl: 'https://wiki.dominionstrategy.com/index.php/Knight',
         revisions: [{ '*': 'wiki text of card type' }],
     };
     const imagePage: ImagePage = {
@@ -479,7 +479,7 @@ describe('WikiClient', () => {
 
     describe('fetchImage', () => {
         it('should fetch image correctly', async () => {
-            const url = 'http://wiki.dominionstrategy.com/images/5/5e/Adventures_icon.png';
+            const url = 'https://wiki.dominionstrategy.com/images/5/5e/Adventures_icon.png';
             const image: Buffer = {} as Buffer;
             const axiosResponse: AxiosResponse<Buffer> = {
                 data: image,

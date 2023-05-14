@@ -22,7 +22,7 @@ describe('CardTypeTranslationBuilder', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 431,
                 title: 'Prize',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Prize',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Prize',
                 revisions: [
                     {
                         '*':
@@ -57,7 +57,7 @@ describe('CardTypeTranslationBuilder', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 577,
                 title: 'Knight',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Knight',
                 revisions: [
                     {
                         '*':

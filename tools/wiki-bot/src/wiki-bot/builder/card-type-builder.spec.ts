@@ -14,7 +14,7 @@ describe('CardTypeBuilder', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 1,
                 title: 'Card Type Name',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Knight',
                 revisions: [{ '*': 'wiki text of card type' }],
             };
             const expected: CardType = {

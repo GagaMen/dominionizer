@@ -34,7 +34,7 @@ describe('ImageBuilder', () => {
                 title: 'File:Menagerie (expansion) icon.png',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
+                        url: 'https://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
                         mime: 'image/png',
                     },
                 ],
@@ -69,7 +69,7 @@ describe('ImageBuilder', () => {
                 title: 'File:Menagerie (expansion) icon.png',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
+                        url: 'https://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
                         mime: 'image/png',
                     },
                 ],
@@ -94,7 +94,7 @@ describe('ImageBuilder', () => {
                 title: 'File:Bag Of GoldArt.jpg',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/5/5a/Bag_Of_GoldArt.jpg',
+                        url: 'https://wiki.dominionstrategy.com/images/5/5a/Bag_Of_GoldArt.jpg',
                         mime: 'image/jpeg',
                     },
                 ],
@@ -130,7 +130,7 @@ describe('ImageBuilder', () => {
                 title: 'File:Abandoned MineArt.jpg',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/a/ae/Abandoned_MineArt.jpg',
+                        url: 'https://wiki.dominionstrategy.com/images/a/ae/Abandoned_MineArt.jpg',
                         mime: 'image/jpeg',
                     },
                 ],
@@ -161,7 +161,7 @@ describe('ImageBuilder', () => {
                 title: 'File:AcademyArt.jpg',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/3/38/AcademyArt.jpg',
+                        url: 'https://wiki.dominionstrategy.com/images/3/38/AcademyArt.jpg',
                         mime: 'image/jpeg',
                     },
                 ],
@@ -192,7 +192,7 @@ describe('ImageBuilder', () => {
                 title: 'File:CopperArt.jpg',
                 imageinfo: [
                     {
-                        url: 'http://wiki.dominionstrategy.com/images/6/62/CopperArt.jpg',
+                        url: 'https://wiki.dominionstrategy.com/images/6/62/CopperArt.jpg',
                         mime: 'image/jpeg',
                     },
                 ],

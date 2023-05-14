@@ -371,7 +371,7 @@ describe('ExpansionMapBuilder', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 577,
                 title: 'Knight',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Knight',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Knight',
                 revisions: [
                     {
                         '*':

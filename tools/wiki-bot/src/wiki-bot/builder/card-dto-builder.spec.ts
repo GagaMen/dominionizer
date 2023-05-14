@@ -50,7 +50,7 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 pageid: 5167,
                 title: 'Ghost Town',
-                fullurl: 'http://wiki.dominionstrategy.com/index.php/Ghost_Town',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Ghost_Town',
                 revisions: [
                     {
                         '*':

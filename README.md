@@ -28,7 +28,7 @@ Firstly, we want to thank Donald X. Vaccarino, the father of Dominion, and [Rio 
 
 We also want to thank [@sumpfork](https://github.com/sumpfork) and all the contributors of [dominiontabs](https://github.com/sumpfork/dominiontabs), which is a divider generator you can use to build your custom Dominion box. They maintain an exhaustive dataset about all dominion cards, that we use in the past as data source for Dominionizer.
 
-Lastly, we would like to thank the community, who are responsible for maintaining the [wiki](http://wiki.dominionstrategy.com/) we currently use as a data source for Dominionizer.
+Lastly, we would like to thank the community, who are responsible for maintaining the [wiki](https://wiki.dominionstrategy.com/) we currently use as a data source for Dominionizer.
 
 ## License
 
