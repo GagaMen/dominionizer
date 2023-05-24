@@ -1,27 +1,23 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 import { ConfigurationService } from '../services/configuration.service';
 import { map, first } from 'rxjs/operators';
 import { Configuration } from '../models/configuration';
+import { Observable } from 'rxjs';
 
-@Injectable({
-    providedIn: 'root',
-})
-export class ConfigurationGuard implements CanActivate {
-    constructor(private router: Router, private configurationService: ConfigurationService) {}
+export const configurationGuard: CanActivateFn = (_route, _state): Observable<boolean> => {
+    const configurationService = inject(ConfigurationService);
+    const router = inject(Router);
 
-    canActivate(): Observable<boolean> {
-        return this.configurationService.configuration$.pipe(
-            first(),
-            map((configuration: Configuration) => {
-                if (configuration.expansions.length !== 0) {
-                    return true;
-                }
+    return configurationService.configuration$.pipe(
+        first(),
+        map((configuration: Configuration) => {
+            if (configuration.expansions.length !== 0) {
+                return true;
+            }
 
-                this.router.navigate(['/']);
-                return false;
-            }),
-        );
-    }
-}
+            router.navigate(['/configuration']);
+            return false;
+        }),
+    );
+};
