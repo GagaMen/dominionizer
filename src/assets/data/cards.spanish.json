@@ -216,5 +216,16 @@
     { "id": 623, "name": "Caballerizas", "description": "" },
     { "id": 624, "name": "Pueblo Fronterizo", "description": "" },
     { "id": 625, "name": "Tierra de Labranza", "description": "" },
-    { "id": 1504, "name": "Príncipe", "description": "" }
+    { "id": 1504, "name": "Príncipe", "description": "" },
+    { "id": 3496, "name": "Emisario", "description": "" },
+    { "id": 3497, "name": "Tendera", "description": "" },
+    { "id": 3498, "name": "Vasallo", "description": "" },
+    { "id": 3500, "name": "Bandido", "description": "" },
+    { "id": 3501, "name": "Centinela", "description": "" },
+    { "id": 3502, "name": "Artesano", "description": "" },
+    { "id": 3503, "name": "Acechador", "description": "" },
+    { "id": 3504, "name": "Diplomática", "description": "" },
+    { "id": 3506, "name": "Pasadizo Secreto", "description": "" },
+    { "id": 3509, "name": "Cortesano", "description": "" },
+    { "id": 3511, "name": "Suplantar", "description": "" }
 ]
