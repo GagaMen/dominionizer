@@ -24,6 +24,11 @@
     width: 20px;
 }
 
+.mat-mdc-card {
+    // default value from angular can't be overridden without !important
+    background-origin: border-box !important;
+}
+
 .mat-mdc-card-header {
     align-items: center;
     padding: 16px;
