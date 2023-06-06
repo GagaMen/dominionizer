@@ -3,13 +3,37 @@ import { Card, NullCard } from './../../models/card';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
 
+type RGB = {
+    red: number;
+    green: number;
+    blue: number;
+};
+
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-    static readonly colorOfCardTypes: Map<CardTypeId, string> = new Map([
+    private orderedPrimaryCardTypes: CardTypeId[] = [
+        CardTypeId.Treasure,
+        CardTypeId.Duration,
+        CardTypeId.Reserve,
+        CardTypeId.Victory,
+        CardTypeId.Reaction,
+        CardTypeId.Shelter,
+        CardTypeId.Event,
+        CardTypeId.Ruins,
+        CardTypeId.Landmark,
+        CardTypeId.Project,
+        CardTypeId.Way,
+        CardTypeId.Trait,
+        CardTypeId.Ally,
+    ];
+
+    private orderedSecondaryCardTypes: CardTypeId[] = [CardTypeId.Action, CardTypeId.Night];
+
+    static readonly backgroundOfCardTypes: Map<CardTypeId, string> = new Map([
         [CardTypeId.Action, '#ede4c7'],
         [CardTypeId.Duration, '#f89a43'],
         [CardTypeId.Event, '#bbbeb7'],
@@ -83,28 +107,11 @@ export class CardComponent {
         return this.card.types.map<string>((type: CardType) => type.name).join(' - ');
     }
 
-    get color(): string {
-        const orderedPrimaryCardTypes = [
-            CardTypeId.Treasure,
-            CardTypeId.Duration,
-            CardTypeId.Reserve,
-            CardTypeId.Victory,
-            CardTypeId.Reaction,
-            CardTypeId.Shelter,
-            CardTypeId.Event,
-            CardTypeId.Ruins,
-            CardTypeId.Landmark,
-            CardTypeId.Project,
-            CardTypeId.Way,
-            CardTypeId.Trait,
-            CardTypeId.Ally,
-        ];
-        const orderedSecondaryCardTypes = [CardTypeId.Action, CardTypeId.Night];
-
-        const primaryCardTypes = orderedPrimaryCardTypes.filter((typeId: CardTypeId) =>
+    get background(): string {
+        const primaryCardTypes = this.orderedPrimaryCardTypes.filter((typeId: CardTypeId) =>
             this.card.types.some((type: CardType) => type.id === typeId),
         );
-        const secondaryCardTypes = orderedSecondaryCardTypes.filter((typeId: CardTypeId) =>
+        const secondaryCardTypes = this.orderedSecondaryCardTypes.filter((typeId: CardTypeId) =>
             this.card.types.some((type: CardType) => type.id === typeId),
         );
 
@@ -115,24 +122,24 @@ export class CardComponent {
                 primaryCardTypes[0] === CardTypeId.Victory ||
                 primaryCardTypes[0] === CardTypeId.Shelter)
         ) {
-            return this.calculateColor(secondaryCardTypes[0], primaryCardTypes[0]);
+            return this.calculateBackground(secondaryCardTypes[0], primaryCardTypes[0]);
         }
 
         // general rules
         if (primaryCardTypes.length === 1) {
-            return this.calculateColor(primaryCardTypes[0]);
+            return this.calculateBackground(primaryCardTypes[0]);
         }
         if (primaryCardTypes.length > 1) {
-            return this.calculateColor(primaryCardTypes[0], primaryCardTypes[1]);
+            return this.calculateBackground(primaryCardTypes[0], primaryCardTypes[1]);
         }
 
-        return this.calculateColor(secondaryCardTypes[0]);
+        return this.calculateBackground(secondaryCardTypes[0]);
     }
 
-    private calculateColor(topCardType: CardTypeId, bottomCardType?: CardTypeId): string {
-        const topColor = CardComponent.colorOfCardTypes.get(topCardType);
+    private calculateBackground(topCardType: CardTypeId, bottomCardType?: CardTypeId): string {
+        const topColor = CardComponent.backgroundOfCardTypes.get(topCardType);
         const bottomColor = bottomCardType
-            ? CardComponent.colorOfCardTypes.get(bottomCardType)
+            ? CardComponent.backgroundOfCardTypes.get(bottomCardType)
             : undefined;
 
         if (topColor && bottomColor) {
@@ -143,5 +150,34 @@ export class CardComponent {
         }
 
         return '';
+    }
+
+    get titleColor(): string {
+        const baseColor = this.calculateBaseColor();
+
+        return `rgba(${baseColor.red}, ${baseColor.green}, ${baseColor.blue}, 0.87)`;
+    }
+
+    get subtitleColor(): string {
+        const baseColor = this.calculateBaseColor();
+
+        return `rgba(${baseColor.red}, ${baseColor.green}, ${baseColor.blue}, 0.54)`;
+    }
+
+    private calculateBaseColor(): RGB {
+        const containsTypeNight = this.card.types.some(
+            (cardType: CardType) => cardType.id === CardTypeId.Night,
+        );
+        const containsPrimaryType = this.card.types.some(
+            (cardType: CardType) =>
+                this.orderedPrimaryCardTypes.includes(cardType.id) ||
+                cardType.id === CardTypeId.Action,
+        );
+
+        if (containsTypeNight && !containsPrimaryType) {
+            return { red: 255, green: 255, blue: 255 };
+        }
+
+        return { red: 0, green: 0, blue: 0 };
     }
 }
