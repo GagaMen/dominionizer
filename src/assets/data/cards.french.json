@@ -991,7 +991,7 @@
     {
         "id": 6173,
         "name": "Porte-drapeau",
-        "description": "+{{Cost|2}}{{divline}}Quand vous recevez ou écartez cette carte, prenez le Drapeau."
+        "description": "+{{Cost|2}}{{Divline}}Quand vous recevez ou écartez cette carte, prenez le Drapeau."
     },
     {
         "id": 6174,
@@ -1058,7 +1058,7 @@
     {
         "id": 6225,
         "name": "Laquais",
-        "description": "'''+2 Cartes'''{{divline}}Quand vous recevez cette carte, '''+2&nbsp;Villageois'''."
+        "description": "'''+2 Cartes'''{{Divline}}Quand vous recevez cette carte, '''+2&nbsp;Villageois'''."
     },
     {
         "id": 6226,

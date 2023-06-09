@@ -2240,12 +2240,12 @@
     {
         "id": 6156,
         "name": "Seidenhändlerin",
-        "description": "'''+2 Karten<br>+1 Kauf'''{{divline}}Wenn du diese Karte nimmst oder entsorgst: '''+1&nbsp;Taler''' und '''+1&nbsp;Dorfbewohner'''."
+        "description": "'''+2 Karten<br>+1 Kauf'''{{Divline}}Wenn du diese Karte nimmst oder entsorgst: '''+1&nbsp;Taler''' und '''+1&nbsp;Dorfbewohner'''."
     },
     {
         "id": 6173,
         "name": "Fahnenträger",
-        "description": "+{{Cost|2}}{{divline}}Wenn du diese Karte nimmst oder entsorgst, erhalte die Fahne."
+        "description": "+{{Cost|2}}{{Divline}}Wenn du diese Karte nimmst oder entsorgst, erhalte die Fahne."
     },
     {
         "id": 6174,
@@ -2316,7 +2316,7 @@
     {
         "id": 6225,
         "name": "Diener",
-        "description": "'''+2 Karten'''{{divline}}Wenn du diese Karte nimmst: '''+2&nbsp;Dorfbewohner'''."
+        "description": "'''+2 Karten'''{{Divline}}Wenn du diese Karte nimmst: '''+2&nbsp;Dorfbewohner'''."
     },
     {
         "id": 6226,
