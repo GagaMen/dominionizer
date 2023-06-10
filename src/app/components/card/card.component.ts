@@ -103,6 +103,10 @@ export class CardComponent {
         return true;
     }
 
+    get imageUrl(): string {
+        return `${environment.entryPoint}/assets/card_art/${this.card.image}`;
+    }
+
     get typesLabel(): string {
         return this.card.types.map<string>((type: CardType) => type.name).join(' - ');
     }

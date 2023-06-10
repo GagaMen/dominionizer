@@ -1,7 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
-import { MatCardModule, MatCardTitle, MatCardSubtitle, MatCard } from '@angular/material/card';
+import {
+    MatCardModule,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatCard,
+    MatCardImage,
+} from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DataFixture } from 'src/testing/data-fixture';
 import { environment } from 'src/environments/environment';
@@ -132,6 +138,17 @@ describe('CardComponent', () => {
             const actual = component.costIconUrls;
 
             expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('imageUrl', () => {
+        it('should return correct image url', () => {
+            component.card = dataFixture.createCard({ image: 'image.jpg' });
+            const expected = `${environment.entryPoint}/assets/card_art/image.jpg`;
+
+            const actual = component.imageUrl;
+
+            expect(actual).toBe(expected);
         });
     });
 
@@ -494,6 +511,22 @@ describe('CardComponent', () => {
             fixture.debugElement.query(By.css('[mat-icon-button]')).nativeElement.click();
 
             expect(reshuffleEmitSpy).toHaveBeenCalled();
+        });
+
+        it('should display image correctly', () => {
+            component.card = dataFixture.createCard({
+                name: 'any-name',
+                image: 'image.png',
+            });
+            const imageUrlSpy = spyOnProperty(component, 'imageUrl');
+            imageUrlSpy.and.returnValue('url/to/image.png');
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.directive(MatCardImage));
+
+            expect(actual).toBeDefined();
+            expect(actual.properties.src).toBe('url/to/image.png');
+            expect(actual.properties.alt).toBe('any-name');
         });
     });
 });
