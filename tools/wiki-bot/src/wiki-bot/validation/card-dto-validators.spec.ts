@@ -5,7 +5,8 @@ import { ValidationResult } from './validation-result';
 
 describe('card dto validators', () => {
     describe('CardDtoValidator', () => {
-        const validator = new CardDtoValidator();
+        const targetPath = '../../src/assets';
+        const validator = new CardDtoValidator(targetPath);
 
         describe('validate', () => {
             const cardPage: CardPage = {
@@ -105,12 +106,12 @@ describe('card dto validators', () => {
                 expect(actual).toEqual(expected);
             });
 
-            it('with card dto wrong values should return Failure', () => {
+            it('with card dto has wrong values should return Failure', () => {
                 const card: CardDto = {
                     id: 1,
                     name: 'Cellar',
                     description: `'''+1 Action'''<br>Discard any...`,
-                    image: 'CellarArt.jpg',
+                    image: 'NonExistentArt.jpg',
                     wikiUrl: 'ftp://wiki.dominionstrategy.com/index.php/Cellar',
                     expansions: [914, 914.1],
                     types: [216],
@@ -121,6 +122,7 @@ describe('card dto validators', () => {
                 };
                 const expected = ValidationResult.Failure(
                     'Card Dto (ID: 1, Name: "Cellar"):\n' +
+                        '"NonExistentArt.jpg" must exist. Is category "Card art" assigned to the corresponding image page?\n' +
                         '"wikiUrl" must be a valid uri with a scheme matching the http|https pattern\n' +
                         '"cost" must be greater than or equal to 0\n' +
                         '"costModifier" must be one of [P, *, +]\n' +

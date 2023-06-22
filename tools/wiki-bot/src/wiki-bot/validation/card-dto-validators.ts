@@ -4,16 +4,28 @@ import { CardPage, CardTypePage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 import * as Joi from 'joi';
 import { ValidationResult } from './validation-result';
+import { existsSync } from 'fs';
 
 export class CardDtoValidator {
     readonly name: string = 'card dto';
+
+    private imageFileMustExist: Joi.CustomValidator<string> = (
+        value: string,
+        helpers: Joi.CustomHelpers,
+    ) => {
+        return existsSync(`${this.targetPath}/card_art/${value}`)
+            ? value
+            : helpers.message({
+                  custom: `"${value}" must exist. Is category "Card art" assigned to the corresponding image page?`,
+              });
+    };
 
     private joiValidator: JoiValidator<CardDto> = new JoiValidator();
     private schema: Joi.ObjectSchema<CardDto> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().required(),
         description: Joi.string().required(),
-        image: Joi.string().required(),
+        image: Joi.string().required().custom(this.imageFileMustExist),
         wikiUrl: Joi.string()
             .uri({ scheme: ['http', 'https'] })
             .required(),
@@ -24,6 +36,8 @@ export class CardDtoValidator {
         costModifier: Joi.string().valid('P', '*', '+').optional(),
         debt: Joi.number().integer().min(0).optional(),
     });
+
+    constructor(private targetPath: string) {}
 
     validate(card: CardDto, page: CardPage | CardTypePage): ValidationResult {
         return this.joiValidator.validate(

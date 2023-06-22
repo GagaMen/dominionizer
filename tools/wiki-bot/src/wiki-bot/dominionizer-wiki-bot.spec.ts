@@ -57,7 +57,7 @@ describe('DominionizerWikiBot', () => {
     let cardDtoValidatorSpy: jasmine.SpyObj<CardDtoValidator>;
     let cardDtosValidatorSpy: jasmine.SpyObj<CardDtosValidator>;
     let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
-    let imageValidatorSpy: jasmine.SpyObj<ImagesValidator>;
+    let imagesValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let writeFileSpy: jasmine.Spy;
     let readFileSpy: jasmine.Spy;
     let dataFixture: DataFixture;
@@ -167,8 +167,8 @@ describe('DominionizerWikiBot', () => {
             ['validate'],
         );
         cardTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
-        imageValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
-        imageValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        imagesValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
+        imagesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
         writeFileSpy = spyOn(Fs, 'writeFile');
 
@@ -201,7 +201,7 @@ describe('DominionizerWikiBot', () => {
             cardDtoValidatorSpy,
             cardDtosValidatorSpy,
             cardTranslationValidatorSpy,
-            imageValidatorSpy,
+            imagesValidatorSpy,
         );
     });
 
@@ -405,6 +405,90 @@ describe('DominionizerWikiBot', () => {
             /* eslint-enable */
         });
 
+        it('should generate card symbols', async () => {
+            const cardSymbolPages: ImagePage[] = [
+                { pageid: 100, title: 'File:First.png' } as ImagePage,
+                { pageid: 200, title: 'File:Second.png' } as ImagePage,
+            ];
+            const firstEncodedImage: EncodedImage = {
+                id: 100,
+                fileName: 'First.png',
+                data: new Uint8Array([1, 2]),
+            };
+            const secondEncodedImage: EncodedImage = {
+                id: 200,
+                fileName: 'Second.png',
+                data: new Uint8Array([3, 4]),
+            };
+            wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo(cardSymbolPages);
+            imageBuilderSpy.build.withArgs(cardSymbolPages[0]).and.resolveTo(firstEncodedImage);
+            imageBuilderSpy.build.withArgs(cardSymbolPages[1]).and.resolveTo(secondEncodedImage);
+
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/card_symbols/${firstEncodedImage.fileName}`,
+                firstEncodedImage.data,
+            );
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/card_symbols/${secondEncodedImage.fileName}`,
+                secondEncodedImage.data,
+            );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
+                [firstEncodedImage, secondEncodedImage],
+                cardSymbolPages,
+            );
+            /* eslint-enable */
+        });
+
+        it('should generate card art', async () => {
+            const cardArtPages: ImagePage[] = [
+                { pageid: 101, title: 'File:First.jpg' } as ImagePage,
+                { pageid: 201, title: 'File:Second.jpg' } as ImagePage,
+            ];
+            const firstEncodedImage: EncodedImage = {
+                id: 101,
+                fileName: 'First.jpg',
+                data: new Uint8Array([1, 2]),
+            };
+            const secondEncodedImage: EncodedImage = {
+                id: 201,
+                fileName: 'Second.jpg',
+                data: new Uint8Array([3, 4]),
+            };
+            wikiClientSpy.fetchAllCardArtPages.and.resolveTo(cardArtPages);
+            imageBuilderSpy.build.withArgs(cardArtPages[0]).and.resolveTo(firstEncodedImage);
+            imageBuilderSpy.build.withArgs(cardArtPages[1]).and.resolveTo(secondEncodedImage);
+
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/card_art/${firstEncodedImage.fileName}`,
+                firstEncodedImage.data,
+            );
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                `${targetPath}/card_art/${secondEncodedImage.fileName}`,
+                secondEncodedImage.data,
+            );
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
+                [firstEncodedImage, secondEncodedImage],
+                cardArtPages,
+            );
+            /* eslint-enable */
+        });
+
+        it('with skipImages is true should not generate images', async () => {
+            await dominionizerWikiBot.generateAll(true);
+
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(wikiClientSpy.fetchAllCardSymbolPages).not.toHaveBeenCalled();
+            expect(wikiClientSpy.fetchAllCardArtPages).not.toHaveBeenCalled();
+            expect(imageBuilderSpy.build).not.toHaveBeenCalled();
+            /* eslint-enable */
+        });
+
         it('should generate cards', async () => {
             const expansionPages: ExpansionPage[] = [
                 { pageid: 1 } as ExpansionPage,
@@ -496,6 +580,15 @@ describe('DominionizerWikiBot', () => {
                 cardTypes,
                 splitPilePage,
             );
+            expect(wikiClientSpy.fetchAllCardSymbolPages).toHaveBeenCalledBefore(
+                cardDtoValidatorSpy.validate,
+            );
+            expect(wikiClientSpy.fetchAllCardArtPages).toHaveBeenCalledBefore(
+                cardDtoValidatorSpy.validate,
+            );
+            expect(imagesValidatorSpy.validate).toHaveBeenCalledBefore(
+                cardDtoValidatorSpy.validate,
+            );
             /* eslint-enable */
         });
 
@@ -565,90 +658,6 @@ describe('DominionizerWikiBot', () => {
             );
             /* eslint-enable */
         });
-
-        it('should generate card symbols', async () => {
-            const cardSymbolPages: ImagePage[] = [
-                { pageid: 100, title: 'File:First.png' } as ImagePage,
-                { pageid: 200, title: 'File:Second.png' } as ImagePage,
-            ];
-            const firstEncodedImage: EncodedImage = {
-                id: 100,
-                fileName: 'First.png',
-                data: new Uint8Array([1, 2]),
-            };
-            const secondEncodedImage: EncodedImage = {
-                id: 200,
-                fileName: 'Second.png',
-                data: new Uint8Array([3, 4]),
-            };
-            wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo(cardSymbolPages);
-            imageBuilderSpy.build.withArgs(cardSymbolPages[0]).and.resolveTo(firstEncodedImage);
-            imageBuilderSpy.build.withArgs(cardSymbolPages[1]).and.resolveTo(secondEncodedImage);
-
-            await dominionizerWikiBot.generateAll();
-
-            expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_symbols/${firstEncodedImage.fileName}`,
-                firstEncodedImage.data,
-            );
-            expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_symbols/${secondEncodedImage.fileName}`,
-                secondEncodedImage.data,
-            );
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
-                [firstEncodedImage, secondEncodedImage],
-                cardSymbolPages,
-            );
-            /* eslint-enable */
-        });
-
-        it('should generate card art', async () => {
-            const cardArtPages: ImagePage[] = [
-                { pageid: 101, title: 'File:First.jpg' } as ImagePage,
-                { pageid: 201, title: 'File:Second.jpg' } as ImagePage,
-            ];
-            const firstEncodedImage: EncodedImage = {
-                id: 101,
-                fileName: 'First.jpg',
-                data: new Uint8Array([1, 2]),
-            };
-            const secondEncodedImage: EncodedImage = {
-                id: 201,
-                fileName: 'Second.jpg',
-                data: new Uint8Array([3, 4]),
-            };
-            wikiClientSpy.fetchAllCardArtPages.and.resolveTo(cardArtPages);
-            imageBuilderSpy.build.withArgs(cardArtPages[0]).and.resolveTo(firstEncodedImage);
-            imageBuilderSpy.build.withArgs(cardArtPages[1]).and.resolveTo(secondEncodedImage);
-
-            await dominionizerWikiBot.generateAll();
-
-            expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_art/${firstEncodedImage.fileName}`,
-                firstEncodedImage.data,
-            );
-            expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_art/${secondEncodedImage.fileName}`,
-                secondEncodedImage.data,
-            );
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
-                [firstEncodedImage, secondEncodedImage],
-                cardArtPages,
-            );
-            /* eslint-enable */
-        });
-
-        it('with skipImages is true should not generate images', async () => {
-            await dominionizerWikiBot.generateAll(true);
-
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(wikiClientSpy.fetchAllCardSymbolPages).not.toHaveBeenCalled();
-            expect(wikiClientSpy.fetchAllCardArtPages).not.toHaveBeenCalled();
-            expect(imageBuilderSpy.build).not.toHaveBeenCalled();
-            /* eslint-enable */
-        });
     });
 
     describe('generateUpdate', () => {
@@ -659,14 +668,6 @@ describe('DominionizerWikiBot', () => {
                 './last-generation.json',
                 JSON.stringify(currentGenerationTime),
             );
-        });
-
-        it('should generate all without images', async () => {
-            const generateAllSpy = spyOn(dominionizerWikiBot, 'generateAll');
-
-            await dominionizerWikiBot.generateUpdate();
-
-            expect(generateAllSpy).toHaveBeenCalledWith(true);
         });
 
         it('with changed image pages should generate those images', async () => {
@@ -713,11 +714,11 @@ describe('DominionizerWikiBot', () => {
                 encodedCardArt.data,
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
                 [encodedCardSymbol],
                 [changedImagePages[0]],
             );
-            expect(imageValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
                 [encodedCardArt],
                 [changedImagePages[1]],
             );
@@ -730,6 +731,18 @@ describe('DominionizerWikiBot', () => {
             /* eslint-disable @typescript-eslint/unbound-method */
             expect(wikiClientSpy.fetchRecentImageChanges).not.toHaveBeenCalled();
             expect(imageBuilderSpy.build).not.toHaveBeenCalled();
+            /* eslint-enable */
+        });
+
+        it('should generate all without images', async () => {
+            const generateAllSpy = spyOn(dominionizerWikiBot, 'generateAll');
+
+            await dominionizerWikiBot.generateUpdate();
+
+            expect(generateAllSpy).toHaveBeenCalledWith(true);
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(wikiClientSpy.fetchRecentImageChanges).toHaveBeenCalledBefore(generateAllSpy);
+            expect(imagesValidatorSpy.validate).toHaveBeenCalledBefore(generateAllSpy);
             /* eslint-enable */
         });
     });

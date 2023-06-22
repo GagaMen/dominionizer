@@ -53,7 +53,7 @@ async function bootstrap(): Promise<void> {
     const imagePool = new ImagePool();
 
     const currentGenerationTime = new Date();
-    const targetPath = '../../src/assets/';
+    const targetPath = '../../src/assets';
     const wikiClient = new WikiClient(axiosInstance);
     const expansionBuilder = new ExpansionBuilder();
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();
@@ -70,7 +70,7 @@ async function bootstrap(): Promise<void> {
     const cardTypeValidator = new CardTypeValidator();
     const cardTypesValidator = new CardTypesValidator();
     const cardTypeTranslationValidator = new CardTypeTranslationValidator();
-    const cardDtoValidator = new CardDtoValidator();
+    const cardDtoValidator = new CardDtoValidator(targetPath);
     const cardDtosValidator = new CardDtosValidator();
     const cardTranslationValidator = new CardTranslationValidator();
     const imageValidator = new ImagesValidator();

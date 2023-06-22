@@ -73,6 +73,14 @@ export class DominionizerWikiBot {
         const cardTypeTranslations = this.generateCardTypeTranslations(cardTypePages);
         await this.writeCardTypeTranslations(cardTypeTranslations);
 
+        if (!skipImages) {
+            const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
+            await this.generateImages(cardSymbolPages, 'card_symbols');
+
+            const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
+            await this.generateImages(cardArtPages, 'card_art');
+        }
+
         const cardExpansionsMap = this.generateCardExpansionsMap(expansionPages, cardTypePages);
         const cardPages = await this.wikiClient.fetchAllCardPages();
         const cards = await this.generateCards(
@@ -85,16 +93,6 @@ export class DominionizerWikiBot {
         const cardTranslations = this.generateCardTranslations(cardPages);
         await this.writeCardTranslations(cardTranslations);
 
-        if (skipImages) {
-            return this.successful;
-        }
-
-        const cardSymbolPages = await this.wikiClient.fetchAllCardSymbolPages();
-        await this.generateImages(cardSymbolPages, 'card_symbols');
-
-        const cardArtPages = await this.wikiClient.fetchAllCardArtPages();
-        await this.generateImages(cardArtPages, 'card_art');
-
         return this.successful;
     }
 
@@ -102,19 +100,19 @@ export class DominionizerWikiBot {
         const lastGenerationTime = await this.readLastGenerationTime();
         await this.writeCurrentGenerationTime();
 
-        await this.generateAll(true);
-
-        if (skipImages) {
-            return this.successful;
+        if (!skipImages) {
+            const changedImagePages = await this.wikiClient.fetchRecentImageChanges(
+                lastGenerationTime,
+            );
+            const groupedImagePages = this.groupChangedImagePagesByCategory(changedImagePages);
+            await this.generateImages(
+                groupedImagePages.get('Category:Card symbols') ?? [],
+                'card_symbols',
+            );
+            await this.generateImages(groupedImagePages.get('Category:Card art') ?? [], 'card_art');
         }
 
-        const changedImagePages = await this.wikiClient.fetchRecentImageChanges(lastGenerationTime);
-        const groupedImagePages = this.groupChangedImagePagesByCategory(changedImagePages);
-        await this.generateImages(
-            groupedImagePages.get('Category:Card symbols') ?? [],
-            'card_symbols',
-        );
-        await this.generateImages(groupedImagePages.get('Category:Card art') ?? [], 'card_art');
+        await this.generateAll(true);
 
         return this.successful;
     }
