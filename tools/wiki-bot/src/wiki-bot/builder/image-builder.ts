@@ -1,4 +1,5 @@
 import { ImagePool, EncoderOptions, PreprocessOptions, Image } from '@squoosh/lib';
+import { setTimeout } from 'timers/promises';
 import { ImagePage } from '../wiki-client/api-models';
 import { WikiClient } from '../wiki-client/wiki-client';
 
@@ -9,18 +10,42 @@ export interface EncodedImage {
 }
 
 export class ImageBuilder {
-    constructor(private wikiClient: WikiClient, private imagePool: ImagePool) {}
+    constructor(
+        private wikiClient: WikiClient,
+        private imagePool: ImagePool,
+        public timeoutDuration: number = 15 * 1000,
+    ) {}
 
-    async build(imagePage: ImagePage): Promise<EncodedImage> {
-        return {
-            id: imagePage.pageid,
-            fileName: this.buildFileName(imagePage),
-            data: await this.buildData(imagePage),
-        };
+    async build(imagePage: ImagePage): Promise<EncodedImage | null> {
+        try {
+            return {
+                id: imagePage.pageid,
+                fileName: this.buildFileName(imagePage),
+                data: await this.timeout(this.buildData(imagePage)),
+            };
+        } catch (error) {
+            let errorMessage = '';
+            if (error instanceof Error) {
+                errorMessage = error.message;
+            } else if (typeof error === 'string') {
+                errorMessage = error;
+            }
+            console.error(`Building image '${imagePage.title}' failed. Error: ${errorMessage}`);
+
+            return null;
+        }
     }
 
     private buildFileName(imagePage: ImagePage): string {
         return imagePage.title.replace('File:', '').replace('(expansion) ', '').replace(/\s/g, '_');
+    }
+
+    private timeout<T>(promise: Promise<T>): Promise<T> {
+        const timer = async () => {
+            await setTimeout(this.timeoutDuration);
+            return Promise.reject('timeout');
+        };
+        return Promise.race([promise, timer()]);
     }
 
     private async buildData(imagePage: ImagePage): Promise<Uint8Array> {

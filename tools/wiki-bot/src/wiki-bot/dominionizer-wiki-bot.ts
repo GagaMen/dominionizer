@@ -430,6 +430,8 @@ export class DominionizerWikiBot {
         const images: EncodedImage[] = [];
         for (const imagePage of imagePages) {
             const encodedImage = await this.imageBuilder.build(imagePage);
+            if (encodedImage === null) continue;
+
             images.push(encodedImage);
 
             await writeFile(

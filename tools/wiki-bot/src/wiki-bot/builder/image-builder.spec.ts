@@ -3,6 +3,7 @@ import { EncodedImage, ImageBuilder } from './image-builder';
 import { ImagePool, Image, EncoderOptions, EncodeResult } from '@squoosh/lib';
 import { ImagePage } from '../wiki-client/api-models';
 import { WikiClient } from '../wiki-client/wiki-client';
+import { setTimeout } from 'timers/promises';
 
 describe('ImageBuilder', () => {
     let imageBuilder: ImageBuilder;
@@ -12,7 +13,7 @@ describe('ImageBuilder', () => {
 
     beforeEach(() => {
         wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', ['fetchImage']);
-        imagePoolSpy = jasmine.createSpyObj<ImagePool>('ImagePool', ['ingestImage', 'close']);
+        imagePoolSpy = jasmine.createSpyObj<ImagePool>('ImagePool', ['ingestImage']);
 
         imageSpy = jasmine.createSpyObj<Image>('Image', ['preprocess', 'encode']);
         imageSpy.encodedWith = {};
@@ -24,7 +25,9 @@ describe('ImageBuilder', () => {
         });
         imageSpy.encode.and.resolveTo({});
 
-        imageBuilder = new ImageBuilder(wikiClientSpy, imagePoolSpy);
+        spyOn(console, 'error').and.stub();
+
+        imageBuilder = new ImageBuilder(wikiClientSpy, imagePoolSpy, 50);
     });
 
     describe('build', () => {
@@ -215,6 +218,25 @@ describe('ImageBuilder', () => {
 
             expect(imageSpy.preprocess).toHaveBeenCalledWith(preprocessOptions);
             expect(imageSpy.preprocess).toHaveBeenCalledBefore(imageSpy.encode);
+        });
+
+        it('with ImagePool is hung up should timeout and return null', async () => {
+            const imagePage: ImagePage = {
+                pageid: 6769,
+                title: 'File:Menagerie (expansion) icon.png',
+                imageinfo: [
+                    {
+                        url: 'https://wiki.dominionstrategy.com/images/d/d4/Menagerie_%28expansion%29_icon.png',
+                        mime: 'image/png',
+                    },
+                ],
+            };
+            imagePoolSpy.ingestImage.and.returnValue(imageSpy);
+            imageSpy.preprocess.and.returnValue(setTimeout(imageBuilder.timeoutDuration + 1));
+
+            const actual = await imageBuilder.build(imagePage);
+
+            expect(actual).toBeNull();
         });
     });
 });
