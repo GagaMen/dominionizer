@@ -287,7 +287,11 @@
         "name": "Krysy",
         "description": "'''+1 karta<br>+1 akce'''<br>Vezmi si Krysy. Zahoď na smetiště jinou kartu z ruky než Krysu (nebo ukaž karty v ruce, pokud v ní máš samé Krysy).{{divline}}Pokud tut kartu zahodíš na smetiště, '''+1&nbsp;karta'''."
     },
-    { "id": 413, "name": "Obnova", "description": "" },
+    {
+        "id": 413,
+        "name": "Obnova",
+        "description": "'''+1 akce'''<br>Řekni název karty. Ukazuj karty z vršku svého dobíracího balíčku, dokud neukážeš kartu vítězných bodů, která není jmenovanou kartou. Ostatní ukázané karty odlož. Tuto kartu vítězných bodů zahoď na smetiště a vezmi si kartu vítězných bodů, která je až {{Cost|3}} dražší."
+    },
     {
         "id": 414,
         "name": "Padouch",

@@ -759,7 +759,7 @@
     {
         "id": 413,
         "name": "Neubau",
-        "description": "'''+1 Aktion'''<br>Nenne eine Karte. Decke so lange Karten von<br>deinem Nachziehstapel auf, bis du eine nicht<br>von dir genannte Punktekarte aufgedeckt hast.<br>Lege den Rest ab, entsorge jene Punktekarte<br>und nimm eine Punktekarte, die bis zu {{Cost|3}}<br>mehr als jene Karte kostet."
+        "description": "'''+1 Aktion'''<br>Nenne eine Karte. Decke so lange Karten von deinem Nachzieh&shy;stapel auf, bis du eine nicht von dir genannte Punkte&shy;karte aufgedeckt hast. Lege den Rest ab, entsorge jene Punkte&shy;karte und nimm eine Punkte&shy;karte, die bis zu {{Cost|3}} mehr als jene Karte kostet."
     },
     {
         "id": 414,
