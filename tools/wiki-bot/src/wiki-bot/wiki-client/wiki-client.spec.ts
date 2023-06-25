@@ -367,7 +367,6 @@ describe('WikiClient', () => {
             format: 'json',
             generator: 'recentchanges',
             grcend: since.toISOString(),
-            grctoponly: 'true',
             grcnamespace: '6',
             grclimit: 'max',
             prop: 'imageinfo|categories',
@@ -385,6 +384,11 @@ describe('WikiClient', () => {
 
         it('with query result does not contain continuation data should return all changed image pages', async () => {
             const queryResult: QueryResult<ChangedImagePage> = {
+                // continuation data for file revisions should be ignored
+                // we are only interested in the latest revision
+                'query-continue': {
+                    imageinfo: {},
+                },
                 query: {
                     pages: {
                         '1': changedImagePage,

@@ -98,7 +98,6 @@ export class WikiClient {
             ...this.defaultParams,
             generator: 'recentchanges',
             grcend: since.toISOString(),
-            grctoponly: 'true',
             // 6 = 'File:'
             grcnamespace: '6',
             grclimit: 'max',
@@ -136,12 +135,12 @@ export class WikiClient {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             pages = pages.concat(Object.values<TPage>(queryResult.query.pages));
 
-            if (queryResult['query-continue'] === undefined) {
+            const continueParam = queryResult['query-continue']?.[params.generator];
+            if (continueParam === undefined) {
                 continueQuerying = false;
                 continue;
             }
 
-            const continueParam = queryResult['query-continue'][params.generator];
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             const continueParamKey: string = Object.keys(continueParam)[0];
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
