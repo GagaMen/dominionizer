@@ -11,8 +11,11 @@ export class CardDtoValidator {
 
     private imageFileMustExist: Joi.CustomValidator<string> = (
         value: string,
-        helpers: Joi.CustomHelpers,
+        helpers: Joi.CustomHelpers<string>,
     ) => {
+        // eslint threw because of next line only in GitHub action (not locally)
+        // hence disable offending rule
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return existsSync(`${this.targetPath}/card_art/${value}`)
             ? value
             : helpers.message({
