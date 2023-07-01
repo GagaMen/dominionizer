@@ -1,7 +1,6 @@
-import { ImagePool, EncoderOptions, PreprocessOptions, Image } from '@squoosh/lib';
-import { setTimeout } from 'timers/promises';
 import { ImagePage } from '../wiki-client/api-models';
 import { WikiClient } from '../wiki-client/wiki-client';
+import { SharpFactory } from './sharp-factory';
 
 export interface EncodedImage {
     id: number;
@@ -10,18 +9,14 @@ export interface EncodedImage {
 }
 
 export class ImageBuilder {
-    constructor(
-        private wikiClient: WikiClient,
-        private imagePool: ImagePool,
-        public timeoutDuration: number = 15 * 1000,
-    ) {}
+    constructor(private wikiClient: WikiClient, private sharpFactory: SharpFactory) {}
 
     async build(imagePage: ImagePage): Promise<EncodedImage | null> {
         try {
             return {
                 id: imagePage.pageid,
                 fileName: this.buildFileName(imagePage),
-                data: await this.timeout(this.buildData(imagePage)),
+                data: await this.buildData(imagePage),
             };
         } catch (error) {
             let errorMessage = '';
@@ -40,74 +35,51 @@ export class ImageBuilder {
         return imagePage.title.replace('File:', '').replace('(expansion) ', '').replace(/\s/g, '_');
     }
 
-    private timeout<T>(promise: Promise<T>): Promise<T> {
-        const timer = async () => {
-            await setTimeout(this.timeoutDuration);
-            return Promise.reject('timeout');
-        };
-        return Promise.race([promise, timer()]);
-    }
-
     private async buildData(imagePage: ImagePage): Promise<Uint8Array> {
         const imageinfo = imagePage.imageinfo[0];
         const rawImage = await this.wikiClient.fetchImage(imageinfo.url);
-        const image = this.imagePool.ingestImage(rawImage);
 
         return imageinfo.mime === 'image/png'
-            ? await this.buildDataForCardSymbol(image)
-            : await this.buildDataForCardArt(image);
+            ? await this.buildDataForCardSymbol(rawImage)
+            : await this.buildDataForCardArt(rawImage);
     }
 
-    private async buildDataForCardSymbol(image: Image): Promise<Uint8Array> {
-        const preprocessOptions: PreprocessOptions = {
-            resize: {
-                width: 40,
-                height: 40,
-            },
-        };
-        await image.preprocess(preprocessOptions);
+    private async buildDataForCardSymbol(rawImage: Buffer): Promise<Uint8Array> {
+        const optimizedImage = await this.sharpFactory
+            .create(rawImage)
+            .resize({ height: 40 })
+            .png()
+            .timeout({ seconds: 15 })
+            .toBuffer();
 
-        const encoderOptions = { oxipng: {} }; // means default options
-        await image.encode<EncoderOptions>(encoderOptions);
-
-        return (await image.encodedWith.oxipng)?.binary ?? new Uint8Array();
+        return new Uint8Array(optimizedImage);
     }
 
-    private async buildDataForCardArt(image: Image): Promise<Uint8Array> {
-        const decodedImage = await image.decoded;
-        const aspectRatio: number = decodedImage.bitmap.width / decodedImage.bitmap.height;
+    private async buildDataForCardArt(rawImage: Buffer): Promise<Uint8Array> {
+        const sharpInstance = this.sharpFactory.create(rawImage);
+        const imageMetadata = await sharpInstance.metadata();
 
-        let preprocessOptions: PreprocessOptions;
+        if (imageMetadata.width === undefined || imageMetadata.height === undefined) {
+            throw new Error('Width or height of image could not be determined.');
+        }
+
+        const aspectRatio: number = imageMetadata.width / imageMetadata.height;
+
+        let resizeWidth: number;
         if (aspectRatio < 1) {
             // supply card
-            preprocessOptions = {
-                resize: {
-                    width: 150,
-                    height: 196,
-                },
-            };
-        } else if (aspectRatio > 2) {
-            // special card
-            preprocessOptions = {
-                resize: {
-                    width: 300,
-                    height: 118,
-                },
-            };
+            resizeWidth = 150;
         } else {
-            // kingdom card
-            preprocessOptions = {
-                resize: {
-                    width: 300,
-                    height: 215,
-                },
-            };
+            // kingdom card or special card
+            resizeWidth = 300;
         }
-        await image.preprocess(preprocessOptions);
 
-        const encoderOptions = { mozjpeg: {} }; // means default options
-        await image.encode<EncoderOptions>(encoderOptions);
+        const optimizedImage = await sharpInstance
+            .resize({ width: resizeWidth })
+            .jpeg({ mozjpeg: true })
+            .timeout({ seconds: 15 })
+            .toBuffer();
 
-        return (await image.encodedWith.mozjpeg)?.binary ?? new Uint8Array();
+        return new Uint8Array(optimizedImage);
     }
 }

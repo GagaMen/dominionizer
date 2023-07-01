@@ -1,6 +1,5 @@
 import { CardTypeBuilder } from './wiki-bot/builder/card-type-builder';
 import { ExpansionCardsMapBuilder } from './wiki-bot/builder/expansion-cards-map-builder';
-import { ImagePool } from '@squoosh/lib';
 import { ImageBuilder } from './wiki-bot/builder/image-builder';
 import { CardTranslationBuilder } from './wiki-bot/builder/card-translation-builder';
 import { CardDtoBuilder } from './wiki-bot/builder/card-dto-builder';
@@ -25,6 +24,7 @@ import { exec } from 'child_process';
 import { exit } from 'process';
 import { SplitPileDependencyBuilder } from './wiki-bot/builder/split-pile-dependency-builder';
 import { promisify } from 'util';
+import { SharpFactory } from './wiki-bot/builder/sharp-factory';
 
 interface Options {
     skipImages: boolean;
@@ -50,7 +50,7 @@ async function bootstrap(): Promise<void> {
         baseURL: 'https://wiki.dominionstrategy.com/api.php',
         timeout: 60 * 1000,
     });
-    const imagePool = new ImagePool();
+    const sharpFactory = new SharpFactory();
 
     const currentGenerationTime = new Date();
     const targetPath = '../../src/assets';
@@ -63,7 +63,7 @@ async function bootstrap(): Promise<void> {
     const cardTranslationBuilder = new CardTranslationBuilder();
     const cardTypeBuilder = new CardTypeBuilder();
     const cardTypeTranslationBuilder = new CardTypeTranslationBuilder(cardTranslationBuilder);
-    const imageBuilder = new ImageBuilder(wikiClient, imagePool);
+    const imageBuilder = new ImageBuilder(wikiClient, sharpFactory);
     const expansionValidator = new ExpansionValidator();
     const expansionsValidator = new ExpansionsValidator();
     const expansionTranslationValidator = new ExpansionTranslationValidator();
@@ -102,22 +102,18 @@ async function bootstrap(): Promise<void> {
 
     let successful: boolean;
 
-    try {
-        if (options.update) {
-            successful = await bot.generateUpdate(options.skipImages);
-        } else {
-            successful = await bot.generateAll(options.skipImages);
-        }
-
-        // this is necessary so that we can wait for the end of the child process
-        // otherwise the exit function in this file will kill the process before it is finished
-        const execPromise = promisify(exec);
-        const { stdout, stderr } = await execPromise('npm run prettier');
-        console.log(stdout);
-        console.log(stderr);
-    } finally {
-        imagePool.close();
+    if (options.update) {
+        successful = await bot.generateUpdate(options.skipImages);
+    } else {
+        successful = await bot.generateAll(options.skipImages);
     }
+
+    // this is necessary so that we can wait for the end of the child process
+    // otherwise the exit function in this file will kill the process before it is finished
+    const execPromise = promisify(exec);
+    const { stdout, stderr } = await execPromise('npm run prettier');
+    console.log(stdout);
+    console.log(stderr);
 
     exit(successful ? 0 : 1);
 }

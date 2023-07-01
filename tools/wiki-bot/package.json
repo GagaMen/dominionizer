@@ -11,10 +11,10 @@
         "test:ci": "ts-node --project tsconfig.spec.json ./node_modules/jasmine/bin/jasmine --config=jasmine.json"
     },
     "dependencies": {
-        "@squoosh/lib": "^0.4.0",
         "axios": "^1.2.2",
         "commander": "^10.0.0",
-        "joi": "^17.6.0"
+        "joi": "^17.6.0",
+        "sharp": "^0.32.1"
     },
     "devDependencies": {
         "@types/jasmine": "^4.3.1",
