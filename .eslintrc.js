@@ -13,7 +13,8 @@ module.exports = {
                 'plugin:prettier/recommended',
             ],
             parserOptions: {
-                project: 'tsconfig.json',
+                tsconfigRootDir: __dirname,
+                project: ['tsconfig.json', './tools/*/tsconfig.json'],
             },
             rules: {
                 '@angular-eslint/component-selector': [
