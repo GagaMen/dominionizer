@@ -3,7 +3,7 @@
     "compilerOptions": {
         "outDir": "./out-tsc/wiki-bot",
         "module": "CommonJS",
-        "typeRoots": ["./node_modules/@types", "./typings"]
+        "typeRoots": ["../../node_modules/@types", "./typings"]
     },
     "files": ["src/main.ts"]
 }

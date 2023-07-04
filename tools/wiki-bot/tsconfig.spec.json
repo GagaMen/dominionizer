@@ -3,6 +3,6 @@
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
         "module": "CommonJS",
-        "typeRoots": ["./node_modules/@types", "./typings"]
+        "typeRoots": ["../../node_modules/@types", "./typings"]
     }
 }
