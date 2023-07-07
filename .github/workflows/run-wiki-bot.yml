@@ -34,7 +34,6 @@ jobs:
                       ${{ runner.OS }}-node-
 
             - name: Install dependencies
-              working-directory: ${{github.workspace}}/tools/wiki-bot
               run: npm ci
 
             - name: Run wiki-bot
