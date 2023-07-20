@@ -178,6 +178,31 @@ describe('CardDtoBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with cardPage has original and alternate art should return correct card', () => {
+            // TODO: update test when alternate art is actually used
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                title: 'Farm',
+                revisions: [
+                    {
+                        '*':
+                            `{{Infobox Card\n | name=Farm\n}}` +
+                            `== Trivia ==\n` +
+                            `[[Image:HaremArt.jpg|thumb|right|354px|Official original card's art.]]\n`,
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                name: 'Farm',
+                image: 'HaremArt.jpg',
+            };
+
+            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with cardPage of non-kingdom card should return correct card', () => {
             const cardPageOne: CardPage = {
                 ...nullCardPage,
