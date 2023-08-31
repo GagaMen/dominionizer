@@ -61,25 +61,57 @@ jobs:
               working-directory: workspace
               run: npm run test:ci
 
+    # don't use setup job, because we may need to check out the master branch, which will not work if we only restore the workspace
     commitlint:
-        needs: setup
         runs-on: ubuntu-latest
         steps:
-            - name: Cache workspace
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
+                  fetch-depth: 0
+                  path: workspace
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+
+            - name: Setup npm
+              run: npm install -g npm@9
+
+            - name: Cache Node.js modules
               uses: actions/cache@v3
               with:
-                  path: workspace
-                  key: workspace-${{ github.sha }}
+                  # npm cache files are stored in `~/.npm` on Linux/macOS
+                  path: ~/.npm
+                  key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.OS }}-node-
 
-            - name: Run commitlint on push
-              if: github.event_name == 'push'
+            - name: Install dependencies
               working-directory: workspace
-              run: npx --no -- commitlint --from ${{ github.event.before }} --to HEAD --verbose
+              run: npm ci
 
-            - name: Run commitlint on pull request
-              if: github.event_name == 'pull_request'
+            - name: Checkout master branch
+              if: github.ref_name != 'master'
               working-directory: workspace
-              run: npx --no -- commitlint --from ${{ github.event.pull_request.base.sha }} --verbose
+              run: git fetch origin master && git checkout master && git pull
+
+            - name: Change back to triggered branch
+              if: github.ref_name != 'master'
+              working-directory: workspace
+              run: git checkout ${{ github.ref_name }}
+
+            - name: Run commitlint on push to master
+              if: github.ref_name == 'master'
+              working-directory: workspace
+              run: npx --no -- commitlint --from ${{ github.event.before }} --verbose
+
+            - name: Run commitlint on push to branch
+              if: github.ref_name != 'master'
+              working-directory: workspace
+              run: npx --no -- commitlint --from refs/heads/master --verbose
 
     eslint:
         needs: setup
