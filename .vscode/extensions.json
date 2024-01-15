@@ -4,7 +4,6 @@
         "editorconfig.editorconfig",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "eg2.vscode-npm-script",
         "stylelint.vscode-stylelint",
         "davidanson.vscode-markdownlint",
         "adam-bender.commit-message-editor"
