@@ -18,6 +18,11 @@ npm install
 npm start
 ```
 
+Develop in a docker container:
+
+1.  Install extension "ms-vscode-remote.remote-containers"
+2.  Run VSCode command "Dev Containers: Reopen in Container"
+
 ## Contributing
 
 The easiest way to contribute is telling your friends about this app. If you want to go further and report a bug, request a feature or even contribute code, please check out our [contributing guidelines](/CONTRIBUTING.md) first.

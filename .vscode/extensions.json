@@ -6,6 +6,7 @@
         "esbenp.prettier-vscode",
         "stylelint.vscode-stylelint",
         "davidanson.vscode-markdownlint",
-        "adam-bender.commit-message-editor"
+        "adam-bender.commit-message-editor",
+        "ms-vscode-remote.remote-containers"
     ]
 }

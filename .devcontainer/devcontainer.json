@@ -1,0 +1,25 @@
+{
+    "name": "dominionizer",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [4200, 8080, 9876],
+    "postCreateCommand": "npm install",
+    "remoteUser": "node",
+    "postStartCommand": "sudo service ssh start",
+    "mounts": ["type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,readonly"],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "angular.ng-template",
+                "editorconfig.editorconfig",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "stylelint.vscode-stylelint",
+                "davidanson.vscode-markdownlint",
+                "adam-bender.commit-message-editor",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
