@@ -66,10 +66,11 @@ export class ExpansionCardsMapBuilder {
         expansionId: number,
         section: WikiText,
     ): void {
+        const cardListing = /\*.*/s.exec(section)?.[0] ?? '';
         const cardRegex =
             /{{\s*(?:Card|Event|Landmark|Boon|Hex|State|Artifact|Project|Way|Ally|Trait)\s*\|([^|}]*).*?}}(\*?)/gi;
         let match: RegExpExecArray | null;
-        while ((match = cardRegex.exec(section))) {
+        while ((match = cardRegex.exec(cardListing))) {
             const card = normalize(match?.[1]);
             const expansionEditionId = match?.[2] === '*' ? expansionId + 0.1 : expansionId;
 

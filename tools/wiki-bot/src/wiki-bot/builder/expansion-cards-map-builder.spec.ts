@@ -363,6 +363,32 @@ describe('ExpansionMapBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        it('with card only in introductory description of section should return correct map', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 171,
+                title: 'Intrigue',
+                revisions: [
+                    {
+                        '*':
+                            '== Contents ==\n' +
+                            '=== Kingdom cards, second edition ===\n' +
+                            '* {{Cost|6}}: {{Card|Farm}}*\n' +
+                            '=== Removed first-edition Kingdom cards ===\n' +
+                            '... {{Card|Harem}} was initially ... but later replaced with {{Card|Farm}} without any new edition.\n' +
+                            '* {{Cost|6}}: {{Card|Harem}}',
+                    },
+                ],
+            };
+            const expected: Map<number, string[]> = new Map([
+                [171, ['Harem']],
+                [171.1, ['Farm']],
+            ]);
+
+            const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
     });
 
     describe('buildWithCardTypePage', () => {
