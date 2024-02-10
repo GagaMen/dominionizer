@@ -29,6 +29,7 @@ import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { mkdir } from 'fs/promises';
 import { ValidationResult } from './validation/validation-result';
 import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
+import { normalize } from './builder/helper-functions';
 
 export class DominionizerWikiBot {
     private successful = true;
@@ -337,8 +338,22 @@ export class DominionizerWikiBot {
 
         let cards: CardDto[] = [];
 
-        for (const cardPage of cardPages) {
-            const card = this.cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+        for (let cardPage of cardPages) {
+            let redirectingCardPage: CardPage | undefined;
+            const redirectTargetTitle = this.extractRedirectTargetTitle(cardPage);
+            if (redirectTargetTitle) {
+                const redirectTargetCardPage = cardPages.find(
+                    (page: CardPage) => page.title === redirectTargetTitle,
+                );
+                redirectingCardPage = cardPage;
+                cardPage = redirectTargetCardPage ?? cardPage;
+            }
+            const card = this.cardDtoBuilder.build(
+                cardPage,
+                cardExpansionsMap,
+                cardTypes,
+                redirectingCardPage,
+            );
 
             if (card === null) {
                 continue;
@@ -372,6 +387,10 @@ export class DominionizerWikiBot {
         cards = this.splitPileDependencyBuilder.build(cards, cardTypes, splitPilePage);
 
         return cards;
+    }
+
+    private extractRedirectTargetTitle(cardPage: CardPage): string {
+        return normalize(/#REDIRECT \[\[(.+)\]\]/.exec(cardPage.revisions?.[0]['*'])?.[1]);
     }
 
     private async writeCards(cards: CardDto[]): Promise<void> {

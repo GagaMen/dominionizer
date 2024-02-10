@@ -548,10 +548,10 @@ describe('DominionizerWikiBot', () => {
                 .withArgs(cardTypePages[2], expansionCardsMap)
                 .and.returnValue(new Map());
             cardDtoBuilderSpy.build
-                .withArgs(cardPages[0], cardExpansionsMap, cardTypes)
+                .withArgs(cardPages[0], cardExpansionsMap, cardTypes, undefined)
                 .and.returnValue(cards[1]);
             cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], cardExpansionsMap, cardTypes)
+                .withArgs(cardPages[1], cardExpansionsMap, cardTypes, undefined)
                 .and.returnValue(cards[0]);
             cardDtoBuilderSpy.build
                 .withArgs(cardTypePages[0], cardExpansionsMap, cardTypes)
@@ -589,6 +589,36 @@ describe('DominionizerWikiBot', () => {
             expect(imagesValidatorSpy.validate).toHaveBeenCalledBefore(
                 cardDtoValidatorSpy.validate,
             );
+            /* eslint-enable */
+        });
+
+        it('with card page redirect should generate cards correctly', async () => {
+            const cardPages: CardPage[] = [
+                {
+                    pageid: 10,
+                    title: 'Card 10',
+                    revisions: [{ '*': '#REDIRECT [[Card 20]]' }],
+                } as CardPage,
+                { pageid: 20, title: 'Card 20' } as CardPage,
+            ];
+            const cards: CardDto[] = [
+                { id: 10, name: 'Card 10' } as CardDto,
+                { id: 20, name: 'Card 20' } as CardDto,
+            ];
+            wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
+            cardDtoBuilderSpy.build
+                .withArgs(cardPages[1], jasmine.any(Map), jasmine.any(Array), cardPages[0])
+                .and.returnValue(cards[0]);
+            cardDtoBuilderSpy.build
+                .withArgs(cardPages[1], jasmine.any(Map), jasmine.any(Array), undefined)
+                .and.returnValue(cards[1]);
+            splitPileDependencyBuilderSpy.build.and.returnValue(cards);
+
+            await dominionizerWikiBot.generateAll();
+
+            /* eslint-disable @typescript-eslint/unbound-method */
+            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0], cardPages[1]);
+            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1], cardPages[1]);
             /* eslint-enable */
         });
 

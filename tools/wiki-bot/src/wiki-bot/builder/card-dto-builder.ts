@@ -14,6 +14,7 @@ export class CardDtoBuilder {
         page: CardPage | CardTypePage,
         cardExpansionsMap: Map<string, number[]>,
         cardTypes: CardType[],
+        redirectingCardPage?: CardPage,
     ): CardDto | null {
         const wikiText: WikiText = page.revisions[0]['*'] ?? '';
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox');
@@ -22,14 +23,14 @@ export class CardDtoBuilder {
             return null;
         }
 
-        const name = this.extractName(page, infoBox);
+        const name = redirectingCardPage?.title ?? this.extractName(page, infoBox);
 
         return {
-            id: page.pageid,
+            id: redirectingCardPage?.pageid ?? page.pageid,
             name: name,
             description: this.extractDescription(infoBox),
             image: this.extractImage(name, wikiText),
-            wikiUrl: page.fullurl,
+            wikiUrl: redirectingCardPage?.fullurl ?? page.fullurl,
             expansions: this.extractExpansions(name, cardExpansionsMap),
             types: this.extractTypes(infoBox, cardTypes),
             isKingdomCard: this.extractIsKingdomCard(infoBox),

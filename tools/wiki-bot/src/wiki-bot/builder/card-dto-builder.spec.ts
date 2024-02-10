@@ -84,6 +84,46 @@ describe('CardDtoBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with cardPage and redirectingCardPage should return correct card', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 10190,
+                title: 'Farm',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Farm',
+                revisions: [
+                    {
+                        '*': `{{Infobox Card\n |name = Farm\n}}`,
+                    },
+                ],
+            };
+            const redirectingCardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 94,
+                title: 'Harem',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Harem',
+                revisions: [
+                    {
+                        '*': `#REDIRECT [[Farm]]`,
+                    },
+                ],
+            };
+            const expected: CardDto = {
+                ...nullCardDto,
+                id: redirectingCardPage.pageid,
+                name: 'Harem',
+                wikiUrl: redirectingCardPage.fullurl,
+            };
+
+            const actual = cardDtoBuilder.build(
+                cardPage,
+                cardExpansionsMap,
+                cardTypes,
+                redirectingCardPage,
+            );
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with cardPage uses template for name should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
