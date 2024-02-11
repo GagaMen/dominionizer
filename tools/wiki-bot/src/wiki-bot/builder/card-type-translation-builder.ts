@@ -8,9 +8,13 @@ export class CardTypeTranslationBuilder {
 
     build(cardTypePage: CardTypePage): Map<string, CardTypeTranslation> {
         const wikiText: WikiText = cardTypePage.revisions[0]['*'] ?? '';
-        let inOtherLanguages: WikiText = extractSection(wikiText, 'In other languages', 3);
+        let translationSection: WikiText = extractSection(
+            wikiText,
+            '(?:In other languages|Other language versions)',
+            3,
+        );
 
-        if (inOtherLanguages === '') {
+        if (this.hasTableForm(translationSection)) {
             const cardTranslations = this.cardTranslationBuilder.build(cardTypePage);
             const cardTypeTranslations: Map<string, CardTypeTranslation> = new Map();
 
@@ -21,9 +25,9 @@ export class CardTypeTranslationBuilder {
             return cardTypeTranslations;
         }
 
-        inOtherLanguages = inOtherLanguages.replace(/<!--.*?-->/gs, '');
+        translationSection = translationSection.replace(/<!--.*?-->/gs, '');
 
-        const languageCandidates: WikiText[] = inOtherLanguages.split(/\n\*\s/).slice(1);
+        const languageCandidates: WikiText[] = translationSection.split(/\n\*\s/).slice(1);
         return new Map<string, CardTypeTranslation>(
             languageCandidates.map((languageCandidate: WikiText) => {
                 const language = /^[^:]*/.exec(languageCandidate)?.[0];
@@ -36,5 +40,9 @@ export class CardTypeTranslationBuilder {
                 return [normalize(language), { id: cardTypePage.pageid, name: normalize(name) }];
             }),
         );
+    }
+
+    private hasTableForm(translationSection: WikiText) {
+        return /\n\s*{\|.*?\n\s*\|}/s.test(translationSection);
     }
 }

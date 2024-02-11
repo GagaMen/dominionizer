@@ -1,4 +1,4 @@
-import { CardTranslation } from 'src/app/models/card';
+import { CardTranslation } from './../../../../../src/app/models/card';
 import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
 import { CardTranslationBuilder } from './card-translation-builder';
@@ -18,7 +18,7 @@ describe('CardTypeTranslationBuilder', () => {
     });
 
     describe('build', () => {
-        it('should return correct translations', () => {
+        it('with translations in list form should return correct translations', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 431,
                 title: 'Prize',
@@ -53,7 +53,39 @@ describe('CardTypeTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with card type page contains language versions table should return correct translations', () => {
+        it('with translations in table form for card type should return correct translations', () => {
+            const cardTypePage: CardTypePage = {
+                pageid: 6107,
+                title: 'Project',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Project',
+                revisions: [
+                    {
+                        '*':
+                            `=== In other languages ===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Text\n` +
+                            `|}\n\n`,
+                    },
+                ],
+            };
+            const cardTranslations: Map<string, CardTranslation> = new Map([
+                ['Dutch', { id: cardTypePage.pageid, name: 'Project', description: '' }],
+                ['German', { id: cardTypePage.pageid, name: 'Projekt', description: '' }],
+            ]);
+            const expected: Map<string, CardTypeTranslation> = new Map([
+                ['Dutch', { id: cardTypePage.pageid, name: 'Project' }],
+                ['German', { id: cardTypePage.pageid, name: 'Projekt' }],
+            ]);
+            cardTranslationBuilderSpy.build
+                .withArgs(cardTypePage)
+                .and.returnValue(cardTranslations);
+
+            const actual = cardTypeTranslationBuilder.build(cardTypePage);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with translations in table form for card should return correct translations', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 577,
                 title: 'Knight',
@@ -62,7 +94,10 @@ describe('CardTypeTranslationBuilder', () => {
                     {
                         '*':
                             `===Other language versions===\n` +
-                            `In general, the specific names...\n`,
+                            `In general, the specific names...\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                            `|}\n\n`,
                     },
                 ],
             };

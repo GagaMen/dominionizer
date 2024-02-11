@@ -1,13 +1,13 @@
 import { CardTranslation } from '../../../../../src/app/models/card';
-import { CardPage, WikiText } from '../wiki-client/api-models';
+import { CardPage, CardTypePage, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 
 export class CardTranslationBuilder {
-    build(cardPage: CardPage): Map<string, CardTranslation> {
-        const wikiText: WikiText = cardPage.revisions[0]['*'] ?? '';
+    build(page: CardPage | CardTypePage): Map<string, CardTranslation> {
+        const wikiText: WikiText = page.revisions[0]['*'] ?? '';
         const otherLanguageVersions: WikiText = extractSection(
             wikiText,
-            'Other language versions',
+            '(?:In other languages|Other language versions)',
             3,
         );
 
@@ -33,7 +33,7 @@ export class CardTranslationBuilder {
             );
 
             translations.set(normalize(language), {
-                id: cardPage.pageid,
+                id: page.pageid,
                 name: cardName,
                 description: cardDescription,
             });

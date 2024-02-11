@@ -1,5 +1,5 @@
 import { CardTranslation } from '../../../../../src/app/models/card';
-import { CardPage } from '../wiki-client/api-models';
+import { CardPage, CardTypePage } from '../wiki-client/api-models';
 import { CardTranslationBuilder } from './card-translation-builder';
 
 describe('CardTranslationBuilder', () => {
@@ -55,6 +55,48 @@ describe('CardTranslationBuilder', () => {
             ]);
 
             const actual = cardTranslationBuilder.build(cardPage);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with different heading should return correct translations', () => {
+            const cardTypePage: CardTypePage = {
+                ...nullCardPage,
+                pageid: 6107,
+                revisions: [
+                    {
+                        '*':
+                            `=== In other languages ===\n` +
+                            `{| class="wikitable" style="text-align:center;"\n` +
+                            `! Language !! Name !! Print !! Text\n` +
+                            `|-\n` +
+                            `!Dutch \n| Project || || Project\n` +
+                            `|-\n` +
+                            `!German \n| Projekt || ||\n` +
+                            `|}`,
+                    },
+                ],
+            };
+            const expected: Map<string, CardTranslation> = new Map([
+                [
+                    'Dutch',
+                    {
+                        id: cardTypePage.pageid,
+                        name: 'Project',
+                        description: `Project`,
+                    },
+                ],
+                [
+                    'German',
+                    {
+                        id: cardTypePage.pageid,
+                        name: 'Projekt',
+                        description: ``,
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardTypePage);
 
             expect(actual).toEqual(expected);
         });
