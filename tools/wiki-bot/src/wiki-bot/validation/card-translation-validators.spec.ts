@@ -28,7 +28,7 @@ describe('card translation validators', () => {
             it('with empty card translation should return Success', () => {
                 const cardTranslation: CardTranslation = {
                     id: 1,
-                    name: '',
+                    name: 'Keller',
                     description: '',
                 };
 

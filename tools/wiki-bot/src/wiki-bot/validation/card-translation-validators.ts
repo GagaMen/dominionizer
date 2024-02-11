@@ -10,7 +10,7 @@ export class CardTranslationValidator {
     private joiValidator: JoiValidator<CardTranslation> = new JoiValidator();
     private schema: Joi.ObjectSchema<CardTranslation> = Joi.object({
         id: Joi.number().required(),
-        name: Joi.string().allow('').required(),
+        name: Joi.string().required(),
         description: Joi.string().allow('').required(),
     });
 
