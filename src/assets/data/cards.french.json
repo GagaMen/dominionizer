@@ -22,7 +22,11 @@
     },
     { "id": 20, "name": "Village", "description": "'''+1 Carte'''<br>'''+2 Actions'''" },
     { "id": 24, "name": "Bûcheron", "description": "" },
-    { "id": 25, "name": "Atelier", "description": "Recevez une carte coûtant jusqu'à {{Cost|4}}" },
+    {
+        "id": 25,
+        "name": "Atelier",
+        "description": "<p>Recevez une carte coûtant jusqu'à {{Cost|4}}.</p>"
+    },
     { "id": 34, "name": "Cour", "description": "" },
     { "id": 36, "name": "Bureaucrate", "description": "" },
     { "id": 37, "name": "Festin", "description": "" },
@@ -30,7 +34,7 @@
     {
         "id": 39,
         "name": "Milice",
-        "description": "+{{Cost|2}}<br>Tous vos adversaires défaussent jusqu'à avoir 3 cartes en main."
+        "description": "<p>+{{Cost|2}}<br>Tous vos adversaires défaussent jusqu'à avoir 3&nbsp;cartes en main.</p>"
     },
     { "id": 40, "name": "Prêteur sur gages", "description": "" },
     { "id": 41, "name": "Rénovation", "description": "" },
@@ -41,7 +45,7 @@
     {
         "id": 46,
         "name": "Chambre du conseil",
-        "description": "'''+4 Cartes''' <br>'''+1 Achat'''<br>Tous vos adversaires piochent 1 carte."
+        "description": "'''+4 Cartes''' <br>'''+1 Achat'''<br>Tous vos adversaires piochent 1&nbsp;carte."
     },
     { "id": 47, "name": "Festival", "description": "" },
     { "id": 48, "name": "Laboratoire", "description": "" },
@@ -88,7 +92,6 @@
     { "id": 91, "name": "Comptoir", "description": "" },
     { "id": 92, "name": "Hommage", "description": "" },
     { "id": 93, "name": "Mise à niveau", "description": "" },
-    { "id": 94, "name": "Harem", "description": "" },
     { "id": 95, "name": "Nobles", "description": "" },
     { "id": 96, "name": "Embargo", "description": "" },
     { "id": 97, "name": "Havre", "description": "" },
@@ -1264,5 +1267,6 @@
         "id": 8653,
         "name": "Navigatrice",
         "description": "<p>'''+1 Action'''<br>Une fois durant ce tour, quand vous recevez une carte Durée, vous pouvez la jouer.</p> Au début de votre prochain tour, +{{Cost|2}} et vous pouvez écarter une carte de votre main."
-    }
+    },
+    { "id": 10190, "name": "Harem", "description": "" }
 ]

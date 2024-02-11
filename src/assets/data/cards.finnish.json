@@ -48,7 +48,6 @@
     { "id": 91, "name": "Kauppa-asema", "description": "" },
     { "id": 92, "name": "Kymmenykset", "description": "" },
     { "id": 93, "name": "Parannustyö", "description": "" },
-    { "id": 94, "name": "Haaremi", "description": "" },
     { "id": 95, "name": "Aateliset", "description": "" },
     { "id": 96, "name": "Saarto", "description": "" },
     { "id": 97, "name": "Satama", "description": "" },
@@ -378,5 +377,6 @@
         "description": "'''+1 Kortti<br>+1 Toiminta'''<br>Voit pelata Avannon kädestäsi.{{Divline}}Kun pelaat Hopean tämän kortin ollessa pelissä, voit tuhota kortin kädestäsi."
     },
     { "id": 3487, "name": "Avanto", "description": "" },
-    { "id": 5175, "name": "Purkutyö", "description": "" }
+    { "id": 5175, "name": "Purkutyö", "description": "" },
+    { "id": 10190, "name": "Haaremi", "description": "" }
 ]

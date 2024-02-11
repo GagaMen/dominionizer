@@ -48,7 +48,6 @@
     { "id": 91, "name": "Stazione Commerciale", "description": "" },
     { "id": 92, "name": "Tributo", "description": "" },
     { "id": 93, "name": "Potenziamento", "description": "" },
-    { "id": 94, "name": "Harem", "description": "" },
     { "id": 95, "name": "Nobili", "description": "" },
     { "id": 96, "name": "Embargo", "description": "" },
     { "id": 97, "name": "Rada", "description": "" },
@@ -168,5 +167,6 @@
     { "id": 622, "name": "Margravio", "description": "" },
     { "id": 623, "name": "Stalla", "description": "" },
     { "id": 624, "name": "Villaggio di Frontiera", "description": "" },
-    { "id": 625, "name": "Terra Coltivata", "description": "" }
+    { "id": 625, "name": "Terra Coltivata", "description": "" },
+    { "id": 10190, "name": "Harem", "description": "" }
 ]

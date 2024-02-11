@@ -2,7 +2,7 @@
     {
         "id": 16,
         "name": "地窖",
-        "description": "'''＋1 行動'''。<br>棄掉任意張數的卡片，抽取相同數量的卡片。"
+        "description": "'''＋1 行動'''。<br>棄掉任意張數的卡片，<br>抽取相同數量的卡片。"
     },
     { "id": 17, "name": "禮拜堂", "description": "移除你手上至多四張卡片。" },
     {
@@ -59,7 +59,6 @@
     { "id": 91, "name": "商棧", "description": "" },
     { "id": 92, "name": "朝貢", "description": "" },
     { "id": 93, "name": "升級", "description": "" },
-    { "id": 94, "name": "後宮", "description": "" },
     { "id": 95, "name": "貴族", "description": "" },
     { "id": 96, "name": "封港令", "description": "" },
     { "id": 97, "name": "港口", "description": "" },
@@ -475,5 +474,5 @@
     { "id": 6310, "name": "聖馬可廣場", "description": "" },
     { "id": 6311, "name": "道路網", "description": "" },
     { "id": 6312, "name": "惡毒手段", "description": "" },
-    { "id": 6809, "name": "", "description": "" }
+    { "id": 10190, "name": "後宮", "description": "" }
 ]

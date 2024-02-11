@@ -1,4 +1,7 @@
 [
     { "id": 212, "name": "Maldición" },
-    { "id": 577, "name": "Caballeros" }
+    { "id": 550, "name": "Ruinas" },
+    { "id": 577, "name": "Caballeros" },
+    { "id": 6107, "name": "Proyecto" },
+    { "id": 6108, "name": "Objeto" }
 ]

@@ -19,6 +19,16 @@
     { "id": 3304, "name": "Kastelen" },
     { "id": 4220, "name": "Gunsten" },
     { "id": 4221, "name": "Spreuk" },
+    { "id": 6107, "name": "Project" },
+    { "id": 6108, "name": "Artefact" },
     { "id": 6808, "name": "Spoor" },
-    { "id": 8083, "name": "Bondgenoot" }
+    { "id": 8083, "name": "Bondgenoot" },
+    { "id": 8130, "name": "Voorspellers" },
+    { "id": 8132, "name": "Zwerftochten" },
+    { "id": 8192, "name": "Stedling" },
+    { "id": 8236, "name": "Tovenaars" },
+    { "id": 8377, "name": "Forten" },
+    { "id": 8378, "name": "Conflicten" },
+    { "id": 9293, "name": "Eigenschap" },
+    { "id": 9346, "name": "Buit" }
 ]

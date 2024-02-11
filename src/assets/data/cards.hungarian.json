@@ -47,7 +47,6 @@
     { "id": 91, "name": "Vándorpiac", "description": "" },
     { "id": 92, "name": "Sarc", "description": "" },
     { "id": 93, "name": "Fejlesztés", "description": "" },
-    { "id": 94, "name": "Hárem", "description": "" },
     { "id": 95, "name": "Nemesség", "description": "" },
     { "id": 212, "name": "Átok", "description": "" },
     { "id": 517, "name": "Réz", "description": "" },
@@ -55,5 +54,6 @@
     { "id": 526, "name": "Ezüst", "description": "" },
     { "id": 528, "name": "Hercegség", "description": "" },
     { "id": 529, "name": "Arany", "description": "" },
-    { "id": 530, "name": "Tartomány", "description": "" }
+    { "id": 530, "name": "Tartomány", "description": "" },
+    { "id": 10190, "name": "Hárem", "description": "" }
 ]

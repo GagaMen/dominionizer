@@ -20,5 +20,6 @@
     { "id": 6098, "name": "Renaissance", "icon": "Renaissance_icon.png" },
     { "id": 6737, "name": "Menagerie", "icon": "Menagerie_icon.png" },
     { "id": 7293, "name": "Allies", "icon": "Allies_icon.png" },
-    { "id": 9040, "name": "Plunder", "icon": "Plunder_icon.png" }
+    { "id": 9040, "name": "Plunder", "icon": "Plunder_icon.png" },
+    { "id": 10428, "name": "Rising Sun", "icon": "Rising_Sun_icon.png" }
 ]

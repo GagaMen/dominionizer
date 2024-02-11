@@ -48,7 +48,6 @@
     { "id": 91, "name": "Obchodní místo", "description": "" },
     { "id": 92, "name": "Dar poddaných", "description": "" },
     { "id": 93, "name": "Pokrok", "description": "" },
-    { "id": 94, "name": "Harém", "description": "" },
     { "id": 95, "name": "Šlechtici", "description": "" },
     { "id": 96, "name": "Embargo", "description": "" },
     { "id": 97, "name": "Přístav", "description": "" },
@@ -223,7 +222,7 @@
     {
         "id": 398,
         "name": "Poustevník",
-        "description": "Prohlédni si svůj odkládací balíček. Můžeš zahodit na smetiště kartu z odkládacího balíčku nebo z ruky, která není kartou peněz.<br>Vezmi si kartu s cenou až {{Cost|3}}.{{divline}}Pokud odkládáš Poustevníka ze hry v tahu, kdy jsi nekoupil žádnou kartu, zahoď ho místo toho na smetiště a vezmi si Šílence z balíčku karet Šílenců."
+        "description": "Prohlédni si svůj odkládací balíček. Můžeš zahodit na smetiště kartu z odkládacího balíčku nebo z ruky, která není kartou peněz.<br>Vezmi si kartu s cenou {{nowrap|až {{Cost|3}}.}}{{divline}}Pokud odkládáš Poustevníka ze hry v tahu, kdy jsi nekoupil žádnou kartu, zahoď ho místo toho na smetiště a vezmi si Šílence z balíčku karet Šílenců."
     },
     {
         "id": 399,
@@ -235,7 +234,11 @@
         "name": "Revír",
         "description": "'''+4 karty'''{{divline}}Když zahodíš tuto kartu na smetiště, vezmi si Vévodství nebo 3&nbsp;Statky."
     },
-    { "id": 401, "name": "Železářství", "description": "" },
+    {
+        "id": 401,
+        "name": "Železářství",
+        "description": "'''+1 karta<br>+1 akce'''<br>Ukaž vrchní kartu svěho dobíracího balíčku. Můžeš jí odložit nebo vrátit na dobírací balíček. Pokud je to:<br>karta akce, '''+1&nbsp;akce,'''<br>karta penez, '''{{nowrap|+{{Cost|1}},}}'''<br>karta vítězných bodů, '''+1&nbsp;karta.'''"
+    },
     {
         "id": 402,
         "name": "Vetešník",
@@ -280,7 +283,7 @@
     {
         "id": 411,
         "name": "Chudobinec",
-        "description": "+{{Cost|4}}<br>Ukaž karty v ruce: {{nowrap|–{{Cost|1}}}} za každou takto ukázanou kartu peněz (až do minima {{Cost|0}})."
+        "description": "+{{Cost|4}}<br>Ukaž karty v ruce: {{nowrap|–{{Cost|1}}}} za každou takto ukázanou kartu peněz (až do {{nowrap|minima {{Cost|0}}).}}"
     },
     {
         "id": 412,
@@ -366,7 +369,7 @@
     {
         "id": 560,
         "name": "Lady Josefína",
-        "description": "Všichni ostatní hráči ukážou vrchní 2&nbsp;karty svých dobíracích balíčků a zahodí na smetiště jednu kartu v ceně {{Cost|3}} až {{Cost|6}}. Ostatní karty odloží.<br>Pokud je takto zahozen nějaký rytíř, zahoď na smetiště i Lady Josefínu.{{divline}}{{VP|2|l}}"
+        "description": "Všichni ostatní hráči ukážou vrchní 2&nbsp;karty svých dobíracích balíčků a zahodí na smetiště jednu kartu v ceně {{Cost|3}} až {{Cost|6}}. Ostatní karty odloží.<br>Pokud je takto zahozen nějaký rytíř, zahoď na smetiště i Lady Josefínu.{{divline}}{{VP|2|l}} |"
     },
     {
         "id": 562,
@@ -432,5 +435,6 @@
     { "id": 622, "name": "Markrabě", "description": "" },
     { "id": 623, "name": "Stáje", "description": "" },
     { "id": 624, "name": "Pohraniční vesnice", "description": "" },
-    { "id": 625, "name": "Úrodná země", "description": "" }
+    { "id": 625, "name": "Úrodná země", "description": "" },
+    { "id": 10190, "name": "Harém", "description": "" }
 ]
