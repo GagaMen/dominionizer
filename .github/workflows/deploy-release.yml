@@ -17,10 +17,10 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v3
               with:
-                  node-version: 18
+                  node-version: 20
 
             - name: Setup npm
-              run: npm install -g npm@9
+              run: npm install -g npm@10
 
             - name: Cache Node.js modules
               uses: actions/cache@v3
