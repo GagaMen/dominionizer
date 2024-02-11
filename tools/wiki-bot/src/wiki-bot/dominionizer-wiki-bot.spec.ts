@@ -5,7 +5,7 @@ import { ExpansionTranslationValidator } from './validation/expansion-translatio
 import { CardDtoValidator, CardDtosValidator } from './validation/card-dto-validators';
 import { ExpansionValidator, ExpansionsValidator } from './validation/expansion-validators';
 import { CardTypeValidator, CardTypesValidator } from './validation/card-type-validators';
-import { CardTypeTranslation } from './../../../../src/app/models/card-type';
+import { CardTypeId, CardTypeTranslation } from './../../../../src/app/models/card-type';
 import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { ImageBuilder, EncodedImage } from './builder/image-builder';
@@ -312,12 +312,12 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card types', async () => {
             const cardTypePages: CardTypePage[] = [
-                { pageid: 2000 } as CardTypePage,
-                { pageid: 1000 } as CardTypePage,
+                { pageid: CardTypeId.Boon } as CardTypePage,
+                { pageid: CardTypeId.Action } as CardTypePage,
             ];
             const cardTypes: CardType[] = [
-                { id: 1000, name: 'Card Type 1' },
-                { id: 2000, name: 'Card Type 2' },
+                { id: CardTypeId.Action, name: 'Card Type 1' },
+                { id: CardTypeId.Boon, name: 'Card Type 2' },
             ];
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
             cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[1]);
@@ -344,24 +344,24 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card type translations', async () => {
             const cardTypePages: CardTypePage[] = [
-                { pageid: 2000 } as CardTypePage,
-                { pageid: 1000 } as CardTypePage,
+                { pageid: CardTypeId.Boon } as CardTypePage,
+                { pageid: CardTypeId.Action } as CardTypePage,
             ];
             const firstCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
-                ['German', { id: 1000, name: 'german title' }],
-                ['French', { id: 1000, name: 'french title' }],
+                ['German', { id: CardTypeId.Action, name: 'german title - action' }],
+                ['French', { id: CardTypeId.Action, name: 'french title - action' }],
             ]);
             const secondCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
-                ['German', { id: 2000, name: 'german title' }],
-                ['French', { id: 2000, name: 'french title' }],
+                ['German', { id: CardTypeId.Boon, name: 'german title - boon' }],
+                ['French', { id: CardTypeId.Boon, name: 'french title - boon' }],
             ]);
             const germanTranslations: CardTypeTranslation[] = [
-                { id: 1000, name: 'german title' },
-                { id: 2000, name: 'german title' },
+                { id: CardTypeId.Action, name: 'german title - action' },
+                { id: CardTypeId.Boon, name: 'german title - boon' },
             ];
             const frenchTranslations: CardTypeTranslation[] = [
-                { id: 1000, name: 'french title' },
-                { id: 2000, name: 'french title' },
+                { id: CardTypeId.Action, name: 'french title - action' },
+                { id: CardTypeId.Boon, name: 'french title - boon' },
             ];
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
             cardTypeTranslationBuilderSpy.build
@@ -495,32 +495,32 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 2 } as ExpansionPage,
             ];
             const expansionCardsMap: Map<number, string[]> = new Map([
-                [1, ['Card 10', 'Card 20', 'Card 30']],
-                [2, ['Card 20']],
+                [1, ['Curse', 'Cellar', 'Knights']],
+                [2, ['Cellar']],
             ]);
             const cardTypePages: CardTypePage[] = [
-                { pageid: 10, title: 'Card 10' } as CardTypePage,
-                { pageid: 30, title: 'Card 30' } as CardTypePage,
-                { pageid: 40, title: 'Card 40' } as CardTypePage,
+                { pageid: CardTypeId.Curse, title: 'Curse' } as CardTypePage,
+                { pageid: CardTypeId.Knight, title: 'Knights' } as CardTypePage,
+                { pageid: CardTypeId.Ally, title: 'Ally' } as CardTypePage,
             ];
             const cardTypes: CardType[] = [
-                dataFixture.createCardType({ id: 10 }),
-                dataFixture.createCardType({ id: 30 }),
-                dataFixture.createCardType({ id: 40 }),
+                dataFixture.createCardType({ id: CardTypeId.Curse }),
+                dataFixture.createCardType({ id: CardTypeId.Knight }),
+                dataFixture.createCardType({ id: CardTypeId.Ally }),
             ];
             const cardPages: CardPage[] = [
-                { pageid: 20, title: 'Card 20' } as CardPage,
-                { pageid: 10, title: 'Card 10' } as CardPage,
+                { pageid: 300, title: 'Cellar' } as CardPage,
+                { pageid: CardTypeId.Curse, title: 'Curse' } as CardPage,
             ];
             const cardExpansionsMap: Map<string, number[]> = new Map([
-                ['Card 10', [1]],
-                ['Card 20', [1, 2]],
-                ['Card 30', [1]],
+                ['Curse', [1]],
+                ['Cellar', [1, 2]],
+                ['Knights', [1]],
             ]);
             const cards: CardDto[] = [
-                { id: 10, name: 'Card 10', expansions: [1] } as CardDto,
-                { id: 20, name: 'Card 20', expansions: [1, 2] } as CardDto,
-                { id: 30, name: 'Card 30', expansions: [1] } as CardDto,
+                { id: CardTypeId.Curse, name: 'Curse', expansions: [1] } as CardDto,
+                { id: 300, name: 'Cellar', expansions: [1, 2] } as CardDto,
+                { id: CardTypeId.Knight, name: 'Knights', expansions: [1] } as CardDto,
             ];
             const splitPilePage: ContentPage = { pageid: 100, title: 'Split pile' } as ContentPage;
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
@@ -534,16 +534,16 @@ describe('DominionizerWikiBot', () => {
             cardTypeBuilderSpy.build.withArgs(cardTypePages[2]).and.returnValue(cardTypes[2]);
             expansionCardsMapBuilderSpy.buildWithExpansionPage
                 .withArgs(expansionPages[0])
-                .and.returnValue(new Map([[1, ['Card 10', 'Card 20', 'Card 30']]]));
+                .and.returnValue(new Map([[1, ['Curse', 'Cellar', 'Knights']]]));
             expansionCardsMapBuilderSpy.buildWithExpansionPage
                 .withArgs(expansionPages[1])
-                .and.returnValue(new Map([[2, ['Card 20']]]));
+                .and.returnValue(new Map([[2, ['Cellar']]]));
             expansionCardsMapBuilderSpy.buildWithCardTypePage
                 .withArgs(cardTypePages[0], expansionCardsMap)
-                .and.returnValue(new Map([[1, ['Card 10']]]));
+                .and.returnValue(new Map([[1, ['Curse']]]));
             expansionCardsMapBuilderSpy.buildWithCardTypePage
                 .withArgs(cardTypePages[1], expansionCardsMap)
-                .and.returnValue(new Map([[1, ['Card 30']]]));
+                .and.returnValue(new Map([[1, ['Knights']]]));
             expansionCardsMapBuilderSpy.buildWithCardTypePage
                 .withArgs(cardTypePages[2], expansionCardsMap)
                 .and.returnValue(new Map());

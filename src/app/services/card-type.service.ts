@@ -16,7 +16,10 @@ export class CardTypeService {
         first((cardTypes: CardType[]) => cardTypes.length !== 0),
     );
 
-    constructor(private dataService: DataService, private translationService: TranslationService) {
+    constructor(
+        private dataService: DataService,
+        private translationService: TranslationService,
+    ) {
         combineLatest([
             this.dataService.fetchCardTypes(),
             this.translationService.getCardTypeTranslations(),

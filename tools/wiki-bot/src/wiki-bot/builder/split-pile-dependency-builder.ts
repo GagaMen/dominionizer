@@ -23,6 +23,7 @@ export class SplitPileDependencyBuilder {
     ): void {
         for (const cardType of cardTypes) {
             const randomizerCard = cardDtos.find(
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
                 (cardDto: CardDto) => cardDto.isKingdomCard && cardDto.id === cardType.id,
             );
 

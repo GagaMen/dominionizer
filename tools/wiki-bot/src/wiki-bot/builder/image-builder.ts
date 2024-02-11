@@ -9,7 +9,10 @@ export interface EncodedImage {
 }
 
 export class ImageBuilder {
-    constructor(private wikiClient: WikiClient, private sharpFactory: SharpFactory) {}
+    constructor(
+        private wikiClient: WikiClient,
+        private sharpFactory: SharpFactory,
+    ) {}
 
     async build(imagePage: ImagePage): Promise<EncodedImage | null> {
         try {

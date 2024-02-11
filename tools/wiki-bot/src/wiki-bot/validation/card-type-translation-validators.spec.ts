@@ -1,5 +1,5 @@
 import { CardTypeTranslationValidator } from './card-type-translation-validators';
-import { CardTypeTranslation } from '../../../../../src/app/models/card-type';
+import { CardTypeId, CardTypeTranslation } from '../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
 
@@ -9,13 +9,13 @@ describe('card type translation validators', () => {
 
         describe('validate', () => {
             const cardTypePage: CardTypePage = {
-                pageid: 1,
+                pageid: CardTypeId.Action,
                 title: 'Action',
             } as CardTypePage;
 
             it('with valid card type translation should return Success', () => {
                 const cardTypeTranslation: CardTypeTranslation = {
-                    id: 1,
+                    id: CardTypeId.Action,
                     name: 'Aktion',
                 };
 
@@ -25,7 +25,10 @@ describe('card type translation validators', () => {
             });
 
             it('with invalid card type translation should return Failure', () => {
-                const cardTypeTranslation: CardTypeTranslation = { id: 1, name: '' };
+                const cardTypeTranslation: CardTypeTranslation = {
+                    id: CardTypeId.Action,
+                    name: '',
+                };
                 const expected = ValidationResult.Failure(
                     'Card type translation (Name: "Action", Language: "German"):\n' +
                         '"name" is not allowed to be empty',

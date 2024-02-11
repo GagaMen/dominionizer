@@ -102,9 +102,8 @@ export class DominionizerWikiBot {
         await this.writeCurrentGenerationTime();
 
         if (!skipImages) {
-            const changedImagePages = await this.wikiClient.fetchRecentImageChanges(
-                lastGenerationTime,
-            );
+            const changedImagePages =
+                await this.wikiClient.fetchRecentImageChanges(lastGenerationTime);
             const groupedImagePages = this.groupChangedImagePagesByCategory(changedImagePages);
             await this.generateImages(
                 groupedImagePages.get('Category:Card symbols') ?? [],

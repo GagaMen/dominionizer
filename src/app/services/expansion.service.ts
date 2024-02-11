@@ -16,7 +16,10 @@ export class ExpansionService {
         first((expansions: Expansion[]) => expansions.length !== 0),
     );
 
-    constructor(private dataService: DataService, private translationService: TranslationService) {
+    constructor(
+        private dataService: DataService,
+        private translationService: TranslationService,
+    ) {
         combineLatest([
             this.dataService.fetchExpansions(),
             this.translationService.getExpansionTranslations(),

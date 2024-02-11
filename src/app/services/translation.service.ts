@@ -29,7 +29,10 @@ export class TranslationService {
         [Language.Spanish, 'spanish'],
     ]);
 
-    constructor(@Inject(LOCALE_ID) private locale: string, private dataService: DataService) {}
+    constructor(
+        @Inject(LOCALE_ID) private locale: string,
+        private dataService: DataService,
+    ) {}
 
     getExpansionTranslations(): Observable<ExpansionTranslation[]> {
         return this.getTranslations<ExpansionTranslation>(

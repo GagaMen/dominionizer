@@ -137,58 +137,58 @@
                     "builder": "@angular-builders/custom-webpack:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "dominionizer:build:production"
+                            "buildTarget": "dominionizer:build:production"
                         },
                         "development": {
-                            "browserTarget": "dominionizer:build:development"
+                            "buildTarget": "dominionizer:build:development"
                         },
                         "zh": {
-                            "browserTarget": "dominionizer:build:development,zh"
+                            "buildTarget": "dominionizer:build:development,zh"
                         },
                         "cs": {
-                            "browserTarget": "dominionizer:build:development,cs"
+                            "buildTarget": "dominionizer:build:development,cs"
                         },
                         "nl": {
-                            "browserTarget": "dominionizer:build:development,nl"
+                            "buildTarget": "dominionizer:build:development,nl"
                         },
                         "fi": {
-                            "browserTarget": "dominionizer:build:development,fi"
+                            "buildTarget": "dominionizer:build:development,fi"
                         },
                         "fr": {
-                            "browserTarget": "dominionizer:build:development,fr"
+                            "buildTarget": "dominionizer:build:development,fr"
                         },
                         "de": {
-                            "browserTarget": "dominionizer:build:development,de"
+                            "buildTarget": "dominionizer:build:development,de"
                         },
                         "el": {
-                            "browserTarget": "dominionizer:build:development,el"
+                            "buildTarget": "dominionizer:build:development,el"
                         },
                         "hu": {
-                            "browserTarget": "dominionizer:build:development,hu"
+                            "buildTarget": "dominionizer:build:development,hu"
                         },
                         "it": {
-                            "browserTarget": "dominionizer:build:development,it"
+                            "buildTarget": "dominionizer:build:development,it"
                         },
                         "ja": {
-                            "browserTarget": "dominionizer:build:development,ja"
+                            "buildTarget": "dominionizer:build:development,ja"
                         },
                         "ko": {
-                            "browserTarget": "dominionizer:build:development,ko"
+                            "buildTarget": "dominionizer:build:development,ko"
                         },
                         "no": {
-                            "browserTarget": "dominionizer:build:development,no"
+                            "buildTarget": "dominionizer:build:development,no"
                         },
                         "pl": {
-                            "browserTarget": "dominionizer:build:development,pl"
+                            "buildTarget": "dominionizer:build:development,pl"
                         },
                         "ro": {
-                            "browserTarget": "dominionizer:build:development,ro"
+                            "buildTarget": "dominionizer:build:development,ro"
                         },
                         "ru": {
-                            "browserTarget": "dominionizer:build:development,ru"
+                            "buildTarget": "dominionizer:build:development,ru"
                         },
                         "es": {
-                            "browserTarget": "dominionizer:build:development,es"
+                            "buildTarget": "dominionizer:build:development,es"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -196,7 +196,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "dominionizer:build",
+                        "buildTarget": "dominionizer:build",
                         "outputPath": "src/locale",
                         "outFile": "translations.xlf"
                     }

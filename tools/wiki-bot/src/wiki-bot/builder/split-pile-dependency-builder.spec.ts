@@ -1,6 +1,6 @@
 import { DataFixture } from '../../../../../src/testing/data-fixture';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
-import { CardType } from '../../../../../src/app/models/card-type';
+import { CardType, CardTypeId } from '../../../../../src/app/models/card-type';
 import { DependencyType } from '../../../../../src/app/models/dependency';
 import { ContentPage } from '../wiki-client/api-models';
 import { SplitPileDependencyBuilder } from './split-pile-dependency-builder';
@@ -23,33 +23,37 @@ describe('SplitPileDependencyBuilder', () => {
     describe('build', () => {
         it('should build split pile dependencies with card types correctly', () => {
             const cards: CardDto[] = [
-                { id: 1, types: [10], isKingdomCard: true } as CardDto,
-                { id: 2, types: [2], isKingdomCard: true } as CardDto,
-                { id: 3, types: [2, 10], isKingdomCard: true } as CardDto,
-                { id: 4, types: [4], isKingdomCard: false } as CardDto,
+                { id: 1, types: [CardTypeId.Action], isKingdomCard: true } as CardDto,
+                { id: CardTypeId.Augur, types: [CardTypeId.Augur], isKingdomCard: true } as CardDto,
+                {
+                    id: 3,
+                    types: [CardTypeId.Action, CardTypeId.Augur],
+                    isKingdomCard: true,
+                } as CardDto,
+                { id: 4, types: [CardTypeId.Boon], isKingdomCard: false } as CardDto,
             ];
             const cardTypes: CardType[] = [
-                dataFixture.createCardType({ id: 2 }),
-                dataFixture.createCardType({ id: 4 }),
+                dataFixture.createCardType({ id: CardTypeId.Augur }),
+                dataFixture.createCardType({ id: CardTypeId.Boon }),
             ];
             const expected: CardDto[] = [
-                { id: 1, types: [10], isKingdomCard: true } as CardDto,
+                { id: 1, types: [CardTypeId.Action], isKingdomCard: true } as CardDto,
                 {
-                    id: 2,
-                    types: [2],
+                    id: CardTypeId.Augur,
+                    types: [CardTypeId.Augur],
                     isKingdomCard: true,
                     dependencies: [
-                        { id: 2, type: DependencyType.SplitPile },
+                        { id: CardTypeId.Augur, type: DependencyType.SplitPile },
                         { id: 3, type: DependencyType.SplitPile },
                     ],
                 } as CardDto,
                 {
                     id: 3,
-                    types: [2, 10],
+                    types: [CardTypeId.Action, CardTypeId.Augur],
                     isKingdomCard: true,
-                    dependencies: [{ id: 2, type: DependencyType.SplitPile }],
+                    dependencies: [{ id: CardTypeId.Augur, type: DependencyType.SplitPile }],
                 } as CardDto,
-                { id: 4, types: [4], isKingdomCard: false } as CardDto,
+                { id: 4, types: [CardTypeId.Boon], isKingdomCard: false } as CardDto,
             ];
 
             const actual = splitPileDependecyBuilder.build(cards, cardTypes, nullSplitPilePage);
