@@ -13,8 +13,8 @@ export class CardTranslationBuilder {
 
         const table = /\n\s*{\|(.*?\n)\s*\|}/s.exec(otherLanguageVersions)?.[1] ?? '';
         const textColumnIndex = this.findTextColumnIndex(table);
-        // remove table header and html comments
-        const tableBody = table.substr(table.indexOf('|-')).replace(/<!--.*?-->/g, '');
+        // remove html comments and table header
+        const tableBody = table.replace(/<!--.*?-->/gs, '').substring(table.indexOf('|-'));
 
         const translations: Map<string, CardTranslation> = new Map();
 

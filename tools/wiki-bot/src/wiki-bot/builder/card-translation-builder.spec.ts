@@ -367,6 +367,8 @@ describe('CardTranslationBuilder', () => {
                             `===Other language versions===\n` +
                             `{| class="wikitable" style="text-align:center;"\n` +
                             `! Language !! Name !! Print !! Digital !! style="width:22%"| Text \n` +
+                            `<!--|-\n` +
+                            `!Chinese \n| || || || -->\n` +
                             `|-\n` +
                             `!German \n| Große Halle <!--Grosse Halle--> || || || \n` +
                             `|}`,
