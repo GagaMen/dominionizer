@@ -4,11 +4,17 @@ import {
     UntypedFormBuilder,
     ValidationErrors,
     AbstractControl,
+    ReactiveFormsModule,
 } from '@angular/forms';
 import { Expansion } from '../../models/expansion';
+import { NgFor } from '@angular/common';
+import { MatDivider } from '@angular/material/divider';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-expansion-select',
+    standalone: true,
+    imports: [MatCheckbox, MatDivider, ReactiveFormsModule, NgFor],
     templateUrl: './expansion-select.component.html',
     styleUrls: ['./expansion-select.component.scss'],
 })

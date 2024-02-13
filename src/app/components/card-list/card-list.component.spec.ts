@@ -18,7 +18,7 @@ describe('CardListComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [CardListComponent, CardStubComponent],
+            imports: [CardListComponent],
             providers: [
                 {
                     provide: ShuffleService,
@@ -27,6 +27,9 @@ describe('CardListComponent', () => {
                     ]),
                 },
             ],
+        }).overrideComponent(CardComponent, {
+            remove: { imports: [CardComponent] },
+            add: { imports: [CardStubComponent] },
         });
 
         dataFixture = new DataFixture();
@@ -54,7 +57,7 @@ describe('CardListComponent', () => {
 
             fixture.detectChanges();
             const actual = fixture.debugElement
-                .queryAll(By.directive(CardStubComponent))
+                .queryAll(By.directive(CardComponent))
                 .map((cardComponent: DebugElement) => cardComponent.componentInstance.card as Card);
 
             expect(actual).toEqual(expected);
@@ -65,7 +68,7 @@ describe('CardListComponent', () => {
             component.cardList = [card];
             fixture.detectChanges();
             const cardComponent: CardComponent = fixture.debugElement.query(
-                By.directive(CardStubComponent),
+                By.directive(CardComponent),
             ).componentInstance;
             const onReshuffleSpy = spyOn(component, 'onReshuffle');
 

@@ -4,13 +4,14 @@ import { MatMenu } from '@angular/material/menu';
 
 @Component({
     selector: 'app-language-menu',
-    template: '',
+    standalone: true,
     providers: [
         {
             provide: LanguageMenuComponent,
             useClass: LanguageMenuStubComponent,
         },
     ],
+    template: '',
 })
 export class LanguageMenuStubComponent {
     matMenu?: MatMenu;

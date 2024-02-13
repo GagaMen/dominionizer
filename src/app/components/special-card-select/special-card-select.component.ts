@@ -1,10 +1,14 @@
 import { SpecialCardsCount } from '../../models/special-cards-count';
 import { SpecialCardsAvailability } from '../../models/special-cards-availability';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatSlider, MatSliderThumb } from '@angular/material/slider';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-special-card-select',
+    standalone: true,
+    imports: [MatSlider, MatSliderThumb, ReactiveFormsModule, NgIf],
     templateUrl: './special-card-select.component.html',
     styleUrls: ['./special-card-select.component.scss'],
 })

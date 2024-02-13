@@ -1,7 +1,6 @@
 import { CardService } from './../../services/card.service';
 import { AppBarService } from './../../services/app-bar.service';
 import { Component, OnInit } from '@angular/core';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ExpansionService } from 'src/app/services/expansion.service';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -11,6 +10,14 @@ import { SpecialCardsAvailability } from 'src/app/models/special-cards-availabil
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { Expansion } from 'src/app/models/expansion';
 import { Card } from 'src/app/models/card';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { MatFabButton } from '@angular/material/button';
+import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
+import { ExpansionSelectComponent } from '../expansion-select/expansion-select.component';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { MatStepper, MatStep, MatStepLabel } from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 export interface ExpansionSelectViewData {
     expansions: Expansion[];
@@ -24,9 +31,22 @@ export interface SpecialCardSelectViewData {
 
 @Component({
     selector: 'app-configuration',
+    standalone: true,
+    imports: [
+        ExpansionSelectComponent,
+        SpecialCardSelectComponent,
+        MatStepper,
+        MatStep,
+        MatStepLabel,
+        MatFabButton,
+        MatIcon,
+        NgIf,
+        AsyncPipe,
+        RouterLink,
+    ],
+    providers: [{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }],
     templateUrl: './configuration.component.html',
     styleUrls: ['./configuration.component.scss'],
-    providers: [{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }],
 })
 export class ConfigurationComponent implements OnInit {
     expansionSelectViewData$: Observable<ExpansionSelectViewData> = new Observable();

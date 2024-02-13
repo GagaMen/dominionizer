@@ -1,15 +1,16 @@
 import { detectChangesAndFlush } from 'src/testing/utilities';
 import { cold } from 'jasmine-marbles';
-import { MatIconModule, MatIcon } from '@angular/material/icon';
-import { MatButtonModule, MatIconAnchor, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconAnchor, MatIconButton } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbar } from '@angular/material/toolbar';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarService } from './../../services/app-bar.service';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppBarComponent } from './app-bar.component';
 import { NEVER } from 'rxjs';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppBarComponent', () => {
     let fixture: ComponentFixture<AppBarComponent>;
@@ -18,8 +19,7 @@ describe('AppBarComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [MatToolbarModule, MatButtonModule, MatIconModule],
-            declarations: [AppBarComponent],
+            imports: [AppBarComponent, RouterTestingModule],
             providers: [
                 {
                     provide: AppBarService,

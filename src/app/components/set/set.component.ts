@@ -3,9 +3,28 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShuffleService } from '../../services/shuffle.service';
 import { SetService } from 'src/app/services/set.service';
 import { SetOrderingMenuComponent } from '../set-ordering-menu/set-ordering-menu.component';
+import { CardListComponent } from '../card-list/card-list.component';
+import {
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+} from '@angular/material/expansion';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-set',
+    standalone: true,
+    imports: [
+        CardListComponent,
+        SetOrderingMenuComponent,
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        NgIf,
+        AsyncPipe,
+    ],
     templateUrl: './set.component.html',
     styleUrls: ['./set.component.scss'],
 })

@@ -3,18 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExpansionSelectComponent } from './expansion-select.component';
 import {
     UntypedFormBuilder,
-    ReactiveFormsModule,
     UntypedFormArray,
     UntypedFormControl,
     FormControlName,
 } from '@angular/forms';
-import { MatDividerModule } from '@angular/material/divider';
 import { Expansion } from '../../models/expansion';
 import { DataFixture } from 'src/testing/data-fixture';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
-import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckbox } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
 import { Chance } from 'chance';
 
@@ -28,8 +26,7 @@ describe('ExpansionSelectComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatDividerModule, MatCheckboxModule],
-            declarations: [ExpansionSelectComponent],
+            imports: [ExpansionSelectComponent],
             providers: [UntypedFormBuilder],
         });
 

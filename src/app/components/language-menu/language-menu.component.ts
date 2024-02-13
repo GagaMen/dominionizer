@@ -1,9 +1,13 @@
 import { Language } from './../../models/language';
 import { Component, ViewChild } from '@angular/core';
-import { MatMenu } from '@angular/material/menu';
+import { MatMenu, MatMenuTrigger, MatMenuItem } from '@angular/material/menu';
+import { NgFor } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-language-menu',
+    standalone: true,
+    imports: [MatMenu, MatMenuItem, MatMenuTrigger, MatIcon, NgFor],
     templateUrl: './language-menu.component.html',
     styleUrls: ['./language-menu.component.scss'],
 })

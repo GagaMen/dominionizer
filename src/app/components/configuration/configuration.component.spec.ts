@@ -2,7 +2,6 @@ import { CardService } from './../../services/card.service';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarConfiguration } from './../../models/app-bar-configuration';
 import { AppBarService } from './../../services/app-bar.service';
-import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {
@@ -10,8 +9,7 @@ import {
     ExpansionSelectViewData,
     SpecialCardSelectViewData,
 } from './configuration.component';
-import { MatStepper, MatStepperModule } from '@angular/material/stepper';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepper } from '@angular/material/stepper';
 import { ExpansionSelectStubComponent } from 'src/testing/components/expansion-select.stub.component';
 import { SpecialCardSelectStubComponent } from 'src/testing/components/special-card-select.stub.component';
 import { ExpansionService } from 'src/app/services/expansion.service';
@@ -28,11 +26,13 @@ import {
     MatStepperHarness,
     StepperOrientation,
 } from '@angular/material/stepper/testing';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { Card } from 'src/app/models/card';
 import { MatIconHarness } from '@angular/material/icon/testing';
+import { ExpansionSelectComponent } from '../expansion-select/expansion-select.component';
+import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -46,17 +46,8 @@ describe('ConfigurationComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatStepperModule, MatButtonModule, MatIconModule, NoopAnimationsModule],
-            declarations: [
-                ConfigurationComponent,
-                ExpansionSelectStubComponent,
-                SpecialCardSelectStubComponent,
-            ],
+            imports: [ConfigurationComponent, RouterTestingModule, NoopAnimationsModule],
             providers: [
-                {
-                    provide: Router,
-                    useValue: jasmine.createSpyObj<Router>('Router', ['navigate']),
-                },
                 {
                     provide: AppBarService,
                     useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
@@ -80,6 +71,9 @@ describe('ConfigurationComponent', () => {
                     useValue: {},
                 },
             ],
+        }).overrideComponent(ConfigurationComponent, {
+            remove: { imports: [ExpansionSelectComponent, SpecialCardSelectComponent] },
+            add: { imports: [ExpansionSelectStubComponent, SpecialCardSelectStubComponent] },
         });
 
         dataFixture = new DataFixture();

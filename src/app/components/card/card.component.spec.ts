@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
-import { MatCardModule, MatCardTitle, MatCardSubtitle, MatCard } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardTitle, MatCardSubtitle, MatCard } from '@angular/material/card';
 import { DataFixture } from 'src/testing/data-fixture';
 import { environment } from 'src/environments/environment';
 import { CardTypeId } from 'src/app/models/card-type';
 import { By } from '@angular/platform-browser';
-import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 
 describe('CardComponent', () => {
     let component: CardComponent;
@@ -17,8 +16,7 @@ describe('CardComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatCardModule, MatIconModule, MatButtonModule],
-            declarations: [CardComponent],
+            imports: [CardComponent],
         });
 
         dataFixture = new DataFixture();

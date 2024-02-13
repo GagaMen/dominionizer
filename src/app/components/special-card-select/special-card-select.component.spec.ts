@@ -1,13 +1,12 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { UntypedFormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormGroupDirective } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { MatSliderHarness, MatSliderThumbHarness } from '@angular/material/slider/testing';
 
 import { SpecialCardSelectComponent } from './special-card-select.component';
-import { MatSliderModule } from '@angular/material/slider';
 import { By } from '@angular/platform-browser';
 import { DataFixture } from 'src/testing/data-fixture';
 
@@ -19,8 +18,7 @@ describe('SpecialCardSelectComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatSliderModule],
-            declarations: [SpecialCardSelectComponent],
+            imports: [SpecialCardSelectComponent],
             providers: [
                 {
                     provide: ConfigurationService,

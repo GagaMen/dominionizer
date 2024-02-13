@@ -3,6 +3,7 @@ import { Card, NullCard } from 'src/app/models/card';
 
 @Component({
     selector: 'app-card',
+    standalone: true,
     template: '',
 })
 export class CardStubComponent {

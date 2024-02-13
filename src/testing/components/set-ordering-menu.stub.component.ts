@@ -4,13 +4,14 @@ import { SetOrderingMenuComponent } from 'src/app/components/set-ordering-menu/s
 
 @Component({
     selector: 'app-set-ordering-menu',
-    template: '',
+    standalone: true,
     providers: [
         {
             provide: SetOrderingMenuComponent,
             useClass: SetOrderingMenuStubComponent,
         },
     ],
+    template: '',
 })
 export class SetOrderingMenuStubComponent {
     matMenu?: MatMenu;

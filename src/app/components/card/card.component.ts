@@ -2,6 +2,16 @@ import { environment } from './../../../environments/environment';
 import { Card, NullCard } from './../../models/card';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { NgIf, NgFor } from '@angular/common';
+import {
+    MatCard,
+    MatCardHeader,
+    MatCardTitleGroup,
+    MatCardTitle,
+    MatCardSubtitle,
+} from '@angular/material/card';
 
 type RGB = {
     red: number;
@@ -11,6 +21,18 @@ type RGB = {
 
 @Component({
     selector: 'app-card',
+    standalone: true,
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitleGroup,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatIconButton,
+        MatIcon,
+        NgIf,
+        NgFor,
+    ],
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],
 })

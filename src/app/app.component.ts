@@ -1,10 +1,15 @@
 import { InstallService } from './services/install.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { FooterComponent } from './components/footer/footer.component';
+import { AppBarComponent } from './components/app-bar/app-bar.component';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-root',
+    standalone: true,
+    imports: [AppBarComponent, FooterComponent, NgIf, RouterOutlet],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })

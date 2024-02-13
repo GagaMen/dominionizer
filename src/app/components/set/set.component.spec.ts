@@ -9,15 +9,17 @@ import { SetComponent } from './set.component';
 import { MatMenu } from '@angular/material/menu';
 import { cold } from 'jasmine-marbles';
 import { DataFixture } from 'src/testing/data-fixture';
-import { MatAccordion, MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CardListStubComponent } from 'src/testing/components/card-list.stub.component';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatAccordionHarness } from '@angular/material/expansion/testing';
 import { detectChangesAndFlush } from 'src/testing/utilities';
+import { CardListComponent } from '../card-list/card-list.component';
 import { SetOrderingMenuStubComponent } from 'src/testing/components/set-ordering-menu.stub.component';
+import { SetOrderingMenuComponent } from '../set-ordering-menu/set-ordering-menu.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SetComponent', () => {
     let component: SetComponent;
@@ -30,8 +32,7 @@ describe('SetComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatExpansionModule, NoopAnimationsModule],
-            declarations: [SetComponent, CardListStubComponent, SetOrderingMenuStubComponent],
+            imports: [SetComponent, NoopAnimationsModule],
             providers: [
                 {
                     provide: ShuffleService,
@@ -50,6 +51,9 @@ describe('SetComponent', () => {
                     ]),
                 },
             ],
+        }).overrideComponent(SetComponent, {
+            remove: { imports: [CardListComponent, SetOrderingMenuComponent] },
+            add: { imports: [CardListStubComponent, SetOrderingMenuStubComponent] },
         });
 
         dataFixture = new DataFixture();

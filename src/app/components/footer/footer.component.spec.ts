@@ -1,4 +1,3 @@
-import { MatButtonModule } from '@angular/material/button';
 import { LanguageMenuStubComponent } from './../../../testing/components/language-menu.stub.component';
 import { FooterComponent } from './footer.component';
 import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
@@ -10,8 +9,10 @@ describe('FooterComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [MatButtonModule],
-            declarations: [FooterComponent, LanguageMenuStubComponent],
+            imports: [FooterComponent],
+        }).overrideComponent(FooterComponent, {
+            remove: { imports: [LanguageMenuComponent] },
+            add: { imports: [LanguageMenuStubComponent] },
         });
 
         fixture = TestBed.createComponent(FooterComponent);

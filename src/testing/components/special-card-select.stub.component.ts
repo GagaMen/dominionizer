@@ -5,6 +5,7 @@ import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 
 @Component({
     selector: 'app-special-card-select',
+    standalone: true,
     template: '',
 })
 export class SpecialCardSelectStubComponent {

@@ -1,7 +1,4 @@
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { Language } from './../../models/language';
-import { MatMenuModule } from '@angular/material/menu';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LanguageMenuComponent } from './language-menu.component';
@@ -15,11 +12,10 @@ describe('LanguageMenuComponent', () => {
     let component: LanguageMenuComponent;
     let fixture: ComponentFixture<LanguageMenuComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [MatMenuModule, MatButtonModule, MatIconModule, NoopAnimationsModule],
-            declarations: [LanguageMenuComponent, LanguageMenuHostComponent],
-        }).compileComponents();
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [LanguageMenuComponent, LanguageMenuHostComponent, NoopAnimationsModule],
+        });
 
         fixture = TestBed.createComponent(LanguageMenuComponent);
         component = fixture.componentInstance;

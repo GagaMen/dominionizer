@@ -4,6 +4,7 @@ import { Expansion } from 'src/app/models/expansion';
 
 @Component({
     selector: 'app-expansion-select',
+    standalone: true,
     template: '',
 })
 export class ExpansionSelectStubComponent {
