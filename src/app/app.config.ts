@@ -1,5 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
-import { environment } from '../environments/environment';
+import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
@@ -11,6 +10,6 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         provideHttpClient(),
         provideAnimations(),
-        provideServiceWorker('ngsw-worker.js', { enabled: environment.production }),
+        provideServiceWorker('ngsw-worker.js', { enabled: !isDevMode() }),
     ],
 };
