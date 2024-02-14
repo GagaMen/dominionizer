@@ -21,9 +21,7 @@
         "test:ci": "npm run test:coverage -- --no-progress --browsers=ChromeHeadlessCI",
         "eslint": "eslint . --ignore-path .gitignore --ext .ts,.js,.json,.component.html",
         "stylelint": "stylelint \"**/*.scss\" --ignore-path .gitignore --cache",
-        "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore",
-        "commitizen": "commitizen",
-        "cm": "cz"
+        "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore"
     },
     "dependencies": {
         "@angular/animations": "^17.1.3",
