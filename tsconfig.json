@@ -7,17 +7,23 @@
         "declaration": false,
         "downlevelIteration": true,
         "experimentalDecorators": true,
-        "module": "es2020",
+        "module": "ES2022",
         "moduleResolution": "node",
+        "esModuleInterop": true,
         "importHelpers": true,
         "target": "ES2022",
-        "lib": ["es2018", "dom"],
+        "lib": ["ES2022", "dom"],
+        "skipLibCheck": true,
         "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": false
     },
     "angularCompilerOptions": {
         "strictTemplates": true,
-        "strictInjectionParameters": true
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true
     }
 }

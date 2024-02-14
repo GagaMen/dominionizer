@@ -141,7 +141,7 @@ describe('SpecialCardSelectComponent', () => {
                 fixture.detectChanges();
 
                 const actual = fixture.debugElement.query(By.css('.special-cards-label label'))
-                    .properties.innerText;
+                    .properties['innerText'];
 
                 expect(actual).toBe(expected);
             });
@@ -160,8 +160,9 @@ describe('SpecialCardSelectComponent', () => {
                 await (await harnessLoader.getHarness(MatSliderThumbHarness)).setValue(expected);
 
                 const actual = Number.parseInt(
-                    fixture.debugElement.query(By.css('.special-cards-label span')).properties
-                        .innerText as string,
+                    fixture.debugElement.query(By.css('.special-cards-label span')).properties[
+                        'innerText'
+                    ] as string,
                 );
 
                 expect(actual).toBe(expected);

@@ -383,7 +383,7 @@ describe('CardComponent', () => {
             spyOnProperty(component, 'background').and.returnValue(background);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCard)).styles.background;
+            const actual = fixture.debugElement.query(By.directive(MatCard)).styles['background'];
 
             expect(actual).toBe(expected);
         });
@@ -394,7 +394,7 @@ describe('CardComponent', () => {
             spyOnProperty(component, 'titleColor').and.returnValue(titleColor);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardTitle)).styles.color;
+            const actual = fixture.debugElement.query(By.directive(MatCardTitle)).styles['color'];
 
             expect(actual).toBe(expected);
         });
@@ -405,7 +405,7 @@ describe('CardComponent', () => {
             spyOnProperty(component, 'titleColor').and.returnValue(titleColor);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatIconButton)).styles.color;
+            const actual = fixture.debugElement.query(By.directive(MatIconButton)).styles['color'];
 
             expect(actual).toBe(expected);
         });
@@ -416,7 +416,9 @@ describe('CardComponent', () => {
             spyOnProperty(component, 'subtitleColor').and.returnValue(subtitleColor);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardSubtitle)).styles.color;
+            const actual = fixture.debugElement.query(By.directive(MatCardSubtitle)).styles[
+                'color'
+            ];
 
             expect(actual).toBe(expected);
         });
@@ -444,7 +446,7 @@ describe('CardComponent', () => {
             expansionIconUrlSpy.and.returnValue(expected);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.css('.expansion-icon')).properties.src;
+            const actual = fixture.debugElement.query(By.css('.expansion-icon')).properties['src'];
 
             expect(actual).toBe(expected);
         });
@@ -456,7 +458,7 @@ describe('CardComponent', () => {
 
             const actual = fixture.debugElement
                 .queryAll(By.css('.cost-icon'))
-                .map((costIcon) => costIcon.properties.src as string);
+                .map((costIcon) => costIcon.properties['src'] as string);
 
             expect(actual).toEqual(expected);
         });
@@ -466,8 +468,9 @@ describe('CardComponent', () => {
             component.card = card;
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardTitle)).properties
-                .innerText;
+            const actual = fixture.debugElement.query(By.directive(MatCardTitle)).properties[
+                'innerText'
+            ];
 
             expect(actual).toBe(card.name);
         });
@@ -479,8 +482,9 @@ describe('CardComponent', () => {
             spyOnProperty(component, 'typesLabel').and.returnValue(expected);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardSubtitle)).properties
-                .innerText;
+            const actual = fixture.debugElement.query(By.directive(MatCardSubtitle)).properties[
+                'innerText'
+            ];
 
             expect(actual).toBe(expected);
         });
