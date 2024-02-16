@@ -1,7 +1,7 @@
 import { CardPage } from './../wiki-client/api-models';
 import { CardTranslation } from './../../../../../src/app/models/card';
 import { ValidationResult } from './validation-result';
-import * as Joi from 'joi';
+import Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 
 export class CardTranslationValidator {

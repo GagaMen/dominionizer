@@ -1,4 +1,4 @@
-import * as sharp from 'sharp';
+import sharp from 'sharp';
 import { Sharp } from 'sharp';
 
 export class SharpFactory {

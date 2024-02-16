@@ -1,7 +1,7 @@
 import { Expansion } from '../../../../../src/app/models/expansion';
 import { ExpansionPage } from '../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
-import * as Joi from 'joi';
+import Joi from 'joi';
 import { JoiValidator } from './joi-validator';
 import { AmountValidator } from './amount-validator';
 

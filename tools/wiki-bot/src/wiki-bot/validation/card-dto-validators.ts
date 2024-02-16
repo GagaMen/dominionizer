@@ -2,7 +2,7 @@ import { AmountValidator } from './amount-validator';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { CardPage, CardTypePage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
-import * as Joi from 'joi';
+import Joi from 'joi';
 import { ValidationResult } from './validation-result';
 import { existsSync } from 'fs';
 

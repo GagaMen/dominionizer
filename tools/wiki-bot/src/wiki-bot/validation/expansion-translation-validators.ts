@@ -1,6 +1,6 @@
 import { ExpansionTranslation } from '../../../../../src/app/models/expansion';
 import { ValidationResult } from './validation-result';
-import * as Joi from 'joi';
+import Joi from 'joi';
 import { ExpansionPage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 

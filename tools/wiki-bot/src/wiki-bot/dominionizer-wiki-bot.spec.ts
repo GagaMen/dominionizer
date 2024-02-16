@@ -27,7 +27,7 @@ import {
     ContentPage,
 } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
-import * as Fs from 'fs/promises';
+import Fs from 'fs/promises';
 import { CardType } from '../../../../src/app/models/card-type';
 import { ValidationResult } from './validation/validation-result';
 import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';

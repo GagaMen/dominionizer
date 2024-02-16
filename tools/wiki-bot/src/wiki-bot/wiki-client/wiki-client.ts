@@ -135,7 +135,7 @@ export class WikiClient {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             pages = pages.concat(Object.values<TPage>(queryResult.query.pages));
 
-            const continueParam = queryResult['query-continue']?.[params.generator];
+            const continueParam = queryResult['query-continue']?.[params['generator']];
             if (continueParam === undefined) {
                 continueQuerying = false;
                 continue;

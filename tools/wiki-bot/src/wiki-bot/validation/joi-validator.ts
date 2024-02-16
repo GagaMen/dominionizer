@@ -1,5 +1,5 @@
 import { ValidationResult } from './validation-result';
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 export class JoiValidator<T> {
     validate(
