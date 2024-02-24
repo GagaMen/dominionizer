@@ -54,5 +54,24 @@ describe('ExpansionBuilder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        it('with unknown release date should return correct expansion', () => {
+            const expansionPage: ExpansionPage = {
+                pageid: 10428,
+                title: 'Rising Sun',
+                revisions: [{ '*': '{{Infobox Set\n|release = April/May 2024 (expected)\n}}' }],
+            };
+            const expected: Expansion[] = [
+                {
+                    id: expansionPage.pageid,
+                    name: 'Rising Sun',
+                    icon: 'Rising_Sun_icon.png',
+                },
+            ];
+
+            const actual = expansionBuilder.build(expansionPage);
+
+            expect(actual).toEqual(expected);
+        });
     });
 });

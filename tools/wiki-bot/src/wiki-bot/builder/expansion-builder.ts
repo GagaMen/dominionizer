@@ -33,7 +33,7 @@ export class ExpansionBuilder {
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox Set');
         const release: WikiText = extractTemplatePropertyValue(infoBox, 'release');
 
-        return release?.split('/').length ?? 1;
+        return release.match(/\d{4}/g)?.length ?? 1;
     }
 
     private buildIcon(expansionPage: ExpansionPage, currentRelease: boolean): string {
