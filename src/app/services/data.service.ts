@@ -1,46 +1,45 @@
 import { CardTypeTranslation } from './../models/card-type';
 import { ExpansionTranslation } from './../models/expansion';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Expansion } from '../models/expansion';
 import { CardDto } from '../dtos/card-dto';
 import { CardType } from '../models/card-type';
 import { CardTranslation } from '../models/card';
+import expansions from '../../assets/data/expansions.json';
+import cardTypes from '../../assets/data/card-types.json';
+import cards from '../../assets/data/cards.json';
+import {
+    cardTranslations,
+    cardTypeTranslations,
+    expansionTranslations,
+} from 'src/assets/data/translations';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DataService {
-    public dataPath = `${environment.entryPoint}/assets/data`;
-    public expansionsUrl = `${this.dataPath}/expansions.json`;
-    public cardTypesUrl = `${this.dataPath}/card-types.json`;
-    public cardsUrl = `${this.dataPath}/cards.json`;
-
-    constructor(private http: HttpClient) {}
-
     fetchExpansions(): Observable<Expansion[]> {
-        return this.http.get<Expansion[]>(this.expansionsUrl);
+        return of(expansions as Expansion[]);
     }
 
-    fetchExpansionTranslations(translationFileName: string): Observable<ExpansionTranslation[]> {
-        return this.http.get<ExpansionTranslation[]>(`${this.dataPath}/${translationFileName}`);
+    fetchExpansionTranslations(): Observable<ExpansionTranslation[]> {
+        return of(expansionTranslations);
     }
 
     fetchCardTypes(): Observable<CardType[]> {
-        return this.http.get<CardType[]>(this.cardTypesUrl);
+        return of(cardTypes as CardType[]);
     }
 
-    fetchCardTypeTranslations(translationFileName: string): Observable<CardTypeTranslation[]> {
-        return this.http.get<CardTypeTranslation[]>(`${this.dataPath}/${translationFileName}`);
+    fetchCardTypeTranslations(): Observable<CardTypeTranslation[]> {
+        return of(cardTypeTranslations);
     }
 
     fetchCards(): Observable<CardDto[]> {
-        return this.http.get<CardDto[]>(this.cardsUrl);
+        return of(cards as CardDto[]);
     }
 
-    fetchCardTranslations(translationFileName: string): Observable<CardTranslation[]> {
-        return this.http.get<CardTranslation[]>(`${this.dataPath}/${translationFileName}`);
+    fetchCardTranslations(): Observable<CardTranslation[]> {
+        return of(cardTranslations);
     }
 }

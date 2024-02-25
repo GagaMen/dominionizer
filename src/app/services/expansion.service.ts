@@ -1,5 +1,4 @@
 import { ExpansionTranslation } from './../models/expansion';
-import { TranslationService } from './translation.service';
 import { Injectable } from '@angular/core';
 import { Expansion } from '../models/expansion';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
@@ -16,13 +15,10 @@ export class ExpansionService {
         first((expansions: Expansion[]) => expansions.length !== 0),
     );
 
-    constructor(
-        private dataService: DataService,
-        private translationService: TranslationService,
-    ) {
+    constructor(private dataService: DataService) {
         combineLatest([
             this.dataService.fetchExpansions(),
-            this.translationService.getExpansionTranslations(),
+            this.dataService.fetchExpansionTranslations(),
         ])
             .pipe(
                 map(([expansions, translations]) => {

@@ -7,12 +7,10 @@ import { CardType } from '../models/card-type';
 
 import { CardTypeService } from './card-type.service';
 import { DataService } from './data.service';
-import { TranslationService } from './translation.service';
 
 describe('CardTypeService', () => {
     let cardTypeService: CardTypeService;
     let dataServiceSpy: SpyObj<DataService>;
-    let translationServiceSpy: SpyObj<TranslationService>;
     let dataFixture: DataFixture;
     let cardTypes: CardType[];
 
@@ -21,12 +19,9 @@ describe('CardTypeService', () => {
             providers: [
                 {
                     provide: DataService,
-                    useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchCardTypes']),
-                },
-                {
-                    provide: TranslationService,
-                    useValue: jasmine.createSpyObj<TranslationService>('TranslationService', [
-                        'getCardTypeTranslations',
+                    useValue: jasmine.createSpyObj<DataService>('DataService', [
+                        'fetchCardTypes',
+                        'fetchCardTypeTranslations',
                     ]),
                 },
             ],
@@ -36,10 +31,7 @@ describe('CardTypeService', () => {
         cardTypes = dataFixture.createCardTypes();
 
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        translationServiceSpy = TestBed.inject(
-            TranslationService,
-        ) as jasmine.SpyObj<TranslationService>;
-        translationServiceSpy.getCardTypeTranslations.and.returnValue(cold('(a|)', { a: [] }));
+        dataServiceSpy.fetchCardTypeTranslations.and.returnValue(cold('(a|)', { a: [] }));
     });
 
     describe('cardTypes$', () => {
@@ -70,7 +62,7 @@ describe('CardTypeService', () => {
         it('with translations should return correct translated data and complete', () => {
             const cardTypeTranslations = dataFixture.createCardTypeTranslations(2);
             const cardTypeTranslations$ = cold('---(a|)', { a: cardTypeTranslations });
-            translationServiceSpy.getCardTypeTranslations.and.returnValue(cardTypeTranslations$);
+            dataServiceSpy.fetchCardTypeTranslations.and.returnValue(cardTypeTranslations$);
             const fetchCardTypes$ = cold('--(a|)', { a: cardTypes });
             dataServiceSpy.fetchCardTypes.and.returnValue(fetchCardTypes$);
             const expected = cardTypes.map((cardType: CardType) => {

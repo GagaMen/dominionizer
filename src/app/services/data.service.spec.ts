@@ -1,105 +1,82 @@
-import { HttpClient } from '@angular/common/http';
-import { SpyObj } from 'src/testing/spy-obj';
 import { TestBed } from '@angular/core/testing';
 
 import { DataService } from './data.service';
 import { cold } from 'jasmine-marbles';
-import { LOCALE_ID } from '@angular/core';
+import expansions from '../../assets/data/expansions.json';
+import cardTypes from '../../assets/data/card-types.json';
+import cards from '../../assets/data/cards.json';
+import {
+    cardTranslations,
+    cardTypeTranslations,
+    expansionTranslations,
+} from 'src/assets/data/translations';
 
 describe('DataService', () => {
     let dataService: DataService;
-    let httpClientSpy: SpyObj<HttpClient>;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: HttpClient,
-                    useValue: jasmine.createSpyObj<HttpClient>('HttpClient', ['get']),
-                },
-                {
-                    provide: LOCALE_ID,
-                    useValue: 'en',
-                },
-            ],
-        });
+        TestBed.configureTestingModule({});
 
-        httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
         dataService = TestBed.inject(DataService);
     });
 
     describe('fetchExpansions', () => {
-        it('should make correct HTTP request and return its response data', () => {
-            const get$ = cold('--(a|)');
-            httpClientSpy.get.withArgs(dataService.expansionsUrl).and.returnValue(get$);
+        it('should return all expansions', () => {
+            const expected$ = cold('(a|)', { a: expansions });
 
             const actual$ = dataService.fetchExpansions();
 
-            expect(actual$).toBeObservable(get$);
+            expect(actual$).toBeObservable(expected$);
         });
     });
 
     describe('fetchExpansionTranslations', () => {
-        it('with translation file name should make correct HTTP request and return its response data', () => {
-            const get$ = cold('--(a|)');
-            const translationFileName = 'expansions.german.json';
-            httpClientSpy.get
-                .withArgs(`${dataService.dataPath}/${translationFileName}`)
-                .and.returnValue(get$);
+        it('should return all expansion translations', () => {
+            const expected$ = cold('(a|)', { a: expansionTranslations });
 
-            const actual$ = dataService.fetchExpansionTranslations(translationFileName);
+            const actual$ = dataService.fetchExpansionTranslations();
 
-            expect(actual$).toBeObservable(get$);
+            expect(actual$).toBeObservable(expected$);
         });
     });
 
     describe('fetchCardTypes', () => {
-        it('should make correct HTTP request and return its response data', () => {
-            const get$ = cold('--(a|)');
-            httpClientSpy.get.withArgs(dataService.cardTypesUrl).and.returnValue(get$);
+        it('should return all card types', () => {
+            const expected$ = cold('(a|)', { a: cardTypes });
 
             const actual$ = dataService.fetchCardTypes();
 
-            expect(actual$).toBeObservable(get$);
+            expect(actual$).toBeObservable(expected$);
         });
     });
 
     describe('fetchCardTypeTranslations', () => {
-        it('with translation file name should make correct HTTP request and return its response data', () => {
-            const get$ = cold('--(a|)');
-            const translationFileName = 'card-types.german.json';
-            httpClientSpy.get
-                .withArgs(`${dataService.dataPath}/${translationFileName}`)
-                .and.returnValue(get$);
+        it('should return all card type translations', () => {
+            const expected$ = cold('(a|)', { a: cardTypeTranslations });
 
-            const actual$ = dataService.fetchCardTypeTranslations(translationFileName);
+            const actual$ = dataService.fetchCardTypeTranslations();
 
-            expect(actual$).toBeObservable(get$);
+            expect(actual$).toBeObservable(expected$);
         });
     });
 
     describe('fetchCards', () => {
-        it('should make correct HTTP request and return its response data', () => {
-            const get$ = cold('--(a|)');
-            httpClientSpy.get.withArgs(dataService.cardsUrl).and.returnValue(get$);
+        it('should return all cards', () => {
+            const expected$ = cold('(a|)', { a: cards });
 
             const actual$ = dataService.fetchCards();
 
-            expect(actual$).toBeObservable(get$);
+            expect(actual$).toBeObservable(expected$);
         });
     });
 
     describe('fetchCardTranslations', () => {
-        it('with translation file name should make correct HTTP request and return its response data', () => {
-            const get$ = cold('--(a|)');
-            const translationFileName = 'card.german.json';
-            httpClientSpy.get
-                .withArgs(`${dataService.dataPath}/${translationFileName}`)
-                .and.returnValue(get$);
+        it('should return all card translations', () => {
+            const expected$ = cold('(a|)', { a: cardTranslations });
 
-            const actual$ = dataService.fetchCardTranslations(translationFileName);
+            const actual$ = dataService.fetchCardTranslations();
 
-            expect(actual$).toBeObservable(get$);
+            expect(actual$).toBeObservable(expected$);
         });
     });
 });

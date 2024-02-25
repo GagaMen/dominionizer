@@ -1,5 +1,4 @@
 import { CardTranslation } from 'src/app/models/card';
-import { TranslationService } from './translation.service';
 import { DependencyDto } from './../dtos/dependency-dto';
 import { CardDto } from './../dtos/card-dto';
 import { Dependency, DependencyType, SplitPileDependency } from './../models/dependency';
@@ -29,13 +28,12 @@ export class CardService {
         private dataService: DataService,
         private expansionService: ExpansionService,
         private cardTypeService: CardTypeService,
-        private translationService: TranslationService,
     ) {
         forkJoin({
             cardDtos: this.dataService.fetchCards(),
             expansions: this.expansionService.expansions$,
             cardTypes: this.cardTypeService.cardTypes$,
-            translations: this.translationService.getCardTranslations(),
+            translations: this.dataService.fetchCardTranslations(),
         })
             .pipe(
                 map(({ cardDtos, expansions, cardTypes, translations }) => {

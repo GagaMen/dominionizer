@@ -12,8 +12,8 @@
     "scripts": {
         "prepare": "husky",
         "start": "ng serve",
-        "start:prod": "npm run build && http-server -p 8080 -o -c-1 ./dist",
-        "build": "ng build --localize",
+        "start:prod": "ng build && http-server -p 8080 -o -c-1 ./dist",
+        "build": "ts-node ./scripts/build.ts",
         "build:changelog": "conventional-changelog -i CHANGELOG.md -s",
         "extract-i18n": "ng extract-i18n",
         "test": "ng test",

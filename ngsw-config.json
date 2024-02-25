@@ -17,13 +17,6 @@
             }
         },
         {
-            "name": "data",
-            "installMode": "prefetch",
-            "resources": {
-                "files": ["/assets/data/**"]
-            }
-        },
-        {
             "name": "logo",
             "installMode": "lazy",
             "updateMode": "prefetch",

@@ -19,7 +19,8 @@
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        "resolveJsonModule": true
     },
     "angularCompilerOptions": {
         "strictTemplates": true,

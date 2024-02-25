@@ -11,14 +11,12 @@ import { DataFixture } from 'src/testing/data-fixture';
 import { CardTypeId } from '../models/card-type';
 import { CardTypeService } from './card-type.service';
 import { Card } from '../models/card';
-import { TranslationService } from './translation.service';
 
 describe('CardService', () => {
     let cardService: CardService;
     let dataServiceSpy: SpyObj<DataService>;
     let expansionServiceSpy: SpyObj<ExpansionService>;
     let cardTypeServiceSpy: SpyObj<CardTypeService>;
-    let translationServiceSpy: SpyObj<TranslationService>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -26,16 +24,13 @@ describe('CardService', () => {
             providers: [
                 {
                     provide: DataService,
-                    useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchCards']),
+                    useValue: jasmine.createSpyObj<DataService>('DataService', [
+                        'fetchCards',
+                        'fetchCardTranslations',
+                    ]),
                 },
                 { provide: ExpansionService, useValue: {} },
                 { provide: CardTypeService, useValue: {} },
-                {
-                    provide: TranslationService,
-                    useValue: jasmine.createSpyObj<TranslationService>('TranslationService', [
-                        'getCardTranslations',
-                    ]),
-                },
             ],
         });
 
@@ -45,17 +40,13 @@ describe('CardService', () => {
         dataServiceSpy.fetchCards.and.returnValue(
             cold('(a|)', { a: dataFixture.createCardDtos() }),
         );
+        dataServiceSpy.fetchCardTranslations.and.returnValue(cold('(a|)', { a: [] }));
 
         expansionServiceSpy = TestBed.inject(ExpansionService);
         expansionServiceSpy.expansions$ = cold('(a|)', { a: dataFixture.createExpansions() });
 
         cardTypeServiceSpy = TestBed.inject(CardTypeService);
         cardTypeServiceSpy.cardTypes$ = cold('(a|)', { a: dataFixture.createCardTypes() });
-
-        translationServiceSpy = TestBed.inject(
-            TranslationService,
-        ) as jasmine.SpyObj<TranslationService>;
-        translationServiceSpy.getCardTranslations.and.returnValue(cold('(a|)', { a: [] }));
     });
 
     describe('cards$', () => {
@@ -138,7 +129,7 @@ describe('CardService', () => {
             expansionServiceSpy.expansions$ = expansions$;
             cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
-            translationServiceSpy.getCardTranslations.and.returnValue(cardTranslations$);
+            dataServiceSpy.fetchCardTranslations.and.returnValue(cardTranslations$);
             cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.cards$;
@@ -174,7 +165,7 @@ describe('CardService', () => {
             expansionServiceSpy.expansions$ = expansions$;
             cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
-            translationServiceSpy.getCardTranslations.and.returnValue(cardTranslations$);
+            dataServiceSpy.fetchCardTranslations.and.returnValue(cardTranslations$);
             cardService = TestBed.inject(CardService);
 
             const actual$ = cardService.cards$;

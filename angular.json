@@ -47,7 +47,9 @@
                             "src/favicon.ico",
                             "src/manifest.webmanifest",
                             "src/CNAME",
-                            "src/assets"
+                            "src/assets/card_art",
+                            "src/assets/card_symbols",
+                            "src/assets/logo"
                         ],
                         "styles": ["src/scss/styles.scss"],
                         "scripts": []
@@ -72,7 +74,216 @@
                                     "maximumWarning": "6kb"
                                 }
                             ],
-                            "serviceWorker": "ngsw-config.json"
+                            "serviceWorker": "ngsw-config.json",
+                            "localize": ["en"]
+                        },
+                        "chinese": {
+                            "localize": ["zh"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.chinese.ts"
+                                }
+                            ]
+                        },
+                        "czech": {
+                            "localize": ["cs"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.czech.ts"
+                                }
+                            ]
+                        },
+                        "dutch": {
+                            "localize": ["nl"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.dutch.ts"
+                                }
+                            ]
+                        },
+                        "finnish": {
+                            "localize": ["fi"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.finnish.ts"
+                                }
+                            ]
+                        },
+                        "french": {
+                            "localize": ["fr"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.french.ts"
+                                }
+                            ]
+                        },
+                        "german": {
+                            "localize": ["de"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.german.ts"
+                                }
+                            ]
+                        },
+                        "greek": {
+                            "localize": ["el"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.greek.ts"
+                                }
+                            ]
+                        },
+                        "hungarian": {
+                            "localize": ["hu"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.hungarian.ts"
+                                }
+                            ]
+                        },
+                        "italian": {
+                            "localize": ["it"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.italian.ts"
+                                }
+                            ]
+                        },
+                        "japanese": {
+                            "localize": ["ja"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.japanese.ts"
+                                }
+                            ]
+                        },
+                        "korean": {
+                            "localize": ["ko"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.korean.ts"
+                                }
+                            ]
+                        },
+                        "norwegian": {
+                            "localize": ["no"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.norwegian.ts"
+                                }
+                            ]
+                        },
+                        "polish": {
+                            "localize": ["pl"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.polish.ts"
+                                }
+                            ]
+                        },
+                        "romanian": {
+                            "localize": ["ro"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.romanian.ts"
+                                }
+                            ]
+                        },
+                        "russian": {
+                            "localize": ["ru"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.russian.ts"
+                                }
+                            ]
+                        },
+                        "spanish": {
+                            "localize": ["es"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/assets/data/translations.ts",
+                                    "with": "src/assets/data/translations.spanish.ts"
+                                }
+                            ]
                         },
                         "development": {
                             "optimization": false,
@@ -80,54 +291,6 @@
                             "sourceMap": true,
                             "namedChunks": true,
                             "localize": ["en"]
-                        },
-                        "zh": {
-                            "localize": ["zh"]
-                        },
-                        "cs": {
-                            "localize": ["cs"]
-                        },
-                        "nl": {
-                            "localize": ["nl"]
-                        },
-                        "fi": {
-                            "localize": ["fi"]
-                        },
-                        "fr": {
-                            "localize": ["fr"]
-                        },
-                        "de": {
-                            "localize": ["de"]
-                        },
-                        "el": {
-                            "localize": ["el"]
-                        },
-                        "hu": {
-                            "localize": ["hu"]
-                        },
-                        "it": {
-                            "localize": ["it"]
-                        },
-                        "ja": {
-                            "localize": ["ja"]
-                        },
-                        "ko": {
-                            "localize": ["ko"]
-                        },
-                        "no": {
-                            "localize": ["no"]
-                        },
-                        "pl": {
-                            "localize": ["pl"]
-                        },
-                        "ro": {
-                            "localize": ["ro"]
-                        },
-                        "ru": {
-                            "localize": ["ru"]
-                        },
-                        "es": {
-                            "localize": ["es"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -140,54 +303,6 @@
                         },
                         "development": {
                             "buildTarget": "dominionizer:build:development"
-                        },
-                        "zh": {
-                            "buildTarget": "dominionizer:build:development,zh"
-                        },
-                        "cs": {
-                            "buildTarget": "dominionizer:build:development,cs"
-                        },
-                        "nl": {
-                            "buildTarget": "dominionizer:build:development,nl"
-                        },
-                        "fi": {
-                            "buildTarget": "dominionizer:build:development,fi"
-                        },
-                        "fr": {
-                            "buildTarget": "dominionizer:build:development,fr"
-                        },
-                        "de": {
-                            "buildTarget": "dominionizer:build:development,de"
-                        },
-                        "el": {
-                            "buildTarget": "dominionizer:build:development,el"
-                        },
-                        "hu": {
-                            "buildTarget": "dominionizer:build:development,hu"
-                        },
-                        "it": {
-                            "buildTarget": "dominionizer:build:development,it"
-                        },
-                        "ja": {
-                            "buildTarget": "dominionizer:build:development,ja"
-                        },
-                        "ko": {
-                            "buildTarget": "dominionizer:build:development,ko"
-                        },
-                        "no": {
-                            "buildTarget": "dominionizer:build:development,no"
-                        },
-                        "pl": {
-                            "buildTarget": "dominionizer:build:development,pl"
-                        },
-                        "ro": {
-                            "buildTarget": "dominionizer:build:development,ro"
-                        },
-                        "ru": {
-                            "buildTarget": "dominionizer:build:development,ru"
-                        },
-                        "es": {
-                            "buildTarget": "dominionizer:build:development,es"
                         }
                     },
                     "defaultConfiguration": "development"

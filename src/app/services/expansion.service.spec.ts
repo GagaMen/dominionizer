@@ -1,5 +1,4 @@
 import { ExpansionTranslation } from './../models/expansion';
-import { TranslationService } from './translation.service';
 import { TestBed } from '@angular/core/testing';
 
 import { ExpansionService } from './expansion.service';
@@ -12,7 +11,6 @@ import { Expansion } from '../models/expansion';
 describe('ExpansionService', () => {
     let expansionService: ExpansionService;
     let dataServiceSpy: SpyObj<DataService>;
-    let translationServiceSpy: SpyObj<TranslationService>;
     let dataFixture: DataFixture;
     let expansions: Expansion[];
 
@@ -21,12 +19,9 @@ describe('ExpansionService', () => {
             providers: [
                 {
                     provide: DataService,
-                    useValue: jasmine.createSpyObj<DataService>('DataService', ['fetchExpansions']),
-                },
-                {
-                    provide: TranslationService,
-                    useValue: jasmine.createSpyObj<TranslationService>('TranslationService', [
-                        'getExpansionTranslations',
+                    useValue: jasmine.createSpyObj<DataService>('DataService', [
+                        'fetchExpansions',
+                        'fetchExpansionTranslations',
                     ]),
                 },
             ],
@@ -37,10 +32,7 @@ describe('ExpansionService', () => {
 
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
         dataServiceSpy.fetchExpansions.and.returnValue(cold('--(a|)', { a: expansions }));
-        translationServiceSpy = TestBed.inject(
-            TranslationService,
-        ) as jasmine.SpyObj<TranslationService>;
-        translationServiceSpy.getExpansionTranslations.and.returnValue(cold('(a|)', { a: [] }));
+        dataServiceSpy.fetchExpansionTranslations.and.returnValue(cold('(a|)', { a: [] }));
     });
 
     describe('expansions$', () => {
@@ -67,7 +59,7 @@ describe('ExpansionService', () => {
         it('with translations should return correct translated data and complete', () => {
             const expansionTranslations = dataFixture.createExpansionTranslations(2);
             const expansionTranslations$ = cold('---(a|)', { a: expansionTranslations });
-            translationServiceSpy.getExpansionTranslations.and.returnValue(expansionTranslations$);
+            dataServiceSpy.fetchExpansionTranslations.and.returnValue(expansionTranslations$);
             const expected = expansions.map((expansion: Expansion) => {
                 const translation = expansionTranslations.find(
                     (expansionTranslation: ExpansionTranslation) =>
@@ -103,7 +95,7 @@ describe('ExpansionService', () => {
                 dataFixture.createExpansionTranslation({ id: 181, name: 'Hinterland' }),
             ];
             const expansionTranslations$ = cold('---(b|)', { b: expansionTranslations });
-            translationServiceSpy.getExpansionTranslations.and.returnValue(expansionTranslations$);
+            dataServiceSpy.fetchExpansionTranslations.and.returnValue(expansionTranslations$);
             const expected = [
                 { ...secondEditionExpansions[0], name: 'Hinterland' },
                 { ...secondEditionExpansions[1], name: 'Hinterland (2. Edition)' },

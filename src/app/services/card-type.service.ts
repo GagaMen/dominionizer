@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { CardType } from '../models/card-type';
 import { DataService } from './data.service';
-import { TranslationService } from './translation.service';
 
 @Injectable({
     providedIn: 'root',
@@ -16,13 +15,10 @@ export class CardTypeService {
         first((cardTypes: CardType[]) => cardTypes.length !== 0),
     );
 
-    constructor(
-        private dataService: DataService,
-        private translationService: TranslationService,
-    ) {
+    constructor(private dataService: DataService) {
         combineLatest([
             this.dataService.fetchCardTypes(),
-            this.translationService.getCardTypeTranslations(),
+            this.dataService.fetchCardTypeTranslations(),
         ])
             .pipe(
                 map(([cardTypes, translations]) => {
