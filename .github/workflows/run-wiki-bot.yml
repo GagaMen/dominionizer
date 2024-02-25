@@ -40,12 +40,12 @@ jobs:
               working-directory: ${{github.workspace}}/tools/wiki-bot
               run: npm start -- --update
 
-            - name: Detect changes in assets folder
+            - name: Detect changes in data and assets folder
               id: changes
-              run: echo "changed=$(git diff --quiet --stat HEAD -- ./src/assets || echo 'true')" >> $GITHUB_OUTPUT
+              run: echo "changed=$(git diff --quiet --stat HEAD -- ./src/data ./src/assets || echo 'true')" >> $GITHUB_OUTPUT
 
             - name: Create Pull Request
-              # Create PR only if there are changes in the src/assets folder otherwise skip
+              # Create PR only if there are changes in the src/data or src/assets folder otherwise skip
               if: steps.changes.outputs.changed == 'true'
               uses: peter-evans/create-pull-request@v4
               with:
@@ -53,9 +53,10 @@ jobs:
                   title: Wiki bot update
                   body: Updates data extracted from [wiki.dominionstrategy.com](https://wiki.dominionstrategy.com/)
                   add-paths: |
+                      src/data/**/*
                       src/assets/**/*
                       tools/wiki-bot/last-generation.json
-                  commit-message: 'chore(assets): update assets build with WikiBot'
+                  commit-message: 'chore: update data/assets build with WikiBot'
                   branch: wiki-bot-update
                   branch-suffix: timestamp
                   delete-branch: true

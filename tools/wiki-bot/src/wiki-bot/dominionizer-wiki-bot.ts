@@ -443,7 +443,7 @@ export class DominionizerWikiBot {
     ): Promise<EncodedImage[]> {
         console.log(`Generating ${subFolder.replace('_', ' ')}...`);
 
-        await mkdir(`${this.targetPath}/${subFolder}`, { recursive: true });
+        await mkdir(`${this.targetPath}/assets/${subFolder}`, { recursive: true });
 
         const images: EncodedImage[] = [];
         for (const imagePage of imagePages) {
@@ -453,7 +453,7 @@ export class DominionizerWikiBot {
             images.push(encodedImage);
 
             await writeFile(
-                `${this.targetPath}/${subFolder}/${encodedImage.fileName}`,
+                `${this.targetPath}/assets/${subFolder}/${encodedImage.fileName}`,
                 encodedImage.data,
             );
         }

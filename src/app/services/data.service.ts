@@ -6,14 +6,14 @@ import { Expansion } from '../models/expansion';
 import { CardDto } from '../dtos/card-dto';
 import { CardType } from '../models/card-type';
 import { CardTranslation } from '../models/card';
-import expansions from '../../assets/data/expansions.json';
-import cardTypes from '../../assets/data/card-types.json';
-import cards from '../../assets/data/cards.json';
+import expansions from '../../data/expansions.json';
+import cardTypes from '../../data/card-types.json';
+import cards from '../../data/cards.json';
 import {
     cardTranslations,
     cardTypeTranslations,
     expansionTranslations,
-} from 'src/assets/data/translations';
+} from 'src/data/translations';
 
 @Injectable({
     providedIn: 'root',

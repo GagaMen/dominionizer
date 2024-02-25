@@ -68,7 +68,7 @@ describe('DominionizerWikiBot', () => {
         lastGenerationTime = new Date('2022-09-03T09:18:53.321Z');
         currentGenerationTime = new Date();
 
-        targetPath = './assets';
+        targetPath = '.';
 
         wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
             'fetchAllExpansionPages',
@@ -427,11 +427,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_symbols/${firstEncodedImage.fileName}`,
+                `${targetPath}/assets/card_symbols/${firstEncodedImage.fileName}`,
                 firstEncodedImage.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_symbols/${secondEncodedImage.fileName}`,
+                `${targetPath}/assets/card_symbols/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
             /* eslint-disable @typescript-eslint/unbound-method */
@@ -464,11 +464,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_art/${firstEncodedImage.fileName}`,
+                `${targetPath}/assets/card_art/${firstEncodedImage.fileName}`,
                 firstEncodedImage.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_art/${secondEncodedImage.fileName}`,
+                `${targetPath}/assets/card_art/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
             /* eslint-disable @typescript-eslint/unbound-method */
@@ -736,11 +736,11 @@ describe('DominionizerWikiBot', () => {
             await dominionizerWikiBot.generateUpdate();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_symbols/${encodedCardSymbol.fileName}`,
+                `${targetPath}/assets/card_symbols/${encodedCardSymbol.fileName}`,
                 encodedCardSymbol.data,
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/card_art/${encodedCardArt.fileName}`,
+                `${targetPath}/assets/card_art/${encodedCardArt.fileName}`,
                 encodedCardArt.data,
             );
             /* eslint-disable @typescript-eslint/unbound-method */

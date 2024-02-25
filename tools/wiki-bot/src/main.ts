@@ -53,7 +53,7 @@ async function bootstrap(): Promise<void> {
     const sharpFactory = new SharpFactory();
 
     const currentGenerationTime = new Date();
-    const targetPath = '../../src/assets';
+    const targetPath = '../../src';
     const wikiClient = new WikiClient(axiosInstance);
     const expansionBuilder = new ExpansionBuilder();
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();

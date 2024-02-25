@@ -5,7 +5,7 @@ import { ValidationResult } from './validation-result';
 
 describe('card dto validators', () => {
     describe('CardDtoValidator', () => {
-        const targetPath = '../../src/assets';
+        const targetPath = '../../src';
         const validator = new CardDtoValidator(targetPath);
 
         describe('validate', () => {

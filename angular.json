@@ -85,8 +85,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.chinese.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.chinese.ts"
                                 }
                             ]
                         },
@@ -98,8 +98,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.czech.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.czech.ts"
                                 }
                             ]
                         },
@@ -111,8 +111,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.dutch.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.dutch.ts"
                                 }
                             ]
                         },
@@ -124,8 +124,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.finnish.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.finnish.ts"
                                 }
                             ]
                         },
@@ -137,8 +137,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.french.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.french.ts"
                                 }
                             ]
                         },
@@ -150,8 +150,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.german.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.german.ts"
                                 }
                             ]
                         },
@@ -163,8 +163,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.greek.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.greek.ts"
                                 }
                             ]
                         },
@@ -176,8 +176,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.hungarian.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.hungarian.ts"
                                 }
                             ]
                         },
@@ -189,8 +189,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.italian.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.italian.ts"
                                 }
                             ]
                         },
@@ -202,8 +202,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.japanese.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.japanese.ts"
                                 }
                             ]
                         },
@@ -215,8 +215,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.korean.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.korean.ts"
                                 }
                             ]
                         },
@@ -228,8 +228,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.norwegian.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.norwegian.ts"
                                 }
                             ]
                         },
@@ -241,8 +241,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.polish.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.polish.ts"
                                 }
                             ]
                         },
@@ -254,8 +254,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.romanian.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.romanian.ts"
                                 }
                             ]
                         },
@@ -267,8 +267,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.russian.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.russian.ts"
                                 }
                             ]
                         },
@@ -280,8 +280,8 @@
                                     "with": "src/environments/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/assets/data/translations.ts",
-                                    "with": "src/assets/data/translations.spanish.ts"
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.spanish.ts"
                                 }
                             ]
                         },

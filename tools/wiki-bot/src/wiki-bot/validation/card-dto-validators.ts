@@ -13,7 +13,7 @@ export class CardDtoValidator {
         value: string,
         helpers: Joi.CustomHelpers<string>,
     ) => {
-        return existsSync(`${this.targetPath}/card_art/${value}`)
+        return existsSync(`${this.targetPath}/assets/card_art/${value}`)
             ? value
             : helpers.message({
                   custom: `"${value}" must exist. Is category "Card art" assigned to the corresponding image page?`,
