@@ -47,9 +47,7 @@
                             "src/favicon.ico",
                             "src/manifest.webmanifest",
                             "src/CNAME",
-                            "src/assets/card_art",
-                            "src/assets/card_symbols",
-                            "src/assets/logo"
+                            "src/assets"
                         ],
                         "styles": ["src/scss/styles.scss"],
                         "scripts": []
