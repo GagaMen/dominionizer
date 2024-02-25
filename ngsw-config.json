@@ -12,7 +12,7 @@
                     "/manifest.webmanifest",
                     "/*.css",
                     "/*.js",
-                    "/MaterialIcons*"
+                    "/media/MaterialIcons*"
                 ]
             }
         },
