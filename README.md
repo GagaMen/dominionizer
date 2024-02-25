@@ -1,4 +1,4 @@
-# ![Dominionizer](/src/assets/logo/logo.svg)
+# ![Dominionizer](/src/assets/logo/logo.min.svg)
 
 [![Deploy release](https://github.com/GagaMen/dominionizer/actions/workflows/deploy-release.yml/badge.svg)](https://github.com/GagaMen/dominionizer/actions/workflows/deploy-release.yml)
 [![Run checks](https://github.com/GagaMen/dominionizer/actions/workflows/run-checks.yml/badge.svg)](https://github.com/GagaMen/dominionizer/actions/workflows/run-checks.yml)
