@@ -44,6 +44,6 @@ export class ExpansionBuilder {
     }
 
     private extractName(expansionPage: ExpansionPage): string {
-        return normalize(/[\w\s]+/.exec(expansionPage.title)?.[0]);
+        return normalize(/[\w&\s]+/.exec(expansionPage.title)?.[0]);
     }
 }
