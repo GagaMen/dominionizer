@@ -18,6 +18,7 @@ const languages = [
     'romanian',
     'russian',
     'spanish',
+    'swedish',
 ];
 
 console.info(`Generate bundle for language 'english'.`);

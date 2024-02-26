@@ -16,4 +16,5 @@ export enum Language {
     Romanian = 'ro',
     Russian = 'ru',
     Spanish = 'es',
+    Swedish = 'sv',
 }

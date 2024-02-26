@@ -31,7 +31,8 @@
                     "pl": "src/locale/translations.pl.xlf",
                     "ro": "src/locale/translations.ro.xlf",
                     "ru": "src/locale/translations.ru.xlf",
-                    "es": "src/locale/translations.es.xlf"
+                    "es": "src/locale/translations.es.xlf",
+                    "sv": "src/locale/translations.sv.xlf"
                 }
             },
             "architect": {
@@ -280,6 +281,19 @@
                                 {
                                     "replace": "src/data/translations.ts",
                                     "with": "src/data/translations.spanish.ts"
+                                }
+                            ]
+                        },
+                        "swedish": {
+                            "localize": ["sv"],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "src/data/translations.ts",
+                                    "with": "src/data/translations.swedish.ts"
                                 }
                             ]
                         },
