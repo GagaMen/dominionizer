@@ -439,7 +439,7 @@
     {
         "id": 155,
         "name": "Bettler",
-        "description": "Nimm 3 Kupfer auf deine Hand.{{divline}}Wenn ein Mitspieler eine Angriffs&shy;karte ausspielt, darfst du zuerst diese Karte ablegen, um 2&nbsp;Silber zu nehmen und eins davon auf deinen Nachzieh&shy;stapel zu legen."
+        "description": "Nimm 3 Kupfer auf deine Hand.{{divline}}Wenn ein Mitspieler eine Angriffs&shy;karte spielt, darfst du zuerst diese Karte ablegen, um 2&nbsp;Silber zu nehmen, wobei du eines direkt auf deinen Nachzieh&shy;stapel legst."
     },
     {
         "id": 158,
@@ -592,7 +592,7 @@
     {
         "id": 353,
         "name": "Weiler",
-        "description": "'''+1 Karte<br>+1 Aktion'''<br>Du darfst eine deiner Handkarten<br>für: '''+1&nbsp;Aktion''' ablegen.<br>Du darfst eine deiner Handkarten<br>für: '''+1&nbsp;Kauf''' ablegen."
+        "description": "'''+1 Karte<br>+1 Aktion'''<br>Du darfst eine deiner Handkarten {{nowrap|für: '''+1&nbsp;Aktion'''}} ablegen.<br>Du darfst eine deiner Handkarten {{nowrap|für: '''+1&nbsp;Kauf'''}} ablegen."
     },
     {
         "id": 358,
@@ -622,7 +622,7 @@
     {
         "id": 385,
         "name": "Füllhorn",
-        "description": "Nimm eine Karte, die bis zu {{Cost|1}} pro Karte mit unterschiedlichem Namen, die du im Spiel hast, kostet (inklusive dieser Karte). Wenn sie eine Punktekarte ist, entsorge diese Karte (das Füllhorn)."
+        "description": "Nimm eine Karte, die bis zu {{Cost|1}} pro Karte mit unter&shy;schied&shy;lichem Namen, die du im Spiel hast, kostet (inklusive dieser Karte). Wenn sie eine Punktekarte ist, entsorge diese Karte (das Füllhorn)."
     },
     {
         "id": 386,
@@ -1075,7 +1075,7 @@
     {
         "id": 1332,
         "name": "Meisterstück",
-        "description": "{{Cost|1|l}}{{Divline}}&Uuml;berzahlen: Pro überzahltem {{Cost|1}}, nimm ein Silber."
+        "description": "{{Cost|1|l}}{{Divline}}&Uuml;berzahlen: Nimm ein Silber pro überzahltem {{nowrap|{{Cost|1}}.}}"
     },
     {
         "id": 1333,
@@ -1475,7 +1475,7 @@
     {
         "id": 3262,
         "name": "Bauernmarkt",
-        "description": "'''+1 Kauf'''<br>Wenn '''4'''{{VP}} oder mehr auf dem Bauernmarkt-Vorratsstapel liegen, nimm die Marker und entsorge diese Karte.<br>Ansonsten lege {{nowrap|'''1'''{{VP}}}} auf den Stapel und dann:<br>+{{Cost|1}} pro {{nowrap|'''1'''{{VP}}}} auf dem Stapel."
+        "description": "'''+1 Kauf'''<br>Wenn '''4'''{{VP}} oder mehr auf dem Bauern&shy;markt-Stapel liegen, nimm die Marker und entsorge diese Karte.<br>Ansonsten lege {{nowrap|'''1'''{{VP}}}} auf den Stapel und dann:<br>+{{Cost|1}} pro {{nowrap|'''1'''{{VP}}}} auf dem Stapel."
     },
     {
         "id": 3264,
@@ -3657,6 +3657,6 @@
     {
         "id": 10429,
         "name": "Grenzregion",
-        "description": "Wert {{VP|1|m}} für je 3&nbsp;Punktekarten im eigenen Kartensatz (abgerundet).{{Divline}}Wenn du diese Karte nimmst: '''+1&nbsp;Kauf''' und lege beliebig viele deiner Hand&shy;karten für +{{Cost|1|m}} pro Karte ab."
+        "description": "Wert {{VP|'''1'''}} für je 3&nbsp;Punkte&shy;karten im eigenen Karten&shy;satz (abgerundet).{{Divline}}Wenn du diese Karte nimmst:<br>'''+1&nbsp;Kauf''' und lege beliebig viele deiner Hand&shy;karten ab für jeweils {{nowrap|+{{Cost|1}}.}}"
     }
 ]

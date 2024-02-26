@@ -15,6 +15,16 @@
     { "id": 914, "name": "Dominion (1. Edition)", "icon": "Dominion_old_icon.png" },
     { "id": 914.1, "name": "Dominion (2. Edition)", "icon": "Dominion_icon.png" },
     { "id": 1579, "name": "Adventures", "icon": "Adventures_icon.png" },
+    {
+        "id": 2409,
+        "name": "Cornucopia & Guilds (1. Edition)",
+        "icon": "Cornucopia_&_Guilds_old_icon.png"
+    },
+    {
+        "id": 2409.1,
+        "name": "Cornucopia & Guilds (2. Edition)",
+        "icon": "Cornucopia_&_Guilds_icon.png"
+    },
     { "id": 2739, "name": "Empires", "icon": "Empires_icon.png" },
     { "id": 4213, "name": "Nocturne", "icon": "Nocturne_icon.png" },
     { "id": 6098, "name": "Renaissance", "icon": "Renaissance_icon.png" },

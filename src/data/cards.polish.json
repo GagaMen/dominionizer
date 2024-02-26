@@ -381,7 +381,11 @@
         "name": "Szlak handlowy",
         "description": "'''+1 zakup'''<br>+{{Cost|1}} za każdy żeton monety leżący na podkładce Szlaku handlowego.<br>Wyrzuć na śmietnisko kartę z ręki.{{Divline}}Przygotowanie do rozgrywki połóż żeton monety na każdym stosie kart Zwycięstwa w Zasobach. Kiedy gracz dodaje kartę z takiego stosu, należy przełożyć żeton na podkładkę Szlaku handlowego."
     },
-    { "id": 246, "name": "Cyganka", "description": "" },
+    {
+        "id": 246,
+        "name": "Cyganka",
+        "description": "+{{Cost|2}}<br>Każdy z pozostałych graczy odkrywa karty z wierzchu swojej talii, aż odkryje kartę Zwycięstwa lub Klątwy. Kładzie ją na wierzchu swojej talii i odrzuca pozostałe odkryte karty."
+    },
     { "id": 247, "name": "Platyna", "description": "{{Cost|5|l}}" },
     { "id": 317, "name": "Ołtarz", "description": "" },
     { "id": 319, "name": "Obóz bandytów", "description": "" },
