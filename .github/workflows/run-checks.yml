@@ -14,14 +14,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
                   fetch-depth: 0
                   path: workspace
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 20
 
@@ -29,7 +29,7 @@ jobs:
               run: npm install -g npm@10
 
             - name: Cache Node.js modules
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   # npm cache files are stored in `~/.npm` on Linux/macOS
                   path: ~/.npm
@@ -42,7 +42,7 @@ jobs:
               run: npm ci
 
             - name: Cache workspace
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
@@ -52,7 +52,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
@@ -66,14 +66,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
                   fetch-depth: 0
                   path: workspace
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 20
 
@@ -81,7 +81,7 @@ jobs:
               run: npm install -g npm@10
 
             - name: Cache Node.js modules
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   # npm cache files are stored in `~/.npm` on Linux/macOS
                   path: ~/.npm
@@ -118,7 +118,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
@@ -132,7 +132,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}
@@ -146,7 +146,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cache workspace
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: workspace
                   key: workspace-${{ github.sha }}

@@ -14,10 +14,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 20
 
@@ -25,7 +25,7 @@ jobs:
               run: npm install -g npm@10
 
             - name: Cache Node.js modules
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   # npm cache files are stored in `~/.npm` on Linux/macOS
                   path: ~/.npm
@@ -47,7 +47,7 @@ jobs:
             - name: Create Pull Request
               # Create PR only if there are changes in the src/data or src/assets folder otherwise skip
               if: steps.changes.outputs.changed == 'true'
-              uses: peter-evans/create-pull-request@v4
+              uses: peter-evans/create-pull-request@v6
               with:
                   token: ${{ secrets.WIKI_BOT_TOKEN }}
                   title: Wiki bot update
