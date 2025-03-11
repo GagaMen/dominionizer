@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim
+FROM node:22-bookworm-slim
 
 # Install basic development tools
 RUN apt update && apt install -y sudo openssh-server git vim wget
