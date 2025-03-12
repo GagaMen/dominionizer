@@ -60,7 +60,7 @@ module.exports = {
         },
         {
             files: ['*.json'],
-            extends: ['plugin:json/recommended-with-comments'],
+            extends: ['plugin:json/recommended-with-comments-legacy'],
         },
         {
             files: ['*.component.html'],

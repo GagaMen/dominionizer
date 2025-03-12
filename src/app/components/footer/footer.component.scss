@@ -2,7 +2,7 @@
 @use '../../../scss/variables';
 
 footer {
-    background: mat.get-color-from-palette(variables.$primary);
+    background: mat.m2-get-color-from-palette(variables.$primary);
     flex-shrink: 0;
     padding: 32px 0;
     text-align: center;

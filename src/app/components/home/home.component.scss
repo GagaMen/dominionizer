@@ -4,8 +4,8 @@
 header {
     background: linear-gradient(
         180deg,
-        mat.get-color-from-palette(variables.$primary, 900),
-        mat.get-color-from-palette(variables.$primary, 300)
+        mat.m2-get-color-from-palette(variables.$primary, 900),
+        mat.m2-get-color-from-palette(variables.$primary, 300)
     );
     padding-bottom: 30px;
     position: relative;
@@ -99,7 +99,7 @@ section {
     }
 
     .mat-h2 {
-        color: mat.get-color-from-palette(variables.$accent);
+        color: mat.m2-get-color-from-palette(variables.$accent);
         flex-basis: 100%;
         margin-bottom: 0.5rem;
     }

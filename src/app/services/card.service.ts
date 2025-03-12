@@ -127,7 +127,7 @@ export class CardService {
                     // TODO: respect different types of dependencies
                     const splitPileDependencies = card.dependencies?.filter(
                         (dependency: Dependency) => dependency.type === DependencyType.SplitPile,
-                    ) as SplitPileDependency[];
+                    );
 
                     if (splitPileDependencies?.length === 0) {
                         return true;

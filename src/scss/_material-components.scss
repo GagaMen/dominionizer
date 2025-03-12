@@ -1,9 +1,0 @@
-@use '@angular/material' as mat;
-@use './variables';
-@use '@material/fab';
-
-@include fab.core-styles;
-
-.mdc-fab--extended {
-    background-color: mat.get-color-from-palette(variables.$accent);
-}

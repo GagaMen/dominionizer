@@ -7,17 +7,17 @@
         "test:ci": "ts-node --project tsconfig.spec.json ../../node_modules/jasmine/bin/jasmine --config=jasmine.json"
     },
     "dependencies": {
-        "axios": "^1.2.2",
-        "commander": "^12.0.0",
-        "joi": "^17.6.0",
-        "sharp": "^0.33.2"
+        "axios": "^1.8.2",
+        "commander": "^13.1.0",
+        "joi": "^17.13.3",
+        "sharp": "^0.33.5"
     },
     "devDependencies": {
         "@types/jasmine": "file:../../node_modules/@types/jasmine",
         "@types/node": "file:../../node_modules/@types/node",
         "chance": "file:../../node_modules/chance",
-        "jasmine": "^5.1.0",
-        "nodemon": "^3.0.3",
+        "jasmine": "^5.6.0",
+        "nodemon": "^3.1.9",
         "prettier": "file:../../node_modules/prettier",
         "ts-node": "file:../../node_modules/ts-node",
         "tslib": "file:../../node_modules/tslib",

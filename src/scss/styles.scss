@@ -1,12 +1,11 @@
 @use '@angular/material' as mat;
 @use './variables';
 @use './material-theme';
-@use './material-components';
 @use 'material-design-icons/iconfont/material-icons';
 
 ::selection {
-    background-color: mat.get-color-from-palette(variables.$primary, 'default');
-    color: mat.get-color-from-palette(variables.$primary, 'default-contrast');
+    background-color: mat.m2-get-color-from-palette(variables.$primary, 'default');
+    color: mat.m2-get-color-from-palette(variables.$primary, 'default-contrast');
 }
 
 * {
