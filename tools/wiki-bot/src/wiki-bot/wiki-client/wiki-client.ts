@@ -1,13 +1,17 @@
 import { AxiosInstance } from 'axios';
 import {
+    CargoCard,
     CardPage,
     CardTypePage,
+    CargoResponse,
     ChangedImagePage,
     ContentPage,
+    CargoEdition,
     ExpansionPage,
     ImagePage,
     QueryParams,
     QueryResult,
+    CargoCardType,
 } from './api-models';
 
 export class WikiClient {
@@ -26,7 +30,23 @@ export class WikiClient {
         iiprop: 'url|mime',
     };
 
-    constructor(private axios: AxiosInstance) {}
+    constructor(
+        private axios: AxiosInstance,
+        private readonly baseUrl: string,
+        private readonly authenticationHeaderValue: string,
+        private readonly pageLimit: number,
+    ) {}
+
+    async fetchAllEditions(): Promise<CargoEdition[]> {
+        const params: QueryParams = {
+            action: 'cargoquery',
+            format: 'json',
+            tables: 'Editions',
+            fields: '_ID=Id,Expansion,Edition,Icon',
+        };
+
+        return await this.fetchData(params);
+    }
 
     async fetchAllExpansionPages(): Promise<ExpansionPage[]> {
         const params: QueryParams = {
@@ -39,6 +59,17 @@ export class WikiClient {
         };
 
         return await this.fetchPages(params, 'expansion');
+    }
+
+    async fetchAllCards(): Promise<CargoCard[]> {
+        const params: QueryParams = {
+            action: 'cargoquery',
+            format: 'json',
+            tables: 'Components',
+            fields: '_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+        };
+
+        return await this.fetchData(params);
     }
 
     async fetchAllCardPages(): Promise<CardPage[]> {
@@ -55,6 +86,17 @@ export class WikiClient {
         return await this.fetchPages(params, 'card');
     }
 
+    async fetchAllCardTypes(): Promise<CargoCardType[]> {
+        const params: QueryParams = {
+            action: 'cargoquery',
+            format: 'json',
+            tables: 'Types',
+            fields: '_ID=Id,Name,Scope',
+        };
+
+        return await this.fetchData(params);
+    }
+
     async fetchAllCardTypePages(): Promise<CardTypePage[]> {
         const params: QueryParams = {
             ...this.defaultParams,
@@ -69,6 +111,7 @@ export class WikiClient {
         return await this.fetchPages(params, 'card type');
     }
 
+    // TODO(refactor/rewrite-wiki-bot): migrate from axios to fetch - rest stays the same
     async fetchAllCardArtPages(): Promise<ImagePage[]> {
         const params: QueryParams = {
             ...this.defaultParams,
@@ -81,6 +124,7 @@ export class WikiClient {
         return await this.fetchPages(params, 'card art');
     }
 
+    // TODO(refactor/rewrite-wiki-bot): migrate from axios to fetch - rest stays the same
     async fetchAllCardSymbolPages(): Promise<ImagePage[]> {
         const params: QueryParams = {
             ...this.defaultParams,
@@ -93,6 +137,7 @@ export class WikiClient {
         return await this.fetchPages(params, 'card symbol');
     }
 
+    // TODO(refactor/rewrite-wiki-bot): migrate from axios to fetch - rest stays the same
     async fetchRecentImageChanges(since: Date): Promise<ChangedImagePage[]> {
         const params: QueryParams = {
             ...this.defaultParams,
@@ -110,6 +155,33 @@ export class WikiClient {
         return await this.fetchPages(params, 'changed image');
     }
 
+    private async fetchData<T>(params: QueryParams): Promise<T[]> {
+        const requestUrl = new URL(this.baseUrl);
+
+        const dataItems = [];
+        let dataItemCount;
+        do {
+            for (const [key, value] of Object.entries(params)) {
+                requestUrl.searchParams.append(key, value);
+            }
+
+            const response = await fetch(requestUrl, {
+                headers: {
+                    'Dominion-Wiki-Client': this.authenticationHeaderValue,
+                },
+            });
+            const body: CargoResponse<T> = await response.json();
+
+            const pageDataItems = body.cargoquery.map((cargoQueryItem) => cargoQueryItem.title);
+            dataItems.push(...pageDataItems);
+
+            dataItemCount = pageDataItems.length;
+        } while (dataItemCount === this.pageLimit);
+
+        return dataItems;
+    }
+
+    // TODO(refactor/rewrite-wiki-bot): migrate from axios to fetch - rest stays the same
     private async fetchPages<TPage>(
         params: QueryParams,
         logWithPageType?: string,
@@ -152,6 +224,7 @@ export class WikiClient {
         return pages;
     }
 
+    // TODO(refactor/rewrite-wiki-bot): method should be obsolete
     async fetchSingleContentPage(title: string): Promise<ContentPage | undefined> {
         const params: QueryParams = {
             ...this.defaultParams,
@@ -172,6 +245,7 @@ export class WikiClient {
         return Object.values<ContentPage>(response.data.query.pages)[0];
     }
 
+    // TODO(refactor/rewrite-wiki-bot): migrate from axios to fetch - rest stays the same
     async fetchImage(url: string): Promise<Buffer> {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return (await this.axios.get<Buffer>(url, { responseType: 'arraybuffer' })).data;

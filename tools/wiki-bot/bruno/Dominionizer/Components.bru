@@ -1,0 +1,25 @@
+meta {
+  name: Components
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Components&fields=_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types&format=json&order_by=_ID&offset=50
+  body: none
+  auth: inherit
+}
+
+params:query {
+  action: cargoquery
+  tables: Components
+  fields: _ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types
+  format: json
+  order_by: _ID
+  offset: 50
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

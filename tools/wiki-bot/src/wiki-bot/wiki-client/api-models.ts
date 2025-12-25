@@ -26,6 +26,40 @@ export interface ContentPage extends Page {
 
 export type ExpansionPage = ContentPage;
 
+export interface CargoEdition {
+    Id: string;
+    Expansion: string;
+    Edition: string;
+    Icon: string;
+}
+
+export interface CargoCard {
+    Id: string;
+    Name: string;
+    Expansion: string;
+    Purpose: string;
+    CostCoin: string;
+    CostPotion: string;
+    CostDebt: string;
+    CostExtra: string;
+    Art: string;
+    Illustrator: string;
+    Edition: string;
+    Types: string;
+}
+
+export interface CargoCardType {
+    Id: string;
+    Name: string;
+    Scope: string;
+}
+
+export interface CargoResponse<T> {
+    cargoquery: {
+        title: T;
+    }[];
+}
+
 export interface CardPage extends ContentPage {
     fullurl: string;
 }

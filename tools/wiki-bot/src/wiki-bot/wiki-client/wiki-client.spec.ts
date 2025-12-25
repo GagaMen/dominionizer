@@ -1,35 +1,44 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
 import { WikiClient } from './wiki-client';
 import {
-    ExpansionPage,
-    CardPage,
     QueryResult,
     QueryParams,
     ImagePage,
-    CardTypePage,
     ChangedImagePage,
     ContentPage,
+    CargoEdition,
+    CargoCard,
+    CargoCardType,
 } from './api-models';
 
 describe('WikiClient', () => {
     let wikiClient: WikiClient;
     let axiosSpy: jasmine.SpyObj<AxiosInstance>;
-    const expansionPage: ExpansionPage = {
-        pageid: 1,
-        title: 'Expansion',
-        revisions: [{ '*': 'wiki text of expansion' }],
+    let fetchSpy: jasmine.Spy<typeof fetch>;
+    const edition: CargoEdition = {
+        Id: '1',
+        Edition: '1',
+        Expansion: 'Base',
+        Icon: 'base_icon.png',
     };
-    const cardPage: CardPage = {
-        pageid: 1,
-        title: 'Card',
-        fullurl: 'link/to/card',
-        revisions: [{ '*': 'wiki text of card' }],
+    const card: CargoCard = {
+        Id: '3043',
+        Name: 'Ronin',
+        Expansion: 'Rising Sun',
+        Purpose: 'Kingdom Pile',
+        CostCoin: '5',
+        CostPotion: '0',
+        CostDebt: '',
+        CostExtra: '',
+        Art: 'RoninArt.jpg',
+        Illustrator: 'Marco Primo',
+        Edition: '1',
+        Types: 'Action-Shadow',
     };
-    const cardTypePage: CardTypePage = {
-        pageid: 1,
-        title: 'Card Type',
-        fullurl: 'https://wiki.dominionstrategy.com/index.php/Knight',
-        revisions: [{ '*': 'wiki text of card type' }],
+    const cardType: CargoCardType = {
+        Id: '124',
+        Name: 'Boon',
+        Scope: 'Landscape',
     };
     const imagePage: ImagePage = {
         pageid: 1,
@@ -57,183 +66,148 @@ describe('WikiClient', () => {
         title: 'Content',
         revisions: [{ '*': 'wiki text of any page' }],
     };
+    let url: URL;
+    let authenticationHeaderValue: string;
+    let pageLimit: number;
 
     beforeEach(() => {
         axiosSpy = jasmine.createSpyObj<AxiosInstance>('AxiosInstance', ['get']);
         axiosSpy.get.and.resolveTo({ data: [] });
+        fetchSpy = spyOn(globalThis, 'fetch').and.resolveTo({
+            json: () =>
+                Promise.resolve({
+                    cargoquery: [],
+                }),
+        } as Response);
 
         spyOn(console, 'log').and.stub();
 
-        wikiClient = new WikiClient(axiosSpy);
+        const baseUrl = 'https://dominion.wiki/api.php';
+        url = new URL(baseUrl);
+        url.searchParams.append('action', 'cargoquery');
+        url.searchParams.append('format', 'json');
+
+        authenticationHeaderValue = 'secret-dominionizer-wiki-bot-token';
+        pageLimit = 2;
+
+        wikiClient = new WikiClient(axiosSpy, baseUrl, authenticationHeaderValue, pageLimit);
     });
 
-    describe('fetchAllExpansionPages', () => {
-        const allExpansionPagesParams: QueryParams = {
-            action: 'query',
-            format: 'json',
-            generator: 'categorymembers',
-            gcmtitle: 'Category:Sets',
-            gcmtype: 'page',
-            gcmlimit: 'max',
-            prop: 'revisions',
-            rvprop: 'content',
-        };
+    describe('fetchAllEditions', () => {
+        it('should fetch all editions correctly', async () => {
+            url.searchParams.append('tables', 'Editions');
+            url.searchParams.append('fields', '_ID=Id,Expansion,Edition,Icon');
 
-        it('should fetch all expansion pages correctly', async () => {
-            await wikiClient.fetchAllExpansionPages();
+            await wikiClient.fetchAllEditions();
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: allExpansionPagesParams });
+            expect(fetchSpy).toHaveBeenCalledWith(url, {
+                headers: {
+                    'Dominion-Wiki-Client': authenticationHeaderValue,
+                },
+            });
         });
 
-        it('should return all expansion pages', async () => {
-            const queryResult: QueryResult<ExpansionPage> = {
-                query: {
-                    pages: {
-                        '1': expansionPage,
-                        '2': expansionPage,
-                    },
-                },
-            };
-            const axiosResponse: AxiosResponse<QueryResult<ExpansionPage>> = {
-                data: queryResult,
-            } as AxiosResponse<QueryResult<ExpansionPage>>;
-            axiosSpy.get.and.resolveTo(axiosResponse);
-            const expected = [expansionPage, expansionPage];
+        it('should return all editions', async () => {
+            fetchSpy.and.resolveTo({
+                json: () =>
+                    Promise.resolve({
+                        cargoquery: [{ title: edition }],
+                    }),
+            } as Response);
+            const expected = [edition];
 
-            const actual = await wikiClient.fetchAllExpansionPages();
+            const actual = await wikiClient.fetchAllEditions();
 
             expect(actual).toEqual(expected);
         });
 
-        // case with continuation data can't happen in reality because amount of existing expansions
-        // is to low
+        // case with paging can't happen in reality because amount of existing expansions is to low
     });
 
-    describe('fetchAllCardPages', () => {
-        const allCardPagesParams: QueryParams = {
-            action: 'query',
-            format: 'json',
-            generator: 'categorymembers',
-            gcmtitle: 'Category:Cards',
-            gcmtype: 'page',
-            gcmlimit: 'max',
-            prop: 'info|revisions',
-            inprop: 'url',
-            rvprop: 'content',
-        };
+    describe('fetchAllCards', () => {
+        it('should fetch all cards correctly', async () => {
+            url.searchParams.append('tables', 'Components');
+            url.searchParams.append(
+                'fields',
+                '_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+            );
 
-        it('should fetch all card pages correctly', async () => {
-            await wikiClient.fetchAllCardPages();
+            await wikiClient.fetchAllCards();
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: allCardPagesParams });
+            expect(fetchSpy).toHaveBeenCalledWith(url, {
+                headers: {
+                    'Dominion-Wiki-Client': authenticationHeaderValue,
+                },
+            });
         });
 
-        it('with query result does not contain continuation data should return all card pages', async () => {
-            const queryResult: QueryResult<CardPage> = {
-                query: {
-                    pages: {
-                        '1': cardPage,
-                        '2': cardPage,
-                    },
-                },
-            };
-            const axiosResponse: AxiosResponse<QueryResult<CardPage>> = {
-                data: queryResult,
-            } as AxiosResponse<QueryResult<CardPage>>;
-            axiosSpy.get.and.resolveTo(axiosResponse);
-            const expected = [cardPage, cardPage];
+        it('with query result is not paged should return all cards', async () => {
+            fetchSpy.and.resolveTo({
+                json: () =>
+                    Promise.resolve({
+                        cargoquery: [{ title: card }],
+                    }),
+            } as Response);
+            const expected = [card];
 
-            const actual = await wikiClient.fetchAllCardPages();
+            const actual = await wikiClient.fetchAllCards();
 
             expect(actual).toEqual(expected);
         });
 
-        it('with query result contains continuation data should continue fetching and return all card pages', async () => {
-            const continueParamValue = 'continuation-data';
-            const firstParams: QueryParams = { ...allCardPagesParams };
-            const secondParams: QueryParams = {
-                ...allCardPagesParams,
-                gcmcontinue: continueParamValue,
-            };
-            const firstQueryResult: QueryResult<CardPage> = {
-                'query-continue': {
-                    categorymembers: {
-                        gcmcontinue: continueParamValue,
-                    },
-                },
-                query: {
-                    pages: {
-                        '1': cardPage,
-                    },
-                },
-            };
-            const secondQueryResult: QueryResult<CardPage> = {
-                query: {
-                    pages: {
-                        '2': cardPage,
-                    },
-                },
-            };
-            const firstAxiosResponse: AxiosResponse<QueryResult<CardPage>> = {
-                data: firstQueryResult,
-            } as AxiosResponse<QueryResult<CardPage>>;
-            const secondAxiosResponse: AxiosResponse<QueryResult<CardPage>> = {
-                data: secondQueryResult,
-            } as AxiosResponse<QueryResult<CardPage>>;
-            axiosSpy.get.withArgs('', { params: firstParams }).and.resolveTo(firstAxiosResponse);
-            axiosSpy.get.withArgs('', { params: secondParams }).and.resolveTo(secondAxiosResponse);
-            const expected = [cardPage, cardPage];
+        it('with query result is paged return all cards', async () => {
+            fetchSpy.and.returnValues(
+                Promise.resolve({
+                    json: () =>
+                        Promise.resolve({
+                            cargoquery: [{ title: card }, { title: card }],
+                        }),
+                } as Response),
+                Promise.resolve({
+                    json: () =>
+                        Promise.resolve({
+                            cargoquery: [{ title: card }],
+                        }),
+                } as Response),
+            );
+            const expected = [card, card, card];
 
-            const actual = await wikiClient.fetchAllCardPages();
+            const actual = await wikiClient.fetchAllCards();
 
             expect(actual).toEqual(expected);
+            expect(fetchSpy).toHaveBeenCalledTimes(2);
         });
     });
 
-    describe('fetchAllCardTypePages', () => {
-        const allCardTypePagesParams: QueryParams = {
-            action: 'query',
-            format: 'json',
-            generator: 'categorymembers',
-            gcmtitle: 'Category:Card types',
-            gcmtype: 'page',
-            gcmlimit: 'max',
-            prop: 'info|revisions',
-            inprop: 'url',
-            rvprop: 'content',
-        };
+    describe('fetchAllCardTypes', () => {
+        it('should fetch all card types correctly', async () => {
+            url.searchParams.append('tables', 'Types');
+            url.searchParams.append('fields', '_ID=Id,Name,Scope');
 
-        it('should fetch all card type pages correctly', async () => {
-            await wikiClient.fetchAllCardTypePages();
+            await wikiClient.fetchAllCardTypes();
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: allCardTypePagesParams });
+            expect(fetchSpy).toHaveBeenCalledWith(url, {
+                headers: {
+                    'Dominion-Wiki-Client': authenticationHeaderValue,
+                },
+            });
         });
 
-        it('should return all card type pages', async () => {
-            const queryResult: QueryResult<CardTypePage> = {
-                query: {
-                    pages: {
-                        '1': cardTypePage,
-                        '2': cardTypePage,
-                    },
-                },
-            };
-            const axiosResponse: AxiosResponse<QueryResult<CardTypePage>> = {
-                data: queryResult,
-            } as AxiosResponse<QueryResult<CardTypePage>>;
-            axiosSpy.get.and.resolveTo(axiosResponse);
-            const expected = [cardTypePage, cardTypePage];
+        it('should return all card types', async () => {
+            fetchSpy.and.resolveTo({
+                json: () =>
+                    Promise.resolve({
+                        cargoquery: [{ title: cardType }],
+                    }),
+            } as Response);
+            const expected = [cardType];
 
-            const actual = await wikiClient.fetchAllCardTypePages();
+            const actual = await wikiClient.fetchAllCardTypes();
 
             expect(actual).toEqual(expected);
         });
 
-        // case with continuation data can't happen in reality because amount of existing card types
-        // is to low
+        // case with paging can't happen in reality because amount of existing card types is to low
     });
 
     describe('fetchAllCardArtPages', () => {

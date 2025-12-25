@@ -1,0 +1,20 @@
+meta {
+  name: Cargotables
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?action=cargotables
+  body: none
+  auth: inherit
+}
+
+params:query {
+  action: cargotables
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
