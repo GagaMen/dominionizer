@@ -1,0 +1,23 @@
+meta {
+  name: Kingdoms
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Kingdoms&fields=_ID=Id,Name,Version,Notes&format=json
+  body: none
+  auth: inherit
+}
+
+params:query {
+  action: cargoquery
+  tables: Kingdoms
+  fields: _ID=Id,Name,Version,Notes
+  format: json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
