@@ -1,0 +1,23 @@
+meta {
+  name: Editions
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Editions&fields=_ID=Id,Expansion,Edition,Icon&format=json
+  body: none
+  auth: inherit
+}
+
+params:query {
+  action: cargoquery
+  tables: Editions
+  fields: _ID=Id,Expansion,Edition,Icon
+  format: json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
