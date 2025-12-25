@@ -1,0 +1,20 @@
+meta {
+  name: Cargofields
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?action=cargofields&table=Components
+  body: none
+  auth: inherit
+}
+
+params:query {
+  action: cargofields
+  table: Components
+}
+
+settings {
+  encodeUrl: true
+}

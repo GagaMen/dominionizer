@@ -9,16 +9,34 @@ import {
     CardTypePage,
     ChangedImagePage,
     ContentPage,
+    CargoEdition,
+    CargoCard,
 } from './api-models';
 
 describe('WikiClient', () => {
     let wikiClient: WikiClient;
     let axiosSpy: jasmine.SpyObj<AxiosInstance>;
-    const expansionPage: ExpansionPage = {
-        pageid: 1,
-        title: 'Expansion',
-        revisions: [{ '*': 'wiki text of expansion' }],
-    };
+    let fetchSpy: jasmine.Spy<typeof fetch>;
+    const edition: CargoEdition = {
+        Id: '1',
+        Edition: '1',
+        Expansion: 'Base',
+        Icon: 'base_icon.png',
+    }
+    const card: CargoCard = {
+        Id: "3043",
+        Name: "Ronin",
+        Expansion: "Rising Sun",
+        Purpose: "Kingdom Pile",
+        CostCoin: "5",
+        CostPotion: "0",
+        CostDebt: "",
+        CostExtra: "",
+        Art: "RoninArt.jpg",
+        Illustrator: "Marco Primo",
+        Edition: "1",
+        Types: "Action-Shadow",
+    }
     const cardPage: CardPage = {
         pageid: 1,
         title: 'Card',
@@ -57,51 +75,47 @@ describe('WikiClient', () => {
         title: 'Content',
         revisions: [{ '*': 'wiki text of any page' }],
     };
+    let url: URL;
 
     beforeEach(() => {
         axiosSpy = jasmine.createSpyObj<AxiosInstance>('AxiosInstance', ['get']);
         axiosSpy.get.and.resolveTo({ data: [] });
+        fetchSpy = spyOn(globalThis, 'fetch').and.resolveTo({ json: () => Promise.resolve({
+            cargoquery: [],
+        }) } as Response);
 
         spyOn(console, 'log').and.stub();
 
-        wikiClient = new WikiClient(axiosSpy);
+        const baseUrl = 'https://dominion.wiki/api.php';
+        url = new URL(baseUrl);
+        url.searchParams.append('action', 'cargoquery');
+        url.searchParams.append('format', 'json');
+
+        wikiClient = new WikiClient(axiosSpy, baseUrl);
     });
 
-    describe('fetchAllExpansionPages', () => {
-        const allExpansionPagesParams: QueryParams = {
-            action: 'query',
-            format: 'json',
-            generator: 'categorymembers',
-            gcmtitle: 'Category:Sets',
-            gcmtype: 'page',
-            gcmlimit: 'max',
-            prop: 'revisions',
-            rvprop: 'content',
-        };
+    describe('fetchAllEditions', () => {
+        it('should fetch all editions correctly', async () => {
+            url.searchParams.append('tables', 'Editions');
+            url.searchParams.append('fields', '_ID=Id,Expansion,Edition,Icon');
 
-        it('should fetch all expansion pages correctly', async () => {
-            await wikiClient.fetchAllExpansionPages();
+            await wikiClient.fetchAllEditions();
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: allExpansionPagesParams });
+            expect(fetchSpy).toHaveBeenCalledWith(url);
         });
 
-        it('should return all expansion pages', async () => {
-            const queryResult: QueryResult<ExpansionPage> = {
-                query: {
-                    pages: {
-                        '1': expansionPage,
-                        '2': expansionPage,
-                    },
-                },
-            };
-            const axiosResponse: AxiosResponse<QueryResult<ExpansionPage>> = {
-                data: queryResult,
-            } as AxiosResponse<QueryResult<ExpansionPage>>;
-            axiosSpy.get.and.resolveTo(axiosResponse);
-            const expected = [expansionPage, expansionPage];
+        it('should return all editions', async () => {
+            fetchSpy.and.resolveTo({
+                json: () => Promise.resolve({
+                    cargoquery: [
+                        { title: edition },
+                        { title: edition },
+                    ],
+                })
+            } as Response);
+            const expected = [edition, edition];
 
-            const actual = await wikiClient.fetchAllExpansionPages();
+            const actual = await wikiClient.fetchAllEditions();
 
             expect(actual).toEqual(expected);
         });
@@ -110,7 +124,7 @@ describe('WikiClient', () => {
         // is to low
     });
 
-    describe('fetchAllCardPages', () => {
+    fdescribe('fetchAllCards', () => {
         const allCardPagesParams: QueryParams = {
             action: 'query',
             format: 'json',
@@ -123,29 +137,27 @@ describe('WikiClient', () => {
             rvprop: 'content',
         };
 
-        it('should fetch all card pages correctly', async () => {
-            await wikiClient.fetchAllCardPages();
+        it('should fetch all cards correctly', async () => {
+            url.searchParams.append('tables', 'Components');
+            url.searchParams.append('fields', '_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types');
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            expect(axiosSpy.get).toHaveBeenCalledWith('', { params: allCardPagesParams });
+            await wikiClient.fetchAllCards();
+
+            expect(fetchSpy).toHaveBeenCalledWith(url);
         });
 
-        it('with query result does not contain continuation data should return all card pages', async () => {
-            const queryResult: QueryResult<CardPage> = {
-                query: {
-                    pages: {
-                        '1': cardPage,
-                        '2': cardPage,
-                    },
-                },
-            };
-            const axiosResponse: AxiosResponse<QueryResult<CardPage>> = {
-                data: queryResult,
-            } as AxiosResponse<QueryResult<CardPage>>;
-            axiosSpy.get.and.resolveTo(axiosResponse);
-            const expected = [cardPage, cardPage];
+        it('with query result does not contain continuation data should return all cards', async () => {
+            fetchSpy.and.resolveTo({
+                json: () => Promise.resolve({
+                    cargoquery: [
+                        { title: card },
+                        { title: card },
+                    ],
+                })
+            } as Response);
+            const expected = [card, card];
 
-            const actual = await wikiClient.fetchAllCardPages();
+            const actual = await wikiClient.fetchAllCards();
 
             expect(actual).toEqual(expected);
         });

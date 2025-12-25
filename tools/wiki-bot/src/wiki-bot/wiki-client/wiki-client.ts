@@ -1,9 +1,12 @@
 import { AxiosInstance } from 'axios';
 import {
+    CargoCard,
     CardPage,
     CardTypePage,
+    CargoResponse,
     ChangedImagePage,
     ContentPage,
+    CargoEdition,
     ExpansionPage,
     ImagePage,
     QueryParams,
@@ -26,7 +29,18 @@ export class WikiClient {
         iiprop: 'url|mime',
     };
 
-    constructor(private axios: AxiosInstance) {}
+    constructor(private axios: AxiosInstance, private baseUrl: string) {}
+
+    async fetchAllEditions(): Promise<CargoEdition[]> {
+        const params: QueryParams = {
+            action: 'cargoquery',
+            format: 'json',
+            tables: 'Editions',
+            fields: '_ID=Id,Expansion,Edition,Icon'
+        };
+
+        return await this.fetchData(params);
+    }
 
     async fetchAllExpansionPages(): Promise<ExpansionPage[]> {
         const params: QueryParams = {
@@ -39,6 +53,17 @@ export class WikiClient {
         };
 
         return await this.fetchPages(params, 'expansion');
+    }
+
+    async fetchAllCards(): Promise<CargoCard[]> {
+        const params: QueryParams = {
+            action: 'cargoquery',
+            format: 'json',
+            tables: 'Components',
+            fields: '_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types'
+        };
+
+        return await this.fetchData(params);
     }
 
     async fetchAllCardPages(): Promise<CardPage[]> {
@@ -108,6 +133,19 @@ export class WikiClient {
         };
 
         return await this.fetchPages(params, 'changed image');
+    }
+
+    private async fetchData<T>(params: QueryParams): Promise<T[]> {
+        const requestUrl = new URL(this.baseUrl);
+
+        for (const [key, value] of Object.entries(params)) {
+            requestUrl.searchParams.append(key, value);
+        }
+
+        const response = await fetch(requestUrl);
+        const body: CargoResponse<T> = await response.json();
+
+        return body.cargoquery.map((cargoQueryItem) => cargoQueryItem.title);
     }
 
     private async fetchPages<TPage>(
