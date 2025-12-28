@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
 @use './variables';
 
-@include mat.core();
-@include mat.core-theme(variables.$theme);
+@include mat.elevation-classes();
+@include mat.app-background();
 @include mat.typography-hierarchy(variables.$typography);
 
 @include mat.button-theme(variables.$theme);
