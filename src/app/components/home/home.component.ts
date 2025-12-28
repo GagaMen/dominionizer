@@ -5,7 +5,6 @@ import { MatAnchor } from '@angular/material/button';
 
 @Component({
     selector: 'app-home',
-    standalone: true,
     imports: [MatAnchor, MatDivider, RouterLink],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],

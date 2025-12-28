@@ -7,7 +7,6 @@ import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-special-card-select',
-    standalone: true,
     imports: [MatSlider, MatSliderThumb, ReactiveFormsModule, NgIf],
     templateUrl: './special-card-select.component.html',
     styleUrls: ['./special-card-select.component.scss'],

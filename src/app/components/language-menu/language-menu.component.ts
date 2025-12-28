@@ -6,7 +6,6 @@ import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-language-menu',
-    standalone: true,
     imports: [MatMenu, MatMenuItem, MatMenuTrigger, MatIcon, NgFor],
     templateUrl: './language-menu.component.html',
     styleUrls: ['./language-menu.component.scss'],

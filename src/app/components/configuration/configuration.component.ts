@@ -31,7 +31,6 @@ export interface SpecialCardSelectViewData {
 
 @Component({
     selector: 'app-configuration',
-    standalone: true,
     imports: [
         ExpansionSelectComponent,
         SpecialCardSelectComponent,

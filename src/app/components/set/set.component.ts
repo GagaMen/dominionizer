@@ -14,7 +14,6 @@ import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-set',
-    standalone: true,
     imports: [
         CardListComponent,
         SetOrderingMenuComponent,

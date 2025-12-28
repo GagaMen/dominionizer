@@ -13,7 +13,6 @@ import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-expansion-select',
-    standalone: true,
     imports: [MatCheckbox, MatDivider, ReactiveFormsModule, NgFor],
     templateUrl: './expansion-select.component.html',
     styleUrls: ['./expansion-select.component.scss'],

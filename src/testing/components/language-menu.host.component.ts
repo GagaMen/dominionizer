@@ -3,7 +3,6 @@ import { LanguageMenuComponent } from './../../app/components/language-menu/lang
 import { Component, ViewChild } from '@angular/core';
 
 @Component({
-    standalone: true,
     imports: [LanguageMenuComponent, MatMenuTrigger],
     template: `
         <button [matMenuTriggerFor]="menu.matMenu!"></button>

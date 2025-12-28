@@ -21,7 +21,6 @@ type RGB = {
 
 @Component({
     selector: 'app-card',
-    standalone: true,
     imports: [
         MatCard,
         MatCardHeader,

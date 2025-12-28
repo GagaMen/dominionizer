@@ -7,7 +7,6 @@ import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-set-ordering-menu',
-    standalone: true,
     imports: [MatMenu, MatMenuItem, MatIcon, MatDivider, NgIf, AsyncPipe],
     templateUrl: './set-ordering-menu.component.html',
     styleUrls: ['./set-ordering-menu.component.scss'],

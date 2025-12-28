@@ -6,7 +6,6 @@ import { NgFor } from '@angular/common';
 
 @Component({
     selector: 'app-card-list',
-    standalone: true,
     imports: [CardComponent, NgFor],
     templateUrl: './card-list.component.html',
     styleUrls: ['./card-list.component.scss'],

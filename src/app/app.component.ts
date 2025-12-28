@@ -8,7 +8,6 @@ import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
     imports: [AppBarComponent, FooterComponent, NgIf, RouterOutlet],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],

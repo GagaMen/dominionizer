@@ -9,7 +9,6 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-bar',
-    standalone: true,
     imports: [
         MatToolbar,
         MatIconButton,
