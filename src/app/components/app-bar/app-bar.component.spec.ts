@@ -1,14 +1,11 @@
-import { detectChangesAndFlush } from 'src/testing/utilities';
-import { cold } from 'jasmine-marbles';
+import { signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconAnchor, MatIconButton } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
-import { MatToolbar } from '@angular/material/toolbar';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarService } from './../../services/app-bar.service';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppBarComponent } from './app-bar.component';
-import { NEVER } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -18,14 +15,15 @@ describe('AppBarComponent', () => {
     let dataFixture: DataFixture;
 
     beforeEach(waitForAsync(() => {
+        const spy = jasmine.createSpyObj<AppBarService>('AppBarService', ['updateConfiguration']);
+        (spy as AppBarService).configuration = signal(AppBarService.defaultConfiguration);
+
         TestBed.configureTestingModule({
             imports: [AppBarComponent, RouterTestingModule],
             providers: [
                 {
                     provide: AppBarService,
-                    useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
-                        'configuration$',
-                    ]),
+                    useValue: spy,
                 },
             ],
         });
@@ -37,20 +35,11 @@ describe('AppBarComponent', () => {
     }));
 
     describe('template', () => {
-        it('with no configuration should not display MatToolbar', () => {
-            appBarServiceSpy.configuration$ = NEVER;
-            fixture.detectChanges();
-
-            const actual = fixture.debugElement.query(By.directive(MatToolbar));
-
-            expect(actual).toBeNull();
-        });
-
         it('with configuration.navigationAction is "none" should display no action container', () => {
-            appBarServiceSpy.configuration$ = cold('-a-', {
-                a: dataFixture.createAppBarConfiguration({ navigationAction: 'none' }),
-            });
-            detectChangesAndFlush(fixture);
+            appBarServiceSpy.configuration.set(
+                dataFixture.createAppBarConfiguration({ navigationAction: 'none' }),
+            );
+            fixture.detectChanges();
 
             const actualElement = fixture.debugElement.query(By.css('.actions'));
 
@@ -58,10 +47,10 @@ describe('AppBarComponent', () => {
         });
 
         it('with configuration.navigationAction is "sidenav" should display MatButton with "menu" icon', () => {
-            appBarServiceSpy.configuration$ = cold('-a-', {
-                a: dataFixture.createAppBarConfiguration({ navigationAction: 'sidenav' }),
-            });
-            detectChangesAndFlush(fixture);
+            appBarServiceSpy.configuration.set(
+                dataFixture.createAppBarConfiguration({ navigationAction: 'sidenav' }),
+            );
+            fixture.detectChanges();
 
             const actualElement = fixture.debugElement
                 .query(By.directive(MatIconButton))
@@ -73,10 +62,10 @@ describe('AppBarComponent', () => {
         });
 
         it('with configuration.navigationAction is "back" should display MatAnchor with "arrow_back" icon', () => {
-            appBarServiceSpy.configuration$ = cold('-a-', {
-                a: dataFixture.createAppBarConfiguration({ navigationAction: 'back' }),
-            });
-            detectChangesAndFlush(fixture);
+            appBarServiceSpy.configuration.set(
+                dataFixture.createAppBarConfiguration({ navigationAction: 'back' }),
+            );
+            fixture.detectChanges();
 
             const actualElement = fixture.debugElement
                 .query(By.directive(MatIconAnchor))
@@ -88,15 +77,15 @@ describe('AppBarComponent', () => {
         });
 
         it('with configuration.actions contains actions should display corresponding MatButtons with MatIcon', () => {
-            appBarServiceSpy.configuration$ = cold('-a-', {
-                a: dataFixture.createAppBarConfiguration({
+            appBarServiceSpy.configuration.set(
+                dataFixture.createAppBarConfiguration({
                     actions: [
                         { icon: 'icon', onClick: () => null },
                         { icon: 'icon2', onClick: () => null },
                     ],
                 }),
-            });
-            detectChangesAndFlush(fixture);
+            );
+            fixture.detectChanges();
 
             const actualElement = fixture.debugElement.queryAll(
                 By.css('.actions > [mat-icon-button] mat-icon'),
@@ -107,12 +96,12 @@ describe('AppBarComponent', () => {
 
         it('with configuration.actions contains actions should register a click event for each MatButton', () => {
             let clickCounter = 0;
-            appBarServiceSpy.configuration$ = cold('-a-', {
-                a: dataFixture.createAppBarConfiguration({
+            appBarServiceSpy.configuration.set(
+                dataFixture.createAppBarConfiguration({
                     actions: [{ icon: 'icon', onClick: () => clickCounter++ }],
                 }),
-            });
-            detectChangesAndFlush(fixture);
+            );
+            fixture.detectChanges();
 
             const actualElement = fixture.debugElement.query(
                 By.css('.actions > [mat-icon-button]'),

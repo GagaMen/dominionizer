@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton, MatIconAnchor } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
     selector: 'app-bar',
@@ -17,7 +17,6 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
         MatMenuTrigger,
         NgIf,
         NgFor,
-        AsyncPipe,
         RouterLink,
     ],
     templateUrl: './app-bar.component.html',

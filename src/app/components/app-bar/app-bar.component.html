@@ -1,11 +1,14 @@
-<mat-toolbar *ngIf="appBarService.configuration$ | async as configuration" color="primary">
+<mat-toolbar color="primary">
     <div class="container">
         <div class="navigation-action">
-            <button *ngIf="configuration.navigationAction === 'sidenav'" mat-icon-button>
+            <button
+                *ngIf="appBarService.configuration().navigationAction === 'sidenav'"
+                mat-icon-button
+            >
                 <mat-icon>menu</mat-icon>
             </button>
             <a
-                *ngIf="configuration.navigationAction === 'back'"
+                *ngIf="appBarService.configuration().navigationAction === 'back'"
                 routerLink="/configuration"
                 mat-icon-button
             >
@@ -15,8 +18,8 @@
         <div class="logo">
             <object data="assets/logo/logo.min.svg" type="image/svg+xml">Dominionizer</object>
         </div>
-        <div class="actions" *ngIf="configuration.actions.length !== 0">
-            <ng-container *ngFor="let action of configuration.actions">
+        <div class="actions" *ngIf="appBarService.configuration().actions.length !== 0">
+            <ng-container *ngFor="let action of appBarService.configuration().actions">
                 <button *ngIf="action.onClick" mat-icon-button (click)="action?.onClick()">
                     <mat-icon>{{ action.icon }}</mat-icon>
                 </button>
