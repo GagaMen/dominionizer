@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
 import { MatFabButton } from '@angular/material/button';
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
 import { ExpansionSelectComponent } from '../expansion-select/expansion-select.component';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatStepper, MatStep, MatStepLabel } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
@@ -39,7 +39,6 @@ export interface SpecialCardSelectViewData {
         MatStepLabel,
         MatFabButton,
         MatIcon,
-        NgIf,
         AsyncPipe,
         RouterLink,
     ],

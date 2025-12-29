@@ -7,13 +7,13 @@ import {
     ReactiveFormsModule,
 } from '@angular/forms';
 import { Expansion } from '../../models/expansion';
-import { NgFor } from '@angular/common';
+
 import { MatDivider } from '@angular/material/divider';
 import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-expansion-select',
-    imports: [MatCheckbox, MatDivider, ReactiveFormsModule, NgFor],
+    imports: [MatCheckbox, MatDivider, ReactiveFormsModule],
     templateUrl: './expansion-select.component.html',
     styleUrls: ['./expansion-select.component.scss'],
 })

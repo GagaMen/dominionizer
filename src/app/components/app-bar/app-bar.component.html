@@ -1,32 +1,35 @@
 <mat-toolbar color="primary">
     <div class="container">
         <div class="navigation-action">
-            <button
-                *ngIf="appBarService.configuration().navigationAction === 'sidenav'"
-                mat-icon-button
-            >
-                <mat-icon>menu</mat-icon>
-            </button>
-            <a
-                *ngIf="appBarService.configuration().navigationAction === 'back'"
-                routerLink="/configuration"
-                mat-icon-button
-            >
-                <mat-icon>arrow_back</mat-icon>
-            </a>
+            @if (appBarService.configuration().navigationAction === 'sidenav') {
+                <button mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+            }
+            @if (appBarService.configuration().navigationAction === 'back') {
+                <a routerLink="/configuration" mat-icon-button>
+                    <mat-icon>arrow_back</mat-icon>
+                </a>
+            }
         </div>
         <div class="logo">
             <object data="assets/logo/logo.min.svg" type="image/svg+xml">Dominionizer</object>
         </div>
-        <div class="actions" *ngIf="appBarService.configuration().actions.length !== 0">
-            <ng-container *ngFor="let action of appBarService.configuration().actions">
-                <button *ngIf="action.onClick" mat-icon-button (click)="action?.onClick()">
-                    <mat-icon>{{ action.icon }}</mat-icon>
-                </button>
-                <button *ngIf="action.matMenu" mat-icon-button [matMenuTriggerFor]="action.matMenu">
-                    <mat-icon>{{ action.icon }}</mat-icon>
-                </button>
-            </ng-container>
-        </div>
+        @if (appBarService.configuration().actions.length !== 0) {
+            <div class="actions">
+                @for (action of appBarService.configuration().actions; track action) {
+                    @if (action.onClick) {
+                        <button mat-icon-button (click)="action?.onClick()">
+                            <mat-icon>{{ action.icon }}</mat-icon>
+                        </button>
+                    }
+                    @if (action.matMenu) {
+                        <button mat-icon-button [matMenuTriggerFor]="action.matMenu">
+                            <mat-icon>{{ action.icon }}</mat-icon>
+                        </button>
+                    }
+                }
+            </div>
+        }
     </div>
 </mat-toolbar>

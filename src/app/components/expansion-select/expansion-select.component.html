@@ -9,8 +9,10 @@
     >
     <mat-divider></mat-divider>
     <ul formArrayName="expansions" class="expansions">
-        <li *ngFor="let expansion of expansions; let i = index">
-            <mat-checkbox [formControlName]="i">{{ expansion.name }}</mat-checkbox>
-        </li>
+        @for (expansion of expansions; track expansion; let i = $index) {
+            <li>
+                <mat-checkbox [formControlName]="i">{{ expansion.name }}</mat-checkbox>
+            </li>
+        }
     </ul>
 </form>

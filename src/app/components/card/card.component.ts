@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
-import { NgIf, NgFor } from '@angular/common';
+
 import {
     MatCard,
     MatCardHeader,
@@ -29,8 +29,6 @@ type RGB = {
         MatCardSubtitle,
         MatIconButton,
         MatIcon,
-        NgIf,
-        NgFor,
     ],
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],

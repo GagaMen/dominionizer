@@ -5,20 +5,10 @@ import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton, MatIconAnchor } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
-import { NgIf, NgFor } from '@angular/common';
 
 @Component({
     selector: 'app-bar',
-    imports: [
-        MatToolbar,
-        MatIconButton,
-        MatIcon,
-        MatIconAnchor,
-        MatMenuTrigger,
-        NgIf,
-        NgFor,
-        RouterLink,
-    ],
+    imports: [MatToolbar, MatIconButton, MatIcon, MatIconAnchor, MatMenuTrigger, RouterLink],
     templateUrl: './app-bar.component.html',
     styleUrls: ['./app-bar.component.scss'],
 })

@@ -10,7 +10,7 @@ import {
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
 } from '@angular/material/expansion';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-set',
@@ -21,7 +21,6 @@ import { NgIf, AsyncPipe } from '@angular/common';
         MatExpansionPanel,
         MatExpansionPanelHeader,
         MatExpansionPanelTitle,
-        NgIf,
         AsyncPipe,
     ],
     templateUrl: './set.component.html',

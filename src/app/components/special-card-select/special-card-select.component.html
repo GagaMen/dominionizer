@@ -1,51 +1,61 @@
 <form [formGroup]="formGroup">
-    <div *ngIf="availability.events">
-        <div class="special-cards-label">
-            <label i18n>Events</label>
-            <span>{{ formGroup.value.events }}</span>
+    @if (availability.events) {
+        <div>
+            <div class="special-cards-label">
+                <label i18n>Events</label>
+                <span>{{ formGroup.value.events }}</span>
+            </div>
+            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+                <input matSliderThumb formControlName="events" />
+            </mat-slider>
         </div>
-        <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
-            <input matSliderThumb formControlName="events" />
-        </mat-slider>
-    </div>
+    }
 
-    <div *ngIf="availability.landmarks">
-        <div class="special-cards-label">
-            <label i18n>Landmarks</label>
-            <span>{{ formGroup.value.landmarks }}</span>
+    @if (availability.landmarks) {
+        <div>
+            <div class="special-cards-label">
+                <label i18n>Landmarks</label>
+                <span>{{ formGroup.value.landmarks }}</span>
+            </div>
+            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+                <input matSliderThumb formControlName="landmarks" />
+            </mat-slider>
         </div>
-        <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
-            <input matSliderThumb formControlName="landmarks" />
-        </mat-slider>
-    </div>
+    }
 
-    <div *ngIf="availability.projects">
-        <div class="special-cards-label">
-            <label i18n>Projects</label>
-            <span>{{ formGroup.value.projects }}</span>
+    @if (availability.projects) {
+        <div>
+            <div class="special-cards-label">
+                <label i18n>Projects</label>
+                <span>{{ formGroup.value.projects }}</span>
+            </div>
+            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+                <input matSliderThumb formControlName="projects" />
+            </mat-slider>
         </div>
-        <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
-            <input matSliderThumb formControlName="projects" />
-        </mat-slider>
-    </div>
+    }
 
-    <div *ngIf="availability.ways">
-        <div class="special-cards-label">
-            <label i18n>Ways</label>
-            <span>{{ formGroup.value.ways }}</span>
+    @if (availability.ways) {
+        <div>
+            <div class="special-cards-label">
+                <label i18n>Ways</label>
+                <span>{{ formGroup.value.ways }}</span>
+            </div>
+            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+                <input matSliderThumb formControlName="ways" />
+            </mat-slider>
         </div>
-        <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
-            <input matSliderThumb formControlName="ways" />
-        </mat-slider>
-    </div>
+    }
 
-    <div *ngIf="availability.traits">
-        <div class="special-cards-label">
-            <label i18n>Traits</label>
-            <span>{{ formGroup.value.traits }}</span>
+    @if (availability.traits) {
+        <div>
+            <div class="special-cards-label">
+                <label i18n>Traits</label>
+                <span>{{ formGroup.value.traits }}</span>
+            </div>
+            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+                <input matSliderThumb formControlName="traits" />
+            </mat-slider>
         </div>
-        <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
-            <input matSliderThumb formControlName="traits" />
-        </mat-slider>
-    </div>
+    }
 </form>

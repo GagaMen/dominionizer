@@ -4,11 +4,10 @@ import { environment } from 'src/environments/environment';
 import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
-import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-root',
-    imports: [AppBarComponent, FooterComponent, NgIf, RouterOutlet],
+    imports: [AppBarComponent, FooterComponent, RouterOutlet],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })

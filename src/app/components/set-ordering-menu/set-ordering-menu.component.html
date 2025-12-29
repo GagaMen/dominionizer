@@ -2,17 +2,17 @@
     <div class="menu-headline" i18n>Grouping</div>
     <button mat-menu-item (click)="onGroup('without')">
         <mat-icon>
-            <ng-container *ngIf="(setService.groupingOption$ | async) === 'without'">
+            @if ((setService.groupingOption$ | async) === 'without') {
                 check
-            </ng-container>
+            }
         </mat-icon>
         <span i18n>Without</span>
     </button>
     <button mat-menu-item (click)="onGroup('byExpansion')">
         <mat-icon>
-            <ng-container *ngIf="(setService.groupingOption$ | async) === 'byExpansion'">
+            @if ((setService.groupingOption$ | async) === 'byExpansion') {
                 check
-            </ng-container>
+            }
         </mat-icon>
         <span i18n>By Expansion</span>
     </button>
@@ -20,17 +20,17 @@
     <div class="menu-headline" i18n>Sorting</div>
     <button mat-menu-item (click)="onSort('byName')">
         <mat-icon>
-            <ng-container *ngIf="(setService.sortingOption$ | async) === 'byName'">
+            @if ((setService.sortingOption$ | async) === 'byName') {
                 check
-            </ng-container>
+            }
         </mat-icon>
         <span i18n>By Name</span>
     </button>
     <button mat-menu-item (click)="onSort('byCost')">
         <mat-icon>
-            <ng-container *ngIf="(setService.sortingOption$ | async) === 'byCost'">
+            @if ((setService.sortingOption$ | async) === 'byCost') {
                 check
-            </ng-container>
+            }
         </mat-icon>
         <span i18n>By Cost</span>
     </button>

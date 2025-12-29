@@ -1,19 +1,22 @@
 <div class="container">
-    <mat-accordion *ngIf="setService.set$ | async as set" multi>
-        <mat-expansion-panel expanded>
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Kingdom Cards</mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-card-list [cardList]="set.kingdomCards"></app-card-list>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel *ngIf="set.specialCards.length > 0" expanded>
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Special Cards</mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-card-list [cardList]="set.specialCards"></app-card-list>
-        </mat-expansion-panel>
-    </mat-accordion>
+    @if (setService.set$ | async; as set) {
+        <mat-accordion multi>
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Kingdom Cards</mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-card-list [cardList]="set.kingdomCards"></app-card-list>
+            </mat-expansion-panel>
+            @if (set.specialCards.length > 0) {
+                <mat-expansion-panel expanded>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Special Cards</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-card-list [cardList]="set.specialCards"></app-card-list>
+                </mat-expansion-panel>
+            }
+        </mat-accordion>
+    }
 
     <app-set-ordering-menu></app-set-ordering-menu>
 </div>

@@ -1,1 +1,3 @@
-<app-card *ngFor="let card of cardList" [card]="card" (reshuffle)="onReshuffle(card)"></app-card>
+@for (card of cardList; track card) {
+    <app-card [card]="card" (reshuffle)="onReshuffle(card)"></app-card>
+}

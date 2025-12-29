@@ -3,11 +3,10 @@ import { SpecialCardsAvailability } from '../../models/special-cards-availabilit
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatSlider, MatSliderThumb } from '@angular/material/slider';
-import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-special-card-select',
-    imports: [MatSlider, MatSliderThumb, ReactiveFormsModule, NgIf],
+    imports: [MatSlider, MatSliderThumb, ReactiveFormsModule],
     templateUrl: './special-card-select.component.html',
     styleUrls: ['./special-card-select.component.scss'],
 })

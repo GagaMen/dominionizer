@@ -1,16 +1,13 @@
 <mat-card appearance="outlined" [style.background]="background">
     <mat-card-header>
         <div class="icons">
-            <img
-                *ngIf="expansionIconUrl !== null"
-                [src]="expansionIconUrl"
-                alt="Expansion Icon"
-                class="expansion-icon"
-            />
+            @if (expansionIconUrl !== null) {
+                <img [src]="expansionIconUrl" alt="Expansion Icon" class="expansion-icon" />
+            }
             <div class="cost-icons">
-                <ng-container *ngFor="let costIconUrl of costIconUrls">
+                @for (costIconUrl of costIconUrls; track costIconUrl) {
                     <img [src]="costIconUrl" alt="cost-icon" class="cost-icon" />
-                </ng-container>
+                }
             </div>
         </div>
         <mat-card-title-group>
