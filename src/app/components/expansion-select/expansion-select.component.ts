@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import {
     UntypedFormGroup,
     UntypedFormBuilder,
@@ -18,6 +18,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
     styleUrls: ['./expansion-select.component.scss'],
 })
 export class ExpansionSelectComponent implements OnInit {
+    private formBuilder = inject(UntypedFormBuilder);
+
     private _expansions: Expansion[] = [];
     get expansions(): Expansion[] {
         return this._expansions;
@@ -32,8 +34,6 @@ export class ExpansionSelectComponent implements OnInit {
     @Output() readonly change: EventEmitter<Expansion[]> = new EventEmitter<Expansion[]>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
-
-    constructor(private formBuilder: UntypedFormBuilder) {}
 
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
         const controlValues: boolean[] = Object.values(control.value as { [s: string]: boolean });

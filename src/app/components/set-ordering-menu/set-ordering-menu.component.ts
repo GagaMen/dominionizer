@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { MatMenu, MatMenuItem } from '@angular/material/menu';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 import { MatDivider } from '@angular/material/divider';
@@ -12,9 +12,9 @@ import { MatIcon } from '@angular/material/icon';
     styleUrls: ['./set-ordering-menu.component.scss'],
 })
 export class SetOrderingMenuComponent {
-    @ViewChild(MatMenu, { static: true }) matMenu?: MatMenu;
+    setService = inject(SetService);
 
-    constructor(public setService: SetService) {}
+    @ViewChild(MatMenu, { static: true }) matMenu?: MatMenu;
 
     onGroup(groupingOption: GroupingOption): void {
         this.setService.updateGroupingOption(groupingOption);

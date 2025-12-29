@@ -1,6 +1,6 @@
 import { CardService } from './../../services/card.service';
 import { AppBarService } from './../../services/app-bar.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ExpansionService } from 'src/app/services/expansion.service';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -48,15 +48,13 @@ export interface SpecialCardSelectViewData {
     styleUrls: ['./configuration.component.scss'],
 })
 export class ConfigurationComponent implements OnInit {
+    private appBarService = inject(AppBarService);
+    expansionService = inject(ExpansionService);
+    configurationService = inject(ConfigurationService);
+    cardService = inject(CardService);
+
     expansionSelectViewData$: Observable<ExpansionSelectViewData> = new Observable();
     specialCardSelectViewData$: Observable<SpecialCardSelectViewData | null> = new Observable();
-
-    constructor(
-        private appBarService: AppBarService,
-        public expansionService: ExpansionService,
-        public configurationService: ConfigurationService,
-        public cardService: CardService,
-    ) {}
 
     ngOnInit(): void {
         this.appBarService.updateConfiguration({

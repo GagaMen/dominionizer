@@ -2,7 +2,7 @@ import { SetService } from 'src/app/services/set.service';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
 import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Card } from '../models/card';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
@@ -25,6 +25,11 @@ interface RandomizableCards {
     providedIn: 'root',
 })
 export class ShuffleService {
+    private cardService = inject(CardService);
+    private configurationService = inject(ConfigurationService);
+    private chanceService = inject(ChanceService);
+    private setService = inject(SetService);
+
     private shuffleSetTriggerSubject = new Subject<void>();
     private shuffleSingleCardTriggerSubject = new Subject<Card>();
 
@@ -38,12 +43,7 @@ export class ShuffleService {
         allies: this.cardService.findByCardType(CardTypeId.Ally),
     });
 
-    constructor(
-        private cardService: CardService,
-        private configurationService: ConfigurationService,
-        private chanceService: ChanceService,
-        private setService: SetService,
-    ) {
+    constructor() {
         this.initShuffleSet().subscribe();
         this.initShuffleSingleCard().subscribe();
     }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { fromEvent, merge, Observable, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerData } from '../models/service-worker-data';
@@ -8,7 +8,7 @@ import { ServiceWorkerData } from '../models/service-worker-data';
     providedIn: 'root',
 })
 export class InstallService {
-    constructor(private http: HttpClient) {}
+    private http = inject(HttpClient);
 
     activate(): Observable<unknown> {
         return fromEvent(window, 'appinstalled').pipe(switchMap(() => this.loadImages()));

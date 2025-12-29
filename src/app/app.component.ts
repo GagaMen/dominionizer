@@ -1,7 +1,7 @@
 import { InstallService } from './services/install.service';
 import { Router, RouterOutlet } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { NgIf } from '@angular/common';
@@ -13,11 +13,9 @@ import { NgIf } from '@angular/common';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    constructor(
-        @Inject(LOCALE_ID) private locale: string,
-        private installService: InstallService,
-        public router: Router,
-    ) {}
+    private locale = inject(LOCALE_ID);
+    private installService = inject(InstallService);
+    router = inject(Router);
 
     ngOnInit(): void {
         if (environment.production) {

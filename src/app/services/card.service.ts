@@ -2,7 +2,7 @@ import { CardTranslation } from 'src/app/models/card';
 import { DependencyDto } from './../dtos/dependency-dto';
 import { CardDto } from './../dtos/card-dto';
 import { Dependency, DependencyType, SplitPileDependency } from './../models/dependency';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CardType, CardTypeId } from '../models/card-type';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Card } from '../models/card';
@@ -16,6 +16,10 @@ import { CardTypeService } from './card-type.service';
     providedIn: 'root',
 })
 export class CardService {
+    private dataService = inject(DataService);
+    private expansionService = inject(ExpansionService);
+    private cardTypeService = inject(CardTypeService);
+
     private cardsSubject: BehaviorSubject<Map<number, Card>> = new BehaviorSubject<
         Map<number, Card>
     >(new Map());
@@ -24,11 +28,7 @@ export class CardService {
         return this.cardsSubject.pipe(first((cards: Map<number, Card>) => cards.size !== 0));
     }
 
-    constructor(
-        private dataService: DataService,
-        private expansionService: ExpansionService,
-        private cardTypeService: CardTypeService,
-    ) {
+    constructor() {
         forkJoin({
             cardDtos: this.dataService.fetchCards(),
             expansions: this.expansionService.expansions$,

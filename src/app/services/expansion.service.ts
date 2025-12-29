@@ -1,5 +1,5 @@
 import { ExpansionTranslation } from './../models/expansion';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Expansion } from '../models/expansion';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { DataService } from './data.service';
@@ -9,13 +9,15 @@ import { first, map } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class ExpansionService {
+    private dataService = inject(DataService);
+
     private expansionsSubject: BehaviorSubject<Expansion[]> = new BehaviorSubject<Expansion[]>([]);
 
     readonly expansions$: Observable<Expansion[]> = this.expansionsSubject.pipe(
         first((expansions: Expansion[]) => expansions.length !== 0),
     );
 
-    constructor(private dataService: DataService) {
+    constructor() {
         combineLatest([
             this.dataService.fetchExpansions(),
             this.dataService.fetchExpansionTranslations(),

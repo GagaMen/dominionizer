@@ -1,5 +1,5 @@
 import { AppBarService } from '../../services/app-bar.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { ShuffleService } from '../../services/shuffle.service';
 import { SetService } from 'src/app/services/set.service';
 import { SetOrderingMenuComponent } from '../set-ordering-menu/set-ordering-menu.component';
@@ -28,14 +28,12 @@ import { NgIf, AsyncPipe } from '@angular/common';
     styleUrls: ['./set.component.scss'],
 })
 export class SetComponent implements OnInit {
+    setService = inject(SetService);
+    private shuffleService = inject(ShuffleService);
+    private appBarService = inject(AppBarService);
+
     @ViewChild(SetOrderingMenuComponent, { static: true })
     setOrderingMenu?: SetOrderingMenuComponent;
-
-    constructor(
-        public setService: SetService,
-        private shuffleService: ShuffleService,
-        private appBarService: AppBarService,
-    ) {}
 
     ngOnInit(): void {
         this.shuffle();

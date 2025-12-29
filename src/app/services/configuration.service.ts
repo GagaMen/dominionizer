@@ -1,5 +1,5 @@
 import { SpecialCardsCount } from '../models/special-cards-count';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
 import { Expansion } from '../models/expansion';
@@ -12,6 +12,8 @@ import { Card } from '../models/card';
     providedIn: 'root',
 })
 export class ConfigurationService {
+    private cardService = inject(CardService);
+
     static readonly defaultConfiguration: Configuration = {
         expansions: [],
         specialCardsCount: {
@@ -32,8 +34,6 @@ export class ConfigurationService {
     private readonly enabledExpansions$: Observable<Expansion[]> = this.configuration$.pipe(
         map((configuration: Configuration) => configuration.expansions),
     );
-
-    constructor(private cardService: CardService) {}
 
     updateExpansions(expansions: Expansion[]): void {
         const configuration = this.configurationSubject.value;

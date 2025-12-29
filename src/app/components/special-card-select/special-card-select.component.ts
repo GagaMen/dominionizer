@@ -1,6 +1,6 @@
 import { SpecialCardsCount } from '../../models/special-cards-count';
 import { SpecialCardsAvailability } from '../../models/special-cards-availability';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatSlider, MatSliderThumb } from '@angular/material/slider';
 import { NgIf } from '@angular/common';
@@ -12,6 +12,8 @@ import { NgIf } from '@angular/common';
     styleUrls: ['./special-card-select.component.scss'],
 })
 export class SpecialCardSelectComponent implements OnInit {
+    private formBuilder = inject(UntypedFormBuilder);
+
     @Input() availability: SpecialCardsAvailability = {
         events: false,
         landmarks: false,
@@ -32,8 +34,6 @@ export class SpecialCardSelectComponent implements OnInit {
     readonly valueChange: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
-
-    constructor(private formBuilder: UntypedFormBuilder) {}
 
     ngOnInit(): void {
         this.formGroup = this.formBuilder.group({

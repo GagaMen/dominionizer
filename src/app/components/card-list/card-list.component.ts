@@ -1,5 +1,5 @@
 import { ShuffleService } from 'src/app/services/shuffle.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Card } from '../../models/card';
 import { CardComponent } from '../card/card.component';
 import { NgFor } from '@angular/common';
@@ -11,9 +11,9 @@ import { NgFor } from '@angular/common';
     styleUrls: ['./card-list.component.scss'],
 })
 export class CardListComponent {
-    @Input() cardList: Card[] = [];
+    private shuffleService = inject(ShuffleService);
 
-    constructor(private shuffleService: ShuffleService) {}
+    @Input() cardList: Card[] = [];
 
     onReshuffle(card: Card): void {
         this.shuffleService.shuffleSingleCard(card);

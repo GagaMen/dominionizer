@@ -1,5 +1,5 @@
 import { AppBarService } from './../../services/app-bar.service';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
@@ -24,5 +24,5 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     styleUrls: ['./app-bar.component.scss'],
 })
 export class AppBarComponent {
-    constructor(public appBarService: AppBarService) {}
+    appBarService = inject(AppBarService);
 }
