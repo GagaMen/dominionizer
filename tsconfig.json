@@ -11,10 +11,6 @@
       "esModuleInterop": true,
       "importHelpers": true,
       "target": "ES2022",
-      "lib": [
-        "ES2022",
-        "dom"
-      ],
       "skipLibCheck": true,
       "strict": true,
       "noImplicitOverride": true,
