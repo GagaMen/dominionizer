@@ -7,7 +7,7 @@ import { CardType } from '../../../../../src/app/models/card-type';
 describe('CardDtoBuilder', () => {
     let cardDtoBuilder: CardDtoBuilder;
 
-    const cardExpansionsMap: Map<string, number[]> = new Map();
+    const cardExpansionsMap = new Map<string, number[]>();
     cardExpansionsMap.set('Ghost Town', [4213]);
     cardExpansionsMap.set('Knights', [156]);
 

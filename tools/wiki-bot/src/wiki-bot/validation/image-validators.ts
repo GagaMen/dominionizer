@@ -6,7 +6,7 @@ import { AmountValidator } from './amount-validator';
 export class ImagesValidator {
     readonly name: string = 'images';
 
-    private amountValidator: AmountValidator<EncodedImage, ImagePage> = new AmountValidator();
+    private amountValidator = new AmountValidator<EncodedImage, ImagePage>();
 
     validate(images: EncodedImage[], imagePages: ImagePage[]): ValidationResult {
         return this.amountValidator.validate(

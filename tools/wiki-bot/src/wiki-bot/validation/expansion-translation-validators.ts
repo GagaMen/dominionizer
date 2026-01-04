@@ -7,7 +7,7 @@ import { JoiValidator } from './joi-validator';
 export class ExpansionTranslationValidator {
     readonly name: string = 'expansion translation';
 
-    private joiValidator: JoiValidator<ExpansionTranslation> = new JoiValidator();
+    private joiValidator = new JoiValidator<ExpansionTranslation>();
     private schema: Joi.ObjectSchema<ExpansionTranslation> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().required(),

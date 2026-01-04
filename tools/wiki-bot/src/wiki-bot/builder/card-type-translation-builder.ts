@@ -16,7 +16,7 @@ export class CardTypeTranslationBuilder {
 
         if (this.hasTableForm(translationSection)) {
             const cardTranslations = this.cardTranslationBuilder.build(cardTypePage);
-            const cardTypeTranslations: Map<string, CardTypeTranslation> = new Map();
+            const cardTypeTranslations = new Map<string, CardTypeTranslation>();
 
             for (const [language, translation] of cardTranslations) {
                 cardTypeTranslations.set(language, { id: translation.id, name: translation.name });

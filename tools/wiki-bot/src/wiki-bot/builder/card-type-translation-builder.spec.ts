@@ -39,7 +39,7 @@ describe('CardTypeTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, CardTypeTranslation> = new Map([
+            const expected = new Map<string, CardTypeTranslation>([
                 ['Czech', { id: cardTypePage.pageid, name: 'Odměna' }],
                 ['Dutch', { id: cardTypePage.pageid, name: 'Prijs' }],
                 ['Finnish', { id: cardTypePage.pageid, name: 'Palkinto' }],
@@ -68,11 +68,11 @@ describe('CardTypeTranslationBuilder', () => {
                     },
                 ],
             };
-            const cardTranslations: Map<string, CardTranslation> = new Map([
+            const cardTranslations = new Map<string, CardTranslation>([
                 ['Dutch', { id: cardTypePage.pageid, name: 'Project', description: '' }],
                 ['German', { id: cardTypePage.pageid, name: 'Projekt', description: '' }],
             ]);
-            const expected: Map<string, CardTypeTranslation> = new Map([
+            const expected = new Map<string, CardTypeTranslation>([
                 ['Dutch', { id: cardTypePage.pageid, name: 'Project' }],
                 ['German', { id: cardTypePage.pageid, name: 'Projekt' }],
             ]);
@@ -101,11 +101,11 @@ describe('CardTypeTranslationBuilder', () => {
                     },
                 ],
             };
-            const cardTranslations: Map<string, CardTranslation> = new Map([
+            const cardTranslations = new Map<string, CardTranslation>([
                 ['French', { id: cardTypePage.pageid, name: 'Chevalier', description: '' }],
                 ['German', { id: cardTypePage.pageid, name: 'Ritter', description: '' }],
             ]);
-            const expected: Map<string, CardTypeTranslation> = new Map([
+            const expected = new Map<string, CardTypeTranslation>([
                 ['French', { id: cardTypePage.pageid, name: 'Chevalier' }],
                 ['German', { id: cardTypePage.pageid, name: 'Ritter' }],
             ]);

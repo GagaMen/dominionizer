@@ -13,11 +13,11 @@ import {
     MatCardSubtitle,
 } from '@angular/material/card';
 
-type RGB = {
+interface RGB {
     red: number;
     green: number;
     blue: number;
-};
+}
 
 @Component({
     selector: 'app-card',
@@ -52,7 +52,7 @@ export class CardComponent {
 
     private orderedSecondaryCardTypes: CardTypeId[] = [CardTypeId.Action, CardTypeId.Night];
 
-    static readonly backgroundOfCardTypes: Map<CardTypeId, string> = new Map([
+    static readonly backgroundOfCardTypes = new Map<CardTypeId, string>([
         [CardTypeId.Action, '#ede4c7'],
         [CardTypeId.Duration, '#f89a43'],
         [CardTypeId.Event, '#bbbeb7'],

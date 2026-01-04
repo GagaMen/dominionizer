@@ -52,8 +52,8 @@ export class ConfigurationComponent implements OnInit {
     configurationService = inject(ConfigurationService);
     cardService = inject(CardService);
 
-    expansionSelectViewData$: Observable<ExpansionSelectViewData> = new Observable();
-    specialCardSelectViewData$: Observable<SpecialCardSelectViewData | null> = new Observable();
+    expansionSelectViewData$ = new Observable<ExpansionSelectViewData>();
+    specialCardSelectViewData$ = new Observable<SpecialCardSelectViewData | null>();
 
     ngOnInit(): void {
         this.appBarService.updateConfiguration({

@@ -10,7 +10,7 @@ header {
     padding-bottom: 30px;
     position: relative;
 
-    @media (min-width: 800px) {
+    @media (width >= 800px) {
         padding-bottom: 50px;
     }
 
@@ -21,7 +21,7 @@ header {
         position: absolute;
         width: 50%;
 
-        @media (min-width: 800px) {
+        @media (width >= 800px) {
             height: 50px;
         }
     }
@@ -33,7 +33,7 @@ header {
         right: 0;
         width: 50%;
 
-        @media (min-width: 800px) {
+        @media (width >= 800px) {
             height: 50px;
         }
     }
@@ -49,7 +49,7 @@ header {
     padding-top: 6rem;
     width: 80%;
 
-    @media (min-width: 800px) {
+    @media (width >= 800px) {
         max-width: 800px;
     }
 
@@ -83,8 +83,7 @@ article {
 section {
     align-items: center;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     gap: 1rem;
     margin: 2rem auto;
 }
@@ -92,7 +91,7 @@ section {
 .text-container {
     order: 2;
 
-    @media (min-width: 800px) {
+    @media (width >= 800px) {
         flex-basis: 60%;
         flex-grow: 1;
         order: unset;
@@ -115,7 +114,7 @@ section {
     order: 1;
     width: 100%;
 
-    @media (min-width: 800px) {
+    @media (width >= 800px) {
         flex-basis: 30%;
         flex-grow: 1;
         margin: unset;

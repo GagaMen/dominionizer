@@ -7,7 +7,7 @@ import { JoiValidator } from './joi-validator';
 export class CardTypeTranslationValidator {
     readonly name: string = 'card type translation';
 
-    private joiValidator: JoiValidator<CardTypeTranslation> = new JoiValidator();
+    private joiValidator = new JoiValidator<CardTypeTranslation>();
     private schema: Joi.ObjectSchema<CardTypeTranslation> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().required(),

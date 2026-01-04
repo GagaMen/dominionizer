@@ -20,7 +20,7 @@ mat-stepper {
     right: 16px;
     text-transform: uppercase;
 
-    @media (min-width: 576px) {
+    @media (width >= 576px) {
         left: unset;
         margin: 0;
     }

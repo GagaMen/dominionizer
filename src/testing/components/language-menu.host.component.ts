@@ -5,7 +5,7 @@ import { Component, ViewChild } from '@angular/core';
 @Component({
     imports: [LanguageMenuComponent, MatMenuTrigger],
     template: `
-        <button [matMenuTriggerFor]="menu.matMenu!"></button>
+        <button [matMenuTriggerFor]="menu.matMenu!" [attr.aria-hidden]="true"></button>
         <app-language-menu #menu></app-language-menu>
     `,
 })

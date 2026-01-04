@@ -8,7 +8,7 @@ import { AmountValidator } from './amount-validator';
 export class CardTypeValidator {
     readonly name: string = 'card type';
 
-    private joiValidator: JoiValidator<CardType> = new JoiValidator();
+    private joiValidator = new JoiValidator<CardType>();
     private schema: Joi.ObjectSchema<CardType> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().required(),
@@ -26,7 +26,7 @@ export class CardTypeValidator {
 export class CardTypesValidator {
     readonly name: string = 'card types';
 
-    private amountValidator: AmountValidator<CardType, CardTypePage> = new AmountValidator();
+    private amountValidator = new AmountValidator<CardType, CardTypePage>();
 
     validate(cardTypes: CardType[], cardTypePages: CardTypePage[]): ValidationResult {
         return this.amountValidator.validate(

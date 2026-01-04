@@ -8,7 +8,7 @@ import { AmountValidator } from './amount-validator';
 export class ExpansionValidator {
     readonly name: string = 'expansion';
 
-    private joiValidator: JoiValidator<Expansion> = new JoiValidator();
+    private joiValidator = new JoiValidator<Expansion>();
     private schema: Joi.ObjectSchema<Expansion> = Joi.object<Expansion>({
         id: Joi.number().required(),
         name: Joi.string().required(),
@@ -27,7 +27,7 @@ export class ExpansionValidator {
 export class ExpansionsValidator {
     readonly name: string = 'expansions';
 
-    private amountValidator: AmountValidator<Expansion, ExpansionPage> = new AmountValidator();
+    private amountValidator = new AmountValidator<Expansion, ExpansionPage>();
 
     validate(expansions: Expansion[], expansionPages: ExpansionPage[]): ValidationResult {
         return this.amountValidator.validate(

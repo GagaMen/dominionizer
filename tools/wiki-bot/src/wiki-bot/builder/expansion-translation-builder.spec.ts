@@ -46,7 +46,7 @@ describe('ExpansionTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, ExpansionTranslation> = new Map([
+            const expected = new Map<string, ExpansionTranslation>([
                 ['Chinese', { id: expansionPage.pageid, name: '皇舆争霸' }],
                 ['Czech', { id: expansionPage.pageid, name: 'Dominion' }],
                 ['Dutch', { id: expansionPage.pageid, name: 'Dominion' }],
@@ -86,7 +86,7 @@ describe('ExpansionTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, ExpansionTranslation> = new Map([
+            const expected = new Map<string, ExpansionTranslation>([
                 ['Dutch', { id: expansionPage.pageid, name: 'Bondgenoten' }],
                 ['German', { id: expansionPage.pageid, name: 'Verbündete' }],
                 ['Japanese', { id: expansionPage.pageid, name: '同盟' }],
@@ -113,7 +113,7 @@ describe('ExpansionTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, ExpansionTranslation> = new Map([
+            const expected = new Map<string, ExpansionTranslation>([
                 ['Czech', { id: expansionPage.pageid, name: 'Alchymie' }],
                 ['Dutch', { id: expansionPage.pageid, name: 'De Alchemisten' }],
                 ['Finnish', { id: expansionPage.pageid, name: 'Alkemia' }],

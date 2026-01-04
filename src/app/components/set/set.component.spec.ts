@@ -85,7 +85,7 @@ describe('SetComponent', () => {
 
         it('should update AppBarConfiguration correctly', () => {
             const stubMatMenu: MatMenu = {} as MatMenu;
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             component.setOrderingMenu!.matMenu = stubMatMenu;
             const configuration = jasmine.objectContaining<AppBarConfiguration>({
                 navigationAction: 'back',

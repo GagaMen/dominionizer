@@ -68,7 +68,7 @@ export class CardService {
         cardTypes: CardType[],
     ): Map<number, Card> {
         const cardDtosWithDependencies: CardDto[] = [];
-        const cards: Map<number, Card> = new Map();
+        const cards = new Map<number, Card>();
 
         cardDtos.forEach((cardDto: CardDto) => {
             if (cardDto.dependencies !== undefined) {

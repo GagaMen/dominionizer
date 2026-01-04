@@ -2,10 +2,10 @@
     @if (availability.events) {
         <div>
             <div class="special-cards-label">
-                <label i18n>Events</label>
+                <label for="event-slider" i18n>Events</label>
                 <span>{{ formGroup.value.events }}</span>
             </div>
-            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+            <mat-slider id="event-slider" min="0" max="5" step="1" showTickMarks color="accent">
                 <input matSliderThumb formControlName="events" />
             </mat-slider>
         </div>
@@ -14,10 +14,10 @@
     @if (availability.landmarks) {
         <div>
             <div class="special-cards-label">
-                <label i18n>Landmarks</label>
+                <label for="landmark-slider" i18n>Landmarks</label>
                 <span>{{ formGroup.value.landmarks }}</span>
             </div>
-            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+            <mat-slider id="landmark-slider" min="0" max="5" step="1" showTickMarks color="accent">
                 <input matSliderThumb formControlName="landmarks" />
             </mat-slider>
         </div>
@@ -26,10 +26,10 @@
     @if (availability.projects) {
         <div>
             <div class="special-cards-label">
-                <label i18n>Projects</label>
+                <label for="project-slider" i18n>Projects</label>
                 <span>{{ formGroup.value.projects }}</span>
             </div>
-            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+            <mat-slider id="project-slider" min="0" max="5" step="1" showTickMarks color="accent">
                 <input matSliderThumb formControlName="projects" />
             </mat-slider>
         </div>
@@ -38,10 +38,10 @@
     @if (availability.ways) {
         <div>
             <div class="special-cards-label">
-                <label i18n>Ways</label>
+                <label for="way-slider" i18n>Ways</label>
                 <span>{{ formGroup.value.ways }}</span>
             </div>
-            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+            <mat-slider id="way-slider" min="0" max="5" step="1" showTickMarks color="accent">
                 <input matSliderThumb formControlName="ways" />
             </mat-slider>
         </div>
@@ -50,10 +50,10 @@
     @if (availability.traits) {
         <div>
             <div class="special-cards-label">
-                <label i18n>Traits</label>
+                <label for="trait-slider" i18n>Traits</label>
                 <span>{{ formGroup.value.traits }}</span>
             </div>
-            <mat-slider min="0" max="5" step="1" showTickMarks color="accent">
+            <mat-slider id="trait-slider" min="0" max="5" step="1" showTickMarks color="accent">
                 <input matSliderThumb formControlName="traits" />
             </mat-slider>
         </div>

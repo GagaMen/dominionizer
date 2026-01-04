@@ -1,10 +1,8 @@
 @use '@angular/material' as mat;
 @use './variables';
-
-@include mat.elevation-classes();
-@include mat.app-background();
+@include mat.elevation-classes;
+@include mat.app-background;
 @include mat.typography-hierarchy(variables.$typography);
-
 @include mat.button-theme(variables.$theme);
 @include mat.card-theme(variables.$theme);
 @include mat.checkbox-theme(variables.$theme);

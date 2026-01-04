@@ -10,5 +10,5 @@ export interface Action {
 
 export interface AppBarConfiguration {
     navigationAction: NavigationAction;
-    actions: Array<Action>;
+    actions: Action[];
 }

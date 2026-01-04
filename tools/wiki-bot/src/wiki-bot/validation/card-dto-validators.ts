@@ -20,7 +20,7 @@ export class CardDtoValidator {
               });
     };
 
-    private joiValidator: JoiValidator<CardDto> = new JoiValidator();
+    private joiValidator = new JoiValidator<CardDto>();
     private schema: Joi.ObjectSchema<CardDto> = Joi.object({
         id: Joi.number().required(),
         name: Joi.string().required(),
@@ -51,7 +51,7 @@ export class CardDtoValidator {
 export class CardDtosValidator {
     readonly name: string = 'card dtos';
 
-    private amountValidator: AmountValidator<CardDto, CardPage> = new AmountValidator();
+    private amountValidator = new AmountValidator<CardDto, CardPage>();
 
     validate(cards: CardDto[], cardPages: CardPage[]): ValidationResult {
         return this.amountValidator.validate(

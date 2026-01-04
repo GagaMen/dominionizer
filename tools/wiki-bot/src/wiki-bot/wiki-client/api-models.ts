@@ -1,18 +1,14 @@
-export interface QueryParams {
-    [k: string]: string;
-}
+export type QueryParams = Record<string, string>;
 
 export interface QueryResult<TPage> {
     'query-continue'?: QueryContinuation;
     query?: QueryResultContent<TPage>;
 }
 
-export interface QueryContinuation {
-    [k: string]: { [k: string]: string };
-}
+export type QueryContinuation = Record<string, Record<string, string>>;
 
 export interface QueryResultContent<TPage> {
-    pages: { [k: string]: TPage };
+    pages: Record<string, TPage>;
 }
 
 export interface Page {

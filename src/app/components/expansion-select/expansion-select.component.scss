@@ -1,7 +1,7 @@
 .expansions {
     display: grid;
 
-    @media (min-width: 450px) {
+    @media (width >= 450px) {
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     }
 }

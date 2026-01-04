@@ -36,7 +36,7 @@ export class ExpansionSelectComponent implements OnInit {
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
-        const controlValues: boolean[] = Object.values(control.value as { [s: string]: boolean });
+        const controlValues: boolean[] = Object.values(control.value as Record<string, boolean>);
         const result = controlValues.reduce(
             (previousValue: boolean, currentValue: boolean) => previousValue || currentValue,
         );

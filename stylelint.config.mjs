@@ -1,5 +1,5 @@
-module.exports = {
-    extends: ['stylelint-config-sass-guidelines', 'stylelint-prettier/recommended'],
+export default {
+    extends: ['stylelint-config-standard-scss', 'stylelint-prettier/recommended'],
     rules: {
         'selector-pseudo-element-no-unknown': [
             true,

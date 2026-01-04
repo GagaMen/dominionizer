@@ -87,7 +87,7 @@ export class CardDtoBuilder {
         if (cardType !== undefined) types.push(cardType.id);
 
         let index = 1;
-        // eslint-disable-next-line no-constant-condition
+
         while (true) {
             const extractedTypeName = normalize(
                 extractTemplatePropertyValue(infoBox, `type${index}`),

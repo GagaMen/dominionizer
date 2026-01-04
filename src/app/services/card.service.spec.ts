@@ -62,7 +62,7 @@ describe('CardService', () => {
                 { id: cardDtos[1].id, type: DependencyType.SplitPile },
             ];
             cardDtos[1].dependencies = [{ id: cardDtos[0].id, type: DependencyType.SplitPile }];
-            const expected: Map<number, Card> = new Map();
+            const expected = new Map<number, Card>();
             cardDtos.forEach((cardDto: CardDto) => {
                 expected.set(cardDto.id, {
                     ...cardDto,
@@ -71,7 +71,7 @@ describe('CardService', () => {
                     dependencies: undefined,
                 });
             });
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             expected.get(cardDtos[0].id)!.dependencies = [
                 {
                     card: expected.get(cardDtos[0].id) as Card,
@@ -82,7 +82,7 @@ describe('CardService', () => {
                     type: DependencyType.SplitPile,
                 },
             ];
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
             expected.get(cardDtos[1].id)!.dependencies = [
                 {
                     card: expected.get(cardDtos[0].id) as Card,
@@ -112,7 +112,7 @@ describe('CardService', () => {
                 types: [cardTypes[0].id, cardTypes[1].id],
             });
             const cardTranslation = dataFixture.createCardTranslation({ id: 1 });
-            const expected: Map<number, Card> = new Map();
+            const expected = new Map<number, Card>();
             expected.set(1, {
                 ...cardDto,
                 name: cardTranslation.name,
@@ -150,7 +150,7 @@ describe('CardService', () => {
                 name: '',
                 description: '',
             });
-            const expected: Map<number, Card> = new Map();
+            const expected = new Map<number, Card>();
             expected.set(1, {
                 ...cardDto,
                 expansions: [expansions[0], expansions[1]],

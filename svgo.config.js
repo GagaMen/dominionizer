@@ -1,6 +1,8 @@
 module.exports = {
     plugins: [
         'preset-default',
+        'removeViewBox',
+        'removeTitle',
         'convertStyleToAttrs',
         {
             name: 'removeAttrs',

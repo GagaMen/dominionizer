@@ -24,7 +24,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [175, ['Embargo', 'Ambassador', 'Fishing Village']],
             ]);
 
@@ -52,7 +52,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [914, ['Cellar', 'Bureaucrat', 'Chancellor']],
                 [914.1, ['Harbinger', 'Cellar', 'Bureaucrat']],
             ]);
@@ -75,7 +75,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([[171, ['Saboteur']]]);
+            const expected = new Map<number, string[]>([[171, ['Saboteur']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -97,9 +97,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
-                [1579, ['Coin of the Realm', 'Alms']],
-            ]);
+            const expected = new Map<number, string[]>([[1579, ['Coin of the Realm', 'Alms']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -122,9 +120,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
-                [2739, ['Engineer', 'Aqueduct', 'Arena']],
-            ]);
+            const expected = new Map<number, string[]>([[2739, ['Engineer', 'Aqueduct', 'Arena']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -146,7 +142,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [4213, ['Druid', "The Earth's Gift", "The Field's Gift"]],
             ]);
 
@@ -170,7 +166,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [4213, ['Druid', 'Bad Omens', 'Delusion']],
             ]);
 
@@ -195,7 +191,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [4213, ['Druid', 'Lost in the Woods', 'Deluded', 'Envious']],
             ]);
 
@@ -219,9 +215,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
-                [6098, ['Border Guard', 'Flag', 'Horn']],
-            ]);
+            const expected = new Map<number, string[]>([[6098, ['Border Guard', 'Flag', 'Horn']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -243,7 +237,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [6098, ['Border Guard', 'Cathedral', 'City Gate']],
             ]);
 
@@ -267,7 +261,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [6737, ['Black Cat', 'Way of the Butterfly', 'Way of the Camel']],
             ]);
 
@@ -291,7 +285,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [7293, ['Bauble', `Architects' Guild`, 'Band of Nomads']],
             ]);
 
@@ -316,7 +310,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([[9040, ['Cage', `Cheap`, 'Cursed']]]);
+            const expected = new Map<number, string[]>([[9040, ['Cage', `Cheap`, 'Cursed']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -335,7 +329,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([[206, ['Envoy', 'Black Market']]]);
+            const expected = new Map<number, string[]>([[206, ['Envoy', 'Black Market']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -357,7 +351,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([[156, ['Rats', 'Knights']]]);
+            const expected = new Map<number, string[]>([[156, ['Rats', 'Knights']]]);
 
             const actual = expansionMapBuilder.buildWithExpansionPage(expansionPage);
 
@@ -380,7 +374,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [171, ['Harem']],
                 [171.1, ['Farm']],
             ]);
@@ -393,7 +387,7 @@ describe('ExpansionMapBuilder', () => {
 
     describe('buildWithCardTypePage', () => {
         it('with Infobox Card for card of any expansion should return correct map', () => {
-            const expansionCardsMap: Map<number, string[]> = new Map([[156, ['Knights']]]);
+            const expansionCardsMap = new Map<number, string[]>([[156, ['Knights']]]);
             const cardTypePage: CardTypePage = {
                 pageid: 577,
                 title: 'Knight',
@@ -409,7 +403,7 @@ describe('ExpansionMapBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<number, string[]> = new Map([
+            const expected = new Map<number, string[]>([
                 [156, ['Knights', 'Dame Anna', 'Dame Josephine']],
             ]);
 

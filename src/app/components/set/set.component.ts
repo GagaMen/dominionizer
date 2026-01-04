@@ -43,7 +43,7 @@ export class SetComponent implements OnInit {
                     icon: 'sort',
                     // setOrderingMenu is garantied to be defined because ViewChild query result
                     // is resolved before change detection runs (see: static = true)
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
                     matMenu: this.setOrderingMenu!.matMenu,
                 },
                 {

@@ -182,7 +182,7 @@ export class DominionizerWikiBot {
     ): Map<string, ExpansionTranslation[]> {
         console.log('Generating expansion translations...');
 
-        const translations: Map<string, ExpansionTranslation[]> = new Map();
+        const translations = new Map<string, ExpansionTranslation[]>();
 
         for (const expansionPage of expansionPages) {
             const translationsByExpansion = this.expansionTranslationBuilder.build(expansionPage);
@@ -248,7 +248,7 @@ export class DominionizerWikiBot {
     ): Map<string, CardTypeTranslation[]> {
         console.log('Generating card types translations...');
 
-        const translations: Map<string, CardTypeTranslation[]> = new Map();
+        const translations = new Map<string, CardTypeTranslation[]>();
 
         for (const cardTypePage of cardTypePages) {
             const translationsByCardType = this.cardTypeTranslationBuilder.build(cardTypePage);
@@ -286,8 +286,8 @@ export class DominionizerWikiBot {
         expansionPages: ExpansionPage[],
         cardTypePages: CardTypePage[],
     ): Map<string, number[]> {
-        let expansionCardsMap: Map<number, string[]> = new Map();
-        const cardExpansionsMap: Map<string, number[]> = new Map();
+        let expansionCardsMap = new Map<number, string[]>();
+        const cardExpansionsMap = new Map<string, number[]>();
 
         for (const expansionPage of expansionPages) {
             const map = this.expansionCardsMapBuilder.buildWithExpansionPage(expansionPage);
@@ -399,7 +399,7 @@ export class DominionizerWikiBot {
     private generateCardTranslations(cardPages: CardPage[]): Map<string, CardTranslation[]> {
         console.log('Generating card translations...');
 
-        const translations: Map<string, CardTranslation[]> = new Map();
+        const translations = new Map<string, CardTranslation[]>();
 
         for (const cardPage of cardPages) {
             const translationsByCard = this.cardTranslationBuilder.build(cardPage);

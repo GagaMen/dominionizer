@@ -5,7 +5,7 @@ import { SetOrderingMenuComponent } from 'src/app/components/set-ordering-menu/s
 @Component({
     imports: [SetOrderingMenuComponent, MatMenuTrigger],
     template: `
-        <button [matMenuTriggerFor]="menu.matMenu!"></button>
+        <button [matMenuTriggerFor]="menu.matMenu!" [attr.aria-hidden]="true"></button>
         <app-set-ordering-menu #menu></app-set-ordering-menu>
     `,
 })

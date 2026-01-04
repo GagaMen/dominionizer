@@ -252,11 +252,11 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 2 } as ExpansionPage,
                 { pageid: 1 } as ExpansionPage,
             ];
-            const firstExpansionTranslations: Map<string, ExpansionTranslation> = new Map([
+            const firstExpansionTranslations = new Map<string, ExpansionTranslation>([
                 ['German', { id: 1, name: 'german title' }],
                 ['French', { id: 1, name: 'french title' }],
             ]);
-            const secondExpansionTranslations: Map<string, ExpansionTranslation> = new Map([
+            const secondExpansionTranslations = new Map<string, ExpansionTranslation>([
                 ['German', { id: 2, name: 'german title' }],
                 ['French', { id: 2, name: 'french title' }],
             ]);
@@ -347,11 +347,11 @@ describe('DominionizerWikiBot', () => {
                 { pageid: CardTypeId.Boon } as CardTypePage,
                 { pageid: CardTypeId.Action } as CardTypePage,
             ];
-            const firstCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
+            const firstCardTypeTranslations = new Map<string, CardTypeTranslation>([
                 ['German', { id: CardTypeId.Action, name: 'german title - action' }],
                 ['French', { id: CardTypeId.Action, name: 'french title - action' }],
             ]);
-            const secondCardTypeTranslations: Map<string, CardTypeTranslation> = new Map([
+            const secondCardTypeTranslations = new Map<string, CardTypeTranslation>([
                 ['German', { id: CardTypeId.Boon, name: 'german title - boon' }],
                 ['French', { id: CardTypeId.Boon, name: 'french title - boon' }],
             ]);
@@ -494,7 +494,7 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 1 } as ExpansionPage,
                 { pageid: 2 } as ExpansionPage,
             ];
-            const expansionCardsMap: Map<number, string[]> = new Map([
+            const expansionCardsMap = new Map<number, string[]>([
                 [1, ['Curse', 'Cellar', 'Knights']],
                 [2, ['Cellar']],
             ]);
@@ -512,7 +512,7 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 300, title: 'Cellar' } as CardPage,
                 { pageid: CardTypeId.Curse, title: 'Curse' } as CardPage,
             ];
-            const cardExpansionsMap: Map<string, number[]> = new Map([
+            const cardExpansionsMap = new Map<string, number[]>([
                 ['Curse', [1]],
                 ['Cellar', [1, 2]],
                 ['Knights', [1]],
@@ -625,11 +625,11 @@ describe('DominionizerWikiBot', () => {
         it('should generate card translations', async () => {
             const cardPages: CardPage[] = [{ pageid: 20 } as CardPage, { pageid: 10 } as CardPage];
             const cards: CardDto[] = [{ id: 10 } as CardDto, { id: 20 } as CardDto];
-            const firstCardTranslations: Map<string, CardTranslation> = new Map([
+            const firstCardTranslations = new Map<string, CardTranslation>([
                 ['German', { id: 10, name: 'german title' } as CardTranslation],
                 ['French', { id: 10, name: 'french title' } as CardTranslation],
             ]);
-            const secondCardTranslations: Map<string, CardTranslation> = new Map([
+            const secondCardTranslations = new Map<string, CardTranslation>([
                 ['German', { id: 20, name: 'german title' } as CardTranslation],
                 ['French', { id: 20, name: 'french title' } as CardTranslation],
             ]);

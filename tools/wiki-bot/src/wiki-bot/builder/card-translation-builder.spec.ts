@@ -35,7 +35,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, CardTranslation> = new Map([
+            const expected = new Map<string, CardTranslation>([
                 [
                     'German',
                     {
@@ -77,7 +77,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, CardTranslation> = new Map([
+            const expected = new Map<string, CardTranslation>([
                 [
                     'Dutch',
                     {
@@ -334,7 +334,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, CardTranslation> = new Map([
+            const expected = new Map<string, CardTranslation>([
                 [
                     'German',
                     {
@@ -410,7 +410,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected: Map<string, CardTranslation> = new Map([
+            const expected = new Map<string, CardTranslation>([
                 [
                     'German',
                     {

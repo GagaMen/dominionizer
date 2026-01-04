@@ -9,7 +9,7 @@
     "eslint.options": {
         "ignorePath": "./.gitignore"
     },
-    "eslint.validate": ["html"],
+    "eslint.validate": ["html", "json", "jsonc", "json5"],
     "[typescript]": {
         "editor.formatOnSave": false
     },

@@ -6,7 +6,7 @@ import { extractSection, normalize } from './helper-functions';
 
 export class SplitPileDependencyBuilder {
     build(cardDtos: CardDto[], cardTypes: CardType[], splitPilePage?: ContentPage): CardDto[] {
-        const splitPiles: Map<number, CardDto[]> = new Map();
+        const splitPiles = new Map<number, CardDto[]>();
 
         this.buildSplitPilesWithCardTypes(splitPiles, cardDtos, cardTypes);
         this.buildSplitPilesWithSplitPilePage(splitPiles, cardDtos, splitPilePage);

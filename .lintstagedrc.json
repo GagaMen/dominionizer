@@ -1,5 +1,5 @@
 {
-    "*.{ts,js,json,component.html}": "eslint --ignore-path .gitignore",
+    "*.{ts,js,json,component.html}": "eslint",
     "*.scss": "stylelint --ignore-path .gitignore --cache",
     "*.md": "markdownlint --ignore-path .gitignore"
 }

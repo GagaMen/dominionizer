@@ -16,7 +16,6 @@ export class JoiValidator<T> {
         }
 
         const errorMessages: string[] = validationResult.error.details.map(
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
             (error: Joi.ValidationErrorItem) => error.message,
         );
 

@@ -150,7 +150,7 @@ export class ShuffleService {
         oldCard: Card,
         randomizableCards: RandomizableCards,
     ): Card[] {
-        const candidatesPerCardType: Map<CardTypeId, Card[]> = new Map([
+        const candidatesPerCardType = new Map<CardTypeId, Card[]>([
             [CardTypeId.Event, randomizableCards.events],
             [CardTypeId.Landmark, randomizableCards.landmarks],
             [CardTypeId.Project, randomizableCards.projects],

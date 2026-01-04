@@ -16,7 +16,7 @@ export class CardTranslationBuilder {
         // remove html comments and table header
         const tableBody = table.replace(/<!--.*?-->/gs, '').substring(table.indexOf('|-'));
 
-        const translations: Map<string, CardTranslation> = new Map();
+        const translations = new Map<string, CardTranslation>();
 
         const rowRegex = /![^!]*/g;
         let languageVersion: RegExpExecArray | null;
@@ -50,7 +50,7 @@ export class CardTranslationBuilder {
     }
 
     private findLatestTranslationVersion(languageVersion: WikiText): WikiText[] {
-        const translationVersions: Array<WikiText[]> = languageVersion
+        const translationVersions: WikiText[][] = languageVersion
             .split(/\s*\|-\s*\n/)
             .filter((entry) => entry !== '')
             .map((translationVersion: WikiText) => translationVersion?.split('||') ?? []);
