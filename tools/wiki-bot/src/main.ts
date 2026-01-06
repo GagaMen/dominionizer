@@ -118,4 +118,4 @@ async function bootstrap(): Promise<void> {
     exit(successful ? 0 : 1);
 }
 
-bootstrap();
+void bootstrap();

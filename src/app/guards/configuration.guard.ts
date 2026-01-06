@@ -16,7 +16,7 @@ export const configurationGuard: CanActivateFn = (_route, _state): Observable<bo
                 return true;
             }
 
-            router.navigate(['/configuration']);
+            void router.navigate(['/configuration']);
             return false;
         }),
     );

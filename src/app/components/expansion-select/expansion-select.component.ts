@@ -40,6 +40,7 @@ export class ExpansionSelectComponent implements OnInit {
         const result = controlValues.reduce(
             (previousValue: boolean, currentValue: boolean) => previousValue || currentValue,
         );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return result ? null : { minSelect: { value: control.value } };
     }
 
@@ -65,14 +66,17 @@ export class ExpansionSelectComponent implements OnInit {
     }
 
     areSomeButNotAllSelected(): boolean {
-        const selectedExpansionCount: number = (
-            this.formGroup.value.expansions as boolean[]
-        ).filter((expansionSelected) => expansionSelected).length;
+        const selectedExpansionCount: number =
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            (this.formGroup.value.expansions as boolean[]).filter(
+                (expansionSelected) => expansionSelected,
+            ).length;
 
         return selectedExpansionCount > 0 && selectedExpansionCount < this.expansions.length;
     }
 
     areAllSelected(): boolean {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return (this.formGroup.value.expansions as boolean[]).every(
             (expansionSelected) => expansionSelected,
         );
