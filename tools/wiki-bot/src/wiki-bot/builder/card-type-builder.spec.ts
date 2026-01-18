@@ -1,5 +1,5 @@
-import { CardType } from './../../../../../src/app/models/card-type';
-import { CardTypePage } from './../wiki-client/api-models';
+import { CardType, CardTypeV2 } from './../../../../../src/app/models/card-type';
+import { CardTypePage, CargoCardType } from './../wiki-client/api-models';
 import { CardTypeBuilder } from './card-type-builder';
 
 describe('CardTypeBuilder', () => {
@@ -23,6 +23,25 @@ describe('CardTypeBuilder', () => {
             };
 
             const actual = cardTypeBuilder.build(cardTypePage);
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('buildFromCargo', () => {
+        it('should return correct card type', () => {
+            const cargoCardType: CargoCardType = {
+                Id: '119',
+                Name: 'Landmark',
+                Scope: 'Landscape',
+            };
+            const expected: CardTypeV2 = {
+                id: '119',
+                name: 'Landmark',
+                scope: 'Landscape',
+            };
+
+            const actual = cardTypeBuilder.buildFromCargo(cargoCardType);
 
             expect(actual).toEqual(expected);
         });
