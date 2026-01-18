@@ -3,6 +3,12 @@ export interface CardType {
     name: string;
 }
 
+export interface CardTypeV2 {
+    id: string;
+    name: string;
+    scope: string;
+}
+
 export type CardTypeTranslation = Pick<CardType, 'id' | 'name'>;
 
 export enum CardTypeId {
