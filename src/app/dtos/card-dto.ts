@@ -26,3 +26,19 @@ export interface CardDto {
     debt?: number;
     dependencies?: DependencyDto[];
 }
+
+export interface CardDtoV2 {
+    id: string;
+    name: string;
+    description: string;
+    image: string;
+    illustrator: string;
+    wikiUrl: string;
+    editions: string[];
+    types: string[];
+    isKingdomCard: boolean;
+    cost: number;
+    costModifier?: string;
+    debt?: number;
+    dependencies?: DependencyDto[];
+}
