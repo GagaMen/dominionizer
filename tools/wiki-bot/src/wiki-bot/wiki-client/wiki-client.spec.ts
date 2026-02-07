@@ -23,6 +23,7 @@ describe('WikiClient', () => {
     };
     const card: CargoCard = {
         Id: '3043',
+        PageId: '11442',
         Name: 'Ronin',
         Expansion: 'Rising Sun',
         Purpose: 'Kingdom Pile',
@@ -136,7 +137,7 @@ describe('WikiClient', () => {
             url.searchParams.append('tables', 'Components');
             url.searchParams.append(
                 'fields',
-                '_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+                '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
             );
 
             await wikiClient.fetchAllCards();

@@ -67,7 +67,7 @@ export class WikiClient {
             format: 'json',
             action: 'cargoquery',
             tables: 'Components',
-            fields: '_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+            fields: '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
         };
 
         return await this.fetchData(params);

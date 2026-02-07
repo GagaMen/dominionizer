@@ -1,6 +1,7 @@
 import { Expansion } from './expansion';
-import { CardType } from './card-type';
+import { CardType, CardTypeV2 } from './card-type';
 import { Dependency } from './dependency';
+import { Edition } from './edition';
 
 export const NullCard: Card = {
     id: 0,
@@ -22,6 +23,22 @@ export interface Card {
     wikiUrl: string;
     expansions: Expansion[];
     types: CardType[];
+    isKingdomCard: boolean;
+    cost: number;
+    costModifier?: string;
+    debt?: number;
+    dependencies?: Dependency[];
+}
+
+export interface CardV2 {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    illustrator: string;
+    wikiUrl: string;
+    editions: Edition[];
+    types: CardTypeV2[];
     isKingdomCard: boolean;
     cost: number;
     costModifier?: string;
