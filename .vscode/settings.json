@@ -6,10 +6,7 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "eslint.options": {
-        "ignorePath": "./.gitignore"
-    },
-    "eslint.validate": ["html", "json", "jsonc", "json5"],
+    "eslint.validate": ["typescript", "javascript", "html", "json", "jsonc", "json5"],
     "[typescript]": {
         "editor.formatOnSave": false
     },
