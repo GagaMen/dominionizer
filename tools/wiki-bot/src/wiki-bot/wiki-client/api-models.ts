@@ -35,6 +35,7 @@ export interface CargoEdition {
 
 export interface CargoCard {
     Id: string;
+    PageId: string;
     Name: string;
     Expansion: string;
     Purpose: string;

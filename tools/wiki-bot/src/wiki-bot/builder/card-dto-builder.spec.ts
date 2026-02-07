@@ -1,38 +1,53 @@
-import { CardTypePage } from './../wiki-client/api-models';
+import { CardTypePage, CargoCard } from './../wiki-client/api-models';
 import { CardPage } from '../wiki-client/api-models';
 import { CardDtoBuilder } from './card-dto-builder';
-import { CardDto } from '../../../../../src/app/dtos/card-dto';
-import { CardType } from '../../../../../src/app/models/card-type';
+import { CardDtoV2 } from '../../../../../src/app/dtos/card-dto';
+import { CardTypeV2 } from '../../../../../src/app/models/card-type';
+import { Edition } from 'src/app/models/edition';
 
 describe('CardDtoBuilder', () => {
     let cardDtoBuilder: CardDtoBuilder;
 
-    const cardExpansionsMap: Map<string, number[]> = new Map();
-    cardExpansionsMap.set('Ghost Town', [4213]);
-    cardExpansionsMap.set('Knights', [156]);
-
-    const cardTypes: CardType[] = [
-        { id: 216, name: 'Action' },
-        { id: 219, name: 'Attack' },
-        { id: 577, name: 'Knight' },
-        { id: 593, name: 'Duration' },
-        { id: 1584, name: 'Event' },
-        { id: 4216, name: 'Night' },
+    const editions: Edition[] = [
+        { id: '215', expansion: 'Dominion', edition: '2', icon: '' },
+        { id: '216', expansion: 'Dominion', edition: '1', icon: '' },
+        { id: '218', expansion: 'Allies', edition: '1', icon: '' },
+        { id: '237', expansion: 'Dark Ages', edition: '1', icon: '' },
     ];
-
+    const cardTypesV2: CardTypeV2[] = [
+        { id: '241', name: 'Action', scope: '' },
+        { id: '242', name: 'Attack', scope: '' },
+        { id: '251', name: 'Knight', scope: '' },
+    ];
+    const nullCargoCard: CargoCard = {
+        Id: '',
+        PageId: '',
+        Name: '',
+        Expansion: '',
+        Purpose: 'Kingdom Pile',
+        CostCoin: '',
+        CostPotion: '0',
+        CostDebt: '',
+        CostExtra: '',
+        Art: '',
+        Illustrator: '',
+        Edition: '',
+        Types: '',
+    };
     const nullCardPage: CardPage = {
         pageid: 0,
         title: '',
         fullurl: '',
-        revisions: [],
+        revisions: [{ '*': '' }],
     };
-    const nullCardDto: CardDto = {
-        id: nullCardPage.pageid,
-        name: nullCardPage.title,
+    const nullCardDtoV2: CardDtoV2 = {
+        id: '',
+        name: '',
         description: '',
         image: '',
-        wikiUrl: nullCardPage.fullurl,
-        expansions: [],
+        illustrator: '',
+        wikiUrl: '',
+        editions: [],
         types: [],
         isKingdomCard: true,
         cost: 0,
@@ -44,114 +59,115 @@ describe('CardDtoBuilder', () => {
         cardDtoBuilder = new CardDtoBuilder();
     });
 
-    describe('build', () => {
-        it('with basic cardPage should return correct card', () => {
+    describe('buildFromCargo', () => {
+        it('with basic cargoCard should return correct card', () => {
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                Id: '5006',
+                PageId: '8442',
+                Name: 'Barbarian',
+                Expansion: 'Allies',
+                Purpose: 'Kingdom Pile',
+                CostCoin: '5',
+                CostPotion: '0',
+                CostDebt: '',
+                CostExtra: '',
+                Art: 'BarbarianArt.jpg',
+                Illustrator: 'Julien Delval',
+                Edition: '1',
+                Types: 'Action-Attack',
+            };
             const cardPage: CardPage = {
                 ...nullCardPage,
-                pageid: 5167,
-                title: 'Ghost Town',
-                fullurl: 'https://wiki.dominionstrategy.com/index.php/Ghost_Town',
+                pageid: 8442,
+                title: 'Barbarian',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Barbarian',
                 revisions: [
                     {
                         '*':
                             `{{Infobox Card\n` +
-                            `|name = Ghost Town\n` +
-                            `|cost = 3\n` +
-                            `|type1 = Night\n` +
-                            `|type2 = Duration\n` +
                             `|text = At the start...\n` +
-                            `|text2 = This is gained ...\n}}\n\n` +
-                            `== Trivia ==\n` +
-                            `[[Image:Ghost TownArt.jpg|thumb|right|354px|Official card art.]]\n\n`,
+                            `|text2 = This is gained ...\n}}\n\n`,
                     },
                 ],
             };
-            const expected: CardDto = {
-                ...nullCardDto,
-                id: cardPage.pageid,
-                name: 'Ghost Town',
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                id: '5006',
+                name: 'Barbarian',
                 description: `At the start...{{divline}}This is gained ...`,
-                image: 'Ghost_TownArt.jpg',
-                wikiUrl: cardPage.fullurl,
-                expansions: [4213],
-                types: [4216, 593],
+                image: 'BarbarianArt.jpg',
+                illustrator: 'Julien Delval',
+                wikiUrl: 'https://wiki.dominionstrategy.com/index.php/Barbarian',
+                editions: ['218'],
+                types: ['241', '242'],
                 isKingdomCard: true,
-                cost: 3,
+                cost: 5,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage and redirectingCardPage should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                pageid: 10190,
-                title: 'Farm',
-                fullurl: 'https://wiki.dominionstrategy.com/index.php/Farm',
-                revisions: [
-                    {
-                        '*': `{{Infobox Card\n |name = Farm\n}}`,
-                    },
-                ],
-            };
-            const redirectingCardPage: CardPage = {
-                ...nullCardPage,
-                pageid: 94,
-                title: 'Harem',
-                fullurl: 'https://wiki.dominionstrategy.com/index.php/Harem',
-                revisions: [
-                    {
-                        '*': `#REDIRECT [[Farm]]`,
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                id: redirectingCardPage.pageid,
-                name: 'Harem',
-                wikiUrl: redirectingCardPage.fullurl,
-            };
-
-            const actual = cardDtoBuilder.build(
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
                 cardPage,
-                cardExpansionsMap,
-                cardTypes,
-                redirectingCardPage,
+                editions,
+                cardTypesV2,
             );
 
-            expect(actual).toEqual(expected);
+            expect(actual).toEqual(jasmine.objectContaining(expected));
         });
 
-        it('with cardPage uses template for name should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                title: 'Sacred Grove',
-                revisions: [
-                    {
-                        '*':
-                            `{{Infobox Card\n |name = {{PAGENAME}}\n}}` +
-                            `== Trivia ==\n` +
-                            `[[Image:{{PAGENAME}}Art.jpg|thumb|right|354px|Official card art.]]\n\n`,
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                name: 'Sacred Grove',
-                image: 'Sacred_GroveArt.jpg',
+        it('with cargoCard is in one edition of a multi edition expansion should return correct card', () => {
+            const cargoCard = {
+                ...nullCargoCard,
+                Id: '4823',
+                Expansion: 'Dominion',
+                Art: '',
+                Edition: '1',
+                Types: '',
+            } as CargoCard;
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                id: '4823',
+                editions: ['216'],
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                nullCardPage,
+                editions,
+                cardTypesV2,
+            );
 
-            expect(actual).toEqual(expected);
+            expect(actual).toEqual(jasmine.objectContaining(expected));
+        });
+
+        it('with cargoCard is in all editions of a multi edition expansion should return correct card', () => {
+            const cargoCard = {
+                ...nullCargoCard,
+                Id: '4818',
+                Expansion: 'Dominion',
+                Art: '',
+                Edition: '1&2',
+                Types: '',
+            } as CargoCard;
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                id: '4818',
+                editions: ['215', '216'],
+            };
+
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                nullCardPage,
+                editions,
+                cardTypesV2,
+            );
+
+            expect(actual).toEqual(jasmine.objectContaining(expected));
         });
 
         it('with cardPage contains <br/> in text1 or text2 should return correct card', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
-                title: 'Sacred Grove',
                 revisions: [
                     {
                         '*':
@@ -161,238 +177,154 @@ describe('CardDtoBuilder', () => {
                     },
                 ],
             };
-            const expected: CardDto = {
-                ...nullCardDto,
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
                 description: `At the<br>start...{{divline}}This is<br>gained ...`,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
+            const actual = cardDtoBuilder.buildFromCargo(
+                nullCargoCard,
+                cardPage,
+                editions,
+                cardTypesV2,
+            );
 
-            expect(actual).toEqual(expected);
+            expect(actual).toEqual(jasmine.objectContaining(expected));
         });
 
-        it('with cardPage uses OfficialArt template should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*':
-                            `{{Infobox Card\n |name = Horn of Plenty\n}}` +
-                            `== Trivia ==\n{{OfficialArt|l=1}}\n\n`,
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                name: 'Horn of Plenty',
-                image: 'Horn_of_PlentyArt.jpg',
-            };
-
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage reuses art of another card should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                title: 'Miserable',
-                revisions: [
-                    {
-                        '*':
-                            `{{Infobox Card\n | name=Miserable\n}}` +
-                            `== Trivia ==\n` +
-                            `[[Image:MiseryArt.jpg|thumb|right|500px|Official card art ` +
-                            `(the same as Twice Miserable's art).]]\n\n`,
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                name: 'Miserable',
-                image: 'MiseryArt.jpg',
-            };
-
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage has original and alternate art should return correct card', () => {
-            // TODO: update test when alternate art is actually used
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                title: 'Farm',
-                revisions: [
-                    {
-                        '*':
-                            `{{Infobox Card\n | name=Farm\n}}` +
-                            `== Trivia ==\n` +
-                            `[[Image:HaremArt.jpg|thumb|right|354px|Official original card's art.]]\n`,
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                name: 'Farm',
-                image: 'HaremArt.jpg',
-            };
-
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage of non-kingdom card should return correct card', () => {
-            const cardPageOne: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*': '{{Infobox Card\n |kingdom = No\n}}',
-                    },
-                ],
-            };
-            const cardPageTwo: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*': '{{Infobox Card\n |kingdom = no\n}}',
-                    },
-                ],
-            };
-            const expected: CardDto[] = [
-                {
-                    ...nullCardDto,
-                    isKingdomCard: false,
-                },
-                {
-                    ...nullCardDto,
-                    isKingdomCard: false,
-                },
-            ];
-
-            const actual = [
-                cardDtoBuilder.build(cardPageOne, new Map(), []),
-                cardDtoBuilder.build(cardPageTwo, new Map(), []),
-            ];
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage contains cost modifier should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*': '{{Infobox Card\n |cost = 3P\n}}',
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                cost: 3,
-                costModifier: 'P',
-            };
-
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage contains debt should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*': '{{Infobox Card\n |cost2 = 4\n}}',
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                debt: 4,
-            };
-
-            const actual = cardDtoBuilder.build(cardPage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toEqual(expected);
-        });
-
-        it('with cardPage contains non card infobox should return correct card', () => {
-            const cardPage: CardPage = {
-                ...nullCardPage,
-                revisions: [
-                    {
-                        '*': '{{Infobox Event\n |name=Save\n}}',
-                    },
-                ],
-            };
-            const expected: CardDto = {
-                ...nullCardDto,
-                name: 'Save',
+        it('with cargoCard of non-kingdom card should return correct card', () => {
+            const cargoCard = {
+                ...nullCargoCard,
+                Purpose: 'Landscape',
+            } as CargoCard;
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
                 isKingdomCard: false,
             };
 
-            const actual = cardDtoBuilder.build(cardPage, new Map(), []);
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                nullCardPage,
+                editions,
+                cardTypesV2,
+            );
 
-            expect(actual).toEqual(expected);
+            expect(actual).toEqual(jasmine.objectContaining(expected));
         });
 
-        it('with cardTypePage should return correct card', () => {
+        it('with cargoCard contains cost extra should return correct card', () => {
+            const cargoCard = {
+                ...nullCargoCard,
+                CostExtra: '*',
+            } as CargoCard;
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                costModifier: '*',
+            };
+
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                nullCardPage,
+                editions,
+                cardTypesV2,
+            );
+
+            expect(actual).toEqual(jasmine.objectContaining(expected));
+        });
+
+        it('with cargoCard contains cost debt should return correct card', () => {
+            const cargoCard = {
+                ...nullCargoCard,
+                CostDebt: '4',
+            } as CargoCard;
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                debt: 4,
+            };
+
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                nullCardPage,
+                editions,
+                cardTypesV2,
+            );
+
+            expect(actual).toEqual(jasmine.objectContaining(expected));
+        });
+
+        it('with cargoCard contains cost potion should return correct card', () => {
+            const cargoCard = {
+                ...nullCargoCard,
+                CostPotion: '1',
+            } as CargoCard;
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                costModifier: 'P',
+            };
+
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                nullCardPage,
+                editions,
+                cardTypesV2,
+            );
+
+            expect(actual).toEqual(jasmine.objectContaining(expected));
+        });
+
+        it('with cargoCard of card type should return correct card', () => {
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                Id: '5225',
+                PageId: '577',
+                Name: 'Knights',
+                Expansion: 'Dark Ages',
+                Purpose: 'Kingdom Pile',
+                CostCoin: '5',
+                CostPotion: '0',
+                CostDebt: '',
+                CostExtra: '',
+                Art: 'KnightsArt.jpg',
+                Illustrator: 'Matthias Catrein',
+                Edition: '1',
+                Types: 'Action-Attack-Knight',
+            };
             const cardTypePage: CardTypePage = {
                 ...nullCardPage,
                 pageid: 577,
-                title: 'Knight',
+                title: 'Knights',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Knights',
                 revisions: [
                     {
                         '*':
                             `{{Infobox Card\n` +
-                            `|name = Knights\n` +
-                            `|cost = 5\n` +
-                            `|type1 = Action\n` +
-                            `|type2 = Attack\n` +
-                            `|type3 = Knight\n` +
-                            `|illustrator = Matthias Catrein\n` +
-                            `|text = Shuffle the Knights...\n` +
-                            `|nocats = Yes\n}}\n\n` +
-                            `== Trivia ==\n` +
-                            `[[Image:KnightsArt.jpg|thumb|right|354px|Official randomizer card art.]]\n\n`,
+                            `|text = At the start...\n` +
+                            `|text2 = This is gained ...\n}}\n\n`,
                     },
                 ],
             };
-            const expected: CardDto = {
-                ...nullCardDto,
-                id: cardTypePage.pageid,
+            const expected: CardDtoV2 = {
+                ...nullCardDtoV2,
+                id: '5225',
                 name: 'Knights',
-                description: `Shuffle the Knights...`,
+                description: `At the start...{{divline}}This is gained ...`,
                 image: 'KnightsArt.jpg',
-                wikiUrl: '',
-                expansions: [156],
-                types: [216, 219, 577],
+                illustrator: 'Matthias Catrein',
+                wikiUrl: 'https://wiki.dominionstrategy.com/index.php/Knights',
+                editions: ['237'],
+                types: ['241', '242', '251'],
                 isKingdomCard: true,
                 cost: 5,
             };
 
-            const actual = cardDtoBuilder.build(cardTypePage, cardExpansionsMap, cardTypes);
+            const actual = cardDtoBuilder.buildFromCargo(
+                cargoCard,
+                cardTypePage,
+                editions,
+                cardTypesV2,
+            );
 
-            expect(actual).toEqual(expected);
-        });
-
-        it('without infobox in cardTypePage should return null', () => {
-            const cardTypePage: CardTypePage = {
-                ...nullCardPage,
-                pageid: 216,
-                title: 'Action',
-                revisions: [
-                    {
-                        '*': '',
-                    },
-                ],
-            };
-
-            const actual = cardDtoBuilder.build(cardTypePage, cardExpansionsMap, cardTypes);
-
-            expect(actual).toBeNull();
+            expect(actual).toEqual(jasmine.objectContaining(expected));
         });
     });
 });
