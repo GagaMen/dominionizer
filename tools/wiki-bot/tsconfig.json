@@ -1,9 +1,8 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "./out-tsc/wiki-bot",
-        "module": "CommonJS",
-        "typeRoots": ["./node_modules/@types", "./typings"]
+        "outDir": "./out-tsc",
+        "noEmit": true
     },
-    "files": ["src/main.ts"]
+    "include": ["src/**/*.ts"]
 }

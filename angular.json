@@ -332,7 +332,7 @@
                     "options": {
                         "polyfills": ["zone.js", "zone.js/testing", "@angular/localize/init"],
                         "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.js",
+                        "karmaConfig": "karma.conf.cjs",
                         "styles": ["src/scss/styles.scss"],
                         "scripts": [],
                         "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],

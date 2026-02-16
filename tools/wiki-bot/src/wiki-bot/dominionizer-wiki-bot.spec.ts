@@ -27,7 +27,7 @@ import {
     ContentPage,
 } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
-import Fs from 'fs/promises';
+import * as fs from 'fs';
 import { CardType } from '../../../../src/app/models/card-type';
 import { ValidationResult } from './validation/validation-result';
 import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
@@ -170,9 +170,9 @@ describe('DominionizerWikiBot', () => {
         imagesValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
         imagesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
-        writeFileSpy = spyOn(Fs, 'writeFile');
+        writeFileSpy = spyOn(fs.promises, 'writeFile');
 
-        readFileSpy = spyOn(Fs, 'readFile');
+        readFileSpy = spyOn(fs.promises, 'readFile');
         readFileSpy
             .withArgs('./last-generation.json', 'utf8')
             .and.resolveTo(JSON.stringify(lastGenerationTime));

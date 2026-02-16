@@ -14,7 +14,6 @@ import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder'
 import { CardDto } from './../../../../src/app/dtos/card-dto';
 import { CardDtoBuilder } from './builder/card-dto-builder';
 import { ExpansionTranslationBuilder } from './builder/expansion-translation-builder';
-import { readFile, writeFile } from 'fs/promises';
 import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
 import { ExpansionBuilder } from './builder/expansion-builder';
 import { WikiClient } from './wiki-client/wiki-client';
@@ -26,7 +25,7 @@ import {
     ChangedImagePage,
 } from './wiki-client/api-models';
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
-import { mkdir } from 'fs/promises';
+import * as fs from 'fs';
 import { ValidationResult } from './validation/validation-result';
 import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
 import { normalize } from './builder/helper-functions';
@@ -118,13 +117,19 @@ export class DominionizerWikiBot {
     }
 
     private async readLastGenerationTime(): Promise<Date> {
-        const lastGenerationTimeJsonString = await readFile('./last-generation.json', 'utf8');
+        const lastGenerationTimeJsonString = await fs.promises.readFile(
+            './last-generation.json',
+            'utf8',
+        );
 
         return new Date(JSON.parse(lastGenerationTimeJsonString) as string);
     }
 
     private async writeCurrentGenerationTime(): Promise<void> {
-        await writeFile('./last-generation.json', JSON.stringify(this.currentGenerationTime));
+        await fs.promises.writeFile(
+            './last-generation.json',
+            JSON.stringify(this.currentGenerationTime),
+        );
     }
 
     private groupChangedImagePagesByCategory(
@@ -174,7 +179,10 @@ export class DominionizerWikiBot {
     }
 
     private async writeExpansions(expansions: Expansion[]): Promise<void> {
-        await writeFile(`${this.targetPath}/data/expansions.json`, JSON.stringify(expansions));
+        await fs.promises.writeFile(
+            `${this.targetPath}/data/expansions.json`,
+            JSON.stringify(expansions),
+        );
     }
 
     private generateExpansionTranslations(
@@ -213,7 +221,7 @@ export class DominionizerWikiBot {
         expansionTranslations: Map<string, ExpansionTranslation[]>,
     ): Promise<void> {
         for (const [language, translationsByLanguage] of expansionTranslations) {
-            await writeFile(
+            await fs.promises.writeFile(
                 `${this.targetPath}/data/expansions.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
@@ -240,7 +248,10 @@ export class DominionizerWikiBot {
     }
 
     private async writeCardTypes(cardTypes: CardType[]): Promise<void> {
-        await writeFile(`${this.targetPath}/data/card-types.json`, JSON.stringify(cardTypes));
+        await fs.promises.writeFile(
+            `${this.targetPath}/data/card-types.json`,
+            JSON.stringify(cardTypes),
+        );
     }
 
     private generateCardTypeTranslations(
@@ -275,7 +286,7 @@ export class DominionizerWikiBot {
         cardTypeTranslations: Map<string, CardTypeTranslation[]>,
     ): Promise<void> {
         for (const [language, translationsByLanguage] of cardTypeTranslations) {
-            await writeFile(
+            await fs.promises.writeFile(
                 `${this.targetPath}/data/card-types.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
@@ -393,7 +404,7 @@ export class DominionizerWikiBot {
     }
 
     private async writeCards(cards: CardDto[]): Promise<void> {
-        await writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
+        await fs.promises.writeFile(`${this.targetPath}/data/cards.json`, JSON.stringify(cards));
     }
 
     private generateCardTranslations(cardPages: CardPage[]): Map<string, CardTranslation[]> {
@@ -426,7 +437,7 @@ export class DominionizerWikiBot {
         cardTranslations: Map<string, CardTranslation[]>,
     ): Promise<void> {
         for (const [language, translationsByLanguage] of cardTranslations) {
-            await writeFile(
+            await fs.promises.writeFile(
                 `${this.targetPath}/data/cards.${language.toLowerCase()}.json`,
                 JSON.stringify(translationsByLanguage),
             );
@@ -443,7 +454,7 @@ export class DominionizerWikiBot {
     ): Promise<EncodedImage[]> {
         console.log(`Generating ${subFolder.replace('_', ' ')}...`);
 
-        await mkdir(`${this.targetPath}/assets/${subFolder}`, { recursive: true });
+        await fs.promises.mkdir(`${this.targetPath}/assets/${subFolder}`, { recursive: true });
 
         const images: EncodedImage[] = [];
         for (const imagePage of imagePages) {
@@ -452,7 +463,7 @@ export class DominionizerWikiBot {
 
             images.push(encodedImage);
 
-            await writeFile(
+            await fs.promises.writeFile(
                 `${this.targetPath}/assets/${subFolder}/${encodedImage.fileName}`,
                 encodedImage.data,
             );
