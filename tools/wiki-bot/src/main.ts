@@ -54,7 +54,12 @@ async function bootstrap(): Promise<void> {
 
     const currentGenerationTime = new Date();
     const targetPath = '../../src';
-    const wikiClient = new WikiClient(axiosInstance);
+    const wikiClient = new WikiClient(
+        axiosInstance,
+        'https://wiki.dominionstrategy.com/api.php',
+        '',
+        500,
+    );
     const expansionBuilder = new ExpansionBuilder();
     const expansionTranlationBuilder = new ExpansionTranslationBuilder();
     const expansionCardsMapBuilder = new ExpansionCardsMapBuilder();
