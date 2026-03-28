@@ -4,3 +4,5 @@ export interface Edition {
     edition: string;
     icon: string;
 }
+
+export type EditionTranslation = Pick<Edition, 'id' | 'expansion'>;
