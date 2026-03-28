@@ -1,9 +1,16 @@
-import { CardTranslation } from '../../../../../src/app/models/card';
-import { CardPage, CardTypePage, WikiText } from '../wiki-client/api-models';
+import { CardTranslation, CardTranslationV2 } from '../../../../../src/app/models/card';
+import { CardPage, CardTypePage, CargoCard, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 
 export class CardTranslationBuilder {
-    build(page: CardPage | CardTypePage): Map<string, CardTranslation> {
+    build(_page: CardPage | CardTypePage): Map<string, CardTranslation> {
+        return new Map();
+    }
+
+    buildFromCargo(
+        page: CardPage | CardTypePage,
+        cargoCard: CargoCard,
+    ): Map<string, CardTranslationV2> {
         const wikiText: WikiText = page.revisions[0]['*'] ?? '';
         const otherLanguageVersions: WikiText = extractSection(
             wikiText,
@@ -16,7 +23,7 @@ export class CardTranslationBuilder {
         // remove html comments and table header
         const tableBody = table.replace(/<!--.*?-->/gs, '').substring(table.indexOf('|-'));
 
-        const translations = new Map<string, CardTranslation>();
+        const translations = new Map<string, CardTranslationV2>();
 
         const rowRegex = /![^!]*/g;
         let languageVersion: RegExpExecArray | null;
@@ -33,7 +40,7 @@ export class CardTranslationBuilder {
             );
 
             translations.set(normalize(language), {
-                id: page.pageid,
+                id: cargoCard.Id,
                 name: cardName,
                 description: cardDescription,
             });

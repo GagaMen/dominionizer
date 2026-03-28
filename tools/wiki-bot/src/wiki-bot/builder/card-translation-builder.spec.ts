@@ -1,5 +1,5 @@
-import { CardTranslation } from '../../../../../src/app/models/card';
-import { CardPage, CardTypePage } from '../wiki-client/api-models';
+import { CardTranslationV2 } from '../../../../../src/app/models/card';
+import { CardPage, CardTypePage, CargoCard } from '../wiki-client/api-models';
 import { CardTranslationBuilder } from './card-translation-builder';
 
 describe('CardTranslationBuilder', () => {
@@ -12,11 +12,27 @@ describe('CardTranslationBuilder', () => {
         revisions: [],
     };
 
+    const nullCargoCard: CargoCard = {
+        Id: '',
+        PageId: '',
+        Name: '',
+        Expansion: '',
+        Purpose: '',
+        CostCoin: '',
+        CostPotion: '',
+        CostDebt: '',
+        CostExtra: '',
+        Art: '',
+        Illustrator: '',
+        Edition: '',
+        Types: '',
+    };
+
     beforeEach(() => {
         cardTranslationBuilder = new CardTranslationBuilder();
     });
 
-    describe('build', () => {
+    describe('buildFromCargo', () => {
         it('with basic translation should return correct translations', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
@@ -35,11 +51,16 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected = new Map<string, CardTranslation>([
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                Id: '42',
+                PageId: '247',
+            };
+            const expected = new Map<string, CardTranslationV2>([
                 [
                     'German',
                     {
-                        id: cardPage.pageid,
+                        id: '42',
                         name: 'Platin',
                         description: `{{Cost|5|xl|}}`,
                     },
@@ -47,14 +68,14 @@ describe('CardTranslationBuilder', () => {
                 [
                     'Polish',
                     {
-                        id: cardPage.pageid,
+                        id: '42',
                         name: '{{nowrap|Platyna}}',
                         description: `{{Cost|5}}`,
                     },
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -77,11 +98,16 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected = new Map<string, CardTranslation>([
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                Id: '200',
+                PageId: '6107',
+            };
+            const expected = new Map<string, CardTranslationV2>([
                 [
                     'Dutch',
                     {
-                        id: cardTypePage.pageid,
+                        id: '200',
                         name: 'Project',
                         description: `Project`,
                     },
@@ -89,14 +115,14 @@ describe('CardTranslationBuilder', () => {
                 [
                     'German',
                     {
-                        id: cardTypePage.pageid,
+                        id: '200',
                         name: 'Projekt',
                         description: ``,
                     },
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardTypePage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardTypePage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -116,17 +142,18 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '10' };
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         name: 'Burggraben',
                         description: `'''+2 Karten'''`,
                     }),
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -146,17 +173,18 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '11' };
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         name: 'Geldversteck',
                         description: `{{Cost|2|l}}...`,
                     }),
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -176,16 +204,17 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '12' };
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         description: '',
                     }),
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -205,16 +234,17 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '13' };
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         description: `'''+1 Karte'''<br>Ignoriere...`,
                     }),
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -236,22 +266,23 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '14' };
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         description: `'''+1 Karte'''{{divline}}Ignoriere...`,
                     }),
                 ],
                 [
                     'French',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         description: `{{Cost|6|l}}{{divline}}Lorsque vous...`,
                     }),
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -271,17 +302,18 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '15' };
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    jasmine.objectContaining<CardTranslationV2>({
                         name: 'Wache',
                         description: `+{{Cost|2}}...`,
                     }),
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -302,11 +334,12 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '16' };
             const expected = new Map([
-                ['German', jasmine.objectContaining<CardTranslation>({ description: '' })],
+                ['German', jasmine.objectContaining<CardTranslationV2>({ description: '' })],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -334,11 +367,12 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected = new Map<string, CardTranslation>([
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '17' };
+            const expected = new Map<string, CardTranslationV2>([
                 [
                     'German',
                     {
-                        id: cardPage.pageid,
+                        id: '17',
                         name: 'Brücke',
                         description: `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten...`,
                     },
@@ -346,14 +380,14 @@ describe('CardTranslationBuilder', () => {
                 [
                     'Russian',
                     {
-                        id: cardPage.pageid,
+                        id: '17',
                         name: 'Мост',
                         description: `'''+1 Покупка'''<br>+{{Cost|1}}В этом...`,
                     },
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -375,14 +409,12 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '18' };
             const expected = new Map([
-                [
-                    'German',
-                    { id: cardPage.pageid, name: 'Große Halle', description: jasmine.anything() },
-                ],
+                ['German', { id: '18', name: 'Große Halle', description: jasmine.anything() }],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });
@@ -410,11 +442,12 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const expected = new Map<string, CardTranslation>([
+            const cargoCard: CargoCard = { ...nullCargoCard, Id: '19' };
+            const expected = new Map<string, CardTranslationV2>([
                 [
                     'German',
                     {
-                        id: cardPage.pageid,
+                        id: '19',
                         name: 'Brücke',
                         description: `'''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten...`,
                     },
@@ -422,14 +455,14 @@ describe('CardTranslationBuilder', () => {
                 [
                     'Russian',
                     {
-                        id: cardPage.pageid,
+                        id: '19',
                         name: 'Мост',
                         description: `'''+1 Покупка'''<br>+{{Cost|1}}В этом...`,
                     },
                 ],
             ]);
 
-            const actual = cardTranslationBuilder.build(cardPage);
+            const actual = cardTranslationBuilder.buildFromCargo(cardPage, cargoCard);
 
             expect(actual).toEqual(expected);
         });

@@ -31,7 +31,7 @@ export interface Card {
 }
 
 export interface CardV2 {
-    id: number;
+    id: string;
     name: string;
     description: string;
     image: string;
@@ -47,3 +47,5 @@ export interface CardV2 {
 }
 
 export type CardTranslation = Pick<Card, 'id' | 'name' | 'description'>;
+
+export type CardTranslationV2 = Pick<CardV2, 'id' | 'name' | 'description'>;
