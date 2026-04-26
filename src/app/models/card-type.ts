@@ -11,6 +11,8 @@ export interface CardTypeV2 {
 
 export type CardTypeTranslation = Pick<CardType, 'id' | 'name'>;
 
+export type CardTypeTranslationV2 = Pick<CardTypeV2, 'id' | 'name'>;
+
 export enum CardTypeId {
     Curse = 212,
     Action = 216,

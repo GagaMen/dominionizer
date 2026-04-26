@@ -1,5 +1,11 @@
 import { CardTranslation, CardTranslationV2 } from '../../../../../src/app/models/card';
-import { CardPage, CardTypePage, CargoCard, WikiText } from '../wiki-client/api-models';
+import {
+    CardPage,
+    CardTypePage,
+    CargoCard,
+    CargoCardType,
+    WikiText,
+} from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 
 export class CardTranslationBuilder {
@@ -9,7 +15,7 @@ export class CardTranslationBuilder {
 
     buildFromCargo(
         page: CardPage | CardTypePage,
-        cargoCard: CargoCard,
+        cargoCard: CargoCard | CargoCardType,
     ): Map<string, CardTranslationV2> {
         const wikiText: WikiText = page.revisions[0]['*'] ?? '';
         const otherLanguageVersions: WikiText = extractSection(
