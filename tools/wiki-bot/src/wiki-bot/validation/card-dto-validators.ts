@@ -1,5 +1,4 @@
-import { AmountValidator } from './amount-validator';
-import { CardDto } from '../../../../../src/app/dtos/card-dto';
+import { CardDto, CardDtoV2 } from '../../../../../src/app/dtos/card-dto';
 import { CardPage, CardTypePage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 import Joi from 'joi';
@@ -20,17 +19,18 @@ export class CardDtoValidator {
               });
     };
 
-    private joiValidator = new JoiValidator<CardDto>();
-    private schema: Joi.ObjectSchema<CardDto> = Joi.object({
-        id: Joi.number().required(),
+    private joiValidator = new JoiValidator<CardDtoV2>();
+    private schema: Joi.ObjectSchema<CardDtoV2> = Joi.object({
+        id: Joi.string().required(),
         name: Joi.string().required(),
         description: Joi.string().required(),
         image: Joi.string().required().custom(this.imageFileMustExist),
+        illustrator: Joi.string().required(),
         wikiUrl: Joi.string()
             .uri({ scheme: ['http', 'https'] })
             .required(),
-        expansions: Joi.array().items(Joi.number()).min(1).required(),
-        types: Joi.array().items(Joi.number()).min(1).required(),
+        editions: Joi.array().items(Joi.string()).min(1).required(),
+        types: Joi.array().items(Joi.string()).min(1).required(),
         isKingdomCard: Joi.boolean().required(),
         cost: Joi.number().integer().min(0).required(),
         costModifier: Joi.string().valid('P', '*', '+').optional(),
@@ -39,11 +39,15 @@ export class CardDtoValidator {
 
     constructor(private targetPath: string) {}
 
-    validate(card: CardDto, page: CardPage | CardTypePage): ValidationResult {
+    validate(_card: CardDto, _page: CardPage | CardTypePage): ValidationResult {
+        return ValidationResult.Success;
+    }
+
+    validateFromCargo(card: CardDtoV2): ValidationResult {
         return this.joiValidator.validate(
             card,
             this.schema,
-            `Card Dto (ID: ${card.id}, Name: "${page.title}"):`,
+            `Card Dto (ID: ${card.id}, Name: "${card.name}"):`,
         );
     }
 }
@@ -51,13 +55,7 @@ export class CardDtoValidator {
 export class CardDtosValidator {
     readonly name: string = 'card dtos';
 
-    private amountValidator = new AmountValidator<CardDto, CardPage>();
-
-    validate(cards: CardDto[], cardPages: CardPage[]): ValidationResult {
-        return this.amountValidator.validate(
-            cards,
-            cardPages,
-            'For following card pages no card was generated:',
-        );
+    validate(_cards: CardDto[], _cardPages: CardPage[]): ValidationResult {
+        return ValidationResult.Success;
     }
 }

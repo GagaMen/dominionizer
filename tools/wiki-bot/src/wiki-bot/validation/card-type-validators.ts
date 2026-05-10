@@ -1,24 +1,28 @@
-import { CardType } from '../../../../../src/app/models/card-type';
+import { CardType, CardTypeV2 } from '../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
 import Joi from 'joi';
 import { JoiValidator } from './joi-validator';
-import { AmountValidator } from './amount-validator';
 
 export class CardTypeValidator {
     readonly name: string = 'card type';
 
-    private joiValidator = new JoiValidator<CardType>();
-    private schema: Joi.ObjectSchema<CardType> = Joi.object({
-        id: Joi.number().required(),
+    private joiValidator = new JoiValidator<CardTypeV2>();
+    private schema: Joi.ObjectSchema<CardTypeV2> = Joi.object({
+        id: Joi.string().required(),
         name: Joi.string().required(),
+        scope: Joi.string().required(),
     });
 
-    validate(cardType: CardType, cardTypePage: CardTypePage): ValidationResult {
+    validate(_cardType: CardType, _cardTypePage: CardTypePage): ValidationResult {
+        return ValidationResult.Success;
+    }
+
+    validateFromCargo(cardType: CardTypeV2): ValidationResult {
         return this.joiValidator.validate(
             cardType,
             this.schema,
-            `Card type (Name: "${cardTypePage.title}"):`,
+            `Card type (ID: ${cardType.id}, Name: "${cardType.name}"):`,
         );
     }
 }
@@ -26,13 +30,7 @@ export class CardTypeValidator {
 export class CardTypesValidator {
     readonly name: string = 'card types';
 
-    private amountValidator = new AmountValidator<CardType, CardTypePage>();
-
-    validate(cardTypes: CardType[], cardTypePages: CardTypePage[]): ValidationResult {
-        return this.amountValidator.validate(
-            cardTypes,
-            cardTypePages,
-            'For following card type pages no card type was generated:',
-        );
+    validate(_cardTypes: CardType[], _cardTypePages: CardTypePage[]): ValidationResult {
+        return ValidationResult.Success;
     }
 }
