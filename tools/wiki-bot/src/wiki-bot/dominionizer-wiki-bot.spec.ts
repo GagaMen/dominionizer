@@ -1,22 +1,17 @@
 import { CardTranslationValidator } from './validation/card-translation-validators';
 import { ImagesValidator } from './validation/image-validators';
 import { CardTypeTranslationValidator } from './validation/card-type-translation-validators';
-import { ExpansionTranslationValidator } from './validation/expansion-translation-validators';
-import { CardDtoValidator, CardDtosValidator } from './validation/card-dto-validators';
-import { ExpansionValidator, ExpansionsValidator } from './validation/expansion-validators';
-import { CardTypeValidator, CardTypesValidator } from './validation/card-type-validators';
-import { CardTypeId, CardTypeTranslation } from './../../../../src/app/models/card-type';
+import { EditionTranslationValidator } from './validation/edition-translation-validators';
+import { EditionValidator } from './validation/edition-validators';
+import { CardDtoValidator } from './validation/card-dto-validators';
+import { CardTypeValidator } from './validation/card-type-validators';
 import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { ImageBuilder, EncodedImage } from './builder/image-builder';
 import { CardTranslationBuilder } from './builder/card-translation-builder';
-import { CardTranslation } from './../../../../src/app/models/card';
-import { ExpansionCardsMapBuilder } from './builder/expansion-cards-map-builder';
-import { CardDto } from './../../../../src/app/dtos/card-dto';
 import { CardDtoBuilder } from './builder/card-dto-builder';
-import { ExpansionTranslationBuilder } from './builder/expansion-translation-builder';
-import { Expansion, ExpansionTranslation } from './../../../../src/app/models/expansion';
-import { ExpansionBuilder } from './builder/expansion-builder';
+import { EditionTranslationBuilder } from './builder/edition-translation-builder';
+import { EditionBuilder } from './builder/edition-builder';
 import { DominionizerWikiBot } from './dominionizer-wiki-bot';
 import {
     ExpansionPage,
@@ -24,14 +19,17 @@ import {
     ImagePage,
     CardTypePage,
     ChangedImagePage,
-    ContentPage,
+    CargoEdition,
+    CargoCard,
+    CargoCardType,
 } from './wiki-client/api-models';
 import { WikiClient } from './wiki-client/wiki-client';
 import * as fs from 'fs';
-import { CardType } from '../../../../src/app/models/card-type';
+import { Edition, EditionTranslation } from '../../../../src/app/models/edition';
+import { CardTypeV2, CardTypeTranslationV2 } from '../../../../src/app/models/card-type';
+import { CardDtoV2 } from '../../../../src/app/dtos/card-dto';
+import { CardTranslationV2 } from '../../../../src/app/models/card';
 import { ValidationResult } from './validation/validation-result';
-import { SplitPileDependencyBuilder } from './builder/split-pile-dependency-builder';
-import { DataFixture } from '../../../../src/testing/data-fixture';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -39,46 +37,43 @@ describe('DominionizerWikiBot', () => {
     let currentGenerationTime: Date;
     let targetPath: string;
     let wikiClientSpy: jasmine.SpyObj<WikiClient>;
-    let expansionBuilderSpy: jasmine.SpyObj<ExpansionBuilder>;
-    let expansionTranslationBuilderSpy: jasmine.SpyObj<ExpansionTranslationBuilder>;
+    let editionBuilderSpy: jasmine.SpyObj<EditionBuilder>;
+    let editionTranslationBuilderSpy: jasmine.SpyObj<EditionTranslationBuilder>;
     let cardTypeBuilderSpy: jasmine.SpyObj<CardTypeBuilder>;
     let cardTypeTranslationBuilderSpy: jasmine.SpyObj<CardTypeTranslationBuilder>;
-    let expansionCardsMapBuilderSpy: jasmine.SpyObj<ExpansionCardsMapBuilder>;
     let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
-    let splitPileDependencyBuilderSpy: jasmine.SpyObj<SplitPileDependencyBuilder>;
     let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
     let imageBuilderSpy: jasmine.SpyObj<ImageBuilder>;
-    let expansionValidatorSpy: jasmine.SpyObj<ExpansionValidator>;
-    let expansionsValidatorSpy: jasmine.SpyObj<ExpansionsValidator>;
-    let expansionTranslationValidatorSpy: jasmine.SpyObj<ExpansionTranslationValidator>;
+    let editionValidatorSpy: jasmine.SpyObj<EditionValidator>;
+    let editionTranslationValidatorSpy: jasmine.SpyObj<EditionTranslationValidator>;
     let cardTypeValidatorSpy: jasmine.SpyObj<CardTypeValidator>;
-    let cardTypesValidatorSpy: jasmine.SpyObj<CardTypesValidator>;
     let cardTypeTranslationValidatorSpy: jasmine.SpyObj<CardTypeTranslationValidator>;
     let cardDtoValidatorSpy: jasmine.SpyObj<CardDtoValidator>;
-    let cardDtosValidatorSpy: jasmine.SpyObj<CardDtosValidator>;
     let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
     let imagesValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let writeFileSpy: jasmine.Spy;
     let readFileSpy: jasmine.Spy;
-    let dataFixture: DataFixture;
 
     beforeEach(() => {
-        dataFixture = new DataFixture();
-
         lastGenerationTime = new Date('2022-09-03T09:18:53.321Z');
         currentGenerationTime = new Date();
 
         targetPath = '.';
 
         wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
+            'fetchAllEditions',
+            'fetchAllCardTypes',
+            'fetchAllCards',
             'fetchAllExpansionPages',
             'fetchAllCardTypePages',
             'fetchAllCardPages',
             'fetchAllCardSymbolPages',
             'fetchAllCardArtPages',
             'fetchRecentImageChanges',
-            'fetchSingleContentPage',
         ]);
+        wikiClientSpy.fetchAllEditions.and.resolveTo([]);
+        wikiClientSpy.fetchAllCardTypes.and.resolveTo([]);
+        wikiClientSpy.fetchAllCards.and.resolveTo([]);
         wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
         wikiClientSpy.fetchAllCardPages.and.resolveTo([]);
@@ -86,87 +81,76 @@ describe('DominionizerWikiBot', () => {
         wikiClientSpy.fetchAllCardArtPages.and.resolveTo([]);
         wikiClientSpy.fetchRecentImageChanges.and.resolveTo([]);
 
-        expansionBuilderSpy = jasmine.createSpyObj<ExpansionBuilder>('ExpansionBuilder', ['build']);
-        expansionBuilderSpy.build.and.returnValue([]);
+        editionBuilderSpy = jasmine.createSpyObj<EditionBuilder>('EditionBuilder', ['build']);
+        editionBuilderSpy.build.and.returnValue({ id: '' } as unknown as Edition);
 
-        expansionTranslationBuilderSpy = jasmine.createSpyObj<ExpansionTranslationBuilder>(
-            'ExpansionTranslationBuilder',
+        editionTranslationBuilderSpy = jasmine.createSpyObj<EditionTranslationBuilder>(
+            'EditionTranslationBuilder',
             ['build'],
         );
-        expansionTranslationBuilderSpy.build.and.returnValue(new Map());
+        editionTranslationBuilderSpy.build.and.returnValue(new Map());
 
-        cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', ['build']);
-        cardTypeBuilderSpy.build.and.returnValue({} as CardType);
+        cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', [
+            'build',
+            'buildFromCargo',
+        ]);
+        cardTypeBuilderSpy.buildFromCargo.and.returnValue({ id: '' } as unknown as CardTypeV2);
 
         cardTypeTranslationBuilderSpy = jasmine.createSpyObj<CardTypeTranslationBuilder>(
-            'CardTypeTranslationBuilde',
-            ['build'],
+            'CardTypeTranslationBuilder',
+            ['build', 'buildFromCargo'],
         );
-        cardTypeTranslationBuilderSpy.build.and.returnValue(new Map());
+        cardTypeTranslationBuilderSpy.buildFromCargo.and.returnValue(new Map());
 
-        expansionCardsMapBuilderSpy = jasmine.createSpyObj<ExpansionCardsMapBuilder>(
-            'ExpansionCardsMapBuilder',
-            ['buildWithExpansionPage', 'buildWithCardTypePage'],
-        );
-        expansionCardsMapBuilderSpy.buildWithExpansionPage.and.returnValue(new Map());
-        expansionCardsMapBuilderSpy.buildWithCardTypePage.and.returnValue(new Map());
-
-        cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
-        cardDtoBuilderSpy.build.and.returnValue(null);
-
-        splitPileDependencyBuilderSpy = jasmine.createSpyObj<SplitPileDependencyBuilder>(
-            'SplitPileDependencyBuilder',
-            ['build'],
-        );
-        splitPileDependencyBuilderSpy.build.and.returnValue([]);
+        cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', [
+            'build',
+            'buildFromCargo',
+        ]);
+        cardDtoBuilderSpy.buildFromCargo.and.returnValue({ id: '' } as unknown as CardDtoV2);
 
         cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
             'CardTranslationBuilder',
-            ['build'],
+            ['build', 'buildFromCargo'],
         );
-        cardTranslationBuilderSpy.build.and.returnValue(new Map());
+        cardTranslationBuilderSpy.buildFromCargo.and.returnValue(new Map());
 
         imageBuilderSpy = jasmine.createSpyObj<ImageBuilder>('ImageBuilder', ['build']);
 
-        expansionValidatorSpy = jasmine.createSpyObj<ExpansionValidator>('ExpansionValidator', [
+        editionValidatorSpy = jasmine.createSpyObj<EditionValidator>('EditionValidator', [
             'validate',
         ]);
-        expansionValidatorSpy.validate.and.returnValue(ValidationResult.Success);
-        expansionsValidatorSpy = jasmine.createSpyObj<ExpansionsValidator>('ExpansionsValidator', [
-            'validate',
-        ]);
-        expansionsValidatorSpy.validate.and.returnValue(ValidationResult.Success);
-        expansionTranslationValidatorSpy = jasmine.createSpyObj<ExpansionTranslationValidator>(
-            'ExpansionTranslationValidator',
+        editionValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
+        editionTranslationValidatorSpy = jasmine.createSpyObj<EditionTranslationValidator>(
+            'EditionTranslationValidator',
             ['validate'],
         );
-        expansionTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        editionTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
         cardTypeValidatorSpy = jasmine.createSpyObj<CardTypeValidator>('CardTypeValidator', [
             'validate',
+            'validateFromCargo',
         ]);
-        cardTypeValidatorSpy.validate.and.returnValue(ValidationResult.Success);
-        cardTypesValidatorSpy = jasmine.createSpyObj<CardTypesValidator>('CardTypesValidator', [
-            'validate',
-        ]);
-        cardTypesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypeValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+
         cardTypeTranslationValidatorSpy = jasmine.createSpyObj<CardTypeTranslationValidator>(
             'CardTypeTranslationValidator',
-            ['validate'],
+            ['validate', 'validateFromCargo'],
         );
-        cardTypeTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypeTranslationValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+
         cardDtoValidatorSpy = jasmine.createSpyObj<CardDtoValidator>('CardDtoValidator', [
             'validate',
+            'validateFromCargo',
         ]);
-        cardDtoValidatorSpy.validate.and.returnValue(ValidationResult.Success);
-        cardDtosValidatorSpy = jasmine.createSpyObj<CardDtosValidator>('CardDtosValidator', [
-            'validate',
-        ]);
-        cardDtosValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardDtoValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+
         cardTranslationValidatorSpy = jasmine.createSpyObj<CardTranslationValidator>(
             'CardTranslationValidator',
-            ['validate'],
+            ['validate', 'validateFromCargo'],
         );
-        cardTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTranslationValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+
         imagesValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
         imagesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
@@ -183,23 +167,18 @@ describe('DominionizerWikiBot', () => {
             currentGenerationTime,
             targetPath,
             wikiClientSpy,
-            expansionBuilderSpy,
-            expansionTranslationBuilderSpy,
+            editionBuilderSpy,
+            editionTranslationBuilderSpy,
             cardTypeBuilderSpy,
             cardTypeTranslationBuilderSpy,
-            expansionCardsMapBuilderSpy,
             cardDtoBuilderSpy,
-            splitPileDependencyBuilderSpy,
             cardTranslationBuilderSpy,
             imageBuilderSpy,
-            expansionValidatorSpy,
-            expansionsValidatorSpy,
-            expansionTranslationValidatorSpy,
+            editionValidatorSpy,
+            editionTranslationValidatorSpy,
             cardTypeValidatorSpy,
-            cardTypesValidatorSpy,
             cardTypeTranslationValidatorSpy,
             cardDtoValidatorSpy,
-            cardDtosValidatorSpy,
             cardTranslationValidatorSpy,
             imagesValidatorSpy,
         );
@@ -215,113 +194,115 @@ describe('DominionizerWikiBot', () => {
             );
         });
 
-        it('should generate expansions', async () => {
-            const expansionPages: ExpansionPage[] = [
-                { pageid: 2 } as ExpansionPage,
-                { pageid: 1 } as ExpansionPage,
+        it('should generate editions', async () => {
+            const cargoEditions: CargoEdition[] = [
+                { Id: 'base-2e', Expansion: 'Dominion', Edition: '2', Icon: 'dom2e.png' },
+                { Id: 'base-1e', Expansion: 'Dominion', Edition: '1', Icon: 'dom1e.png' },
             ];
-            const expansions: Expansion[] = [{ id: 1 } as Expansion, { id: 2 } as Expansion];
-            wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
-            expansionBuilderSpy.build.withArgs(expansionPages[0]).and.returnValue([expansions[1]]);
-            expansionBuilderSpy.build.withArgs(expansionPages[1]).and.returnValue([expansions[0]]);
+            const editions: Edition[] = [
+                { id: 'base-1e', expansion: 'Dominion', edition: '1', icon: 'dom1e.png' },
+                { id: 'base-2e', expansion: 'Dominion', edition: '2', icon: 'dom2e.png' },
+            ];
+            wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
+            editionBuilderSpy.build.withArgs(cargoEditions[0]).and.returnValue(editions[1]);
+            editionBuilderSpy.build.withArgs(cargoEditions[1]).and.returnValue(editions[0]);
 
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/data/expansions.json`,
-                JSON.stringify(expansions),
+                `${targetPath}/data/editions.json`,
+                JSON.stringify(editions),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(expansionValidatorSpy.validate).toHaveBeenCalledWith(
-                expansions[0],
-                expansionPages[1],
-            );
-            expect(expansionValidatorSpy.validate).toHaveBeenCalledWith(
-                expansions[1],
-                expansionPages[0],
-            );
-            expect(expansionsValidatorSpy.validate).toHaveBeenCalledWith(
-                expansions,
-                expansionPages,
-            );
+            expect(editionValidatorSpy.validate).toHaveBeenCalledWith(editions[0]);
+            expect(editionValidatorSpy.validate).toHaveBeenCalledWith(editions[1]);
             /* eslint-enable */
         });
 
-        it('should generate expansion translations', async () => {
+        it('should generate edition translations', async () => {
+            const cargoEditions: CargoEdition[] = [
+                { Id: 'base-1e', Expansion: 'Dominion', Edition: '1', Icon: 'dom1e.png' },
+                { Id: 'intrigue-1e', Expansion: 'Intrigue', Edition: '1', Icon: 'intr1e.png' },
+            ];
             const expansionPages: ExpansionPage[] = [
-                { pageid: 2 } as ExpansionPage,
-                { pageid: 1 } as ExpansionPage,
+                { pageid: 1, title: 'Dominion' } as ExpansionPage,
+                { pageid: 2, title: 'Intrigue' } as ExpansionPage,
             ];
-            const firstExpansionTranslations = new Map<string, ExpansionTranslation>([
-                ['German', { id: 1, name: 'german title' }],
-                ['French', { id: 1, name: 'french title' }],
+            const dominionTranslations = new Map<string, EditionTranslation[]>([
+                ['German', [{ id: 'base-1e', expansion: 'Dominion' }]],
+                ['French', [{ id: 'base-1e', expansion: 'Dominion' }]],
             ]);
-            const secondExpansionTranslations = new Map<string, ExpansionTranslation>([
-                ['German', { id: 2, name: 'german title' }],
-                ['French', { id: 2, name: 'french title' }],
+            const intrigueTranslations = new Map<string, EditionTranslation[]>([
+                ['German', [{ id: 'intrigue-1e', expansion: 'Die Intrige' }]],
+                ['French', [{ id: 'intrigue-1e', expansion: "L'Intrigue" }]],
             ]);
-            const germanTranslations: ExpansionTranslation[] = [
-                { id: 1, name: 'german title' },
-                { id: 2, name: 'german title' },
+            const germanTranslations: EditionTranslation[] = [
+                { id: 'base-1e', expansion: 'Dominion' },
+                { id: 'intrigue-1e', expansion: 'Die Intrige' },
             ];
-            const frenchTranslations: ExpansionTranslation[] = [
-                { id: 1, name: 'french title' },
-                { id: 2, name: 'french title' },
+            const frenchTranslations: EditionTranslation[] = [
+                { id: 'base-1e', expansion: 'Dominion' },
+                { id: 'intrigue-1e', expansion: "L'Intrigue" },
             ];
+            wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
-            expansionTranslationBuilderSpy.build
-                .withArgs(expansionPages[0])
-                .and.returnValue(secondExpansionTranslations);
-            expansionTranslationBuilderSpy.build
-                .withArgs(expansionPages[1])
-                .and.returnValue(firstExpansionTranslations);
+            editionTranslationBuilderSpy.build
+                .withArgs(expansionPages[0], [cargoEditions[0]])
+                .and.returnValue(dominionTranslations);
+            editionTranslationBuilderSpy.build
+                .withArgs(expansionPages[1], [cargoEditions[1]])
+                .and.returnValue(intrigueTranslations);
 
             await dominionizerWikiBot.generateAll();
 
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/data/expansions.german.json`,
+                `${targetPath}/data/editions.german.json`,
                 JSON.stringify(germanTranslations),
             );
             expect(writeFileSpy).toHaveBeenCalledWith(
-                `${targetPath}/data/expansions.french.json`,
+                `${targetPath}/data/editions.french.json`,
                 JSON.stringify(frenchTranslations),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(editionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
-                expansionPages[1],
+                cargoEditions[0],
             );
-            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(editionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[1],
                 'German',
-                expansionPages[0],
+                cargoEditions[1],
             );
-            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(editionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 frenchTranslations[0],
                 'French',
-                expansionPages[1],
+                cargoEditions[0],
             );
-            expect(expansionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(editionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 frenchTranslations[1],
                 'French',
-                expansionPages[0],
+                cargoEditions[1],
             );
             /* eslint-enable */
         });
 
         it('should generate card types', async () => {
-            const cardTypePages: CardTypePage[] = [
-                { pageid: CardTypeId.Boon } as CardTypePage,
-                { pageid: CardTypeId.Action } as CardTypePage,
+            const cargoCardTypes: CargoCardType[] = [
+                { Id: 'treasure', Name: 'Treasure', Scope: 'Basic' },
+                { Id: 'action', Name: 'Action', Scope: 'Basic' },
             ];
-            const cardTypes: CardType[] = [
-                { id: CardTypeId.Action, name: 'Card Type 1' },
-                { id: CardTypeId.Boon, name: 'Card Type 2' },
+            const cardTypes: CardTypeV2[] = [
+                { id: 'action', name: 'Action', scope: 'Basic' },
+                { id: 'treasure', name: 'Treasure', scope: 'Basic' },
             ];
-            wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[1]);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[0]);
+            wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
+            cardTypeBuilderSpy.buildFromCargo
+                .withArgs(cargoCardTypes[0])
+                .and.returnValue(cardTypes[1]);
+            cardTypeBuilderSpy.buildFromCargo
+                .withArgs(cargoCardTypes[1])
+                .and.returnValue(cardTypes[0]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -330,46 +311,44 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(cardTypes),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
-                cardTypes[0],
-                cardTypePages[1],
-            );
-            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(
-                cardTypes[1],
-                cardTypePages[0],
-            );
-            expect(cardTypesValidatorSpy.validate).toHaveBeenCalledWith(cardTypes, cardTypePages);
+            expect(cardTypeValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cardTypes[0]);
+            expect(cardTypeValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cardTypes[1]);
             /* eslint-enable */
         });
 
         it('should generate card type translations', async () => {
+            const cargoCardTypes: CargoCardType[] = [
+                { Id: 'action', Name: 'Action', Scope: 'Basic' },
+                { Id: 'treasure', Name: 'Treasure', Scope: 'Basic' },
+            ];
             const cardTypePages: CardTypePage[] = [
-                { pageid: CardTypeId.Boon } as CardTypePage,
-                { pageid: CardTypeId.Action } as CardTypePage,
+                { pageid: 216, title: 'Action' } as CardTypePage,
+                { pageid: 220, title: 'Treasure' } as CardTypePage,
             ];
-            const firstCardTypeTranslations = new Map<string, CardTypeTranslation>([
-                ['German', { id: CardTypeId.Action, name: 'german title - action' }],
-                ['French', { id: CardTypeId.Action, name: 'french title - action' }],
+            const actionTranslations = new Map<string, CardTypeTranslationV2>([
+                ['German', { id: 'action', name: 'Aktion' }],
+                ['French', { id: 'action', name: 'Action' }],
             ]);
-            const secondCardTypeTranslations = new Map<string, CardTypeTranslation>([
-                ['German', { id: CardTypeId.Boon, name: 'german title - boon' }],
-                ['French', { id: CardTypeId.Boon, name: 'french title - boon' }],
+            const treasureTranslations = new Map<string, CardTypeTranslationV2>([
+                ['German', { id: 'treasure', name: 'Geld' }],
+                ['French', { id: 'treasure', name: 'Trésor' }],
             ]);
-            const germanTranslations: CardTypeTranslation[] = [
-                { id: CardTypeId.Action, name: 'german title - action' },
-                { id: CardTypeId.Boon, name: 'german title - boon' },
+            const germanTranslations: CardTypeTranslationV2[] = [
+                { id: 'action', name: 'Aktion' },
+                { id: 'treasure', name: 'Geld' },
             ];
-            const frenchTranslations: CardTypeTranslation[] = [
-                { id: CardTypeId.Action, name: 'french title - action' },
-                { id: CardTypeId.Boon, name: 'french title - boon' },
+            const frenchTranslations: CardTypeTranslationV2[] = [
+                { id: 'action', name: 'Action' },
+                { id: 'treasure', name: 'Trésor' },
             ];
+            wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
-            cardTypeTranslationBuilderSpy.build
-                .withArgs(cardTypePages[0])
-                .and.returnValue(secondCardTypeTranslations);
-            cardTypeTranslationBuilderSpy.build
-                .withArgs(cardTypePages[1])
-                .and.returnValue(firstCardTypeTranslations);
+            cardTypeTranslationBuilderSpy.buildFromCargo
+                .withArgs(cardTypePages[0], cargoCardTypes[0])
+                .and.returnValue(actionTranslations);
+            cardTypeTranslationBuilderSpy.buildFromCargo
+                .withArgs(cardTypePages[1], cargoCardTypes[1])
+                .and.returnValue(treasureTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -382,25 +361,25 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(frenchTranslations),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
-                cardTypePages[1],
+                cargoCardTypes[0],
             );
-            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 germanTranslations[1],
                 'German',
-                cardTypePages[0],
+                cargoCardTypes[1],
             );
-            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 frenchTranslations[0],
                 'French',
-                cardTypePages[1],
+                cargoCardTypes[0],
             );
-            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 frenchTranslations[1],
                 'French',
-                cardTypePages[0],
+                cargoCardTypes[1],
             );
             /* eslint-enable */
         });
@@ -490,79 +469,42 @@ describe('DominionizerWikiBot', () => {
         });
 
         it('should generate cards', async () => {
-            const expansionPages: ExpansionPage[] = [
-                { pageid: 1 } as ExpansionPage,
-                { pageid: 2 } as ExpansionPage,
+            const cargoCardTypes: CargoCardType[] = [
+                { Id: 'action', Name: 'Action', Scope: 'Basic' },
             ];
-            const expansionCardsMap = new Map<number, string[]>([
-                [1, ['Curse', 'Cellar', 'Knights']],
-                [2, ['Cellar']],
-            ]);
-            const cardTypePages: CardTypePage[] = [
-                { pageid: CardTypeId.Curse, title: 'Curse' } as CardTypePage,
-                { pageid: CardTypeId.Knight, title: 'Knights' } as CardTypePage,
-                { pageid: CardTypeId.Ally, title: 'Ally' } as CardTypePage,
+            const cardTypes: CardTypeV2[] = [{ id: 'action', name: 'Action', scope: 'Basic' }];
+            const cargoEditions: CargoEdition[] = [
+                { Id: 'base-2e', Expansion: 'Dominion', Edition: '2', Icon: 'dom2e.png' },
             ];
-            const cardTypes: CardType[] = [
-                dataFixture.createCardType({ id: CardTypeId.Curse }),
-                dataFixture.createCardType({ id: CardTypeId.Knight }),
-                dataFixture.createCardType({ id: CardTypeId.Ally }),
+            const editions: Edition[] = [
+                { id: 'base-2e', expansion: 'Dominion', edition: '2', icon: 'dom2e.png' },
             ];
             const cardPages: CardPage[] = [
                 { pageid: 300, title: 'Cellar' } as CardPage,
-                { pageid: CardTypeId.Curse, title: 'Curse' } as CardPage,
+                { pageid: 400, title: 'Village' } as CardPage,
             ];
-            const cardExpansionsMap = new Map<string, number[]>([
-                ['Curse', [1]],
-                ['Cellar', [1, 2]],
-                ['Knights', [1]],
-            ]);
-            const cards: CardDto[] = [
-                { id: CardTypeId.Curse, name: 'Curse', expansions: [1] } as CardDto,
-                { id: 300, name: 'Cellar', expansions: [1, 2] } as CardDto,
-                { id: CardTypeId.Knight, name: 'Knights', expansions: [1] } as CardDto,
+            const cargoCards: CargoCard[] = [
+                { Id: 'village', PageId: '400', Name: 'Village' } as CargoCard,
+                { Id: 'cellar', PageId: '300', Name: 'Cellar' } as CargoCard,
             ];
-            const splitPilePage: ContentPage = { pageid: 100, title: 'Split pile' } as ContentPage;
-            wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
+            const cards: CardDtoV2[] = [
+                { id: 'cellar', name: 'Cellar' } as CardDtoV2,
+                { id: 'village', name: 'Village' } as CardDtoV2,
+            ];
+            wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
+            wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
+            wikiClientSpy.fetchAllCards.and.resolveTo(cargoCards);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
-            wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
-            wikiClientSpy.fetchSingleContentPage
-                .withArgs('Split pile')
-                .and.resolveTo(splitPilePage);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[0]).and.returnValue(cardTypes[0]);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[1]).and.returnValue(cardTypes[1]);
-            cardTypeBuilderSpy.build.withArgs(cardTypePages[2]).and.returnValue(cardTypes[2]);
-            expansionCardsMapBuilderSpy.buildWithExpansionPage
-                .withArgs(expansionPages[0])
-                .and.returnValue(new Map([[1, ['Curse', 'Cellar', 'Knights']]]));
-            expansionCardsMapBuilderSpy.buildWithExpansionPage
-                .withArgs(expansionPages[1])
-                .and.returnValue(new Map([[2, ['Cellar']]]));
-            expansionCardsMapBuilderSpy.buildWithCardTypePage
-                .withArgs(cardTypePages[0], expansionCardsMap)
-                .and.returnValue(new Map([[1, ['Curse']]]));
-            expansionCardsMapBuilderSpy.buildWithCardTypePage
-                .withArgs(cardTypePages[1], expansionCardsMap)
-                .and.returnValue(new Map([[1, ['Knights']]]));
-            expansionCardsMapBuilderSpy.buildWithCardTypePage
-                .withArgs(cardTypePages[2], expansionCardsMap)
-                .and.returnValue(new Map());
-            cardDtoBuilderSpy.build
-                .withArgs(cardPages[0], cardExpansionsMap, cardTypes, undefined)
+            editionBuilderSpy.build.withArgs(cargoEditions[0]).and.returnValue(editions[0]);
+            cardTypeBuilderSpy.buildFromCargo
+                .withArgs(cargoCardTypes[0])
+                .and.returnValue(cardTypes[0]);
+            cardDtoBuilderSpy.buildFromCargo
+                .withArgs(cargoCards[0], cardPages[1], editions, cardTypes)
                 .and.returnValue(cards[1]);
-            cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], cardExpansionsMap, cardTypes, undefined)
+            cardDtoBuilderSpy.buildFromCargo
+                .withArgs(cargoCards[1], cardPages[0], editions, cardTypes)
                 .and.returnValue(cards[0]);
-            cardDtoBuilderSpy.build
-                .withArgs(cardTypePages[0], cardExpansionsMap, cardTypes)
-                .and.returnValue(cards[0]);
-            cardDtoBuilderSpy.build
-                .withArgs(cardTypePages[1], cardExpansionsMap, cardTypes)
-                .and.returnValue(cards[2]);
-            cardDtoBuilderSpy.build
-                .withArgs(cardTypePages[2], cardExpansionsMap, cardTypes)
-                .and.returnValue(null);
-            splitPileDependencyBuilderSpy.build.and.returnValue(cards);
 
             await dominionizerWikiBot.generateAll();
 
@@ -571,89 +513,50 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(cards),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0], cardPages[1]);
-            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1], cardPages[0]);
-            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[2], cardTypePages[1]);
-            expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cardPages);
-            expect(splitPileDependencyBuilderSpy.build).toHaveBeenCalledWith(
-                cards,
-                cardTypes,
-                splitPilePage,
-            );
+            expect(cardDtoValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cards[0]);
+            expect(cardDtoValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cards[1]);
             expect(wikiClientSpy.fetchAllCardSymbolPages).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validate,
+                cardDtoValidatorSpy.validateFromCargo,
             );
             expect(wikiClientSpy.fetchAllCardArtPages).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validate,
+                cardDtoValidatorSpy.validateFromCargo,
             );
-            expect(imagesValidatorSpy.validate).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validate,
-            );
-            /* eslint-enable */
-        });
-
-        it('with card page redirect should generate cards correctly', async () => {
-            const cardPages: CardPage[] = [
-                {
-                    pageid: 10,
-                    title: 'Card 10',
-                    revisions: [{ '*': '#REDIRECT [[Card 20]]' }],
-                } as CardPage,
-                { pageid: 20, title: 'Card 20' } as CardPage,
-            ];
-            const cards: CardDto[] = [
-                { id: 10, name: 'Card 10' } as CardDto,
-                { id: 20, name: 'Card 20' } as CardDto,
-            ];
-            wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
-            cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], jasmine.any(Map), jasmine.any(Array), cardPages[0])
-                .and.returnValue(cards[0]);
-            cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], jasmine.any(Map), jasmine.any(Array), undefined)
-                .and.returnValue(cards[1]);
-            splitPileDependencyBuilderSpy.build.and.returnValue(cards);
-
-            await dominionizerWikiBot.generateAll();
-
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0], cardPages[1]);
-            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1], cardPages[1]);
             /* eslint-enable */
         });
 
         it('should generate card translations', async () => {
-            const cardPages: CardPage[] = [{ pageid: 20 } as CardPage, { pageid: 10 } as CardPage];
-            const cards: CardDto[] = [{ id: 10 } as CardDto, { id: 20 } as CardDto];
-            const firstCardTranslations = new Map<string, CardTranslation>([
-                ['German', { id: 10, name: 'german title' } as CardTranslation],
-                ['French', { id: 10, name: 'french title' } as CardTranslation],
-            ]);
-            const secondCardTranslations = new Map<string, CardTranslation>([
-                ['German', { id: 20, name: 'german title' } as CardTranslation],
-                ['French', { id: 20, name: 'french title' } as CardTranslation],
-            ]);
-            const germanTranslations: CardTranslation[] = [
-                { id: 10, name: 'german title' } as CardTranslation,
-                { id: 20, name: 'german title' } as CardTranslation,
+            const cardPages: CardPage[] = [
+                { pageid: 400, title: 'Village' } as CardPage,
+                { pageid: 300, title: 'Cellar' } as CardPage,
             ];
-            const frenchTranslations: CardTranslation[] = [
-                { id: 10, name: 'french title' } as CardTranslation,
-                { id: 20, name: 'french title' } as CardTranslation,
+            const cargoCards: CargoCard[] = [
+                { Id: 'village', PageId: '400', Name: 'Village' } as CargoCard,
+                { Id: 'cellar', PageId: '300', Name: 'Cellar' } as CargoCard,
             ];
+            const cellarTranslations = new Map<string, CardTranslationV2>([
+                ['German', { id: 'cellar', name: 'Keller', description: '' }],
+                ['French', { id: 'cellar', name: 'Cave', description: '' }],
+            ]);
+            const villageTranslations = new Map<string, CardTranslationV2>([
+                ['German', { id: 'village', name: 'Dorf', description: '' }],
+                ['French', { id: 'village', name: 'Village', description: '' }],
+            ]);
+            const germanTranslations: CardTranslationV2[] = [
+                { id: 'cellar', name: 'Keller', description: '' },
+                { id: 'village', name: 'Dorf', description: '' },
+            ];
+            const frenchTranslations: CardTranslationV2[] = [
+                { id: 'cellar', name: 'Cave', description: '' },
+                { id: 'village', name: 'Village', description: '' },
+            ];
+            wikiClientSpy.fetchAllCards.and.resolveTo(cargoCards);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
-            cardDtoBuilderSpy.build
-                .withArgs(cardPages[0], jasmine.anything(), jasmine.anything())
-                .and.returnValue(cards[1]);
-            cardDtoBuilderSpy.build
-                .withArgs(cardPages[1], jasmine.anything(), jasmine.anything())
-                .and.returnValue(cards[0]);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardPages[0])
-                .and.returnValue(secondCardTranslations);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardPages[1])
-                .and.returnValue(firstCardTranslations);
+            cardTranslationBuilderSpy.buildFromCargo
+                .withArgs(cardPages[1], cargoCards[1])
+                .and.returnValue(cellarTranslations);
+            cardTranslationBuilderSpy.buildFromCargo
+                .withArgs(cardPages[0], cargoCards[0])
+                .and.returnValue(villageTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -666,27 +569,52 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(frenchTranslations),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
-                cardPages[1],
+                cargoCards[1],
             );
-            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 germanTranslations[1],
                 'German',
-                cardPages[0],
+                cargoCards[0],
             );
-            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 frenchTranslations[0],
                 'French',
-                cardPages[1],
+                cargoCards[1],
             );
-            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
                 frenchTranslations[1],
                 'French',
-                cardPages[0],
+                cargoCards[0],
             );
             /* eslint-enable */
+        });
+
+        it('with validation failure should return false', async () => {
+            editionValidatorSpy.validate.and.returnValue(
+                ValidationResult.Failure('Edition validation failed'),
+            );
+            wikiClientSpy.fetchAllEditions.and.resolveTo([
+                { Id: 'base-1e', Expansion: 'Dominion', Edition: '1', Icon: 'dom1e.png' },
+            ]);
+            editionBuilderSpy.build.and.returnValue({
+                id: 'base-1e',
+                expansion: 'Dominion',
+                edition: '1',
+                icon: 'dom1e.png',
+            });
+
+            const result = await dominionizerWikiBot.generateAll();
+
+            expect(result).toBe(false);
+        });
+
+        it('without validation errors should return true', async () => {
+            const result = await dominionizerWikiBot.generateAll();
+
+            expect(result).toBe(true);
         });
     });
 
