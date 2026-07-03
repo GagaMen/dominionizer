@@ -4,7 +4,6 @@ import { CardTranslationBuilder } from './wiki-bot/builder/card-translation-buil
 import { CardDtoBuilder } from './wiki-bot/builder/card-dto-builder';
 import { EditionTranslationBuilder } from './wiki-bot/builder/edition-translation-builder';
 import { EditionBuilder } from './wiki-bot/builder/edition-builder';
-import axios from 'axios';
 import { DominionizerWikiBot } from './wiki-bot/dominionizer-wiki-bot';
 import { WikiClient } from './wiki-bot/wiki-client/wiki-client';
 import { CardTypeTranslationBuilder } from './wiki-bot/builder/card-type-translation-builder';
@@ -41,20 +40,11 @@ async function bootstrap(): Promise<void> {
         .parse();
     const options: Options = program.opts();
 
-    const axiosInstance = axios.create({
-        baseURL: 'https://wiki.dominionstrategy.com/api.php',
-        timeout: 60 * 1000,
-    });
     const sharpFactory = new SharpFactory();
 
     const currentGenerationTime = new Date();
     const targetPath = '../../src';
-    const wikiClient = new WikiClient(
-        axiosInstance,
-        'https://wiki.dominionstrategy.com/api.php',
-        '',
-        500,
-    );
+    const wikiClient = new WikiClient('https://wiki.dominionstrategy.com/api.php', '', 500);
     const editionBuilder = new EditionBuilder();
     const editionTranslationBuilder = new EditionTranslationBuilder();
     const cardDtoBuilder = new CardDtoBuilder();

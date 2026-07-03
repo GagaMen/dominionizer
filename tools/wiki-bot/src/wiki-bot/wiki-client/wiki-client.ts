@@ -1,11 +1,9 @@
-import { AxiosInstance } from 'axios';
 import {
     CargoCard,
     CardPage,
     CardTypePage,
     CargoResponse,
     ChangedImagePage,
-    ContentPage,
     CargoEdition,
     ExpansionPage,
     ImagePage,
@@ -32,7 +30,6 @@ export class WikiClient {
     };
 
     constructor(
-        private axios: AxiosInstance,
         private readonly baseUrl: string,
         private readonly authenticationHeaderValue: string,
         private readonly pageLimit: number,
@@ -219,25 +216,6 @@ export class WikiClient {
         }
 
         return pages;
-    }
-
-    async fetchSingleContentPage(title: string): Promise<ContentPage | undefined> {
-        const params: QueryParams = {
-            ...this.defaultParams,
-            prop: 'revisions',
-            rvprop: 'content',
-            titles: title,
-        };
-
-        const response = await this.axios.get<QueryResult<ContentPage>>('', {
-            params: params,
-        });
-
-        if (response.data.query === undefined) {
-            return undefined;
-        }
-
-        return Object.values<ContentPage>(response.data.query.pages)[0];
     }
 
     async fetchImage(url: string): Promise<Buffer> {

@@ -1,11 +1,8 @@
-import { AxiosInstance, AxiosResponse } from 'axios';
 import { WikiClient } from './wiki-client';
 import {
     QueryResult,
-    QueryParams,
     ImagePage,
     ChangedImagePage,
-    ContentPage,
     CargoEdition,
     CargoCard,
     CargoCardType,
@@ -13,7 +10,6 @@ import {
 
 describe('WikiClient', () => {
     let wikiClient: WikiClient;
-    let axiosSpy: jasmine.SpyObj<AxiosInstance>;
     let fetchSpy: jasmine.Spy<typeof fetch>;
     const edition: CargoEdition = {
         Id: '1',
@@ -62,18 +58,11 @@ describe('WikiClient', () => {
         ],
         categories: [{ title: 'Category:Card art' }],
     };
-    const contentPage: ContentPage = {
-        pageid: 1,
-        title: 'Content',
-        revisions: [{ '*': 'wiki text of any page' }],
-    };
     let url: URL;
     let authenticationHeaderValue: string;
     let pageLimit: number;
 
     beforeEach(() => {
-        axiosSpy = jasmine.createSpyObj<AxiosInstance>('AxiosInstance', ['get']);
-        axiosSpy.get.and.resolveTo({ data: [] });
         fetchSpy = spyOn(globalThis, 'fetch').and.resolveTo({
             json: () =>
                 Promise.resolve({
@@ -90,7 +79,7 @@ describe('WikiClient', () => {
         authenticationHeaderValue = 'secret-dominionizer-wiki-bot-token';
         pageLimit = 2;
 
-        wikiClient = new WikiClient(axiosSpy, baseUrl, authenticationHeaderValue, pageLimit);
+        wikiClient = new WikiClient(baseUrl, authenticationHeaderValue, pageLimit);
     });
 
     describe('fetchAllEditions', () => {
@@ -407,38 +396,6 @@ describe('WikiClient', () => {
             const actual = await wikiClient.fetchRecentImageChanges(since);
 
             expect(actual).toEqual(expected);
-        });
-    });
-
-    describe('fetchSingleContentPage', () => {
-        const singlePageParams: QueryParams = {
-            action: 'query',
-            format: 'json',
-            prop: 'revisions',
-            rvprop: 'content',
-        };
-
-        it('should fetch and return single content page correctly', async () => {
-            const title = 'Split pile';
-            const params = {
-                ...singlePageParams,
-                titles: 'Split pile',
-            };
-            const queryResult: QueryResult<ContentPage> = {
-                query: {
-                    pages: {
-                        '3247': contentPage,
-                    },
-                },
-            };
-            const axiosResponse: AxiosResponse<QueryResult<ContentPage>> = {
-                data: queryResult,
-            } as AxiosResponse<QueryResult<ContentPage>>;
-            axiosSpy.get.withArgs('', { params: params }).and.resolveTo(axiosResponse);
-
-            const actual = await wikiClient.fetchSingleContentPage(title);
-
-            expect(actual).toEqual(contentPage);
         });
     });
 

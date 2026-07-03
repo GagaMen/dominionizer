@@ -16,11 +16,9 @@ export interface Page {
     title: string;
 }
 
-export interface ContentPage extends Page {
+export type ExpansionPage = Page & {
     revisions: Revision[];
-}
-
-export type ExpansionPage = ContentPage;
+};
 
 export interface CargoEdition {
     Id: string;
@@ -57,12 +55,14 @@ export interface CargoResponse<T> {
     }[];
 }
 
-export interface CardPage extends ContentPage {
+export interface CardPage extends Page {
     fullurl: string;
+    revisions: Revision[];
 }
 
-export interface CardTypePage extends ContentPage {
+export interface CardTypePage extends Page {
     fullurl: string;
+    revisions: Revision[];
 }
 
 export interface Revision {
