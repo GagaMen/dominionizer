@@ -1,4 +1,4 @@
-import { CardDto, CardDtoV2 } from '../../../../../src/app/dtos/card-dto';
+import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { CardPage, CardTypePage } from '../wiki-client/api-models';
 import { JoiValidator } from './joi-validator';
 import Joi from 'joi';
@@ -19,8 +19,8 @@ export class CardDtoValidator {
               });
     };
 
-    private joiValidator = new JoiValidator<CardDtoV2>();
-    private schema: Joi.ObjectSchema<CardDtoV2> = Joi.object({
+    private joiValidator = new JoiValidator<CardDto>();
+    private schema: Joi.ObjectSchema<CardDto> = Joi.object({
         id: Joi.string().required(),
         name: Joi.string().required(),
         description: Joi.string().required(),
@@ -43,7 +43,7 @@ export class CardDtoValidator {
         return ValidationResult.Success;
     }
 
-    validateFromCargo(card: CardDtoV2): ValidationResult {
+    validateFromCargo(card: CardDto): ValidationResult {
         return this.joiValidator.validate(
             card,
             this.schema,

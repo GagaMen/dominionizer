@@ -26,9 +26,9 @@ import {
 import { WikiClient } from './wiki-client/wiki-client';
 import * as fs from 'fs';
 import { Edition, EditionTranslation } from '../../../../src/app/models/edition';
-import { CardTypeV2, CardTypeTranslationV2 } from '../../../../src/app/models/card-type';
-import { CardDtoV2 } from '../../../../src/app/dtos/card-dto';
-import { CardTranslationV2 } from '../../../../src/app/models/card';
+import { CardType, CardTypeTranslation } from '../../../../src/app/models/card-type';
+import { CardDto } from '../../../../src/app/dtos/card-dto';
+import { CardTranslation } from '../../../../src/app/models/card';
 import { ValidationResult } from './validation/validation-result';
 
 describe('DominionizerWikiBot', () => {
@@ -90,29 +90,23 @@ describe('DominionizerWikiBot', () => {
         );
         editionTranslationBuilderSpy.build.and.returnValue(new Map());
 
-        cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', [
-            'build',
-            'buildFromCargo',
-        ]);
-        cardTypeBuilderSpy.buildFromCargo.and.returnValue({ id: '' } as unknown as CardTypeV2);
+        cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', ['build']);
+        cardTypeBuilderSpy.build.and.returnValue({ id: '' } as unknown as CardType);
 
         cardTypeTranslationBuilderSpy = jasmine.createSpyObj<CardTypeTranslationBuilder>(
             'CardTypeTranslationBuilder',
-            ['build', 'buildFromCargo'],
+            ['build'],
         );
-        cardTypeTranslationBuilderSpy.buildFromCargo.and.returnValue(new Map());
+        cardTypeTranslationBuilderSpy.build.and.returnValue(new Map());
 
-        cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', [
-            'build',
-            'buildFromCargo',
-        ]);
-        cardDtoBuilderSpy.buildFromCargo.and.returnValue({ id: '' } as unknown as CardDtoV2);
+        cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
+        cardDtoBuilderSpy.build.and.returnValue({ id: '' } as unknown as CardDto);
 
         cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
             'CardTranslationBuilder',
-            ['build', 'buildFromCargo'],
+            ['build'],
         );
-        cardTranslationBuilderSpy.buildFromCargo.and.returnValue(new Map());
+        cardTranslationBuilderSpy.build.and.returnValue(new Map());
 
         imageBuilderSpy = jasmine.createSpyObj<ImageBuilder>('ImageBuilder', ['build']);
 
@@ -292,17 +286,13 @@ describe('DominionizerWikiBot', () => {
                 { Id: 'treasure', Name: 'Treasure', Scope: 'Basic' },
                 { Id: 'action', Name: 'Action', Scope: 'Basic' },
             ];
-            const cardTypes: CardTypeV2[] = [
+            const cardTypes: CardType[] = [
                 { id: 'action', name: 'Action', scope: 'Basic' },
                 { id: 'treasure', name: 'Treasure', scope: 'Basic' },
             ];
             wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
-            cardTypeBuilderSpy.buildFromCargo
-                .withArgs(cargoCardTypes[0])
-                .and.returnValue(cardTypes[1]);
-            cardTypeBuilderSpy.buildFromCargo
-                .withArgs(cargoCardTypes[1])
-                .and.returnValue(cardTypes[0]);
+            cardTypeBuilderSpy.build.withArgs(cargoCardTypes[0]).and.returnValue(cardTypes[1]);
+            cardTypeBuilderSpy.build.withArgs(cargoCardTypes[1]).and.returnValue(cardTypes[0]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -325,28 +315,28 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 216, title: 'Action' } as CardTypePage,
                 { pageid: 220, title: 'Treasure' } as CardTypePage,
             ];
-            const actionTranslations = new Map<string, CardTypeTranslationV2>([
+            const actionTranslations = new Map<string, CardTypeTranslation>([
                 ['German', { id: 'action', name: 'Aktion' }],
                 ['French', { id: 'action', name: 'Action' }],
             ]);
-            const treasureTranslations = new Map<string, CardTypeTranslationV2>([
+            const treasureTranslations = new Map<string, CardTypeTranslation>([
                 ['German', { id: 'treasure', name: 'Geld' }],
                 ['French', { id: 'treasure', name: 'Trésor' }],
             ]);
-            const germanTranslations: CardTypeTranslationV2[] = [
+            const germanTranslations: CardTypeTranslation[] = [
                 { id: 'action', name: 'Aktion' },
                 { id: 'treasure', name: 'Geld' },
             ];
-            const frenchTranslations: CardTypeTranslationV2[] = [
+            const frenchTranslations: CardTypeTranslation[] = [
                 { id: 'action', name: 'Action' },
                 { id: 'treasure', name: 'Trésor' },
             ];
             wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
             wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
-            cardTypeTranslationBuilderSpy.buildFromCargo
+            cardTypeTranslationBuilderSpy.build
                 .withArgs(cardTypePages[0], cargoCardTypes[0])
                 .and.returnValue(actionTranslations);
-            cardTypeTranslationBuilderSpy.buildFromCargo
+            cardTypeTranslationBuilderSpy.build
                 .withArgs(cardTypePages[1], cargoCardTypes[1])
                 .and.returnValue(treasureTranslations);
 
@@ -472,7 +462,7 @@ describe('DominionizerWikiBot', () => {
             const cargoCardTypes: CargoCardType[] = [
                 { Id: 'action', Name: 'Action', Scope: 'Basic' },
             ];
-            const cardTypes: CardTypeV2[] = [{ id: 'action', name: 'Action', scope: 'Basic' }];
+            const cardTypes: CardType[] = [{ id: 'action', name: 'Action', scope: 'Basic' }];
             const cargoEditions: CargoEdition[] = [
                 { Id: 'base-2e', Expansion: 'Dominion', Edition: '2', Icon: 'dom2e.png' },
             ];
@@ -487,22 +477,20 @@ describe('DominionizerWikiBot', () => {
                 { Id: 'village', PageId: '400', Name: 'Village' } as CargoCard,
                 { Id: 'cellar', PageId: '300', Name: 'Cellar' } as CargoCard,
             ];
-            const cards: CardDtoV2[] = [
-                { id: 'cellar', name: 'Cellar' } as CardDtoV2,
-                { id: 'village', name: 'Village' } as CardDtoV2,
+            const cards: CardDto[] = [
+                { id: 'cellar', name: 'Cellar' } as CardDto,
+                { id: 'village', name: 'Village' } as CardDto,
             ];
             wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
             wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
             wikiClientSpy.fetchAllCards.and.resolveTo(cargoCards);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
             editionBuilderSpy.build.withArgs(cargoEditions[0]).and.returnValue(editions[0]);
-            cardTypeBuilderSpy.buildFromCargo
-                .withArgs(cargoCardTypes[0])
-                .and.returnValue(cardTypes[0]);
-            cardDtoBuilderSpy.buildFromCargo
+            cardTypeBuilderSpy.build.withArgs(cargoCardTypes[0]).and.returnValue(cardTypes[0]);
+            cardDtoBuilderSpy.build
                 .withArgs(cargoCards[0], cardPages[1], editions, cardTypes)
                 .and.returnValue(cards[1]);
-            cardDtoBuilderSpy.buildFromCargo
+            cardDtoBuilderSpy.build
                 .withArgs(cargoCards[1], cardPages[0], editions, cardTypes)
                 .and.returnValue(cards[0]);
 
@@ -533,28 +521,28 @@ describe('DominionizerWikiBot', () => {
                 { Id: 'village', PageId: '400', Name: 'Village' } as CargoCard,
                 { Id: 'cellar', PageId: '300', Name: 'Cellar' } as CargoCard,
             ];
-            const cellarTranslations = new Map<string, CardTranslationV2>([
+            const cellarTranslations = new Map<string, CardTranslation>([
                 ['German', { id: 'cellar', name: 'Keller', description: '' }],
                 ['French', { id: 'cellar', name: 'Cave', description: '' }],
             ]);
-            const villageTranslations = new Map<string, CardTranslationV2>([
+            const villageTranslations = new Map<string, CardTranslation>([
                 ['German', { id: 'village', name: 'Dorf', description: '' }],
                 ['French', { id: 'village', name: 'Village', description: '' }],
             ]);
-            const germanTranslations: CardTranslationV2[] = [
+            const germanTranslations: CardTranslation[] = [
                 { id: 'cellar', name: 'Keller', description: '' },
                 { id: 'village', name: 'Dorf', description: '' },
             ];
-            const frenchTranslations: CardTranslationV2[] = [
+            const frenchTranslations: CardTranslation[] = [
                 { id: 'cellar', name: 'Cave', description: '' },
                 { id: 'village', name: 'Village', description: '' },
             ];
             wikiClientSpy.fetchAllCards.and.resolveTo(cargoCards);
             wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
-            cardTranslationBuilderSpy.buildFromCargo
+            cardTranslationBuilderSpy.build
                 .withArgs(cardPages[1], cargoCards[1])
                 .and.returnValue(cellarTranslations);
-            cardTranslationBuilderSpy.buildFromCargo
+            cardTranslationBuilderSpy.build
                 .withArgs(cardPages[0], cargoCards[0])
                 .and.returnValue(villageTranslations);
 

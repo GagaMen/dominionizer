@@ -1,4 +1,4 @@
-import { CardTranslation, CardTranslationV2 } from '../../../../../src/app/models/card';
+import { CardTranslation } from '../../../../../src/app/models/card';
 import {
     CardPage,
     CardTypePage,
@@ -9,14 +9,10 @@ import {
 import { extractSection, normalize } from './helper-functions';
 
 export class CardTranslationBuilder {
-    build(_page: CardPage | CardTypePage): Map<string, CardTranslation> {
-        return new Map();
-    }
-
-    buildFromCargo(
+    build(
         page: CardPage | CardTypePage,
         cargoCard: CargoCard | CargoCardType,
-    ): Map<string, CardTranslationV2> {
+    ): Map<string, CardTranslation> {
         const wikiText: WikiText = page.revisions[0]['*'] ?? '';
         const otherLanguageVersions: WikiText = extractSection(
             wikiText,
@@ -29,7 +25,7 @@ export class CardTranslationBuilder {
         // remove html comments and table header
         const tableBody = table.replace(/<!--.*?-->/gs, '').substring(table.indexOf('|-'));
 
-        const translations = new Map<string, CardTranslationV2>();
+        const translations = new Map<string, CardTranslation>();
 
         const rowRegex = /![^!]*/g;
         let languageVersion: RegExpExecArray | null;

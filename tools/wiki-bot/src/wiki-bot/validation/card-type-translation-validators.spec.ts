@@ -1,4 +1,4 @@
-import { CardTypeTranslationV2 } from '../../../../../src/app/models/card-type';
+import { CardTypeTranslation } from '../../../../../src/app/models/card-type';
 import { CargoCardType } from './../wiki-client/api-models';
 import { CardTypeTranslationValidator } from './card-type-translation-validators';
 import { ValidationResult } from './validation-result';
@@ -10,7 +10,7 @@ describe('CardTypeTranslationValidator', () => {
         const cargoCardType = { Name: 'Action' } as CargoCardType;
 
         it('with valid card type translation should return Success', () => {
-            const cardTypeTranslation: CardTypeTranslationV2 = {
+            const cardTypeTranslation: CardTypeTranslation = {
                 id: '241',
                 name: 'Aktion',
             };
@@ -25,7 +25,7 @@ describe('CardTypeTranslationValidator', () => {
         });
 
         it('with invalid card type translation should return Failure', () => {
-            const cardTypeTranslation: CardTypeTranslationV2 = {
+            const cardTypeTranslation: CardTypeTranslation = {
                 id: '241',
                 name: '',
             };

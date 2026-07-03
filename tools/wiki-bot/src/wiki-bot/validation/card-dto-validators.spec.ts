@@ -1,4 +1,4 @@
-import { CardDtoV2 } from '../../../../../src/app/dtos/card-dto';
+import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { CardDtoValidator } from './card-dto-validators';
 import { ValidationResult } from './validation-result';
 
@@ -8,7 +8,7 @@ describe('CardDtoValidator', () => {
 
     describe('validateFromCargo', () => {
         it('with basic card dto should return Success', () => {
-            const card: CardDtoV2 = {
+            const card: CardDto = {
                 id: '5293',
                 name: 'Cellar',
                 description: `'''+1 Action'''<br>Discard any...`,
@@ -27,7 +27,7 @@ describe('CardDtoValidator', () => {
         });
 
         it('with card has debt cost should return Success', () => {
-            const card: CardDtoV2 = {
+            const card: CardDto = {
                 id: '6029',
                 name: 'Engineer',
                 description: 'Gain a card costing up to {{Cost|4}}.',
@@ -49,7 +49,7 @@ describe('CardDtoValidator', () => {
         const costModifiers: string[] = ['P', '+', '*'];
         costModifiers.forEach((costModifier: string) => {
             it(`with card has "${costModifier}" as cost modifier should return Success`, () => {
-                const card: CardDtoV2 = {
+                const card: CardDto = {
                     id: '5275',
                     name: 'University',
                     description: "'''+2 Actions'''<br>You may...",
@@ -70,7 +70,7 @@ describe('CardDtoValidator', () => {
         });
 
         it('with card dto has empty values or wrong types should return Failure', () => {
-            const card: CardDtoV2 = {
+            const card: CardDto = {
                 id: '215',
                 name: '',
                 description: '',
@@ -105,7 +105,7 @@ describe('CardDtoValidator', () => {
         });
 
         it('with card dto has wrong values should return Failure', () => {
-            const card: CardDtoV2 = {
+            const card: CardDto = {
                 id: '5293',
                 name: 'Cellar',
                 description: `'''+1 Action'''<br>Discard any...`,

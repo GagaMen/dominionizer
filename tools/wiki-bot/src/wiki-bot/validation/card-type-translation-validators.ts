@@ -1,7 +1,4 @@
-import {
-    CardTypeTranslation,
-    CardTypeTranslationV2,
-} from '../../../../../src/app/models/card-type';
+import { CardTypeTranslation } from '../../../../../src/app/models/card-type';
 import { CardTypePage, CargoCardType } from './../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
 import Joi from 'joi';
@@ -10,8 +7,8 @@ import { JoiValidator } from './joi-validator';
 export class CardTypeTranslationValidator {
     readonly name: string = 'card type translation';
 
-    private joiValidator = new JoiValidator<CardTypeTranslationV2>();
-    private schema: Joi.ObjectSchema<CardTypeTranslationV2> = Joi.object({
+    private joiValidator = new JoiValidator<CardTypeTranslation>();
+    private schema: Joi.ObjectSchema<CardTypeTranslation> = Joi.object({
         id: Joi.string().required(),
         name: Joi.string().required(),
     });
@@ -25,7 +22,7 @@ export class CardTypeTranslationValidator {
     }
 
     validateFromCargo(
-        cardTypeTranslation: CardTypeTranslationV2,
+        cardTypeTranslation: CardTypeTranslation,
         language: string,
         cargoCardType: CargoCardType,
     ): ValidationResult {

@@ -1,15 +1,8 @@
-import { CardType, CardTypeV2 } from '../../../../../src/app/models/card-type';
-import { CardTypePage, CargoCardType } from '../wiki-client/api-models';
+import { CardType } from '../../../../../src/app/models/card-type';
+import { CargoCardType } from '../wiki-client/api-models';
 
 export class CardTypeBuilder {
-    build(cardTypePage: CardTypePage): CardType {
-        return {
-            id: cardTypePage.pageid,
-            name: cardTypePage.title,
-        };
-    }
-
-    buildFromCargo(cargoCardType: CargoCardType): CardTypeV2 {
+    build(cargoCardType: CargoCardType): CardType {
         return {
             id: cargoCardType.Id,
             name: cargoCardType.Name,

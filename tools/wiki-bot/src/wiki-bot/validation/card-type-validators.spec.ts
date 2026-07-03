@@ -1,4 +1,4 @@
-import { CardTypeV2 } from '../../../../../src/app/models/card-type';
+import { CardType } from '../../../../../src/app/models/card-type';
 import { CardTypeValidator } from './card-type-validators';
 import { ValidationResult } from './validation-result';
 
@@ -7,7 +7,7 @@ describe('CardTypeValidator', () => {
 
     describe('validateFromCargo', () => {
         it('with valid card type should return Success', () => {
-            const cardType: CardTypeV2 = {
+            const cardType: CardType = {
                 id: '241',
                 name: 'Action',
                 scope: 'Card',
@@ -19,7 +19,7 @@ describe('CardTypeValidator', () => {
         });
 
         it('with invalid card type should return Failure', () => {
-            const cardType: CardTypeV2 = { id: '241', name: '', scope: '' };
+            const cardType: CardType = { id: '241', name: '', scope: '' };
             const expected = ValidationResult.Failure(
                 'Card type (ID: 241, Name: ""):\n' +
                     '"name" is not allowed to be empty\n' +

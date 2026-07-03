@@ -1,4 +1,4 @@
-import { CardTranslationV2 } from './../../../../../src/app/models/card';
+import { CardTranslation } from './../../../../../src/app/models/card';
 import { CargoCard } from './../wiki-client/api-models';
 import { CardTranslationValidator } from './card-translation-validators';
 import { ValidationResult } from './validation-result';
@@ -10,7 +10,7 @@ describe('CardTranslationValidator', () => {
         const cargoCard = { Name: 'Cellar' } as CargoCard;
 
         it('with valid card translation should return Success', () => {
-            const cardTranslation: CardTranslationV2 = {
+            const cardTranslation: CardTranslation = {
                 id: '5293',
                 name: 'Keller',
                 description: "'''+1 Aktion'''<br>Lege...",
@@ -22,7 +22,7 @@ describe('CardTranslationValidator', () => {
         });
 
         it('with empty description should return Success', () => {
-            const cardTranslation: CardTranslationV2 = {
+            const cardTranslation: CardTranslation = {
                 id: '5293',
                 name: 'Keller',
                 description: '',
@@ -34,11 +34,11 @@ describe('CardTranslationValidator', () => {
         });
 
         it('with invalid card translation should return Failure', () => {
-            const cardTranslation: CardTranslationV2 = {
+            const cardTranslation: CardTranslation = {
                 id: '5293',
                 name: undefined,
                 description: undefined,
-            } as unknown as CardTranslationV2;
+            } as unknown as CardTranslation;
             const expected = ValidationResult.Failure(
                 'Card translation (Name: "Cellar", Language: "German"):\n' +
                     '"name" is required\n' +

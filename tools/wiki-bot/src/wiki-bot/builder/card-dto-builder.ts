@@ -1,26 +1,17 @@
 import { CardTypePage, CargoCard } from './../wiki-client/api-models';
-import { CardType, CardTypeV2 } from './../../../../../src/app/models/card-type';
+import { CardType } from './../../../../../src/app/models/card-type';
 import { CardPage, WikiText } from '../wiki-client/api-models';
-import { CardDto, CardDtoV2 } from '../../../../../src/app/dtos/card-dto';
+import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { extractTemplate, extractTemplatePropertyValue, normalize } from './helper-functions';
 import { Edition } from 'src/app/models/edition';
 
 export class CardDtoBuilder {
     build(
-        page: CardPage | CardTypePage,
-        cardExpansionsMap: Map<string, number[]>,
-        cardTypes: CardType[],
-        redirectingCardPage?: CardPage,
-    ): CardDto | null {
-        return null;
-    }
-
-    buildFromCargo(
         cargoCard: CargoCard,
         page: CardPage | CardTypePage,
         editions: Edition[],
-        cardTypes: CardTypeV2[],
-    ): CardDtoV2 {
+        cardTypes: CardType[],
+    ): CardDto {
         const wikiText: WikiText = page.revisions[0]['*'] ?? '';
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox');
 
@@ -54,7 +45,7 @@ export class CardDtoBuilder {
         return editionIds;
     }
 
-    private determineCardTypeIds(cargoCard: CargoCard, cardTypes: CardTypeV2[]) {
+    private determineCardTypeIds(cargoCard: CargoCard, cardTypes: CardType[]) {
         const cargoCardTypes = cargoCard.Types.split('-');
         const typeIds: string[] = [];
         for (const cardType of cardTypes) {

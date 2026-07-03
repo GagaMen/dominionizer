@@ -1,5 +1,5 @@
-import { CardTranslationV2 } from './../../../../../src/app/models/card';
-import { CardTypeTranslationV2 } from './../../../../../src/app/models/card-type';
+import { CardTranslation } from './../../../../../src/app/models/card';
+import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage, CargoCardType } from './../wiki-client/api-models';
 import { CardTranslationBuilder } from './card-translation-builder';
 import { CardTypeTranslationBuilder } from './card-type-translation-builder';
@@ -11,13 +11,13 @@ describe('CardTypeTranslationBuilder', () => {
     beforeEach(() => {
         cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
             'CardTranslationBuilder',
-            ['buildFromCargo'],
+            ['build'],
         );
 
         cardTypeTranslationBuilder = new CardTypeTranslationBuilder(cardTranslationBuilderSpy);
     });
 
-    describe('buildFromCargo', () => {
+    describe('build', () => {
         it('with translations in list form should return correct translations', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 431,
@@ -44,7 +44,7 @@ describe('CardTypeTranslationBuilder', () => {
                 Name: 'Prize',
                 Scope: 'Single-pile',
             };
-            const expected = new Map<string, CardTypeTranslationV2>([
+            const expected = new Map<string, CardTypeTranslation>([
                 ['Czech', { id: '273', name: 'Odměna' }],
                 ['Dutch', { id: '273', name: 'Prijs' }],
                 ['Finnish', { id: '273', name: 'Palkinto' }],
@@ -53,7 +53,7 @@ describe('CardTypeTranslationBuilder', () => {
                 ['Russian', { id: '273', name: 'Трофей' }],
             ]);
 
-            const actual = cardTypeTranslationBuilder.buildFromCargo(cardTypePage, cargoCardType);
+            const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
 
             expect(actual).toEqual(expected);
         });
@@ -78,19 +78,19 @@ describe('CardTypeTranslationBuilder', () => {
                 Name: 'Project',
                 Scope: 'Landscape',
             };
-            const cardTranslations = new Map<string, CardTranslationV2>([
+            const cardTranslations = new Map<string, CardTranslation>([
                 ['Dutch', { id: '300', name: 'Project', description: 'Project' }],
                 ['German', { id: '300', name: 'Projekt', description: '' }],
             ]);
-            const expected = new Map<string, CardTypeTranslationV2>([
+            const expected = new Map<string, CardTypeTranslation>([
                 ['Dutch', { id: '300', name: 'Project' }],
                 ['German', { id: '300', name: 'Projekt' }],
             ]);
-            cardTranslationBuilderSpy.buildFromCargo
+            cardTranslationBuilderSpy.build
                 .withArgs(cardTypePage, cargoCardType)
                 .and.returnValue(cardTranslations);
 
-            const actual = cardTypeTranslationBuilder.buildFromCargo(cardTypePage, cargoCardType);
+            const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
 
             expect(actual).toEqual(expected);
         });
@@ -116,19 +116,19 @@ describe('CardTypeTranslationBuilder', () => {
                 Name: 'Knight',
                 Scope: 'Single-pile',
             };
-            const cardTranslations = new Map<string, CardTranslationV2>([
+            const cardTranslations = new Map<string, CardTranslation>([
                 ['French', { id: '263', name: 'Chevalier', description: '' }],
                 ['German', { id: '263', name: 'Ritter', description: '' }],
             ]);
-            const expected = new Map<string, CardTypeTranslationV2>([
+            const expected = new Map<string, CardTypeTranslation>([
                 ['French', { id: '263', name: 'Chevalier' }],
                 ['German', { id: '263', name: 'Ritter' }],
             ]);
-            cardTranslationBuilderSpy.buildFromCargo
+            cardTranslationBuilderSpy.build
                 .withArgs(cardTypePage, cargoCardType)
                 .and.returnValue(cardTranslations);
 
-            const actual = cardTypeTranslationBuilder.buildFromCargo(cardTypePage, cargoCardType);
+            const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
 
             expect(actual).toEqual(expected);
         });

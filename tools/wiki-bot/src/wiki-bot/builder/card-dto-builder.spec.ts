@@ -1,8 +1,8 @@
 import { CardTypePage, CargoCard } from './../wiki-client/api-models';
 import { CardPage } from '../wiki-client/api-models';
 import { CardDtoBuilder } from './card-dto-builder';
-import { CardDtoV2 } from '../../../../../src/app/dtos/card-dto';
-import { CardTypeV2 } from '../../../../../src/app/models/card-type';
+import { CardDto } from '../../../../../src/app/dtos/card-dto';
+import { CardType } from '../../../../../src/app/models/card-type';
 import { Edition } from 'src/app/models/edition';
 
 describe('CardDtoBuilder', () => {
@@ -14,7 +14,7 @@ describe('CardDtoBuilder', () => {
         { id: '218', expansion: 'Allies', edition: '1', icon: '' },
         { id: '237', expansion: 'Dark Ages', edition: '1', icon: '' },
     ];
-    const cardTypesV2: CardTypeV2[] = [
+    const cardTypes: CardType[] = [
         { id: '241', name: 'Action', scope: '' },
         { id: '242', name: 'Attack', scope: '' },
         { id: '251', name: 'Knight', scope: '' },
@@ -40,7 +40,7 @@ describe('CardDtoBuilder', () => {
         fullurl: '',
         revisions: [{ '*': '' }],
     };
-    const nullCardDtoV2: CardDtoV2 = {
+    const nullCardDto: CardDto = {
         id: '',
         name: '',
         description: '',
@@ -59,7 +59,7 @@ describe('CardDtoBuilder', () => {
         cardDtoBuilder = new CardDtoBuilder();
     });
 
-    describe('buildFromCargo', () => {
+    describe('build', () => {
         it('with basic cargoCard should return correct card', () => {
             const cargoCard: CargoCard = {
                 ...nullCargoCard,
@@ -91,8 +91,8 @@ describe('CardDtoBuilder', () => {
                     },
                 ],
             };
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 id: '5006',
                 name: 'Barbarian',
                 description: `At the start...{{divline}}This is gained ...`,
@@ -105,12 +105,7 @@ describe('CardDtoBuilder', () => {
                 cost: 5,
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                cardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, cardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -124,18 +119,13 @@ describe('CardDtoBuilder', () => {
                 Edition: '1',
                 Types: '',
             } as CargoCard;
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 id: '4823',
                 editions: ['216'],
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                nullCardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -149,18 +139,13 @@ describe('CardDtoBuilder', () => {
                 Edition: '1&2',
                 Types: '',
             } as CargoCard;
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 id: '4818',
                 editions: ['215', '216'],
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                nullCardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -177,17 +162,12 @@ describe('CardDtoBuilder', () => {
                     },
                 ],
             };
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 description: `At the<br>start...{{divline}}This is<br>gained ...`,
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                nullCargoCard,
-                cardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(nullCargoCard, cardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -197,17 +177,12 @@ describe('CardDtoBuilder', () => {
                 ...nullCargoCard,
                 Purpose: 'Landscape',
             } as CargoCard;
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 isKingdomCard: false,
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                nullCardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -217,17 +192,12 @@ describe('CardDtoBuilder', () => {
                 ...nullCargoCard,
                 CostExtra: '*',
             } as CargoCard;
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 costModifier: '*',
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                nullCardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -237,17 +207,12 @@ describe('CardDtoBuilder', () => {
                 ...nullCargoCard,
                 CostDebt: '4',
             } as CargoCard;
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 debt: 4,
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                nullCardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -257,17 +222,12 @@ describe('CardDtoBuilder', () => {
                 ...nullCargoCard,
                 CostPotion: '1',
             } as CargoCard;
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 costModifier: 'P',
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                nullCardPage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });
@@ -303,8 +263,8 @@ describe('CardDtoBuilder', () => {
                     },
                 ],
             };
-            const expected: CardDtoV2 = {
-                ...nullCardDtoV2,
+            const expected: CardDto = {
+                ...nullCardDto,
                 id: '5225',
                 name: 'Knights',
                 description: `At the start...{{divline}}This is gained ...`,
@@ -317,12 +277,7 @@ describe('CardDtoBuilder', () => {
                 cost: 5,
             };
 
-            const actual = cardDtoBuilder.buildFromCargo(
-                cargoCard,
-                cardTypePage,
-                editions,
-                cardTypesV2,
-            );
+            const actual = cardDtoBuilder.build(cargoCard, cardTypePage, editions, cardTypes);
 
             expect(actual).toEqual(jasmine.objectContaining(expected));
         });

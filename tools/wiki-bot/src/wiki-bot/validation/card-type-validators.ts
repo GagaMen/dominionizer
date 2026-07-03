@@ -1,4 +1,4 @@
-import { CardType, CardTypeV2 } from '../../../../../src/app/models/card-type';
+import { CardType } from '../../../../../src/app/models/card-type';
 import { CardTypePage } from './../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
 import Joi from 'joi';
@@ -7,8 +7,8 @@ import { JoiValidator } from './joi-validator';
 export class CardTypeValidator {
     readonly name: string = 'card type';
 
-    private joiValidator = new JoiValidator<CardTypeV2>();
-    private schema: Joi.ObjectSchema<CardTypeV2> = Joi.object({
+    private joiValidator = new JoiValidator<CardType>();
+    private schema: Joi.ObjectSchema<CardType> = Joi.object({
         id: Joi.string().required(),
         name: Joi.string().required(),
         scope: Joi.string().required(),
@@ -18,7 +18,7 @@ export class CardTypeValidator {
         return ValidationResult.Success;
     }
 
-    validateFromCargo(cardType: CardTypeV2): ValidationResult {
+    validateFromCargo(cardType: CardType): ValidationResult {
         return this.joiValidator.validate(
             cardType,
             this.schema,

@@ -1,33 +1,19 @@
 import { DependencyDto } from './dependency-dto';
 
 export const NullCardDto: CardDto = {
-    id: 0,
+    id: '',
     name: '',
     description: '',
     image: '',
+    illustrator: '',
     wikiUrl: '',
-    expansions: [],
+    editions: [],
     types: [],
     isKingdomCard: false,
     cost: 0,
 };
 
 export interface CardDto {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-    wikiUrl: string;
-    expansions: number[];
-    types: number[];
-    isKingdomCard: boolean;
-    cost: number;
-    costModifier?: string;
-    debt?: number;
-    dependencies?: DependencyDto[];
-}
-
-export interface CardDtoV2 {
     id: string;
     name: string;
     description: string;

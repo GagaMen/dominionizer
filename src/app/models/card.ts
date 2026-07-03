@@ -1,27 +1,28 @@
-import { Expansion } from './expansion';
-import { CardType, CardTypeV2 } from './card-type';
+import { CardType } from './card-type';
 import { Dependency } from './dependency';
 import { Edition } from './edition';
 
 export const NullCard: Card = {
-    id: 0,
+    id: '',
     name: '',
     description: '',
     image: '',
+    illustrator: '',
     wikiUrl: '',
-    expansions: [],
+    editions: [],
     types: [],
     isKingdomCard: false,
     cost: 0,
 };
 
 export interface Card {
-    id: number;
+    id: string;
     name: string;
     description: string;
     image: string;
+    illustrator: string;
     wikiUrl: string;
-    expansions: Expansion[];
+    editions: Edition[];
     types: CardType[];
     isKingdomCard: boolean;
     cost: number;
@@ -30,22 +31,4 @@ export interface Card {
     dependencies?: Dependency[];
 }
 
-export interface CardV2 {
-    id: string;
-    name: string;
-    description: string;
-    image: string;
-    illustrator: string;
-    wikiUrl: string;
-    editions: Edition[];
-    types: CardTypeV2[];
-    isKingdomCard: boolean;
-    cost: number;
-    costModifier?: string;
-    debt?: number;
-    dependencies?: Dependency[];
-}
-
 export type CardTranslation = Pick<Card, 'id' | 'name' | 'description'>;
-
-export type CardTranslationV2 = Pick<CardV2, 'id' | 'name' | 'description'>;

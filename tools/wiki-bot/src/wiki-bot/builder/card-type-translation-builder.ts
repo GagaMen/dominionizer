@@ -1,7 +1,4 @@
-import {
-    CardTypeTranslation,
-    CardTypeTranslationV2,
-} from './../../../../../src/app/models/card-type';
+import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage, CargoCardType, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 import { CardTranslationBuilder } from './card-translation-builder';
@@ -9,14 +6,10 @@ import { CardTranslationBuilder } from './card-translation-builder';
 export class CardTypeTranslationBuilder {
     constructor(private cardTranslationBuilder: CardTranslationBuilder) {}
 
-    build(_page: CardTypePage): Map<string, CardTypeTranslation> {
-        return new Map();
-    }
-
-    buildFromCargo(
+    build(
         cardTypePage: CardTypePage,
         cargoCardType: CargoCardType,
-    ): Map<string, CardTypeTranslationV2> {
+    ): Map<string, CardTypeTranslation> {
         const wikiText: WikiText = cardTypePage.revisions[0]['*'] ?? '';
         let translationSection: WikiText = extractSection(
             wikiText,
@@ -25,11 +18,8 @@ export class CardTypeTranslationBuilder {
         );
 
         if (this.hasTableForm(translationSection)) {
-            const cardTranslations = this.cardTranslationBuilder.buildFromCargo(
-                cardTypePage,
-                cargoCardType,
-            );
-            const cardTypeTranslations = new Map<string, CardTypeTranslationV2>();
+            const cardTranslations = this.cardTranslationBuilder.build(cardTypePage, cargoCardType);
+            const cardTypeTranslations = new Map<string, CardTypeTranslation>();
 
             for (const [language, translation] of cardTranslations) {
                 cardTypeTranslations.set(language, { id: translation.id, name: translation.name });
@@ -41,7 +31,7 @@ export class CardTypeTranslationBuilder {
         translationSection = translationSection.replace(/<!--.*?-->/gs, '');
 
         const languageCandidates: WikiText[] = translationSection.split(/\n\*\s/).slice(1);
-        return new Map<string, CardTypeTranslationV2>(
+        return new Map<string, CardTypeTranslation>(
             languageCandidates.map((languageCandidate: WikiText) => {
                 const language = /^[^:]*/.exec(languageCandidate)?.[0];
                 let name: string | undefined =
