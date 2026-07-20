@@ -193,7 +193,11 @@ export class WikiClient {
                 url.searchParams.append(key, value);
             }
 
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'Dominion-Wiki-Client': this.authenticationHeaderValue,
+                },
+            });
             const queryResult = (await response.json()) as QueryResult<TPage>;
 
             if (Array.isArray(queryResult) || queryResult.query === undefined) {
