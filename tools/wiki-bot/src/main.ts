@@ -42,9 +42,15 @@ async function bootstrap(): Promise<void> {
 
     const sharpFactory = new SharpFactory();
 
+    const authToken = process.env['WIKI_AUTH_TOKEN'];
+    if (!authToken) {
+        console.error('Environment variable WIKI_AUTH_TOKEN is required');
+        exit(1);
+    }
+
     const currentGenerationTime = new Date();
     const targetPath = '../../src';
-    const wikiClient = new WikiClient('https://wiki.dominionstrategy.com/api.php', '', 500);
+    const wikiClient = new WikiClient('https://wiki.dominionstrategy.com/api.php', authToken, 500);
     const editionBuilder = new EditionBuilder();
     const editionTranslationBuilder = new EditionTranslationBuilder();
     const cardDtoBuilder = new CardDtoBuilder();

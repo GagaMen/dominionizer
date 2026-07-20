@@ -2,7 +2,7 @@
     "name": "dominionizer-wiki-bot",
     "type": "module",
     "scripts": {
-        "start": "tsx ./src/main.ts",
+        "start": "node --env-file=.env ../../node_modules/.bin/tsx ./src/main.ts",
         "prettier": "prettier --write --log-level warn ../../src/data",
         "test": "tsx watch ../../node_modules/jasmine/bin/jasmine --config=jasmine.json",
         "test:ci": "tsx ../../node_modules/jasmine/bin/jasmine --config=jasmine.json"
