@@ -38,7 +38,7 @@ describe('CardDtoBuilder', () => {
         pageid: 0,
         title: '',
         fullurl: '',
-        revisions: [{ '*': '' }],
+        revisions: [{ slots: { main: { '*': '' } } }],
     };
     const nullCardDto: CardDto = {
         id: '',
@@ -84,10 +84,14 @@ describe('CardDtoBuilder', () => {
                 fullurl: 'https://wiki.dominionstrategy.com/index.php/Barbarian',
                 revisions: [
                     {
-                        '*':
-                            `{{Infobox Card\n` +
-                            `|text = At the start...\n` +
-                            `|text2 = This is gained ...\n}}\n\n`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{Infobox Card\n` +
+                                    `|text = At the start...\n` +
+                                    `|text2 = This is gained ...\n}}\n\n`,
+                            },
+                        },
                     },
                 ],
             };
@@ -155,10 +159,14 @@ describe('CardDtoBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `{{Infobox Card\n` +
-                            `|text = At the<br/>start...\n` +
-                            `|text2 = This is<br/>gained ...\n}}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{Infobox Card\n` +
+                                    `|text = At the<br/>start...\n` +
+                                    `|text2 = This is<br/>gained ...\n}}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -256,10 +264,14 @@ describe('CardDtoBuilder', () => {
                 fullurl: 'https://wiki.dominionstrategy.com/index.php/Knights',
                 revisions: [
                     {
-                        '*':
-                            `{{Infobox Card\n` +
-                            `|text = At the start...\n` +
-                            `|text2 = This is gained ...\n}}\n\n`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{Infobox Card\n` +
+                                    `|text = At the start...\n` +
+                                    `|text2 = This is gained ...\n}}\n\n`,
+                            },
+                        },
                     },
                 ],
             };

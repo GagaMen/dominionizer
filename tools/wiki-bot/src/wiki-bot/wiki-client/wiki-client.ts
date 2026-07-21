@@ -21,7 +21,12 @@ export class WikiClient {
 
     private readonly defaultCategoryMembersParams: QueryParams = {
         generator: 'categorymembers',
-        gcmlimit: 'max',
+        gcmlimit: '50',
+    };
+
+    private readonly defaultRevisionsParams: QueryParams = {
+        prop: 'revisions',
+        rvslots: '*',
     };
 
     private readonly defaultPropParamsForImagePages: QueryParams = {
@@ -50,9 +55,9 @@ export class WikiClient {
         const params: QueryParams = {
             ...this.defaultParams,
             ...this.defaultCategoryMembersParams,
+            ...this.defaultRevisionsParams,
             gcmtitle: 'Category:Sets',
             gcmtype: 'page',
-            prop: 'revisions',
             rvprop: 'content',
         };
 
@@ -74,6 +79,7 @@ export class WikiClient {
         const params: QueryParams = {
             ...this.defaultParams,
             ...this.defaultCategoryMembersParams,
+            ...this.defaultRevisionsParams,
             gcmtitle: 'Category:Cards',
             gcmtype: 'page',
             prop: 'info|revisions',
@@ -99,6 +105,7 @@ export class WikiClient {
         const params: QueryParams = {
             ...this.defaultParams,
             ...this.defaultCategoryMembersParams,
+            ...this.defaultRevisionsParams,
             gcmtitle: 'Category:Card types',
             gcmtype: 'page',
             prop: 'info|revisions',

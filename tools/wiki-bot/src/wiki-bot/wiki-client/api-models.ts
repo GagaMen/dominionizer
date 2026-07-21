@@ -66,7 +66,11 @@ export interface CardTypePage extends Page {
 }
 
 export interface Revision {
-    '*': WikiText;
+    slots: {
+        main: {
+            '*': WikiText;
+        };
+    };
 }
 
 export type WikiText = string;

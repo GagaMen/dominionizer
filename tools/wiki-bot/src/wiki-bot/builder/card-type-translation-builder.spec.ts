@@ -25,17 +25,21 @@ describe('CardTypeTranslationBuilder', () => {
                 fullurl: 'https://wiki.dominionstrategy.com/index.php/Prize',
                 revisions: [
                     {
-                        '*':
-                            `=== In other languages ===\n` +
-                            `* Czech: Odměna\n` +
-                            `* Dutch: Prijs\n` +
-                            `* Finnish: Palkinto\n` +
-                            `* German: Preis\n` +
-                            `* Polish: Nagroda\n` +
-                            `* Russian: Трофей (pron. ''trofyey'', lit. ''trophy'')\n` +
-                            `<!--* Chinese: \n` +
-                            `* French: \n` +
-                            `-->\n`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `* Czech: Odměna\n` +
+                                    `* Dutch: Prijs\n` +
+                                    `* Finnish: Palkinto\n` +
+                                    `* German: Preis\n` +
+                                    `* Polish: Nagroda\n` +
+                                    `* Russian: Трофей (pron. ''trofyey'', lit. ''trophy'')\n` +
+                                    `<!--* Chinese: \n` +
+                                    `* French: \n` +
+                                    `-->\n`,
+                            },
+                        },
                     },
                 ],
             };
@@ -65,11 +69,15 @@ describe('CardTypeTranslationBuilder', () => {
                 fullurl: 'https://wiki.dominionstrategy.com/index.php/Project',
                 revisions: [
                     {
-                        '*':
-                            `=== In other languages ===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Text\n` +
-                            `|}\n\n`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Text\n` +
+                                    `|}\n\n`,
+                            },
+                        },
                     },
                 ],
             };
@@ -102,12 +110,16 @@ describe('CardTypeTranslationBuilder', () => {
                 fullurl: 'https://wiki.dominionstrategy.com/index.php/Knight',
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `In general, the specific names...\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
-                            `|}\n\n`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `In general, the specific names...\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                                    `|}\n\n`,
+                            },
+                        },
                     },
                 ],
             };

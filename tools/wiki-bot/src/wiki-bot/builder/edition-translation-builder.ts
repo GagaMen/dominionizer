@@ -7,7 +7,7 @@ export class EditionTranslationBuilder {
         expansionPage: ExpansionPage,
         editions: CargoEdition[],
     ): Map<string, EditionTranslation[]> {
-        const wikiText: WikiText = expansionPage.revisions[0]['*'] ?? '';
+        const wikiText: WikiText = expansionPage.revisions[0].slots.main['*'] ?? '';
         let inOtherLanguages: WikiText = extractSection(wikiText, 'In other languages', 3);
         inOtherLanguages = inOtherLanguages.replace(/<!--.*?-->/gs, '');
         const languageCandidates: WikiText[] = inOtherLanguages.split(/\n\*\s/).slice(1);

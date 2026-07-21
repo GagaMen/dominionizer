@@ -13,7 +13,7 @@ export class CardTranslationBuilder {
         page: CardPage | CardTypePage,
         cargoCard: CargoCard | CargoCardType,
     ): Map<string, CardTranslation> {
-        const wikiText: WikiText = page.revisions[0]['*'] ?? '';
+        const wikiText: WikiText = page.revisions[0].slots.main['*'] ?? '';
         const otherLanguageVersions: WikiText = extractSection(
             wikiText,
             '(?:In other languages|Other language versions)',

@@ -12,7 +12,7 @@ export class CardDtoBuilder {
         editions: Edition[],
         cardTypes: CardType[],
     ): CardDto {
-        const wikiText: WikiText = page.revisions[0]['*'] ?? '';
+        const wikiText: WikiText = page.revisions[0].slots.main['*'] ?? '';
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox');
 
         return {

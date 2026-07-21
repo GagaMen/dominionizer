@@ -215,7 +215,7 @@ describe('WikiClient', () => {
         beforeEach(() => {
             url.searchParams.append('action', 'query');
             url.searchParams.append('generator', 'categorymembers');
-            url.searchParams.append('gcmlimit', 'max');
+            url.searchParams.append('gcmlimit', '50');
             url.searchParams.append('gcmtitle', 'Category:Card art');
             url.searchParams.append('gcmtype', 'file');
             url.searchParams.append('prop', 'imageinfo');
@@ -225,7 +225,11 @@ describe('WikiClient', () => {
         it('should fetch all card art pages correctly', async () => {
             await wikiClient.fetchAllCardArtPages();
 
-            expect(fetchSpy).toHaveBeenCalledWith(url);
+            expect(fetchSpy).toHaveBeenCalledWith(url, {
+                headers: {
+                    'Dominion-Wiki-Client': authenticationHeaderValue,
+                },
+            });
         });
 
         it('with query result does not contain continuation data should return all card art pages', async () => {
@@ -269,10 +273,14 @@ describe('WikiClient', () => {
                 },
             };
             fetchSpy
-                .withArgs(firstUrl)
+                .withArgs(firstUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
                 .and.resolveTo({ json: () => Promise.resolve(firstQueryResult) } as Response);
             fetchSpy
-                .withArgs(secondUrl)
+                .withArgs(secondUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
                 .and.resolveTo({ json: () => Promise.resolve(secondQueryResult) } as Response);
             const expected = [imagePage, imagePage];
 
@@ -286,7 +294,7 @@ describe('WikiClient', () => {
         beforeEach(() => {
             url.searchParams.append('action', 'query');
             url.searchParams.append('generator', 'categorymembers');
-            url.searchParams.append('gcmlimit', 'max');
+            url.searchParams.append('gcmlimit', '50');
             url.searchParams.append('gcmtitle', 'Category:Card symbols');
             url.searchParams.append('gcmtype', 'file');
             url.searchParams.append('prop', 'imageinfo');
@@ -296,7 +304,11 @@ describe('WikiClient', () => {
         it('should fetch all card symbol pages correctly', async () => {
             await wikiClient.fetchAllCardSymbolPages();
 
-            expect(fetchSpy).toHaveBeenCalledWith(url);
+            expect(fetchSpy).toHaveBeenCalledWith(url, {
+                headers: {
+                    'Dominion-Wiki-Client': authenticationHeaderValue,
+                },
+            });
         });
 
         it('should return all card symbol pages', async () => {
@@ -337,7 +349,11 @@ describe('WikiClient', () => {
         it('should fetch all changed image pages correctly', async () => {
             await wikiClient.fetchRecentImageChanges(since);
 
-            expect(fetchSpy).toHaveBeenCalledWith(url);
+            expect(fetchSpy).toHaveBeenCalledWith(url, {
+                headers: {
+                    'Dominion-Wiki-Client': authenticationHeaderValue,
+                },
+            });
         });
 
         it('with query result does not contain continuation data should return all changed image pages', async () => {
@@ -386,10 +402,14 @@ describe('WikiClient', () => {
                 },
             };
             fetchSpy
-                .withArgs(firstUrl)
+                .withArgs(firstUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
                 .and.resolveTo({ json: () => Promise.resolve(firstQueryResult) } as Response);
             fetchSpy
-                .withArgs(secondUrl)
+                .withArgs(secondUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
                 .and.resolveTo({ json: () => Promise.resolve(secondQueryResult) } as Response);
             const expected = [changedImagePage, changedImagePage];
 

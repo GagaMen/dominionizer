@@ -16,33 +16,37 @@ describe('EditionTranslationBuilder', () => {
                 title: 'Dominion (Base Set)',
                 revisions: [
                     {
-                        '*':
-                            `=== In other languages ===\n` +
-                            `* Chinese: 皇舆争霸 (pron. ''huáng yú zhēngbà'', lit. ''Struggle for the emperor's throne'')\n` +
-                            `* Czech: Dominion\n` +
-                            `* Dutch: \n` +
-                            `** Dominion: In naam van de Koning! (lit. ''In the name of the King!'') (first edition)\n` +
-                            `** Dominion: Wie bouwt het mooiste koninkrijk? (lit. ''Who will build the most beautiful kingdom?'') (first edition)\n` +
-                            `** Dominion: Tweede editie (second edition)\n` +
-                            `* Finnish: Dominion: Valtakunta (lit. ''The kingdom'')\n` +
-                            `* French: Dominion: Votre royaume commence ici! (lit. ''Your kingdom begins here!'')\n` +
-                            `* German: Dominion: Was für eine Welt! (lit. ''What a world!'')\n` +
-                            `* Greek: Dominion: Ο κυρίαρχος (pron. ''o kyriarchos'', lit. ''The dominant'')\n` +
-                            `* Hungarian: Dominion\n` +
-                            `* Italian: Dominion: Nasce un Regno (lit. ''Birth of a kingdom'')\n` +
-                            `* Japanese: ドミニオン (pron. ''dominion'')\n` +
-                            `* Korean: 도미니언 (pron. ''dominieon'')\n` +
-                            `* Norwegian: Dominion\n` +
-                            `* Polish: \n` +
-                            `** Dominion: Rozdarte Królestwo (lit. ''A kingdom torn apart'') ([[Bard Centrum Gier|Bard]] edition)\n` +
-                            `** Dominion ([[GFP]] edition)\n` +
-                            `* Romanian: Dominion\n` +
-                            `* Russian: Доминион (pron. ''dominion'')\n` +
-                            `* Spanish: Dominion\n` +
-                            `* Swedish: Dominion: Spelet om kungadömet (lit. ''The game of the kingdom'')\n` +
-                            `<!--* Mexican: \n` +
-                            `* Portuguese: \n` +
-                            `-->\n`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `* Chinese: 皇舆争霸 (pron. ''huáng yú zhēngbà'', lit. ''Struggle for the emperor's throne'')\n` +
+                                    `* Czech: Dominion\n` +
+                                    `* Dutch: \n` +
+                                    `** Dominion: In naam van de Koning! (lit. ''In the name of the King!'') (first edition)\n` +
+                                    `** Dominion: Wie bouwt het mooiste koninkrijk? (lit. ''Who will build the most beautiful kingdom?'') (first edition)\n` +
+                                    `** Dominion: Tweede editie (second edition)\n` +
+                                    `* Finnish: Dominion: Valtakunta (lit. ''The kingdom'')\n` +
+                                    `* French: Dominion: Votre royaume commence ici! (lit. ''Your kingdom begins here!'')\n` +
+                                    `* German: Dominion: Was für eine Welt! (lit. ''What a world!'')\n` +
+                                    `* Greek: Dominion: Ο κυρίαρχος (pron. ''o kyriarchos'', lit. ''The dominant'')\n` +
+                                    `* Hungarian: Dominion\n` +
+                                    `* Italian: Dominion: Nasce un Regno (lit. ''Birth of a kingdom'')\n` +
+                                    `* Japanese: ドミニオン (pron. ''dominion'')\n` +
+                                    `* Korean: 도미니언 (pron. ''dominieon'')\n` +
+                                    `* Norwegian: Dominion\n` +
+                                    `* Polish: \n` +
+                                    `** Dominion: Rozdarte Królestwo (lit. ''A kingdom torn apart'') ([[Bard Centrum Gier|Bard]] edition)\n` +
+                                    `** Dominion ([[GFP]] edition)\n` +
+                                    `* Romanian: Dominion\n` +
+                                    `* Russian: Доминион (pron. ''dominion'')\n` +
+                                    `* Spanish: Dominion\n` +
+                                    `* Swedish: Dominion: Spelet om kungadömet (lit. ''The game of the kingdom'')\n` +
+                                    `<!--* Mexican: \n` +
+                                    `* Portuguese: \n` +
+                                    `-->\n`,
+                            },
+                        },
                     },
                 ],
             };
@@ -183,12 +187,16 @@ describe('EditionTranslationBuilder', () => {
                 title: 'Alchemy',
                 revisions: [
                     {
-                        '*':
-                            `=== In other languages ===\n` +
-                            `* Czech: Alchymie\n` +
-                            `* Dutch: De Alchemisten (lit. ''the alchemists'')\n` +
-                            `** No longer available. In 2019 999 games combined ...\n` +
-                            `* Finnish: Alkemia`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `* Czech: Alchymie\n` +
+                                    `* Dutch: De Alchemisten (lit. ''the alchemists'')\n` +
+                                    `** No longer available. In 2019 999 games combined ...\n` +
+                                    `* Finnish: Alkemia`,
+                            },
+                        },
                     },
                 ],
             };
@@ -212,12 +220,16 @@ describe('EditionTranslationBuilder', () => {
                 title: 'Allies',
                 revisions: [
                     {
-                        '*':
-                            `=== In other languages ===\n` +
-                            `* Dutch (release March 16, 2022): Bondgenoten\n` +
-                            `* German (release March 28, 2022): Verbündete\n` +
-                            `* Japanese (release announced for 2022 or later): 同盟\n` +
-                            `* Korean (release announced for 2022): 도미니언: 굳건한 동맹`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `* Dutch (release March 16, 2022): Bondgenoten\n` +
+                                    `* German (release March 28, 2022): Verbündete\n` +
+                                    `* Japanese (release announced for 2022 or later): 同盟\n` +
+                                    `* Korean (release announced for 2022): 도미니언: 굳건한 동맹`,
+                            },
+                        },
                     },
                 ],
             };

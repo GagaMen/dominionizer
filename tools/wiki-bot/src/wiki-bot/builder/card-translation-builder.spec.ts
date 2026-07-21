@@ -39,15 +39,19 @@ describe('CardTranslationBuilder', () => {
                 pageid: 247,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\n` +
-                            ` |-\n` +
-                            `!German \n| Platin {{nowrap| (lit. ...)}} || || || {{Cost|5|xl|}}\n` +
-                            `|-\n` +
-                            `!Polish \n| {{nowrap|Platyna}} || || || {{Cost|5}} \n` +
-                            ` |}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text\n` +
+                                    ` |-\n` +
+                                    `!German \n| Platin {{nowrap| (lit. ...)}} || || || {{Cost|5|xl|}}\n` +
+                                    `|-\n` +
+                                    `!Polish \n| {{nowrap|Platyna}} || || || {{Cost|5}} \n` +
+                                    ` |}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -86,15 +90,19 @@ describe('CardTranslationBuilder', () => {
                 pageid: 6107,
                 revisions: [
                     {
-                        '*':
-                            `=== In other languages ===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Text\n` +
-                            `|-\n` +
-                            `!Dutch \n| Project || || Project\n` +
-                            `|-\n` +
-                            `!German \n| Projekt || ||\n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Text\n` +
+                                    `|-\n` +
+                                    `!Dutch \n| Project || || Project\n` +
+                                    `|-\n` +
+                                    `!German \n| Projekt || ||\n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -132,13 +140,17 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
-                            `|-\n` +
-                            `!German \n| Burggraben ||  || || '''+2 Karten''' || HiG translation error...\n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                                    `|-\n` +
+                                    `!German \n| Burggraben ||  || || '''+2 Karten''' || HiG translation error...\n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -163,13 +175,17 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Card back !! Digital !! style="width:22%"| Text !! Release\n` +
-                            `|-\n` +
-                            `!German \n| Geldversteck || || {{CardVersionImage|Stash-back-2}} || || {{Cost|2|l}}... || \n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Card back !! Digital !! style="width:22%"| Text !! Release\n` +
+                                    `|-\n` +
+                                    `!German \n| Geldversteck || || {{CardVersionImage|Stash-back-2}} || || {{Cost|2|l}}... || \n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -194,13 +210,17 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\n` +
-                            `|-\n` +
-                            `!German \n| || || || style="..."| \n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text\n` +
+                                    `|-\n` +
+                                    `!German \n| || || || style="..."| \n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -224,13 +244,17 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `=== Other language versions ===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\n` +
-                            `|-\n` +
-                            `!German\n| ||  || || '''+1 Karte'''<br/>Ignoriere... \n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== Other language versions ===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text\n` +
+                                    `|-\n` +
+                                    `!German\n| ||  || || '''+1 Karte'''<br/>Ignoriere... \n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -254,15 +278,19 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `=== Other language versions ===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\n` +
-                            `|-\n` +
-                            `!German\n| ||  || || '''+1 Karte'''<hr>Ignoriere... \n` +
-                            `|-\n` +
-                            `!French\n| ||  || || {{Cost|6|l}}<hr style="...">Lorsque vous... \n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== Other language versions ===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text\n` +
+                                    `|-\n` +
+                                    `!German\n| ||  || || '''+1 Karte'''<hr>Ignoriere... \n` +
+                                    `|-\n` +
+                                    `!French\n| ||  || || {{Cost|6|l}}<hr style="...">Lorsque vous... \n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -292,13 +320,17 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `=== Other language versions ===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\n` +
-                            `|-\n` +
-                            `!German\n| style="..."| Wache ||  || || style="..."| +{{Cost|2}}... \n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== Other language versions ===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text\n` +
+                                    `|-\n` +
+                                    `!German\n| style="..."| Wache ||  || || style="..."| +{{Cost|2}}... \n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -323,14 +355,18 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text\n` +
-                            `|-\n` +
-                            `!German \n| || || || \n` +
-                            `|-\n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text\n` +
+                                    `|-\n` +
+                                    `!German \n| || || || \n` +
+                                    `|-\n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -349,21 +385,25 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
-                            `|-\n` +
-                            `!rowspan=3|German\n| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten... ||\n` +
-                            `|- \n` +
-                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten... ||\n` +
-                            `|- \n` +
-                            `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten... || \n` +
-                            `|- \n` +
-                            `! rowspan="2" |Russian \n| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}... ||\n` +
-                            `|-\n` +
-                            `| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}В этом... ||\n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                                    `|-\n` +
+                                    `!rowspan=3|German\n| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten... ||\n` +
+                                    `|- \n` +
+                                    `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten... ||\n` +
+                                    `|- \n` +
+                                    `| Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten... || \n` +
+                                    `|- \n` +
+                                    `! rowspan="2" |Russian \n| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}... ||\n` +
+                                    `|-\n` +
+                                    `| Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}В этом... ||\n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -397,15 +437,19 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! style="width:22%"| Text \n` +
-                            `<!--|-\n` +
-                            `!Chinese \n| || || || -->\n` +
-                            `|-\n` +
-                            `!German \n| Große Halle <!--Grosse Halle--> || || || \n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! style="width:22%"| Text \n` +
+                                    `<!--|-\n` +
+                                    `!Chinese \n| || || || -->\n` +
+                                    `|-\n` +
+                                    `!German \n| Große Halle <!--Grosse Halle--> || || || \n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
@@ -424,21 +468,25 @@ describe('CardTranslationBuilder', () => {
                 ...nullCardPage,
                 revisions: [
                     {
-                        '*':
-                            `===Other language versions===\n` +
-                            `{| class="wikitable" style="text-align:center;"\n` +
-                            `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
-                            `|-\n` +
-                            `!rowspan=3|German\n| rowspan=3|Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten... ||\n` +
-                            `|- \n` +
-                            `| || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten... ||\n` +
-                            `|- \n` +
-                            `| || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten... || \n` +
-                            `|- \n` +
-                            `! rowspan="2" |Russian \n| rowspan="2" |Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}... ||\n` +
-                            `|-\n` +
-                            `| || || '''+1 Покупка'''<br>+{{Cost|1}}В этом... ||\n` +
-                            `|}`,
+                        slots: {
+                            main: {
+                                '*':
+                                    `===Other language versions===\n` +
+                                    `{| class="wikitable" style="text-align:center;"\n` +
+                                    `! Language !! Name !! Print !! Digital !! Text !! Notes\n` +
+                                    `|-\n` +
+                                    `!rowspan=3|German\n| rowspan=3|Brücke || || || '''+1 Kauf'''<br>+{{Cost|1}}<br>Alle Karten... ||\n` +
+                                    `|- \n` +
+                                    `| || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten alle Karten... ||\n` +
+                                    `|- \n` +
+                                    `| || || '''+1 Kauf'''<br>+{{Cost|1}}<br>In diesem Zug kosten Karten... || \n` +
+                                    `|- \n` +
+                                    `! rowspan="2" |Russian \n| rowspan="2" |Мост<br>(pron. ''most'') || || || '''+1 Покупка'''<br>+{{Cost|1}}... ||\n` +
+                                    `|-\n` +
+                                    `| || || '''+1 Покупка'''<br>+{{Cost|1}}В этом... ||\n` +
+                                    `|}`,
+                            },
+                        },
                     },
                 ],
             };
