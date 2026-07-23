@@ -1,11 +1,11 @@
 export type QueryParams = Record<string, string>;
 
 export interface QueryResult<TPage> {
-    'query-continue'?: QueryContinuation;
+    continue?: QueryContinuation;
     query?: QueryResultContent<TPage>;
 }
 
-export type QueryContinuation = Record<string, Record<string, string>>;
+export type QueryContinuation = Record<string, string>;
 
 export interface QueryResultContent<TPage> {
     pages: Record<string, TPage>;
@@ -22,6 +22,7 @@ export type ExpansionPage = Page & {
 
 export interface CargoEdition {
     Id: string;
+    PageId: string;
     Expansion: string;
     Edition: string;
     Icon: string;

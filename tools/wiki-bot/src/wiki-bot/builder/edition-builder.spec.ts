@@ -13,6 +13,7 @@ describe('EditionBuilder', () => {
         it('should return expansion', () => {
             const cargoEdition: CargoEdition = {
                 Id: '148',
+                PageId: '148',
                 Expansion: 'Promo',
                 Edition: '1',
                 Icon: 'Promo_icon.png',

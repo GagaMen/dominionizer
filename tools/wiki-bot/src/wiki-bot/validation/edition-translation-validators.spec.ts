@@ -7,7 +7,7 @@ describe('EditionTranslationValidator', () => {
     const validator = new EditionTranslationValidator();
 
     describe('validate', () => {
-        const cargoEdition = { Expansion: 'Dominion' } as CargoEdition;
+        const cargoEdition = { PageId: '1', Expansion: 'Dominion' } as CargoEdition;
 
         it('with valid edition translation should return Success', () => {
             const editionTranslation: EditionTranslation = {

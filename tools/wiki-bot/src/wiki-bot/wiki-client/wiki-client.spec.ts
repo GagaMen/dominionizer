@@ -13,6 +13,7 @@ describe('WikiClient', () => {
     let fetchSpy: jasmine.Spy<typeof fetch>;
     const edition: CargoEdition = {
         Id: '1',
+        PageId: '42',
         Edition: '1',
         Expansion: 'Base',
         Icon: 'base_icon.png',
@@ -89,7 +90,9 @@ describe('WikiClient', () => {
 
         it('should fetch all editions correctly', async () => {
             url.searchParams.append('tables', 'Editions');
-            url.searchParams.append('fields', '_ID=Id,Expansion,Edition,Icon');
+            url.searchParams.append('fields', '_ID=Id,_pageID=PageId,Expansion,Edition,Icon');
+            url.searchParams.append('limit', String(pageLimit));
+            url.searchParams.append('offset', '0');
 
             await wikiClient.fetchAllEditions();
 
@@ -128,6 +131,8 @@ describe('WikiClient', () => {
                 'fields',
                 '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
             );
+            url.searchParams.append('limit', String(pageLimit));
+            url.searchParams.append('offset', '0');
 
             await wikiClient.fetchAllCards();
 
@@ -174,6 +179,53 @@ describe('WikiClient', () => {
             expect(actual).toEqual(expected);
             expect(fetchSpy).toHaveBeenCalledTimes(2);
         });
+
+        it('with query result is paged should increment offset on each request', async () => {
+            const firstUrl = new URL(url);
+            firstUrl.searchParams.append('tables', 'Components');
+            firstUrl.searchParams.append(
+                'fields',
+                '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+            );
+            firstUrl.searchParams.append('limit', String(pageLimit));
+            firstUrl.searchParams.append('offset', '0');
+
+            const secondUrl = new URL(url);
+            secondUrl.searchParams.append('tables', 'Components');
+            secondUrl.searchParams.append(
+                'fields',
+                '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+            );
+            secondUrl.searchParams.append('limit', String(pageLimit));
+            secondUrl.searchParams.append('offset', String(pageLimit));
+
+            fetchSpy
+                .withArgs(firstUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
+                .and.resolveTo({
+                    json: () =>
+                        Promise.resolve({
+                            cargoquery: [{ title: card }, { title: card }],
+                        }),
+                } as Response);
+            fetchSpy
+                .withArgs(secondUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
+                .and.resolveTo({
+                    json: () =>
+                        Promise.resolve({
+                            cargoquery: [{ title: card }],
+                        }),
+                } as Response);
+
+            const actual = await wikiClient.fetchAllCards();
+
+            expect(actual).toEqual([card, card, card]);
+            expect(fetchSpy).toHaveBeenCalledWith(firstUrl, jasmine.any(Object));
+            expect(fetchSpy).toHaveBeenCalledWith(secondUrl, jasmine.any(Object));
+        });
     });
 
     describe('fetchAllCardTypes', () => {
@@ -184,6 +236,8 @@ describe('WikiClient', () => {
         it('should fetch all card types correctly', async () => {
             url.searchParams.append('tables', 'Types');
             url.searchParams.append('fields', '_ID=Id,Name,Scope');
+            url.searchParams.append('limit', String(pageLimit));
+            url.searchParams.append('offset', '0');
 
             await wikiClient.fetchAllCardTypes();
 
@@ -254,10 +308,8 @@ describe('WikiClient', () => {
             const secondUrl: URL = new URL(url);
             secondUrl.searchParams.append('gcmcontinue', 'continuation-data');
             const firstQueryResult: QueryResult<ImagePage> = {
-                'query-continue': {
-                    categorymembers: {
-                        gcmcontinue: 'continuation-data',
-                    },
+                continue: {
+                    gcmcontinue: 'continuation-data',
                 },
                 query: {
                     pages: {
@@ -311,7 +363,7 @@ describe('WikiClient', () => {
             });
         });
 
-        it('should return all card symbol pages', async () => {
+        it('with query result does not contain continuation data should return all card symbol pages', async () => {
             const queryResult: QueryResult<ImagePage> = {
                 query: {
                     pages: {
@@ -328,8 +380,43 @@ describe('WikiClient', () => {
             expect(actual).toEqual(expected);
         });
 
-        // case with continuation data can't happen in reality because amount of existing card symbols
-        // is to low
+        it('with query result contains continuation data should continue fetching and return all card symbol pages', async () => {
+            const firstUrl: URL = url;
+            const secondUrl: URL = new URL(url);
+            secondUrl.searchParams.append('grccontinue', 'continuation-data');
+            const firstQueryResult: QueryResult<ImagePage> = {
+                continue: {
+                    grccontinue: 'continuation-data',
+                },
+                query: {
+                    pages: {
+                        '1': imagePage,
+                    },
+                },
+            };
+            const secondQueryResult: QueryResult<ImagePage> = {
+                query: {
+                    pages: {
+                        '2': imagePage,
+                    },
+                },
+            };
+            fetchSpy
+                .withArgs(firstUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
+                .and.resolveTo({ json: () => Promise.resolve(firstQueryResult) } as Response);
+            fetchSpy
+                .withArgs(secondUrl, {
+                    headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
+                })
+                .and.resolveTo({ json: () => Promise.resolve(secondQueryResult) } as Response);
+            const expected = [imagePage, imagePage];
+
+            const actual = await wikiClient.fetchAllCardSymbolPages();
+
+            expect(actual).toEqual(expected);
+        });
     });
 
     describe('fetchRecentImageChanges', () => {
@@ -358,11 +445,6 @@ describe('WikiClient', () => {
 
         it('with query result does not contain continuation data should return all changed image pages', async () => {
             const queryResult: QueryResult<ChangedImagePage> = {
-                // continuation data for file revisions should be ignored
-                // we are only interested in the latest revision
-                'query-continue': {
-                    imageinfo: {},
-                },
                 query: {
                     pages: {
                         '1': changedImagePage,
@@ -381,12 +463,10 @@ describe('WikiClient', () => {
         it('with query result contains continuation data should continue fetching and return all changed image pages', async () => {
             const firstUrl: URL = url;
             const secondUrl: URL = new URL(url);
-            secondUrl.searchParams.append('grcstart', 'continuation-data');
+            secondUrl.searchParams.append('grccontinue', 'continuation-data');
             const firstQueryResult: QueryResult<ChangedImagePage> = {
-                'query-continue': {
-                    recentchanges: {
-                        grcstart: 'continuation-data',
-                    },
+                continue: {
+                    grccontinue: 'continuation-data',
                 },
                 query: {
                     pages: {

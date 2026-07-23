@@ -45,7 +45,8 @@ export class WikiClient {
             format: 'json',
             action: 'cargoquery',
             tables: 'Editions',
-            fields: '_ID=Id,Expansion,Edition,Icon',
+            fields: '_ID=Id,_pageID=PageId,Expansion,Edition,Icon',
+            limit: String(this.pageLimit),
         };
 
         return await this.fetchData(params);
@@ -70,6 +71,7 @@ export class WikiClient {
             action: 'cargoquery',
             tables: 'Components',
             fields: '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+            limit: String(this.pageLimit),
         };
 
         return await this.fetchData(params);
@@ -96,6 +98,7 @@ export class WikiClient {
             action: 'cargoquery',
             tables: 'Types',
             fields: '_ID=Id,Name,Scope',
+            limit: String(this.pageLimit),
         };
 
         return await this.fetchData(params);
@@ -158,14 +161,16 @@ export class WikiClient {
     }
 
     private async fetchData<T>(params: QueryParams): Promise<T[]> {
-        const requestUrl = new URL(this.baseUrl);
-
         const dataItems = [];
+        let offset = 0;
         let dataItemCount;
+
         do {
+            const requestUrl = new URL(this.baseUrl);
             for (const [key, value] of Object.entries(params)) {
                 requestUrl.searchParams.append(key, value);
             }
+            requestUrl.searchParams.append('offset', String(offset));
 
             const response = await fetch(requestUrl, {
                 headers: {
@@ -178,6 +183,7 @@ export class WikiClient {
             dataItems.push(...pageDataItems);
 
             dataItemCount = pageDataItems.length;
+            offset += this.pageLimit;
         } while (dataItemCount === this.pageLimit);
 
         return dataItems;
@@ -214,16 +220,15 @@ export class WikiClient {
 
             pages = pages.concat(Object.values<TPage>(queryResult.query.pages));
 
-            const continueParam = queryResult['query-continue']?.[params['generator']];
-            if (continueParam === undefined) {
+            const continuation = queryResult['continue'];
+            if (continuation === undefined) {
                 continueQuerying = false;
                 continue;
             }
 
-            const continueParamKey: string = Object.keys(continueParam)[0];
-            const continueParamValue: string = Object.values(continueParam)[0];
-
-            params[continueParamKey] = continueParamValue;
+            for (const [key, value] of Object.entries(continuation)) {
+                params[key] = value;
+            }
         }
 
         return pages;

@@ -187,7 +187,7 @@ export class DominionizerWikiBot {
 
         for (const expansionPage of expansionPages) {
             const filteredEditions = cargoEditions.filter(
-                (cargoEdition) => cargoEdition.Expansion === expansionPage.title,
+                (cargoEdition) => String(expansionPage.pageid) === cargoEdition.PageId,
             );
             const translationsByEdition = this.editionTranslationBuilder.build(
                 expansionPage,

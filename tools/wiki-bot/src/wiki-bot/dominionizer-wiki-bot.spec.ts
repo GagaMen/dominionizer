@@ -190,8 +190,20 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate editions', async () => {
             const cargoEditions: CargoEdition[] = [
-                { Id: 'base-2e', Expansion: 'Dominion', Edition: '2', Icon: 'dom2e.png' },
-                { Id: 'base-1e', Expansion: 'Dominion', Edition: '1', Icon: 'dom1e.png' },
+                {
+                    Id: 'base-2e',
+                    PageId: '1',
+                    Expansion: 'Dominion',
+                    Edition: '2',
+                    Icon: 'dom2e.png',
+                },
+                {
+                    Id: 'base-1e',
+                    PageId: '1',
+                    Expansion: 'Dominion',
+                    Edition: '1',
+                    Icon: 'dom1e.png',
+                },
             ];
             const editions: Edition[] = [
                 { id: 'base-1e', expansion: 'Dominion', edition: '1', icon: 'dom1e.png' },
@@ -215,8 +227,20 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate edition translations', async () => {
             const cargoEditions: CargoEdition[] = [
-                { Id: 'base-1e', Expansion: 'Dominion', Edition: '1', Icon: 'dom1e.png' },
-                { Id: 'intrigue-1e', Expansion: 'Intrigue', Edition: '1', Icon: 'intr1e.png' },
+                {
+                    Id: 'base-1e',
+                    PageId: '1',
+                    Expansion: 'Dominion',
+                    Edition: '1',
+                    Icon: 'dom1e.png',
+                },
+                {
+                    Id: 'intrigue-1e',
+                    PageId: '2',
+                    Expansion: 'Intrigue',
+                    Edition: '1',
+                    Icon: 'intr1e.png',
+                },
             ];
             const expansionPages: ExpansionPage[] = [
                 { pageid: 1, title: 'Dominion' } as ExpansionPage,
@@ -464,7 +488,13 @@ describe('DominionizerWikiBot', () => {
             ];
             const cardTypes: CardType[] = [{ id: 'action', name: 'Action', scope: 'Basic' }];
             const cargoEditions: CargoEdition[] = [
-                { Id: 'base-2e', Expansion: 'Dominion', Edition: '2', Icon: 'dom2e.png' },
+                {
+                    Id: 'base-2e',
+                    PageId: '1',
+                    Expansion: 'Dominion',
+                    Edition: '2',
+                    Icon: 'dom2e.png',
+                },
             ];
             const editions: Edition[] = [
                 { id: 'base-2e', expansion: 'Dominion', edition: '2', icon: 'dom2e.png' },
@@ -585,7 +615,13 @@ describe('DominionizerWikiBot', () => {
                 ValidationResult.Failure('Edition validation failed'),
             );
             wikiClientSpy.fetchAllEditions.and.resolveTo([
-                { Id: 'base-1e', Expansion: 'Dominion', Edition: '1', Icon: 'dom1e.png' },
+                {
+                    Id: 'base-1e',
+                    PageId: '1',
+                    Expansion: 'Dominion',
+                    Edition: '1',
+                    Icon: 'dom1e.png',
+                },
             ]);
             editionBuilderSpy.build.and.returnValue({
                 id: 'base-1e',

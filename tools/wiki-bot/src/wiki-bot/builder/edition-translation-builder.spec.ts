@@ -19,7 +19,7 @@ describe('EditionTranslationBuilder', () => {
                         slots: {
                             main: {
                                 '*':
-                                    `=== In other languages ===\n` +
+                                    `=== Official releases in other languages ===\n` +
                                     `* Chinese: 皇舆争霸 (pron. ''huáng yú zhēngbà'', lit. ''Struggle for the emperor's throne'')\n` +
                                     `* Czech: Dominion\n` +
                                     `* Dutch: \n` +
@@ -51,8 +51,20 @@ describe('EditionTranslationBuilder', () => {
                 ],
             };
             const editions: CargoEdition[] = [
-                { Id: '268', Expansion: 'Dominion', Edition: '2', Icon: 'Dominion_icon.png' },
-                { Id: '269', Expansion: 'Dominion', Edition: '1', Icon: 'Dominion old_icon.png' },
+                {
+                    Id: '268',
+                    PageId: '914',
+                    Expansion: 'Dominion',
+                    Edition: '2',
+                    Icon: 'Dominion_icon.png',
+                },
+                {
+                    Id: '269',
+                    PageId: '914',
+                    Expansion: 'Dominion',
+                    Edition: '1',
+                    Icon: 'Dominion old_icon.png',
+                },
             ];
             const expected = new Map<string, EditionTranslation[]>([
                 [
@@ -190,7 +202,7 @@ describe('EditionTranslationBuilder', () => {
                         slots: {
                             main: {
                                 '*':
-                                    `=== In other languages ===\n` +
+                                    `=== Official releases in other languages ===\n` +
                                     `* Czech: Alchymie\n` +
                                     `* Dutch: De Alchemisten (lit. ''the alchemists'')\n` +
                                     `** No longer available. In 2019 999 games combined ...\n` +
@@ -201,7 +213,13 @@ describe('EditionTranslationBuilder', () => {
                 ],
             };
             const editions: CargoEdition[] = [
-                { Id: '148', Expansion: 'Alchemy', Edition: '1', Icon: 'Alchemy_icon.png' },
+                {
+                    Id: '148',
+                    PageId: '100',
+                    Expansion: 'Alchemy',
+                    Edition: '1',
+                    Icon: 'Alchemy_icon.png',
+                },
             ];
             const expected = new Map<string, EditionTranslation[]>([
                 ['Czech', [{ id: '148', expansion: 'Alchymie' }]],
@@ -223,7 +241,7 @@ describe('EditionTranslationBuilder', () => {
                         slots: {
                             main: {
                                 '*':
-                                    `=== In other languages ===\n` +
+                                    `=== Official releases in other languages ===\n` +
                                     `* Dutch (release March 16, 2022): Bondgenoten\n` +
                                     `* German (release March 28, 2022): Verbündete\n` +
                                     `* Japanese (release announced for 2022 or later): 同盟\n` +
@@ -234,7 +252,13 @@ describe('EditionTranslationBuilder', () => {
                 ],
             };
             const editions: CargoEdition[] = [
-                { Id: '300', Expansion: 'Allies', Edition: '1', Icon: 'Allies_icon.png' },
+                {
+                    Id: '300',
+                    PageId: '200',
+                    Expansion: 'Allies',
+                    Edition: '1',
+                    Icon: 'Allies_icon.png',
+                },
             ];
             const expected = new Map<string, EditionTranslation[]>([
                 ['Dutch', [{ id: '300', expansion: 'Bondgenoten' }]],
