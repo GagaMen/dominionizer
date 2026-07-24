@@ -395,7 +395,9 @@ export class DominionizerWikiBot {
     }
 
     private sortById(entities: { id: string }[]): void {
-        entities.sort((first, second) => first.id.localeCompare(second.id));
+        entities.sort((first, second) =>
+            first.id.localeCompare(second.id, undefined, { numeric: true }),
+        );
     }
 
     private async generateImages(
