@@ -45,6 +45,7 @@ describe('CardTypeTranslationBuilder', () => {
             };
             const cargoCardType: CargoCardType = {
                 Id: '273',
+                PageId: '273',
                 Name: 'Prize',
                 Scope: 'Single-pile',
             };
@@ -83,6 +84,7 @@ describe('CardTypeTranslationBuilder', () => {
             };
             const cargoCardType: CargoCardType = {
                 Id: '300',
+                PageId: '300',
                 Name: 'Project',
                 Scope: 'Landscape',
             };
@@ -125,6 +127,7 @@ describe('CardTypeTranslationBuilder', () => {
             };
             const cargoCardType: CargoCardType = {
                 Id: '263',
+                PageId: '263',
                 Name: 'Knight',
                 Scope: 'Single-pile',
             };

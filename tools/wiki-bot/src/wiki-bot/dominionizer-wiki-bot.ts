@@ -267,7 +267,7 @@ export class DominionizerWikiBot {
 
         for (const cardTypePage of cardTypePages) {
             const cargoCardType = cargoCardTypes.find(
-                (cargoCardType) => cargoCardType.Name === cardTypePage.title,
+                (cargoCardType) => String(cardTypePage.pageid) === cargoCardType.PageId,
             );
             if (cargoCardType === undefined) {
                 continue;

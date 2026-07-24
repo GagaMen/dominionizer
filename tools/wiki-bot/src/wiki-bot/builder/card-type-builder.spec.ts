@@ -13,6 +13,7 @@ describe('CardTypeBuilder', () => {
         it('should return correct card type', () => {
             const cargoCardType: CargoCardType = {
                 Id: '119',
+                PageId: '119',
                 Name: 'Landmark',
                 Scope: 'Landscape',
             };

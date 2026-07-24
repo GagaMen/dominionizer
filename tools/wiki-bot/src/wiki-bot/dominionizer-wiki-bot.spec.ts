@@ -307,8 +307,8 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card types', async () => {
             const cargoCardTypes: CargoCardType[] = [
-                { Id: 'treasure', Name: 'Treasure', Scope: 'Basic' },
-                { Id: 'action', Name: 'Action', Scope: 'Basic' },
+                { Id: 'treasure', PageId: '220', Name: 'Treasure', Scope: 'Basic' },
+                { Id: 'action', PageId: '216', Name: 'Action', Scope: 'Basic' },
             ];
             const cardTypes: CardType[] = [
                 { id: 'action', name: 'Action', scope: 'Basic' },
@@ -332,8 +332,8 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card type translations', async () => {
             const cargoCardTypes: CargoCardType[] = [
-                { Id: 'action', Name: 'Action', Scope: 'Basic' },
-                { Id: 'treasure', Name: 'Treasure', Scope: 'Basic' },
+                { Id: 'action', PageId: '216', Name: 'Action', Scope: 'Basic' },
+                { Id: 'treasure', PageId: '220', Name: 'Treasure', Scope: 'Basic' },
             ];
             const cardTypePages: CardTypePage[] = [
                 { pageid: 216, title: 'Action' } as CardTypePage,
@@ -484,7 +484,7 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate cards', async () => {
             const cargoCardTypes: CargoCardType[] = [
-                { Id: 'action', Name: 'Action', Scope: 'Basic' },
+                { Id: 'action', PageId: '216', Name: 'Action', Scope: 'Basic' },
             ];
             const cardTypes: CardType[] = [{ id: 'action', name: 'Action', scope: 'Basic' }];
             const cargoEditions: CargoEdition[] = [

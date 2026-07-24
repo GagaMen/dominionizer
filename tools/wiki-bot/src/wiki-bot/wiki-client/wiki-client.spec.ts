@@ -35,6 +35,7 @@ describe('WikiClient', () => {
     };
     const cardType: CargoCardType = {
         Id: '124',
+        PageId: '124',
         Name: 'Boon',
         Scope: 'Landscape',
     };
@@ -235,7 +236,7 @@ describe('WikiClient', () => {
 
         it('should fetch all card types correctly', async () => {
             url.searchParams.append('tables', 'Types');
-            url.searchParams.append('fields', '_ID=Id,Name,Scope');
+            url.searchParams.append('fields', '_ID=Id,_pageID=PageId,Name,Scope');
             url.searchParams.append('limit', String(pageLimit));
             url.searchParams.append('offset', '0');
 

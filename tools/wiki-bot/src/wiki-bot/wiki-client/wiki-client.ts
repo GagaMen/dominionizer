@@ -97,7 +97,7 @@ export class WikiClient {
             format: 'json',
             action: 'cargoquery',
             tables: 'Types',
-            fields: '_ID=Id,Name,Scope',
+            fields: '_ID=Id,_pageID=PageId,Name,Scope',
             limit: String(this.pageLimit),
         };
 

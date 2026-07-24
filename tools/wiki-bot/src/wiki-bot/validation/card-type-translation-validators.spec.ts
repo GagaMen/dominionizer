@@ -7,7 +7,7 @@ describe('CardTypeTranslationValidator', () => {
     const validator = new CardTypeTranslationValidator();
 
     describe('validateFromCargo', () => {
-        const cargoCardType = { Name: 'Action' } as CargoCardType;
+        const cargoCardType = { PageId: '1', Name: 'Action' } as CargoCardType;
 
         it('with valid card type translation should return Success', () => {
             const cardTypeTranslation: CardTypeTranslation = {

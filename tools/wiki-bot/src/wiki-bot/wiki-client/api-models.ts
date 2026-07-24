@@ -46,6 +46,7 @@ export interface CargoCard {
 
 export interface CargoCardType {
     Id: string;
+    PageId: string;
     Name: string;
     Scope: string;
 }
