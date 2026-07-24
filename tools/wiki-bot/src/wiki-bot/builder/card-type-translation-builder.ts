@@ -39,6 +39,7 @@ export class CardTypeTranslationBuilder {
                     /^[^:]*:(.*)/.exec(languageCandidate)?.[1] ??
                     '';
                 name = /[^(:]*/.exec(name)?.[0];
+                name = name?.replace(/(<br\s*\/?>|<hr[^>]*?>).*/, '');
 
                 return [normalize(language), { id: cargoCardType.Id, name: normalize(name) }];
             }),

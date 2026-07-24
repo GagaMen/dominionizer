@@ -80,7 +80,7 @@ export class CardTranslationBuilder {
     private extractCardName(name: WikiText | undefined): string {
         name = /^.*(?<!\{\{.*?)\|(.*)/s.exec(name ?? '')?.[1] ?? '';
         name = /^\s*(\{\{nowrap\|.*?\}\}|[^{(]*)/.exec(name)?.[1] ?? '';
-        name = name.replace(/(<br>|<hr>).*/, '');
+        name = name.replace(/(<br\s*\/?>|<hr[^>]*?>).*/, '');
 
         return normalize(name);
     }
@@ -95,8 +95,8 @@ export class CardTranslationBuilder {
 
         description = description
             .replace(/\n$/, '')
-            .replace(/<br\/>/gi, '<br>')
-            .replace(/<hr.*?>/gi, '{{divline}}');
+            .replace(/<br\s*\/?>/gi, '<br>')
+            .replace(/<hr[^>]*?>/gi, '{{divline}}');
 
         return normalize(description);
     }
