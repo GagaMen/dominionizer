@@ -1,0 +1,28 @@
+meta {
+  name: Expansion Pages
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?format=json&action=query&generator=categorymembers&gcmlimit=5&gcmtitle=Category:Sets&gcmtype=page&prop=revisions&rvprop=content&rvslots=*
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: json
+  action: query
+  generator: categorymembers
+  gcmlimit: 5
+  gcmtitle: Category:Sets
+  gcmtype: page
+  prop: revisions
+  rvprop: content
+  rvslots: *
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}

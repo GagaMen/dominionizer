@@ -1,0 +1,29 @@
+meta {
+  name: Card Pages
+  type: http
+  seq: 8
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?format=json&action=query&generator=categorymembers&gcmlimit=50&gcmtitle=Category:Cards&gcmtype=page&prop=info|revisions&rvprop=content&inprop=url&rvslots=*
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: json
+  action: query
+  generator: categorymembers
+  gcmlimit: 50
+  gcmtitle: Category:Cards
+  gcmtype: page
+  prop: info|revisions
+  rvprop: content
+  inprop: url
+  rvslots: *
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}

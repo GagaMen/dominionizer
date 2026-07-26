@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Components&fields=_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types&format=json&order_by=_ID&offset=50
+  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Components&fields=_ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types&format=json&order_by=_ID&limit=500
   body: none
   auth: inherit
 }
@@ -16,7 +16,7 @@ params:query {
   fields: _ID=Id,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types
   format: json
   order_by: _ID
-  offset: 50
+  limit: 500
 }
 
 settings {

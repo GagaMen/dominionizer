@@ -1,0 +1,27 @@
+meta {
+  name: Recent Image Changes
+  type: http
+  seq: 10
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?format=json&action=query&generator=recentchanges&prop=imageinfo|categories&iiprop=url|mime&grcnamespace=6&clcategories=Category:Card art|Category:Card symbols&cllimit=max
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: json
+  action: query
+  generator: recentchanges
+  prop: imageinfo|categories
+  iiprop: url|mime
+  grcnamespace: 6
+  clcategories: Category:Card art|Category:Card symbols
+  cllimit: max
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}

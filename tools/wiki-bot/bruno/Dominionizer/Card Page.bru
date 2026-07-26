@@ -1,0 +1,26 @@
+meta {
+  name: Card Page
+  type: http
+  seq: 9
+}
+
+get {
+  url: https://wiki.dominionstrategy.com/api.php?format=json&action=query&prop=info|revisions&rvprop=content&rvslots=*&titles=Artisan&inprop=url
+  body: none
+  auth: inherit
+}
+
+params:query {
+  format: json
+  action: query
+  prop: info|revisions
+  rvprop: content
+  rvslots: *
+  titles: Artisan
+  inprop: url
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}
