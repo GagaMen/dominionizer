@@ -49,6 +49,8 @@ describe('CardTranslationBuilder', () => {
                                     `!German \n| Platin {{nowrap| (lit. ...)}} || || || {{Cost|5|xl|}}\n` +
                                     `|-\n` +
                                     `!Polish \n| {{nowrap|Platyna}} || || || {{Cost|5}} \n` +
+                                    `|-\n` +
+                                    `!French \n| Argent || || || {{Cost|3}} \n` +
                                     ` |}`,
                             },
                         },
@@ -73,8 +75,16 @@ describe('CardTranslationBuilder', () => {
                     'Polish',
                     {
                         id: '42',
-                        name: '{{nowrap|Platyna}}',
+                        name: 'Platyna',
                         description: `{{Cost|5}}`,
+                    },
+                ],
+                [
+                    'French',
+                    {
+                        id: '42',
+                        name: 'Argent',
+                        description: `{{Cost|3}}`,
                     },
                 ],
             ]);

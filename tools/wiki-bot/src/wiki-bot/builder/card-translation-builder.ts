@@ -79,7 +79,8 @@ export class CardTranslationBuilder {
 
     private extractCardName(name: WikiText | undefined): string {
         name = /^.*(?<!\{\{.*?)\|(.*)/s.exec(name ?? '')?.[1] ?? '';
-        name = /^\s*(\{\{nowrap\|.*?\}\}|[^{(]*)/.exec(name)?.[1] ?? '';
+        const nameMatch = /^\s*(?:\{\{nowrap\|(.*?)\}\}|([^{(]*))/i.exec(name ?? '');
+        name = nameMatch?.[1] ?? nameMatch?.[2] ?? '';
         name = name.replace(/(<br\s*\/?>|<hr[^>]*?>).*/, '');
 
         return normalize(name);
