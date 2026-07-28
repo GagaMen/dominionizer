@@ -1,12 +1,13 @@
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
-import { CardDtoValidator } from './card-dto-validators';
+import { CargoCard } from '../wiki-client/api-models';
+import { CardDtoValidator, CardDtosValidator } from './card-dto-validators';
 import { ValidationResult } from './validation-result';
 
 describe('CardDtoValidator', () => {
     const targetPath = '../../src';
     const validator = new CardDtoValidator(targetPath);
 
-    describe('validateFromCargo', () => {
+    describe('validate', () => {
         it('with basic card dto should return Success', () => {
             const card: CardDto = {
                 id: '5293',
@@ -21,7 +22,7 @@ describe('CardDtoValidator', () => {
                 cost: 2,
             };
 
-            const actual = validator.validateFromCargo(card);
+            const actual = validator.validate(card);
 
             expect(actual).toEqual(ValidationResult.Success);
         });
@@ -41,7 +42,7 @@ describe('CardDtoValidator', () => {
                 debt: 4,
             };
 
-            const actual = validator.validateFromCargo(card);
+            const actual = validator.validate(card);
 
             expect(actual).toEqual(ValidationResult.Success);
         });
@@ -63,7 +64,7 @@ describe('CardDtoValidator', () => {
                     costModifier,
                 };
 
-                const actual = validator.validateFromCargo(card);
+                const actual = validator.validate(card);
 
                 expect(actual).toEqual(ValidationResult.Success);
             });
@@ -99,7 +100,7 @@ describe('CardDtoValidator', () => {
                     '"debt" must be an integer',
             );
 
-            const actual = validator.validateFromCargo(card);
+            const actual = validator.validate(card);
 
             expect(actual).toEqual(expected);
         });
@@ -128,9 +129,46 @@ describe('CardDtoValidator', () => {
                     '"debt" must be greater than or equal to 0',
             );
 
-            const actual = validator.validateFromCargo(card);
+            const actual = validator.validate(card);
 
             expect(actual).toEqual(expected);
+        });
+    });
+});
+
+describe('CardDtosValidator', () => {
+    const validator = new CardDtosValidator();
+
+    const cargoCard = (Id: string, Name: string): CargoCard =>
+        ({ Id, Name }) as unknown as CargoCard;
+    const cardDto = (id: string, name: string): CardDto => ({ id, name }) as unknown as CardDto;
+
+    describe('validate', () => {
+        it('with cargo card that was not generated should return Failure', () => {
+            const cargoCards: CargoCard[] = [
+                cargoCard('5293', 'Cellar'),
+                cargoCard('6153', 'Sauna'),
+            ];
+            const cards: CardDto[] = [cardDto('5293', 'Cellar')];
+            const expected = ValidationResult.Failure(
+                'For following cargo cards no card was generated:\nSauna',
+            );
+
+            const actual = validator.validate(cards, cargoCards);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with a card for each cargo card should return Success', () => {
+            const cargoCards: CargoCard[] = [
+                cargoCard('5293', 'Cellar'),
+                cargoCard('6153', 'Sauna'),
+            ];
+            const cards: CardDto[] = [cardDto('5293', 'Cellar'), cardDto('6153', 'Sauna')];
+
+            const actual = validator.validate(cards, cargoCards);
+
+            expect(actual).toEqual(ValidationResult.Success);
         });
     });
 });

@@ -1,7 +1,8 @@
 import { CardType } from '../../../../../src/app/models/card-type';
-import { CardTypePage } from './../wiki-client/api-models';
+import { CargoCardType } from './../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
 import Joi from 'joi';
+import { CargoAmountValidator } from './cargo-amount-validator';
 import { JoiValidator } from './joi-validator';
 
 export class CardTypeValidator {
@@ -14,11 +15,7 @@ export class CardTypeValidator {
         scope: Joi.string().required(),
     });
 
-    validate(_cardType: CardType, _cardTypePage: CardTypePage): ValidationResult {
-        return ValidationResult.Success;
-    }
-
-    validateFromCargo(cardType: CardType): ValidationResult {
+    validate(cardType: CardType): ValidationResult {
         return this.joiValidator.validate(
             cardType,
             this.schema,
@@ -30,7 +27,13 @@ export class CardTypeValidator {
 export class CardTypesValidator {
     readonly name: string = 'card types';
 
-    validate(_cardTypes: CardType[], _cardTypePages: CardTypePage[]): ValidationResult {
-        return ValidationResult.Success;
+    private cargoAmountValidator = new CargoAmountValidator<CardType, CargoCardType>();
+
+    validate(cardTypes: CardType[], cargoCardTypes: CargoCardType[]): ValidationResult {
+        return this.cargoAmountValidator.validate(
+            cardTypes,
+            cargoCardTypes,
+            'For following cargo card types no card type was generated:',
+        );
     }
 }

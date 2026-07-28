@@ -1,10 +1,10 @@
 import { ImagesValidator } from './validation/image-validators';
 import { CardTranslationValidator } from './validation/card-translation-validators';
-import { CardDtoValidator } from './validation/card-dto-validators';
+import { CardDtosValidator, CardDtoValidator } from './validation/card-dto-validators';
 import { CardTypeTranslationValidator } from './validation/card-type-translation-validators';
 import { EditionTranslationValidator } from './validation/edition-translation-validators';
 import { EditionValidator } from './validation/edition-validators';
-import { CardTypeValidator } from './validation/card-type-validators';
+import { CardTypesValidator, CardTypeValidator } from './validation/card-type-validators';
 import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { EncodedImage, ImageBuilder } from './builder/image-builder';
@@ -47,8 +47,10 @@ export class DominionizerWikiBot {
         private editionValidator: EditionValidator,
         private editionTranslationValidator: EditionTranslationValidator,
         private cardTypeValidator: CardTypeValidator,
+        private cardTypesValidator: CardTypesValidator,
         private cardTypeTranslationValidator: CardTypeTranslationValidator,
         private cardDtoValidator: CardDtoValidator,
+        private cardDtosValidator: CardDtosValidator,
         private cardTranslationValidator: CardTranslationValidator,
         private imagesValidator: ImagesValidator,
     ) {}
@@ -241,9 +243,11 @@ export class DominionizerWikiBot {
 
         for (const cargoCardType of cargoCardTypes) {
             const cardType = this.cardTypeBuilder.build(cargoCardType);
-            this.evaluateValidationResult(this.cardTypeValidator.validateFromCargo(cardType));
+            this.evaluateValidationResult(this.cardTypeValidator.validate(cardType));
             cardTypes.push(cardType);
         }
+
+        this.evaluateValidationResult(this.cardTypesValidator.validate(cardTypes, cargoCardTypes));
 
         this.sortById(cardTypes);
 
@@ -282,7 +286,7 @@ export class DominionizerWikiBot {
                 const translationsByLanguage = translations.get(language) ?? [];
 
                 this.evaluateValidationResult(
-                    this.cardTypeTranslationValidator.validateFromCargo(
+                    this.cardTypeTranslationValidator.validate(
                         translation,
                         language,
                         cargoCardType,
@@ -330,9 +334,11 @@ export class DominionizerWikiBot {
             }
 
             const card = this.cardDtoBuilder.build(cargoCard, page, editions, cardTypes);
-            this.evaluateValidationResult(this.cardDtoValidator.validateFromCargo(card));
+            this.evaluateValidationResult(this.cardDtoValidator.validate(card));
             cards.push(card);
         }
+
+        this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cargoCards));
 
         this.sortById(cards);
 
@@ -365,11 +371,7 @@ export class DominionizerWikiBot {
                 const translationsByLanguage = translations.get(language) ?? [];
 
                 this.evaluateValidationResult(
-                    this.cardTranslationValidator.validateFromCargo(
-                        translation,
-                        language,
-                        cargoCard,
-                    ),
+                    this.cardTranslationValidator.validate(translation, language, cargoCard),
                 );
 
                 translations.set(language, translationsByLanguage.concat(translation));

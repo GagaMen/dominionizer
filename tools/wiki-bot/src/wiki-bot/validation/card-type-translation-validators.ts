@@ -1,5 +1,5 @@
 import { CardTypeTranslation } from '../../../../../src/app/models/card-type';
-import { CardTypePage, CargoCardType } from './../wiki-client/api-models';
+import { CargoCardType } from './../wiki-client/api-models';
 import { ValidationResult } from './validation-result';
 import Joi from 'joi';
 import { JoiValidator } from './joi-validator';
@@ -14,14 +14,6 @@ export class CardTypeTranslationValidator {
     });
 
     validate(
-        _cardTypeTranslation: CardTypeTranslation,
-        _language: string,
-        _cardTypePage: CardTypePage,
-    ): ValidationResult {
-        return ValidationResult.Success;
-    }
-
-    validateFromCargo(
         cardTypeTranslation: CardTypeTranslation,
         language: string,
         cargoCardType: CargoCardType,

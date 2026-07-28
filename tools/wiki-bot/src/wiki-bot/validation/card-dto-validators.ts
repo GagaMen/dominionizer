@@ -1,5 +1,6 @@
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
-import { CardPage, CardTypePage } from '../wiki-client/api-models';
+import { CargoCard } from '../wiki-client/api-models';
+import { CargoAmountValidator } from './cargo-amount-validator';
 import { JoiValidator } from './joi-validator';
 import Joi from 'joi';
 import { ValidationResult } from './validation-result';
@@ -39,11 +40,7 @@ export class CardDtoValidator {
 
     constructor(private targetPath: string) {}
 
-    validate(_card: CardDto, _page: CardPage | CardTypePage): ValidationResult {
-        return ValidationResult.Success;
-    }
-
-    validateFromCargo(card: CardDto): ValidationResult {
+    validate(card: CardDto): ValidationResult {
         return this.joiValidator.validate(
             card,
             this.schema,
@@ -55,7 +52,13 @@ export class CardDtoValidator {
 export class CardDtosValidator {
     readonly name: string = 'card dtos';
 
-    validate(_cards: CardDto[], _cardPages: CardPage[]): ValidationResult {
-        return ValidationResult.Success;
+    private cargoAmountValidator = new CargoAmountValidator<CardDto, CargoCard>();
+
+    validate(cards: CardDto[], cargoCards: CargoCard[]): ValidationResult {
+        return this.cargoAmountValidator.validate(
+            cards,
+            cargoCards,
+            'For following cargo cards no card was generated:',
+        );
     }
 }

@@ -6,7 +6,7 @@ import { ValidationResult } from './validation-result';
 describe('CardTranslationValidator', () => {
     const validator = new CardTranslationValidator();
 
-    describe('validateFromCargo', () => {
+    describe('validate', () => {
         const cargoCard = { Name: 'Cellar' } as CargoCard;
 
         it('with valid card translation should return Success', () => {
@@ -16,7 +16,7 @@ describe('CardTranslationValidator', () => {
                 description: "'''+1 Aktion'''<br>Lege...",
             };
 
-            const actual = validator.validateFromCargo(cardTranslation, 'German', cargoCard);
+            const actual = validator.validate(cardTranslation, 'German', cargoCard);
 
             expect(actual).toEqual(ValidationResult.Success);
         });
@@ -28,7 +28,7 @@ describe('CardTranslationValidator', () => {
                 description: '',
             };
 
-            const actual = validator.validateFromCargo(cardTranslation, 'German', cargoCard);
+            const actual = validator.validate(cardTranslation, 'German', cargoCard);
 
             expect(actual).toEqual(ValidationResult.Success);
         });
@@ -45,7 +45,7 @@ describe('CardTranslationValidator', () => {
                     '"description" is required',
             );
 
-            const actual = validator.validateFromCargo(cardTranslation, 'German', cargoCard);
+            const actual = validator.validate(cardTranslation, 'German', cargoCard);
 
             expect(actual).toEqual(expected);
         });

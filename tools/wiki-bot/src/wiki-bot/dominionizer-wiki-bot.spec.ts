@@ -3,8 +3,8 @@ import { ImagesValidator } from './validation/image-validators';
 import { CardTypeTranslationValidator } from './validation/card-type-translation-validators';
 import { EditionTranslationValidator } from './validation/edition-translation-validators';
 import { EditionValidator } from './validation/edition-validators';
-import { CardDtoValidator } from './validation/card-dto-validators';
-import { CardTypeValidator } from './validation/card-type-validators';
+import { CardDtosValidator, CardDtoValidator } from './validation/card-dto-validators';
+import { CardTypesValidator, CardTypeValidator } from './validation/card-type-validators';
 import { CardTypeTranslationBuilder } from './builder/card-type-translation-builder';
 import { CardTypeBuilder } from './builder/card-type-builder';
 import { ImageBuilder, EncodedImage } from './builder/image-builder';
@@ -47,8 +47,10 @@ describe('DominionizerWikiBot', () => {
     let editionValidatorSpy: jasmine.SpyObj<EditionValidator>;
     let editionTranslationValidatorSpy: jasmine.SpyObj<EditionTranslationValidator>;
     let cardTypeValidatorSpy: jasmine.SpyObj<CardTypeValidator>;
+    let cardTypesValidatorSpy: jasmine.SpyObj<CardTypesValidator>;
     let cardTypeTranslationValidatorSpy: jasmine.SpyObj<CardTypeTranslationValidator>;
     let cardDtoValidatorSpy: jasmine.SpyObj<CardDtoValidator>;
+    let cardDtosValidatorSpy: jasmine.SpyObj<CardDtosValidator>;
     let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
     let imagesValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let writeFileSpy: jasmine.Spy;
@@ -123,27 +125,35 @@ describe('DominionizerWikiBot', () => {
 
         cardTypeValidatorSpy = jasmine.createSpyObj<CardTypeValidator>('CardTypeValidator', [
             'validate',
-            'validateFromCargo',
         ]);
-        cardTypeValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+        cardTypeValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
+        cardTypesValidatorSpy = jasmine.createSpyObj<CardTypesValidator>('CardTypesValidator', [
+            'validate',
+        ]);
+        cardTypesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
         cardTypeTranslationValidatorSpy = jasmine.createSpyObj<CardTypeTranslationValidator>(
             'CardTypeTranslationValidator',
-            ['validate', 'validateFromCargo'],
+            ['validate'],
         );
-        cardTypeTranslationValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+        cardTypeTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
         cardDtoValidatorSpy = jasmine.createSpyObj<CardDtoValidator>('CardDtoValidator', [
             'validate',
-            'validateFromCargo',
         ]);
-        cardDtoValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+        cardDtoValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
+        cardDtosValidatorSpy = jasmine.createSpyObj<CardDtosValidator>('CardDtosValidator', [
+            'validate',
+        ]);
+        cardDtosValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
         cardTranslationValidatorSpy = jasmine.createSpyObj<CardTranslationValidator>(
             'CardTranslationValidator',
-            ['validate', 'validateFromCargo'],
+            ['validate'],
         );
-        cardTranslationValidatorSpy.validateFromCargo.and.returnValue(ValidationResult.Success);
+        cardTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
         imagesValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
         imagesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
@@ -171,8 +181,10 @@ describe('DominionizerWikiBot', () => {
             editionValidatorSpy,
             editionTranslationValidatorSpy,
             cardTypeValidatorSpy,
+            cardTypesValidatorSpy,
             cardTypeTranslationValidatorSpy,
             cardDtoValidatorSpy,
+            cardDtosValidatorSpy,
             cardTranslationValidatorSpy,
             imagesValidatorSpy,
         );
@@ -325,8 +337,9 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(cardTypes),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTypeValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cardTypes[0]);
-            expect(cardTypeValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cardTypes[1]);
+            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(cardTypes[0]);
+            expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(cardTypes[1]);
+            expect(cardTypesValidatorSpy.validate).toHaveBeenCalledWith(cardTypes, cargoCardTypes);
             /* eslint-enable */
         });
 
@@ -375,22 +388,22 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(frenchTranslations),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
                 cargoCardTypes[0],
             );
-            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[1],
                 'German',
                 cargoCardTypes[1],
             );
-            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 frenchTranslations[0],
                 'French',
                 cargoCardTypes[0],
             );
-            expect(cardTypeTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 frenchTranslations[1],
                 'French',
                 cargoCardTypes[1],
@@ -531,13 +544,14 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(cards),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardDtoValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cards[0]);
-            expect(cardDtoValidatorSpy.validateFromCargo).toHaveBeenCalledWith(cards[1]);
+            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0]);
+            expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1]);
+            expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cargoCards);
             expect(wikiClientSpy.fetchAllCardSymbolPages).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validateFromCargo,
+                cardDtoValidatorSpy.validate,
             );
             expect(wikiClientSpy.fetchAllCardArtPages).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validateFromCargo,
+                cardDtoValidatorSpy.validate,
             );
             /* eslint-enable */
         });
@@ -587,22 +601,22 @@ describe('DominionizerWikiBot', () => {
                 JSON.stringify(frenchTranslations),
             );
             /* eslint-disable @typescript-eslint/unbound-method */
-            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
                 cargoCards[1],
             );
-            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[1],
                 'German',
                 cargoCards[0],
             );
-            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 frenchTranslations[0],
                 'French',
                 cargoCards[1],
             );
-            expect(cardTranslationValidatorSpy.validateFromCargo).toHaveBeenCalledWith(
+            expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 frenchTranslations[1],
                 'French',
                 cargoCards[0],

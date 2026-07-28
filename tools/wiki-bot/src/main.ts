@@ -7,10 +7,10 @@ import { EditionBuilder } from './wiki-bot/builder/edition-builder';
 import { DominionizerWikiBot } from './wiki-bot/dominionizer-wiki-bot';
 import { WikiClient } from './wiki-bot/wiki-client/wiki-client';
 import { CardTypeTranslationBuilder } from './wiki-bot/builder/card-type-translation-builder';
-import { CardDtoValidator } from './wiki-bot/validation/card-dto-validators';
+import { CardDtosValidator, CardDtoValidator } from './wiki-bot/validation/card-dto-validators';
 import { CardTranslationValidator } from './wiki-bot/validation/card-translation-validators';
 import { CardTypeTranslationValidator } from './wiki-bot/validation/card-type-translation-validators';
-import { CardTypeValidator } from './wiki-bot/validation/card-type-validators';
+import { CardTypesValidator, CardTypeValidator } from './wiki-bot/validation/card-type-validators';
 import { EditionTranslationValidator } from './wiki-bot/validation/edition-translation-validators';
 import { EditionValidator } from './wiki-bot/validation/edition-validators';
 import { ImagesValidator } from './wiki-bot/validation/image-validators';
@@ -61,8 +61,10 @@ async function bootstrap(): Promise<void> {
     const editionValidator = new EditionValidator();
     const editionTranslationValidator = new EditionTranslationValidator();
     const cardTypeValidator = new CardTypeValidator();
+    const cardTypesValidator = new CardTypesValidator();
     const cardTypeTranslationValidator = new CardTypeTranslationValidator();
     const cardDtoValidator = new CardDtoValidator(targetPath);
+    const cardDtosValidator = new CardDtosValidator();
     const cardTranslationValidator = new CardTranslationValidator();
     const imageValidator = new ImagesValidator();
 
@@ -80,8 +82,10 @@ async function bootstrap(): Promise<void> {
         editionValidator,
         editionTranslationValidator,
         cardTypeValidator,
+        cardTypesValidator,
         cardTypeTranslationValidator,
         cardDtoValidator,
+        cardDtosValidator,
         cardTranslationValidator,
         imageValidator,
     );

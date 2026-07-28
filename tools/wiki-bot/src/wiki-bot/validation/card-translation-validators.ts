@@ -1,4 +1,4 @@
-import { CardPage, CargoCard } from './../wiki-client/api-models';
+import { CargoCard } from './../wiki-client/api-models';
 import { CardTranslation } from './../../../../../src/app/models/card';
 import { ValidationResult } from './validation-result';
 import Joi from 'joi';
@@ -15,14 +15,6 @@ export class CardTranslationValidator {
     });
 
     validate(
-        _cardTranslation: CardTranslation,
-        _language: string,
-        _cardPage: CardPage,
-    ): ValidationResult {
-        return ValidationResult.Success;
-    }
-
-    validateFromCargo(
         cardTranslation: CardTranslation,
         language: string,
         cargoCard: CargoCard,

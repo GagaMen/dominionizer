@@ -6,7 +6,7 @@ import { ValidationResult } from './validation-result';
 describe('CardTypeTranslationValidator', () => {
     const validator = new CardTypeTranslationValidator();
 
-    describe('validateFromCargo', () => {
+    describe('validate', () => {
         const cargoCardType = { PageId: '1', Name: 'Action' } as CargoCardType;
 
         it('with valid card type translation should return Success', () => {
@@ -15,11 +15,7 @@ describe('CardTypeTranslationValidator', () => {
                 name: 'Aktion',
             };
 
-            const actual = validator.validateFromCargo(
-                cardTypeTranslation,
-                'German',
-                cargoCardType,
-            );
+            const actual = validator.validate(cardTypeTranslation, 'German', cargoCardType);
 
             expect(actual).toEqual(ValidationResult.Success);
         });
@@ -34,11 +30,7 @@ describe('CardTypeTranslationValidator', () => {
                     '"name" is not allowed to be empty',
             );
 
-            const actual = validator.validateFromCargo(
-                cardTypeTranslation,
-                'German',
-                cargoCardType,
-            );
+            const actual = validator.validate(cardTypeTranslation, 'German', cargoCardType);
 
             expect(actual).toEqual(expected);
         });

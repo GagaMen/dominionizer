@@ -1,11 +1,12 @@
 import { CardType } from '../../../../../src/app/models/card-type';
-import { CardTypeValidator } from './card-type-validators';
+import { CargoCardType } from '../wiki-client/api-models';
+import { CardTypeValidator, CardTypesValidator } from './card-type-validators';
 import { ValidationResult } from './validation-result';
 
 describe('CardTypeValidator', () => {
     const validator = new CardTypeValidator();
 
-    describe('validateFromCargo', () => {
+    describe('validate', () => {
         it('with valid card type should return Success', () => {
             const cardType: CardType = {
                 id: '241',
@@ -13,7 +14,7 @@ describe('CardTypeValidator', () => {
                 scope: 'Card',
             };
 
-            const actual = validator.validateFromCargo(cardType);
+            const actual = validator.validate(cardType);
 
             expect(actual).toEqual(ValidationResult.Success);
         });
@@ -26,9 +27,46 @@ describe('CardTypeValidator', () => {
                     '"scope" is not allowed to be empty',
             );
 
-            const actual = validator.validateFromCargo(cardType);
+            const actual = validator.validate(cardType);
 
             expect(actual).toEqual(expected);
+        });
+    });
+});
+
+describe('CardTypesValidator', () => {
+    const validator = new CardTypesValidator();
+
+    const cargoCardType = (Id: string, Name: string): CargoCardType =>
+        ({ Id, Name }) as unknown as CargoCardType;
+    const cardType = (id: string, name: string): CardType => ({ id, name }) as unknown as CardType;
+
+    describe('validate', () => {
+        it('with cargo card type that was not generated should return Failure', () => {
+            const cargoCardTypes: CargoCardType[] = [
+                cargoCardType('241', 'Action'),
+                cargoCardType('320', 'Event'),
+            ];
+            const cardTypes: CardType[] = [cardType('241', 'Action')];
+            const expected = ValidationResult.Failure(
+                'For following cargo card types no card type was generated:\nEvent',
+            );
+
+            const actual = validator.validate(cardTypes, cargoCardTypes);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with a card type for each cargo card type should return Success', () => {
+            const cargoCardTypes: CargoCardType[] = [
+                cargoCardType('241', 'Action'),
+                cargoCardType('320', 'Event'),
+            ];
+            const cardTypes: CardType[] = [cardType('241', 'Action'), cardType('320', 'Event')];
+
+            const actual = validator.validate(cardTypes, cargoCardTypes);
+
+            expect(actual).toEqual(ValidationResult.Success);
         });
     });
 });
