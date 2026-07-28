@@ -7,7 +7,7 @@ export class EditionBuilder {
             id: cargoEdition.Id,
             expansion: cargoEdition.Expansion,
             edition: cargoEdition.Edition,
-            icon: cargoEdition.Icon,
+            icon: cargoEdition.Icon.replace(' (expansion)', '').replaceAll(' ', '_'),
         };
     }
 }
