@@ -1,7 +1,6 @@
 [
     { "id": "196", "name": "Erscheinung" },
     { "id": "241", "name": "Aktion" },
-    { "id": "260", "name": "Fluch" },
     { "id": "263", "name": "Ritter" },
     { "id": "264", "name": "Ruine" },
     { "id": "266", "name": "Geld" },
@@ -32,7 +31,6 @@
     { "id": "304", "name": "Gaben" },
     { "id": "305", "name": "Plage" },
     { "id": "307", "name": "Zustand" },
-    { "id": "308", "name": "Prophezeiung" },
     { "id": "309", "name": "Schatten" },
     { "id": "311", "name": "Reserve" },
     { "id": "312", "name": "Merkmal" },
@@ -43,5 +41,7 @@
     { "id": "317", "name": "Schlösser" },
     { "id": "318", "name": "Artefakt" },
     { "id": "319", "name": "Landmarke" },
-    { "id": "320", "name": "Ereignis" }
+    { "id": "320", "name": "Ereignis" },
+    { "id": "321", "name": "Prophezeiung" },
+    { "id": "322", "name": "Fluch" }
 ]

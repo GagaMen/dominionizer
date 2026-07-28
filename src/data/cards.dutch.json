@@ -1,15 +1,5 @@
 [
     {
-        "id": "5290",
-        "name": "Ambachtsman",
-        "description": "<p>Pak een kaart die ten hoogste {{Cost|5}} kost en neem deze in je hand.</p>Leg een kaart uit je hand op je trekstapel."
-    },
-    {
-        "id": "5291",
-        "name": "Bandiet",
-        "description": "Pak een Goud. Iedere andere speler toont de 2 bovenste kaarten van zijn trekstapel, vernietigt één getoonde geldkaart met uitzondering van Koper, en legt de rest af."
-    },
-    {
         "id": "5292",
         "name": "Bureaucraat",
         "description": "Leg uit de algemene voorraad een zilverkaart op je trekstapel. Iedere andere speler toont een overwinningskaart uit zijn hand en legt deze op zijn trekstapel (of laat zien dat hij deze niet heeft)."
@@ -34,11 +24,6 @@
         "id": "5297",
         "name": "Feest",
         "description": "Vernietig deze kaart. <br>Pak een kaart met een waarde van {{Cost|5}} of minder."
-    },
-    {
-        "id": "5298",
-        "name": "Festival",
-        "description": "'''+2 Acties<br>+1 Aanschaf'''<br>{{Costplus|2}}"
     },
     {
         "id": "5299",
@@ -75,11 +60,6 @@
         "id": "5306",
         "name": "Mijn",
         "description": "Je mag een geldkaart uit je hand vernietigen. <br> Neem een geldkaart die ten hoogste {{Cost|3}} meer kost en neem deze op handen."
-    },
-    {
-        "id": "5308",
-        "name": "Geldschieter",
-        "description": "Je mag een koperkaart uit je hand vernietigen. Als je dat doet, heb je deze beurt {{Costplus|3}}."
     },
     {
         "id": "5309",
@@ -371,19 +351,9 @@
         "description": "<p>'''+1 Kaart<br>+1 Actie'''<br>Leg een kaart af. '''+1 Kaart'''.</p>Je mag de Zwerftochten draaien."
     },
     {
-        "id": "5543",
-        "name": "Sibille",
-        "description": "'''+4 Kaarten<br>+1 Actie'''<br>Leg een kaart uit je hand op je<br>trekstapel en schuif een andere<br>kaart onder je trekstapel."
-    },
-    {
         "id": "5544",
         "name": "Heksenmeester",
         "description": "'''+1 Kaart<br>+1 Actie'''<br>Iedere andere speler noemt een<br>kaart en toont dan de bovenste<br>kaart van zijn trekstapel. Is dat niet<br>de genoemde kaart, dan pakt hij<br>een Vloek."
-    },
-    {
-        "id": "5545",
-        "name": "Toverheks",
-        "description": "'''+1 Actie'''<br>Noem een kaart. Toon de bovenste<br>kaart van je trekstapel en neem de<br>kaart in je hand.<br>Is het de genoemde kaart, dan pakt<br>iedere andere speler een Vloek."
     },
     {
         "id": "5546",
@@ -699,11 +669,7 @@
         "name": "Kwakzalver",
         "description": "{{Costplus|3}}<br>Iedere andere speler pakt een<br>Vloek.{{Divline}}In spellen met deze kaart is<br>een Vloek ook een geldkaart met<br>waarde {{Cost|1}}."
     },
-    { "id": "5646", "name": "Vloek", "description": "{{VP|-1|l}}" },
     { "id": "5648", "name": "Zilver", "description": "{{Cost|2|l}}" },
-    { "id": "5649", "name": "Goud", "description": "{{Cost|3|l}}" },
-    { "id": "5651", "name": "Hertogdom", "description": "{{VP|3|l}}" },
-    { "id": "5652", "name": "Provincie", "description": "{{VP|6|l}}" },
     { "id": "5653", "name": "Kolonie", "description": "{{VP|10|l}}" },
     { "id": "5654", "name": "Platina", "description": "{{Cost|5|l}}" },
     { "id": "5657", "name": "Spoorzoeker", "description": "" },
@@ -1124,11 +1090,6 @@
         "description": "Elke koperkaart is deze beurt {{Cost|1}} meer waard."
     },
     {
-        "id": "5804",
-        "name": "Makelaar",
-        "description": "Toon een kaart uit je hand. Voor<br>elke soort die de kaart heeft<br>(Actie, Aanval, enz.), kies één<br>van de volgende: '''+1 Actie'''; of<br>'''+1 aanschaf''';of {{Costplus|3}}; of pak<br>een Goud. De keuzes moeten<br>verschillend zijn."
-    },
-    {
         "id": "5806",
         "name": "Diplomaat",
         "description": "'''+2Kaarten'''<br>Heb je 5 of minder handkaarten (na<br>het trekken), '''+2&nbsp;acties'''{{Divline}}Speelt een andere speler een<br>aanvalskaart, dan mag je deze kaart<br>tonen uit je hand van 5 of meer<br>kaarten om 2 kaarten te trekken en<br>er dan 3 af te leggen."
@@ -1137,11 +1098,6 @@
         "id": "5807",
         "name": "Hertog",
         "description": "Is {{VP|'''1'''}} waard voor elke<br> hertogdomkaart die je hebt."
-    },
-    {
-        "id": "5809",
-        "name": "Grote Zaal",
-        "description": "'''+1 Kaart<br>+1 Actie'''{{divline}}{{VP|1|l}}"
     },
     {
         "id": "5810",
@@ -1164,11 +1120,6 @@
         "description": "'''+1 Actie'''<br>Kies één van de volgende opties:<br>{{Costplus|2}}; of leg alle kaarten uit je hand<br>af, '''+4 Kaarten''', en iedere andere<br>speler met ten minste 5 kaarten in<br>zijn hand moet al zijn haadkaarten<br>afleggen en 4 nieuwe kaarten trekkten."
     },
     {
-        "id": "5816",
-        "name": "Adel",
-        "description": "Kies één van de volgende opties: +3 Kaarten; of +2 Acties.{{divline}}{{VP|2|l}}"
-    },
-    {
         "id": "5817",
         "name": "Patrouille",
         "description": "'''+3 Kaarten'''<br>Toon de bovenste 4 kaarten<br>van je trekstapel. Neem de<br>overinnigs- en vloekkaarten<br>in je hand. Leg de rest in een<br>volgorde naar keuze terug."
@@ -1177,11 +1128,6 @@
         "id": "5818",
         "name": "Pion",
         "description": "Kies twee verschillende van<br>de volgende opties:<br>'''+1 Kaart''';<br>'''+1 Actie''';<br>'''+1 Aanschaf''';<br>{{Costplus|1}}."
-    },
-    {
-        "id": "5819",
-        "name": "Vervanging",
-        "description": "Vernietig een kaart uit je hand. Pak<br>een kaart die ten hoogste {{Cost|2}} meer<br>kost dan de vernietigde kaart. Is de<br>gepakte kaart een actie- of geld-<br>kaart, leg deze dan op je trekstapel.<br>Is het een overwinningskaart, dan<br>pakt iedere andere speler een Vloek."
     },
     {
         "id": "5820",
@@ -1866,11 +1812,6 @@
         "description": "{{VP|1|l}}{{Divline}}Als je deze kaart pakt<br>of vernietigt, {{VP|'''+1'''}}<br>en pak een Zilver."
     },
     {
-        "id": "6027",
-        "name": "Emporium",
-        "description": "'''+1 Kaart'''<br>'''+1 Actie'''<br>{{Costplus|1}}{{Divline}}Als je deze kaart pakt en je hebt<br>ten minste 5 actiekaarten in het<br>spel,{{VP|'''+2'''}}."
-    },
-    {
         "id": "6028",
         "name": "Tovenares",
         "description": "Tot jouw volgende beurt krijgt iedere<br>andere speler voor de eerste actiekaart<br>die hij in zijn beurt speelt '''+1 Kaart''' en<br>'''+1 Actie''' in plaats van de op de kaart<br>beschreven aanwijzingen.<br><br>Aan het begin van je volgende beurt:<br>'''+2 kaarten'''."
@@ -2516,11 +2457,6 @@
         "description": "Vernietig ten hoogste 2 kaarten die je in het spel hebt."
     },
     {
-        "id": "6190",
-        "name": "Verbouwing",
-        "description": "Vernietig een kaart uit je hand. Pak een kaart die ten hoogste {{Cost|2}} meer kost dan de vernietigde kaart."
-    },
-    {
         "id": "6192",
         "name": "Reizende Minstreel",
         "description": "'''+1 Kaart<br>+2 Acties'''<br>Toon de bovenste 3&nbsp;kaarten van je trekstapel. Leg de getoonde actiekaarten in een volgorde naart keuze terug op je trekstapel en leg de rest af."
@@ -2725,11 +2661,6 @@
         "description": "Draai achtereenvolgens de bovenste kaarten van je trekstapel om totdat je in totaal 2 geldkaarten hebt. Neem ze op handen. Leg de overige omgedraaide kaarten af op je aflegstapel."
     },
     {
-        "id": "6295",
-        "name": "Troonzaal",
-        "description": "Je mag een actiekaart uit je hand kiezen.<br>Speel deze tweemaal."
-    },
-    {
         "id": "6296",
         "name": "Spion",
         "description": "'''+1 kaart'''<br>'''+1 Actie'''<br> Alle spelers tonen de bovenste kaart van hun trekstapel. <br> De spion bepaalt of ze blijven liggen of worden afgelegd."
@@ -2740,7 +2671,6 @@
         "description": "'''+2 Kaarten'''{{Divline}}Als een andere speler een aanvalskaart speelt, mag je de Slotgracht tonen. In dat geval heeft de aanval op jou geen effect."
     },
     { "id": "6298", "name": "Koper", "description": "{{Cost|1|l}}" },
-    { "id": "6299", "name": "Landgoed", "description": "{{VP|1|l}}" },
     {
         "id": "6300",
         "name": "Groep Mislukkelingen",
@@ -2997,11 +2927,6 @@
     },
     { "id": "6364", "name": "Landbouwgrond", "description": "" },
     {
-        "id": "6365",
-        "name": "Folteraar",
-        "description": "'''+3 Kaarten'''<br>Iedere andere speler kiest<br>één van de volgende opties:<br>hij legt 2 kaarten af;<br>of hij pakt een vloekkaart en<br>neemt deze in zijn hand."
-    },
-    {
         "id": "6366",
         "name": "Wederopbouw",
         "description": "'''+1 Actie'''<br>Noem de titel van een kaart. Toon kaarten<br>van je trekstapel totdat je een overwinnings-<br>kaart toont die niet de genoemde kaart is.<br>Leg de andere getoonde kaarten af. Vernietig<br>de betreffende overwinnigskaart en pak<br>een overwinningskaart die ten hoogste {{Coin|3}}<br> meer kost dan de vernietigde kaart."
@@ -3046,5 +2971,80 @@
         "id": "6375",
         "name": "Venter",
         "description": "'''+1 Kaart<br>+1 Actie'''<br>{{Costplus|1}}{{divline}}Deze kaart kost tijdens de<br>aanschaffase van een speler<br>{{Cost|2}} minder per actiekaart die hij<br>in het spel heeft."
+    },
+    {
+        "id": "6376",
+        "name": "Emporium",
+        "description": "'''+1 Kaart'''<br>'''+1 Actie'''<br>{{Costplus|1}}{{Divline}}Als je deze kaart pakt en je hebt<br>ten minste 5 actiekaarten in het<br>spel,{{VP|'''+2'''}}."
+    },
+    {
+        "id": "6382",
+        "name": "Festival",
+        "description": "'''+2 Acties<br>+1 Aanschaf'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "6385",
+        "name": "Ambachtsman",
+        "description": "<p>Pak een kaart die ten hoogste {{Cost|5}} kost en neem deze in je hand.</p>Leg een kaart uit je hand op je trekstapel."
+    },
+    { "id": "6386", "name": "Goud", "description": "{{Cost|3|l}}" },
+    {
+        "id": "6388",
+        "name": "Verbouwing",
+        "description": "Vernietig een kaart uit je hand. Pak een kaart die ten hoogste {{Cost|2}} meer kost dan de vernietigde kaart."
+    },
+    {
+        "id": "6394",
+        "name": "Sibille",
+        "description": "'''+4 Kaarten<br>+1 Actie'''<br>Leg een kaart uit je hand op je<br>trekstapel en schuif een andere<br>kaart onder je trekstapel."
+    },
+    {
+        "id": "6395",
+        "name": "Toverheks",
+        "description": "'''+1 Actie'''<br>Noem een kaart. Toon de bovenste<br>kaart van je trekstapel en neem de<br>kaart in je hand.<br>Is het de genoemde kaart, dan pakt<br>iedere andere speler een Vloek."
+    },
+    { "id": "6404", "name": "Landgoed", "description": "{{VP|1|l}}" },
+    { "id": "6405", "name": "Hertogdom", "description": "{{VP|3|l}}" },
+    { "id": "6406", "name": "Provincie", "description": "{{VP|6|l}}" },
+    { "id": "6407", "name": "Vloek", "description": "{{VP|-1|l}}" },
+    {
+        "id": "6408",
+        "name": "Bandiet",
+        "description": "Pak een Goud. Iedere andere speler toont de 2 bovenste kaarten van zijn trekstapel, vernietigt één getoonde geldkaart met uitzondering van Koper, en legt de rest af."
+    },
+    {
+        "id": "6409",
+        "name": "Troonzaal",
+        "description": "Je mag een actiekaart uit je hand kiezen.<br>Speel deze tweemaal."
+    },
+    {
+        "id": "6410",
+        "name": "Geldschieter",
+        "description": "Je mag een koperkaart uit je hand vernietigen. Als je dat doet, heb je deze beurt {{Costplus|3}}."
+    },
+    {
+        "id": "6411",
+        "name": "Folteraar",
+        "description": "'''+3 Kaarten'''<br>Iedere andere speler kiest<br>één van de volgende opties:<br>hij legt 2 kaarten af;<br>of hij pakt een vloekkaart en<br>neemt deze in zijn hand."
+    },
+    {
+        "id": "6412",
+        "name": "Vervanging",
+        "description": "Vernietig een kaart uit je hand. Pak<br>een kaart die ten hoogste {{Cost|2}} meer<br>kost dan de vernietigde kaart. Is de<br>gepakte kaart een actie- of geld-<br>kaart, leg deze dan op je trekstapel.<br>Is het een overwinningskaart, dan<br>pakt iedere andere speler een Vloek."
+    },
+    {
+        "id": "6413",
+        "name": "Adel",
+        "description": "Kies één van de volgende opties: +3 Kaarten; of +2 Acties.{{divline}}{{VP|2|l}}"
+    },
+    {
+        "id": "6414",
+        "name": "Makelaar",
+        "description": "Toon een kaart uit je hand. Voor<br>elke soort die de kaart heeft<br>(Actie, Aanval, enz.), kies één<br>van de volgende: '''+1 Actie'''; of<br>'''+1 aanschaf''';of {{Costplus|3}}; of pak<br>een Goud. De keuzes moeten<br>verschillend zijn."
+    },
+    {
+        "id": "6415",
+        "name": "Grote Zaal",
+        "description": "'''+1 Kaart<br>+1 Actie'''{{divline}}{{VP|1|l}}"
     }
 ]

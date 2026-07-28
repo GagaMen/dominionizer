@@ -1,7 +1,6 @@
 [
     { "id": "196", "name": "Spirit", "scope": "Single-expansion" },
     { "id": "241", "name": "Action", "scope": "Basic" },
-    { "id": "260", "name": "Curse", "scope": "Basic" },
     { "id": "263", "name": "Knight", "scope": "Single-pile" },
     { "id": "264", "name": "Ruins", "scope": "Single-pile" },
     { "id": "266", "name": "Treasure", "scope": "Basic" },
@@ -32,7 +31,6 @@
     { "id": "304", "name": "Boon", "scope": "Landscape" },
     { "id": "305", "name": "Hex", "scope": "Landscape" },
     { "id": "307", "name": "State", "scope": "Landscape" },
-    { "id": "308", "name": "Prophecy", "scope": "Landscape" },
     { "id": "309", "name": "Shadow", "scope": "Single-expansion" },
     { "id": "311", "name": "Reserve", "scope": "Single-expansion" },
     { "id": "312", "name": "Trait", "scope": "Landscape" },
@@ -43,5 +41,7 @@
     { "id": "317", "name": "Castle", "scope": "Single-pile" },
     { "id": "318", "name": "Artifact", "scope": "Landscape" },
     { "id": "319", "name": "Landmark", "scope": "Landscape" },
-    { "id": "320", "name": "Event", "scope": "Landscape" }
+    { "id": "320", "name": "Event", "scope": "Landscape" },
+    { "id": "321", "name": "Prophecy", "scope": "Landscape" },
+    { "id": "322", "name": "Curse", "scope": "Basic" }
 ]

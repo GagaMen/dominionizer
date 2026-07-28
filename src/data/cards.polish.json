@@ -1,11 +1,5 @@
 [
     {
-        "id": "5290",
-        "name": "Rękodzielnik",
-        "description": "<p>Dodaj na rękę kartę nie droższą {{nowrap|niż {{Cost|5}}.}}</p>Odłóż kartę z ręki na wierzch swojej talii."
-    },
-    { "id": "5291", "name": "Bandyta", "description": "" },
-    {
         "id": "5292",
         "name": "Urzędnik",
         "description": "Dodaj kartę Srebrników na wierzch swojej talii. Każdy z pozostałych graczy odkrywa kartę Zwycięstwa z ręki i kładzie ją na wierzchu swojej talii (lub odkrywa rękę bez kart Zwycięstwa)."
@@ -36,11 +30,6 @@
         "description": "Wyrzuć tę kartę na śmietnisko.<br>Dodaj kartę kosztującą<br>nie więcej niż {{Cost|5}}."
     },
     {
-        "id": "5298",
-        "name": "Festyn",
-        "description": "'''+2 akcje<br>+1 zakup'''<br>{{Costplus|2}}"
-    },
-    {
         "id": "5299",
         "name": "Ogrody",
         "description": "<p>Ta karta jest warta {{VP|'''1'''|}} za każde 10 kart, które posiadasz (zaokrąglając w dół).</p>"
@@ -67,11 +56,6 @@
         "id": "5306",
         "name": "Kopalnia",
         "description": "Możesz wyrzucić z ręki na Śmietnisko dowolną kartę Skarbu. Dodaj na rękę kartę Skarbu kosztującą maksymalnie o {{Cost|3}} więcej od wyrzuconej karty."
-    },
-    {
-        "id": "5308",
-        "name": "Lichwiarz",
-        "description": "Wyrzuć z ręki na śmietnisko kartę Miedziaka, aby otrzymać {{Costplus|3}}"
     },
     { "id": "5309", "name": "Kłusownik", "description": "" },
     { "id": "5311", "name": "Wartownik", "description": "" },
@@ -494,11 +478,7 @@
         "description": "'''+1 karta<br>+2 akcje<br>+1 zakup'''"
     },
     { "id": "5640", "name": "Zaślubiny", "description": "{{VP|'''+1'''}}<br>Dodaj Złoto." },
-    { "id": "5646", "name": "Klątwa", "description": "{{VP|-1|l}}" },
     { "id": "5648", "name": "Srebrniki", "description": "{{Cost|2|l}}" },
-    { "id": "5649", "name": "Złoto", "description": "{{Cost|3|l}}" },
-    { "id": "5651", "name": "Powiat", "description": "" },
-    { "id": "5652", "name": "Prowincja", "description": "" },
     { "id": "5653", "name": "Kolonia", "description": "{{VP|'''10'''|l}}" },
     { "id": "5654", "name": "Platyna", "description": "{{Cost|5|l}}" },
     {
@@ -597,17 +577,11 @@
         "name": "Mennica",
         "description": "Każdy zagrany w tej turze Miedziak produkuje dodatkowe {{Cost|1}}."
     },
-    { "id": "5804", "name": "Dworzanie", "description": "" },
     { "id": "5806", "name": "Dyplomata", "description": "" },
     {
         "id": "5807",
         "name": "Starosta",
         "description": "Ta karta jest warta {{VP|1}} za każdy Powiat, jaki posiadasz."
-    },
-    {
-        "id": "5809",
-        "name": "Westybul",
-        "description": "'''+1 karta<br>+1 akcja'''{{Divline}}{{VP|1|l}}"
     },
     {
         "id": "5810",
@@ -625,18 +599,12 @@
         "name": "Sługus",
         "description": "'''+1 akcja'''<br>Wybierz jedną opcję {{Costplus|2}}; lub odrzucasz wszystkie karty z ręki, otrzymujesz +4&nbsp;karty i każdy z pozostałych graczy z co najmniej 5&nbsp;kartami na ręce musi odrzucić wszystkie karty i pociągnąć 4&nbsp;karty."
     },
-    {
-        "id": "5816",
-        "name": "Szlachta",
-        "description": "Wybierz jedną opcję:<br>+3 karty lub +2&nbsp;akcje.{{divline}}{{VP|2|l}}"
-    },
     { "id": "5817", "name": "Patrol", "description": "" },
     {
         "id": "5818",
         "name": "Giermek",
         "description": "Wybierz dwie opcje:<br>+1 karta;<br>+1 akcja;<br>+1 zakup;<br>{{Costplus|1}}.<br>(Opcje muszą się różnić)."
     },
-    { "id": "5819", "name": "Podmiana", "description": "" },
     { "id": "5820", "name": "Sabotażysta", "description": "" },
     {
         "id": "5821",
@@ -863,11 +831,6 @@
         "id": "6025",
         "name": "Niszczejący zamek",
         "description": "{{VP|1|l}}{{Divline}}Kiedy dodajesz lub wyrzucasz tę kartę na śmietnisko, {{VP|'''+1'''}} i&nbsp;dodaj Srebrnika."
-    },
-    {
-        "id": "6027",
-        "name": "Emporium",
-        "description": "'''+1 karta'''<br>'''+1 akcja'''<br>{{Costplus|1}}{{Divline}}Kiedy dodajesz tę kartę i masz w grze co najmniej 5&nbsp;kart Akcji, {{VP|'''+2'''}}."
     },
     {
         "id": "6028",
@@ -1321,11 +1284,6 @@
     },
     { "id": "6189", "name": "Ognisko", "description": "" },
     {
-        "id": "6190",
-        "name": "Przebudowa",
-        "description": "Wyrzuć na śmietnisko dowolną kartę z ręki. Dodaj kartę os koszcie większym maksymalnie o {{Cost|2}} od kosztu wyrzuconej karty."
-    },
-    {
         "id": "6191",
         "name": "Szlak",
         "description": "'''+1 karta'''<br>'''+1 akcja'''{{divline}}Kiedy poza fazą porządków dodajesz tę kartę, wyrzucasz ją na Śmietnisko albo odrzucasz ją, możesz ją zagrać."
@@ -1401,11 +1359,6 @@
         "description": "Odkrywaj karty ze swojej talii, aż odkryjesz 2 karty skarbu. Weź te karty na rękę i odrzuć pozostałe odkryte karty."
     },
     {
-        "id": "6295",
-        "name": "Sala tronowa",
-        "description": "Możesz wybrać kartę Akcji z ręki i zagrać ją dwukrotnie."
-    },
-    {
         "id": "6296",
         "name": "Szpieg",
         "description": "'''+1 karta''' <br> '''+1 akcja''' <br> Każdy gracz (włączając ciebie) odkrywa wierzchnią kartę swojej talii. Następnie decydujesz, czy ma ją odłożyć z powrotem na wierzch talii, czy odrzucić."
@@ -1416,7 +1369,6 @@
         "description": "'''+2 karty'''{{Divline}}Kiedy inny gracz zagrywa kartę Ataku, możesz odkryć tę kartę z ręki, aby uniknąć efektów tego ataku."
     },
     { "id": "6298", "name": "Miedziaki", "description": "{{Cost|1|l}}" },
-    { "id": "6299", "name": "Posiadłość", "description": "" },
     { "id": "6302", "name": "Plac targowy", "description": "" },
     { "id": "6304", "name": "Frachtowiec", "description": "" },
     { "id": "6307", "name": "Chorąży", "description": "" },
@@ -1445,11 +1397,6 @@
         "name": "Pola uprawne",
         "description": "{{VP|'''2'''|l}}{{divline}}Kiedy dodajesz tę kartę, wyrzuć na Śmietnisko kartę z ręki i dodaj kartę inną niż Pola uprawne, kosztującą dokładnie o {{Cost|2}} więcej od wyrzuconej karty."
     },
-    {
-        "id": "6365",
-        "name": "Oprawca",
-        "description": "'''+3 karty'''<br>Każdy z pozostałych graczy wybiera jedną opcję: odrzuca 2 karty lub dodaje kartę Klątwy, biorąc ją na rękę."
-    },
     { "id": "6369", "name": "Jasnowidz", "description": "" },
     {
         "id": "6370",
@@ -1475,5 +1422,58 @@
         "id": "6375",
         "name": "Domokrążca",
         "description": "'''+1 karta<br>+1 akcja'''<br>{{Costplus|1}}{{divline}}W fazie zakupu dowolnego gracza ta karta kosztuje o {{Cost|2}} mniej za każdą kartę Akcji, którą {{nowrap|ma on w grze}}."
+    },
+    {
+        "id": "6376",
+        "name": "Emporium",
+        "description": "'''+1 karta'''<br>'''+1 akcja'''<br>{{Costplus|1}}{{Divline}}Kiedy dodajesz tę kartę i masz w grze co najmniej 5&nbsp;kart Akcji, {{VP|'''+2'''}}."
+    },
+    {
+        "id": "6382",
+        "name": "Festyn",
+        "description": "'''+2 akcje<br>+1 zakup'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "6385",
+        "name": "Rękodzielnik",
+        "description": "<p>Dodaj na rękę kartę nie droższą {{nowrap|niż {{Cost|5}}.}}</p>Odłóż kartę z ręki na wierzch swojej talii."
+    },
+    { "id": "6386", "name": "Złoto", "description": "{{Cost|3|l}}" },
+    {
+        "id": "6388",
+        "name": "Przebudowa",
+        "description": "Wyrzuć na śmietnisko dowolną kartę z ręki. Dodaj kartę os koszcie większym maksymalnie o {{Cost|2}} od kosztu wyrzuconej karty."
+    },
+    { "id": "6404", "name": "Posiadłość", "description": "" },
+    { "id": "6405", "name": "Powiat", "description": "" },
+    { "id": "6406", "name": "Prowincja", "description": "" },
+    { "id": "6407", "name": "Klątwa", "description": "{{VP|-1|l}}" },
+    { "id": "6408", "name": "Bandyta", "description": "" },
+    {
+        "id": "6409",
+        "name": "Sala tronowa",
+        "description": "Możesz wybrać kartę Akcji z ręki i zagrać ją dwukrotnie."
+    },
+    {
+        "id": "6410",
+        "name": "Lichwiarz",
+        "description": "Wyrzuć z ręki na śmietnisko kartę Miedziaka, aby otrzymać {{Costplus|3}}"
+    },
+    {
+        "id": "6411",
+        "name": "Oprawca",
+        "description": "'''+3 karty'''<br>Każdy z pozostałych graczy wybiera jedną opcję: odrzuca 2 karty lub dodaje kartę Klątwy, biorąc ją na rękę."
+    },
+    { "id": "6412", "name": "Podmiana", "description": "" },
+    {
+        "id": "6413",
+        "name": "Szlachta",
+        "description": "Wybierz jedną opcję:<br>+3 karty lub +2&nbsp;akcje.{{divline}}{{VP|2|l}}"
+    },
+    { "id": "6414", "name": "Dworzanie", "description": "" },
+    {
+        "id": "6415",
+        "name": "Westybul",
+        "description": "'''+1 karta<br>+1 akcja'''{{Divline}}{{VP|1|l}}"
     }
 ]

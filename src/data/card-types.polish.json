@@ -1,6 +1,5 @@
 [
     { "id": "241", "name": "Akcja" },
-    { "id": "260", "name": "Klątwa" },
     { "id": "263", "name": "Rycerze" },
     { "id": "266", "name": "Skarb" },
     { "id": "267", "name": "Zwycięstwo" },
@@ -16,5 +15,6 @@
     { "id": "316", "name": "Atak" },
     { "id": "317", "name": "Zamki" },
     { "id": "319", "name": "Krajobraz" },
-    { "id": "320", "name": "Zdarzenie" }
+    { "id": "320", "name": "Zdarzenie" },
+    { "id": "322", "name": "Klątwa" }
 ]

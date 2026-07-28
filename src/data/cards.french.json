@@ -1,15 +1,5 @@
 [
     {
-        "id": "5290",
-        "name": "Artisan",
-        "description": "Recevez en main une carte coûtant jusqu'à {{Cost|5}}. Placez une carte de votre main sur votre pioche."
-    },
-    {
-        "id": "5291",
-        "name": "Brigand",
-        "description": "Recevez un Or. Tous vos adversaires dévoilent les 2 premières cartes de leur pioche, écartent une carte Trésor dévoilée autre qu'un Cuivre, et défaussent le reste."
-    },
-    {
         "id": "5292",
         "name": "Bureaucrate",
         "description": "Recevez un Argest sur votre pioche. Tous voz adversaires dévoilent une carte Victoire de leur main et la placent sur leur pioche (ou dévoilent une main sans carte Victoire)."
@@ -31,11 +21,6 @@
         "description": "'''+4 Cartes''' <br>'''+1 Achat'''<br>Tous vos adversaires piochent une carte."
     },
     { "id": "5297", "name": "Festin", "description": "" },
-    {
-        "id": "5298",
-        "name": "Festival",
-        "description": "'''+2 Actions<br>+1 Achat'''<br>{{Costplus|2}}"
-    },
     {
         "id": "5299",
         "name": "Jardins",
@@ -71,11 +56,6 @@
         "id": "5306",
         "name": "Mine",
         "description": "Vous pouvez écarter une carte Trésor de votre main. Recevez en main une carte Trésor coûtant jusqu'à {{Cost|3}} de plus."
-    },
-    {
-        "id": "5308",
-        "name": "Prêteur sur gages",
-        "description": "Vouz pouvez écarter un Cuivre de votre main pour {{Costplus|3}}."
     },
     {
         "id": "5309",
@@ -755,19 +735,9 @@
         "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action <br> ''' Défaussez une carte. '''+1&nbsp;Carte'''. <br> Vous pouvez tourner les Odyssées."
     },
     {
-        "id": "5543",
-        "name": "Sibylle",
-        "description": "'''+4&nbsp;Cartes <br> +1&nbsp;Action''' <br> Placez une carte de votre main en haut de votre pioche, et une autre en bas."
-    },
-    {
         "id": "5544",
         "name": "Sorcier",
         "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action''' <br> Tous vos adversaires nomment une carte, puis dévoilent la carte du haut de leur pioche. En cas d'erreur, ils reçoivent une Malédiction."
-    },
-    {
-        "id": "5545",
-        "name": "Sorcière maléfique",
-        "description": "'''+1&nbsp;Action''' <br> Nommez une carte. Dévoilez et prenez en main la carte du haut de votre pioche. Si elle corrsepond, tous vos adversaires reçoivent une Malédiction."
     },
     {
         "id": "5546",
@@ -1116,11 +1086,7 @@
         "name": "Charlatane",
         "description": "{{Costplus|3}}<br>Tous vos adversaires reçoivent une Malédiction.{{Divline}}Dans les parties utilisant cette carte, les Malédictions sont aussi un Trésor valant {{Cost|1}}."
     },
-    { "id": "5646", "name": "Malédiction", "description": "" },
     { "id": "5648", "name": "Argent", "description": "" },
-    { "id": "5649", "name": "Or", "description": "" },
-    { "id": "5651", "name": "Duché", "description": "" },
-    { "id": "5652", "name": "Province", "description": "" },
     { "id": "5653", "name": "Colonie", "description": "" },
     { "id": "5654", "name": "Platine", "description": "" },
     {
@@ -1475,11 +1441,6 @@
     },
     { "id": "5803", "name": "Chaudronnier", "description": "" },
     {
-        "id": "5804",
-        "name": "Courtisan",
-        "description": "Dévoilez une carte de votre main. Pour chacun de ses types (Action, Attaque, etc.), choisissez : '''+1&nbsp;Action'''; ou '''+1&nbsp;Achat'''; ou {{Costplus|3}}; ou recevez un Or. Les choix doivent être différents."
-    },
-    {
         "id": "5806",
         "name": "Diplomate",
         "description": "'''+2 Cartes'''<br>Si après cela vous avez en main 5 cartes ou moins, '''+2&nbsp;Actions'''.{{Divline}}Quand un autre joueur joue une carte Attaque et que vous avez au moins 5 cartes en main, vous pouvez dévoiler ceci pour piocher 2 cartes puis en défausser 3."
@@ -1489,7 +1450,6 @@
         "name": "Duc",
         "description": "Vaut {{VP|'''1'''}} pour chaque Duché que vous avez."
     },
-    { "id": "5809", "name": "Grand Hall", "description": "" },
     {
         "id": "5810",
         "name": "Fonderie",
@@ -1507,11 +1467,6 @@
         "description": "'''+1 Action'''<br>Choisissez : {{Costplus|2}}; ou défaussez votre main, '''+4&nbsp;Cartes''', et chaque adversaire avec au moins 5 cartes en main défausse sa main et pioche 4 cartes."
     },
     {
-        "id": "5816",
-        "name": "Nobles",
-        "description": "{{VP|2|l}}{{divline}}Choisissez : '''+3&nbsp;Cartes''' ou '''+2&nbsp;Actions'''."
-    },
-    {
         "id": "5817",
         "name": "Patrouille",
         "description": "'''+3 Cartes'''<br>Dévoilez les premières cartes de votre pioche. Prenez en main les cartes Victoire et Malédiction. Replacez les autres sur votre pioche dans l'ordre de votre choix."
@@ -1520,11 +1475,6 @@
         "id": "5818",
         "name": "Pion",
         "description": "Choisissez deux options : '''+1&nbsp;Carte'''; '''+1&nbsp;Action'''; '''+1&nbsp;Achat'''; {{Costplus|1}}. Les choiz doivent être différents."
-    },
-    {
-        "id": "5819",
-        "name": "Remplacement",
-        "description": "Écartez une carte de votre main. Recevez une carte coûtant jusqu'à {{Cost|2}} de plus. Si la carte reçue est une Action ou un Trésor, placez-la sur votre pioche; si c'est une carte Victoire, tous vos adversaires reçoivent une Malédiction."
     },
     { "id": "5820", "name": "Saboteur", "description": "" },
     { "id": "5821", "name": "Éclaireur", "description": "" },
@@ -2386,11 +2336,6 @@
         "description": "{{VP|1|l}}{{Divline}}Lorsque vous recevez ou écartez cette carte, {{VP|'''+1'''}} et recevez un Argent."
     },
     {
-        "id": "6027",
-        "name": "Emporium",
-        "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action''' <br> {{Costplus|1}} {{Divline}} Lorsque vous recevez cette carte, si avez au moins 5&nbsp;cartes Action, en jeu, {{VP|'''+2'''}}."
-    },
-    {
         "id": "6028",
         "name": "Magicienne",
         "description": "<p>Jusqu'à votre prochain tour, la première fois qu'un adversaire joue une carte Action à son tour, il a '''+1&nbsp;Carte''' et '''+1&nbsp;Action''' au lieu de suivre ses instructions.</p>Au début de votre prochain tour,<br> '''+2&nbsp;Cartes'''"
@@ -3057,11 +3002,6 @@
     },
     { "id": "6189", "name": "Feu de joie", "description": "Écartez jusqu'à 2 Cuivres en jeu." },
     {
-        "id": "6190",
-        "name": "Rénovation",
-        "description": "Écartez une carte de votre main. Recevez une carte coûtant jusqu'à {{Cost|2}} de plus que la carte écartée"
-    },
-    {
         "id": "6191",
         "name": "Sentier",
         "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action''' {{Divline}} Quand vous recevez, écartez, ou défaussez cette carte en dehors de la phase Ajustement, vous pouvez le jouer."
@@ -3324,11 +3264,6 @@
         "description": "Dévoilez les 5 premières cartes de votre pioche. Le joueur à votre gauche en choisit une. Défaussez-la et prenez les autres en main."
     },
     { "id": "6294", "name": "Aventurier", "description": "" },
-    {
-        "id": "6295",
-        "name": "Salle du Trône",
-        "description": "Vous pouvez jouer une carte Action de votre main deux fois."
-    },
     { "id": "6296", "name": "Espion", "description": "" },
     {
         "id": "6297",
@@ -3336,7 +3271,6 @@
         "description": "'''+2 Cartes'''{{Divline}}Lorsqu'un adversaire joue une carte Attaque, vous pouvez dévoiler catte carte de votre main. Dans ce cas, l'attaque n'a pas d'effet sur vous."
     },
     { "id": "6298", "name": "Cuivre", "description": "" },
-    { "id": "6299", "name": "Domaine", "description": "" },
     {
         "id": "6300",
         "name": "Malfaiteurs",
@@ -3589,11 +3523,6 @@
         "description": "{{VP|2|l}} {{Divline}} Lorsque vous recevez cette carte, écartez une carte de votre main et recevez une carte autre qu'une Terre Agricole coûtant exactement {{Cost|2}} de plus."
     },
     {
-        "id": "6365",
-        "name": "Bourreau",
-        "description": "'''+3 Cartes'''<br>Tous vos adversaires défaussent 2 cartes, ou reçoivent en main une Malédiction, à leur choix. (Ils peuvent choisir une option qu'ils ne peuvent pas réaliser.)"
-    },
-    {
         "id": "6366",
         "name": "Reconstruction",
         "description": "<p> '''+1&nbsp;Action''' </p> Nommez une carte. Dévoilez des cartes de votre pioche jusqu'à dévoiler une carte Victoire différente de la carte nommée. Défaussez le reste, écartez la carte Victoire, puis recevez une carte Victoire coûtant jusqu'à {{Cost|3}} de plus."
@@ -3642,5 +3571,152 @@
         "id": "6375",
         "name": "Colporteur",
         "description": "'''+1 Carte<br>+1 Action<br>''' {{Costplus|1}} {{Divline}} Pendant la phase Achat d'un joueur, cette carte coûte {{Cost|2}} de moins par carte Action qu'il a en jeu."
+    },
+    {
+        "id": "6376",
+        "name": "Emporium",
+        "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action''' <br> {{Costplus|1}} {{Divline}} Lorsque vous recevez cette carte, si avez au moins 5&nbsp;cartes Action, en jeu, {{VP|'''+2'''}}."
+    },
+    {
+        "id": "6382",
+        "name": "Festival",
+        "description": "'''+2 Actions<br>+1 Achat'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "6385",
+        "name": "Artisane",
+        "description": "Recevez dans votre main une<br>carte coûtant jusqu'à {{Cost|5}}.<br>Placez une carte de votre<br>main sur votre deck."
+    },
+    { "id": "6386", "name": "Or", "description": "{{Cost|3|l}}" },
+    {
+        "id": "6387",
+        "name": "Empereur bienveillant",
+        "description": "Au début de votre tour et lorsque vous retirez le dernier {{Sun}} :<br>Recevez une Action dans votre main."
+    },
+    {
+        "id": "6388",
+        "name": "Rénovation",
+        "description": "Écartez une carte de votre<br>main. Recevez une carte<br>coûtant jusqu'à {{Cost|2}} de plus."
+    },
+    { "id": "6389", "name": "", "description": "" },
+    {
+        "id": "6390",
+        "name": "Armée en approche",
+        "description": "Après avoir joué une carte Attaque, {{Costplus|1}}.{{divline}}'''Mise en place''' : Ajoutez une pile de cartes Royaume Attaque<br>à la réserve."
+    },
+    {
+        "id": "6391",
+        "name": "Commerce florissant",
+        "description": "Les cartes coûtent {{cost|1}} de moins. Vous pouvez utiliser<br>vos Actions disponibles comme des Achats."
+    },
+    {
+        "id": "6392",
+        "name": "Moment Opportun",
+        "description": "Au début de votre phase Ajustement, mettez de côté<br>face cachée vos cartes en main. Au début de votre<br>prochain tour, remettez ces cartes dans votre main."
+    },
+    {
+        "id": "6393",
+        "name": "Amas",
+        "description": "Si vous n'avez pas de cartes Action en jeu,<br>recevez une carte Action qui coûte jusqu'à {{cost|5}}."
+    },
+    {
+        "id": "6394",
+        "name": "Sibylle",
+        "description": "'''+4&nbsp;Cartes <br> +1&nbsp;Action''' <br> Placez une carte de votre main en haut de votre pioche, et une autre en bas."
+    },
+    {
+        "id": "6395",
+        "name": "Sorcière maléfique",
+        "description": "'''+1&nbsp;Action''' <br> Nommez une carte. Dévoilez et prenez en main la carte du haut de votre pioche. Si elle corrsepond, tous vos adversaires reçoivent une Malédiction."
+    },
+    {
+        "id": "6396",
+        "name": "Daïmio",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>La prochaine fois que vous<br>jouez une carte Action<br>qui n'est pas de type Ordre<br>ce tour, rejouez-la après."
+    },
+    {
+        "id": "6397",
+        "name": "Artiste",
+        "description": "'''+1 Action'''<p>'''+1&nbsp;Carte''' par carte dont<br>Vous avez exactement<br>un exemplaire en jeu."
+    },
+    {
+        "id": "6398",
+        "name": "Poissonnière",
+        "description": "'''+1&nbsp;Achat'''<br>{{Costplus|1}}{{divline}}vous pouvez jouer cette carte<br>depuis votre deck comme si<br>elle était dans votre main."
+    },
+    {
+        "id": "6399",
+        "name": "Sorcière aux serpents",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>Si vous n'avez aucun doublon<br>en main, vous pouvez dévoiler<br>votre main et remettre la carte<br>Sorcière aux serpents sur sa pile<br>pour que tous vos adversaires<br>reçoivent une malédiction"
+    },
+    {
+        "id": "6401",
+        "name": "Artisan d'art",
+        "description": "{{Debtplus|2}}<br>Recevez une carte qui<br>coûte jusqu'à {{cost|5}}."
+    },
+    {
+        "id": "6402",
+        "name": "Éveil Spirituel",
+        "description": "Les Trésors sont aussi des Actions. Lorsque vous jouez un<br>Trésor lors d'une phase Action, au lieu d'appliquer les effets<br>de la carte, appliquez ceux-ci : '''+1 Carte''' et '''+1 Action'''."
+    },
+    {
+        "id": "6403",
+        "name": "Hiver rude",
+        "description": "Lorsque vous recevez une carte pendant votre tour,<br>s'il y a des pions {{Debt}} sur sa pile,<br>prenez-les, sinon placez {{Debt|2}} sur sa pile."
+    },
+    { "id": "6404", "name": "Domaine", "description": "{{VP|1|l}}" },
+    { "id": "6405", "name": "Duché", "description": "{{VP|3|l}}" },
+    { "id": "6406", "name": "Province", "description": "{{VP|6|l}}" },
+    { "id": "6407", "name": "Malédiction", "description": "{{VP|-1|l}}" },
+    {
+        "id": "6408",
+        "name": "Brigand",
+        "description": "Recevez un Or. Tous vos<br>adversaires dévoilent les<br>2 premières cartes de leur<br>pioche, écartent une carte<br>Trésor dévoilée autre qu'un<br>Cuivre, et défaussent le reste."
+    },
+    {
+        "id": "6409",
+        "name": "Salle du Trône",
+        "description": "Vous pouvez jouer une carte<br>Action de votre main deux fois."
+    },
+    {
+        "id": "6410",
+        "name": "Prêteur sur gages",
+        "description": "Vouz pouvez écarter<br>un Cuivre de votre<br>main pour {{Costplus|3}}."
+    },
+    {
+        "id": "6411",
+        "name": "Bourreau",
+        "description": "'''+3 Cartes'''<br>Chacun de vos adversaires<br>défausse 2 cartes ou reçoit une<br>Malédiction à placer dans sa main<br>(ils peuvent sélectionner une<br>option impossible à résoudre)."
+    },
+    {
+        "id": "6412",
+        "name": "Magouille",
+        "description": "Ecartez une carte de votre main.<br>Recevez une carte coûtant jusqu'à<br>{{Cost|2}} de plus. Si la carte reçue est une<br>Action ou un Trésor, placez-la au<br>sommet de votre deck. Si c'est une<br>carte Victoire, tous vos adversaires<br>reçoivent une carte Malédiction."
+    },
+    {
+        "id": "6413",
+        "name": "Nobles",
+        "description": "Choisissez : '''+3&nbsp;Cartes''' OU<br> '''+2&nbsp;Actions'''.{{divline}}{{VP|2|l}}"
+    },
+    {
+        "id": "6414",
+        "name": "Courtisan",
+        "description": "Devoilez une carte de votre main.<br>Choisissez une option différente<br>pour chaque type que posséde<br>cette carte (Action, Attaque…) :<br>'''+1 Action''' OU '''+1 Achat''' OU<br>{{Costplus|3}} OU recevez un Or."
+    },
+    { "id": "6415", "name": "Grand Hall", "description": "" },
+    {
+        "id": "6417",
+        "name": "Aristocrate",
+        "description": "Si le nombre d'Aristocrates que vous avez en jeu est :<p>1 ou 5: '''+3&nbsp;Actions'''<br>2 ou 6: '''+3&nbsp;Cartes'''<br>3 ou 7: {{Costplus|3}}<br>4 ou 8: '''+3&nbsp;Achats'''."
+    },
+    {
+        "id": "6420",
+        "name": "Sanctuaire de montagne",
+        "description": "{{Sunplus}}<br>{{Costplus|2}}<p>Vous pouvez écarter une carte de votre main. Ensuite, s'il y a au moins une carte Action au rebut, '''+2&nbsp;Cartes.'''"
+    },
+    {
+        "id": "6421",
+        "name": "Ruelle",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>Défaussez une carte.{{divline}}Vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
     }
 ]

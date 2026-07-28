@@ -1,6 +1,5 @@
 [
     { "id": "241", "name": "Toiminta" },
-    { "id": "260", "name": "Kirous" },
     { "id": "263", "name": "Ritarit" },
     { "id": "264", "name": "Raunio" },
     { "id": "266", "name": "Raha" },
@@ -15,5 +14,6 @@
     { "id": "314", "name": "Ryöstäjä" },
     { "id": "316", "name": "Hyökkäys" },
     { "id": "317", "name": "Linnat" },
-    { "id": "319", "name": "Maamerkki" }
+    { "id": "319", "name": "Maamerkki" },
+    { "id": "322", "name": "Kirous" }
 ]

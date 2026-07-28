@@ -10,7 +10,6 @@
     { "id": "300", "expansion": "Abenteuer" },
     { "id": "304", "expansion": "Die Alchemisten" },
     { "id": "306", "expansion": "Verbündete" },
-    { "id": "308", "expansion": "Rising Sun" },
     { "id": "310", "expansion": "Hinterland" },
     { "id": "311", "expansion": "Hinterland" },
     { "id": "312", "expansion": "Dominion" },
@@ -18,5 +17,6 @@
     { "id": "314", "expansion": "Empires" },
     { "id": "317", "expansion": "Blütezeit" },
     { "id": "318", "expansion": "Blütezeit" },
-    { "id": "321", "expansion": "Renaissance" }
+    { "id": "321", "expansion": "Renaissance" },
+    { "id": "322", "expansion": "Rising Sun" }
 ]

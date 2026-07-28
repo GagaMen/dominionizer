@@ -1,15 +1,5 @@
 [
     {
-        "id": "5290",
-        "name": "藝術家",
-        "description": "獲得一張價值至多{{Cost|5}}的卡片到手中，<br>從手牌中選擇一張卡片放回牌庫頂。"
-    },
-    {
-        "id": "5291",
-        "name": "強盜",
-        "description": "獲得一張黃金，其他玩家展示牌庫頂的兩張牌，移除其中一張非銅幣的錢幣卡，棄掉剩下的卡片。"
-    },
-    {
         "id": "5292",
         "name": "官員",
         "description": "獲得一張銀幣，將銀幣放置在你的牌堆頂，其他所有人展示一張手上的分數卡，將它放到各自牌堆頂(或是展示手牌沒有分數卡)。"
@@ -23,7 +13,6 @@
     { "id": "5295", "name": "禮拜堂", "description": "移除你手上至多四張卡片。" },
     { "id": "5296", "name": "議事廳", "description": "" },
     { "id": "5297", "name": "晚宴", "description": "" },
-    { "id": "5298", "name": "慶典", "description": "" },
     { "id": "5299", "name": "花園", "description": "" },
     { "id": "5300", "name": "先鋒", "description": "" },
     { "id": "5301", "name": "實驗室", "description": "" },
@@ -36,7 +25,6 @@
     },
     { "id": "5305", "name": "義勇軍", "description": "" },
     { "id": "5306", "name": "礦坑", "description": "" },
-    { "id": "5308", "name": "錢莊", "description": "" },
     { "id": "5309", "name": "盜獵者", "description": "" },
     { "id": "5311", "name": "哨兵", "description": "" },
     { "id": "5312", "name": "鐵匠", "description": "" },
@@ -249,11 +237,7 @@
         "name": "工人村",
         "description": "'''+1 卡片'''<br>'''+2 行動'''<br>'''+1 購買'''"
     },
-    { "id": "5646", "name": "詛咒", "description": "" },
     { "id": "5648", "name": "銀幣", "description": "" },
-    { "id": "5649", "name": "金幣", "description": "" },
-    { "id": "5651", "name": "公國", "description": "" },
-    { "id": "5652", "name": "行省", "description": "" },
     { "id": "5653", "name": "殖民地", "description": "" },
     { "id": "5654", "name": "白金", "description": "" },
     { "id": "5800", "name": "男爵", "description": "" },
@@ -262,15 +246,12 @@
     { "id": "5803", "name": "銅匠", "description": "" },
     { "id": "5806", "name": "外交官", "description": "" },
     { "id": "5807", "name": "公爵", "description": "" },
-    { "id": "5809", "name": "大殿", "description": "" },
     { "id": "5810", "name": "打鐵舖", "description": "" },
     { "id": "5813", "name": "磨坊", "description": "" },
     { "id": "5814", "name": "礦業小鎮", "description": "" },
     { "id": "5815", "name": "爪牙", "description": "" },
-    { "id": "5816", "name": "貴族", "description": "" },
     { "id": "5817", "name": "偵查兵", "description": "" },
     { "id": "5818", "name": "小兵", "description": "" },
-    { "id": "5819", "name": "替身", "description": "" },
     { "id": "5820", "name": "炸彈客", "description": "" },
     { "id": "5821", "name": "斥候", "description": "" },
     { "id": "5822", "name": "密室", "description": "" },
@@ -387,7 +368,6 @@
         "description": "觀看你牌庫頂的兩張卡，棄掉那兩張或是將那兩張以任意順序放回牌庫頂。"
     },
     { "id": "6187", "name": "庭院", "description": "" },
-    { "id": "6190", "name": "重建", "description": "" },
     { "id": "6241", "name": "幽靈船", "description": "" },
     { "id": "6243", "name": "村莊", "description": "" },
     { "id": "6254", "name": "舞台演員", "description": "" },
@@ -411,7 +391,6 @@
     { "id": "6290", "name": "藥劑", "description": "" },
     { "id": "6293", "name": "使節", "description": "" },
     { "id": "6294", "name": "冒險家", "description": "" },
-    { "id": "6295", "name": "王座", "description": "" },
     { "id": "6296", "name": "間諜", "description": "" },
     {
         "id": "6297",
@@ -419,7 +398,6 @@
         "description": "'''+2 卡片'''{{Divline}}當其他玩家打出攻擊卡時，你可以先展示手上的此卡，來無效對你的影響。"
     },
     { "id": "6298", "name": "銅錢", "description": "" },
-    { "id": "6299", "name": "莊園", "description": "" },
     { "id": "6303", "name": "邊境守衛", "description": "" },
     { "id": "6304", "name": "貨船", "description": "" },
     { "id": "6305", "name": "達克特", "description": "" },
@@ -470,7 +448,6 @@
         "name": "主教",
         "description": "{{Costplus|1}}<br>{{VP|'''+1'''}}<br>移除手上的一張卡，那張卡每價值{{Cost|2}}則獲得{{VP|1}}(無條件捨去)。<br>其它每位玩家可以移除手上的一張卡。"
     },
-    { "id": "6365", "name": "酷刑者", "description": "" },
     { "id": "6369", "name": "先知", "description": "" },
     { "id": "6372", "name": "港口", "description": "" },
     { "id": "6374", "name": "堡壘", "description": "" },
@@ -478,5 +455,28 @@
         "id": "6375",
         "name": "小販",
         "description": "'''+1 卡片'''<br>'''+1 行動'''<br>{{Costplus|1}}{{divline}}在你的購買階段時，你出牌區裡每有一張行動卡會讓此卡價值減少{{Cost|2}}，但不會低於{{Cost|0}}"
-    }
+    },
+    { "id": "6382", "name": "慶典", "description": "" },
+    {
+        "id": "6385",
+        "name": "藝術家",
+        "description": "獲得一張價值至多{{Cost|5}}的卡片到手中，<br>從手牌中選擇一張卡片放回牌庫頂。"
+    },
+    { "id": "6386", "name": "金幣", "description": "" },
+    { "id": "6388", "name": "重建", "description": "" },
+    { "id": "6404", "name": "莊園", "description": "" },
+    { "id": "6405", "name": "公國", "description": "" },
+    { "id": "6406", "name": "行省", "description": "" },
+    { "id": "6407", "name": "詛咒", "description": "" },
+    {
+        "id": "6408",
+        "name": "強盜",
+        "description": "獲得一張黃金，其他玩家展示牌庫頂的兩張牌，移除其中一張非銅幣的錢幣卡，棄掉剩下的卡片。"
+    },
+    { "id": "6409", "name": "王座", "description": "" },
+    { "id": "6410", "name": "錢莊", "description": "" },
+    { "id": "6411", "name": "酷刑者", "description": "" },
+    { "id": "6412", "name": "替身", "description": "" },
+    { "id": "6413", "name": "貴族", "description": "" },
+    { "id": "6415", "name": "大殿", "description": "" }
 ]

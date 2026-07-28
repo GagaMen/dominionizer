@@ -1,6 +1,5 @@
 [
     { "id": "241", "name": "Acción" },
-    { "id": "260", "name": "Maldición" },
     { "id": "263", "name": "Caballeros" },
     { "id": "264", "name": "Ruinas" },
     { "id": "266", "name": "Tesoro" },
@@ -11,5 +10,6 @@
     { "id": "313", "name": "Duración" },
     { "id": "314", "name": "Saqueador" },
     { "id": "316", "name": "Ataque" },
-    { "id": "318", "name": "Objeto" }
+    { "id": "318", "name": "Objeto" },
+    { "id": "322", "name": "Maldición" }
 ]

@@ -1,6 +1,5 @@
 [
     { "id": "241", "name": "Actie" },
-    { "id": "260", "name": "Vloek" },
     { "id": "263", "name": "Ridders" },
     { "id": "264", "name": "Ruïne" },
     { "id": "266", "name": "Geld" },
@@ -30,5 +29,6 @@
     { "id": "317", "name": "Kastelen" },
     { "id": "318", "name": "Artefact" },
     { "id": "319", "name": "Bezienswaardigheden" },
-    { "id": "320", "name": "Gebeurtenis" }
+    { "id": "320", "name": "Gebeurtenis" },
+    { "id": "322", "name": "Vloek" }
 ]

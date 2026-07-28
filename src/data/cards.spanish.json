@@ -1,15 +1,5 @@
 [
     {
-        "id": "5290",
-        "name": "Artesano",
-        "description": "Gana una carta que tenga un coste máximo de {{Cost|5}}. La carta ganada va directamente a tu mano.<br>Coloca sobre tu mazo una carta de tu mano."
-    },
-    {
-        "id": "5291",
-        "name": "Bandido",
-        "description": "Ganas una carta de Oro.<br>Los demás jugadores tienen que revelar las 2&nbsp;cartas superiores de sus respectivos mazos, eliminar una carta de Tesoro revelada que no sea de Cobre y descartar las demás."
-    },
-    {
         "id": "5292",
         "name": "Burócrata",
         "description": "Ganas una carta de Plata y la colocas encima de tu mazo.<br>Los demás jugadores tienen que enseñar una carta de Victoria y ponerla encima de su mazo (o mostrar toda su mano si no tienen cartas de Victoria)."
@@ -34,11 +24,6 @@
         "id": "5297",
         "name": "Banquete",
         "description": "Elimina esta carta.<br>Gana una carta con un coste máximo de {{Cost|5}}"
-    },
-    {
-        "id": "5298",
-        "name": "Festival",
-        "description": "'''+2 Acciones<br>+1 Compra'''<br>{{Costplus|2}}"
     },
     {
         "id": "5299",
@@ -75,11 +60,6 @@
         "id": "5306",
         "name": "Mina",
         "description": "Puedes eliminar una carta de Tesoro de tu mano. Gana una carta de Tesoro que cueste hasta {{Cost|3}} más.<br>La carta ganada va directamente a tu mano."
-    },
-    {
-        "id": "5308",
-        "name": "Prestamista",
-        "description": "Puedes eliminar una carta de Cobre de tu mano. Si lo haces, {{Costplus|3}}."
     },
     {
         "id": "5309",
@@ -162,11 +142,7 @@
     { "id": "5634", "name": "Especulación", "description": "" },
     { "id": "5636", "name": "Atalaya", "description": "" },
     { "id": "5637", "name": "Pueblo de trabajadores", "description": "" },
-    { "id": "5646", "name": "Maldición", "description": "{{VP|-1|l}}" },
     { "id": "5648", "name": "Plata", "description": "{{Cost|2|l}}" },
-    { "id": "5649", "name": "Oro", "description": "{{Cost|3|l}}" },
-    { "id": "5651", "name": "Ducado", "description": "{{VP|3|l}}" },
-    { "id": "5652", "name": "Provincia", "description": "{{VP|6|l}}" },
     { "id": "5653", "name": "Colonia", "description": "" },
     { "id": "5654", "name": "Platino", "description": "" },
     {
@@ -195,11 +171,6 @@
         "description": "Cada carta de Cobre produce<br>{{Cost|1}} extra<br>en este turno."
     },
     {
-        "id": "5804",
-        "name": "Cortesano",
-        "description": "Revela una carta de tu mano. Por cada tipo que tenga (Acción, Ataque, etc.), elige una opción: '''+1 Acción'''; o '''+1 Compra'''; o {{Costplus|3}}; o ganas una carta de Oro. Las opciones deben ser distintas."
-    },
-    {
         "id": "5806",
         "name": "Diplomática",
         "description": "'''+2 Cartas'''<br>Si tienes en tu mano 5 cartas o menos (después de robar), '''+2 Acciones.'''{{Divline}}Cuando otro jugador juegue una carta de Ataque, puedes revelar primero esta carta, de una mano de 5 o más cartas, para robar 2 cartas y, luego, descartar 3."
@@ -208,11 +179,6 @@
         "id": "5807",
         "name": "Duque",
         "description": "Consigues {{VP|'''1'''}} por cada carta de Ducado que tengas en tu mazo."
-    },
-    {
-        "id": "5809",
-        "name": "Gran Sala",
-        "description": "'''+1 Carta<br>+1 Acción'''{{divline}}{{VP|1|l}}"
     },
     {
         "id": "5810",
@@ -235,11 +201,6 @@
         "description": "'''+1 Acción'''<br>Elige una opción: {{Costplus|2}} ; o bien descarta tu mano, '''+4 Cartas''' y los demás jugadores que tengan al menos 5 cartas en su mano descartan su mano para robar 4 cartas nuevas."
     },
     {
-        "id": "5816",
-        "name": "Nobles",
-        "description": "Elige una opción:<br>'''+3Cartas'''; o bien '''+2 Acciones'''.{{divline}}{{VP|2|l}}"
-    },
-    {
         "id": "5817",
         "name": "Patrulla",
         "description": "'''+3 Cartas'''<br>Revela las 4 cartas superiores de tu mazo. Pon en tu mano las cartas de Victoria y las Maldiciones. Devuelve las demás en cualquier orden."
@@ -248,11 +209,6 @@
         "id": "5818",
         "name": "Peón",
         "description": "Elige dos opciones distintas:<br>'''+1 Carta;<br>+1 Acción;<br>+1 Compra;'''<br>{{Costplus|1}}."
-    },
-    {
-        "id": "5819",
-        "name": "Suplantar",
-        "description": "Elimina una carta de tu mano. Gana una carta que cueste hasta {{Cost|2}} más que la carta eliminada. Si la carta ganada es de Acción o de Tesoro, colócala encima de tu mazo; si es una carta de Victoria, todos los demás jugadores ganan una Maldición."
     },
     {
         "id": "5820",
@@ -690,11 +646,6 @@
         "description": "'''+3 Cartas'''<br>Pon una carta de tu mano encima de tu mazo."
     },
     {
-        "id": "6190",
-        "name": "Remodelar",
-        "description": "Elimina una carta de tu mano. Gana una carta que cueste hasta {{Cost|2}} más que la carta eliminada."
-    },
-    {
         "id": "6192",
         "name": "Juglar",
         "description": "<p>'''+1 Carta<br>+2 Acción'''</p><p>Revela las 3 cartas superiores de tu mazo.<br>Devuelve las cartas de Acción encima del mazo en el orden que desees y descarta el resto.</p>"
@@ -804,11 +755,6 @@
         "description": "Levanta cartas de tu mazo hasta que descubras 2 Cartas de Tesoro.<br>Coloca los Tesoros en tu mano y descarta las demás cartas."
     },
     {
-        "id": "6295",
-        "name": "Salón del Trono",
-        "description": "Puedes jugar dos veces una carta de Acción de tu mano."
-    },
-    {
         "id": "6296",
         "name": "Espía",
         "description": "'''+1 Carta<br>+1 Acción'''<br>Cada jugador (incluso tú) revela la carta superior de su mazo y tú decides si la descarta o la devuelve a su sitio."
@@ -819,7 +765,6 @@
         "description": "'''+2 Cartas'''{{divline}}Cuando otro jugador juegue una carta de Ataque, puedes enseñar esta carta de tu mano. Si lo haces, el Ataque no te afecta."
     },
     { "id": "6298", "name": "Cobre", "description": "{{Cost|1|l}}" },
-    { "id": "6299", "name": "Finca", "description": "{{VP|1|l}}" },
     {
         "id": "6300",
         "name": "Banda de Rufianes",
@@ -1030,11 +975,6 @@
     { "id": "6363", "name": "Obispo", "description": "" },
     { "id": "6364", "name": "Tierra de Labranza", "description": "" },
     {
-        "id": "6365",
-        "name": "Torturador",
-        "description": "'''+3 Cartas'''<br>Cada jugador (menos tú) elige una opción: descartar dos cartas; o bien ganar una carta de Maldición, poniéndola en su mano. (Pueden elegir una opción que no puedan realizar)."
-    },
-    {
         "id": "6366",
         "name": "Reconstruir",
         "description": "'''+1 Acción'''<br>Nombra una carta. Revela las cartas superiores de tu mazo hasta revelar una carta de Victoria que no sea la carta que nombraste. Descarta el resto de cartas. Elimina la carta de Victoria y gana una carta de Victoria con un coste máximo de {{Cost|3}} más que la carta eliminada."
@@ -1055,5 +995,65 @@
         "name": "Ciudadela",
         "description": "La primera vez que juegas una carta de Acción en cada uno de tus turnos, la vuelves a jugar después."
     },
-    { "id": "6375", "name": "Buhonero", "description": "" }
+    { "id": "6375", "name": "Buhonero", "description": "" },
+    {
+        "id": "6382",
+        "name": "Festival",
+        "description": "'''+2 Acciones<br>+1 Compra'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "6385",
+        "name": "Artesano",
+        "description": "Gana una carta que tenga un coste máximo de {{Cost|5}}. La carta ganada va directamente a tu mano.<br>Coloca sobre tu mazo una carta de tu mano."
+    },
+    { "id": "6386", "name": "Oro", "description": "{{Cost|3|l}}" },
+    {
+        "id": "6388",
+        "name": "Remodelar",
+        "description": "Elimina una carta de tu mano. Gana una carta que cueste hasta {{Cost|2}} más que la carta eliminada."
+    },
+    { "id": "6404", "name": "Finca", "description": "{{VP|1|l}}" },
+    { "id": "6405", "name": "Ducado", "description": "{{VP|3|l}}" },
+    { "id": "6406", "name": "Provincia", "description": "{{VP|6|l}}" },
+    { "id": "6407", "name": "Maldición", "description": "{{VP|-1|l}}" },
+    {
+        "id": "6408",
+        "name": "Bandido",
+        "description": "Ganas una carta de Oro.<br>Los demás jugadores tienen que revelar las 2&nbsp;cartas superiores de sus respectivos mazos, eliminar una carta de Tesoro revelada que no sea de Cobre y descartar las demás."
+    },
+    {
+        "id": "6409",
+        "name": "Salón del Trono",
+        "description": "Puedes jugar dos veces una carta de Acción de tu mano."
+    },
+    {
+        "id": "6410",
+        "name": "Prestamista",
+        "description": "Puedes eliminar una carta de Cobre de tu mano. Si lo haces, {{Costplus|3}}."
+    },
+    {
+        "id": "6411",
+        "name": "Torturador",
+        "description": "'''+3 Cartas'''<br>Cada jugador (menos tú) elige una opción: descartar dos cartas; o bien ganar una carta de Maldición, poniéndola en su mano. (Pueden elegir una opción que no puedan realizar)."
+    },
+    {
+        "id": "6412",
+        "name": "Suplantar",
+        "description": "Elimina una carta de tu mano. Gana una carta que cueste hasta {{Cost|2}} más que la carta eliminada. Si la carta ganada es de Acción o de Tesoro, colócala encima de tu mazo; si es una carta de Victoria, todos los demás jugadores ganan una Maldición."
+    },
+    {
+        "id": "6413",
+        "name": "Nobles",
+        "description": "Elige una opción:<br>'''+3Cartas'''; o bien '''+2 Acciones'''.{{divline}}{{VP|2|l}}"
+    },
+    {
+        "id": "6414",
+        "name": "Cortesano",
+        "description": "Revela una carta de tu mano. Por cada tipo que tenga (Acción, Ataque, etc.), elige una opción: '''+1 Acción'''; o '''+1 Compra'''; o {{Costplus|3}}; o ganas una carta de Oro. Las opciones deben ser distintas."
+    },
+    {
+        "id": "6415",
+        "name": "Gran Sala",
+        "description": "'''+1 Carta<br>+1 Acción'''{{divline}}{{VP|1|l}}"
+    }
 ]

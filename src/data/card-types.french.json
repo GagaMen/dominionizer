@@ -1,7 +1,6 @@
 [
     { "id": "196", "name": "Esprit" },
     { "id": "241", "name": "Action" },
-    { "id": "260", "name": "Malédiction" },
     { "id": "263", "name": "Chevalier" },
     { "id": "264", "name": "Ruine" },
     { "id": "266", "name": "Trésor" },
@@ -34,5 +33,7 @@
     { "id": "314", "name": "Pillard" },
     { "id": "315", "name": "Nuit" },
     { "id": "316", "name": "Attaque" },
-    { "id": "317", "name": "Châteaux" }
+    { "id": "317", "name": "Châteaux" },
+    { "id": "321", "name": "Prophétie" },
+    { "id": "322", "name": "Malédiction" }
 ]

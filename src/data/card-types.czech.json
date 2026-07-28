@@ -1,6 +1,5 @@
 [
     { "id": "241", "name": "Akce" },
-    { "id": "260", "name": "Kletba" },
     { "id": "263", "name": "Rytíři" },
     { "id": "264", "name": "Ruina" },
     { "id": "266", "name": "Peníze" },
@@ -10,5 +9,6 @@
     { "id": "296", "name": "Útočiště" },
     { "id": "313", "name": "Dlouhodobá" },
     { "id": "314", "name": "Plenitel" },
-    { "id": "316", "name": "Útok" }
+    { "id": "316", "name": "Útok" },
+    { "id": "322", "name": "Kletba" }
 ]

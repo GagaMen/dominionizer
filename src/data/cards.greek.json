@@ -10,16 +10,10 @@
     { "id": "5301", "name": "Εργαστήριο", "description": "" },
     { "id": "5302", "name": "Βιβλιοθήκη", "description": "" },
     { "id": "5305", "name": "Πολιτοφυλακή", "description": "" },
-    { "id": "5308", "name": "Τοκογλύφος", "description": "" },
     { "id": "5312", "name": "Σιδεράς", "description": "" },
     { "id": "5319", "name": "Ξυλοκόπος", "description": "" },
-    { "id": "5646", "name": "Κατάρα", "description": "" },
     { "id": "5648", "name": "Ασημένιο", "description": "" },
-    { "id": "5649", "name": "Χρυσό", "description": "" },
-    { "id": "5651", "name": "Δουκάτο", "description": "" },
-    { "id": "5652", "name": "Επαρχία", "description": "" },
     { "id": "6294", "name": "Τυχοδιώκτης", "description": "" },
-    { "id": "6295", "name": "Αίθουσα του θρόνου", "description": "" },
     { "id": "6296", "name": "Κατάσκοπος", "description": "" },
     {
         "id": "6297",
@@ -27,5 +21,11 @@
         "description": "'''+2 Kάρτες'''{{Divline}}Όταν κάποιος άλλος παίχτης παίξει μία κάρτα Επίθεσης, μπορείτε να δείξετε αυτή την κάρτα αν την έχετε στο χέρι σας. Αν το κάνετε, δεν σας επηρεάζει η Επίθεση."
     },
     { "id": "6298", "name": "Χάλκινο", "description": "" },
-    { "id": "6299", "name": "Κτήμα", "description": "" }
+    { "id": "6386", "name": "Χρυσό", "description": "" },
+    { "id": "6404", "name": "Κτήμα", "description": "" },
+    { "id": "6405", "name": "Δουκάτο", "description": "" },
+    { "id": "6406", "name": "Επαρχία", "description": "" },
+    { "id": "6407", "name": "Κατάρα", "description": "" },
+    { "id": "6409", "name": "Αίθουσα του θρόνου", "description": "" },
+    { "id": "6410", "name": "Τοκογλύφος", "description": "" }
 ]

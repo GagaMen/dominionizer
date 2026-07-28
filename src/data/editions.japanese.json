@@ -10,7 +10,6 @@
     { "id": "300", "expansion": "冒険" },
     { "id": "304", "expansion": "錬金術" },
     { "id": "306", "expansion": "同盟" },
-    { "id": "308", "expansion": "旭日" },
     { "id": "310", "expansion": "異郷" },
     { "id": "311", "expansion": "異郷" },
     { "id": "312", "expansion": "ドミニオン" },
@@ -18,5 +17,6 @@
     { "id": "314", "expansion": "帝国" },
     { "id": "317", "expansion": "繁栄" },
     { "id": "318", "expansion": "繁栄" },
-    { "id": "321", "expansion": "ルネサンス" }
+    { "id": "321", "expansion": "ルネサンス" },
+    { "id": "322", "expansion": "旭日" }
 ]
