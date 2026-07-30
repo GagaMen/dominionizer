@@ -87,6 +87,22 @@ describe('ConfigurationService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
+        it('with enabled edition is a different instance of the same edition should return true', () => {
+            const edition = dataFixture.createEdition();
+            const cardType = dataFixture.createCardType();
+            const card = dataFixture.createCard({ editions: [edition], types: [cardType] });
+            const findByCardType$ = cold('a', { a: [card] });
+            const expected$ = cold('      a', { a: true });
+            cardServiceSpy.findByCardType
+                .withArgs(cardType.id as CardTypeId)
+                .and.returnValue(findByCardType$);
+            configurationService.updateEditions([{ ...edition }]);
+
+            const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
+
+            expect(actual$).toBeObservable(expected$);
+        });
+
         it('with enabled edition has no card with given card type should return false', () => {
             const editions = dataFixture.createEditions();
             const enabledEditions = editions.slice(0, 1);

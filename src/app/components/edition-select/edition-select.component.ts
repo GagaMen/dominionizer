@@ -25,7 +25,7 @@ export class EditionSelectComponent implements OnInit {
         return this._editions;
     }
     @Input() set editions(value: Edition[]) {
-        this._editions = value.sort(
+        this._editions = [...value].sort(
             (a: Edition, b: Edition) =>
                 a.expansion.localeCompare(b.expansion) || a.edition.localeCompare(b.edition),
         );
@@ -48,8 +48,9 @@ export class EditionSelectComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        const initialValueIds = this.initialValue.map((edition: Edition) => edition.id);
         const editionFormControls = this.editions.map((edition: Edition) => {
-            const isEditionSelected = this.initialValue.includes(edition);
+            const isEditionSelected = initialValueIds.includes(edition.id);
             return this.formBuilder.control(isEditionSelected);
         });
         this.formGroup = this.formBuilder.group({

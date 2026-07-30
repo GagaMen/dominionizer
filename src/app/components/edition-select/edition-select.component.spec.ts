@@ -85,15 +85,15 @@ describe('EditionSelectComponent', () => {
         });
 
         it('with initialValue contains not all editions should have correct initial value', () => {
-            const selectedExpansions = chance.pickset(
+            const selectedEditions = chance.pickset(
                 component.editions,
                 chance.integer({ min: 0, max: component.editions.length - 1 }),
             );
-            const expansionsState = component.editions.map((edition: Edition) =>
-                selectedExpansions.includes(edition),
+            const editionsState = component.editions.map((edition: Edition) =>
+                selectedEditions.includes(edition),
             );
-            const expected = { all: false, editions: expansionsState };
-            component.initialValue = selectedExpansions;
+            const expected = { all: false, editions: editionsState };
+            component.initialValue = selectedEditions;
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -102,9 +102,19 @@ describe('EditionSelectComponent', () => {
         });
 
         it('with initialValue contains all editions should have correct initial value', () => {
-            const expansionState = component.editions.map(() => true);
-            const expected = { all: true, editions: expansionState };
+            const editionState = component.editions.map(() => true);
+            const expected = { all: true, editions: editionState };
             component.initialValue = component.editions;
+            fixture.detectChanges();
+
+            const actual = component.formGroup.value;
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with initialValue contains different instances of the same editions should have correct initial value', () => {
+            const expected = { all: true, editions: component.editions.map(() => true) };
+            component.initialValue = component.editions.map((edition: Edition) => ({ ...edition }));
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -122,23 +132,24 @@ describe('EditionSelectComponent', () => {
 
         it('with selected editions change should emit change event correctly', () => {
             fixture.detectChanges();
-            const selectedExpansions = editions.slice(0, 1);
-            const expansionsPatch: boolean[] = editions.map(() => false);
-            expansionsPatch[0] = true;
+            // the component sorts its editions, so the order differs from the input
+            const selectedEditions = component.editions.slice(0, 1);
+            const editionsPatch: boolean[] = component.editions.map(() => false);
+            editionsPatch[0] = true;
             const emitSpy = spyOn(component.change, 'emit');
 
-            component.formGroup.patchValue({ editions: expansionsPatch });
+            component.formGroup.patchValue({ editions: editionsPatch });
 
-            expect(emitSpy).toHaveBeenCalledWith(selectedExpansions);
+            expect(emitSpy).toHaveBeenCalledWith(selectedEditions);
         });
     });
 
     describe('areSomeButNotAllSelected', () => {
         it('with at least one but not all editions are selected should return true', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = editions.map(() => false);
-            expansionsPatch[0] = true;
-            component.formGroup.patchValue({ editions: expansionsPatch });
+            const editionsPatch: boolean[] = editions.map(() => false);
+            editionsPatch[0] = true;
+            component.formGroup.patchValue({ editions: editionsPatch });
 
             const actual = component.areSomeButNotAllSelected();
 
@@ -147,8 +158,8 @@ describe('EditionSelectComponent', () => {
 
         it('with no edition is selected should return false', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = editions.map(() => false);
-            component.formGroup.patchValue({ editions: expansionsPatch });
+            const editionsPatch: boolean[] = editions.map(() => false);
+            component.formGroup.patchValue({ editions: editionsPatch });
 
             const actual = component.areSomeButNotAllSelected();
 
@@ -157,8 +168,8 @@ describe('EditionSelectComponent', () => {
 
         it('with all edition are selected should return false', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = editions.map(() => true);
-            component.formGroup.patchValue({ editions: expansionsPatch });
+            const editionsPatch: boolean[] = editions.map(() => true);
+            component.formGroup.patchValue({ editions: editionsPatch });
 
             const actual = component.areSomeButNotAllSelected();
 
@@ -169,8 +180,8 @@ describe('EditionSelectComponent', () => {
     describe('areAllSelected', () => {
         it('with all editions are selected should return true', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = editions.map(() => true);
-            component.formGroup.patchValue({ editions: expansionsPatch });
+            const editionsPatch: boolean[] = editions.map(() => true);
+            component.formGroup.patchValue({ editions: editionsPatch });
 
             const actual = component.areAllSelected();
 
@@ -179,9 +190,9 @@ describe('EditionSelectComponent', () => {
 
         it('with not all editions are selected should return false', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = editions.map(() => true);
-            expansionsPatch[0] = false;
-            component.formGroup.patchValue({ editions: expansionsPatch });
+            const editionsPatch: boolean[] = editions.map(() => true);
+            editionsPatch[0] = false;
+            component.formGroup.patchValue({ editions: editionsPatch });
 
             const actual = component.areAllSelected();
 

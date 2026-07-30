@@ -25,9 +25,9 @@ export class ConfigurationService {
         },
     };
 
-    private configurationSubject = new BehaviorSubject<Configuration>(
-        ConfigurationService.defaultConfiguration,
-    );
+    private configurationSubject = new BehaviorSubject<Configuration>({
+        ...ConfigurationService.defaultConfiguration,
+    });
 
     readonly configuration$: Observable<Configuration> = this.configurationSubject.asObservable();
 
@@ -36,22 +36,25 @@ export class ConfigurationService {
     );
 
     updateEditions(editions: Edition[]): void {
-        const configuration = this.configurationSubject.value;
-        configuration.editions = editions;
-        this.configurationSubject.next(configuration);
+        this.configurationSubject.next({ ...this.configurationSubject.value, editions });
     }
 
     updateSpecialCardsCount(count: SpecialCardsCount): void {
-        const configuration = this.configurationSubject.value;
-        configuration.specialCardsCount = count;
-        this.configurationSubject.next(configuration);
+        this.configurationSubject.next({
+            ...this.configurationSubject.value,
+            specialCardsCount: count,
+        });
     }
 
     isCardTypeAvailable(type: CardTypeId): Observable<boolean> {
-        return combineLatest(this.cardService.findByCardType(type), this.enabledEditions$).pipe(
+        return combineLatest([this.cardService.findByCardType(type), this.enabledEditions$]).pipe(
             map(([cardsOfType, enabledEditions]: [Card[], Edition[]]) => {
+                const enabledEditionIds = enabledEditions.map((edition: Edition) => edition.id);
+
                 return cardsOfType.some((card: Card) =>
-                    card.editions.some((edition: Edition) => enabledEditions.includes(edition)),
+                    card.editions.some((edition: Edition) =>
+                        enabledEditionIds.includes(edition.id),
+                    ),
                 );
             }),
         );

@@ -232,8 +232,10 @@ export class ShuffleService {
     }
 
     private filterByEditions(cards: Card[], editions: Edition[]): Card[] {
+        const editionIds = editions.map((edition: Edition) => edition.id);
+
         return cards.filter((card: Card) =>
-            card.editions.some((edition: Edition) => editions.includes(edition)),
+            card.editions.some((edition: Edition) => editionIds.includes(edition.id)),
         );
     }
 
