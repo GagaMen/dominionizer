@@ -1,27 +1,27 @@
 import { CardService } from './../../services/card.service';
 import { AppBarService } from './../../services/app-bar.service';
 import { Component, OnInit, inject } from '@angular/core';
-import { ExpansionService } from 'src/app/services/expansion.service';
+import { EditionService } from 'src/app/services/edition.service';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { map } from 'rxjs/operators';
 import { CardTypeId } from 'src/app/models/card-type';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
-import { Expansion } from 'src/app/models/expansion';
+import { Edition } from 'src/app/models/edition';
 import { Card } from 'src/app/models/card';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatFabButton } from '@angular/material/button';
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
-import { ExpansionSelectComponent } from '../expansion-select/expansion-select.component';
+import { EditionSelectComponent } from '../edition-select/edition-select.component';
 import { AsyncPipe } from '@angular/common';
 import { MatStepper, MatStep, MatStepLabel } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
-export interface ExpansionSelectViewData {
-    expansions: Expansion[];
-    initialValue: Expansion[];
+export interface EditionSelectViewData {
+    editions: Edition[];
+    initialValue: Edition[];
 }
 
 export interface SpecialCardSelectViewData {
@@ -32,7 +32,7 @@ export interface SpecialCardSelectViewData {
 @Component({
     selector: 'app-configuration',
     imports: [
-        ExpansionSelectComponent,
+        EditionSelectComponent,
         SpecialCardSelectComponent,
         MatStepper,
         MatStep,
@@ -48,11 +48,11 @@ export interface SpecialCardSelectViewData {
 })
 export class ConfigurationComponent implements OnInit {
     private appBarService = inject(AppBarService);
-    expansionService = inject(ExpansionService);
+    editionService = inject(EditionService);
     configurationService = inject(ConfigurationService);
     cardService = inject(CardService);
 
-    expansionSelectViewData$ = new Observable<ExpansionSelectViewData>();
+    editionSelectViewData$ = new Observable<EditionSelectViewData>();
     specialCardSelectViewData$ = new Observable<SpecialCardSelectViewData | null>();
 
     ngOnInit(): void {
@@ -60,29 +60,27 @@ export class ConfigurationComponent implements OnInit {
             navigationAction: 'none',
             actions: [],
         });
-        this.initExpansionSelectViewData();
+        this.initEditionSelectViewData();
         this.initSpecialCardSelectViewData();
     }
 
-    private initExpansionSelectViewData(): void {
-        this.expansionSelectViewData$ = combineLatest([
-            this.expansionService.expansions$,
+    private initEditionSelectViewData(): void {
+        this.editionSelectViewData$ = combineLatest([
+            this.editionService.editions$,
             this.configurationService.configuration$,
             this.cardService.cards$,
         ]).pipe(
-            map(([expansions, configuration, cards]) => {
-                // remove expansions which do not have cards yet
-                const expansionsWithCards = expansions.filter((expansion: Expansion) =>
+            map(([editions, configuration, cards]) => {
+                // remove editions which do not have cards yet
+                const editionsWithCards = editions.filter((edition: Edition) =>
                     Array.from(cards.values()).some((card: Card) =>
-                        card.expansions.some(
-                            (cardExpansion: Expansion) => cardExpansion.id === expansion.id,
-                        ),
+                        card.editions.some((cardEdition: Edition) => cardEdition.id === edition.id),
                     ),
                 );
 
-                const viewData: ExpansionSelectViewData = {
-                    expansions: expansionsWithCards,
-                    initialValue: configuration.expansions,
+                const viewData: EditionSelectViewData = {
+                    editions: editionsWithCards,
+                    initialValue: configuration.editions,
                 };
 
                 return viewData;

@@ -10,7 +10,7 @@ import { SetService } from './set.service';
 import { ShuffleService } from './shuffle.service';
 import { CardType, CardTypeId } from '../models/card-type';
 import { Card } from '../models/card';
-import { Expansion } from '../models/expansion';
+import { Edition } from '../models/edition';
 import { Configuration } from '../models/configuration';
 import { SpecialCardsCount } from '../models/special-cards-count';
 
@@ -21,8 +21,8 @@ describe('ShuffleService', () => {
     let chanceServiceSpy: SpyObj<ChanceService>;
     let setServiceSpy: SpyObj<SetService>;
     let dataFixture: DataFixture;
-    let configuredExpansion: Expansion;
-    let nonConfiguredExpansion: Expansion;
+    let configuredExpansion: Edition;
+    let nonConfiguredExpansion: Edition;
     let configuration: Configuration;
     let kingdomCards: Card[];
     let events: Card[];
@@ -41,12 +41,12 @@ describe('ShuffleService', () => {
     ): Card[] {
         return [
             ...dataFixture.createCards(cardsCountOfConfiguredExpansions, {
-                expansions: [configuredExpansion],
+                editions: [configuredExpansion],
                 types: [cardType],
                 isKingdomCard: isKingdomCard,
             }),
             ...dataFixture.createCards(cardsCountOfConfiguredExpansions, {
-                expansions: [nonConfiguredExpansion],
+                editions: [nonConfiguredExpansion],
                 types: [cardType],
                 isKingdomCard: isKingdomCard,
             }),
@@ -80,10 +80,10 @@ describe('ShuffleService', () => {
 
         dataFixture = new DataFixture();
 
-        configuredExpansion = dataFixture.createExpansion();
-        nonConfiguredExpansion = dataFixture.createExpansion();
+        configuredExpansion = dataFixture.createEdition();
+        nonConfiguredExpansion = dataFixture.createEdition();
         configuration = dataFixture.createConfiguration({
-            expansions: [configuredExpansion],
+            editions: [configuredExpansion],
             specialCardsCount: { events: 0, landmarks: 0, projects: 0, ways: 0, traits: 0 },
         });
         kingdomCards = createCards(
@@ -167,7 +167,7 @@ describe('ShuffleService', () => {
             expect(setServiceSpy.updateSet).toHaveBeenCalled();
         });
 
-        it('should pick 10 random kingdom cards from configured expansions', () => {
+        it('should pick 10 random kingdom cards from configured editions', () => {
             const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
                 0,
                 kingdomCardsCountOfConfiguredExpansions,
@@ -194,7 +194,7 @@ describe('ShuffleService', () => {
                 ['traits', () => traits],
             ] as [keyof SpecialCardsCount, () => Card[]][]
         ).forEach(([specialCards, getSpecialCards]) => {
-            it(`with ${specialCards} are available in configured expansions should pick configured number of random ${specialCards}`, () => {
+            it(`with ${specialCards} are available in configured editions should pick configured number of random ${specialCards}`, () => {
                 const singleCount = 2;
                 configuration.specialCardsCount[specialCards] = singleCount;
                 const specialCardsOfConfiguredExpansions = getSpecialCards().slice(
@@ -214,7 +214,7 @@ describe('ShuffleService', () => {
                 expect(set.specialCards).toEqual(expected);
             });
 
-            it(`with ${specialCards} are not available in configured expansions should pick no ${specialCards}`, () => {
+            it(`with ${specialCards} are not available in configured editions should pick no ${specialCards}`, () => {
                 const singleCount = 2;
                 configuration.specialCardsCount[specialCards] = singleCount;
                 for (let i = 0; i < singleSpecialCardsCountOfConfiguredExpansions; i++) {
@@ -261,7 +261,7 @@ describe('ShuffleService', () => {
     });
 
     describe('shuffleSingleCard', () => {
-        it('with card is kingdom card should pick different random kingdom card from configured expansions', () => {
+        it('with card is kingdom card should pick different random kingdom card from configured editions', () => {
             const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
                 0,
                 kingdomCardsCountOfConfiguredExpansions,
@@ -297,7 +297,7 @@ describe('ShuffleService', () => {
                 ['ally', () => allies],
             ] as [string, () => Card[]][]
         ).forEach(([specialCard, getSpecialCards]) => {
-            it(`with card is ${specialCard} should pick different random ${specialCard} from configured expansions`, () => {
+            it(`with card is ${specialCard} should pick different random ${specialCard} from configured editions`, () => {
                 const singleCount = 2;
                 const specialCardsOfConfiguredExpansions = getSpecialCards().slice(
                     0,

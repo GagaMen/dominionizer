@@ -1,30 +1,26 @@
 import { CardTypeTranslation } from './../models/card-type';
-import { ExpansionTranslation } from './../models/expansion';
+import { EditionTranslation } from './../models/edition';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Expansion } from '../models/expansion';
+import { Edition } from '../models/edition';
 import { CardDto } from '../dtos/card-dto';
 import { CardType } from '../models/card-type';
 import { CardTranslation } from '../models/card';
-import expansions from '../../data/expansions.json';
+import editions from '../../data/editions.json';
 import cardTypes from '../../data/card-types.json';
 import cards from '../../data/cards.json';
-import {
-    cardTranslations,
-    cardTypeTranslations,
-    expansionTranslations,
-} from 'src/data/translations';
+import { cardTranslations, cardTypeTranslations, editionTranslations } from 'src/data/translations';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DataService {
-    fetchExpansions(): Observable<Expansion[]> {
-        return of(expansions as Expansion[]);
+    fetchEditions(): Observable<Edition[]> {
+        return of(editions as Edition[]);
     }
 
-    fetchExpansionTranslations(): Observable<ExpansionTranslation[]> {
-        return of(expansionTranslations);
+    fetchEditionTranslations(): Observable<EditionTranslation[]> {
+        return of(editionTranslations);
     }
 
     fetchCardTypes(): Observable<CardType[]> {

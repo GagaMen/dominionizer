@@ -1,5 +1,3 @@
-import { DependencyDto } from './dependency-dto';
-
 export const NullCardDto: CardDto = {
     id: '',
     name: '',
@@ -26,5 +24,4 @@ export interface CardDto {
     cost: number;
     costModifier?: string;
     debt?: number;
-    dependencies?: DependencyDto[];
 }

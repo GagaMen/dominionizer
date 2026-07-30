@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DependencyType } from './../models/dependency';
 import { CardService } from './card.service';
 import { DataService } from './data.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { CardDto } from '../dtos/card-dto';
-import { ExpansionService } from './expansion.service';
+import { EditionService } from './edition.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { CardTypeId } from '../models/card-type';
 import { CardTypeService } from './card-type.service';
@@ -15,7 +14,7 @@ import { Card } from '../models/card';
 describe('CardService', () => {
     let cardService: CardService;
     let dataServiceSpy: SpyObj<DataService>;
-    let expansionServiceSpy: SpyObj<ExpansionService>;
+    let editionServiceSpy: SpyObj<EditionService>;
     let cardTypeServiceSpy: SpyObj<CardTypeService>;
     let dataFixture: DataFixture;
 
@@ -29,7 +28,7 @@ describe('CardService', () => {
                         'fetchCardTranslations',
                     ]),
                 },
-                { provide: ExpansionService, useValue: {} },
+                { provide: EditionService, useValue: {} },
                 { provide: CardTypeService, useValue: {} },
             ],
         });
@@ -42,8 +41,8 @@ describe('CardService', () => {
         );
         dataServiceSpy.fetchCardTranslations.and.returnValue(cold('(a|)', { a: [] }));
 
-        expansionServiceSpy = TestBed.inject(ExpansionService);
-        expansionServiceSpy.expansions$ = cold('(a|)', { a: dataFixture.createExpansions() });
+        editionServiceSpy = TestBed.inject(EditionService);
+        editionServiceSpy.editions$ = cold('(a|)', { a: dataFixture.createEditions() });
 
         cardTypeServiceSpy = TestBed.inject(CardTypeService);
         cardTypeServiceSpy.cardTypes$ = cold('(a|)', { a: dataFixture.createCardTypes() });
@@ -51,49 +50,25 @@ describe('CardService', () => {
 
     describe('cards$', () => {
         it('should map CardDto objects from server to their corresponding Card objects and complete', () => {
-            const expansions = dataFixture.createExpansions();
+            const editions = dataFixture.createEditions();
             const cardTypes = dataFixture.createCardTypes();
             const cardDtos = dataFixture.createCardDtos(3, {
-                expansions: [expansions[0].id, expansions[2].id],
+                editions: [editions[0].id, editions[2].id],
                 types: [cardTypes[0].id, cardTypes[2].id],
             });
-            cardDtos[0].dependencies = [
-                { id: cardDtos[0].id, type: DependencyType.SplitPile },
-                { id: cardDtos[1].id, type: DependencyType.SplitPile },
-            ];
-            cardDtos[1].dependencies = [{ id: cardDtos[0].id, type: DependencyType.SplitPile }];
-            const expected = new Map<number, Card>();
+            const expected = new Map<string, Card>();
             cardDtos.forEach((cardDto: CardDto) => {
                 expected.set(cardDto.id, {
                     ...cardDto,
-                    expansions: [expansions[0], expansions[2]],
+                    editions: [editions[0], editions[2]],
                     types: [cardTypes[0], cardTypes[2]],
-                    dependencies: undefined,
                 });
             });
-
-            expected.get(cardDtos[0].id)!.dependencies = [
-                {
-                    card: expected.get(cardDtos[0].id) as Card,
-                    type: DependencyType.SplitPile,
-                },
-                {
-                    card: expected.get(cardDtos[1].id) as Card,
-                    type: DependencyType.SplitPile,
-                },
-            ];
-
-            expected.get(cardDtos[1].id)!.dependencies = [
-                {
-                    card: expected.get(cardDtos[0].id) as Card,
-                    type: DependencyType.SplitPile,
-                },
-            ];
-            const expansions$ = cold('-(a|)   ', { a: expansions });
+            const editions$ = cold('  -(a|)   ', { a: editions });
             const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
             const fetchCards$ = cold('----(c|)', { c: cardDtos });
             const expected$ = cold('  ----(d|)', { d: expected });
-            expansionServiceSpy.expansions$ = expansions$;
+            editionServiceSpy.editions$ = editions$;
             cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
             cardService = TestBed.inject(CardService);
@@ -104,29 +79,28 @@ describe('CardService', () => {
         });
 
         it('with translations should return correct translated data and complete', () => {
-            const expansions = dataFixture.createExpansions(2);
+            const editions = dataFixture.createEditions(2);
             const cardTypes = dataFixture.createCardTypes(2);
             const cardDto = dataFixture.createCardDto({
-                id: 1,
-                expansions: [expansions[0].id, expansions[1].id],
+                id: '1',
+                editions: [editions[0].id, editions[1].id],
                 types: [cardTypes[0].id, cardTypes[1].id],
             });
-            const cardTranslation = dataFixture.createCardTranslation({ id: 1 });
-            const expected = new Map<number, Card>();
-            expected.set(1, {
+            const cardTranslation = dataFixture.createCardTranslation({ id: '1' });
+            const expected = new Map<string, Card>();
+            expected.set('1', {
                 ...cardDto,
                 name: cardTranslation.name,
                 description: cardTranslation.description,
-                expansions: [expansions[0], expansions[1]],
+                editions: [editions[0], editions[1]],
                 types: [cardTypes[0], cardTypes[1]],
-                dependencies: undefined,
             });
-            const expansions$ = cold('-(a|)   ', { a: expansions });
+            const editions$ = cold('  -(a|)   ', { a: editions });
             const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
             const fetchCards$ = cold('----(c|)', { c: [cardDto] });
             const cardTranslations$ = cold('---(a|)', { a: [cardTranslation] });
             const expected$ = cold('  ----(d|)', { d: expected });
-            expansionServiceSpy.expansions$ = expansions$;
+            editionServiceSpy.editions$ = editions$;
             cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
             dataServiceSpy.fetchCardTranslations.and.returnValue(cardTranslations$);
@@ -138,31 +112,30 @@ describe('CardService', () => {
         });
 
         it('with translation contains empty name and empty description should return source locale data and complete', () => {
-            const expansions = dataFixture.createExpansions(2);
+            const editions = dataFixture.createEditions(2);
             const cardTypes = dataFixture.createCardTypes(2);
             const cardDto = dataFixture.createCardDto({
-                id: 1,
-                expansions: [expansions[0].id, expansions[1].id],
+                id: '1',
+                editions: [editions[0].id, editions[1].id],
                 types: [cardTypes[0].id, cardTypes[1].id],
             });
             const cardTranslation = dataFixture.createCardTranslation({
-                id: 1,
+                id: '1',
                 name: '',
                 description: '',
             });
-            const expected = new Map<number, Card>();
-            expected.set(1, {
+            const expected = new Map<string, Card>();
+            expected.set('1', {
                 ...cardDto,
-                expansions: [expansions[0], expansions[1]],
+                editions: [editions[0], editions[1]],
                 types: [cardTypes[0], cardTypes[1]],
-                dependencies: undefined,
             });
-            const expansions$ = cold('-(a|)   ', { a: expansions });
+            const editions$ = cold('  -(a|)   ', { a: editions });
             const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
             const fetchCards$ = cold('----(c|)', { c: [cardDto] });
             const cardTranslations$ = cold('---(a|)', { a: [cardTranslation] });
             const expected$ = cold('  ----(d|)', { d: expected });
-            expansionServiceSpy.expansions$ = expansions$;
+            editionServiceSpy.editions$ = editions$;
             cardTypeServiceSpy.cardTypes$ = cardTypes$;
             dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
             dataServiceSpy.fetchCardTranslations.and.returnValue(cardTranslations$);
@@ -176,12 +149,12 @@ describe('CardService', () => {
 
     describe('findRandomizableKingdomCards', () => {
         it('should contain only Kingdom cards', () => {
-            const nonKingdomCard = dataFixture.createCard({ id: 1, isKingdomCard: false });
-            const kingdomCard = dataFixture.createCard({ id: 2, isKingdomCard: true });
+            const nonKingdomCard = dataFixture.createCard({ id: '1', isKingdomCard: false });
+            const kingdomCard = dataFixture.createCard({ id: '2', isKingdomCard: true });
             const cards$ = cold('   (a|)', {
                 a: new Map([
-                    [1, nonKingdomCard],
-                    [2, kingdomCard],
+                    ['1', nonKingdomCard],
+                    ['2', kingdomCard],
                 ]),
             });
             const expected$ = cold('(a|)', { a: [kingdomCard] });
@@ -193,14 +166,17 @@ describe('CardService', () => {
             expect(actual$).toBeObservable(expected$);
         });
 
-        it('should not contain Kingdom cards that are part of a split pile and not on top of it', () => {
-            const card = dataFixture.createCard({
-                id: 2,
-                isKingdomCard: true,
-                dependencies: [{ card: { id: 1 } as Card, type: DependencyType.SplitPile }],
+        it('should contain the pile card of a split pile but not its halves', () => {
+            // the cargo data marks only the pile itself as a kingdom pile
+            const pileCard = dataFixture.createCard({ id: '1', isKingdomCard: true });
+            const halfCard = dataFixture.createCard({ id: '2', isKingdomCard: false });
+            const cards$ = cold('   (a|)', {
+                a: new Map([
+                    ['1', pileCard],
+                    ['2', halfCard],
+                ]),
             });
-            const cards$ = cold('   (a|)', { a: new Map([[2, card]]) });
-            const expected$ = cold('(a|)', { a: [] });
+            const expected$ = cold('(a|)', { a: [pileCard] });
             cardService = TestBed.inject(CardService);
             spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
 
@@ -213,11 +189,11 @@ describe('CardService', () => {
     describe('findByCardType', () => {
         it('should return only cards of given card type and complete', () => {
             const nonActionCard = dataFixture.createCard({
-                id: 1,
+                id: '1',
                 types: [dataFixture.createCardType({ id: CardTypeId.Attack })],
             });
             const actionCard = dataFixture.createCard({
-                id: 2,
+                id: '2',
                 types: [
                     dataFixture.createCardType({ id: CardTypeId.Duration }),
                     dataFixture.createCardType({ id: CardTypeId.Action }),
@@ -225,8 +201,8 @@ describe('CardService', () => {
             });
             const cards$ = cold('   (a|)', {
                 a: new Map([
-                    [1, nonActionCard],
-                    [2, actionCard],
+                    ['1', nonActionCard],
+                    ['2', actionCard],
                 ]),
             });
             const expected$ = cold('(a|)', { a: [actionCard] });

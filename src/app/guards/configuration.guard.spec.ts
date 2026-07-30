@@ -38,7 +38,7 @@ describe('configurationGuard', () => {
 
     it('with current configuration has any expansions activated should return true and complete', () => {
         const configuration = dataFixture.createConfiguration({
-            expansions: dataFixture.createExpansions(),
+            editions: dataFixture.createEditions(),
         });
         configurationServiceSpy.configuration$ = cold('-a-----', { a: configuration });
         const expected$ = cold('                       -(b|)  ', { b: true });
@@ -53,7 +53,7 @@ describe('configurationGuard', () => {
 
     it('with current configuration has no expansions activated should return false and complete', () => {
         const configuration = dataFixture.createConfiguration({
-            expansions: [],
+            editions: [],
         });
         configurationServiceSpy.configuration$ = cold('-a-----', { a: configuration });
         const expected$ = cold('                       -(b|)  ', { b: false });
@@ -68,7 +68,7 @@ describe('configurationGuard', () => {
 
     it('with current configuration has no expansions activated should navigate to start page', () => {
         const configuration = dataFixture.createConfiguration({
-            expansions: [],
+            editions: [],
         });
         configurationServiceSpy.configuration$ = cold('-a-----', { a: configuration });
 

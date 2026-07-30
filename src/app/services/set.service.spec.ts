@@ -119,11 +119,11 @@ describe('SetService', () => {
         });
 
         it('with grouping option "byExpansion" and sorting option "byName" should order cards correctly', () => {
-            const firstExpansion = dataFixture.createExpansion({ name: 'a' });
-            const secondExpansion = dataFixture.createExpansion({ name: 'b' });
-            const firstCard = dataFixture.createCard({ expansions: [firstExpansion] });
-            const secondCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'a' });
-            const thirdCard = dataFixture.createCard({ expansions: [secondExpansion], name: 'b' });
+            const firstEdition = dataFixture.createEdition({ expansion: 'a' });
+            const secondEdition = dataFixture.createEdition({ expansion: 'b' });
+            const firstCard = dataFixture.createCard({ editions: [firstEdition] });
+            const secondCard = dataFixture.createCard({ editions: [secondEdition], name: 'a' });
+            const thirdCard = dataFixture.createCard({ editions: [secondEdition], name: 'b' });
             const unorderedCards = [thirdCard, secondCard, firstCard];
             const expected = [firstCard, secondCard, thirdCard];
 
@@ -135,17 +135,17 @@ describe('SetService', () => {
         });
 
         it('with grouping option "byExpansion" and sorting option "byCost" should order cards correctly', () => {
-            const firstExpansion = dataFixture.createExpansion({ name: 'a' });
-            const secondExpansion = dataFixture.createExpansion({ name: 'b' });
-            const firstCard = dataFixture.createCard({ expansions: [firstExpansion] });
-            const secondCard = dataFixture.createCard({ expansions: [secondExpansion], cost: 1 });
+            const firstEdition = dataFixture.createEdition({ expansion: 'a' });
+            const secondEdition = dataFixture.createEdition({ expansion: 'b' });
+            const firstCard = dataFixture.createCard({ editions: [firstEdition] });
+            const secondCard = dataFixture.createCard({ editions: [secondEdition], cost: 1 });
             const thirdCard = dataFixture.createCard({
-                expansions: [secondExpansion],
+                editions: [secondEdition],
                 cost: 2,
                 name: 'a',
             });
             const fourthCard = dataFixture.createCard({
-                expansions: [secondExpansion],
+                editions: [secondEdition],
                 cost: 2,
                 name: 'b',
             });

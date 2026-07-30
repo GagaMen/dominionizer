@@ -2,14 +2,10 @@ import { TestBed } from '@angular/core/testing';
 
 import { DataService } from './data.service';
 import { cold } from 'jasmine-marbles';
-import expansions from '../../data/expansions.json';
+import editions from '../../data/editions.json';
 import cardTypes from '../../data/card-types.json';
 import cards from '../../data/cards.json';
-import {
-    cardTranslations,
-    cardTypeTranslations,
-    expansionTranslations,
-} from 'src/data/translations';
+import { cardTranslations, cardTypeTranslations, editionTranslations } from 'src/data/translations';
 
 describe('DataService', () => {
     let dataService: DataService;
@@ -20,21 +16,21 @@ describe('DataService', () => {
         dataService = TestBed.inject(DataService);
     });
 
-    describe('fetchExpansions', () => {
-        it('should return all expansions', () => {
-            const expected$ = cold('(a|)', { a: expansions });
+    describe('fetchEditions', () => {
+        it('should return all editions', () => {
+            const expected$ = cold('(a|)', { a: editions });
 
-            const actual$ = dataService.fetchExpansions();
+            const actual$ = dataService.fetchEditions();
 
             expect(actual$).toBeObservable(expected$);
         });
     });
 
-    describe('fetchExpansionTranslations', () => {
-        it('should return all expansion translations', () => {
-            const expected$ = cold('(a|)', { a: expansionTranslations });
+    describe('fetchEditionTranslations', () => {
+        it('should return all edition translations', () => {
+            const expected$ = cold('(a|)', { a: editionTranslations });
 
-            const actual$ = dataService.fetchExpansionTranslations();
+            const actual$ = dataService.fetchEditionTranslations();
 
             expect(actual$).toBeObservable(expected$);
         });

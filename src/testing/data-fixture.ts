@@ -1,8 +1,8 @@
 import { CardTypeTranslation } from './../app/models/card-type';
-import { ExpansionTranslation } from './../app/models/expansion';
+import { EditionTranslation } from './../app/models/edition';
 import { CardTranslation } from './../app/models/card';
 import { AppBarConfiguration, NavigationAction } from './../app/models/app-bar-configuration';
-import { Expansion } from 'src/app/models/expansion';
+import { Edition } from 'src/app/models/edition';
 import { Chance } from 'chance';
 import { CardDto } from 'src/app/dtos/card-dto';
 import { Card } from 'src/app/models/card';
@@ -15,62 +15,64 @@ import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 
 export class DataFixture {
     private chance: Chance.Chance = new Chance();
-    private expansionIdCount = 0;
+    private editionIdCount = 0;
     private cardTypeIdCount = 0;
     private cardDtoIdCount = 0;
     private cardIdCount = 0;
-    private expansionTranslationIdCount = 0;
+    private editionTranslationIdCount = 0;
     private cardTypeTranslationIdCount = 0;
     private cardTranslationIdCount = 0;
 
-    createExpansion(expansion: Partial<Expansion> = {}): Expansion {
+    createEdition(edition: Partial<Edition> = {}): Edition {
         return {
-            id: this.expansionIdCount++,
-            name: this.chance.word(),
+            id: String(this.editionIdCount++),
+            expansion: this.chance.word(),
+            edition: String(this.chance.integer({ min: 1, max: 2 })),
             icon: this.chance.word(),
-            ...expansion,
+            ...edition,
         };
     }
 
-    createExpansions(amount = 3, expansion: Partial<Expansion> = {}): Expansion[] {
+    createEditions(amount = 3, edition: Partial<Edition> = {}): Edition[] {
         return this.createMultiple(
-            (expansion?: Partial<Expansion>) => this.createExpansion(expansion),
+            (edition?: Partial<Edition>) => this.createEdition(edition),
             amount,
-            expansion,
+            edition,
         );
     }
 
-    createExpansionTranslation(
-        expansionTranslation: Partial<ExpansionTranslation> = {},
-    ): ExpansionTranslation {
+    createEditionTranslation(
+        editionTranslation: Partial<EditionTranslation> = {},
+    ): EditionTranslation {
         return {
-            id: this.expansionTranslationIdCount++,
-            name: this.chance.word(),
-            ...expansionTranslation,
+            id: String(this.editionTranslationIdCount++),
+            expansion: this.chance.word(),
+            ...editionTranslation,
         };
     }
 
-    createExpansionTranslations(
+    createEditionTranslations(
         amount = 3,
-        expansionTranslation: Partial<ExpansionTranslation> = {},
-    ): ExpansionTranslation[] {
+        editionTranslation: Partial<EditionTranslation> = {},
+    ): EditionTranslation[] {
         return this.createMultiple(
-            (expansionTranslation?: Partial<ExpansionTranslation>) =>
-                this.createExpansionTranslation(expansionTranslation),
+            (editionTranslation?: Partial<EditionTranslation>) =>
+                this.createEditionTranslation(editionTranslation),
             amount,
-            expansionTranslation,
+            editionTranslation,
         );
     }
 
     createCardDto(cardDto: Partial<CardDto> = {}): CardDto {
         return {
-            id: this.cardDtoIdCount++,
+            id: String(this.cardDtoIdCount++),
             name: this.chance.word(),
             description: this.chance.sentence(),
             image: this.chance.string(),
+            illustrator: this.chance.name(),
             wikiUrl: this.chance.url(),
-            expansions: [this.chance.integer({ min: 1, max: 10 })],
-            types: [this.chance.integer({ min: 1, max: 10 })],
+            editions: [String(this.chance.integer({ min: 1, max: 10 }))],
+            types: [String(this.chance.integer({ min: 1, max: 10 }))],
             isKingdomCard: this.chance.bool(),
             cost: this.chance.integer({ min: 0, max: 5 }),
             ...cardDto,
@@ -87,21 +89,28 @@ export class DataFixture {
 
     createCardType(cardType: Partial<CardType> = {}): CardType {
         return {
-            id: this.cardTypeIdCount++,
+            id: String(this.cardTypeIdCount++),
             name: this.chance.word(),
+            scope: this.chance.word(),
             ...cardType,
         };
     }
 
-    createCardTypes(amount = 3): CardType[] {
-        return this.createMultiple(() => this.createCardType(), amount);
+    createCardTypes(amount = 3, cardType: Partial<CardType> = {}): CardType[] {
+        return this.createMultiple(
+            (cardType?: Partial<CardType>) => this.createCardType(cardType),
+            amount,
+            cardType,
+        );
     }
 
-    createCardTypeTranslation(cardTranslation: Partial<CardTranslation> = {}): CardTypeTranslation {
+    createCardTypeTranslation(
+        cardTypeTranslation: Partial<CardTypeTranslation> = {},
+    ): CardTypeTranslation {
         return {
-            id: this.cardTypeTranslationIdCount++,
+            id: String(this.cardTypeTranslationIdCount++),
             name: this.chance.word(),
-            ...cardTranslation,
+            ...cardTypeTranslation,
         };
     }
 
@@ -119,12 +128,13 @@ export class DataFixture {
 
     createCard(card: Partial<Card> = {}): Card {
         return {
-            id: this.cardIdCount++,
+            id: String(this.cardIdCount++),
             name: this.chance.word(),
             description: this.chance.sentence(),
             image: this.chance.string(),
+            illustrator: this.chance.name(),
             wikiUrl: this.chance.url(),
-            expansions: [this.createExpansion()],
+            editions: [this.createEdition()],
             types: [this.createCardType()],
             isKingdomCard: this.chance.bool(),
             cost: this.chance.integer({ min: 0, max: 5 }),
@@ -138,7 +148,7 @@ export class DataFixture {
 
     createCardTranslation(cardTranslation: Partial<CardTranslation> = {}): CardTranslation {
         return {
-            id: this.cardTranslationIdCount++,
+            id: String(this.cardTranslationIdCount++),
             name: this.chance.word(),
             description: this.chance.sentence(),
             ...cardTranslation,
@@ -159,7 +169,7 @@ export class DataFixture {
 
     createConfiguration(configuration: Partial<Configuration> = {}): Configuration {
         return {
-            expansions: this.createExpansions(),
+            editions: this.createEditions(),
             specialCardsCount: this.createSpecialCardsCount(),
             ...configuration,
         };

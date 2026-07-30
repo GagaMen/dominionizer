@@ -1,7 +1,7 @@
-import { Expansion } from './expansion';
+import { Edition } from './edition';
 import { SpecialCardsCount } from './special-cards-count';
 
 export interface Configuration {
-    expansions: Expansion[];
+    editions: Edition[];
     specialCardsCount: SpecialCardsCount;
 }

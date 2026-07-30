@@ -1,7 +1,7 @@
 import { CardTranslation } from 'src/app/models/card';
 import { CardTypeTranslation } from 'src/app/models/card-type';
-import { ExpansionTranslation } from 'src/app/models/expansion';
+import { EditionTranslation } from 'src/app/models/edition';
 
-export const expansionTranslations: ExpansionTranslation[] = [];
+export const editionTranslations: EditionTranslation[] = [];
 export const cardTypeTranslations: CardTypeTranslation[] = [];
 export const cardTranslations: CardTranslation[] = [];

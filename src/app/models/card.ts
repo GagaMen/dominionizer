@@ -1,5 +1,4 @@
 import { CardType } from './card-type';
-import { Dependency } from './dependency';
 import { Edition } from './edition';
 
 export const NullCard: Card = {
@@ -28,7 +27,6 @@ export interface Card {
     cost: number;
     costModifier?: string;
     debt?: number;
-    dependencies?: Dependency[];
 }
 
 export type CardTranslation = Pick<Card, 'id' | 'name' | 'description'>;

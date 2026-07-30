@@ -12,7 +12,7 @@ export const configurationGuard: CanActivateFn = (_route, _state): Observable<bo
     return configurationService.configuration$.pipe(
         first(),
         map((configuration: Configuration) => {
-            if (configuration.expansions.length !== 0) {
+            if (configuration.editions.length !== 0) {
                 return true;
             }
 

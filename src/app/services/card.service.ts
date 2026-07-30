@@ -1,15 +1,13 @@
 import { CardTranslation } from 'src/app/models/card';
-import { DependencyDto } from './../dtos/dependency-dto';
 import { CardDto } from './../dtos/card-dto';
-import { Dependency, DependencyType, SplitPileDependency } from './../models/dependency';
 import { Injectable, inject } from '@angular/core';
 import { CardType, CardTypeId } from '../models/card-type';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Card } from '../models/card';
 import { map, first } from 'rxjs/operators';
 import { DataService } from './data.service';
-import { ExpansionService } from './expansion.service';
-import { Expansion } from '../models/expansion';
+import { EditionService } from './edition.service';
+import { Edition } from '../models/edition';
 import { CardTypeService } from './card-type.service';
 
 @Injectable({
@@ -17,26 +15,26 @@ import { CardTypeService } from './card-type.service';
 })
 export class CardService {
     private dataService = inject(DataService);
-    private expansionService = inject(ExpansionService);
+    private editionService = inject(EditionService);
     private cardTypeService = inject(CardTypeService);
 
-    private cardsSubject: BehaviorSubject<Map<number, Card>> = new BehaviorSubject<
-        Map<number, Card>
+    private cardsSubject: BehaviorSubject<Map<string, Card>> = new BehaviorSubject<
+        Map<string, Card>
     >(new Map());
 
-    get cards$(): Observable<Map<number, Card>> {
-        return this.cardsSubject.pipe(first((cards: Map<number, Card>) => cards.size !== 0));
+    get cards$(): Observable<Map<string, Card>> {
+        return this.cardsSubject.pipe(first((cards: Map<string, Card>) => cards.size !== 0));
     }
 
     constructor() {
         forkJoin({
             cardDtos: this.dataService.fetchCards(),
-            expansions: this.expansionService.expansions$,
+            editions: this.editionService.editions$,
             cardTypes: this.cardTypeService.cardTypes$,
             translations: this.dataService.fetchCardTranslations(),
         })
             .pipe(
-                map(({ cardDtos, expansions, cardTypes, translations }) => {
+                map(({ cardDtos, editions, cardTypes, translations }) => {
                     cardDtos.forEach((cardDto: CardDto) => {
                         const translation = translations.find(
                             (translation: CardTranslation) => translation.id === cardDto.id,
@@ -54,59 +52,31 @@ export class CardService {
                         }
                     });
 
-                    return { cardDtos, expansions, cardTypes };
+                    return { cardDtos, editions, cardTypes };
                 }),
             )
-            .subscribe(({ cardDtos, expansions, cardTypes }) =>
-                this.cardsSubject.next(this.mapCardDtosToCards(cardDtos, expansions, cardTypes)),
+            .subscribe(({ cardDtos, editions, cardTypes }) =>
+                this.cardsSubject.next(this.mapCardDtosToCards(cardDtos, editions, cardTypes)),
             );
     }
 
     private mapCardDtosToCards(
         cardDtos: CardDto[],
-        expansions: Expansion[],
+        editions: Edition[],
         cardTypes: CardType[],
-    ): Map<number, Card> {
-        const cardDtosWithDependencies: CardDto[] = [];
-        const cards = new Map<number, Card>();
+    ): Map<string, Card> {
+        const cards = new Map<string, Card>();
 
         cardDtos.forEach((cardDto: CardDto) => {
-            if (cardDto.dependencies !== undefined) {
-                cardDtosWithDependencies.push(cardDto);
-            }
-
             cards.set(cardDto.id, {
                 ...cardDto,
-                expansions: expansions.filter((expansion: Expansion) =>
-                    cardDto.expansions.includes(expansion.id),
+                editions: editions.filter((edition: Edition) =>
+                    cardDto.editions.includes(edition.id),
                 ),
                 types: cardTypes.filter((cardType: CardType) =>
                     cardDto.types.includes(cardType.id),
                 ),
-                dependencies: undefined,
             });
-        });
-
-        cardDtosWithDependencies.forEach((cardDto: CardDto) => {
-            const card = cards.get(cardDto.id);
-
-            if (card === undefined || cardDto.dependencies === undefined) {
-                return;
-            }
-
-            const dependencies: SplitPileDependency[] = cardDto.dependencies.map(
-                (dependency: DependencyDto) => {
-                    // TODO: respect different types of dependencies
-                    const card = cards.get(dependency.id);
-
-                    return {
-                        card: card,
-                        type: DependencyType.SplitPile,
-                    } as SplitPileDependency;
-                },
-            );
-
-            card.dependencies = dependencies;
         });
 
         return cards;
@@ -114,37 +84,15 @@ export class CardService {
 
     findRandomizableKingdomCards(): Observable<Card[]> {
         return this.cards$.pipe(
-            map((cards: Map<number, Card>) =>
-                Array.from(cards.values()).filter((card: Card) => {
-                    if (!card.isKingdomCard) {
-                        return false;
-                    }
-
-                    if (card.dependencies === undefined) {
-                        return true;
-                    }
-
-                    // TODO: respect different types of dependencies
-                    const splitPileDependencies = card.dependencies?.filter(
-                        (dependency: Dependency) => dependency.type === DependencyType.SplitPile,
-                    );
-
-                    if (splitPileDependencies?.length === 0) {
-                        return true;
-                    }
-
-                    return splitPileDependencies?.some(
-                        (splitPileDependency: SplitPileDependency) =>
-                            splitPileDependency.card.id === card.id,
-                    );
-                }),
+            map((cards: Map<string, Card>) =>
+                Array.from(cards.values()).filter((card: Card) => card.isKingdomCard),
             ),
         );
     }
 
     findByCardType(typeId: CardTypeId): Observable<Card[]> {
         return this.cards$.pipe(
-            map((cards: Map<number, Card>) =>
+            map((cards: Map<string, Card>) =>
                 Array.from(cards.values()).filter((card: Card) =>
                     card.types.some((type: CardType) => type.id === typeId),
                 ),

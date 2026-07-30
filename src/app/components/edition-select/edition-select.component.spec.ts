@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpansionSelectComponent } from './expansion-select.component';
+import { EditionSelectComponent } from './edition-select.component';
 import {
     UntypedFormBuilder,
     UntypedFormArray,
     UntypedFormControl,
     FormControlName,
 } from '@angular/forms';
-import { Expansion } from '../../models/expansion';
+import { Edition } from '../../models/edition';
 import { DataFixture } from 'src/testing/data-fixture';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -16,40 +16,41 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
 import { Chance } from 'chance';
 
-describe('ExpansionSelectComponent', () => {
-    let component: ExpansionSelectComponent;
-    let fixture: ComponentFixture<ExpansionSelectComponent>;
+describe('EditionSelectComponent', () => {
+    let component: EditionSelectComponent;
+    let fixture: ComponentFixture<EditionSelectComponent>;
     let harnessLoader: HarnessLoader;
     let dataFixture: DataFixture;
     let chance: Chance.Chance;
-    let expansions: Expansion[];
+    let editions: Edition[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ExpansionSelectComponent],
+            imports: [EditionSelectComponent],
             providers: [UntypedFormBuilder],
         });
 
         dataFixture = new DataFixture();
         chance = new Chance();
-        expansions = dataFixture.createExpansions();
+        editions = dataFixture.createEditions();
 
-        fixture = TestBed.createComponent(ExpansionSelectComponent);
+        fixture = TestBed.createComponent(EditionSelectComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
 
-        component.expansions = expansions;
+        component.editions = editions;
     });
 
-    describe('expansions', () => {
-        it('should return expansions ordered by name', () => {
-            const firstExpansion = dataFixture.createExpansion({ name: 'a' });
-            const secondExpansion = dataFixture.createExpansion({ name: 'b' });
-            const input = [secondExpansion, firstExpansion];
-            const expected = [firstExpansion, secondExpansion];
-            component.expansions = input;
+    describe('editions', () => {
+        it('should return editions ordered by expansion and edition', () => {
+            const firstEdition = dataFixture.createEdition({ expansion: 'a', edition: '1' });
+            const secondEdition = dataFixture.createEdition({ expansion: 'a', edition: '2' });
+            const thirdEdition = dataFixture.createEdition({ expansion: 'b', edition: '1' });
+            const input = [thirdEdition, secondEdition, firstEdition];
+            const expected = [firstEdition, secondEdition, thirdEdition];
+            component.editions = input;
 
-            const actual = component.expansions;
+            const actual = component.editions;
 
             expect(actual).toEqual(expected);
         });
@@ -64,34 +65,34 @@ describe('ExpansionSelectComponent', () => {
             expect(actual).toBeInstanceOf(UntypedFormControl);
         });
 
-        it('should have "expansions"-FormArray', () => {
+        it('should have "editions"-FormArray', () => {
             fixture.detectChanges();
 
-            const actual = component.formGroup.get('expansions');
+            const actual = component.formGroup.get('editions');
 
             expect(actual).toBeInstanceOf(UntypedFormArray);
         });
 
-        it('should have FormControl per expansion inside the "expansions"-FormArray', () => {
+        it('should have FormControl per edition inside the "editions"-FormArray', () => {
             fixture.detectChanges();
             const expected = jasmine.arrayWithExactContents(
-                expansions.map(() => jasmine.any(UntypedFormControl)),
+                editions.map(() => jasmine.any(UntypedFormControl)),
             );
 
-            const actual = (component.formGroup.get('expansions') as UntypedFormArray).controls;
+            const actual = (component.formGroup.get('editions') as UntypedFormArray).controls;
 
             expect(actual).toEqual(expected);
         });
 
-        it('with initialValue contains not all expansions should have correct initial value', () => {
+        it('with initialValue contains not all editions should have correct initial value', () => {
             const selectedExpansions = chance.pickset(
-                component.expansions,
-                chance.integer({ min: 0, max: component.expansions.length - 1 }),
+                component.editions,
+                chance.integer({ min: 0, max: component.editions.length - 1 }),
             );
-            const expansionsState = component.expansions.map((expansion: Expansion) =>
-                selectedExpansions.includes(expansion),
+            const expansionsState = component.editions.map((edition: Edition) =>
+                selectedExpansions.includes(edition),
             );
-            const expected = { all: false, expansions: expansionsState };
+            const expected = { all: false, editions: expansionsState };
             component.initialValue = selectedExpansions;
             fixture.detectChanges();
 
@@ -100,10 +101,10 @@ describe('ExpansionSelectComponent', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with initialValue contains all expansions should have correct initial value', () => {
-            const expansionState = component.expansions.map(() => true);
-            const expected = { all: true, expansions: expansionState };
-            component.initialValue = component.expansions;
+        it('with initialValue contains all editions should have correct initial value', () => {
+            const expansionState = component.editions.map(() => true);
+            const expected = { all: true, editions: expansionState };
+            component.initialValue = component.editions;
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -111,7 +112,7 @@ describe('ExpansionSelectComponent', () => {
             expect(actual).toEqual(expected);
         });
 
-        it('with no selected expansion should be invalid', () => {
+        it('with no selected edition should be invalid', () => {
             fixture.detectChanges();
 
             const actual = component.formGroup.invalid;
@@ -119,45 +120,45 @@ describe('ExpansionSelectComponent', () => {
             expect(actual).toBeTrue();
         });
 
-        it('with selected expansions change should emit change event correctly', () => {
+        it('with selected editions change should emit change event correctly', () => {
             fixture.detectChanges();
-            const selectedExpansions = expansions.slice(0, 1);
-            const expansionsPatch: boolean[] = expansions.map(() => false);
+            const selectedExpansions = editions.slice(0, 1);
+            const expansionsPatch: boolean[] = editions.map(() => false);
             expansionsPatch[0] = true;
             const emitSpy = spyOn(component.change, 'emit');
 
-            component.formGroup.patchValue({ expansions: expansionsPatch });
+            component.formGroup.patchValue({ editions: expansionsPatch });
 
             expect(emitSpy).toHaveBeenCalledWith(selectedExpansions);
         });
     });
 
     describe('areSomeButNotAllSelected', () => {
-        it('with at least one but not all expansions are selected should return true', () => {
+        it('with at least one but not all editions are selected should return true', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = expansions.map(() => false);
+            const expansionsPatch: boolean[] = editions.map(() => false);
             expansionsPatch[0] = true;
-            component.formGroup.patchValue({ expansions: expansionsPatch });
+            component.formGroup.patchValue({ editions: expansionsPatch });
 
             const actual = component.areSomeButNotAllSelected();
 
             expect(actual).toBeTrue();
         });
 
-        it('with no expansion is selected should return false', () => {
+        it('with no edition is selected should return false', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = expansions.map(() => false);
-            component.formGroup.patchValue({ expansions: expansionsPatch });
+            const expansionsPatch: boolean[] = editions.map(() => false);
+            component.formGroup.patchValue({ editions: expansionsPatch });
 
             const actual = component.areSomeButNotAllSelected();
 
             expect(actual).toBeFalse();
         });
 
-        it('with all expansion are selected should return false', () => {
+        it('with all edition are selected should return false', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = expansions.map(() => true);
-            component.formGroup.patchValue({ expansions: expansionsPatch });
+            const expansionsPatch: boolean[] = editions.map(() => true);
+            component.formGroup.patchValue({ editions: expansionsPatch });
 
             const actual = component.areSomeButNotAllSelected();
 
@@ -166,21 +167,21 @@ describe('ExpansionSelectComponent', () => {
     });
 
     describe('areAllSelected', () => {
-        it('with all expansions are selected should return true', () => {
+        it('with all editions are selected should return true', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = expansions.map(() => true);
-            component.formGroup.patchValue({ expansions: expansionsPatch });
+            const expansionsPatch: boolean[] = editions.map(() => true);
+            component.formGroup.patchValue({ editions: expansionsPatch });
 
             const actual = component.areAllSelected();
 
             expect(actual).toBeTrue();
         });
 
-        it('with not all expansions are selected should return false', () => {
+        it('with not all editions are selected should return false', () => {
             fixture.detectChanges();
-            const expansionsPatch: boolean[] = expansions.map(() => true);
+            const expansionsPatch: boolean[] = editions.map(() => true);
             expansionsPatch[0] = false;
-            component.formGroup.patchValue({ expansions: expansionsPatch });
+            component.formGroup.patchValue({ editions: expansionsPatch });
 
             const actual = component.areAllSelected();
 
@@ -189,24 +190,24 @@ describe('ExpansionSelectComponent', () => {
     });
 
     describe('selectOrDeselectAll', () => {
-        it('with checked is true should select all expansions', () => {
+        it('with checked is true should select all editions', () => {
             fixture.detectChanges();
             const checked = true;
-            const expected = expansions.map(() => checked);
+            const expected = editions.map(() => checked);
 
             component.selectOrDeselectAll(checked);
-            const actual: boolean[] = component.formGroup.value.expansions;
+            const actual: boolean[] = component.formGroup.value.editions;
 
             expect(actual).toEqual(expected);
         });
 
-        it('with checked is false should deselect all expansions', () => {
+        it('with checked is false should deselect all editions', () => {
             fixture.detectChanges();
             const checked = false;
-            const expected = expansions.map(() => checked);
+            const expected = editions.map(() => checked);
 
             component.selectOrDeselectAll(checked);
-            const actual: boolean[] = component.formGroup.value.expansions;
+            const actual: boolean[] = component.formGroup.value.editions;
 
             expect(actual).toEqual(expected);
         });
@@ -264,28 +265,33 @@ describe('ExpansionSelectComponent', () => {
             expect(selectOrDeselectAllSpy).toHaveBeenCalledWith(true);
         });
 
-        it('should bind ul element to "expansions"-FormArray', () => {
+        it('should bind ul element to "editions"-FormArray', () => {
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.css('ul[formArrayName="expansions"]'));
+            const actual = fixture.debugElement.query(By.css('ul[formArrayName="editions"]'));
 
             expect(actual).not.toBeNull();
         });
 
-        it('should render checkbox inside li element for each expansion correctly', async () => {
+        it('should render checkbox inside li element for each edition correctly', async () => {
+            component.editions = [
+                dataFixture.createEdition({ expansion: 'Dominion', edition: '1' }),
+                dataFixture.createEdition({ expansion: 'Dominion', edition: '2' }),
+                dataFixture.createEdition({ expansion: 'Seaside', edition: '1' }),
+            ];
             fixture.detectChanges();
 
             const actual = await harnessLoader.getAllHarnesses(
                 MatCheckboxHarness.with({ ancestor: 'li' }),
             );
 
-            expect(actual).toHaveSize(expansions.length);
-            for (let index = 0; index < actual.length; index++) {
-                expect(await actual[index].getLabelText()).toBe(expansions[index].name);
-            }
+            expect(actual).toHaveSize(3);
+            expect(await actual[0].getLabelText()).toBe('Dominion (1. Edition)');
+            expect(await actual[1].getLabelText()).toBe('Dominion (2. Edition)');
+            expect(await actual[2].getLabelText()).toBe('Seaside');
         });
 
-        it('should bind checkbox for each expansion correctly', () => {
+        it('should bind checkbox for each edition correctly', () => {
             fixture.detectChanges();
 
             const actual = fixture.debugElement
@@ -294,7 +300,7 @@ describe('ExpansionSelectComponent', () => {
                     element.query(By.directive(MatCheckbox)).injector.get(FormControlName),
                 );
 
-            expect(actual).toHaveSize(expansions.length);
+            expect(actual).toHaveSize(editions.length);
             for (let index = 0; index < actual.length; index++) {
                 expect(actual[index].name).toBe(index);
             }

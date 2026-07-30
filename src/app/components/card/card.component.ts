@@ -1,5 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { Card, NullCard } from './../../models/card';
+import { Edition } from './../../models/edition';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
 import { MatIcon } from '@angular/material/icon';
@@ -34,7 +35,7 @@ interface RGB {
     styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-    private orderedPrimaryCardTypes: CardTypeId[] = [
+    private orderedPrimaryCardTypes: string[] = [
         CardTypeId.Treasure,
         CardTypeId.Duration,
         CardTypeId.Reserve,
@@ -50,9 +51,9 @@ export class CardComponent {
         CardTypeId.Ally,
     ];
 
-    private orderedSecondaryCardTypes: CardTypeId[] = [CardTypeId.Action, CardTypeId.Night];
+    private orderedSecondaryCardTypes: string[] = [CardTypeId.Action, CardTypeId.Night];
 
-    static readonly backgroundOfCardTypes = new Map<CardTypeId, string>([
+    static readonly backgroundOfCardTypes = new Map<string, string>([
         [CardTypeId.Action, '#ede4c7'],
         [CardTypeId.Duration, '#f89a43'],
         [CardTypeId.Event, '#bbbeb7'],
@@ -73,9 +74,15 @@ export class CardComponent {
     @Input() card: Card = NullCard;
     @Output() reshuffle: EventEmitter<undefined> = new EventEmitter<undefined>();
 
-    get expansionIconUrl(): string | null {
-        // since the expansions are sorted in the data source we get the latest expansion this way
-        const icon = this.card.expansions[this.card.expansions.length - 1]?.icon;
+    get editionIconUrl(): string | null {
+        // editions are sorted by id, which does not follow the edition order, so pick the latest
+        const icon = this.card.editions.reduce(
+            (latest: Edition | undefined, edition: Edition) =>
+                latest === undefined || Number(edition.edition) > Number(latest.edition)
+                    ? edition
+                    : latest,
+            undefined,
+        )?.icon;
         return icon ? `${environment.entryPoint}/assets/card_symbols/${icon}` : null;
     }
 
@@ -127,10 +134,10 @@ export class CardComponent {
     }
 
     get background(): string {
-        const primaryCardTypes = this.orderedPrimaryCardTypes.filter((typeId: CardTypeId) =>
+        const primaryCardTypes = this.orderedPrimaryCardTypes.filter((typeId: string) =>
             this.card.types.some((type: CardType) => type.id === typeId),
         );
-        const secondaryCardTypes = this.orderedSecondaryCardTypes.filter((typeId: CardTypeId) =>
+        const secondaryCardTypes = this.orderedSecondaryCardTypes.filter((typeId: string) =>
             this.card.types.some((type: CardType) => type.id === typeId),
         );
 
@@ -155,7 +162,7 @@ export class CardComponent {
         return this.calculateBackground(secondaryCardTypes[0]);
     }
 
-    private calculateBackground(topCardType: CardTypeId, bottomCardType?: CardTypeId): string {
+    private calculateBackground(topCardType: string, bottomCardType?: string): string {
         const topColor = CardComponent.backgroundOfCardTypes.get(topCardType);
         const bottomColor = bottomCardType
             ? CardComponent.backgroundOfCardTypes.get(bottomCardType)

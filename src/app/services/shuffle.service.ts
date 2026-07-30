@@ -6,7 +6,7 @@ import { Injectable, inject } from '@angular/core';
 import { Card } from '../models/card';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
-import { Expansion } from '../models/expansion';
+import { Edition } from '../models/edition';
 import { ChanceService } from './chance.service';
 import { CardService } from './card.service';
 import { Set } from '../models/set';
@@ -63,12 +63,12 @@ export class ShuffleService {
     private pickRandomSet(randomizableCards: RandomizableCards, configuration: Configuration): Set {
         const kingdomCards = this.pickRandomCards(
             randomizableCards.kingdomCards,
-            configuration.expansions,
+            configuration.editions,
             10,
         );
         const containsCardOfTypeLiaison = this.containsCardOfType(kingdomCards, CardTypeId.Liaison);
         const allies: Card[] = containsCardOfTypeLiaison
-            ? this.pickRandomCards(randomizableCards.allies, configuration.expansions, 1, [])
+            ? this.pickRandomCards(randomizableCards.allies, configuration.editions, 1, [])
             : [];
 
         return {
@@ -76,27 +76,27 @@ export class ShuffleService {
             specialCards: [
                 ...this.pickRandomCards(
                     randomizableCards.events,
-                    configuration.expansions,
+                    configuration.editions,
                     configuration.specialCardsCount.events,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.landmarks,
-                    configuration.expansions,
+                    configuration.editions,
                     configuration.specialCardsCount.landmarks,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.projects,
-                    configuration.expansions,
+                    configuration.editions,
                     configuration.specialCardsCount.projects,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.ways,
-                    configuration.expansions,
+                    configuration.editions,
                     configuration.specialCardsCount.ways,
                 ),
                 ...this.pickRandomCards(
                     randomizableCards.traits,
-                    configuration.expansions,
+                    configuration.editions,
                     configuration.specialCardsCount.traits,
                 ),
                 ...allies,
@@ -143,7 +143,7 @@ export class ShuffleService {
             ? currentSet.kingdomCards
             : currentSet.specialCards;
 
-        return this.pickRandomCards(candidates, configuration.expansions, 1, cardsToIgnore)[0];
+        return this.pickRandomCards(candidates, configuration.editions, 1, cardsToIgnore)[0];
     }
 
     private determineCandidatesFromOldCard(
@@ -196,7 +196,7 @@ export class ShuffleService {
         if (containsCardOfTypeLiaison && allyCard === undefined) {
             const allyCard = this.pickRandomCards(
                 randomizableCards.allies,
-                configuration.expansions,
+                configuration.editions,
                 1,
                 [],
             )[0];
@@ -217,7 +217,7 @@ export class ShuffleService {
 
     private pickRandomCards(
         candidates: Card[],
-        expansions: Expansion[],
+        editions: Edition[],
         count: number,
         cardsToIgnore: Card[] = [],
     ): Card[] {
@@ -225,15 +225,15 @@ export class ShuffleService {
             return [];
         }
 
-        candidates = this.filterByExpansions(candidates, expansions);
+        candidates = this.filterByEditions(candidates, editions);
         candidates = this.excludeCardsToIgnore(candidates, cardsToIgnore);
 
         return this.chanceService.pickCards(candidates, count);
     }
 
-    private filterByExpansions(cards: Card[], expansions: Expansion[]): Card[] {
+    private filterByEditions(cards: Card[], editions: Edition[]): Card[] {
         return cards.filter((card: Card) =>
-            card.expansions.some((expansion: Expansion) => expansions.includes(expansion)),
+            card.editions.some((edition: Edition) => editions.includes(edition)),
         );
     }
 

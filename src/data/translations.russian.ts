@@ -1,10 +1,10 @@
 import { CardTranslation } from 'src/app/models/card';
 import { CardTypeTranslation } from 'src/app/models/card-type';
-import { ExpansionTranslation } from 'src/app/models/expansion';
-import russianExpansionTranslations from './expansions.russian.json';
+import { EditionTranslation } from 'src/app/models/edition';
+import russianEditionTranslations from './editions.russian.json';
 import russianCardTypeTranslations from './card-types.russian.json';
 import russianCardTranslations from './cards.russian.json';
 
-export const expansionTranslations: ExpansionTranslation[] = russianExpansionTranslations;
+export const editionTranslations: EditionTranslation[] = russianEditionTranslations;
 export const cardTypeTranslations: CardTypeTranslation[] = russianCardTypeTranslations;
 export const cardTranslations: CardTranslation[] = russianCardTranslations;

@@ -8,11 +8,14 @@ import { CardTypeId } from 'src/app/models/card-type';
 import { By } from '@angular/platform-browser';
 import { MatIconButton } from '@angular/material/button';
 
+const cardTypeName = (id: CardTypeId): string =>
+    Object.entries(CardTypeId).find(([, value]) => value === id)?.[0] ?? id;
+
 describe('CardComponent', () => {
     let component: CardComponent;
     let fixture: ComponentFixture<CardComponent>;
     let dataFixture: DataFixture;
-    const expansionIconUrl = '/assets/card_symbols/Dominion_icon.png';
+    const editionIconUrl = '/assets/card_symbols/Dominion_icon.png';
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -25,49 +28,53 @@ describe('CardComponent', () => {
         component = fixture.componentInstance;
     });
 
-    describe('expansionIconUrl', () => {
-        it('with card belongs to no expansion should return null', () => {
-            component.card = dataFixture.createCard({ expansions: [] });
+    describe('editionIconUrl', () => {
+        it('with card belongs to no edition should return null', () => {
+            component.card = dataFixture.createCard({ editions: [] });
 
-            const actual = component.expansionIconUrl;
-
-            expect(actual).toBeNull();
-        });
-
-        it('with expansion of card has no icon should return null', () => {
-            const expansion = dataFixture.createExpansion({ icon: '' });
-            component.card = dataFixture.createCard({ expansions: [expansion] });
-
-            const actual = component.expansionIconUrl;
+            const actual = component.editionIconUrl;
 
             expect(actual).toBeNull();
         });
 
-        it('with single expansion of card has icon should return correct icon url', () => {
-            const expansion = dataFixture.createExpansion({ icon: 'expansion.png' });
-            component.card = dataFixture.createCard({ expansions: [expansion] });
-            const expected = `${environment.entryPoint}/assets/card_symbols/expansion.png`;
+        it('with edition of card has no icon should return null', () => {
+            const edition = dataFixture.createEdition({ icon: '' });
+            component.card = dataFixture.createCard({ editions: [edition] });
 
-            const actual = component.expansionIconUrl;
+            const actual = component.editionIconUrl;
+
+            expect(actual).toBeNull();
+        });
+
+        it('with single edition of card has icon should return correct icon url', () => {
+            const edition = dataFixture.createEdition({ icon: 'edition.png' });
+            component.card = dataFixture.createCard({ editions: [edition] });
+            const expected = `${environment.entryPoint}/assets/card_symbols/edition.png`;
+
+            const actual = component.editionIconUrl;
 
             expect(actual).toBe(expected);
         });
 
-        it('with multiple expansions of card have icon should return correct icon url', () => {
-            const firstEditionExpansion = dataFixture.createExpansion({
-                id: 1,
-                icon: 'old_expansion.png',
+        it('with multiple editions of card should return icon url of the latest edition', () => {
+            // ids are sorted ascending in the data source but do not follow the
+            // edition order, so the latest edition may come first in the array
+            const secondEdition = dataFixture.createEdition({
+                id: '295',
+                edition: '2',
+                icon: 'edition.png',
             });
-            const secondEditionExpansion = dataFixture.createExpansion({
-                id: 1.1,
-                icon: 'expansion.png',
+            const firstEdition = dataFixture.createEdition({
+                id: '296',
+                edition: '1',
+                icon: 'old_edition.png',
             });
             component.card = dataFixture.createCard({
-                expansions: [firstEditionExpansion, secondEditionExpansion],
+                editions: [secondEdition, firstEdition],
             });
-            const expected = `${environment.entryPoint}/assets/card_symbols/expansion.png`;
+            const expected = `${environment.entryPoint}/assets/card_symbols/edition.png`;
 
-            const actual = component.expansionIconUrl;
+            const actual = component.editionIconUrl;
 
             expect(actual).toBe(expected);
         });
@@ -275,9 +282,7 @@ describe('CardComponent', () => {
                 const actual = component.background;
 
                 expect(actual)
-                    .withContext(
-                        `for types [${typeIds.map((type) => CardTypeId[type]).join(', ')}]`,
-                    )
+                    .withContext(`for types [${typeIds.map(cardTypeName).join(', ')}]`)
                     .toBe(expected);
             });
         });
@@ -367,12 +372,12 @@ describe('CardComponent', () => {
     });
 
     describe('template', () => {
-        let expansionIconUrlSpy: jasmine.Spy;
+        let editionIconUrlSpy: jasmine.Spy;
         let costIconUrlsSpy: jasmine.Spy;
 
         beforeEach(() => {
-            expansionIconUrlSpy = spyOnProperty(component, 'expansionIconUrl');
-            expansionIconUrlSpy.and.returnValue(expansionIconUrl);
+            editionIconUrlSpy = spyOnProperty(component, 'editionIconUrl');
+            editionIconUrlSpy.and.returnValue(editionIconUrl);
             costIconUrlsSpy = spyOnProperty(component, 'costIconUrls');
             costIconUrlsSpy.and.returnValue([]);
         });
@@ -423,30 +428,30 @@ describe('CardComponent', () => {
             expect(actual).toBe(expected);
         });
 
-        it('with expansionIconUrl is null should not display expansion icon', () => {
-            expansionIconUrlSpy.and.returnValue(null);
+        it('with editionIconUrl is null should not display edition icon', () => {
+            editionIconUrlSpy.and.returnValue(null);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.css('.expansion-icon'));
+            const actual = fixture.debugElement.query(By.css('.edition-icon'));
 
             expect(actual).toBeNull();
         });
 
-        it('with expansionIconUrl is not null should display expansion icon', () => {
-            expansionIconUrlSpy.and.returnValue(expansionIconUrl);
+        it('with editionIconUrl is not null should display edition icon', () => {
+            editionIconUrlSpy.and.returnValue(editionIconUrl);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.css('.expansion-icon'));
+            const actual = fixture.debugElement.query(By.css('.edition-icon'));
 
             expect(actual).not.toBeNull();
         });
 
-        it('with expansionIconUrl is not null should bind src of expansion icon correctly', () => {
-            const expected = expansionIconUrl;
-            expansionIconUrlSpy.and.returnValue(expected);
+        it('with editionIconUrl is not null should bind src of edition icon correctly', () => {
+            const expected = editionIconUrl;
+            editionIconUrlSpy.and.returnValue(expected);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.css('.expansion-icon')).properties['src'];
+            const actual = fixture.debugElement.query(By.css('.edition-icon')).properties['src'];
 
             expect(actual).toBe(expected);
         });

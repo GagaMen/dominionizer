@@ -6,13 +6,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {
     ConfigurationComponent,
-    ExpansionSelectViewData,
+    EditionSelectViewData,
     SpecialCardSelectViewData,
 } from './configuration.component';
 import { MatStepper } from '@angular/material/stepper';
-import { ExpansionSelectStubComponent } from 'src/testing/components/expansion-select.stub.component';
+import { EditionSelectStubComponent } from 'src/testing/components/edition-select.stub.component';
 import { SpecialCardSelectStubComponent } from 'src/testing/components/special-card-select.stub.component';
-import { ExpansionService } from 'src/app/services/expansion.service';
+import { EditionService } from 'src/app/services/edition.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { CardTypeId } from 'src/app/models/card-type';
@@ -29,7 +29,7 @@ import {
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { Card } from 'src/app/models/card';
 import { MatIconHarness } from '@angular/material/icon/testing';
-import { ExpansionSelectComponent } from '../expansion-select/expansion-select.component';
+import { EditionSelectComponent } from '../edition-select/edition-select.component';
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -39,7 +39,7 @@ describe('ConfigurationComponent', () => {
     let fixture: ComponentFixture<ConfigurationComponent>;
     let harnessLoader: HarnessLoader;
     let appBarServiceSpy: SpyObj<AppBarService>;
-    let expansionServiceSpy: SpyObj<ExpansionService>;
+    let editionServiceSpy: SpyObj<EditionService>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
     let cardServiceSpy: SpyObj<CardService>;
     let dataFixture: DataFixture;
@@ -55,14 +55,14 @@ describe('ConfigurationComponent', () => {
                     ]),
                 },
                 {
-                    provide: ExpansionService,
+                    provide: EditionService,
                     useValue: {},
                 },
                 {
                     provide: ConfigurationService,
                     useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
                         'isCardTypeAvailable',
-                        'updateExpansions',
+                        'updateEditions',
                         'updateSpecialCardsCount',
                     ]),
                 },
@@ -72,16 +72,16 @@ describe('ConfigurationComponent', () => {
                 },
             ],
         }).overrideComponent(ConfigurationComponent, {
-            remove: { imports: [ExpansionSelectComponent, SpecialCardSelectComponent] },
-            add: { imports: [ExpansionSelectStubComponent, SpecialCardSelectStubComponent] },
+            remove: { imports: [EditionSelectComponent, SpecialCardSelectComponent] },
+            add: { imports: [EditionSelectStubComponent, SpecialCardSelectStubComponent] },
         });
 
         dataFixture = new DataFixture();
 
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
-        expansionServiceSpy = TestBed.inject(ExpansionService) as jasmine.SpyObj<ExpansionService>;
-        expansionServiceSpy.expansions$ = of(dataFixture.createExpansions());
+        editionServiceSpy = TestBed.inject(EditionService) as jasmine.SpyObj<EditionService>;
+        editionServiceSpy.editions$ = of(dataFixture.createEditions());
 
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
@@ -91,7 +91,7 @@ describe('ConfigurationComponent', () => {
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.cards$ = of(
-            new Map<number, Card>(dataFixture.createCards().map((card: Card) => [card.id, card])),
+            new Map<string, Card>(dataFixture.createCards().map((card: Card) => [card.id, card])),
         );
 
         fixture = TestBed.createComponent(ConfigurationComponent);
@@ -99,56 +99,56 @@ describe('ConfigurationComponent', () => {
         component = fixture.componentInstance;
     });
 
-    describe('expansionSelectViewData$', () => {
-        it('should emit correct ExpansionSelectViewData', () => {
-            const expansions = dataFixture.createExpansions();
+    describe('editionSelectViewData$', () => {
+        it('should emit correct EditionSelectViewData', () => {
+            const editions = dataFixture.createEditions();
             const configuration = dataFixture.createConfiguration();
-            const cards = new Map<number, Card>(
+            const cards = new Map<string, Card>(
                 dataFixture
-                    .createCards(10, { expansions: expansions })
+                    .createCards(10, { editions: editions })
                     .map((card: Card) => [card.id, card]),
             );
-            const expected: ExpansionSelectViewData = {
-                expansions: expansions,
-                initialValue: configuration.expansions,
+            const expected: EditionSelectViewData = {
+                editions: editions,
+                initialValue: configuration.editions,
             };
-            const expansions$ = cold('   --a', { a: expansions });
+            const editions$ = cold('   --a', { a: editions });
             const configuration$ = cold('--b', { b: configuration });
             const cards$ = cold('        --c', { c: cards });
             const expected$ = cold('     --d', { d: expected });
-            expansionServiceSpy.expansions$ = expansions$;
+            editionServiceSpy.editions$ = editions$;
             configurationServiceSpy.configuration$ = configuration$;
             cardServiceSpy.cards$ = cards$;
             fixture.detectChanges();
 
-            const actual$ = component.expansionSelectViewData$;
+            const actual$ = component.editionSelectViewData$;
 
             expect(actual$).toBeObservable(expected$);
         });
 
-        it('with expansions has no cards should emit correct ExpansionSelectViewData', () => {
-            const expansionWithCards = dataFixture.createExpansion({ id: 1 });
-            const expansionWithoutCards = dataFixture.createExpansion({ id: 2 });
+        it('with editions has no cards should emit correct EditionSelectViewData', () => {
+            const editionWithCards = dataFixture.createEdition({ id: '1' });
+            const editionWithoutCards = dataFixture.createEdition({ id: '2' });
             const configuration = dataFixture.createConfiguration();
-            const cards = new Map<number, Card>(
+            const cards = new Map<string, Card>(
                 dataFixture
-                    .createCards(10, { expansions: [expansionWithCards] })
+                    .createCards(10, { editions: [editionWithCards] })
                     .map((card: Card) => [card.id, card]),
             );
-            const expected: ExpansionSelectViewData = {
-                expansions: [expansionWithCards],
-                initialValue: configuration.expansions,
+            const expected: EditionSelectViewData = {
+                editions: [editionWithCards],
+                initialValue: configuration.editions,
             };
-            const expansions$ = cold('   --a', { a: [expansionWithCards, expansionWithoutCards] });
+            const editions$ = cold('   --a', { a: [editionWithCards, editionWithoutCards] });
             const configuration$ = cold('--b', { b: configuration });
             const cards$ = cold('        --c', { c: cards });
             const expected$ = cold('     --d', { d: expected });
-            expansionServiceSpy.expansions$ = expansions$;
+            editionServiceSpy.editions$ = editions$;
             configurationServiceSpy.configuration$ = configuration$;
             cardServiceSpy.cards$ = cards$;
             fixture.detectChanges();
 
-            const actual$ = component.expansionSelectViewData$;
+            const actual$ = component.editionSelectViewData$;
 
             expect(actual$).toBeObservable(expected$);
         });
@@ -241,49 +241,49 @@ describe('ConfigurationComponent', () => {
 
         it('should bind properties of "Expansions" step correctly', () => {
             fixture.detectChanges();
-            const expansionSelect = fixture.debugElement
-                .query(By.directive(ExpansionSelectStubComponent))
-                .injector.get(ExpansionSelectStubComponent);
+            const editionSelect = fixture.debugElement
+                .query(By.directive(EditionSelectStubComponent))
+                .injector.get(EditionSelectStubComponent);
 
             const actual = fixture.debugElement
                 .query(By.directive(MatStepper))
                 .injector.get(MatStepper).steps.first;
 
-            expect(actual.stepControl).withContext('stepControl').toBe(expansionSelect.formGroup);
+            expect(actual.stepControl).withContext('stepControl').toBe(editionSelect.formGroup);
             expect(actual.errorMessage)
                 .withContext('errorMessage')
                 .toBe('Choose at least one expansion');
         });
 
-        it('should bind properties of ExpansionSelectComponent correctly', () => {
+        it('should bind properties of EditionSelectComponent correctly', () => {
             fixture.detectChanges();
-            const expansions = dataFixture.createExpansions();
-            const initialValue = expansions.slice(0, 1);
-            const viewData: ExpansionSelectViewData = {
-                expansions: expansions,
+            const editions = dataFixture.createEditions();
+            const initialValue = editions.slice(0, 1);
+            const viewData: EditionSelectViewData = {
+                editions: editions,
                 initialValue: initialValue,
             };
-            component.expansionSelectViewData$ = of(viewData);
+            component.editionSelectViewData$ = of(viewData);
             fixture.detectChanges();
 
             const actual = fixture.debugElement
-                .query(By.directive(ExpansionSelectStubComponent))
-                .injector.get(ExpansionSelectStubComponent);
+                .query(By.directive(EditionSelectStubComponent))
+                .injector.get(EditionSelectStubComponent);
 
-            expect(actual.expansions).withContext('expansions').toBe(expansions);
+            expect(actual.editions).withContext('editions').toBe(editions);
             expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
         });
 
-        it('should bind change event of ExpansionSelectComponent correctly', () => {
+        it('should bind change event of EditionSelectComponent correctly', () => {
             fixture.detectChanges();
-            const expansions = dataFixture.createExpansions();
+            const editions = dataFixture.createEditions();
 
-            const expansionSelect = fixture.debugElement
-                .query(By.directive(ExpansionSelectStubComponent))
-                .injector.get(ExpansionSelectStubComponent);
-            expansionSelect.change.emit(expansions);
+            const editionSelect = fixture.debugElement
+                .query(By.directive(EditionSelectStubComponent))
+                .injector.get(EditionSelectStubComponent);
+            editionSelect.change.emit(editions);
 
-            expect(configurationServiceSpy.updateExpansions).toHaveBeenCalledWith(expansions);
+            expect(configurationServiceSpy.updateEditions).toHaveBeenCalledWith(editions);
         });
 
         it('should render "Special Cards" step', async () => {

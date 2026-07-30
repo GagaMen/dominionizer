@@ -8,10 +8,10 @@
         >All</mat-checkbox
     >
     <mat-divider></mat-divider>
-    <ul formArrayName="expansions" class="expansions">
-        @for (expansion of expansions; track expansion; let i = $index) {
+    <ul formArrayName="editions" class="editions">
+        @for (edition of editions; track edition; let i = $index) {
             <li>
-                <mat-checkbox [formControlName]="i">{{ expansion.name }}</mat-checkbox>
+                <mat-checkbox [formControlName]="i">{{ label(edition) }}</mat-checkbox>
             </li>
         }
     </ul>

@@ -1,20 +1,20 @@
 <div class="container">
     <mat-stepper orientation="vertical" class="mat-elevation-z2">
-        @if (expansionSelectViewData$ | async; as viewData) {
+        @if (editionSelectViewData$ | async; as viewData) {
             <mat-step
-                [stepControl]="expansionSelect.formGroup"
+                [stepControl]="editionSelect.formGroup"
                 i18n-errorMessage
                 errorMessage="Choose at least one expansion"
             >
                 <ng-template matStepLabel>
                     <span class="white-space-normal" i18n>Expansions</span>
                 </ng-template>
-                <app-expansion-select
-                    #expansionSelect
-                    [expansions]="viewData.expansions"
+                <app-edition-select
+                    #editionSelect
+                    [editions]="viewData.editions"
                     [initialValue]="viewData.initialValue"
-                    (change)="configurationService.updateExpansions($event)"
-                ></app-expansion-select>
+                    (change)="configurationService.updateEditions($event)"
+                ></app-edition-select>
             </mat-step>
         }
         @if (specialCardSelectViewData$ | async; as viewData) {

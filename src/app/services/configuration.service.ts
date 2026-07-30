@@ -2,7 +2,7 @@ import { SpecialCardsCount } from '../models/special-cards-count';
 import { Injectable, inject } from '@angular/core';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
-import { Expansion } from '../models/expansion';
+import { Edition } from '../models/edition';
 import { map } from 'rxjs/operators';
 import { CardTypeId } from '../models/card-type';
 import { CardService } from './card.service';
@@ -15,7 +15,7 @@ export class ConfigurationService {
     private cardService = inject(CardService);
 
     static readonly defaultConfiguration: Configuration = {
-        expansions: [],
+        editions: [],
         specialCardsCount: {
             events: 0,
             landmarks: 0,
@@ -31,13 +31,13 @@ export class ConfigurationService {
 
     readonly configuration$: Observable<Configuration> = this.configurationSubject.asObservable();
 
-    private readonly enabledExpansions$: Observable<Expansion[]> = this.configuration$.pipe(
-        map((configuration: Configuration) => configuration.expansions),
+    private readonly enabledEditions$: Observable<Edition[]> = this.configuration$.pipe(
+        map((configuration: Configuration) => configuration.editions),
     );
 
-    updateExpansions(expansions: Expansion[]): void {
+    updateEditions(editions: Edition[]): void {
         const configuration = this.configurationSubject.value;
-        configuration.expansions = expansions;
+        configuration.editions = editions;
         this.configurationSubject.next(configuration);
     }
 
@@ -48,12 +48,10 @@ export class ConfigurationService {
     }
 
     isCardTypeAvailable(type: CardTypeId): Observable<boolean> {
-        return combineLatest(this.cardService.findByCardType(type), this.enabledExpansions$).pipe(
-            map(([cardsOfType, enabledExpansions]: [Card[], Expansion[]]) => {
+        return combineLatest(this.cardService.findByCardType(type), this.enabledEditions$).pipe(
+            map(([cardsOfType, enabledEditions]: [Card[], Edition[]]) => {
                 return cardsOfType.some((card: Card) =>
-                    card.expansions.some((expansion: Expansion) =>
-                        enabledExpansions.includes(expansion),
-                    ),
+                    card.editions.some((edition: Edition) => enabledEditions.includes(edition)),
                 );
             }),
         );

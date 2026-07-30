@@ -1,8 +1,8 @@
 <mat-card appearance="outlined" [style.background]="background">
     <mat-card-header>
         <div class="icons">
-            @if (expansionIconUrl !== null) {
-                <img [src]="expansionIconUrl" alt="Expansion Icon" class="expansion-icon" />
+            @if (editionIconUrl !== null) {
+                <img [src]="editionIconUrl" alt="Edition Icon" class="edition-icon" />
             }
             <div class="cost-icons">
                 @for (costIconUrl of costIconUrls; track costIconUrl) {

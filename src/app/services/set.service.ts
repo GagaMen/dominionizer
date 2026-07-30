@@ -53,8 +53,8 @@ export class SetService {
         sortingOption: SortingOption,
     ): number {
         if (groupingOption === 'byExpansion') {
-            const expansionComparison = firstCard.expansions[0].name.localeCompare(
-                secondCard.expansions[0].name,
+            const expansionComparison = (firstCard.editions[0]?.expansion ?? '').localeCompare(
+                secondCard.editions[0]?.expansion ?? '',
             );
             if (expansionComparison !== 0) return expansionComparison;
         }

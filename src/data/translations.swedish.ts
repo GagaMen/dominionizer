@@ -1,8 +1,8 @@
 import { CardTranslation } from 'src/app/models/card';
 import { CardTypeTranslation } from 'src/app/models/card-type';
-import { ExpansionTranslation } from 'src/app/models/expansion';
-import swedishExpansionTranslations from './expansions.swedish.json';
+import { EditionTranslation } from 'src/app/models/edition';
+import swedishEditionTranslations from './editions.swedish.json';
 
-export const expansionTranslations: ExpansionTranslation[] = swedishExpansionTranslations;
+export const editionTranslations: EditionTranslation[] = swedishEditionTranslations;
 export const cardTypeTranslations: CardTypeTranslation[] = [];
 export const cardTranslations: CardTranslation[] = [];
