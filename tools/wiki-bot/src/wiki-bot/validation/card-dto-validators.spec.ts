@@ -139,8 +139,8 @@ describe('CardDtoValidator', () => {
 describe('CardDtosValidator', () => {
     const validator = new CardDtosValidator();
 
-    const cargoCard = (Id: string, Name: string): CargoCard =>
-        ({ Id, Name }) as unknown as CargoCard;
+    const cargoCard = (PageId: string, Name: string): CargoCard =>
+        ({ PageId, Name }) as unknown as CargoCard;
     const cardDto = (id: string, name: string): CardDto => ({ id, name }) as unknown as CardDto;
 
     describe('validate', () => {

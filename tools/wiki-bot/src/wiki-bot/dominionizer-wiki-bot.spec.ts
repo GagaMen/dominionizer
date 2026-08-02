@@ -30,6 +30,7 @@ import { CardType, CardTypeTranslation } from '../../../../src/app/models/card-t
 import { CardDto } from '../../../../src/app/dtos/card-dto';
 import { CardTranslation } from '../../../../src/app/models/card';
 import { ValidationResult } from './validation/validation-result';
+import { CargoIdUniquenessValidator } from './validation/cargo-id-uniqueness-validator';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -53,6 +54,7 @@ describe('DominionizerWikiBot', () => {
     let cardDtosValidatorSpy: jasmine.SpyObj<CardDtosValidator>;
     let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
     let imagesValidatorSpy: jasmine.SpyObj<ImagesValidator>;
+    let cargoIdUniquenessValidatorSpy: jasmine.SpyObj<CargoIdUniquenessValidator>;
     let writeFileSpy: jasmine.Spy;
     let readFileSpy: jasmine.Spy;
 
@@ -158,6 +160,12 @@ describe('DominionizerWikiBot', () => {
         imagesValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
         imagesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
+        cargoIdUniquenessValidatorSpy = jasmine.createSpyObj<CargoIdUniquenessValidator>(
+            'CargoIdUniquenessValidator',
+            ['validate'],
+        );
+        cargoIdUniquenessValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
         writeFileSpy = spyOn(fs.promises, 'writeFile');
 
         readFileSpy = spyOn(fs.promises, 'readFile');
@@ -187,6 +195,7 @@ describe('DominionizerWikiBot', () => {
             cardDtosValidatorSpy,
             cardTranslationValidatorSpy,
             imagesValidatorSpy,
+            cargoIdUniquenessValidatorSpy,
         );
     });
 
@@ -203,14 +212,12 @@ describe('DominionizerWikiBot', () => {
         it('should generate editions', async () => {
             const cargoEditions: CargoEdition[] = [
                 {
-                    Id: 'base-2e',
                     PageId: '1',
                     Expansion: 'Dominion',
                     Edition: '2',
                     Icon: 'dom2e.png',
                 },
                 {
-                    Id: 'base-1e',
                     PageId: '1',
                     Expansion: 'Dominion',
                     Edition: '1',
@@ -240,14 +247,12 @@ describe('DominionizerWikiBot', () => {
         it('should generate edition translations', async () => {
             const cargoEditions: CargoEdition[] = [
                 {
-                    Id: 'base-1e',
                     PageId: '1',
                     Expansion: 'Dominion',
                     Edition: '1',
                     Icon: 'dom1e.png',
                 },
                 {
-                    Id: 'intrigue-1e',
                     PageId: '2',
                     Expansion: 'Intrigue',
                     Edition: '1',
@@ -259,20 +264,20 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 2, title: 'Intrigue' } as ExpansionPage,
             ];
             const dominionTranslations = new Map<string, EditionTranslation[]>([
-                ['German', [{ id: 'base-1e', expansion: 'Dominion' }]],
-                ['French', [{ id: 'base-1e', expansion: 'Dominion' }]],
+                ['German', [{ id: '1-1', expansion: 'Dominion' }]],
+                ['French', [{ id: '1-1', expansion: 'Dominion' }]],
             ]);
             const intrigueTranslations = new Map<string, EditionTranslation[]>([
-                ['German', [{ id: 'intrigue-1e', expansion: 'Die Intrige' }]],
-                ['French', [{ id: 'intrigue-1e', expansion: "L'Intrigue" }]],
+                ['German', [{ id: '2-1', expansion: 'Die Intrige' }]],
+                ['French', [{ id: '2-1', expansion: "L'Intrigue" }]],
             ]);
             const germanTranslations: EditionTranslation[] = [
-                { id: 'base-1e', expansion: 'Dominion' },
-                { id: 'intrigue-1e', expansion: 'Die Intrige' },
+                { id: '1-1', expansion: 'Dominion' },
+                { id: '2-1', expansion: 'Die Intrige' },
             ];
             const frenchTranslations: EditionTranslation[] = [
-                { id: 'base-1e', expansion: 'Dominion' },
-                { id: 'intrigue-1e', expansion: "L'Intrigue" },
+                { id: '1-1', expansion: 'Dominion' },
+                { id: '2-1', expansion: "L'Intrigue" },
             ];
             wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
             wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
@@ -319,8 +324,8 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card types', async () => {
             const cargoCardTypes: CargoCardType[] = [
-                { Id: 'treasure', PageId: '220', Name: 'Treasure', Scope: 'Basic' },
-                { Id: 'action', PageId: '216', Name: 'Action', Scope: 'Basic' },
+                { PageId: '220', Name: 'Treasure', Scope: 'Basic' },
+                { PageId: '216', Name: 'Action', Scope: 'Basic' },
             ];
             const cardTypes: CardType[] = [
                 { id: 'action', name: 'Action', scope: 'Basic' },
@@ -345,8 +350,8 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate card type translations', async () => {
             const cargoCardTypes: CargoCardType[] = [
-                { Id: 'action', PageId: '216', Name: 'Action', Scope: 'Basic' },
-                { Id: 'treasure', PageId: '220', Name: 'Treasure', Scope: 'Basic' },
+                { PageId: '216', Name: 'Action', Scope: 'Basic' },
+                { PageId: '220', Name: 'Treasure', Scope: 'Basic' },
             ];
             const cardTypePages: CardTypePage[] = [
                 { pageid: 216, title: 'Action' } as CardTypePage,
@@ -497,12 +502,11 @@ describe('DominionizerWikiBot', () => {
 
         it('should generate cards', async () => {
             const cargoCardTypes: CargoCardType[] = [
-                { Id: 'action', PageId: '216', Name: 'Action', Scope: 'Basic' },
+                { PageId: '216', Name: 'Action', Scope: 'Basic' },
             ];
             const cardTypes: CardType[] = [{ id: 'action', name: 'Action', scope: 'Basic' }];
             const cargoEditions: CargoEdition[] = [
                 {
-                    Id: 'base-2e',
                     PageId: '1',
                     Expansion: 'Dominion',
                     Edition: '2',
@@ -517,8 +521,8 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 400, title: 'Village' } as CardPage,
             ];
             const cargoCards: CargoCard[] = [
-                { Id: 'village', PageId: '400', Name: 'Village' } as CargoCard,
-                { Id: 'cellar', PageId: '300', Name: 'Cellar' } as CargoCard,
+                { PageId: '400', Name: 'Village' } as CargoCard,
+                { PageId: '300', Name: 'Cellar' } as CargoCard,
             ];
             const cards: CardDto[] = [
                 { id: 'cellar', name: 'Cellar' } as CardDto,
@@ -562,8 +566,8 @@ describe('DominionizerWikiBot', () => {
                 { pageid: 300, title: 'Cellar' } as CardPage,
             ];
             const cargoCards: CargoCard[] = [
-                { Id: 'village', PageId: '400', Name: 'Village' } as CargoCard,
-                { Id: 'cellar', PageId: '300', Name: 'Cellar' } as CargoCard,
+                { PageId: '400', Name: 'Village' } as CargoCard,
+                { PageId: '300', Name: 'Cellar' } as CargoCard,
             ];
             const cellarTranslations = new Map<string, CardTranslation>([
                 ['German', { id: 'cellar', name: 'Keller', description: '' }],
@@ -630,7 +634,6 @@ describe('DominionizerWikiBot', () => {
             );
             wikiClientSpy.fetchAllEditions.and.resolveTo([
                 {
-                    Id: 'base-1e',
                     PageId: '1',
                     Expansion: 'Dominion',
                     Edition: '1',

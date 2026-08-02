@@ -7,6 +7,7 @@ import {
     WikiText,
 } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
+import { buildCargoId } from './cargo-id';
 
 export class CardTranslationBuilder {
     build(
@@ -42,7 +43,7 @@ export class CardTranslationBuilder {
             );
 
             translations.set(normalize(language), {
-                id: cargoCard.Id,
+                id: buildCargoId(cargoCard),
                 name: cardName,
                 description: cardDescription,
             });

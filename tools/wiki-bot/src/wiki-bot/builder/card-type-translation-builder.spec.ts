@@ -44,18 +44,17 @@ describe('CardTypeTranslationBuilder', () => {
                 ],
             };
             const cargoCardType: CargoCardType = {
-                Id: '273',
-                PageId: '273',
+                PageId: '431',
                 Name: 'Prize',
                 Scope: 'Single-pile',
             };
             const expected = new Map<string, CardTypeTranslation>([
-                ['Czech', { id: '273', name: 'Odměna' }],
-                ['Dutch', { id: '273', name: 'Prijs' }],
-                ['Finnish', { id: '273', name: 'Palkinto' }],
-                ['German', { id: '273', name: 'Preis' }],
-                ['Polish', { id: '273', name: 'Nagroda' }],
-                ['Russian', { id: '273', name: 'Трофей' }],
+                ['Czech', { id: '431', name: 'Odměna' }],
+                ['Dutch', { id: '431', name: 'Prijs' }],
+                ['Finnish', { id: '431', name: 'Palkinto' }],
+                ['German', { id: '431', name: 'Preis' }],
+                ['Polish', { id: '431', name: 'Nagroda' }],
+                ['Russian', { id: '431', name: 'Трофей' }],
             ]);
 
             const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
@@ -83,18 +82,17 @@ describe('CardTypeTranslationBuilder', () => {
                 ],
             };
             const cargoCardType: CargoCardType = {
-                Id: '300',
-                PageId: '300',
+                PageId: '6107',
                 Name: 'Project',
                 Scope: 'Landscape',
             };
             const cardTranslations = new Map<string, CardTranslation>([
-                ['Dutch', { id: '300', name: 'Project', description: 'Project' }],
-                ['German', { id: '300', name: 'Projekt', description: '' }],
+                ['Dutch', { id: '6107', name: 'Project', description: 'Project' }],
+                ['German', { id: '6107', name: 'Projekt', description: '' }],
             ]);
             const expected = new Map<string, CardTypeTranslation>([
-                ['Dutch', { id: '300', name: 'Project' }],
-                ['German', { id: '300', name: 'Projekt' }],
+                ['Dutch', { id: '6107', name: 'Project' }],
+                ['German', { id: '6107', name: 'Projekt' }],
             ]);
             cardTranslationBuilderSpy.build
                 .withArgs(cardTypePage, cargoCardType)
@@ -126,18 +124,17 @@ describe('CardTypeTranslationBuilder', () => {
                 ],
             };
             const cargoCardType: CargoCardType = {
-                Id: '263',
-                PageId: '263',
+                PageId: '577',
                 Name: 'Knight',
                 Scope: 'Single-pile',
             };
             const cardTranslations = new Map<string, CardTranslation>([
-                ['French', { id: '263', name: 'Chevalier', description: '' }],
-                ['German', { id: '263', name: 'Ritter', description: '' }],
+                ['French', { id: '577', name: 'Chevalier', description: '' }],
+                ['German', { id: '577', name: 'Ritter', description: '' }],
             ]);
             const expected = new Map<string, CardTypeTranslation>([
-                ['French', { id: '263', name: 'Chevalier' }],
-                ['German', { id: '263', name: 'Ritter' }],
+                ['French', { id: '577', name: 'Chevalier' }],
+                ['German', { id: '577', name: 'Ritter' }],
             ]);
             cardTranslationBuilderSpy.build
                 .withArgs(cardTypePage, cargoCardType)

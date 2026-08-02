@@ -1,6 +1,7 @@
 import { EditionTranslation } from '../../../../../src/app/models/edition';
 import { CargoEdition, ExpansionPage, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
+import { buildCargoEditionId } from './cargo-id';
 
 export class EditionTranslationBuilder {
     build(
@@ -24,7 +25,7 @@ export class EditionTranslationBuilder {
                     /:\s*(\S[^(:]*)/.exec(listItems[0])?.[1] ?? /^[^:(]+/.exec(listItems[1])?.[0];
 
                 const translations: EditionTranslation[] = editions.map((edition) => ({
-                    id: edition.Id,
+                    id: buildCargoEditionId(edition),
                     expansion: normalize(expansion),
                 }));
 

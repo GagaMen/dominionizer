@@ -20,7 +20,6 @@ describe('CardDtoBuilder', () => {
         { id: '251', name: 'Knight', scope: '' },
     ];
     const nullCargoCard: CargoCard = {
-        Id: '',
         PageId: '',
         Name: '',
         Expansion: '',
@@ -63,7 +62,6 @@ describe('CardDtoBuilder', () => {
         it('with basic cargoCard should return correct card', () => {
             const cargoCard: CargoCard = {
                 ...nullCargoCard,
-                Id: '5006',
                 PageId: '8442',
                 Name: 'Barbarian',
                 Expansion: 'Allies',
@@ -97,7 +95,7 @@ describe('CardDtoBuilder', () => {
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                id: '5006',
+                id: '8442',
                 name: 'Barbarian',
                 description: `At the start...{{divline}}This is gained ...`,
                 image: 'BarbarianArt.jpg',
@@ -117,7 +115,7 @@ describe('CardDtoBuilder', () => {
         it('with cargoCard is in one edition of a multi edition expansion should return correct card', () => {
             const cargoCard = {
                 ...nullCargoCard,
-                Id: '4823',
+                PageId: '4823',
                 Expansion: 'Dominion',
                 Art: '',
                 Edition: '1',
@@ -137,7 +135,7 @@ describe('CardDtoBuilder', () => {
         it('with cargoCard is in all editions of a multi edition expansion should return correct card', () => {
             const cargoCard = {
                 ...nullCargoCard,
-                Id: '4818',
+                PageId: '4818',
                 Expansion: 'Dominion',
                 Art: '',
                 Edition: '1&2',
@@ -243,7 +241,6 @@ describe('CardDtoBuilder', () => {
         it('with cargoCard of card type should return correct card', () => {
             const cargoCard: CargoCard = {
                 ...nullCargoCard,
-                Id: '5225',
                 PageId: '577',
                 Name: 'Knights',
                 Expansion: 'Dark Ages',
@@ -277,7 +274,7 @@ describe('CardDtoBuilder', () => {
             };
             const expected: CardDto = {
                 ...nullCardDto,
-                id: '5225',
+                id: '577',
                 name: 'Knights',
                 description: `At the start...{{divline}}This is gained ...`,
                 image: 'KnightsArt.jpg',

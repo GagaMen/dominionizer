@@ -12,13 +12,12 @@ describe('CardTypeBuilder', () => {
     describe('build', () => {
         it('should return correct card type', () => {
             const cargoCardType: CargoCardType = {
-                Id: '119',
-                PageId: '119',
+                PageId: '2821',
                 Name: 'Landmark',
                 Scope: 'Landscape',
             };
             const expected: CardType = {
-                id: '119',
+                id: '2821',
                 name: 'Landmark',
                 scope: 'Landscape',
             };

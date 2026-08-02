@@ -45,7 +45,7 @@ export class WikiClient {
             format: 'json',
             action: 'cargoquery',
             tables: 'Editions',
-            fields: '_ID=Id,_pageID=PageId,Expansion,Edition,Icon',
+            fields: '_pageID=PageId,Expansion,Edition,Icon',
             limit: String(this.pageLimit),
         };
 
@@ -70,7 +70,7 @@ export class WikiClient {
             format: 'json',
             action: 'cargoquery',
             tables: 'Components',
-            fields: '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+            fields: '_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
             limit: String(this.pageLimit),
         };
 
@@ -97,7 +97,7 @@ export class WikiClient {
             format: 'json',
             action: 'cargoquery',
             tables: 'Types',
-            fields: '_ID=Id,_pageID=PageId,Name,Scope',
+            fields: '_pageID=PageId,Name,Scope',
             limit: String(this.pageLimit),
         };
 

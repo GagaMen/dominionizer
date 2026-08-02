@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Editions&fields=_ID=Id,Expansion,Edition,Icon&format=json
+  url: https://wiki.dominionstrategy.com/api.php?action=cargoquery&tables=Editions&fields=_pageID=PageId,Expansion,Edition,Icon&format=json
   body: none
   auth: inherit
 }
@@ -13,7 +13,7 @@ get {
 params:query {
   action: cargoquery
   tables: Editions
-  fields: _ID=Id,Expansion,Edition,Icon
+  fields: _pageID=PageId,Expansion,Edition,Icon
   format: json
 }
 

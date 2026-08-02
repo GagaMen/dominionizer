@@ -37,8 +37,8 @@ describe('CardTypeValidator', () => {
 describe('CardTypesValidator', () => {
     const validator = new CardTypesValidator();
 
-    const cargoCardType = (Id: string, Name: string): CargoCardType =>
-        ({ Id, Name }) as unknown as CargoCardType;
+    const cargoCardType = (PageId: string, Name: string): CargoCardType =>
+        ({ PageId, Name }) as unknown as CargoCardType;
     const cardType = (id: string, name: string): CardType => ({ id, name }) as unknown as CardType;
 
     describe('validate', () => {

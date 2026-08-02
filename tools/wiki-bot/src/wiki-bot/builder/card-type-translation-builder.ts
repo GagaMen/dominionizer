@@ -2,6 +2,7 @@ import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage, CargoCardType, WikiText } from '../wiki-client/api-models';
 import { extractSection, normalize } from './helper-functions';
 import { CardTranslationBuilder } from './card-translation-builder';
+import { buildCargoId } from './cargo-id';
 
 export class CardTypeTranslationBuilder {
     constructor(private cardTranslationBuilder: CardTranslationBuilder) {}
@@ -41,7 +42,10 @@ export class CardTypeTranslationBuilder {
                 name = /[^(:]*/.exec(name)?.[0];
                 name = name?.replace(/(<br\s*\/?>|<hr[^>]*?>).*/, '');
 
-                return [normalize(language), { id: cargoCardType.Id, name: normalize(name) }];
+                return [
+                    normalize(language),
+                    { id: buildCargoId(cargoCardType), name: normalize(name) },
+                ];
             }),
         );
     }

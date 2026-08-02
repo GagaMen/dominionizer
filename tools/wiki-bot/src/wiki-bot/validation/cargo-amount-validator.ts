@@ -1,8 +1,9 @@
+import { buildCargoId } from '../builder/cargo-id';
 import { ValidationResult } from './validation-result';
 
 export class CargoAmountValidator<
     TEntity extends { id: string },
-    TCargoEntity extends { Id: string; Name: string },
+    TCargoEntity extends { PageId: string; Name: string },
 > {
     validate(
         entities: TEntity[],
@@ -10,7 +11,10 @@ export class CargoAmountValidator<
         failureMessageHeadline: string,
     ): ValidationResult {
         const cargoEntitiesWithoutEntity = cargoEntities
-            .filter((cargoEntity) => !entities.some((entity) => entity.id === cargoEntity.Id))
+            .filter(
+                (cargoEntity) =>
+                    !entities.some((entity) => entity.id === buildCargoId(cargoEntity)),
+            )
             .map((cargoEntity) => cargoEntity.Name);
 
         if (cargoEntitiesWithoutEntity.length === 0) {

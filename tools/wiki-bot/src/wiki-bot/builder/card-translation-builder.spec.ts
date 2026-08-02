@@ -13,7 +13,6 @@ describe('CardTranslationBuilder', () => {
     };
 
     const nullCargoCard: CargoCard = {
-        Id: '',
         PageId: '',
         Name: '',
         Expansion: '',
@@ -59,14 +58,13 @@ describe('CardTranslationBuilder', () => {
             };
             const cargoCard: CargoCard = {
                 ...nullCargoCard,
-                Id: '42',
                 PageId: '247',
             };
             const expected = new Map<string, CardTranslation>([
                 [
                     'German',
                     {
-                        id: '42',
+                        id: '247',
                         name: 'Platin',
                         description: `{{Cost|5|xl|}}`,
                     },
@@ -74,7 +72,7 @@ describe('CardTranslationBuilder', () => {
                 [
                     'Polish',
                     {
-                        id: '42',
+                        id: '247',
                         name: 'Platyna',
                         description: `{{Cost|5}}`,
                     },
@@ -82,7 +80,7 @@ describe('CardTranslationBuilder', () => {
                 [
                     'French',
                     {
-                        id: '42',
+                        id: '247',
                         name: 'Argent',
                         description: `{{Cost|3}}`,
                     },
@@ -118,14 +116,13 @@ describe('CardTranslationBuilder', () => {
             };
             const cargoCard: CargoCard = {
                 ...nullCargoCard,
-                Id: '200',
                 PageId: '6107',
             };
             const expected = new Map<string, CardTranslation>([
                 [
                     'Dutch',
                     {
-                        id: '200',
+                        id: '6107',
                         name: 'Project',
                         description: `Project`,
                     },
@@ -133,7 +130,7 @@ describe('CardTranslationBuilder', () => {
                 [
                     'German',
                     {
-                        id: '200',
+                        id: '6107',
                         name: 'Projekt',
                         description: ``,
                     },
@@ -164,7 +161,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '10' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '10' };
             const expected = new Map([
                 [
                     'German',
@@ -199,7 +196,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '11' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '11' };
             const expected = new Map([
                 [
                     'German',
@@ -234,7 +231,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '12' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '12' };
             const expected = new Map([
                 [
                     'German',
@@ -268,7 +265,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '13' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '13' };
             const expected = new Map([
                 [
                     'German',
@@ -304,7 +301,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '14' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '14' };
             const expected = new Map([
                 [
                     'German',
@@ -344,7 +341,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '15' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '15' };
             const expected = new Map([
                 [
                     'German',
@@ -380,7 +377,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '16' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '16' };
             const expected = new Map([
                 ['German', jasmine.objectContaining<CardTranslation>({ description: '' })],
             ]);
@@ -417,7 +414,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '17' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '17' };
             const expected = new Map<string, CardTranslation>([
                 [
                     'German',
@@ -463,7 +460,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '18' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '18' };
             const expected = new Map([
                 ['German', { id: '18', name: 'Große Halle', description: jasmine.anything() }],
             ]);
@@ -500,7 +497,7 @@ describe('CardTranslationBuilder', () => {
                     },
                 ],
             };
-            const cargoCard: CargoCard = { ...nullCargoCard, Id: '19' };
+            const cargoCard: CargoCard = { ...nullCargoCard, PageId: '19' };
             const expected = new Map<string, CardTranslation>([
                 [
                     'German',

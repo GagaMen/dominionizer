@@ -52,14 +52,12 @@ describe('EditionTranslationBuilder', () => {
             };
             const editions: CargoEdition[] = [
                 {
-                    Id: '268',
                     PageId: '914',
                     Expansion: 'Dominion',
                     Edition: '2',
                     Icon: 'Dominion_icon.png',
                 },
                 {
-                    Id: '269',
                     PageId: '914',
                     Expansion: 'Dominion',
                     Edition: '1',
@@ -70,120 +68,120 @@ describe('EditionTranslationBuilder', () => {
                 [
                     'Chinese',
                     [
-                        { id: '268', expansion: '皇舆争霸' },
-                        { id: '269', expansion: '皇舆争霸' },
+                        { id: '914-2', expansion: '皇舆争霸' },
+                        { id: '914-1', expansion: '皇舆争霸' },
                     ],
                 ],
                 [
                     'Czech',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Dutch',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Finnish',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'French',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'German',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Greek',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Hungarian',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Italian',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Japanese',
                     [
-                        { id: '268', expansion: 'ドミニオン' },
-                        { id: '269', expansion: 'ドミニオン' },
+                        { id: '914-2', expansion: 'ドミニオン' },
+                        { id: '914-1', expansion: 'ドミニオン' },
                     ],
                 ],
                 [
                     'Korean',
                     [
-                        { id: '268', expansion: '도미니언' },
-                        { id: '269', expansion: '도미니언' },
+                        { id: '914-2', expansion: '도미니언' },
+                        { id: '914-1', expansion: '도미니언' },
                     ],
                 ],
                 [
                     'Norwegian',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Polish',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Romanian',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Russian',
                     [
-                        { id: '268', expansion: 'Доминион' },
-                        { id: '269', expansion: 'Доминион' },
+                        { id: '914-2', expansion: 'Доминион' },
+                        { id: '914-1', expansion: 'Доминион' },
                     ],
                 ],
                 [
                     'Spanish',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
                 [
                     'Swedish',
                     [
-                        { id: '268', expansion: 'Dominion' },
-                        { id: '269', expansion: 'Dominion' },
+                        { id: '914-2', expansion: 'Dominion' },
+                        { id: '914-1', expansion: 'Dominion' },
                     ],
                 ],
             ]);
@@ -214,7 +212,6 @@ describe('EditionTranslationBuilder', () => {
             };
             const editions: CargoEdition[] = [
                 {
-                    Id: '148',
                     PageId: '100',
                     Expansion: 'Alchemy',
                     Edition: '1',
@@ -222,9 +219,9 @@ describe('EditionTranslationBuilder', () => {
                 },
             ];
             const expected = new Map<string, EditionTranslation[]>([
-                ['Czech', [{ id: '148', expansion: 'Alchymie' }]],
-                ['Dutch', [{ id: '148', expansion: 'De Alchemisten' }]],
-                ['Finnish', [{ id: '148', expansion: 'Alkemia' }]],
+                ['Czech', [{ id: '100-1', expansion: 'Alchymie' }]],
+                ['Dutch', [{ id: '100-1', expansion: 'De Alchemisten' }]],
+                ['Finnish', [{ id: '100-1', expansion: 'Alkemia' }]],
             ]);
 
             const actual = editionTranslationBuilder.build(expansionPage, editions);
@@ -253,7 +250,6 @@ describe('EditionTranslationBuilder', () => {
             };
             const editions: CargoEdition[] = [
                 {
-                    Id: '300',
                     PageId: '200',
                     Expansion: 'Allies',
                     Edition: '1',
@@ -261,10 +257,10 @@ describe('EditionTranslationBuilder', () => {
                 },
             ];
             const expected = new Map<string, EditionTranslation[]>([
-                ['Dutch', [{ id: '300', expansion: 'Bondgenoten' }]],
-                ['German', [{ id: '300', expansion: 'Verbündete' }]],
-                ['Japanese', [{ id: '300', expansion: '同盟' }]],
-                ['Korean', [{ id: '300', expansion: '도미니언' }]],
+                ['Dutch', [{ id: '200-1', expansion: 'Bondgenoten' }]],
+                ['German', [{ id: '200-1', expansion: 'Verbündete' }]],
+                ['Japanese', [{ id: '200-1', expansion: '同盟' }]],
+                ['Korean', [{ id: '200-1', expansion: '도미니언' }]],
             ]);
 
             const actual = editionTranslationBuilder.build(expansionPage, editions);

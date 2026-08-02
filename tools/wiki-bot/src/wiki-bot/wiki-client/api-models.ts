@@ -21,7 +21,6 @@ export type ExpansionPage = Page & {
 };
 
 export interface CargoEdition {
-    Id: string;
     PageId: string;
     Expansion: string;
     Edition: string;
@@ -29,7 +28,6 @@ export interface CargoEdition {
 }
 
 export interface CargoCard {
-    Id: string;
     PageId: string;
     Name: string;
     Expansion: string;
@@ -45,7 +43,6 @@ export interface CargoCard {
 }
 
 export interface CargoCardType {
-    Id: string;
     PageId: string;
     Name: string;
     Scope: string;

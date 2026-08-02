@@ -29,6 +29,8 @@ import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { CardDto } from '../../../../src/app/dtos/card-dto';
 import * as fs from 'fs';
 import { ValidationResult } from './validation/validation-result';
+import { CargoIdUniquenessValidator } from './validation/cargo-id-uniqueness-validator';
+import { buildCargoEditionId, buildCargoId } from './builder/cargo-id';
 
 export class DominionizerWikiBot {
     private successful = true;
@@ -53,6 +55,7 @@ export class DominionizerWikiBot {
         private cardDtosValidator: CardDtosValidator,
         private cardTranslationValidator: CardTranslationValidator,
         private imagesValidator: ImagesValidator,
+        private cargoIdUniquenessValidator: CargoIdUniquenessValidator,
     ) {}
 
     async generateAll(skipImages = false): Promise<boolean> {
@@ -159,6 +162,14 @@ export class DominionizerWikiBot {
     private generateEditions(cargoEditions: CargoEdition[]): Edition[] {
         console.log('Generating editions...');
 
+        this.evaluateValidationResult(
+            this.cargoIdUniquenessValidator.validate(
+                cargoEditions,
+                buildCargoEditionId,
+                'Following edition ids are not unique:',
+            ),
+        );
+
         const editions: Edition[] = [];
 
         for (const cargoEdition of cargoEditions) {
@@ -201,7 +212,8 @@ export class DominionizerWikiBot {
 
                 for (const editionTranslation of editionTranslations) {
                     const cargoEdition = filteredEditions.find(
-                        (cargoEdition) => cargoEdition.Id === editionTranslation.id,
+                        (cargoEdition) =>
+                            buildCargoEditionId(cargoEdition) === editionTranslation.id,
                     );
                     if (cargoEdition !== undefined) {
                         this.evaluateValidationResult(
@@ -238,6 +250,14 @@ export class DominionizerWikiBot {
 
     private generateCardTypes(cargoCardTypes: CargoCardType[]): CardType[] {
         console.log('Generating card types...');
+
+        this.evaluateValidationResult(
+            this.cargoIdUniquenessValidator.validate(
+                cargoCardTypes,
+                buildCargoId,
+                'Following card type ids are not unique:',
+            ),
+        );
 
         const cardTypes: CardType[] = [];
 
@@ -323,6 +343,14 @@ export class DominionizerWikiBot {
         cardTypes: CardType[],
     ): CardDto[] {
         console.log('Generating cards...');
+
+        this.evaluateValidationResult(
+            this.cargoIdUniquenessValidator.validate(
+                cargoCards,
+                buildCargoId,
+                'Following card ids are not unique:',
+            ),
+        );
 
         const allPages: (CardPage | CardTypePage)[] = [...cardPages, ...cardTypePages];
         const cards: CardDto[] = [];

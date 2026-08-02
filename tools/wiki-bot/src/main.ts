@@ -14,6 +14,7 @@ import { CardTypesValidator, CardTypeValidator } from './wiki-bot/validation/car
 import { EditionTranslationValidator } from './wiki-bot/validation/edition-translation-validators';
 import { EditionValidator } from './wiki-bot/validation/edition-validators';
 import { ImagesValidator } from './wiki-bot/validation/image-validators';
+import { CargoIdUniquenessValidator } from './wiki-bot/validation/cargo-id-uniqueness-validator';
 import { Command } from 'commander';
 import { exec } from 'child_process';
 import { exit } from 'process';
@@ -67,6 +68,7 @@ async function bootstrap(): Promise<void> {
     const cardDtosValidator = new CardDtosValidator();
     const cardTranslationValidator = new CardTranslationValidator();
     const imageValidator = new ImagesValidator();
+    const cargoIdUniquenessValidator = new CargoIdUniquenessValidator();
 
     const bot = new DominionizerWikiBot(
         currentGenerationTime,
@@ -88,6 +90,7 @@ async function bootstrap(): Promise<void> {
         cardDtosValidator,
         cardTranslationValidator,
         imageValidator,
+        cargoIdUniquenessValidator,
     );
 
     let successful: boolean;

@@ -12,14 +12,12 @@ describe('WikiClient', () => {
     let wikiClient: WikiClient;
     let fetchSpy: jasmine.Spy<typeof fetch>;
     const edition: CargoEdition = {
-        Id: '1',
         PageId: '42',
         Edition: '1',
         Expansion: 'Base',
         Icon: 'base_icon.png',
     };
     const card: CargoCard = {
-        Id: '3043',
         PageId: '11442',
         Name: 'Ronin',
         Expansion: 'Rising Sun',
@@ -34,7 +32,6 @@ describe('WikiClient', () => {
         Types: 'Action-Shadow',
     };
     const cardType: CargoCardType = {
-        Id: '124',
         PageId: '124',
         Name: 'Boon',
         Scope: 'Landscape',
@@ -91,7 +88,7 @@ describe('WikiClient', () => {
 
         it('should fetch all editions correctly', async () => {
             url.searchParams.append('tables', 'Editions');
-            url.searchParams.append('fields', '_ID=Id,_pageID=PageId,Expansion,Edition,Icon');
+            url.searchParams.append('fields', '_pageID=PageId,Expansion,Edition,Icon');
             url.searchParams.append('limit', String(pageLimit));
             url.searchParams.append('offset', '0');
 
@@ -130,7 +127,7 @@ describe('WikiClient', () => {
             url.searchParams.append('tables', 'Components');
             url.searchParams.append(
                 'fields',
-                '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+                '_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
             );
             url.searchParams.append('limit', String(pageLimit));
             url.searchParams.append('offset', '0');
@@ -186,7 +183,7 @@ describe('WikiClient', () => {
             firstUrl.searchParams.append('tables', 'Components');
             firstUrl.searchParams.append(
                 'fields',
-                '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+                '_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
             );
             firstUrl.searchParams.append('limit', String(pageLimit));
             firstUrl.searchParams.append('offset', '0');
@@ -195,7 +192,7 @@ describe('WikiClient', () => {
             secondUrl.searchParams.append('tables', 'Components');
             secondUrl.searchParams.append(
                 'fields',
-                '_ID=Id,_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
+                '_pageID=PageId,Name,Expansion,Purpose,Cost_Coin=CostCoin,Cost_Potion=CostPotion,Cost_Debt=CostDebt,Cost_Extra=CostExtra,Art,Illustrator,Edition,Types',
             );
             secondUrl.searchParams.append('limit', String(pageLimit));
             secondUrl.searchParams.append('offset', String(pageLimit));
@@ -236,7 +233,7 @@ describe('WikiClient', () => {
 
         it('should fetch all card types correctly', async () => {
             url.searchParams.append('tables', 'Types');
-            url.searchParams.append('fields', '_ID=Id,_pageID=PageId,Name,Scope');
+            url.searchParams.append('fields', '_pageID=PageId,Name,Scope');
             url.searchParams.append('limit', String(pageLimit));
             url.searchParams.append('offset', '0');
 

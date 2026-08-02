@@ -4,6 +4,7 @@ import { CardPage, WikiText } from '../wiki-client/api-models';
 import { CardDto } from '../../../../../src/app/dtos/card-dto';
 import { extractTemplate, extractTemplatePropertyValue, normalize } from './helper-functions';
 import { Edition } from 'src/app/models/edition';
+import { buildCargoId } from './cargo-id';
 
 export class CardDtoBuilder {
     build(
@@ -16,7 +17,7 @@ export class CardDtoBuilder {
         const infoBox: WikiText = extractTemplate(wikiText, 'Infobox');
 
         return {
-            id: cargoCard.Id,
+            id: buildCargoId(cargoCard),
             name: cargoCard.Name,
             description: this.extractDescription(infoBox),
             image: cargoCard.Art.replaceAll(' ', '_'),
