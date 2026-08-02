@@ -28,12 +28,14 @@ import {
 import { CardType, CardTypeTranslation } from 'src/app/models/card-type';
 import { CardDto } from '../../../../src/app/dtos/card-dto';
 import * as fs from 'fs';
-import { ValidationResult } from './validation/validation-result';
+import { ValidationResult, ValidationSeverity } from './validation/validation-result';
 import { CargoIdUniquenessValidator } from './validation/cargo-id-uniqueness-validator';
 import { buildCargoEditionId, buildCargoId } from './builder/cargo-id';
 
 export class DominionizerWikiBot {
     private successful = true;
+    private readonly warnings: string[] = [];
+    private readonly errors: string[] = [];
 
     constructor(
         private currentGenerationTime: Date,
@@ -99,6 +101,8 @@ export class DominionizerWikiBot {
             cardTypePages,
         );
         await this.writeCardTranslations(cardTranslations);
+
+        await this.writeValidationReport();
 
         return this.successful;
     }
@@ -222,6 +226,7 @@ export class DominionizerWikiBot {
                                 language,
                                 cargoEdition,
                             ),
+                            ValidationSeverity.Warning,
                         );
                     }
                 }
@@ -311,6 +316,7 @@ export class DominionizerWikiBot {
                         language,
                         cargoCardType,
                     ),
+                    ValidationSeverity.Warning,
                 );
 
                 translations.set(language, translationsByLanguage.concat(translation));
@@ -366,7 +372,10 @@ export class DominionizerWikiBot {
             cards.push(card);
         }
 
-        this.evaluateValidationResult(this.cardDtosValidator.validate(cards, cargoCards));
+        this.evaluateValidationResult(
+            this.cardDtosValidator.validate(cards, cargoCards),
+            ValidationSeverity.Warning,
+        );
 
         this.sortById(cards);
 
@@ -400,6 +409,7 @@ export class DominionizerWikiBot {
 
                 this.evaluateValidationResult(
                     this.cardTranslationValidator.validate(translation, language, cargoCard),
+                    ValidationSeverity.Warning,
                 );
 
                 translations.set(language, translationsByLanguage.concat(translation));
@@ -456,12 +466,49 @@ export class DominionizerWikiBot {
         return images;
     }
 
-    private evaluateValidationResult(validationResult: ValidationResult): void {
+    // The severity is decided here rather than by the validators themselves: whether a finding
+    // should block the weekly pull request is an orchestration concern, not a property of the
+    // underlying schema.
+    private evaluateValidationResult(
+        validationResult: ValidationResult,
+        severity: ValidationSeverity = ValidationSeverity.Error,
+    ): void {
         if (validationResult === ValidationResult.Success) {
             return;
         }
 
-        console.error(validationResult.failureMessage);
+        const message = validationResult.failureMessage as string;
+
+        if (severity === ValidationSeverity.Warning) {
+            console.warn(message);
+            this.warnings.push(message);
+            return;
+        }
+
+        console.error(message);
+        this.errors.push(message);
         this.successful = false;
+    }
+
+    private async writeValidationReport(): Promise<void> {
+        const sections: string[] = [];
+
+        if (this.errors.length > 0) {
+            sections.push(this.buildReportSection('❌ Validation errors', this.errors));
+        }
+
+        if (this.warnings.length > 0) {
+            sections.push(this.buildReportSection('⚠️ Validation warnings', this.warnings));
+        }
+
+        // Stays byte-empty on a clean run so the workflow's `-s` test skips it; otherwise it ends
+        // with a newline so the heredoc delimiter appending it lands on its own line.
+        const report = sections.length > 0 ? `${sections.join('\n\n')}\n` : '';
+
+        await fs.promises.writeFile('./validation-report.md', report);
+    }
+
+    private buildReportSection(headline: string, messages: string[]): string {
+        return `### ${headline} (${messages.length})\n\n\`\`\`\n${messages.join('\n\n')}\n\`\`\``;
     }
 }

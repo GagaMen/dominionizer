@@ -41,6 +41,22 @@ jobs:
               id: changes
               run: echo "changed=$(git diff --quiet --stat HEAD -- ./src/data ./src/assets || echo 'true')" >> $GITHUB_OUTPUT
 
+            - name: Build pull request body
+              # Validation warnings don't fail the wiki-bot, so surface them in the PR instead
+              if: steps.changes.outputs.changed == 'true'
+              run: |
+                  {
+                    echo 'PR_BODY<<PR_BODY_EOF'
+                    echo 'Updates data extracted from [wiki.dominionstrategy.com](https://wiki.dominionstrategy.com/)'
+                    if [ -s tools/wiki-bot/validation-report.md ]; then
+                      echo
+                      cat tools/wiki-bot/validation-report.md
+                      # guarantees the delimiter below starts on its own line
+                      echo
+                    fi
+                    echo 'PR_BODY_EOF'
+                  } >> "$GITHUB_ENV"
+
             - name: Create Pull Request
               # Create PR only if there are changes in the src/data or src/assets folder otherwise skip
               if: steps.changes.outputs.changed == 'true'
@@ -48,7 +64,7 @@ jobs:
               with:
                   token: ${{ secrets.WIKI_BOT_TOKEN }}
                   title: Wiki bot update
-                  body: Updates data extracted from [wiki.dominionstrategy.com](https://wiki.dominionstrategy.com/)
+                  body: ${{ env.PR_BODY }}
                   add-paths: |
                       src/data/*
                       src/assets/**/*

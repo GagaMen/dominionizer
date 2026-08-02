@@ -1,3 +1,8 @@
+export enum ValidationSeverity {
+    Warning = 'Warning',
+    Error = 'Error',
+}
+
 export class ValidationResult {
     static readonly Success: ValidationResult = new ValidationResult();
 

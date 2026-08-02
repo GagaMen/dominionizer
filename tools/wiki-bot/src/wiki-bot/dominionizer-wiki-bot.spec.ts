@@ -174,6 +174,8 @@ describe('DominionizerWikiBot', () => {
             .and.resolveTo(JSON.stringify(lastGenerationTime));
 
         spyOn(console, 'log').and.stub();
+        spyOn(console, 'warn').and.stub();
+        spyOn(console, 'error').and.stub();
 
         dominionizerWikiBot = new DominionizerWikiBot(
             currentGenerationTime,
@@ -656,6 +658,41 @@ describe('DominionizerWikiBot', () => {
             const result = await dominionizerWikiBot.generateAll();
 
             expect(result).toBe(true);
+        });
+
+        it('with warning level validation failure should return true and report it', async () => {
+            cardDtosValidatorSpy.validate.and.returnValue(
+                ValidationResult.Failure('For following cargo cards no card was generated:\nReap'),
+            );
+
+            const result = await dominionizerWikiBot.generateAll();
+
+            expect(result).toBe(true);
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                './validation-report.md',
+                '### ⚠️ Validation warnings (1)\n\n' +
+                    '```\nFor following cargo cards no card was generated:\nReap\n```\n',
+            );
+        });
+
+        it('with error level validation failure should return false and report it', async () => {
+            cardTypesValidatorSpy.validate.and.returnValue(
+                ValidationResult.Failure('Card types validation failed'),
+            );
+
+            const result = await dominionizerWikiBot.generateAll();
+
+            expect(result).toBe(false);
+            expect(writeFileSpy).toHaveBeenCalledWith(
+                './validation-report.md',
+                '### ❌ Validation errors (1)\n\n```\nCard types validation failed\n```\n',
+            );
+        });
+
+        it('without validation failures should write an empty validation report', async () => {
+            await dominionizerWikiBot.generateAll();
+
+            expect(writeFileSpy).toHaveBeenCalledWith('./validation-report.md', '');
         });
     });
 
