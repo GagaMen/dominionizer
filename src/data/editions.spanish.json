@@ -1,15 +1,15 @@
 [
-    { "id": "280", "expansion": "Edad Oscura" },
-    { "id": "295", "expansion": "Terramar" },
-    { "id": "296", "expansion": "Terramar" },
-    { "id": "298", "expansion": "Intriga" },
-    { "id": "299", "expansion": "Intriga" },
-    { "id": "304", "expansion": "Alquimia" },
-    { "id": "310", "expansion": "Comarcas" },
-    { "id": "311", "expansion": "Comarcas" },
-    { "id": "312", "expansion": "Dominion" },
-    { "id": "313", "expansion": "Dominion" },
-    { "id": "317", "expansion": "Prosperidad" },
-    { "id": "318", "expansion": "Prosperidad" },
-    { "id": "321", "expansion": "Renacimiento" }
+    { "id": "156-1", "expansion": "Edad Oscura" },
+    { "id": "171-1", "expansion": "Intriga" },
+    { "id": "171-2", "expansion": "Intriga" },
+    { "id": "175-1", "expansion": "Terramar" },
+    { "id": "175-2", "expansion": "Terramar" },
+    { "id": "176-1", "expansion": "Alquimia" },
+    { "id": "179-1", "expansion": "Prosperidad" },
+    { "id": "179-2", "expansion": "Prosperidad" },
+    { "id": "181-1", "expansion": "Comarcas" },
+    { "id": "181-2", "expansion": "Comarcas" },
+    { "id": "914-1", "expansion": "Dominion" },
+    { "id": "914-2", "expansion": "Dominion" },
+    { "id": "6098-1", "expansion": "Renacimiento" }
 ]

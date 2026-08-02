@@ -1,31 +1,11 @@
 [
-    {
-        "id": "5294",
-        "name": "Καγκελάριος",
-        "description": "{{Costplus|2}}<br>Μπορείτε αμέσως να τοποθετήσετε την τράπουλά σας στα σκάρτα."
-    },
-    { "id": "5295", "name": "Παρεκκλήσι", "description": "" },
-    { "id": "5297", "name": "Γιορτή", "description": "" },
-    { "id": "5299", "name": "Κήποι", "description": "" },
-    { "id": "5301", "name": "Εργαστήριο", "description": "" },
-    { "id": "5302", "name": "Βιβλιοθήκη", "description": "" },
-    { "id": "5305", "name": "Πολιτοφυλακή", "description": "" },
-    { "id": "5312", "name": "Σιδεράς", "description": "" },
-    { "id": "5319", "name": "Ξυλοκόπος", "description": "" },
-    { "id": "5648", "name": "Ασημένιο", "description": "" },
-    { "id": "6294", "name": "Τυχοδιώκτης", "description": "" },
-    { "id": "6296", "name": "Κατάσκοπος", "description": "" },
-    {
-        "id": "6297",
-        "name": "Τάφρος",
-        "description": "'''+2 Kάρτες'''{{Divline}}Όταν κάποιος άλλος παίχτης παίξει μία κάρτα Επίθεσης, μπορείτε να δείξετε αυτή την κάρτα αν την έχετε στο χέρι σας. Αν το κάνετε, δεν σας επηρεάζει η Επίθεση."
-    },
-    { "id": "6298", "name": "Χάλκινο", "description": "" },
-    { "id": "6386", "name": "Χρυσό", "description": "" },
-    { "id": "6404", "name": "Κτήμα", "description": "" },
-    { "id": "6405", "name": "Δουκάτο", "description": "" },
-    { "id": "6406", "name": "Επαρχία", "description": "" },
-    { "id": "6407", "name": "Κατάρα", "description": "" },
-    { "id": "6409", "name": "Αίθουσα του θρόνου", "description": "" },
-    { "id": "6410", "name": "Τοκογλύφος", "description": "" }
+    { "id": "24", "name": "Ξυλοκόπος", "description": "" },
+    { "id": "45", "name": "Αίθουσα του θρόνου", "description": "" },
+    { "id": "212", "name": "Κατάρα", "description": "" },
+    { "id": "517", "name": "Χάλκινο", "description": "" },
+    { "id": "525", "name": "Κτήμα", "description": "" },
+    { "id": "526", "name": "Ασημένιο", "description": "" },
+    { "id": "528", "name": "Δουκάτο", "description": "" },
+    { "id": "529", "name": "Χρυσό", "description": "" },
+    { "id": "530", "name": "Επαρχία", "description": "" }
 ]

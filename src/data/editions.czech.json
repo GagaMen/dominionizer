@@ -1,14 +1,14 @@
 [
-    { "id": "280", "expansion": "Temné časy" },
-    { "id": "295", "expansion": "Pobřeží" },
-    { "id": "296", "expansion": "Pobřeží" },
-    { "id": "298", "expansion": "Intriky" },
-    { "id": "299", "expansion": "Intriky" },
-    { "id": "304", "expansion": "Alchymie" },
-    { "id": "310", "expansion": "Vzdálené kraje" },
-    { "id": "311", "expansion": "Vzdálené kraje" },
-    { "id": "312", "expansion": "Dominion" },
-    { "id": "313", "expansion": "Dominion" },
-    { "id": "317", "expansion": "Prosperita" },
-    { "id": "318", "expansion": "Prosperita" }
+    { "id": "156-1", "expansion": "Temné časy" },
+    { "id": "171-1", "expansion": "Intriky" },
+    { "id": "171-2", "expansion": "Intriky" },
+    { "id": "175-1", "expansion": "Pobřeží" },
+    { "id": "175-2", "expansion": "Pobřeží" },
+    { "id": "176-1", "expansion": "Alchymie" },
+    { "id": "179-1", "expansion": "Prosperita" },
+    { "id": "179-2", "expansion": "Prosperita" },
+    { "id": "181-1", "expansion": "Vzdálené kraje" },
+    { "id": "181-2", "expansion": "Vzdálené kraje" },
+    { "id": "914-1", "expansion": "Dominion" },
+    { "id": "914-2", "expansion": "Dominion" }
 ]
