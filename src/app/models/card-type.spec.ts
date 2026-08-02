@@ -2,9 +2,10 @@ import cardTypes from '../../data/card-types.json';
 import { CardType, CardTypeId } from './card-type';
 
 describe('CardTypeId', () => {
-    // The ids come from the Cargo "Types" table and are row ids, which the wiki
-    // reassigns whenever a type page is reparsed. A drifted id makes the app
-    // silently stop finding cards of that type, so pin the enum to the data.
+    // The ids come from the Cargo "Types" table and are wiki page ids, which
+    // only change when a type page is deleted and recreated. A drifted id makes
+    // the app silently stop finding cards of that type, so pin the enum to the
+    // data.
     it('should name a generated card type for every entry', () => {
         const generatedCardTypes = cardTypes as CardType[];
 

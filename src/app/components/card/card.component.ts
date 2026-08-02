@@ -75,7 +75,7 @@ export class CardComponent {
     @Output() reshuffle: EventEmitter<undefined> = new EventEmitter<undefined>();
 
     get editionIconUrl(): string | null {
-        // editions are sorted by id, which does not follow the edition order, so pick the latest
+        // pick the latest edition explicitly instead of relying on the array order
         const icon = this.card.editions.reduce(
             (latest: Edition | undefined, edition: Edition) =>
                 latest === undefined || Number(edition.edition) > Number(latest.edition)

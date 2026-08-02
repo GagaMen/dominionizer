@@ -57,15 +57,15 @@ describe('CardComponent', () => {
         });
 
         it('with multiple editions of card should return icon url of the latest edition', () => {
-            // ids are sorted ascending in the data source but do not follow the
-            // edition order, so the latest edition may come first in the array
+            // the array order must not decide which icon wins, so hand in the
+            // latest edition first
             const secondEdition = dataFixture.createEdition({
-                id: '295',
+                id: '175-2',
                 edition: '2',
                 icon: 'edition.png',
             });
             const firstEdition = dataFixture.createEdition({
-                id: '296',
+                id: '175-1',
                 edition: '1',
                 icon: 'old_edition.png',
             });

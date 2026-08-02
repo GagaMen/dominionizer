@@ -85,13 +85,13 @@ describe('EditionService', () => {
 
         it('with both editions of an expansion should translate each of them separately', () => {
             const bothEditions = [
-                dataFixture.createEdition({ id: '310', expansion: 'Hinterlands', edition: '2' }),
-                dataFixture.createEdition({ id: '311', expansion: 'Hinterlands', edition: '1' }),
+                dataFixture.createEdition({ id: '181-2', expansion: 'Hinterlands', edition: '2' }),
+                dataFixture.createEdition({ id: '181-1', expansion: 'Hinterlands', edition: '1' }),
             ];
             dataServiceSpy.fetchEditions.and.returnValue(cold('---(a|)', { a: bothEditions }));
             const editionTranslations = [
-                dataFixture.createEditionTranslation({ id: '310', expansion: 'Hinterland' }),
-                dataFixture.createEditionTranslation({ id: '311', expansion: 'Hinterland' }),
+                dataFixture.createEditionTranslation({ id: '181-2', expansion: 'Hinterland' }),
+                dataFixture.createEditionTranslation({ id: '181-1', expansion: 'Hinterland' }),
             ];
             dataServiceSpy.fetchEditionTranslations.and.returnValue(
                 cold('---(b|)', { b: editionTranslations }),
