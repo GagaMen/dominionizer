@@ -63,6 +63,29 @@ describe('CardListComponent', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('should not re-create the dom of cards that keep their id', () => {
+            const cards = dataFixture.createCards();
+            component.cardList = cards;
+            fixture.detectChanges();
+            const expected = fixture.debugElement
+                .queryAll(By.directive(CardComponent))
+                .map((cardComponent: DebugElement) => cardComponent.nativeElement as HTMLElement);
+
+            // same cards by id, but fresh object references as an immutable update would produce
+            component.cardList = cards.map((card: Card) => ({ ...card }));
+            fixture.detectChanges();
+            const actual = fixture.debugElement
+                .queryAll(By.directive(CardComponent))
+                .map((cardComponent: DebugElement) => cardComponent.nativeElement as HTMLElement);
+
+            expect(actual.length).toBe(expected.length);
+            // toBe per element: toEqual would compare the dom structurally and pass
+            // even for freshly created elements
+            actual.forEach((element: HTMLElement, index: number) =>
+                expect(element).toBe(expected[index]),
+            );
+        });
+
         it('should bind reshuffle event of CardComponent to corresponding event handler', () => {
             const card = dataFixture.createCard();
             component.cardList = [card];

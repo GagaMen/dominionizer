@@ -1,3 +1,3 @@
-@for (card of cardList; track card) {
+@for (card of cardList; track card.id) {
     <app-card [card]="card" (reshuffle)="onReshuffle(card)"></app-card>
 }
