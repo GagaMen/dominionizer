@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "start": "node --env-file=.env ../../node_modules/.bin/tsx ./src/main.ts",
-        "prettier": "prettier --write --log-level warn ../../src/data",
+        "prettier": "prettier --write --log-level warn ../../src/data ./last-generation.json",
         "test": "tsx watch ../../node_modules/jasmine/bin/jasmine --config=jasmine.json",
         "test:ci": "tsx ../../node_modules/jasmine/bin/jasmine --config=jasmine.json"
     },
