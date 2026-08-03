@@ -14,7 +14,7 @@
         "prepare": "husky",
         "start": "ng serve",
         "start:prod": "ng build && http-server -p 8080 -o -c-1 ./dist",
-        "build": "ts-node ./scripts/build.ts",
+        "build": "node ./scripts/build.ts",
         "build:changelog": "conventional-changelog -i CHANGELOG.md -s",
         "extract-i18n": "ng extract-i18n",
         "test": "ng test",
@@ -93,7 +93,6 @@
         "stylelint-config-standard-scss": "16.0.0",
         "stylelint-prettier": "5.0.3",
         "svgo": "4.0.0",
-        "ts-node": "10.9.2",
         "typescript": "5.9.3",
         "typescript-eslint": "8.51.0"
     }
