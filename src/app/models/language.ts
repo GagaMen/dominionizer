@@ -7,6 +7,7 @@ export enum Language {
     French = 'fr',
     German = 'de',
     Greek = 'el',
+    Hebrew = 'he',
     Hungarian = 'hu',
     Italian = 'it',
     Japanese = 'ja',

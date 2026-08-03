@@ -14,14 +14,13 @@ mat-stepper {
 
 .mat-mdc-extended-fab {
     bottom: 16px;
-    left: 16px;
+    inset-inline: 16px;
     margin: 0 auto;
     position: absolute;
-    right: 16px;
     text-transform: uppercase;
 
     @media (width >= 576px) {
-        left: unset;
+        inset-inline-start: unset;
         margin: 0;
     }
 }

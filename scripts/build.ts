@@ -9,6 +9,7 @@ const languages = [
     'french',
     'german',
     'greek',
+    'hebrew',
     'hungarian',
     'italian',
     'japanese',
