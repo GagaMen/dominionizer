@@ -35,6 +35,8 @@ jobs:
 
             - name: Run wiki-bot
               working-directory: ${{github.workspace}}/tools/wiki-bot
+              env:
+                  WIKI_AUTH_TOKEN: ${{ secrets.WIKI_AUTH_TOKEN }}
               run: npm start -- --update
 
             - name: Detect changes in data and assets folder
