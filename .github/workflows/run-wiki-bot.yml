@@ -33,7 +33,13 @@ jobs:
 
             - name: Detect changes in data and assets folder
               id: changes
-              run: echo "changed=$(git diff --quiet --stat HEAD -- ./src/data ./src/assets || echo 'true')" >> $GITHUB_OUTPUT
+              # git status instead of git diff, because the bot may add entirely new files
+              run: |
+                  if [ -n "$(git status --porcelain -- ./src/data ./src/assets)" ]; then
+                    echo "changed=true" >> "$GITHUB_OUTPUT"
+                  else
+                    echo "changed=false" >> "$GITHUB_OUTPUT"
+                  fi
 
             - name: Build pull request body
               # Validation warnings don't fail the wiki-bot, so surface them in the PR instead
