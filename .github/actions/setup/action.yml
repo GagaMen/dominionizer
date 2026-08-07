@@ -1,0 +1,16 @@
+name: Setup
+description: Set up Node.js and install the workspace dependencies
+
+runs:
+    using: composite
+    steps:
+        - name: Setup Node.js
+          uses: actions/setup-node@v7
+          with:
+              # reads engines.node, so CI follows the version declared in package.json
+              node-version-file: package.json
+              cache: npm
+
+        - name: Install dependencies
+          shell: bash
+          run: npm ci

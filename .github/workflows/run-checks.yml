@@ -10,57 +10,18 @@ on:
             - master
 
 jobs:
-    setup:
+    test:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
               uses: actions/checkout@v7
-              with:
-                  # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
-                  fetch-depth: 0
-                  path: workspace
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v7
-              with:
-                  node-version: 24.x
-                  cache: npm
-                  # the repository is checked out into a subfolder, so the lock file isn't at the workspace root
-                  cache-dependency-path: workspace/package-lock.json
-
-            - name: Install dependencies
-              working-directory: workspace
-              run: npm ci
-
-            - name: Cache workspace
-              uses: actions/cache@v6
-              with:
-                  path: workspace
-                  key: workspace-${{ github.sha }}
-
-    test:
-        needs: setup
-        runs-on: ubuntu-latest
-        steps:
-            - name: Setup Node.js
-              uses: actions/setup-node@v7
-              with:
-                  node-version: 24.x
-                  # this job does not run npm ci, so there is nothing to cache
-                  package-manager-cache: false
-
-            - name: Restore workspace
-              uses: actions/cache/restore@v6
-              with:
-                  path: workspace
-                  key: workspace-${{ github.sha }}
-                  fail-on-cache-miss: true
+            - name: Setup
+              uses: ./.github/actions/setup
 
             - name: Run tests
-              working-directory: workspace
               run: npm run test:ci
 
-    # don't use setup job, because we may need to check out the master branch, which will not work if we only restore the workspace
     commitlint:
         runs-on: ubuntu-latest
         steps:
@@ -69,102 +30,58 @@ jobs:
               with:
                   # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
                   fetch-depth: 0
-                  path: workspace
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v7
-              with:
-                  node-version: 24.x
-                  cache: npm
-                  # the repository is checked out into a subfolder, so the lock file isn't at the workspace root
-                  cache-dependency-path: workspace/package-lock.json
-
-            - name: Install dependencies
-              working-directory: workspace
-              run: npm ci
+            - name: Setup
+              uses: ./.github/actions/setup
 
             - name: Checkout master branch
               if: github.ref_name != 'master'
-              working-directory: workspace
               run: git fetch origin master && git checkout master && git pull
 
             - name: Change back to triggered branch
               if: github.ref_name != 'master'
-              working-directory: workspace
               run: git checkout ${{ github.ref_name }}
 
             - name: Run commitlint on push to master
               if: github.ref_name == 'master'
-              working-directory: workspace
               run: npx --no -- commitlint --from ${{ github.event.before }} --verbose
 
             - name: Run commitlint on push to branch
               if: github.ref_name != 'master'
-              working-directory: workspace
               run: npx --no -- commitlint --from refs/heads/master --verbose
 
     eslint:
-        needs: setup
         runs-on: ubuntu-latest
         steps:
-            - name: Setup Node.js
-              uses: actions/setup-node@v7
-              with:
-                  node-version: 24.x
-                  # this job does not run npm ci, so there is nothing to cache
-                  package-manager-cache: false
+            - name: Checkout code
+              uses: actions/checkout@v7
 
-            - name: Restore workspace
-              uses: actions/cache/restore@v6
-              with:
-                  path: workspace
-                  key: workspace-${{ github.sha }}
-                  fail-on-cache-miss: true
+            - name: Setup
+              uses: ./.github/actions/setup
 
             - name: Run eslint
-              working-directory: workspace
               run: npm run eslint
 
     stylelint:
-        needs: setup
         runs-on: ubuntu-latest
         steps:
-            - name: Setup Node.js
-              uses: actions/setup-node@v7
-              with:
-                  node-version: 24.x
-                  # this job does not run npm ci, so there is nothing to cache
-                  package-manager-cache: false
+            - name: Checkout code
+              uses: actions/checkout@v7
 
-            - name: Restore workspace
-              uses: actions/cache/restore@v6
-              with:
-                  path: workspace
-                  key: workspace-${{ github.sha }}
-                  fail-on-cache-miss: true
+            - name: Setup
+              uses: ./.github/actions/setup
 
             - name: Run stylelint
-              working-directory: workspace
               run: npm run stylelint
 
     markdownlint:
-        needs: setup
         runs-on: ubuntu-latest
         steps:
-            - name: Setup Node.js
-              uses: actions/setup-node@v7
-              with:
-                  node-version: 24.x
-                  # this job does not run npm ci, so there is nothing to cache
-                  package-manager-cache: false
+            - name: Checkout code
+              uses: actions/checkout@v7
 
-            - name: Restore workspace
-              uses: actions/cache/restore@v6
-              with:
-                  path: workspace
-                  key: workspace-${{ github.sha }}
-                  fail-on-cache-miss: true
+            - name: Setup
+              uses: ./.github/actions/setup
 
             - name: Run markdownlint
-              working-directory: workspace
               run: npm run markdownlint
