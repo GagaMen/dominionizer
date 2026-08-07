@@ -9,6 +9,13 @@ on:
         branches:
             - master
 
+concurrency:
+    # the event name keeps push and pull request runs from cancelling each other: a cancelled run
+    # reports as `cancelled` rather than `success` and would block a pull request on a required check
+    group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.head_ref || github.ref }}
+    # never cancel on master, the deployment decision depends on those runs
+    cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
 jobs:
     test:
         name: test (${{ matrix.suite }})
