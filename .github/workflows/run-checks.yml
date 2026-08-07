@@ -50,7 +50,7 @@ jobs:
               if: github.ref_name != 'master'
               run: npx --no -- commitlint --from refs/heads/master --verbose
 
-    eslint:
+    lint:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -59,29 +59,13 @@ jobs:
             - name: Setup
               uses: ./.github/actions/setup
 
-            - name: Run eslint
-              run: npm run eslint
-
-    stylelint:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v7
-
-            - name: Setup
-              uses: ./.github/actions/setup
-
-            - name: Run stylelint
-              run: npm run stylelint
-
-    markdownlint:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v7
-
-            - name: Setup
-              uses: ./.github/actions/setup
-
-            - name: Run markdownlint
-              run: npm run markdownlint
+            - name: Run linters
+              # keep going after a failing linter, so a single run surfaces every problem
+              run: |
+                  status=0
+                  for script in eslint stylelint markdownlint; do
+                    echo "::group::npm run $script"
+                    npm run "$script" || status=1
+                    echo "::endgroup::"
+                  done
+                  exit $status
