@@ -1,5 +1,4 @@
 [
-    { "id": "212", "name": "Malédiction" },
     { "id": "216", "name": "Action" },
     { "id": "217", "name": "Réaction" },
     { "id": "218", "name": "Victoire" },
@@ -8,7 +7,6 @@
     { "id": "431", "name": "Prix" },
     { "id": "522", "name": "Refuge" },
     { "id": "550", "name": "Ruine" },
-    { "id": "577", "name": "Chevalier" },
     { "id": "593", "name": "Durée" },
     { "id": "689", "name": "Pillard" },
     { "id": "1370", "name": "Prophétie" },

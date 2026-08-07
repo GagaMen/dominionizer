@@ -1,5 +1,4 @@
 [
-    { "id": "212", "name": "Fluch" },
     { "id": "216", "name": "Aktion" },
     { "id": "217", "name": "Reaktion" },
     { "id": "218", "name": "Punkte" },
@@ -8,7 +7,6 @@
     { "id": "431", "name": "Preis" },
     { "id": "522", "name": "Unterschlupf" },
     { "id": "550", "name": "Ruine" },
-    { "id": "577", "name": "Ritter" },
     { "id": "593", "name": "Dauer" },
     { "id": "689", "name": "Plündern" },
     { "id": "1370", "name": "Prophezeiung" },

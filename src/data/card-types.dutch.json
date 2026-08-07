@@ -1,5 +1,4 @@
 [
-    { "id": "212", "name": "Vloek" },
     { "id": "216", "name": "Actie" },
     { "id": "217", "name": "Reactie" },
     { "id": "218", "name": "Overwinning" },
@@ -8,7 +7,6 @@
     { "id": "431", "name": "Prijs" },
     { "id": "522", "name": "Onderdak" },
     { "id": "550", "name": "Ruïne" },
-    { "id": "577", "name": "Ridders" },
     { "id": "593", "name": "Duurzaam" },
     { "id": "689", "name": "Plunderaar" },
     { "id": "1583", "name": "Reserve" },

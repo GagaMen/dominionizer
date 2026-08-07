@@ -1,11 +1,5 @@
 [
-    { "id": "20", "name": "Falu", "description": "" },
-    { "id": "24", "name": "Favágó", "description": "" },
-    { "id": "25", "name": "Műhely", "description": "" },
     { "id": "34", "name": "Palotaudvar", "description": "" },
-    { "id": "44", "name": "Tolvaj", "description": "" },
-    { "id": "45", "name": "Trónterem", "description": "" },
-    { "id": "52", "name": "Boszorkány", "description": "" },
     { "id": "72", "name": "Csatlós", "description": "" },
     { "id": "73", "name": "Rejtekszoba", "description": "" },
     { "id": "74", "name": "Nagyterem", "description": "" },
@@ -29,12 +23,5 @@
     { "id": "92", "name": "Sarc", "description": "" },
     { "id": "93", "name": "Fejlesztés", "description": "" },
     { "id": "95", "name": "Nemesség", "description": "" },
-    { "id": "212", "name": "Átok", "description": "" },
-    { "id": "517", "name": "Réz", "description": "" },
-    { "id": "525", "name": "Birtok", "description": "" },
-    { "id": "526", "name": "Ezüst", "description": "" },
-    { "id": "528", "name": "Hercegség", "description": "" },
-    { "id": "529", "name": "Arany", "description": "" },
-    { "id": "530", "name": "Tartomány", "description": "" },
     { "id": "10190", "name": "Hárem", "description": "" }
 ]

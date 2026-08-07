@@ -1,11 +1,5 @@
 [
-    { "id": "20", "name": "村莊", "description": "" },
-    { "id": "24", "name": "伐木工", "description": "" },
-    { "id": "25", "name": "工作室", "description": "" },
     { "id": "34", "name": "庭院", "description": "" },
-    { "id": "44", "name": "小偷", "description": "" },
-    { "id": "45", "name": "王座", "description": "" },
-    { "id": "52", "name": "女巫", "description": "" },
     { "id": "72", "name": "小兵", "description": "" },
     { "id": "73", "name": "密室", "description": "" },
     { "id": "74", "name": "大殿", "description": "" },
@@ -67,14 +61,6 @@
     { "id": "131", "name": "賢者之石", "description": "" },
     { "id": "132", "name": "魔像", "description": "" },
     { "id": "133", "name": "佔據", "description": "" },
-    { "id": "134", "name": "黑市", "description": "" },
-    { "id": "135", "name": "使節", "description": "" },
-    {
-        "id": "155",
-        "name": "乞丐",
-        "description": "獲得三張銅幣並放入手牌。{{divline}}當其他玩家打出攻擊卡時，你可以先棄掉此卡，獲得兩張銀幣，將其中一張放到你的牌庫頂。"
-    },
-    { "id": "212", "name": "詛咒", "description": "" },
     {
         "id": "242",
         "name": "借貸",
@@ -203,32 +189,12 @@
         "name": "村落",
         "description": "'''+1 卡片'''<br>'''+1 行動'''<br>你可以棄掉一張卡來換 '''+1&nbsp;行動'''。<br>你可以棄掉一張卡來換 '''+1&nbsp;購買'''。"
     },
-    { "id": "387", "name": "廢棄礦坑", "description": "{{Costplus|1}}" },
-    {
-        "id": "393",
-        "name": "運屍車",
-        "description": "{{Costplus|5}}<br>你可以移除你手上一張行動卡，如果你沒有移除，則移除此卡。{{divline}}當你獲得此卡，獲得兩張遺跡。"
-    },
-    {
-        "id": "411",
-        "name": "收容所",
-        "description": "{{Costplus|4}}<br>展示你的手牌，每一張你手中的錢幣卡會使你-{{Cost|1}}，你不會低於{{Cost|0}}。"
-    },
-    { "id": "415", "name": "圖書館遺址", "description": "'''+1 卡片'''" },
-    { "id": "416", "name": "市場殘骸", "description": "'''+1 購買'''" },
-    { "id": "417", "name": "荒蕪村莊", "description": "'''+1 行動'''" },
     {
         "id": "422",
         "name": "難民",
         "description": "觀看你牌庫頂的兩張卡，棄掉那兩張或是將那兩張以任意順序放回牌庫頂。"
     },
-    { "id": "517", "name": "銅錢", "description": "" },
-    { "id": "525", "name": "莊園", "description": "" },
-    { "id": "526", "name": "銀幣", "description": "" },
     { "id": "527", "name": "藥劑", "description": "" },
-    { "id": "528", "name": "公國", "description": "" },
-    { "id": "529", "name": "金幣", "description": "" },
-    { "id": "530", "name": "行省", "description": "" },
     { "id": "531", "name": "殖民地", "description": "" },
     {
         "id": "3244",
@@ -275,7 +241,6 @@
         "name": "王者的城堡",
         "description": "遊戲結束時，每一張城堡會讓你{{VP|'''2'''}}。"
     },
-    { "id": "3498", "name": "家臣", "description": "" },
     { "id": "3503", "name": "潛伏者", "description": "" },
     { "id": "3504", "name": "外交官", "description": "" },
     { "id": "3505", "name": "磨坊", "description": "" },

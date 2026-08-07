@@ -1,11 +1,5 @@
 [
-    { "id": "20", "name": "Landsby", "description": "" },
-    { "id": "24", "name": "Tømmerhogger", "description": "" },
-    { "id": "25", "name": "Verksted", "description": "" },
     { "id": "34", "name": "Slottshage", "description": "" },
-    { "id": "44", "name": "Tyv", "description": "" },
-    { "id": "45", "name": "Tronsal", "description": "" },
-    { "id": "52", "name": "Heks", "description": "" },
     { "id": "72", "name": "Kongsmann", "description": "" },
     { "id": "73", "name": "Lønnkammer", "description": "" },
     { "id": "74", "name": "Storsal", "description": "" },
@@ -29,19 +23,5 @@
     { "id": "92", "name": "Tiende", "description": "" },
     { "id": "93", "name": "Oppgradering", "description": "" },
     { "id": "95", "name": "Adelsmenn", "description": "" },
-    { "id": "136", "name": "Befestet landsby", "description": "" },
-    { "id": "137", "name": "Guvernør", "description": "" },
-    {
-        "id": "138",
-        "name": "Skjult reserve",
-        "description": "{{Cost|2|l}}{{divline}}Når du stokker kan du plassere dette<br>kortet hvor som helst i bunken."
-    },
-    { "id": "212", "name": "Forbannelse", "description": "" },
-    { "id": "517", "name": "Kobber", "description": "" },
-    { "id": "525", "name": "Herregård", "description": "" },
-    { "id": "526", "name": "Sølv", "description": "" },
-    { "id": "528", "name": "Grevskap", "description": "" },
-    { "id": "529", "name": "Gull", "description": "" },
-    { "id": "530", "name": "Provins", "description": "" },
     { "id": "10190", "name": "Harem", "description": "" }
 ]

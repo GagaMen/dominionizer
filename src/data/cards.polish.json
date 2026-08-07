@@ -4,28 +4,10 @@
         "name": "Tunel",
         "description": "{{VP|'''2'''|l}}{{divline}}Kiedy odrzucasz tę kartę poza fazą porządków, możesz ją odkryć, aby dodać Złoto."
     },
-    { "id": "20", "name": "Wioska", "description": "'''+1 karta <br> +2 akcje'''" },
-    { "id": "24", "name": "Drwal", "description": "'''+1 zakup'''<br>{{Costplus|2}}" },
-    { "id": "25", "name": "Warsztat", "description": "Dodaj kartę nie droższą niż {{Cost|4}}." },
     {
         "id": "34",
         "name": "Dziedziniec",
         "description": "'''+3 karty'''<br>Odłóż kartę z ręki<br>na wierzch swojej talii."
-    },
-    {
-        "id": "44",
-        "name": "Złodziej",
-        "description": "Każdy z pozostałych graczy odkrywa 2 wierzchnie karty swojej talii. Jeśli odkryje jakiekolwiek karty skarbów, wybierasz jedną, którą musi wyrzucić na śmietnisko. Możesz dodać dowolną liczbę wyrzuconych w ten sposób kart. Wszystkie pozostałe odkryte karty należy odrzucić."
-    },
-    {
-        "id": "45",
-        "name": "Sala tronowa",
-        "description": "Możesz wybrać kartę Akcji z ręki i zagrać ją dwukrotnie."
-    },
-    {
-        "id": "52",
-        "name": "Wiedźma",
-        "description": "'''+2 karty'''<br>Każdy z pozostałych graczy dodaje kartę Klątwa."
     },
     {
         "id": "72",
@@ -278,28 +260,6 @@
     { "id": "131", "name": "Kamień filozoficzny", "description": "" },
     { "id": "132", "name": "Golem", "description": "" },
     { "id": "133", "name": "Opętanie", "description": "" },
-    { "id": "134", "name": "Czarny rynek", "description": "" },
-    {
-        "id": "135",
-        "name": "Poseł",
-        "description": "Odkryj 5 kart z wierzchu swojej talii. Gracz po twojej lewej stronie wskazuje jedną z nich, którą musisz odrzucić. Weź na rękę pozostałe karty."
-    },
-    {
-        "id": "136",
-        "name": "Kasztel",
-        "description": "'''+1 Karta<br>+2 Akcje'''{{divline}}Jeśli na początku fazy porządków masz tę kartę i nie więcej niż jedną inną kartę akcji w grze, możesz położyć tę kartę na wierzchu swojej talii."
-    },
-    {
-        "id": "137",
-        "name": "Gubernator",
-        "description": "'''+1 Akcja'''<br>Wybierz jedną z opcji (otrzymujesz wersję w nawiasie): Każdy z graczy dobiera +1 (+3) kartę; lub każdy z graczy dodaje Srebrnika (Złocisza); lub każdy z graczy może wyrzucić na śmietnisko kartę z ręki i dodać kartę o koszcie wyższym dokładnie o {{Cost|1}} ({{Cost|2}})."
-    },
-    {
-        "id": "138",
-        "name": "Zaskórniak",
-        "description": "{{Cost|2|l}}{{divline}}Kiedy tasujesz tę kartę, możesz przejrzeć pozostałe karty w swojej talii i możesz umieścić tę kartę w dowolnym miejscu wśród tasowanych kart."
-    },
-    { "id": "212", "name": "Klątwa", "description": "{{VP|-1|l}}" },
     {
         "id": "242",
         "name": "Kredyt",
@@ -316,8 +276,6 @@
         "description": "{{Costplus|2}}<br>Każdy z pozostałych graczy odkrywa karty z wierzchu swojej talii, aż odkryje kartę Zwycięstwa lub Klątwy. Kładzie ją na wierzchu swojej talii i odrzuca pozostałe odkryte karty."
     },
     { "id": "247", "name": "Platyna", "description": "{{Cost|5|l}}" },
-    { "id": "317", "name": "Ołtarz", "description": "" },
-    { "id": "319", "name": "Obóz bandytów", "description": "" },
     {
         "id": "321",
         "name": "Strażnica",
@@ -464,20 +422,6 @@
         "name": "Róg Obfitości",
         "description": "{{Cost|0|l}}<br>Kiedy w fazie kupna zagrasz tę kartę, dodaj kartę o maksymalnym koszcie {{Cost|1}} za każdą twoją kartę w grze o innym tytule, wliczając też Róg Obfitości.<br>Jeśli dodasz kartę Zwycięstwa wyrzuć tę kartę na śmietnisko."
     },
-    { "id": "386", "name": "Procesja", "description": "" },
-    { "id": "389", "name": "Katakumby", "description": "" },
-    { "id": "393", "name": "Trupi wóz", "description": "" },
-    { "id": "394", "name": "Pańszczyzna", "description": "" },
-    { "id": "396", "name": "Forteca", "description": "" },
-    { "id": "398", "name": "Pustelnik", "description": "" },
-    { "id": "400", "name": "Łowisko", "description": "" },
-    { "id": "401", "name": "Kupiec żelazny", "description": "" },
-    { "id": "405", "name": "Plac targowy", "description": "" },
-    { "id": "407", "name": "Mistyk", "description": "" },
-    { "id": "410", "name": "Rabunek", "description": "" },
-    { "id": "411", "name": "Przytułek", "description": "" },
-    { "id": "412", "name": "Szczury", "description": "" },
-    { "id": "414", "name": "Opryszek", "description": "" },
     { "id": "419", "name": "Śmieciarz", "description": "" },
     { "id": "420", "name": "Pachołek", "description": "" },
     { "id": "421", "name": "Przechowalnia", "description": "" },
@@ -532,14 +476,7 @@
         "name": "Wierny Rumak",
         "description": "<p>Wybierz dwie różne opcje: +2&nbsp;karty; +2&nbsp;akcje; {{Costplus|2}}; dodaj 4&nbsp;Srebrniki i umieść swoją talię na stosie odrzuconych kart. (wybrane opcje muszą się różnić)</p>''(Ta karta nie należy do zapasów)''"
     },
-    { "id": "517", "name": "Miedziaki", "description": "{{Cost|1|l}}" },
-    { "id": "525", "name": "Posiadłość", "description": "" },
-    { "id": "526", "name": "Srebrniki", "description": "{{Cost|2|l}}" },
-    { "id": "528", "name": "Powiat", "description": "" },
-    { "id": "529", "name": "Złoto", "description": "{{Cost|3|l}}" },
-    { "id": "530", "name": "Prowincja", "description": "" },
     { "id": "531", "name": "Kolonia", "description": "{{VP|'''10'''|l}}" },
-    { "id": "577", "name": "Rycerze", "description": "" },
     {
         "id": "601",
         "name": "Rozdroże",
@@ -637,11 +574,6 @@
     { "id": "1335", "name": "Poborca podatkowy", "description": "" },
     { "id": "1336", "name": "Gildia kupców", "description": "" },
     { "id": "1337", "name": "Wieszcz", "description": "" },
-    {
-        "id": "1504",
-        "name": "Książę",
-        "description": "Możesz odłożyć z ręki na bok (na tę kartę) kartę Akcji kosztującą do {{Cost|4}}, niebędącą kartą Następstwa ani Rozkazu. Na początku każdej twojej tury: zagraj ją, pozostawiając ją odłożoną na bok."
-    },
     { "id": "2112", "name": "Zaginione miasto", "description": "" },
     { "id": "2119", "name": "Moneta obiegowa", "description": "" },
     { "id": "2121", "name": "Przewodnik", "description": "" },
@@ -1006,12 +938,6 @@
         "description": "{{VP|'''+1'''}}<br>Wyrzuć na śmietnisko kartę Zwycięstwa z Zasobów."
     },
     { "id": "3406", "name": "Zaślubiny", "description": "{{VP|'''+1'''}}<br>Dodaj Złoto." },
-    {
-        "id": "3486",
-        "name": "Sauna",
-        "description": "'''+1 karta<br>+1 akcja'''<br>Możesz zagrać Przerębel z ręki.{{Divline}}Kiedy ta karta znajduje się w grze i zagrywasz Srebrnika, możesz wyrzucić na śmietnisko kartę z ręki."
-    },
-    { "id": "3498", "name": "Wasal", "description": "" },
     { "id": "3503", "name": "Intrygant", "description": "" },
     { "id": "3504", "name": "Dyplomata", "description": "" },
     { "id": "3505", "name": "Młyn", "description": "" },
@@ -1189,11 +1115,6 @@
     { "id": "6303", "name": "Koszary", "description": "" },
     { "id": "6309", "name": "Przedstawienie", "description": "" },
     { "id": "6311", "name": "Sieć dróg", "description": "" },
-    {
-        "id": "6400",
-        "name": "Kapitan",
-        "description": "Teraz i na początku twojej następnej tury: zagraj z Zasobów (i pozostaw ją tam) kartę Akcji kosztującą do {{Cost|4}}, niebędącą kartą Następstwa ani Rozkazu."
-    },
     { "id": "6747", "name": "Ośnieżona wioska", "description": "" },
     { "id": "6751", "name": "Barka", "description": "" },
     { "id": "6778", "name": "Rupiecie", "description": "" },

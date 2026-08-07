@@ -1,5 +1,4 @@
 [
-    { "id": "212", "name": "Maldición" },
     { "id": "216", "name": "Acción" },
     { "id": "217", "name": "Reacción" },
     { "id": "218", "name": "Victoria" },
@@ -7,7 +6,6 @@
     { "id": "220", "name": "Tesoro" },
     { "id": "522", "name": "Cobijo" },
     { "id": "550", "name": "Ruinas" },
-    { "id": "577", "name": "Caballeros" },
     { "id": "593", "name": "Duración" },
     { "id": "689", "name": "Saqueador" },
     { "id": "6107", "name": "Proyecto" },
