@@ -13,4 +13,5 @@ runs:
 
         - name: Install dependencies
           shell: bash
-          run: npm ci
+          # --prefer-offline skips the staleness requests against the registry when ~/.npm is warm
+          run: npm ci --prefer-offline --no-audit --no-fund
