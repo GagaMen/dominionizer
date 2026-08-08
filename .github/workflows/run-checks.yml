@@ -45,27 +45,24 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v7
               with:
-                  # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time
+                  # we need the whole history to run commitlint correctly if multiple commit are pushed at the same time,
+                  # and it is what gives us the origin/* remote tracking refs the branch case compares against
                   fetch-depth: 0
 
             - name: Setup
               uses: ./.github/actions/setup
 
-            - name: Checkout master branch
-              if: github.ref_name != 'master'
-              run: git fetch origin master && git checkout master && git pull
-
-            - name: Change back to triggered branch
-              if: github.ref_name != 'master'
-              run: git checkout ${{ github.ref_name }}
+            - name: Run commitlint on pull request
+              if: github.event_name == 'pull_request'
+              run: npx --no -- commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
             - name: Run commitlint on push to master
-              if: github.ref_name == 'master'
+              if: github.event_name == 'push' && github.ref_name == 'master'
               run: npx --no -- commitlint --from ${{ github.event.before }} --verbose
 
             - name: Run commitlint on push to branch
-              if: github.ref_name != 'master'
-              run: npx --no -- commitlint --from refs/heads/master --verbose
+              if: github.event_name == 'push' && github.ref_name != 'master'
+              run: npx --no -- commitlint --from origin/master --verbose
 
     lint:
         runs-on: ubuntu-latest
