@@ -30,6 +30,7 @@ import { CardDto } from '../../../../src/app/dtos/card-dto';
 import * as fs from 'fs';
 import { ValidationResult, ValidationSeverity } from './validation/validation-result';
 import { CargoIdUniquenessValidator } from './validation/cargo-id-uniqueness-validator';
+import { TranslationPresenceValidator } from './validation/translation-presence-validator';
 import { buildCargoEditionId, buildCargoId } from './builder/cargo-id';
 
 export class DominionizerWikiBot {
@@ -58,6 +59,7 @@ export class DominionizerWikiBot {
         private cardTranslationValidator: CardTranslationValidator,
         private imagesValidator: ImagesValidator,
         private cargoIdUniquenessValidator: CargoIdUniquenessValidator,
+        private translationPresenceValidator: TranslationPresenceValidator,
     ) {}
 
     async generateAll(skipImages = false): Promise<boolean> {
@@ -307,6 +309,14 @@ export class DominionizerWikiBot {
                 cargoCardType,
             );
 
+            this.evaluateValidationResult(
+                this.translationPresenceValidator.validate(
+                    cardTypePage,
+                    translationsByCardType.size,
+                ),
+                ValidationSeverity.Warning,
+            );
+
             for (const [language, translation] of translationsByCardType) {
                 const translationsByLanguage = translations.get(language) ?? [];
 
@@ -403,6 +413,11 @@ export class DominionizerWikiBot {
             }
 
             const translationsByCard = this.cardTranslationBuilder.build(page, cargoCard);
+
+            this.evaluateValidationResult(
+                this.translationPresenceValidator.validate(page, translationsByCard.size),
+                ValidationSeverity.Warning,
+            );
 
             for (const [language, translation] of translationsByCard) {
                 const translationsByLanguage = translations.get(language) ?? [];

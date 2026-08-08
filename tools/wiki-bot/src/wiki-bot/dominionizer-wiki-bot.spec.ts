@@ -31,6 +31,7 @@ import { CardDto } from '../../../../src/app/dtos/card-dto';
 import { CardTranslation } from '../../../../src/app/models/card';
 import { ValidationResult } from './validation/validation-result';
 import { CargoIdUniquenessValidator } from './validation/cargo-id-uniqueness-validator';
+import { TranslationPresenceValidator } from './validation/translation-presence-validator';
 
 describe('DominionizerWikiBot', () => {
     let dominionizerWikiBot: DominionizerWikiBot;
@@ -55,6 +56,7 @@ describe('DominionizerWikiBot', () => {
     let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
     let imagesValidatorSpy: jasmine.SpyObj<ImagesValidator>;
     let cargoIdUniquenessValidatorSpy: jasmine.SpyObj<CargoIdUniquenessValidator>;
+    let translationPresenceValidatorSpy: jasmine.SpyObj<TranslationPresenceValidator>;
     let writeFileSpy: jasmine.Spy;
     let readFileSpy: jasmine.Spy;
 
@@ -166,6 +168,12 @@ describe('DominionizerWikiBot', () => {
         );
         cargoIdUniquenessValidatorSpy.validate.and.returnValue(ValidationResult.Success);
 
+        translationPresenceValidatorSpy = jasmine.createSpyObj<TranslationPresenceValidator>(
+            'TranslationPresenceValidator',
+            ['validate'],
+        );
+        translationPresenceValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+
         writeFileSpy = spyOn(fs.promises, 'writeFile');
 
         readFileSpy = spyOn(fs.promises, 'readFile');
@@ -198,6 +206,7 @@ describe('DominionizerWikiBot', () => {
             cardTranslationValidatorSpy,
             imagesValidatorSpy,
             cargoIdUniquenessValidatorSpy,
+            translationPresenceValidatorSpy,
         );
     });
 
