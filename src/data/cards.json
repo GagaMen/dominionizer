@@ -302,7 +302,7 @@
     {
         "id": "52",
         "name": "Witch",
-        "description": "'''+2&nbsp;Cards'''<p>Each other player gains a Curse.</p>",
+        "description": "'''+2&nbsp;Cards'''<p>Each other player gains a Curse.",
         "image": "WitchArt.jpg",
         "illustrator": "Matthias Catrein",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Witch",
@@ -4543,7 +4543,7 @@
     {
         "id": "3498",
         "name": "Vassal",
-        "description": "{{Costplus|2}}<p>Discard the top card of your deck. If it's an Action card, you may play it.</p>",
+        "description": "{{Costplus|2}}<p>Discard the top card of your deck. If it's an Action card, you may play it.",
         "image": "VassalArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Vassal",
