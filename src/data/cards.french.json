@@ -4,29 +4,108 @@
         "name": "Tunnel",
         "description": "{{VP|2|l}}{{divline}}Quand vous défaussez cette carte en dehors de la phase Ajustement, vous pouvez la dévoiler pour recevoir un Or."
     },
-    { "id": "20", "name": "Village", "description": "'''+1 Carte'''<br>'''+2 Actions'''" },
+    {
+        "id": "16",
+        "name": "Cave",
+        "description": "'''+1&nbsp;Action'''<p>Défaussez autant de cartes que vous voulez, puis piochez-en le même nombre."
+    },
+    { "id": "17", "name": "Chapelle", "description": "Écartez jusqu'a 4 cartes de votre main." },
+    {
+        "id": "18",
+        "name": "Douves",
+        "description": "'''+2&nbsp;Cartes'''{{Divline}}Lorsqu'un adversaire joue une carte Attaque, vous pouvez dévoiler catte carte de votre main. Dans ce cas, l'attaque n'a pas d'effet sur vous."
+    },
+    {
+        "id": "19",
+        "name": "Chancelier",
+        "description": "{{Costplus|2}}<p>Vous pouvez immédiatement défausser votre deck."
+    },
+    {
+        "id": "20",
+        "name": "Village",
+        "description": "'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''"
+    },
     { "id": "24", "name": "Bûcheron", "description": "" },
     {
         "id": "25",
         "name": "Atelier",
-        "description": "<p>Recevez une carte coûtant jusqu'à {{Cost|4}}.</p>"
+        "description": "Recevez une carte coûtant jusqu'à {{Cost|4}}."
     },
     {
         "id": "34",
         "name": "Cour",
         "description": "'''+3 Cartes'''<br>Placez une carte de votre main sur votre pioche."
     },
+    {
+        "id": "36",
+        "name": "Bureaucrate",
+        "description": "Recevez un Argest sur votre pioche. Tous voz adversaires dévoilent une carte Victoire de leur main et la placent sur leur pioche (ou dévoilent une main sans carte Victoire)."
+    },
+    { "id": "37", "name": "Festin", "description": "" },
+    {
+        "id": "38",
+        "name": "Jardins",
+        "description": "Vaut {{VP|'''1'''}} pour chaque 10 cartes que vous avez (arrondi à l'unité inférieure)."
+    },
+    {
+        "id": "39",
+        "name": "Milice",
+        "description": "{{Costplus|2}}<p>Tous vos adversaires défaussent jusqu'à avoir 3&nbsp;cartes en main."
+    },
+    {
+        "id": "40",
+        "name": "Prêteur sur gages",
+        "description": "Vouz pouvez écarter un Cuivre de votre main pour {{Costplus|3}}."
+    },
+    {
+        "id": "41",
+        "name": "Rénovation",
+        "description": "Écartez une carte de votre main. Recevez une carte coûtant jusqu'à {{Cost|2}} de plus."
+    },
+    { "id": "42", "name": "Forgeron", "description": "'''+3&nbsp;Cartes'''" },
+    { "id": "43", "name": "Espion", "description": "" },
     { "id": "44", "name": "Voleur", "description": "" },
     {
         "id": "45",
         "name": "Salle du Trône",
-        "description": "Vous pouvez jouer une carte<br>Action de votre main deux fois."
+        "description": "Vous pouvez jouer une carte Action de votre main deux fois."
+    },
+    {
+        "id": "46",
+        "name": "Chambre du conseil",
+        "description": "'''+4&nbsp;Cartes''' <br>'''+1&nbsp;Achat'''<p>Tous vos adversaires piochent une carte."
+    },
+    {
+        "id": "47",
+        "name": "Festival",
+        "description": "'''+2&nbsp;Actions'''<br>'''+1&nbsp;Achat'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laboratoire",
+        "description": "'''+2&nbsp;Cartes'''<br>'''+1&nbsp;Action'''"
+    },
+    {
+        "id": "49",
+        "name": "Bibliothèque",
+        "description": "Piochez jusqu'à ce que vous ayez 7&nbsp;cartes en main. Chaque carte Action piochée peut être mise de côté. Défaussez les cartes mises de côté lorsque vous avez terminé de piocher."
+    },
+    {
+        "id": "50",
+        "name": "Marché",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>'''+1&nbsp;Achat'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "51",
+        "name": "Mine",
+        "description": "Vous pouvez écarter une carte Trésor de votre main. Recevez en main une carte Trésor coûtant jusqu'à {{Cost|3}} de plus."
     },
     {
         "id": "52",
         "name": "Sorcière",
-        "description": "'''+2 Cartes'''<br> Tous vos adversaires reçoivent une Malédiction."
+        "description": "'''+2&nbsp;Cartes'''<p>Tous vos adversaires reçoivent une Malédiction."
     },
+    { "id": "53", "name": "Aventurier", "description": "" },
     {
         "id": "72",
         "name": "Pion",
@@ -307,7 +386,7 @@
     {
         "id": "134",
         "name": "Marché noir",
-        "description": "{{Costplus|2}}<br>Dévoilez les 3&nbsp;premières cartes du paquet du Marché noir. Jouez autant de cartes Trésor de votre main que souhaité. Vous pouvez acheter une des cartes dévoilées. Replacez les autres sous le paquet Marché noir dans l'ordre de votre choix.{{divline}}Mise en place : préparez le paquet du Marché noir avec des cartes Royaume différentes non utilisées."
+        "description": "{{Costplus|2}}<p>Dévoilez les 3&nbsp;premières cartes du paquet du Marché noir. Jouez autant de cartes Trésor de votre main que souhaité. Vous pouvez acheter une des cartes dévoilées. Replacez les autres sous le paquet Marché noir dans l'ordre de votre choix.{{divline}}Mise en place : préparez le paquet du Marché noir avec des cartes Royaume différentes non utilisées."
     },
     {
         "id": "135",
@@ -317,17 +396,17 @@
     {
         "id": "136",
         "name": "Ville fortifiée",
-        "description": "'''+1 Carte<br>+2 Actions'''{{divline}}Au début de la phase Ajustement, si vous avez cette carte et au plus une autre carte Action en jeu, vous pouvez remettre cette carte sur votre pioche."
+        "description": "'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''{{divline}}Au début de la phase Ajustement, si vous avez cette carte et au plus une autre carte Action en jeu, vous pouvez remettre cette carte sur votre pioche."
     },
     {
         "id": "137",
         "name": "Gouverneur",
-        "description": "'''+1 Action'''<br>Choisissez (vous obtenez la version entre parenthèses)&nbsp;: tous les joueurs obtiennent '''+1&nbsp;(+3) Cartes'''; ou tous les joueurs reçoivent un Argent (Or); ou tous les joueurs peuvent écarter une carte de leur main pour recevoir une carte coûtant exactement {{Cost|1}} ({{Cost|2}}) de plus."
+        "description": "'''+1&nbsp;Action'''<p>Choisissez (vous obtenez la version entre parenthèses)&nbsp;: tous les joueurs obtiennent '''+1&nbsp;(+3)&nbsp;Cartes'''; ou tous les joueurs reçoivent un Argent (Or); ou tous les joueurs peuvent écarter une carte de leur main pour recevoir une carte coûtant exactement {{Cost|1}} ({{Cost|2}}) de plus."
     },
     {
         "id": "138",
         "name": "Cachette",
-        "description": "<br>{{Cost|2|l}}{{divline}}Lorsque vous mélangez, vous pouvez placer cette carte où vous voulez dans votre deck.<br>&nbsp;"
+        "description": "{{Cost|2|l}}{{divline}}Lorsque vous mélangez, vous pouvez placer cette carte où vous voulez dans votre deck."
     },
     {
         "id": "155",
@@ -337,7 +416,7 @@
     {
         "id": "158",
         "name": "Butin",
-        "description": "<p> {{Cost|3|l}} </p> Quand vous jouez cette carte, retournez-la sur la pile des Butins. <br> ''(Ne fait pas partie de la réserve.)''"
+        "description": "{{Cost|3|l}}<p>Quand vous jouez cette carte, retournez-la sur la pile des Butins.<p>''(Ne fait pas partie de la réserve.)''"
     },
     { "id": "212", "name": "Malédiction", "description": "{{VP|-1|l}}" },
     {
@@ -369,7 +448,7 @@
     {
         "id": "319",
         "name": "Camp de bandits",
-        "description": "<p> '''+1&nbsp;Carte <br> +2&nbsp;Actions''' </p> Recevez un Butin de la pile des Butins."
+        "description": "'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''<p>Recevez un Butin de la pile des Butins."
     },
     {
         "id": "321",
@@ -536,22 +615,22 @@
     {
         "id": "390",
         "name": "Contrefaçon",
-        "description": "<p> {{Cost|1|l}} <br> '''+1&nbsp;Achat''' </p> Vous pouvez jouez deux fois une carte Trésor non-Durée de votre main. Écartez cette dernière."
+        "description": "{{Cost|1|l}}<br>'''+1&nbsp;Achat'''<p>Vous pouvez jouez deux fois une carte Trésor non-Durée de votre main. Écartez cette dernière."
     },
     {
         "id": "391",
         "name": "Comte",
-        "description": "<p>Choisissez &#58; défaussez {{nowrap|2 cartes &#59;}} ou placez une carte de votre main sur votre pioche&nbsp;&#59; ou recevez un Cuivre.</p>Choisissez &#58; {{Costplus|3}} &#59; ou écartez votre main&nbsp;&#59; ou recevez un Duché."
+        "description": "Choisissez &#58; défaussez {{nowrap|2 cartes &#59;}} ou placez une carte de votre main sur votre pioche&nbsp;&#59; ou recevez un Cuivre.<p>Choisissez &#58; {{Costplus|3}} &#59; ou écartez votre main&nbsp;&#59; ou recevez un Duché."
     },
     {
         "id": "392",
         "name": "Cultiste",
-        "description": "<p> '''+2&nbsp;Cartes''' </p> Tous vos adversaires reçoivent une Ruine. Vous pouvez jouer un Cultiste de votre main. {{Divline}} Lorsque vous écartez cette carte, '''+3&nbsp;Cartes'''."
+        "description": "'''+2&nbsp;Cartes'''<p>Tous vos adversaires reçoivent une Ruine. Vous pouvez jouer un Cultiste de votre main.{{Divline}}Lorsque vous écartez cette carte, '''+3&nbsp;Cartes'''."
     },
     {
         "id": "393",
         "name": "Charrette de cadavres",
-        "description": "Vous pouvez écarter cette carte ou une carte Action de votre main pour {{Costplus|5}}. {{Divline}} Lorsque vous recevez cette carte, recevez 2 ruines."
+        "description": "Vous pouvez écarter cette carte ou une carte Action de votre main pour {{Costplus|5}}.{{Divline}}Lorsque vous recevez cette carte, recevez 2 ruines."
     },
     {
         "id": "394",
@@ -561,12 +640,12 @@
     {
         "id": "395",
         "name": "Cueilleur",
-        "description": "<p> '''+1&nbsp;Action <br> +1&nbsp;Achat''' </p> Écartez une carte de votre main, puis {{Costplus|1}} par carte Trésor de nom différent dans le rebut."
+        "description": "'''+1&nbsp;Action'''<br>'''+1&nbsp;Achat'''<p>Écartez une carte de votre main, puis {{Costplus|1}} par carte Trésor de nom différent dans le rebut."
     },
     {
         "id": "396",
         "name": "Forteresse",
-        "description": "'''+1&nbsp;Carte <br> +2&nbsp;Actions''' {{Divline}} Quand vous écartez cette carte, prenez-la en main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''{{Divline}}Quand vous écartez cette carte, prenez-la en main."
     },
     {
         "id": "397",
@@ -576,7 +655,7 @@
     {
         "id": "398",
         "name": "Ermite",
-        "description": "Consultez votre défausse. Vous pouvez écarter une carte non-Trésor de votre défausse ou de votre main. Recevez une carte coûtant jusqu'à {{Cost|3}}. <br> À ce tour, à la fin de votre phase Achat, si vous n'avez pas reçu de carte durant celle-ci, échangez cette carte contre un Fou."
+        "description": "Consultez votre défausse. Vous pouvez écarter une carte non-Trésor de votre défausse ou de votre main. Recevez une carte coûtant jusqu'à {{Cost|3}}. À ce tour, à la fin de votre phase Achat, si vous n'avez pas reçu de carte durant celle-ci, échangez cette carte contre un Fou."
     },
     {
         "id": "399",
@@ -586,22 +665,22 @@
     {
         "id": "400",
         "name": "Territoire de chasse",
-        "description": "'''+4&nbsp;Cartes''' {{Divline}} Quand vous écartez cette carte, recevez un Duché ou 3 Domaines."
+        "description": "'''+4&nbsp;Cartes'''{{Divline}} Quand vous écartez cette carte, recevez un Duché ou 3 Domaines."
     },
     {
         "id": "401",
         "name": "Ferronnier",
-        "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action''' <br> Dévoilez la carte du haut de votre pioche. Vous pouvez le défausser. Dans tous les cas, si c'est une carte... <br> Action, '''+1&nbsp;Action''' <br> Trésor, {{costplus|1}} <br> Victoire, '''+1&nbsp;Carte'''"
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Dévoilez la carte du haut de votre pioche. Vous pouvez le défausser. Dans tous les cas, si c'est une carte...<p>Action, '''+1&nbsp;Action'''<br>Trésor, {{costplus|1}}<br>Victoire, '''+1&nbsp;Carte'''"
     },
     {
         "id": "402",
         "name": "Brocanteur",
-        "description": "<p> '''+1&nbsp;Carte <br> +1&nbsp;Action <br>''' {{Costplus|1}} </p> Écartez une carte de votre main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>{{Costplus|1}}<p>Écartez une carte de votre main."
     },
     {
         "id": "403",
         "name": "Fou",
-        "description": "<p> '''+2&nbsp;Actions''' </p> Retournez cette carte sur la pile des Fous. Dans ce cas, '''+1&nbsp;Carte''' par carte en main. <br> ''(Ne fait pas partie de la réserve.)''"
+        "description": "'''+2&nbsp;Actions'''<p>Retournez cette carte sur la pile des Fous. Dans ce cas, '''+1&nbsp;Carte''' par carte en main.<p>''(Ne fait pas partie de la réserve.)''"
     },
     {
         "id": "404",
@@ -611,19 +690,19 @@
     {
         "id": "405",
         "name": "Place du marché",
-        "description": "'''+1&nbsp;Carte <br> +1&nbsp;Action <br> +1&nbsp;Achat''' {{Divline}} Quand une de vos cartes est écartée, vous pouvez défausser cette carte de votre main pour recevoir un Or."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>'''+1&nbsp;Achat'''{{Divline}}Quand une de vos cartes est écartée, vous pouvez défausser cette carte de votre main pour recevoir un Or."
     },
     {
         "id": "406",
         "name": "Mercenaire",
-        "description": "Vous pouvez écarter 2 cartes de votre main. Dans ce cas, '''+2&nbsp;Cartes''', {{Costplus|2}}, et tous vos adversaires défaussent jusqu'à avoir 3 cartes en main. <br> ''(Ne fait pas partie de la réserve.)''"
+        "description": "Vous pouvez écarter 2 cartes de votre main. Dans ce cas, '''+2&nbsp;Cartes''', {{Costplus|2}}, et tous vos adversaires défaussent jusqu'à avoir 3 cartes en main.<p>''(Ne fait pas partie de la réserve.)''"
     },
     {
         "id": "407",
         "name": "Mystique",
-        "description": "<p> '''+1&nbsp;Action <br> {{Costplus|2}} ''' </p> Nommez une carte, puis dévoilez la carte du haut de votre pioche. Si le nom correspond, prenez-la en main."
+        "description": "'''+1&nbsp;Action'''<br>{{Costplus|2}}<p>Nommez une carte, puis dévoilez la carte du haut de votre pioche. Si le nom correspond, prenez-la en main."
     },
-    { "id": "408", "name": "Nécropole", "description": "'''+2 Actions'''" },
+    { "id": "408", "name": "Nécropole", "description": "'''+2&nbsp;Actions'''" },
     {
         "id": "409",
         "name": "Domaine luxuriant",
@@ -637,22 +716,22 @@
     {
         "id": "411",
         "name": "Hospice",
-        "description": "{{Costplus|4}}<br>Dévoilez votre main. {{nowrap|–{{Cost|1}}}} par carte Trésor en main.<br>(Vous ne pouvez pas descendre en dessous {{nowrap|de {{Cost|0}}.)}}"
+        "description": "{{Costplus|4}}<p>Dévoilez votre main. {{nowrap|–{{Cost|1}}}} par carte Trésor en main. (Vous ne pouvez pas descendre en dessous de {{Cost|0}}.)"
     },
     {
         "id": "412",
         "name": "Rats",
-        "description": "<p> '''+1&nbsp;Carte <br> +1&nbsp;Action''' </p> Recevez un Rats. Écartez une carte de votre main autre qu'un Rats (ou dévoilez une main de Rats). {{Divline}} Quand vous écartez cette carte, '''+1&nbsp;Carte'''."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Recevez un Rats. Écartez une carte de votre main autre qu'un Rats (ou dévoilez une main de Rats).{{Divline}}Quand vous écartez cette carte, '''+1&nbsp;Carte'''."
     },
     {
         "id": "413",
         "name": "Reconstruction",
-        "description": "<p> '''+1&nbsp;Action''' </p> Nommez une carte. Dévoilez des cartes de votre pioche jusqu'à dévoiler une carte Victoire différente de la carte nommée. Défaussez le reste, écartez la carte Victoire, puis recevez une carte Victoire coûtant jusqu'à {{Cost|3}} de plus."
+        "description": "'''+1&nbsp;Action'''<p>Nommez une carte. Dévoilez des cartes de votre pioche jusqu'à dévoiler une carte Victoire différente de la carte nommée. Défaussez le reste, écartez la carte Victoire, puis recevez une carte Victoire coûtant jusqu'à {{Cost|3}} de plus."
     },
     {
         "id": "414",
         "name": "Bandit",
-        "description": "<p> {{Costplus|2}} </P> S'il y a dans le rebut des cartes coûtant entre {{Cost|3}} et {{cost|6}}, recevez-en une. <br> Sinon, tous vos adversaires dévoilent les deux premières cartes de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{cost|6}}, et défaussent le reste."
+        "description": "{{Costplus|2}}<p>S'il y a dans le rebut des cartes coûtant entre {{Cost|3}} et {{cost|6}}, recevez-en une. Sinon, tous vos adversaires dévoilent les deux premières cartes de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{cost|6}}, et défaussent le reste."
     },
     { "id": "415", "name": "Bibliothèque en ruines", "description": "'''+1&nbsp;Carte'''" },
     { "id": "416", "name": "Marché en ruines", "description": "'''+1&nbsp;Achat'''" },
@@ -660,42 +739,42 @@
     {
         "id": "418",
         "name": "Sage",
-        "description": "<p> '''+1&nbsp;Action''' </p> Dévoilez des cartes de votre pioche jusqu'à dévoiler une carte coûtant {{Cost|3}} ou plus. Prenez-la en main et défaussez le reste."
+        "description": "'''+1&nbsp;Action'''<p>Dévoilez des cartes de votre pioche jusqu'à dévoiler une carte coûtant {{Cost|3}} ou plus. Prenez-la en main et défaussez le reste."
     },
     {
         "id": "419",
         "name": "Pilleur",
-        "description": "<p> {{Costplus|2}} </p> Vous pouvez mettre votre pioche votre défausse. Consultez votre défausse et placez-en une carte sur votre pioche."
+        "description": "{{Costplus|2}}<p>Vous pouvez mettre votre pioche votre défausse. Consultez votre défausse et placez-en une carte sur votre pioche."
     },
     {
         "id": "420",
         "name": "Écuyer",
-        "description": "<p> {{Costplus|1}} </p> Choisissez : '''+2&nbsp;Actions'''; '''+2&nbsp;Achats'''; ou recevez un Argent. {{Divline}} Quand vous écartez cette carte, recevez une carte Attaque."
+        "description": "{{Costplus|1}}<p>Choisissez : '''+2&nbsp;Actions'''; '''+2&nbsp;Achats'''; ou recevez un Argent. {{Divline}} Quand vous écartez cette carte, recevez une carte Attaque."
     },
     {
         "id": "421",
         "name": "Salle d'entreposage",
-        "description": "'''+1 Achat'''<br>Défaussez autant de cartes que souhaité, puis piochez-en autant.<br>Ensuite, défaussez autant de cartes que souhaité pour {{Costplus|1}} par carte."
+        "description": "'''+1&nbsp;Achat'''<p>Défaussez autant de cartes que souhaité, puis piochez-en autant. Ensuite, défaussez autant de cartes que souhaité pour {{Costplus|1}} par carte."
     },
     {
         "id": "422",
         "name": "Rescapés",
-        "description": "Consultez les deux premières cartes de votre pioche. <br> Défaussez-les ou replacez-les dans l'ordre de votre choix."
+        "description": "Consultez les deux premières cartes de votre pioche. Défaussez-les ou replacez-les dans l'ordre de votre choix."
     },
     {
         "id": "423",
         "name": "Orphelin",
-        "description": "<p>'''+1&nbsp;Carte <br> +1&nbsp;Action''' </p> Tous vos adversaires défaussent jusqu'à avoir 4 cartes en main. {{Divline}} Quand vous jouez une autre carte Attaque alors que cette carte est en jeu, vous pouvez d'abord écarter cette carte pour recevoir un Mercenaire de la pile des Mercenaires."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Tous vos adversaires défaussent jusqu'à avoir 4 cartes en main. {{Divline}} Quand vous jouez une autre carte Attaque alors que cette carte est en jeu, vous pouvez d'abord écarter cette carte pour recevoir un Mercenaire de la pile des Mercenaires."
     },
     {
         "id": "424",
         "name": "Vagabond",
-        "description": "<p> '''+1&nbsp;Carte <br> +1&nbsp;Action''' </p> Dévoilez la première carte de vorte pioche. Si c'est une Malédiction, une Ruine, un Refuge ou une carte Victoire, prenez-la en main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Dévoilez la première carte de vorte pioche. Si c'est une Malédiction, une Ruine, un Refuge ou une carte Victoire, prenez-la en main."
     },
     {
         "id": "425",
         "name": "Ménestrel errant",
-        "description": "<p> '''+1&nbsp;Carte <br> +2&nbsp;Actions''' </p> Dévoilez les premières cartes de votre pioche. Replacez les cartes Action dans l'ordre de votre choix et défaussez le reste."
+        "description": "'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''<p>Dévoilez les premières cartes de votre pioche. Replacez les cartes Action dans l'ordre de votre choix et défaussez le reste."
     },
     {
         "id": "426",
@@ -758,7 +837,7 @@
     {
         "id": "558",
         "name": "Dame Anna",
-        "description": "<p> Vous pouvez écarter jusqu'à deux cartes de votre main. </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "Vous pouvez écarter jusqu'à deux cartes de votre main. Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "560",
@@ -768,42 +847,42 @@
     {
         "id": "562",
         "name": "Dame Molly",
-        "description": "<p> '''+2&nbsp;Actions''' </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "'''+2&nbsp;Actions'''<p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "564",
         "name": "Dame Natalie",
-        "description": "<p> Recevez une carte coûtant jusqu'à {{Cost|3}}. </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "Recevez une carte coûtant jusqu'à {{Cost|3}}.<p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "566",
         "name": "Dame Sylvia",
-        "description": "<p> {{Costplus|2}} </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "{{Costplus|2}}<p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "568",
         "name": "Sir Bailey",
-        "description": "<p> '''+1&nbsp;Carte <br> +1&nbsp;Action''' </p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "570",
         "name": "Sir Destry",
-        "description": "<p> '''+2&nbsp;Cartes''' </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "'''+2&nbsp;Cartes'''<p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "572",
         "name": "Sir Martin",
-        "description": "<p> '''+2&nbsp;Achats''' </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "'''+2&nbsp;Achats'''<p>Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "573",
         "name": "Sir Michael",
-        "description": "<p> Tous vos adversaires défaussent jusqu'à avoir 3 cartes en main. </p> Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
+        "description": "Tous vos adversaires défaussent jusqu'à avoir 3 cartes en main. Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte."
     },
     {
         "id": "575",
         "name": "Sir Vander",
-        "description": "Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte. {{Divline}} Quand vous écartez cette carte, recevez un Or."
+        "description": "Tous vos adversaires dévoilent les deux cartes du haut de leur pioche, en écartent une coûtant entre {{Cost|3}} et {{Cost|6}}, et défaussent le reste. Si un Chevalier a été écarté, écartez cette carte.{{Divline}}Quand vous écartez cette carte, recevez un Or."
     },
     { "id": "577", "name": "Chevalier", "description": "" },
     {
@@ -844,7 +923,7 @@
     {
         "id": "608",
         "name": "Touche-à-tout",
-        "description": "<p>Recevez un Argent.</p><p>Consultez la carte du haut de votre pioche; vous pouvez la défausser.</p>Piochez jusqu'à avoir 5&nbsp;cartes en main.<br>Vous pouvez écarter une carte non-Trésor de votre main."
+        "description": "Recevez un Argent. Consultez la carte du haut de votre pioche; vous pouvez la défausser. Piochez jusqu'à avoir 5&nbsp;cartes en main. Vous pouvez écarter une carte non-Trésor de votre main."
     },
     {
         "id": "609",
@@ -1115,6 +1194,11 @@
         "id": "2190",
         "name": "Aumône",
         "description": "Une fois par tour : si vous n'avez pas de carte Trésor en jeu, recevez une carte coûtant jusqu'a {{Cost|4}}."
+    },
+    {
+        "id": "2191",
+        "name": "Escorte",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Au début de votre prochain tour, {{Costplus|1}}.{{Divline}}Quand un adversaire joue une carte Attaque, vous pouvez d'abord jouer cette carte de votre main."
     },
     {
         "id": "2192",
@@ -1633,12 +1717,47 @@
     {
         "id": "3486",
         "name": "Sauna",
-        "description": "<p>'''+1 Carte<br>+1 Action'''</p> <p>Vous pouvez jouer un Trou dans la glace de votre main. </p> À ce tour, quand vous jouez un Argent, vous pouvez écarter une carte de votre main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Vous pouvez jouer un Trou dans la glace de votre main.<p>À ce tour, quand vous jouez un Argent, vous pouvez écarter une carte de votre main."
+    },
+    {
+        "id": "3487",
+        "name": "Trou dans la glace",
+        "description": "'''+3&nbsp;Cartes'''<p>Vous pouvez jouer un Sauna de votre main."
+    },
+    {
+        "id": "3496",
+        "name": "Présage",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Consultez votre défausse. Vouz pouvez placer une carte de votre défausse sur votre pioche."
+    },
+    {
+        "id": "3497",
+        "name": "Marchand",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>La premiére fois que vous jouez un Argent ce tour-ci, {{Costplus|1}}."
     },
     {
         "id": "3498",
         "name": "Vassal",
-        "description": "{{Costplus|2}}<br>Défaussez la carte du haut de votre pioche. Si c'est une carte Action, vous pouvez la jouer."
+        "description": "{{Costplus|2}}<p>Défaussez la carte du haut de votre pioche. Si c'est une carte Action, vous pouvez la jouer."
+    },
+    {
+        "id": "3499",
+        "name": "Braconnier",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>{{Costplus|1}}<p>Défausser une carte pour chaque pile vide de la réserve."
+    },
+    {
+        "id": "3500",
+        "name": "Brigand",
+        "description": "Recevez un Or. Tous vos adversaires dévoilent les 2 cartes du sommet de leur deck, écartent une carte Trésor dévoilée autre qu'un Cuivre et défaussent l'autre."
+    },
+    {
+        "id": "3501",
+        "name": "Sentinelle",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Consultez les 2 premières cartes de votre pioche. Écartez-en et/ou défaussez-en autant que vous le voulez. Replacez le reste sur votre pioche dans l'ordre de votre choix."
+    },
+    {
+        "id": "3502",
+        "name": "Artisane",
+        "description": "Recevez dans votre main une carte coûtant jusqu'à {{Cost|5}}.<p>Placez une carte de votre main sur votre deck."
     },
     {
         "id": "3503",
@@ -1669,6 +1788,11 @@
         "id": "3510",
         "name": "Patrouille",
         "description": "'''+3 Cartes'''<br>Dévoilez les premières cartes de votre pioche. Prenez en main les cartes Victoire et Malédiction. Replacez les autres sur votre pioche dans l'ordre de votre choix."
+    },
+    {
+        "id": "3511",
+        "name": "Magouille",
+        "description": "Ecartez une carte de votre main. Recevez une carte coûtant jusqu'à {{Cost|2}} de plus. Si la carte reçue est une Action ou un Trésor, placez-la au sommet de votre deck. Si c'est une carte Victoire, tous vos adversaires reçoivent une carte Malédiction."
     },
     { "id": "5088", "name": "Barde", "description": "{{Costplus|2}} <br> Appliquez une Aubaine." },
     {
@@ -2257,7 +2381,7 @@
     {
         "id": "6398",
         "name": "Église",
-        "description": "<p> '''+1&nbsp;Action''' </p> Mettez de côté jusqu'à 3&nbsp;cartes votre main, face cachée. Au début de votre prochain tour, prenez-les en main, puis vous pouvez écarter une carte de votre main."
+        "description": "'''+1&nbsp;Action'''<p>Mettez de côté jusqu'à 3&nbsp;cartes votre main, face cachée. Au début de votre prochain tour, prenez-les en main, puis vous pouvez écarter une carte de votre main."
     },
     {
         "id": "6400",
@@ -2743,7 +2867,7 @@
     {
         "id": "8210",
         "name": "Forgeur",
-        "description": "Choisissez une option&nbsp;: piochez jusqu'à avoir 6&nbsp;cartes en main; <br> ou '''+2&nbsp;Cartes'''; ou '''+1&nbsp;Carte''' et '''+1&nbsp;Action'''"
+        "description": "Choisissez une option&nbsp;: piochez jusqu'à avoir 6&nbsp;cartes en main; ou '''+2&nbsp;Cartes'''; ou '''+1&nbsp;Carte''' et '''+1&nbsp;Action'''"
     },
     {
         "id": "8211",
@@ -3542,6 +3666,11 @@
         "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>Défaussez une carte.{{divline}}Vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
     },
     {
+        "id": "11353",
+        "name": "Poissonnière",
+        "description": "'''+1&nbsp;Achat'''<br>{{Costplus|1}}{{divline}}vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
+    },
+    {
         "id": "11354",
         "name": "Éveil Spirituel",
         "description": "Les Trésors sont aussi des Actions. Lorsque vous jouez un<br>Trésor lors d'une phase Action, au lieu d'appliquer les effets<br>de la carte, appliquez ceux-ci : '''+1 Carte''' et '''+1 Action'''."
@@ -3557,9 +3686,24 @@
         "description": "{{Sunplus}}<br>{{Costplus|2}}<p>Vous pouvez écarter une carte de votre main. Ensuite, s'il y a au moins une carte Action au rebut, '''+2&nbsp;Cartes.'''"
     },
     {
+        "id": "11369",
+        "name": "Daïmio",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>La prochaine fois que vous jouez une carte Action qui n'est pas de type Ordre ce tour, rejouez-la après."
+    },
+    {
+        "id": "11370",
+        "name": "Artiste",
+        "description": "'''+1&nbsp;Action'''<p>'''+1&nbsp;Carte''' par carte dont vous avez exactement un exemplaire en jeu."
+    },
+    {
         "id": "11427",
         "name": "Amas",
         "description": "Si vous n'avez pas de cartes Action en jeu,<br>recevez une carte Action qui coûte jusqu'à {{cost|5}}."
+    },
+    {
+        "id": "11436",
+        "name": "Sorcière aux serpents",
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Si vous n'avez aucun doublon en main, vous pouvez dévoiler votre main et remettre la carte Sorcière aux serpents sur sa pile pour que tous vos adversaires<br>reçoivent une malédiction"
     },
     {
         "id": "11437",

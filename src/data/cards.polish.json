@@ -4,13 +4,69 @@
         "name": "Tunel",
         "description": "{{VP|'''2'''|l}}{{divline}}Kiedy odrzucasz tę kartę poza fazą porządków, możesz ją odkryć, aby dodać Złoto."
     },
-    { "id": "20", "name": "Wioska", "description": "'''+1 karta <br> +2 akcje'''" },
-    { "id": "24", "name": "Drwal", "description": "'''+1 zakup'''<br>{{Costplus|2}}" },
+    {
+        "id": "16",
+        "name": "Piwnica",
+        "description": "'''+1&nbsp;akcja'''<p>Odrzuć dowolną liczbę kart, a następnie dobierz tyle, ile odrzuciłeś."
+    },
+    {
+        "id": "17",
+        "name": "Kaplica",
+        "description": "Wyrzuć na śmietnisko maksymalnie 4 kartę z ręki."
+    },
+    {
+        "id": "18",
+        "name": "Fosa",
+        "description": "'''+2&nbsp;karty'''{{Divline}}Kiedy inny gracz zagrywa kartę Ataku, możesz odkryć tę kartę z ręki, aby uniknąć efektów tego ataku."
+    },
+    {
+        "id": "19",
+        "name": "Kanclerz",
+        "description": "{{Costplus|2}}<p>Możesz natychmiast umieścić swoją talię na swoim stosie odrzuconych kart."
+    },
+    { "id": "20", "name": "Wioska", "description": "'''+1&nbsp;karta'''<br>'''+2&nbsp;akcje'''" },
+    { "id": "24", "name": "Drwal", "description": "'''+1&nbsp;zakup'''<br>{{Costplus|2}}" },
     { "id": "25", "name": "Warsztat", "description": "Dodaj kartę nie droższą niż {{Cost|4}}." },
     {
         "id": "34",
         "name": "Dziedziniec",
         "description": "'''+3 karty'''<br>Odłóż kartę z ręki<br>na wierzch swojej talii."
+    },
+    {
+        "id": "36",
+        "name": "Urzędnik",
+        "description": "Dodaj kartę Srebrników na wierzch swojej talii. Każdy z pozostałych graczy odkrywa kartę Zwycięstwa z ręki i kładzie ją na wierzchu swojej talii (lub odkrywa rękę bez kart Zwycięstwa)."
+    },
+    {
+        "id": "37",
+        "name": "Uczta",
+        "description": "Wyrzuć tę kartę na śmietnisko. Dodaj kartę kosztującą nie więcej niż {{Cost|5}}."
+    },
+    {
+        "id": "38",
+        "name": "Ogrody",
+        "description": "Ta karta jest warta {{VP|'''1'''|}} za każde 10 kart, które posiadasz (zaokrąglając w dół)."
+    },
+    {
+        "id": "39",
+        "name": "Milicja",
+        "description": "{{Costplus|2}}<p>Każdy z pozostałych graczy odrzuca karty, aż będzie miał ich&nbsp;3 na ręce."
+    },
+    {
+        "id": "40",
+        "name": "Lichwiarz",
+        "description": "Wyrzuć z ręki na śmietnisko kartę Miedziaka, aby otrzymać {{Costplus|3}}"
+    },
+    {
+        "id": "41",
+        "name": "Przebudowa",
+        "description": "Wyrzuć na śmietnisko dowolną kartę z ręki. Dodaj kartę os koszcie większym maksymalnie o {{Cost|2}} od kosztu wyrzuconej karty."
+    },
+    { "id": "42", "name": "Kuźnia", "description": "'''+3&nbsp;karty'''" },
+    {
+        "id": "43",
+        "name": "Szpieg",
+        "description": "'''+1&nbsp;karta'''<br>'''+1&nbsp;akcja'''<p>Każdy gracz (włączając ciebie) odkrywa wierzchnią kartę swojej talii. Następnie decydujesz, czy ma ją odłożyć z powrotem na wierzch talii, czy odrzucić."
     },
     {
         "id": "44",
@@ -23,9 +79,44 @@
         "description": "Możesz wybrać kartę Akcji z ręki i zagrać ją dwukrotnie."
     },
     {
+        "id": "46",
+        "name": "Sala obrad",
+        "description": "'''+4&nbsp;karty'''<br>'''+1&nbsp;zakup'''<p>Każdy z pozostałych graczy dobiera kartę."
+    },
+    {
+        "id": "47",
+        "name": "Festyn",
+        "description": "'''+2&nbsp;akcje'''<br>'''+1&nbsp;zakup'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laboratorium",
+        "description": "'''+2&nbsp;karty'''<br>'''+1&nbsp;akcja'''"
+    },
+    {
+        "id": "49",
+        "name": "Biblioteka",
+        "description": "Dobieraj karty, aż będziesz miał ich&nbsp;7 na ręce. W miarę dobierania możesz odkładać na bok kolejne dobrane karty Akcji. Po zakończeniu dobierania odrzuć wszystkie odłożone karty."
+    },
+    {
+        "id": "50",
+        "name": "Targowisko",
+        "description": "'''+1&nbsp;karta'''<br>'''+1&nbsp;akcja'''<br>'''+1&nbsp;zakup'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "51",
+        "name": "Kopalnia",
+        "description": "Możesz wyrzucić z ręki na Śmietnisko dowolną kartę Skarbu. Dodaj na rękę kartę Skarbu kosztującą maksymalnie o {{Cost|3}} więcej od wyrzuconej karty."
+    },
+    {
         "id": "52",
         "name": "Wiedźma",
-        "description": "'''+2 karty'''<br>Każdy z pozostałych graczy dodaje kartę Klątwa."
+        "description": "'''+2&nbsp;karty'''<p>Każdy z pozostałych graczy dodaje kartę Klątwa."
+    },
+    {
+        "id": "53",
+        "name": "Odkrywca",
+        "description": "Odkrywaj karty ze swojej talii, aż odkryjesz 2 karty skarbu. Weź te karty na rękę i odrzuć pozostałe odkryte karty."
     },
     {
         "id": "72",
@@ -287,12 +378,12 @@
     {
         "id": "136",
         "name": "Kasztel",
-        "description": "'''+1 Karta<br>+2 Akcje'''{{divline}}Jeśli na początku fazy porządków masz tę kartę i nie więcej niż jedną inną kartę akcji w grze, możesz położyć tę kartę na wierzchu swojej talii."
+        "description": "'''+1&nbsp;Karta'''<br>'''+2&nbsp;Akcje'''{{divline}}Jeśli na początku fazy porządków masz tę kartę i nie więcej niż jedną inną kartę akcji w grze, możesz położyć tę kartę na wierzchu swojej talii."
     },
     {
         "id": "137",
         "name": "Gubernator",
-        "description": "'''+1 Akcja'''<br>Wybierz jedną z opcji (otrzymujesz wersję w nawiasie): Każdy z graczy dobiera +1 (+3) kartę; lub każdy z graczy dodaje Srebrnika (Złocisza); lub każdy z graczy może wyrzucić na śmietnisko kartę z ręki i dodać kartę o koszcie wyższym dokładnie o {{Cost|1}} ({{Cost|2}})."
+        "description": "'''+1&nbsp;Akcja'''<p>Wybierz jedną z opcji (otrzymujesz wersję w nawiasie): Każdy z graczy dobiera +1 (+3) kartę; lub każdy z graczy dodaje Srebrnika (Złocisza); lub każdy z graczy może wyrzucić na śmietnisko kartę z ręki i dodać kartę o koszcie wyższym dokładnie o {{Cost|1}} ({{Cost|2}})."
     },
     {
         "id": "138",
@@ -569,7 +660,7 @@
     {
         "id": "608",
         "name": "Złota rączka",
-        "description": "Dodaj kartę Srebrników.<br>Podejrzyj kartę z wierzchu swojej talii; możesz ją odrzucić.<br>Dobieraj karty, aż będziesz miał ich 5 na ręce.<br>Możesz wyrzucić na Śmietnisko kartę z ręki, niebędącą kartą Skarbu."
+        "description": "Dodaj kartę Srebrników. Podejrzyj kartę z wierzchu swojej talii; możesz ją odrzucić. Dobieraj karty, aż będziesz miał ich 5 na ręce. Możesz wyrzucić na Śmietnisko kartę z ręki, niebędącą kartą Skarbu."
     },
     { "id": "609", "name": "Szlachetny rabuś", "description": "" },
     {
@@ -1009,14 +1100,30 @@
     {
         "id": "3486",
         "name": "Sauna",
-        "description": "'''+1 karta<br>+1 akcja'''<br>Możesz zagrać Przerębel z ręki.{{Divline}}Kiedy ta karta znajduje się w grze i zagrywasz Srebrnika, możesz wyrzucić na śmietnisko kartę z ręki."
+        "description": "'''+1&nbsp;karta'''<br>'''+1&nbsp;akcja'''<p>Możesz zagrać Przerębel z ręki.{{Divline}}Kiedy ta karta znajduje się w grze i zagrywasz Srebrnika, możesz wyrzucić na śmietnisko kartę z ręki."
     },
+    {
+        "id": "3487",
+        "name": "Przerębel",
+        "description": "'''+3&nbsp;karty'''<p>Możesz zagrać Saunę z ręki."
+    },
+    { "id": "3496", "name": "Zwiastun", "description": "" },
+    { "id": "3497", "name": "Kupiec", "description": "" },
     { "id": "3498", "name": "Wasal", "description": "" },
+    { "id": "3499", "name": "Kłusownik", "description": "" },
+    { "id": "3500", "name": "Bandyta", "description": "" },
+    { "id": "3501", "name": "Wartownik", "description": "" },
+    {
+        "id": "3502",
+        "name": "Rękodzielnik",
+        "description": "Dodaj na rękę kartę nie droższą niż {{Cost|5}}.<p>Odłóż kartę z ręki na wierzch swojej talii."
+    },
     { "id": "3503", "name": "Intrygant", "description": "" },
     { "id": "3504", "name": "Dyplomata", "description": "" },
     { "id": "3505", "name": "Młyn", "description": "" },
     { "id": "3509", "name": "Dworzanie", "description": "" },
     { "id": "3510", "name": "Patrol", "description": "" },
+    { "id": "3511", "name": "Podmiana", "description": "" },
     { "id": "5088", "name": "Bard", "description": "" },
     {
         "id": "5164",

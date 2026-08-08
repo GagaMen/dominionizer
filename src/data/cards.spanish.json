@@ -1,7 +1,23 @@
 [
     { "id": "3", "name": "Túnel", "description": "" },
-    { "id": "20", "name": "Aldea", "description": "'''+1 Carta<br>+2 Acciones'''" },
-    { "id": "24", "name": "Leñadores", "description": "'''+1 Compra'''<br>{{Costplus|2}}" },
+    {
+        "id": "16",
+        "name": "Sótano",
+        "description": "'''+1&nbsp;Acción'''<p>Descarta la cantidad de cartas que quieras y roba la misma cantidad."
+    },
+    { "id": "17", "name": "Capilla", "description": "Elimina hasta 4 cartas de tu mano." },
+    {
+        "id": "18",
+        "name": "Foso",
+        "description": "'''+2&nbsp;Cartas'''{{divline}}Cuando otro jugador juegue una carta de Ataque, puedes enseñar esta carta de tu mano. Si lo haces, el Ataque no te afecta."
+    },
+    {
+        "id": "19",
+        "name": "Canciller",
+        "description": "{{Costplus|2}}<p>Puedes poner inmediatamente tu mazo en tu pila de descartes."
+    },
+    { "id": "20", "name": "Aldea", "description": "'''+1&nbsp;Carta'''<br>'''+2&nbsp;Acciones'''" },
+    { "id": "24", "name": "Leñadores", "description": "'''+1&nbsp;Compra'''<br>{{Costplus|2}}" },
     {
         "id": "25",
         "name": "Taller",
@@ -13,9 +29,45 @@
         "description": "'''+3 Cartas'''<br>Pon una carta de tu mano encima de tu mazo."
     },
     {
+        "id": "36",
+        "name": "Burócrata",
+        "description": "Ganas una carta de Plata y la colocas encima de tu mazo. Los demás jugadores tienen que enseñar una carta de Victoria y ponerla encima de su mazo (o mostrar toda su mano si no tienen cartas de Victoria)."
+    },
+    {
+        "id": "37",
+        "name": "Banquete",
+        "description": "Elimina esta carta. Gana una carta con un coste máximo de {{Cost|5}}"
+    },
+    {
+        "id": "38",
+        "name": "Jardines",
+        "description": "Consigue {{VP|1}} por cada 10 cartas que tengas (redondeado hacia abajo)."
+    },
+    {
+        "id": "39",
+        "name": "Milicia",
+        "description": "{{Costplus|2}}<p>Los demás jugadores se descartan hasta quedarse con 3&nbsp;cartas en la mano."
+    },
+    {
+        "id": "40",
+        "name": "Prestamista",
+        "description": "Puedes eliminar una carta de Cobre de tu mano. Si lo haces, {{Costplus|3}}."
+    },
+    {
+        "id": "41",
+        "name": "Remodelar",
+        "description": "Elimina una carta de tu mano. Gana una carta que cueste hasta {{Cost|2}} más que la carta eliminada."
+    },
+    { "id": "42", "name": "Herrería", "description": "'''+3&nbsp;Cartas'''" },
+    {
+        "id": "43",
+        "name": "Espía",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Cada jugador (incluso tú) revela la carta superior de su mazo y tú decides si la descarta o la devuelve a su sitio."
+    },
+    {
         "id": "44",
         "name": "Ladrón",
-        "description": "Cada jugador (menos tú) revela las 2 cartas superiores de su mazo y elimina 1 carta de Tesoro entre las reveladas (a elección tuya).<br>Puedes ganar los Tesoros eliminados que quieras. Las demás cartas reveladas se descartan."
+        "description": "Cada jugador (menos tú) revela las 2 cartas superiores de su mazo y elimina 1 carta de Tesoro entre las reveladas (a elección tuya). Puedes ganar los Tesoros eliminados que quieras. Las demás cartas reveladas se descartan."
     },
     {
         "id": "45",
@@ -23,9 +75,44 @@
         "description": "Puedes jugar dos veces una carta de Acción de tu mano."
     },
     {
+        "id": "46",
+        "name": "Sala del Consejo",
+        "description": "'''+4&nbsp;Cartas'''<br>'''+1&nbsp;Compra'''<p>Los demás jugadores roban una carta cada uno."
+    },
+    {
+        "id": "47",
+        "name": "Festival",
+        "description": "'''+2&nbsp;Acciones'''<br>'''+1&nbsp;Compra'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laboratorio",
+        "description": "'''+2&nbsp;Cartas'''<br>'''+1&nbsp;Acción'''"
+    },
+    {
+        "id": "49",
+        "name": "Biblioteca",
+        "description": "Roba cartas de una en una hasta tener 7 cartas en la mano. Puedes ir apartando las cartas de Acción que vayas sacando. Cuando termines, descarta las cartas que hayas apartado."
+    },
+    {
+        "id": "50",
+        "name": "Mercado",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<br>'''+1&nbsp;Compra'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "51",
+        "name": "Mina",
+        "description": "Puedes eliminar una carta de Tesoro de tu mano. Gana una carta de Tesoro que cueste hasta {{Cost|3}} más. La carta ganada va directamente a tu mano."
+    },
+    {
         "id": "52",
         "name": "Bruja",
-        "description": "'''+2 Cartas'''<br>Cada uno de los demás jugadores gana una carta de Maldición."
+        "description": "'''+2&nbsp;Cartas'''<p>Cada uno de los demás jugadores gana una carta de Maldición."
+    },
+    {
+        "id": "53",
+        "name": "Aventurero",
+        "description": "Levanta cartas de tu mazo hasta que descubras 2 Cartas de Tesoro.<br>Coloca los Tesoros en tu mano y descarta las demás cartas."
     },
     {
         "id": "72",
@@ -345,7 +432,7 @@
     {
         "id": "158",
         "name": "Botín",
-        "description": "<p>{{Cost|3|l}}<br>Cuando juegues esta carta, devuélvela al montón de Botines.</p>''(Este montón no está en el Suministro.)''"
+        "description": "{{Cost|3|l}}<p>Cuando juegues esta carta, devuélvela al montón de Botines.<p>''(Este montón no está en el Suministro.)''"
     },
     { "id": "212", "name": "Maldición", "description": "{{VP|-1|l}}" },
     { "id": "242", "name": "Préstamo", "description": "" },
@@ -355,7 +442,7 @@
     {
         "id": "317",
         "name": "Altar",
-        "description": "Elimina una carta de tu mano.<br>Gana una carta con un coste máximo {{nowrap|de {{Cost|5}}.}}"
+        "description": "Elimina una carta de tu mano. Gana una carta con un coste máximo de {{Cost|5}}."
     },
     {
         "id": "318",
@@ -365,7 +452,7 @@
     {
         "id": "319",
         "name": "Campamento de Bandidos",
-        "description": "<p>'''+1 Carta<br>+2 Acciones'''</p><p>Gana una carta de Botín del montón de Botines.</p>"
+        "description": "'''+1&nbsp;Carta'''<br>'''+2&nbsp;Acciones'''<p>Gana una carta de Botín del montón de Botines."
     },
     { "id": "321", "name": "Atalaya", "description": "" },
     { "id": "322", "name": "Obispo", "description": "" },
@@ -406,28 +493,28 @@
     {
         "id": "388",
         "name": "Banda de Rufianes",
-        "description": "Juega esta carta como si fuera la carta de Acción que elijas del Suministro y que cueste menos que ella.<br>Esta carta se considera la carta elegida hasta el momento de abandonar la zona de juego."
+        "description": "Juega esta carta como si fuera la carta de Acción que elijas del Suministro y que cueste menos que ella. Esta carta se considera la carta elegida hasta el momento de abandonar la zona de juego."
     },
     {
         "id": "389",
         "name": "Catacumbas",
-        "description": "Mira las 3 cartas superiores de tu mazo. Elige una opción: ponlas en tu mano; o bien descártalas y +3 Cartas.{{divline}}Cuando elimines esta carta, gana una carta que cueste menos que ella."
+        "description": "Mira las 3 cartas superiores de tu mazo. Elige una opción: ponlas en tu mano; o bien descártalas y +3&nbsp;Cartas.{{divline}}Cuando elimines esta carta, gana una carta que cueste menos que ella."
     },
     { "id": "390", "name": "Falsificación", "description": "" },
     {
         "id": "391",
         "name": "Conde",
-        "description": "<p>Elige una opción: descarta 2 cartas; o bien pon una carta de tu mano encima de tu mazo; o bien gana una carta de Cobre.</p><p>Elige una opción: {{Costplus|3}}; o bien elimina tu mano; o bien gana una carta de Ducado.</p>"
+        "description": "Elige una opción: descarta 2 cartas; o bien pon una carta de tu mano encima de tu mazo; o bien gana una carta de Cobre.<p>Elige una opción: {{Costplus|3}}; o bien elimina tu mano; o bien gana una carta de Ducado."
     },
     {
         "id": "392",
         "name": "Sectario",
-        "description": "<p>'''+2 Cartas'''</p><p>Cada jugador (menos tú) gana una carta de Ruinas. Puedes jugar un Sectario de tu mano.</p>{{divline}}Cuando elimines esta carta, +3&nbsp;Cartas."
+        "description": "'''+2&nbsp;Cartas'''<p>Cada jugador (menos tú) gana una carta de Ruinas. Puedes jugar un Sectario de tu mano.{{divline}}Cuando elimines esta carta, +3&nbsp;Cartas."
     },
     {
         "id": "393",
         "name": "Carro de los Muertos",
-        "description": "{{Costplus|5}}<br>Puedes eliminar una carta de Acción de tu mano. Si no lo haces, elimina esta carta.{{divline}}Cuando ganes esta carta, gana 2 cartas de Ruinas."
+        "description": "{{Costplus|5}}<p>Puedes eliminar una carta de Acción de tu mano. Si no lo haces, elimina esta carta.{{divline}}Cuando ganes esta carta, gana 2 cartas de Ruinas."
     },
     {
         "id": "394",
@@ -437,12 +524,12 @@
     {
         "id": "395",
         "name": "Merodeador",
-        "description": "<p>'''+1 Acción<br>+1 Compra'''</p><p>Elimina una carta de tu mano.<br> {{Costplus|1}} por cada carta de Tesoro con un nombre distinto que haya entre las cartas eliminadas.</p>"
+        "description": "'''+1&nbsp;Acción'''<br>'''+1&nbsp;Compra'''<p>Elimina una carta de tu mano. {{Costplus|1}} por cada carta de Tesoro con un nombre distinto que haya entre las cartas eliminadas."
     },
     {
         "id": "396",
         "name": "Fortaleza",
-        "description": "'''+1 Carta<br>+2 Acciones'''{{divline}}Cuando elimines esta carta, ponla en tu mano."
+        "description": "'''+1&nbsp;Carta'''<br>'''+2&nbsp;Acciones'''{{divline}}Cuando elimines esta carta, ponla en tu mano."
     },
     {
         "id": "397",
@@ -452,7 +539,7 @@
     {
         "id": "398",
         "name": "Ermitaño",
-        "description": "Mira tu pila de descartes. Puedes eliminar una carta de tu pila de descartes o de tu mano que no sea una carta de Tesoro. Gana una carta con un coste máximo {{nowrap|de {{Cost|3}}.}}{{divline}}Cuando descartes esta carta de tu zona de juego, si no compraste ninguna carta en este turno, elimina esta carta y gana un Loco del montón de Locos."
+        "description": "Mira tu pila de descartes. Puedes eliminar una carta de tu pila de descartes o de tu mano que no sea una carta de Tesoro. Gana una carta con un coste máximo de {{Cost|3}}.{{divline}}Cuando descartes esta carta de tu zona de juego, si no compraste ninguna carta en este turno, elimina esta carta y gana un Loco del montón de Locos."
     },
     {
         "id": "399",
@@ -462,22 +549,22 @@
     {
         "id": "400",
         "name": "Coto de Caza",
-        "description": "'''+4 Cartas'''{{divline}}Cuando elimines esta carta gana un Ducado o 3&nbsp;Fincas."
+        "description": "'''+4&nbsp;Cartas'''{{divline}}Cuando elimines esta carta gana un Ducado o 3&nbsp;Fincas."
     },
     {
         "id": "401",
         "name": "Ferretero",
-        "description": "<p>'''+1 Carta<br>+1 Acción'''</p><p>Revela la carta superior de tu mazo y descártala si quieres. Tanto si la descartas como si no, si se trata de&hellip;<br>una carta de Acción, +1 Acción<br>una carta de Tesoro, {{Costplus|1}}<br>una carta de Victoria, +1 Carta</p>"
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Revela la carta superior de tu mazo y descártala si quieres. Tanto si la descartas como si no, si se trata de&hellip;<p>una carta de Acción, +1&nbsp;Acción<br>una carta de Tesoro, {{Costplus|1}}<br>una carta de Victoria, +1&nbsp;Carta"
     },
     {
         "id": "402",
         "name": "Chatarrero",
-        "description": "<p>'''+1 Carta'''<br>'''+1 Acción'''<br>{{Costplus|1}}</p><p>Elimina una carta de tu mano.</p>"
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<br>{{Costplus|1}}<p>Elimina una carta de tu mano."
     },
     {
         "id": "403",
         "name": "Loco",
-        "description": "<p>'''+2 Acciones'''</p>Devuelve esta carta al montón de Locos. Si lo haces, +1&nbsp;Carta por cada carta que tengas en la mano.<br>''(Este montón no está en el Suministro).''"
+        "description": "'''+2&nbsp;Acciones'''<p>Devuelve esta carta al montón de Locos. Si lo haces, +1&nbsp;Carta por cada carta que tengas en la mano.<p>''(Este montón no está en el Suministro).''"
     },
     {
         "id": "404",
@@ -487,23 +574,23 @@
     {
         "id": "405",
         "name": "Plaza del Mercado",
-        "description": "'''+1 Carta<br>+1 Acción'''{{divline}}Cuando elimines una de tus cartas, puedes descartarte de esta carta de tu mano. Si lo haces, gana una carta de Oro."
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<br>'''+1&nbsp;Compra'''{{divline}}Cuando elimines una de tus cartas, puedes descartarte de esta carta de tu mano. Si lo haces, gana una carta de Oro."
     },
     {
         "id": "406",
         "name": "Mercenario",
-        "description": "Puedes eliminar 2 cartas de tu mano. Si lo haces, +2&nbsp;Cartas,<br>{{Costplus|2}}<br>y cada jugador (menos tú) se descarta hasta quedarse con 3 cartas en la mano.<br>''(Este montón no está en el Suministro).''"
+        "description": "Puedes eliminar 2 cartas de tu mano. Si lo haces, +2&nbsp;Cartas, {{Costplus|2}} y cada jugador (menos tú) se descarta hasta quedarse con 3 cartas en la mano.<p>''(Este montón no está en el Suministro).''"
     },
     {
         "id": "407",
         "name": "Pitonisa",
-        "description": "<p>'''+1 Acción'''<br>{{Costplus|2}}</p><p>Nombra una carta. Revela la carta superior de tu mazo. Si es la carta que nombraste, ponla en tu mano.</p>"
+        "description": "'''+1&nbsp;Acción'''<br>{{Costplus|2}}<p><p>Nombra una carta. Revela la carta superior de tu mazo. Si es la carta que nombraste, ponla en tu mano."
     },
-    { "id": "408", "name": "Necrópolis", "description": "'''+2 Acciones'''" },
+    { "id": "408", "name": "Necrópolis", "description": "'''+2&nbsp;Acciones'''" },
     {
         "id": "409",
         "name": "Finca Abandonada",
-        "description": "{{VP|0|l}}{{divline}}Cuando elimines esta carta, +1 Carta."
+        "description": "{{VP|0|l}}{{divline}}Cuando elimines esta carta, +1&nbsp;Carta."
     },
     {
         "id": "410",
@@ -513,65 +600,65 @@
     {
         "id": "411",
         "name": "Hospicio",
-        "description": "<p>{{Costplus|4}}</p><p>Revela tu mano. –{{Cost|1}} por cada carta de Tesoro que tengas en tu mano, hasta un mínimo {{nowrap|de {{Cost|0}}.}}</p>"
+        "description": "{{Costplus|4}}<p>Revela tu mano. –{{Cost|1}} por cada carta de Tesoro que tengas en tu mano, hasta un mínimo {{nowrap|de {{Cost|0}}.}}"
     },
     {
         "id": "412",
         "name": "Ratas",
-        "description": "'''+1 Carta<br>+1 Acción'''<br>Gana una carta de Ratas. Elimina una carta de tu mano que no sea una carta de Ratas (o bien revela tu mano mostrando que sólo tienes cartas de Ratas).{{divline}}Cuando elimines esta carta, +1 Carta."
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Gana una carta de Ratas. Elimina una carta de tu mano que no sea una carta de Ratas (o bien revela tu mano mostrando que sólo tienes cartas de Ratas).{{divline}}Cuando elimines esta carta, +1&nbsp;Carta."
     },
     {
         "id": "413",
         "name": "Reconstruir",
-        "description": "'''+1 Acción'''<br>Nombra una carta. Revela las cartas superiores de tu mazo hasta revelar una carta de Victoria que no sea la carta que nombraste. Descarta el resto de cartas. Elimina la carta de Victoria y gana una carta de Victoria con un coste máximo de {{Cost|3}} más que la carta eliminada."
+        "description": "'''+1&nbsp; Acción'''<p>Nombra una carta. Revela las cartas superiores de tu mazo hasta revelar una carta de Victoria que no sea la carta que nombraste. Descarta el resto de cartas. Elimina la carta de Victoria y gana una carta de Victoria con un coste máximo de {{Cost|3}} más que la carta eliminada."
     },
     {
         "id": "414",
         "name": "Granuja",
-        "description": "<p>{{Costplus|2}}</p><p>Si hay alguna carta eliminada que cueste entre {{Cost|3}} y {{Cost|6}}, gana una de ellas. Si no, cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto.</p>"
+        "description": "{{Costplus|2}}<p>Si hay alguna carta eliminada que cueste entre {{Cost|3}} y {{Cost|6}}, gana una de ellas. Si no, cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto."
     },
-    { "id": "415", "name": "Biblioteca en Ruinas", "description": "'''+1 Carta'''" },
-    { "id": "416", "name": "Mercado en Ruinas", "description": "'''+1 Compra'''" },
+    { "id": "415", "name": "Biblioteca en Ruinas", "description": "'''+1&nbsp;Carta'''" },
+    { "id": "416", "name": "Mercado en Ruinas", "description": "'''+1&nbsp;Compra'''" },
     { "id": "417", "name": "Pueblo en Ruinas", "description": "" },
     {
         "id": "418",
         "name": "Sabio",
-        "description": "<p>'''+1 Acción'''</p><p>Revela las cartas superiores de tu mazo hasta revelar una carta que cueste {{Cost|3}} o más. Pon esa carta en tu mano y descarta el resto.</p>"
+        "description": "'''+1&nbsp;Acción'''<p>Revela las cartas superiores de tu mazo hasta revelar una carta que cueste {{Cost|3}} o más. Pon esa carta en tu mano y descarta el resto."
     },
     {
         "id": "419",
         "name": "Carroñero",
-        "description": "<p>{{Costplus|2}}</p><p>Puedes poner tu mazo en tu pila de descartes. Mira tu pila de descartes y pon una carta de la pila encima de tu mazo.</p>"
+        "description": "{{Costplus|2}}<p>Puedes poner tu mazo en tu pila de descartes. Mira tu pila de descartes y pon una carta de la pila encima de tu mazo."
     },
     {
         "id": "420",
         "name": "Escudero",
-        "description": "{{Costplus|1}}<br>Elige una opción: +2 Acciones;<br>o bien +2 Compras;<br>o bien gana una carta de Plata.{{divline}}Cuando elimines esta carta, gana una carta de Ataque."
+        "description": "{{Costplus|1}}<p>Elige una opción: +2&nbsp;Acciones; o bien +2&nbsp;Compras; o bien gana una carta de Plata.{{divline}}Cuando elimines esta carta, gana una carta de Ataque."
     },
     {
         "id": "421",
         "name": "Depósito",
-        "description": "<p>'''+1 Compra'''</p><p>Descarta tantas cartas de tu mano como desees.<br>+1 Carta por cada carta descartada.<br>Descarta tantas cartas de tu mano como desees. {{Costplus|1}} por cada carta descartada esta segunda vez.</p>"
+        "description": "'''+1&nbsp;Compra'''<p>Descarta tantas cartas de tu mano como desees. +1&nbsp;Carta por cada carta descartada. Descarta tantas cartas de tu mano como desees. {{Costplus|1}} por cada carta descartada esta segunda vez."
     },
     {
         "id": "422",
         "name": "Supervivientes",
-        "description": "Mira las 2 cartas superiores de tu mazo. Descártalas o devuélvelas en el orden que desees."
+        "description": "Mira las 2&nbsp;cartas superiores de tu mazo. Descártalas o devuélvelas en el orden que desees."
     },
     {
         "id": "423",
         "name": "Pillastre",
-        "description": "'''+1 Carta<br>+1 Acción'''<br>Cada jugador (menos tú) se descarta hasta quedarse con 4 cartas en la mano.{{divline}}Si juegas otra carta de Ataque mientras esta carta todavía está en juego, puedes eliminar esta carta. Si lo haces, gana un Mercenario del montón de Mercenarios."
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Cada jugador (menos tú) se descarta hasta quedarse con 4 cartas en la mano.{{divline}}Si juegas otra carta de Ataque mientras esta carta todavía está en juego, puedes eliminar esta carta. Si lo haces, gana un Mercenario del montón de Mercenarios."
     },
     {
         "id": "424",
         "name": "Vagabundo",
-        "description": "<p>'''+1 Carta<br>+1 Acción'''</p><p>Revela la carta superior de tu mazo. Si es una carta de Maldición, Ruinas, Cobijo o Victoria, ponla en tu mano.</p>"
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Revela la carta superior de tu mazo. Si es una carta de Maldición, Ruinas, Cobijo o Victoria, ponla en tu mano."
     },
     {
         "id": "425",
         "name": "Juglar",
-        "description": "<p>'''+1 Carta<br>+2 Acción'''</p><p>Revela las 3 cartas superiores de tu mazo.<br>Devuelve las cartas de Acción encima del mazo en el orden que desees y descarta el resto.</p>"
+        "description": "'''+1&nbsp;Carta'''<br>'''+2&nbsp;Acción'''<p>Revela las 3 cartas superiores de tu mazo.<br>Devuelve las cartas de Acción encima del mazo en el orden que desees y descarta el resto."
     },
     { "id": "426", "name": "Cosecha", "description": "" },
     { "id": "427", "name": "Cacería", "description": "" },
@@ -594,7 +681,7 @@
     {
         "id": "558",
         "name": "Lady Anna",
-        "description": "Puedes eliminar hasta 2 cartas de tu mano.<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "Puedes eliminar hasta 2 cartas de tu mano. Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "560",
@@ -604,37 +691,37 @@
     {
         "id": "562",
         "name": "Lady Molly",
-        "description": "'''+2 Acciones'''<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "'''+2&nbsp;Acciones'''<p>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "564",
         "name": "Lady Natalie",
-        "description": "Puedes ganar una carta con un coste máximo de {{Cost|3}}.<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "Puedes ganar una carta con un coste máximo de {{Cost|3}}. Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "566",
         "name": "Lady Sylvia",
-        "description": "{{Costplus|2}}<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "{{Costplus|2}}<p>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "568",
         "name": "Sir Bailey",
-        "description": "'''+1 Carta<br>+1 Acción'''<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "570",
         "name": "Sir Destry",
-        "description": "'''+2 Cartas'''<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "'''+2&nbsp;Cartas'''<p>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "572",
         "name": "Sir Martin",
-        "description": "'''+2 Compras'''<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "'''+2&nbsp;Compras'''<p>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "573",
         "name": "Sir Michael",
-        "description": "Cada jugador (menos tú) se descarta hasta quedarse con 3 cartas en la mano.<br>Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
+        "description": "Cada jugador (menos tú) se descarta hasta quedarse con 3 cartas en la mano. Cada jugador (menos tú) revela las 2 cartas superiores de su mazo, elimina una que cueste entre {{Cost|3}} y {{Cost|6}} y descarta el resto. Si al hacerlo eliminara una carta de Caballero, elimina esta carta."
     },
     {
         "id": "575",
@@ -673,9 +760,39 @@
     { "id": "625", "name": "Tierra de Labranza", "description": "" },
     { "id": "1504", "name": "Príncipe", "description": "" },
     {
+        "id": "3496",
+        "name": "Emisario",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Mira en tu pila de Descarte; puedes coger una carta y colocarla sobre tu mazo."
+    },
+    {
+        "id": "3497",
+        "name": "Tendera",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Ganas {{Costplus|1}} la primera vez que juegas una carta de Plata en este turno."
+    },
+    {
         "id": "3498",
         "name": "Vasallo",
-        "description": "{{Costplus|2}}<br>Descarta la carta superior de tu mazo. Si es una carta de Acción, puedes jugarla."
+        "description": "{{Costplus|2}}<p>Descarta la carta superior de tu mazo. Si es una carta de Acción, puedes jugarla."
+    },
+    {
+        "id": "3499",
+        "name": "Cazador Furtivo",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<br>{{Costplus|1}}<p>Descarta una carta por cada pila agotada del Suministro."
+    },
+    {
+        "id": "3500",
+        "name": "Bandido",
+        "description": "Ganas una carta de Oro. Los demás jugadores tienen que revelar las 2&nbsp;cartas superiores de sus respectivos mazos, eliminar una carta de Tesoro revelada que no sea de Cobre y descartar las demás."
+    },
+    {
+        "id": "3501",
+        "name": "Centinela",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Acción'''<p>Mira las 2 cartas superiores de tu mazo; puedes eliminar y/o descartar una, ambas o ninguna. Vuelve a colocar sobre el mazo las restantes en el orden que quieras."
+    },
+    {
+        "id": "3502",
+        "name": "Artesano",
+        "description": "Gana una carta que tenga un coste máximo de {{Cost|5}}. La carta ganada va directamente a tu mano.<p>Coloca sobre tu mazo una carta de tu mano."
     },
     {
         "id": "3503",
@@ -706,6 +823,11 @@
         "id": "3510",
         "name": "Patrulla",
         "description": "'''+3 Cartas'''<br>Revela las 4 cartas superiores de tu mazo. Pon en tu mano las cartas de Victoria y las Maldiciones. Devuelve las demás en cualquier orden."
+    },
+    {
+        "id": "3511",
+        "name": "Suplantar",
+        "description": "Elimina una carta de tu mano. Gana una carta que cueste hasta {{Cost|2}} más que la carta eliminada. Si la carta ganada es de Acción o de Tesoro, colócala encima de tu mazo; si es una carta de Victoria, todos los demás jugadores ganan una Maldición."
     },
     {
         "id": "6112",

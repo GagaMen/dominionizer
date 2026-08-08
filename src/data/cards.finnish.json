@@ -1,12 +1,31 @@
 [
     { "id": "3", "name": "Tunneli", "description": "" },
+    { "id": "16", "name": "Kellari", "description": "" },
+    { "id": "17", "name": "Kappeli", "description": "" },
+    { "id": "18", "name": "Vallihauta", "description": "" },
+    { "id": "19", "name": "Kansleri", "description": "" },
     { "id": "20", "name": "Kylä", "description": "" },
     { "id": "24", "name": "Metsuri", "description": "" },
     { "id": "25", "name": "Työpaja", "description": "" },
     { "id": "34", "name": "Sisäpiha", "description": "" },
+    { "id": "36", "name": "Byrokraatti", "description": "" },
+    { "id": "37", "name": "Pidot", "description": "" },
+    { "id": "38", "name": "Puutarha", "description": "" },
+    { "id": "39", "name": "Nostoväki", "description": "" },
+    { "id": "40", "name": "Koronkiskuri", "description": "" },
+    { "id": "41", "name": "Muutostyö", "description": "" },
+    { "id": "42", "name": "Takomo", "description": "" },
+    { "id": "43", "name": "Vakooja", "description": "" },
     { "id": "44", "name": "Varas", "description": "" },
     { "id": "45", "name": "Valtaistuinsali", "description": "" },
+    { "id": "46", "name": "Raatihuone", "description": "" },
+    { "id": "47", "name": "Juhlat", "description": "" },
+    { "id": "48", "name": "Laboratorio", "description": "" },
+    { "id": "49", "name": "Kirjasto", "description": "" },
+    { "id": "50", "name": "Tori", "description": "" },
+    { "id": "51", "name": "Kaivos", "description": "" },
     { "id": "52", "name": "Noita", "description": "" },
+    { "id": "53", "name": "Seikkailija", "description": "" },
     {
         "id": "72",
         "name": "Apuri",
@@ -111,27 +130,27 @@
     {
         "id": "134",
         "name": "Musta pörssi",
-        "description": "{{Costplus|2}}<br>Paljasta Musta Pörssi pakan 3 paällimmäistä<br>kortia. Voit heti ostaa niistä yhden. Aseta<br>loput kortit Musta Pörssi pakan pohjalle<br>haluamassasi järjestyksessä.<br>''(Ennen pelin alkua, kokoa Musta Pörssi pakka<br>kaikista niistä kuningaskuntakorteista, joita ei<br>valittu pelin mukaan. Yksi kutakin)''"
+        "description": "{{Costplus|2}}<p>Paljasta Musta Pörssi pakan 3 paällimmäistä kortia. Voit heti ostaa niistä yhden. Aseta loput kortit Musta Pörssi pakan pohjalle haluamassasi järjestyksessä.<p>''(Ennen pelin alkua, kokoa Musta Pörssi pakka kaikista niistä kuningaskuntakorteista, joita ei valittu pelin mukaan. Yksi kutakin)''"
     },
     {
         "id": "135",
         "name": "Lähettiläs",
-        "description": "Paljasta pakkasi 5 päällimmäistä korttia.<br>Vasemmalla puolellasi istuva pelaaja<br>valitsee paljastetuista korteista yhden,<br>joka sinun tulee poistaa.<br>Nosta loput kortit."
+        "description": "Paljasta pakkasi 5 päällimmäistä korttia. Vasemmalla puolellasi istuva pelaaja valitsee paljastetuista korteista yhden, joka sinun tulee poistaa. Nosta loput kortit."
     },
     {
         "id": "136",
         "name": "Linnoitettu kylä",
-        "description": "'''+1 korttia'''<br>'''+2 toimintaa'''{{divline}}Lopputoimien alussa, jos sinulla ei ole pelissä<br>tämän kortin lisäksi enempää kuin yksi toinen<br>Toimintakortti, saat laittaa tämän kortin<br>nostopakkasi päälle."
+        "description": "'''+1&nbsp;korttia'''<br>'''+2&nbsp;toimintaa'''{{divline}}Lopputoimien alussa, jos sinulla ei ole pelissä tämän kortin lisäksi enempää kuin yksi toinen Toimintakortti, saat laittaa tämän kortin nostopakkasi päälle."
     },
     {
         "id": "137",
         "name": "Kuvernööri",
-        "description": "'''+1 toiminta'''<br>Valitse yksi seuraavista<br>(saat itse sulkuhin merkityn):<br>kukin pelaaja saa + 1 (+3) korttia; tai<br>kukin pelaaja ottaa Hopean (Kullan); tai<br>kukin pelaaja saa tuhota kädestään kortin<br>ja otta kortin jonka hinta on tasan<br>{{Cost|1}} ({{Cost|2}}) enemmän kuin tuhottu kortti."
+        "description": "'''+1&nbsp;toiminta'''<p>Valitse yksi seuraavista (saat itse sulkuhin merkityn): kukin pelaaja saa +1&nbsp;(+3)&nbsp;korttia; tai kukin pelaaja ottaa Hopean (Kullan); tai kukin pelaaja saa tuhota kädestään kortin ja otta kortin jonka hinta on tasan {{Cost|1}} ({{Cost|2}}) enemmän kuin tuhottu kortti."
     },
     {
         "id": "138",
         "name": "Kätkö",
-        "description": "<br>{{Cost|2|l}}{{divline}}Kun sekoitat pakkasi, saat sekoittamisen jälkeen asettaa tämän kortin valitsemaasi kohtaan pakassasi.<br>&nbsp;"
+        "description": "{{Cost|2|l}}{{divline}}Kun sekoitat pakkasi, saat sekoittamisen jälkeen asettaa tämän kortin valitsemaasi kohtaan pakassasi."
     },
     { "id": "155", "name": "Kerjäläinen", "description": "" },
     { "id": "158", "name": "Sotasaalis", "description": "" },
@@ -291,7 +310,7 @@
     {
         "id": "1504",
         "name": "Prinssi",
-        "description": "Voit laittaa tämän kortin syrjaän. Jos teet<br>niin, laita kädestäsi syrjaan Toimintakortti<br>jonka hinta on enintaän {{Cost|4}}. Jokaisen<br>vuorosi alussa pelaa sivuun laittamasi kortti<br>ja laita se uudestaan syrjään kun poistat sen<br>pelista. (Jos et voi laittaa sita syrjään et voi<br>pelata sita tulevilla vuoroilla.)"
+        "description": "Voit laittaa tämän kortin syrjaän. Jos teet niin, laita kädestäsi syrjaan Toimintakortti jonka hinta on enintaän {{Cost|4}}. Jokaisen vuorosi alussa pelaa sivuun laittamasi kortti ja laita se uudestaan syrjään kun poistat sen pelista. (Jos et voi laittaa sita syrjään et voi pelata sita tulevilla vuoroilla.)"
     },
     { "id": "2107", "name": "Sankari", "description": "" },
     { "id": "2109", "name": "Harakka", "description": "" },
@@ -316,6 +335,7 @@
     { "id": "2183", "name": "Seikkailu", "description": "" },
     { "id": "2184", "name": "Tiedustelupartio", "description": "" },
     { "id": "2190", "name": "Almut", "description": "" },
+    { "id": "2191", "name": "Karavaanivartija", "description": "" },
     { "id": "2192", "name": "Rotanmetsästäjä", "description": "" },
     { "id": "2193", "name": "Hävitys", "description": "" },
     { "id": "2194", "name": "Tyrmä", "description": "" },
@@ -424,12 +444,13 @@
     {
         "id": "3486",
         "name": "Sauna",
-        "description": "'''+1 Kortti<br>+1 Toiminta'''<br>Voit pelata Avannon kädestäsi.{{Divline}}Kun pelaat Hopean tämän kortin ollessa pelissä, voit tuhota kortin kädestäsi."
+        "description": "'''+1&nbsp;Kortti'''<br>'''+1&nbsp;Toiminta'''<p>Voit pelata Avannon kädestäsi.{{Divline}}Kun pelaat Hopean tämän kortin ollessa pelissä, voit tuhota kortin kädestäsi."
     },
+    { "id": "3487", "name": "Avanto", "description": "" },
     {
         "id": "5175",
         "name": "Purkutyö",
-        "description": "Tuhoa kortti kädestäsi.<br>Jos tuhottu kortti<br>maksaa {{Cost|1}} tai enemmän,<br>ota halvempi kortti ja Kulta."
+        "description": "Tuhoa kortti kädestäsi. Jos tuhottu kortti maksaa {{Cost|1}} tai enemmän, ota halvempi kortti ja Kulta."
     },
     { "id": "10190", "name": "Haaremi", "description": "" }
 ]
