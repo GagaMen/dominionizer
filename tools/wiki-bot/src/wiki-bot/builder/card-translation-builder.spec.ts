@@ -92,6 +92,289 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with translations in template form should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 20,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|Czech| Vesnice | }}\n` +
+                                    `{{CardLangVersion|German| Dorf | '''+1&nbsp;Karte'''<br>'''+2&nbsp;Aktionen''' | d=g }}\n` +
+                                    `{{CardLangVersion|Japanese| 村 (pron. ''mura'') | '''+1 カードを引く''' }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '20',
+            };
+            const expected = new Map<string, CardTranslation>([
+                ['Czech', { id: '20', name: 'Vesnice', description: '' }],
+                [
+                    'German',
+                    {
+                        id: '20',
+                        name: 'Dorf',
+                        description: `'''+1&nbsp;Karte'''<br>'''+2&nbsp;Aktionen'''`,
+                    },
+                ],
+                ['Japanese', { id: '20', name: '村', description: `'''+1 カードを引く'''` }],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with template form and named argument before the language should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 4404,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|l=1|French| Convocation (lit. ''meeting'') | Recevez jusqu'à {{Cost|4}}. }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '4404',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'French',
+                    {
+                        id: '4404',
+                        name: 'Convocation',
+                        description: `Recevez jusqu'à {{Cost|4}}.`,
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with multiple template form entries per language should return the latest one', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 3502,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|French|r=2| Artisan | Recevez en main une carte. | o=1 }}\n` +
+                                    `{{CardLangVersion|French|r=0| Artisane | Recevez dans votre main une carte. | Seconde édition (2016) }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '3502',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'French',
+                    {
+                        id: '3502',
+                        name: 'Artisane',
+                        description: 'Recevez dans votre main une carte.',
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with latest template form entry lacking a description should return the latest one having one', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 317,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|German|r=2| Altar | Entsorge eine deiner Handkarten. | [[ASS]] (Nachdruck 2019) | o=1 }}\n` +
+                                    `{{CardLangVersion|German|r=0| Altar |  | [[Hans im Glück]] | d=s }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '317',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'German',
+                    {
+                        id: '317',
+                        name: 'Altar',
+                        description: 'Entsorge eine deiner Handkarten.',
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with template form entries lacking a description at all should return empty descriptions', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 577,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|Russian|  |  | d=g }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '577',
+            };
+            const expected = new Map<string, CardTranslation>([
+                ['Russian', { id: '577', name: '', description: '' }],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with template form and missing end template should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 212,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|German| Fluch | {{VP|-1|l}} | (2019) | d=g }}\n` +
+                                    `\n` +
+                                    `== Trivia ==\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '212',
+            };
+            const expected = new Map<string, CardTranslation>([
+                ['German', { id: '212', name: 'Fluch', description: `{{VP|-1|l}}` }],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with commented out template form entry should ignore it', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 20,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|Czech| Vesnice | }}\n` +
+                                    `<!--{{CardLangVersion|Greek| Χωριό | }}-->\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '20',
+            };
+            const expected = new Map<string, CardTranslation>([
+                ['Czech', { id: '20', name: 'Vesnice', description: '' }],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with html markup in template form should return correct translations', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 3500,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|German| Banditin<br>(Note: explicitly feminine) | Nimm ein Gold.<br/>Jeder Mitspieler.<hr style="width:50%">Ende | (2019) }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '3500',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'German',
+                    {
+                        id: '3500',
+                        name: 'Banditin',
+                        description: 'Nimm ein Gold.<br>Jeder Mitspieler.{{divline}}Ende',
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with different heading should return correct translations', () => {
             const cardTypePage: CardTypePage = {
                 ...nullCardPage,

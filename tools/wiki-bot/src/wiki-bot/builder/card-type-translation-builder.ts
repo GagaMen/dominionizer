@@ -1,6 +1,6 @@
 import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage, CargoCardType, WikiText } from '../wiki-client/api-models';
-import { extractSection, normalize } from './helper-functions';
+import { extractSection, extractTemplates, normalize } from './helper-functions';
 import { CardTranslationBuilder } from './card-translation-builder';
 import { buildCargoId } from './cargo-id';
 
@@ -18,7 +18,7 @@ export class CardTypeTranslationBuilder {
             3,
         );
 
-        if (this.hasTableForm(translationSection)) {
+        if (this.hasLangVersions(wikiText) || this.hasTableForm(translationSection)) {
             const cardTranslations = this.cardTranslationBuilder.build(cardTypePage, cargoCardType);
             const cardTypeTranslations = new Map<string, CardTypeTranslation>();
 
@@ -48,6 +48,14 @@ export class CardTypeTranslationBuilder {
                 ];
             }),
         );
+    }
+
+    // Card type pages carry their translations either as a plain list, as a wikitable or - since
+    // the wiki started migrating its language tables - as {{CardLangVersion}} template calls. The
+    // latter two are shaped exactly like the ones on card pages, so the card translations are
+    // reused and reduced to the fields of a card type translation.
+    private hasLangVersions(wikiText: WikiText) {
+        return extractTemplates(wikiText.replace(/<!--.*?-->/gs, ''), 'CardLangVersion').length > 0;
     }
 
     private hasTableForm(translationSection: WikiText) {

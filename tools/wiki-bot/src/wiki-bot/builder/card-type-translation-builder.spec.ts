@@ -62,6 +62,55 @@ describe('CardTypeTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with translations in template form should return correct translations', () => {
+            const cardTypePage: CardTypePage = {
+                pageid: 577,
+                title: 'Knights',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Knights',
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|French| Chevalier | }}\n` +
+                                    `{{CardLangVersion|German|r=2| Ritter | Spielvorbereitung: Mischt alle Ritter. | o=1 }}\n` +
+                                    `{{CardLangVersion|German|r=0| Ritter |  | d=s }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCardType: CargoCardType = {
+                PageId: '577',
+                Name: 'Knight',
+                Scope: 'Single-pile',
+            };
+            const cardTranslations = new Map<string, CardTranslation>([
+                ['French', { id: '577', name: 'Chevalier', description: '' }],
+                [
+                    'German',
+                    {
+                        id: '577',
+                        name: 'Ritter',
+                        description: 'Spielvorbereitung: Mischt alle Ritter.',
+                    },
+                ],
+            ]);
+            const expected = new Map<string, CardTypeTranslation>([
+                ['French', { id: '577', name: 'Chevalier' }],
+                ['German', { id: '577', name: 'Ritter' }],
+            ]);
+            cardTranslationBuilderSpy.build
+                .withArgs(cardTypePage, cargoCardType)
+                .and.returnValue(cardTranslations);
+
+            const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with translations in table form for card type should return correct translations', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 6107,

@@ -6,7 +6,13 @@ import {
     CargoCardType,
     WikiText,
 } from '../wiki-client/api-models';
-import { extractSection, normalize } from './helper-functions';
+import {
+    TemplateArguments,
+    extractSection,
+    extractTemplateArguments,
+    extractTemplates,
+    normalize,
+} from './helper-functions';
 import { buildCargoId } from './cargo-id';
 
 export class CardTranslationBuilder {
@@ -15,6 +21,64 @@ export class CardTranslationBuilder {
         cargoCard: CargoCard | CargoCardType,
     ): Map<string, CardTranslation> {
         const wikiText: WikiText = page.revisions[0].slots.main['*'] ?? '';
+        const langVersions: WikiText[] = extractTemplates(
+            wikiText.replace(/<!--.*?-->/gs, ''),
+            'CardLangVersion',
+        );
+
+        return langVersions.length > 0
+            ? this.buildFromLangVersions(langVersions, cargoCard)
+            : this.buildFromTable(wikiText, cargoCard);
+    }
+
+    // The wiki is migrating its language tables from a hand-written wikitable to
+    // {{CardLangVersion}} template calls, so both forms have to be understood.
+    private buildFromLangVersions(
+        langVersions: WikiText[],
+        cargoCard: CargoCard | CargoCardType,
+    ): Map<string, CardTranslation> {
+        const langVersionsByLanguage = new Map<string, TemplateArguments[]>();
+
+        for (const langVersion of langVersions) {
+            const templateArguments = extractTemplateArguments(langVersion);
+            const language = normalize(templateArguments.positional[0]);
+
+            langVersionsByLanguage.set(
+                language,
+                (langVersionsByLanguage.get(language) ?? []).concat(templateArguments),
+            );
+        }
+
+        const translations = new Map<string, CardTranslation>();
+
+        for (const [language, langVersionsOfLanguage] of langVersionsByLanguage) {
+            const { positional } = this.findLatestLangVersion(langVersionsOfLanguage);
+
+            translations.set(language, {
+                id: buildCargoId(cargoCard),
+                name: this.normalizeCardName(positional[1]),
+                description: this.normalizeCardDescription(positional[2]),
+            });
+        }
+
+        return translations;
+    }
+
+    // The printings of a language are listed from oldest to newest, so the last one wins. Entries
+    // added while migrating a page often carry no card text yet; in that case we fall back to the
+    // newest entry that has one, because the text of an older printing beats no text at all.
+    private findLatestLangVersion(langVersions: TemplateArguments[]): TemplateArguments {
+        const langVersionsWithDescription = langVersions.filter(
+            (langVersion) => normalize(langVersion.positional[2]) !== '',
+        );
+
+        return langVersionsWithDescription.at(-1) ?? langVersions[langVersions.length - 1];
+    }
+
+    private buildFromTable(
+        wikiText: WikiText,
+        cargoCard: CargoCard | CargoCardType,
+    ): Map<string, CardTranslation> {
         const otherLanguageVersions: WikiText = extractSection(
             wikiText,
             '(?:In other languages|Other language versions)',
@@ -79,7 +143,13 @@ export class CardTranslationBuilder {
     }
 
     private extractCardName(name: WikiText | undefined): string {
+        // removes HTML attributes on cells
         name = /^.*(?<!\{\{.*?)\|(.*)/s.exec(name ?? '')?.[1] ?? '';
+
+        return this.normalizeCardName(name);
+    }
+
+    private normalizeCardName(name: WikiText | undefined): string {
         const nameMatch = /^\s*(?:\{\{nowrap\|(.*?)\}\}|([^{(]*))/i.exec(name ?? '');
         name = nameMatch?.[1] ?? nameMatch?.[2] ?? '';
         name = name.replace(/(<br\s*\/?>|<hr[^>]*?>).*/, '');
@@ -91,6 +161,10 @@ export class CardTranslationBuilder {
         // removes HTML attributes on cells
         description = description?.replace(/^.*(?<!\{\{.*?)\|/s, '');
 
+        return this.normalizeCardDescription(description);
+    }
+
+    private normalizeCardDescription(description: WikiText | undefined): string {
         if (!description || !normalize(description)) {
             return '';
         }
