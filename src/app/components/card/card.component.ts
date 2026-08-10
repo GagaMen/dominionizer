@@ -49,6 +49,7 @@ export class CardComponent {
         CardTypeId.Way,
         CardTypeId.Trait,
         CardTypeId.Ally,
+        CardTypeId.Prophecy,
     ];
 
     private orderedSecondaryCardTypes: string[] = [CardTypeId.Action, CardTypeId.Night];
@@ -69,6 +70,7 @@ export class CardComponent {
         [CardTypeId.Way, '#d3eef9'],
         [CardTypeId.Trait, '#cbc9e1'],
         [CardTypeId.Ally, '#ddc6a7'],
+        [CardTypeId.Prophecy, '#36a4bd'],
     ]);
 
     @Input() card: Card = NullCard;

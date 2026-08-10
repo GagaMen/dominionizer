@@ -195,6 +195,10 @@ describe('CardComponent', () => {
             { typeIds: [CardTypeId.Trait], expected: calculateBackground(CardTypeId.Trait) },
             { typeIds: [CardTypeId.Ally], expected: calculateBackground(CardTypeId.Ally) },
             {
+                typeIds: [CardTypeId.Prophecy],
+                expected: calculateBackground(CardTypeId.Prophecy),
+            },
+            {
                 typeIds: [CardTypeId.Action, CardTypeId.Duration],
                 expected: calculateBackground(CardTypeId.Duration),
             },

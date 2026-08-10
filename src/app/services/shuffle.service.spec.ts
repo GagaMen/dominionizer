@@ -31,6 +31,7 @@ describe('ShuffleService', () => {
     let ways: Card[];
     let traits: Card[];
     let allies: Card[];
+    let prophecies: Card[];
     const kingdomCardsCountOfConfiguredExpansions = 20;
     const singleSpecialCardsCountOfConfiguredExpansions = 5;
 
@@ -121,6 +122,11 @@ describe('ShuffleService', () => {
             false,
             singleSpecialCardsCountOfConfiguredExpansions,
         );
+        prophecies = createCards(
+            dataFixture.createCardType({ id: CardTypeId.Prophecy }),
+            false,
+            singleSpecialCardsCountOfConfiguredExpansions,
+        );
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
@@ -144,6 +150,9 @@ describe('ShuffleService', () => {
         cardServiceSpy.findByCardType
             .withArgs(CardTypeId.Ally)
             .and.returnValue(cold('(a|)', { a: allies }));
+        cardServiceSpy.findByCardType
+            .withArgs(CardTypeId.Prophecy)
+            .and.returnValue(cold('(a|)', { a: prophecies }));
 
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
@@ -239,9 +248,13 @@ describe('ShuffleService', () => {
                 0,
                 kingdomCardsCountOfConfiguredExpansions,
             );
+            const liaisonCards = dataFixture.createCards(10, {
+                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
+                isKingdomCard: true,
+            });
             chanceServiceSpy.pickCards
                 .withArgs(kingdomCardsOfConfiguredExpansions, 10)
-                .and.returnValue(kingdomCards.slice(0, 10));
+                .and.returnValue(liaisonCards);
             const allyCardsOfConfiguredExpansions = allies.slice(
                 0,
                 singleSpecialCardsCountOfConfiguredExpansions,
@@ -257,6 +270,74 @@ describe('ShuffleService', () => {
             const set = setServiceSpy.updateSet.calls.first().args[0];
 
             expect(set.specialCards).toEqual(expected);
+        });
+
+        it('with shuffeled set contains omen should contain exact one random prophecy', () => {
+            const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
+                0,
+                kingdomCardsCountOfConfiguredExpansions,
+            );
+            const omenCards = dataFixture.createCards(10, {
+                types: [dataFixture.createCardType({ id: CardTypeId.Omen })],
+                isKingdomCard: true,
+            });
+            chanceServiceSpy.pickCards
+                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
+                .and.returnValue(omenCards);
+            const prophecyCardsOfConfiguredExpansions = prophecies.slice(
+                0,
+                singleSpecialCardsCountOfConfiguredExpansions,
+            );
+            const expected = prophecies.slice(0, 1);
+            chanceServiceSpy.pickCards
+                .withArgs(prophecyCardsOfConfiguredExpansions, 1)
+                .and.returnValue(expected);
+            shuffleService = TestBed.inject(ShuffleService);
+            getTestScheduler().flush();
+
+            shuffleService.shuffleSet();
+            const set = setServiceSpy.updateSet.calls.first().args[0];
+
+            expect(set.specialCards).toEqual(expected);
+        });
+
+        it('with shuffeled set contains liaison and omen should contain an ally and a prophecy', () => {
+            const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
+                0,
+                kingdomCardsCountOfConfiguredExpansions,
+            );
+            const liaisonCards = dataFixture.createCards(9, {
+                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
+                isKingdomCard: true,
+            });
+            const omenCard = dataFixture.createCard({
+                types: [dataFixture.createCardType({ id: CardTypeId.Omen })],
+                isKingdomCard: true,
+            });
+            chanceServiceSpy.pickCards
+                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
+                .and.returnValue([...liaisonCards, omenCard]);
+            const allyCardsOfConfiguredExpansions = allies.slice(
+                0,
+                singleSpecialCardsCountOfConfiguredExpansions,
+            );
+            chanceServiceSpy.pickCards
+                .withArgs(allyCardsOfConfiguredExpansions, 1)
+                .and.returnValue(allies.slice(0, 1));
+            const prophecyCardsOfConfiguredExpansions = prophecies.slice(
+                0,
+                singleSpecialCardsCountOfConfiguredExpansions,
+            );
+            chanceServiceSpy.pickCards
+                .withArgs(prophecyCardsOfConfiguredExpansions, 1)
+                .and.returnValue(prophecies.slice(0, 1));
+            shuffleService = TestBed.inject(ShuffleService);
+            getTestScheduler().flush();
+
+            shuffleService.shuffleSet();
+            const set = setServiceSpy.updateSet.calls.first().args[0];
+
+            expect(set.specialCards).toEqual([...allies.slice(0, 1), ...prophecies.slice(0, 1)]);
         });
     });
 
@@ -318,7 +399,6 @@ describe('ShuffleService', () => {
                 ['project', () => projects],
                 ['way', () => ways],
                 ['trait', () => traits],
-                ['ally', () => allies],
             ] as [string, () => Card[]][]
         ).forEach(([specialCard, getSpecialCards]) => {
             it(`with card is ${specialCard} should pick different random ${specialCard} from configured editions`, () => {
@@ -350,116 +430,171 @@ describe('ShuffleService', () => {
             });
         });
 
-        it('with card is single liaison of set and is replaced by liaison should return correct set', () => {
-            const oldLiaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
-                isKingdomCard: true,
-            });
-            const newLiaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
-                isKingdomCard: true,
-            });
-            const allyCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Ally })],
-                isKingdomCard: false,
-            });
-            const currentSet = dataFixture.createSet({
-                kingdomCards: [oldLiaisonCard],
-                specialCards: [allyCard],
-            });
-            setServiceSpy.set$ = cold('a', { a: currentSet });
-            chanceServiceSpy.pickCards.and.returnValue([newLiaisonCard]);
-            shuffleService = TestBed.inject(ShuffleService);
-            getTestScheduler().flush();
+        [
+            {
+                triggeringCard: 'liaison',
+                dependentCard: 'ally',
+                triggeringCardTypeId: CardTypeId.Liaison,
+                dependentCardTypeId: CardTypeId.Ally,
+                getDependentCards: () => allies,
+            },
+            {
+                triggeringCard: 'omen',
+                dependentCard: 'prophecy',
+                triggeringCardTypeId: CardTypeId.Omen,
+                dependentCardTypeId: CardTypeId.Prophecy,
+                getDependentCards: () => prophecies,
+            },
+        ].forEach(
+            ({
+                triggeringCard,
+                dependentCard,
+                triggeringCardTypeId,
+                dependentCardTypeId,
+                getDependentCards,
+            }) => {
+                it(`with card is ${dependentCard} should pick different random ${dependentCard} from configured editions`, () => {
+                    const triggeringCardOfSet = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: triggeringCardTypeId })],
+                        isKingdomCard: true,
+                    });
+                    const dependentCardsOfConfiguredExpansions = getDependentCards().slice(
+                        0,
+                        singleSpecialCardsCountOfConfiguredExpansions,
+                    );
+                    const currentSet = dataFixture.createSet({
+                        kingdomCards: [triggeringCardOfSet],
+                        specialCards: dependentCardsOfConfiguredExpansions.slice(0, 1),
+                    });
+                    const candidates = dependentCardsOfConfiguredExpansions.slice(
+                        1,
+                        singleSpecialCardsCountOfConfiguredExpansions,
+                    );
+                    const oldCard = currentSet.specialCards[0];
+                    const expected = candidates[0];
+                    setServiceSpy.set$ = cold('a', { a: currentSet });
+                    chanceServiceSpy.pickCards.withArgs(candidates, 1).and.returnValue([expected]);
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
 
-            shuffleService.shuffleSingleCard(oldLiaisonCard);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    shuffleService.shuffleSingleCard(oldCard);
+                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
 
-            expect(actual.specialCards).toEqual([allyCard]);
-        });
+                    expect(actual.specialCards).toEqual([expected]);
+                });
 
-        it('with card is single liaison of set and is replaced by non-liaison should return correct set', () => {
-            const liaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
-                isKingdomCard: true,
-            });
-            const nonLiaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Action })],
-                isKingdomCard: true,
-            });
-            const allyCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Ally })],
-                isKingdomCard: false,
-            });
-            const currentSet = dataFixture.createSet({
-                kingdomCards: [liaisonCard],
-                specialCards: [allyCard],
-            });
-            setServiceSpy.set$ = cold('a', { a: currentSet });
-            chanceServiceSpy.pickCards.and.returnValue([nonLiaisonCard]);
-            shuffleService = TestBed.inject(ShuffleService);
-            getTestScheduler().flush();
+                it(`with card is single ${triggeringCard} of set and is replaced by ${triggeringCard} should return correct set`, () => {
+                    const oldTriggeringCard = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: triggeringCardTypeId })],
+                        isKingdomCard: true,
+                    });
+                    const newTriggeringCard = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: triggeringCardTypeId })],
+                        isKingdomCard: true,
+                    });
+                    const expected = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: dependentCardTypeId })],
+                        isKingdomCard: false,
+                    });
+                    const currentSet = dataFixture.createSet({
+                        kingdomCards: [oldTriggeringCard],
+                        specialCards: [expected],
+                    });
+                    setServiceSpy.set$ = cold('a', { a: currentSet });
+                    chanceServiceSpy.pickCards.and.returnValue([newTriggeringCard]);
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
 
-            shuffleService.shuffleSingleCard(liaisonCard);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    shuffleService.shuffleSingleCard(oldTriggeringCard);
+                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
 
-            expect(actual.specialCards).toEqual([]);
-        });
+                    expect(actual.specialCards).toEqual([expected]);
+                });
 
-        it('with card is liaison of multiple and is replaced by non-liaison should return correct set', () => {
-            const liaisonCards = dataFixture.createCards(5, {
-                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
-                isKingdomCard: true,
-            });
-            const nonLiaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Action })],
-                isKingdomCard: true,
-            });
-            const allyCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Ally })],
-                isKingdomCard: false,
-            });
-            const currentSet = dataFixture.createSet({
-                kingdomCards: liaisonCards,
-                specialCards: [allyCard],
-            });
-            setServiceSpy.set$ = cold('a', { a: currentSet });
-            chanceServiceSpy.pickCards.and.returnValue([nonLiaisonCard]);
-            shuffleService = TestBed.inject(ShuffleService);
-            getTestScheduler().flush();
+                it(`with card is single ${triggeringCard} of set and is replaced by non-${triggeringCard} should return correct set`, () => {
+                    const triggeringCardOfSet = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: triggeringCardTypeId })],
+                        isKingdomCard: true,
+                    });
+                    const nonTriggeringCard = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: CardTypeId.Action })],
+                        isKingdomCard: true,
+                    });
+                    const dependentCardOfSet = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: dependentCardTypeId })],
+                        isKingdomCard: false,
+                    });
+                    const currentSet = dataFixture.createSet({
+                        kingdomCards: [triggeringCardOfSet],
+                        specialCards: [dependentCardOfSet],
+                    });
+                    setServiceSpy.set$ = cold('a', { a: currentSet });
+                    chanceServiceSpy.pickCards.and.returnValue([nonTriggeringCard]);
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
 
-            shuffleService.shuffleSingleCard(liaisonCards[0]);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    shuffleService.shuffleSingleCard(triggeringCardOfSet);
+                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
 
-            expect(actual.specialCards).toEqual([allyCard]);
-        });
+                    expect(actual.specialCards).toEqual([]);
+                });
 
-        it('with card of non-liaison-set is replaced by liaison should return correct set', () => {
-            const nonLiaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Action })],
-                isKingdomCard: true,
-            });
-            const liaisonCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
-                isKingdomCard: true,
-            });
-            const allyCard = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Ally })],
-                isKingdomCard: false,
-            });
-            const currentSet = dataFixture.createSet({
-                kingdomCards: [nonLiaisonCard],
-                specialCards: [],
-            });
-            setServiceSpy.set$ = cold('a', { a: currentSet });
-            chanceServiceSpy.pickCards.and.returnValues([liaisonCard], [allyCard]);
-            shuffleService = TestBed.inject(ShuffleService);
-            getTestScheduler().flush();
+                it(`with card is ${triggeringCard} of multiple and is replaced by non-${triggeringCard} should return correct set`, () => {
+                    const triggeringCardsOfSet = dataFixture.createCards(5, {
+                        types: [dataFixture.createCardType({ id: triggeringCardTypeId })],
+                        isKingdomCard: true,
+                    });
+                    const nonTriggeringCard = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: CardTypeId.Action })],
+                        isKingdomCard: true,
+                    });
+                    const expected = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: dependentCardTypeId })],
+                        isKingdomCard: false,
+                    });
+                    const currentSet = dataFixture.createSet({
+                        kingdomCards: triggeringCardsOfSet,
+                        specialCards: [expected],
+                    });
+                    setServiceSpy.set$ = cold('a', { a: currentSet });
+                    chanceServiceSpy.pickCards.and.returnValue([nonTriggeringCard]);
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
 
-            shuffleService.shuffleSingleCard(nonLiaisonCard);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    shuffleService.shuffleSingleCard(triggeringCardsOfSet[0]);
+                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
 
-            expect(actual.specialCards).toEqual([allyCard]);
-        });
+                    expect(actual.specialCards).toEqual([expected]);
+                });
+
+                it(`with card of non-${triggeringCard}-set is replaced by ${triggeringCard} should return correct set`, () => {
+                    const nonTriggeringCard = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: CardTypeId.Action })],
+                        isKingdomCard: true,
+                    });
+                    const newTriggeringCard = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: triggeringCardTypeId })],
+                        isKingdomCard: true,
+                    });
+                    const expected = dataFixture.createCard({
+                        types: [dataFixture.createCardType({ id: dependentCardTypeId })],
+                        isKingdomCard: false,
+                    });
+                    const currentSet = dataFixture.createSet({
+                        kingdomCards: [nonTriggeringCard],
+                        specialCards: [],
+                    });
+                    setServiceSpy.set$ = cold('a', { a: currentSet });
+                    chanceServiceSpy.pickCards.and.returnValues([newTriggeringCard], [expected]);
+                    shuffleService = TestBed.inject(ShuffleService);
+                    getTestScheduler().flush();
+
+                    shuffleService.shuffleSingleCard(nonTriggeringCard);
+                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+
+                    expect(actual.specialCards).toEqual([expected]);
+                });
+            },
+        );
     });
 });

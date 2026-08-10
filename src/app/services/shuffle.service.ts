@@ -19,6 +19,7 @@ interface RandomizableCards {
     ways: Card[];
     traits: Card[];
     allies: Card[];
+    prophecies: Card[];
 }
 
 interface DependentSpecialCardRule {
@@ -36,6 +37,11 @@ export class ShuffleService {
             dependentCardTypeId: CardTypeId.Ally,
             triggeringCardTypeId: CardTypeId.Liaison,
             getCandidates: (randomizableCards: RandomizableCards) => randomizableCards.allies,
+        },
+        {
+            dependentCardTypeId: CardTypeId.Prophecy,
+            triggeringCardTypeId: CardTypeId.Omen,
+            getCandidates: (randomizableCards: RandomizableCards) => randomizableCards.prophecies,
         },
     ];
 
@@ -55,6 +61,7 @@ export class ShuffleService {
         ways: this.cardService.findByCardType(CardTypeId.Way),
         traits: this.cardService.findByCardType(CardTypeId.Trait),
         allies: this.cardService.findByCardType(CardTypeId.Ally),
+        prophecies: this.cardService.findByCardType(CardTypeId.Prophecy),
     });
 
     constructor() {
