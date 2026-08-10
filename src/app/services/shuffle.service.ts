@@ -21,10 +21,24 @@ interface RandomizableCards {
     allies: Card[];
 }
 
+interface DependentSpecialCardRule {
+    dependentCardTypeId: CardTypeId;
+    triggeringCardTypeId: CardTypeId;
+    getCandidates: (randomizableCards: RandomizableCards) => Card[];
+}
+
 @Injectable({
     providedIn: 'root',
 })
 export class ShuffleService {
+    private static readonly dependentSpecialCardRules: DependentSpecialCardRule[] = [
+        {
+            dependentCardTypeId: CardTypeId.Ally,
+            triggeringCardTypeId: CardTypeId.Liaison,
+            getCandidates: (randomizableCards: RandomizableCards) => randomizableCards.allies,
+        },
+    ];
+
     private cardService = inject(CardService);
     private configurationService = inject(ConfigurationService);
     private chanceService = inject(ChanceService);
@@ -66,10 +80,11 @@ export class ShuffleService {
             configuration.editions,
             10,
         );
-        const containsCardOfTypeLiaison = this.containsCardOfType(kingdomCards, CardTypeId.Liaison);
-        const allies: Card[] = containsCardOfTypeLiaison
-            ? this.pickRandomCards(randomizableCards.allies, configuration.editions, 1, [])
-            : [];
+        const dependentSpecialCards = this.pickDependentSpecialCards(
+            kingdomCards,
+            randomizableCards,
+            configuration,
+        );
 
         return {
             kingdomCards,
@@ -99,9 +114,26 @@ export class ShuffleService {
                     configuration.editions,
                     configuration.specialCardsCount.traits,
                 ),
-                ...allies,
+                ...dependentSpecialCards,
             ],
         };
+    }
+
+    private pickDependentSpecialCards(
+        kingdomCards: Card[],
+        randomizableCards: RandomizableCards,
+        configuration: Configuration,
+    ): Card[] {
+        return ShuffleService.dependentSpecialCardRules.flatMap((rule: DependentSpecialCardRule) =>
+            this.containsCardOfType(kingdomCards, rule.triggeringCardTypeId)
+                ? this.pickRandomCards(
+                      rule.getCandidates(randomizableCards),
+                      configuration.editions,
+                      1,
+                      [],
+                  )
+                : [],
+        );
     }
 
     private initShuffleSingleCard(): Observable<void> {
@@ -123,7 +155,7 @@ export class ShuffleService {
                         currentSet,
                     );
                     this.updateSingleCard(currentSet, oldCard, newCard);
-                    this.updateAllyCard(currentSet, randomizableCards, configuration);
+                    this.updateDependentSpecialCards(currentSet, randomizableCards, configuration);
 
                     return currentSet;
                 },
@@ -156,7 +188,12 @@ export class ShuffleService {
             [CardTypeId.Project, randomizableCards.projects],
             [CardTypeId.Way, randomizableCards.ways],
             [CardTypeId.Trait, randomizableCards.traits],
-            [CardTypeId.Ally, randomizableCards.allies],
+            ...ShuffleService.dependentSpecialCardRules.map(
+                (rule: DependentSpecialCardRule): [CardTypeId, Card[]] => [
+                    rule.dependentCardTypeId,
+                    rule.getCandidates(randomizableCards),
+                ],
+            ),
         ]);
 
         for (const [typeId, candidates] of candidatesPerCardType) {
@@ -180,32 +217,34 @@ export class ShuffleService {
         setPart[cardIndex] = newCard;
     }
 
-    private updateAllyCard(
+    private updateDependentSpecialCards(
         currentSet: Set,
         randomizableCards: RandomizableCards,
         configuration: Configuration,
     ): void {
-        const allyCard = currentSet.specialCards.find((card) =>
-            card.types.some((type) => type.id === CardTypeId.Ally),
-        );
-        const containsCardOfTypeLiaison = this.containsCardOfType(
-            currentSet.kingdomCards,
-            CardTypeId.Liaison,
-        );
+        for (const rule of ShuffleService.dependentSpecialCardRules) {
+            const dependentCard = currentSet.specialCards.find((card) =>
+                card.types.some((type) => type.id === rule.dependentCardTypeId),
+            );
+            const containsTriggeringCard = this.containsCardOfType(
+                currentSet.kingdomCards,
+                rule.triggeringCardTypeId,
+            );
 
-        if (containsCardOfTypeLiaison && allyCard === undefined) {
-            const allyCard = this.pickRandomCards(
-                randomizableCards.allies,
-                configuration.editions,
-                1,
-                [],
-            )[0];
+            if (containsTriggeringCard && dependentCard === undefined) {
+                const newDependentCard = this.pickRandomCards(
+                    rule.getCandidates(randomizableCards),
+                    configuration.editions,
+                    1,
+                    [],
+                )[0];
 
-            currentSet.specialCards.push(allyCard);
-        }
+                currentSet.specialCards.push(newDependentCard);
+            }
 
-        if (!containsCardOfTypeLiaison && allyCard !== undefined) {
-            this.updateSingleCard(currentSet, allyCard, undefined);
+            if (!containsTriggeringCard && dependentCard !== undefined) {
+                this.updateSingleCard(currentSet, dependentCard, undefined);
+            }
         }
     }
 
