@@ -261,6 +261,30 @@ describe('ShuffleService', () => {
     });
 
     describe('shuffleSingleCard', () => {
+        it('with no ally is available should not add an ally to the set', () => {
+            const nonLiaisonCard = dataFixture.createCard({
+                types: [dataFixture.createCardType({ id: CardTypeId.Action })],
+                isKingdomCard: true,
+            });
+            const liaisonCard = dataFixture.createCard({
+                types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
+                isKingdomCard: true,
+            });
+            const currentSet = dataFixture.createSet({
+                kingdomCards: [nonLiaisonCard],
+                specialCards: [],
+            });
+            setServiceSpy.set$ = cold('a', { a: currentSet });
+            chanceServiceSpy.pickCards.and.returnValues([liaisonCard], []);
+            shuffleService = TestBed.inject(ShuffleService);
+            getTestScheduler().flush();
+
+            shuffleService.shuffleSingleCard(nonLiaisonCard);
+            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+
+            expect(actual.specialCards).toEqual([]);
+        });
+
         it('with card is kingdom card should pick different random kingdom card from configured editions', () => {
             const kingdomCardsOfConfiguredExpansions = kingdomCards.slice(
                 0,

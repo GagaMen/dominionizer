@@ -239,7 +239,9 @@ export class ShuffleService {
                     [],
                 )[0];
 
-                currentSet.specialCards.push(newDependentCard);
+                if (newDependentCard !== undefined) {
+                    currentSet.specialCards.push(newDependentCard);
+                }
             }
 
             if (!containsTriggeringCard && dependentCard !== undefined) {
