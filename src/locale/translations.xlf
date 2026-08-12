@@ -6,38 +6,42 @@
         <source>Choose at least one expansion</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/edition-select/edition-select.component.html</context>
+          <context context-type="linenumber">11,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8358828084854497238" datatype="html">
         <source>Expansions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2291803468187751330" datatype="html">
         <source>Special Cards</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set/set.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3360433808275452338" datatype="html">
         <source>generate</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/configuration/configuration.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1616102757855967475" datatype="html">
         <source>All</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/expansion-select/expansion-select.component.html</context>
+          <context context-type="sourcefile">src/app/components/edition-select/edition-select.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
@@ -52,98 +56,98 @@
         <source>License</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/footer/footer.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8952554382316647903" datatype="html">
         <source>Switch language</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/language-menu/language-menu.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="877780134171662191" datatype="html">
         <source>Grouping</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4554535876706316299" datatype="html">
         <source>Without</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8484114368223813389" datatype="html">
         <source>By Expansion</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2774613742044941352" datatype="html">
         <source>Sorting</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8897687622502663757" datatype="html">
         <source>By Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">27,28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2128377246224223669" datatype="html">
         <source>By Cost</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set-ordering-menu/set-ordering-menu.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="426973522655194871" datatype="html">
         <source>Kingdom Cards</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/set/set.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5729418620241283277" datatype="html">
         <source>Events</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1434546068919474404" datatype="html">
         <source>Landmarks</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7091571651222742304" datatype="html">
         <source>Projects</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3913251811796472757" datatype="html">
         <source>Ways</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">41,42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8986410888186291341" datatype="html">
         <source>Traits</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/special-card-select/special-card-select.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">53,54</context>
         </context-group>
       </trans-unit>
     </body>
