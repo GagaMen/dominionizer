@@ -1,11 +1,14 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { ConfigurationService } from '../services/configuration.service';
 import { map, first } from 'rxjs/operators';
 import { Configuration } from '../models/configuration';
 import { Observable } from 'rxjs';
 
-export const configurationGuard: CanActivateFn = (_route, _state): Observable<boolean> => {
+export const configurationGuard: CanActivateFn = (
+    _route,
+    _state,
+): Observable<boolean | UrlTree> => {
     const configurationService = inject(ConfigurationService);
     const router = inject(Router);
 
@@ -16,8 +19,7 @@ export const configurationGuard: CanActivateFn = (_route, _state): Observable<bo
                 return true;
             }
 
-            void router.navigate(['/configuration']);
-            return false;
+            return router.createUrlTree(['/configuration']);
         }),
     );
 };
