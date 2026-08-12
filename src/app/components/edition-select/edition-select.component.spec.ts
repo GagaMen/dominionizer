@@ -224,6 +224,59 @@ describe('EditionSelectComponent', () => {
         });
     });
 
+    describe('hasValidationError', () => {
+        it('with untouched formGroup should return false', () => {
+            fixture.detectChanges();
+
+            const actual = component.hasValidationError();
+
+            expect(actual).toBeFalse();
+        });
+
+        it('with valid formGroup should return false', () => {
+            fixture.detectChanges();
+            const editionsPatch: boolean[] = component.editions.map(() => false);
+            editionsPatch[0] = true;
+            component.formGroup.patchValue({ editions: editionsPatch });
+            component.formGroup.markAllAsTouched();
+
+            const actual = component.hasValidationError();
+
+            expect(actual).toBeFalse();
+        });
+
+        it('with invalid and touched formGroup should return true', () => {
+            fixture.detectChanges();
+            component.formGroup.markAllAsTouched();
+
+            const actual = component.hasValidationError();
+
+            expect(actual).toBeTrue();
+        });
+    });
+
+    describe('showValidationError', () => {
+        it('should mark formGroup as touched', () => {
+            fixture.detectChanges();
+
+            component.showValidationError();
+
+            expect(component.formGroup.touched).toBeTrue();
+        });
+
+        it('should scroll host element into view', () => {
+            fixture.detectChanges();
+            const scrollIntoViewSpy = spyOn(fixture.nativeElement as HTMLElement, 'scrollIntoView');
+
+            component.showValidationError();
+
+            expect(scrollIntoViewSpy).toHaveBeenCalledWith({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        });
+    });
+
     describe('template', () => {
         it('should render checkbox for "all"-FormControl correctly', async () => {
             fixture.detectChanges();
@@ -274,6 +327,48 @@ describe('EditionSelectComponent', () => {
             await matCheckbox.check();
 
             expect(selectOrDeselectAllSpy).toHaveBeenCalledWith(true);
+        });
+
+        it('without validation error should not render error message', () => {
+            fixture.detectChanges();
+            spyOn(component, 'hasValidationError').and.returnValue(false);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.css('.error-message'));
+
+            expect(actual).toBeNull();
+        });
+
+        it('with validation error should render error message', () => {
+            fixture.detectChanges();
+            spyOn(component, 'hasValidationError').and.returnValue(true);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.css('.error-message'));
+
+            expect((actual.nativeElement as HTMLElement).textContent).toBe(
+                'Choose at least one expansion',
+            );
+        });
+
+        it('without validation error should not mark form as invalid', () => {
+            fixture.detectChanges();
+            spyOn(component, 'hasValidationError').and.returnValue(false);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.css('form.invalid'));
+
+            expect(actual).toBeNull();
+        });
+
+        it('with validation error should mark form as invalid', () => {
+            fixture.detectChanges();
+            spyOn(component, 'hasValidationError').and.returnValue(true);
+            fixture.detectChanges();
+
+            const actual = fixture.debugElement.query(By.css('form.invalid'));
+
+            expect(actual).not.toBeNull();
         });
 
         it('should bind ul element to "editions"-FormArray', () => {
