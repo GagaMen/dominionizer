@@ -1,3 +1,16 @@
+@use '@angular/material' as mat;
+@use '../../../scss/variables';
+
+$warn-color: mat.m2-get-color-from-palette(variables.$warn);
+
+:host {
+    scroll-margin-top: variables.$app-bar-height;
+
+    @media (width >= 600px) {
+        scroll-margin-top: variables.$app-bar-height-large;
+    }
+}
+
 .editions {
     display: grid;
 
@@ -14,4 +27,16 @@ ul {
     list-style: none;
     margin-block: 0;
     padding-inline-start: 0;
+}
+
+.error-message {
+    color: $warn-color;
+    margin: 0.5rem 0 0;
+}
+
+form.invalid mat-checkbox {
+    --mat-checkbox-label-text-color: #{$warn-color};
+    --mat-checkbox-unselected-focus-icon-color: #{$warn-color};
+    --mat-checkbox-unselected-hover-icon-color: #{$warn-color};
+    --mat-checkbox-unselected-icon-color: #{$warn-color};
 }

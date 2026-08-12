@@ -1,6 +1,6 @@
 <div class="container">
-    <mat-stepper orientation="vertical" class="mat-elevation-z2">
-        @if (editionSelectViewData$ | async; as viewData) {
+    @if (editionSelectViewData$ | async; as editionSelectViewData) {
+        <mat-stepper orientation="vertical" class="mat-elevation-z2">
             <mat-step
                 [stepControl]="editionSelect.formGroup"
                 i18n-errorMessage
@@ -11,30 +11,30 @@
                 </ng-template>
                 <app-edition-select
                     #editionSelect
-                    [editions]="viewData.editions"
-                    [initialValue]="viewData.initialValue"
+                    [editions]="editionSelectViewData.editions"
+                    [initialValue]="editionSelectViewData.initialValue"
                     (change)="configurationService.updateEditions($event)"
                 ></app-edition-select>
             </mat-step>
-        }
-        @if (specialCardSelectViewData$ | async; as viewData) {
-            <mat-step [stepControl]="specialCardSelect.formGroup">
-                <ng-template matStepLabel>
-                    <span class="white-space-normal" i18n>Special Cards</span>
-                </ng-template>
-                <app-special-card-select
-                    #specialCardSelect
-                    [initialValue]="viewData.initialValue"
-                    [availability]="viewData.availability"
-                    (valueChange)="configurationService.updateSpecialCardsCount($event)"
-                ></app-special-card-select>
-            </mat-step>
-        }
-    </mat-stepper>
+            @if (specialCardSelectViewData$ | async; as specialCardSelectViewData) {
+                <mat-step [stepControl]="specialCardSelect.formGroup">
+                    <ng-template matStepLabel>
+                        <span class="white-space-normal" i18n>Special Cards</span>
+                    </ng-template>
+                    <app-special-card-select
+                        #specialCardSelect
+                        [initialValue]="specialCardSelectViewData.initialValue"
+                        [availability]="specialCardSelectViewData.availability"
+                        (valueChange)="configurationService.updateSpecialCardsCount($event)"
+                    ></app-special-card-select>
+                </mat-step>
+            }
+        </mat-stepper>
 
-    <div class="stepper-actions">
-        <button mat-fab extended routerLink="/set">
-            <mat-icon>casino</mat-icon><ng-container i18n>generate</ng-container>
-        </button>
-    </div>
+        <div class="stepper-actions">
+            <button mat-fab extended (click)="generate(editionSelect)">
+                <mat-icon>casino</mat-icon><ng-container i18n>generate</ng-container>
+            </button>
+        </div>
+    }
 </div>

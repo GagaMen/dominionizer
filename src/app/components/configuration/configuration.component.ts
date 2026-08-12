@@ -11,7 +11,7 @@ import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { Edition } from 'src/app/models/edition';
 import { Card } from 'src/app/models/card';
 import { MatIcon } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatFabButton } from '@angular/material/button';
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
 import { EditionSelectComponent } from '../edition-select/edition-select.component';
@@ -40,7 +40,6 @@ export interface SpecialCardSelectViewData {
         MatFabButton,
         MatIcon,
         AsyncPipe,
-        RouterLink,
     ],
     providers: [{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }],
     templateUrl: './configuration.component.html',
@@ -48,6 +47,7 @@ export interface SpecialCardSelectViewData {
 })
 export class ConfigurationComponent implements OnInit {
     private appBarService = inject(AppBarService);
+    private router = inject(Router);
     editionService = inject(EditionService);
     configurationService = inject(ConfigurationService);
     cardService = inject(CardService);
@@ -62,6 +62,15 @@ export class ConfigurationComponent implements OnInit {
         });
         this.initEditionSelectViewData();
         this.initSpecialCardSelectViewData();
+    }
+
+    generate(editionSelect: EditionSelectComponent): void {
+        if (editionSelect.formGroup.invalid) {
+            editionSelect.showValidationError();
+            return;
+        }
+
+        void this.router.navigate(['/set']);
     }
 
     private initEditionSelectViewData(): void {

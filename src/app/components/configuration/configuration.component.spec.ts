@@ -33,6 +33,8 @@ import { EditionSelectComponent } from '../edition-select/edition-select.compone
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { UntypedFormGroup } from '@angular/forms';
 
 describe('ConfigurationComponent', () => {
     let component: ConfigurationComponent;
@@ -222,6 +224,45 @@ describe('ConfigurationComponent', () => {
         });
     });
 
+    describe('generate', () => {
+        let routerSpy: jasmine.Spy;
+        let editionSelectSpy: SpyObj<EditionSelectComponent>;
+        let editionSelect: EditionSelectComponent;
+
+        beforeEach(() => {
+            routerSpy = spyOn(TestBed.inject(Router), 'navigate');
+            editionSelectSpy = jasmine.createSpyObj<EditionSelectComponent>(
+                'EditionSelectComponent',
+                ['showValidationError'],
+            );
+            editionSelect = editionSelectSpy as unknown as EditionSelectComponent;
+        });
+
+        it('with valid form group of EditionSelectComponent should navigate to set page', () => {
+            editionSelectSpy.formGroup = new UntypedFormGroup({});
+
+            component.generate(editionSelect);
+
+            expect(routerSpy).toHaveBeenCalledWith(['/set']);
+        });
+
+        it('with invalid form group of EditionSelectComponent should not navigate', () => {
+            editionSelectSpy.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
+
+            component.generate(editionSelect);
+
+            expect(routerSpy).not.toHaveBeenCalled();
+        });
+
+        it('with invalid form group of EditionSelectComponent should show validation error', () => {
+            editionSelectSpy.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
+
+            component.generate(editionSelect);
+
+            expect(editionSelectSpy.showValidationError).toHaveBeenCalled();
+        });
+    });
+
     describe('template', () => {
         it('should render vertical stepper', async () => {
             const actual = await harnessLoader.getHarness(
@@ -347,9 +388,25 @@ describe('ConfigurationComponent', () => {
 
             expect(actual).toBeInstanceOf(MatButtonHarness);
             expect(await actualHost.getAttribute('extended')).toBeDefined();
-            expect(await actualHost.getAttribute('routerLink')).toBe('/set');
             expect(actualIcon).toBeInstanceOf(MatIconHarness);
             expect(await actual.getText()).toBe('casino' + 'generate');
+        });
+
+        it('should bind click event of shuffle button correctly', async () => {
+            const generateSpy = spyOn(component, 'generate');
+            fixture.detectChanges();
+            const editionSelect = fixture.debugElement
+                .query(By.directive(EditionSelectStubComponent))
+                .injector.get(EditionSelectStubComponent);
+            const button = await harnessLoader.getHarness(
+                MatButtonHarness.with({ variant: 'fab' }),
+            );
+
+            await button.click();
+
+            expect(generateSpy).toHaveBeenCalledWith(
+                editionSelect as unknown as EditionSelectComponent,
+            );
         });
     });
 });

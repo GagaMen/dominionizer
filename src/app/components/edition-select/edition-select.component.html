@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" [class.invalid]="hasValidationError()">
     <mat-checkbox
         formControlName="all"
         [checked]="areAllSelected()"
@@ -7,6 +7,9 @@
         i18n
         >All</mat-checkbox
     >
+    @if (hasValidationError()) {
+        <p class="error-message" role="alert" i18n>Choose at least one expansion</p>
+    }
     <mat-divider></mat-divider>
     <ul formArrayName="editions" class="editions">
         @for (edition of editions; track edition; let i = $index) {

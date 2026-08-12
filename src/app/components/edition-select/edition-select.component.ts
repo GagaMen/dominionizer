@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import {
     UntypedFormGroup,
     UntypedFormBuilder,
@@ -19,6 +19,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 })
 export class EditionSelectComponent implements OnInit {
     private formBuilder = inject(UntypedFormBuilder);
+    private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     private _editions: Edition[] = [];
     get editions(): Edition[] {
@@ -67,6 +68,15 @@ export class EditionSelectComponent implements OnInit {
             );
             this.change.emit(selectedEditions);
         });
+    }
+
+    hasValidationError(): boolean {
+        return this.formGroup.invalid && this.formGroup.touched;
+    }
+
+    showValidationError(): void {
+        this.formGroup.markAllAsTouched();
+        this.elementRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     label(edition: Edition): string {
