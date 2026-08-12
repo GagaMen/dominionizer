@@ -6,17 +6,18 @@ import {
     CanActivateFn,
     Router,
     RouterStateSnapshot,
+    UrlTree,
 } from '@angular/router';
 import { ConfigurationService } from '../services/configuration.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
-import { cold, getTestScheduler } from 'jasmine-marbles';
-import { Observable } from 'rxjs';
+import { cold } from 'jasmine-marbles';
 
 describe('configurationGuard', () => {
     let routerSpy: SpyObj<Router>;
     let configurationServiceSpy: SpyObj<ConfigurationService>;
     let dataFixture: DataFixture;
+    let urlTree: UrlTree;
 
     const executeGuard: CanActivateFn = (...guardParameters) =>
         TestBed.runInInjectionContext(() => configurationGuard(...guardParameters));
@@ -24,13 +25,18 @@ describe('configurationGuard', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: Router, useValue: jasmine.createSpyObj<Router>('Router', ['navigate']) },
+                {
+                    provide: Router,
+                    useValue: jasmine.createSpyObj<Router>('Router', ['createUrlTree']),
+                },
                 { provide: ConfigurationService, useValue: {} },
             ],
         });
 
         dataFixture = new DataFixture();
+        urlTree = new UrlTree();
         routerSpy = TestBed.inject(Router) as unknown as SpyObj<Router>;
+        routerSpy.createUrlTree.and.returnValue(urlTree);
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
         ) as unknown as SpyObj<ConfigurationService>;
@@ -51,12 +57,12 @@ describe('configurationGuard', () => {
         expect(actual$).toBeObservable(expected$);
     });
 
-    it('with current configuration has no expansions activated should return false and complete', () => {
+    it('with current configuration has no expansions activated should return url tree of configuration page and complete', () => {
         const configuration = dataFixture.createConfiguration({
             editions: [],
         });
         configurationServiceSpy.configuration$ = cold('-a-----', { a: configuration });
-        const expected$ = cold('                       -(b|)  ', { b: false });
+        const expected$ = cold('                       -(b|)  ', { b: urlTree });
 
         const actual$ = executeGuard(
             jasmine.anything() as unknown as ActivatedRouteSnapshot,
@@ -64,22 +70,6 @@ describe('configurationGuard', () => {
         );
 
         expect(actual$).toBeObservable(expected$);
-    });
-
-    it('with current configuration has no expansions activated should navigate to start page', () => {
-        const configuration = dataFixture.createConfiguration({
-            editions: [],
-        });
-        configurationServiceSpy.configuration$ = cold('-a-----', { a: configuration });
-
-        const actual$ = executeGuard(
-            jasmine.anything() as unknown as ActivatedRouteSnapshot,
-            jasmine.anything() as unknown as RouterStateSnapshot,
-        );
-
-        (actual$ as Observable<boolean>).subscribe();
-        getTestScheduler().flush();
-
-        expect(routerSpy.navigate).toHaveBeenCalledWith(['/configuration']);
+        expect(routerSpy.createUrlTree).toHaveBeenCalledWith(['/configuration']);
     });
 });
