@@ -224,42 +224,41 @@ describe('ConfigurationComponent', () => {
         });
     });
 
-    describe('generate', () => {
+    describe('navigateToSet', () => {
         let routerSpy: jasmine.Spy;
-        let editionSelectSpy: SpyObj<EditionSelectComponent>;
-        let editionSelect: EditionSelectComponent;
+        let editionSelect: EditionSelectStubComponent;
 
         beforeEach(() => {
             routerSpy = spyOn(TestBed.inject(Router), 'navigate');
-            editionSelectSpy = jasmine.createSpyObj<EditionSelectComponent>(
-                'EditionSelectComponent',
-                ['showValidationError'],
-            );
-            editionSelect = editionSelectSpy as unknown as EditionSelectComponent;
+            fixture.detectChanges();
+            editionSelect = fixture.debugElement
+                .query(By.directive(EditionSelectStubComponent))
+                .injector.get(EditionSelectStubComponent);
         });
 
         it('with valid form group of EditionSelectComponent should navigate to set page', () => {
-            editionSelectSpy.formGroup = new UntypedFormGroup({});
+            editionSelect.formGroup = new UntypedFormGroup({});
 
-            component.generate(editionSelect);
+            component.navigateToSet();
 
             expect(routerSpy).toHaveBeenCalledWith(['/set']);
         });
 
         it('with invalid form group of EditionSelectComponent should not navigate', () => {
-            editionSelectSpy.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
+            editionSelect.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
 
-            component.generate(editionSelect);
+            component.navigateToSet();
 
             expect(routerSpy).not.toHaveBeenCalled();
         });
 
         it('with invalid form group of EditionSelectComponent should show validation error', () => {
-            editionSelectSpy.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
+            editionSelect.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
+            const showValidationErrorSpy = spyOn(editionSelect, 'showValidationError');
 
-            component.generate(editionSelect);
+            component.navigateToSet();
 
-            expect(editionSelectSpy.showValidationError).toHaveBeenCalled();
+            expect(showValidationErrorSpy).toHaveBeenCalled();
         });
     });
 
@@ -393,20 +392,15 @@ describe('ConfigurationComponent', () => {
         });
 
         it('should bind click event of shuffle button correctly', async () => {
-            const generateSpy = spyOn(component, 'generate');
+            const navigateToSetSpy = spyOn(component, 'navigateToSet');
             fixture.detectChanges();
-            const editionSelect = fixture.debugElement
-                .query(By.directive(EditionSelectStubComponent))
-                .injector.get(EditionSelectStubComponent);
             const button = await harnessLoader.getHarness(
                 MatButtonHarness.with({ variant: 'fab' }),
             );
 
             await button.click();
 
-            expect(generateSpy).toHaveBeenCalledWith(
-                editionSelect as unknown as EditionSelectComponent,
-            );
+            expect(navigateToSetSpy).toHaveBeenCalled();
         });
     });
 });
