@@ -1,6 +1,6 @@
 import { CardService } from './../../services/card.service';
 import { AppBarService } from './../../services/app-bar.service';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, viewChild } from '@angular/core';
 import { EditionService } from 'src/app/services/edition.service';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -52,6 +52,8 @@ export class ConfigurationComponent implements OnInit {
     configurationService = inject(ConfigurationService);
     cardService = inject(CardService);
 
+    private readonly editionSelect = viewChild.required(EditionSelectComponent);
+
     editionSelectViewData$ = new Observable<EditionSelectViewData>();
     specialCardSelectViewData$ = new Observable<SpecialCardSelectViewData | null>();
 
@@ -64,7 +66,9 @@ export class ConfigurationComponent implements OnInit {
         this.initSpecialCardSelectViewData();
     }
 
-    generate(editionSelect: EditionSelectComponent): void {
+    navigateToSet(): void {
+        const editionSelect = this.editionSelect();
+
         if (editionSelect.formGroup.invalid) {
             editionSelect.showValidationError();
             return;
