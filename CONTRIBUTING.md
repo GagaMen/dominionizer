@@ -52,6 +52,19 @@ The wiki bot in _tools/wiki-bot_ is a separate npm workspace with its own test s
 
 If you use VS Code and our recommended extensions you shouldn't need to run linting tasks because it is executed by VS Code automatically.
 
+### Branches
+
+Never work on _master_. Create a branch before your first change and name it `<type>/<short-summary>`, where `<type>` is one of the commit types listed below and `<short-summary>` uses lower case words separated by `-`:
+
+-   `fix/wrong-redirect-without-selected-expansions`
+-   `feature/card-views`
+-   `refactor/rewrite-wiki-bot`
+-   `ci/update-github-actions`
+
+### Generated Data
+
+The files in _src/data_ and the card images in _src/assets_ are generated from the [wiki](https://wiki.dominionstrategy.com/) by the wiki bot. Never edit them by hand: the next bot run overwrites your change. If a value is wrong, fix the responsible builder in _tools/wiki-bot_ instead.
+
 ### Tests
 
 To deliver a high quality product, we expect that every change is accompanied by proper tests.
@@ -144,13 +157,15 @@ You can use the message body to explain the changes in more detail or to describ
 
 #### Commit Message Footer
 
-The footer is the place to reference GitHub issues or PRs that this commit closes or is related to. It can also conatain co-author references.
+The footer is the place to reference GitHub issues or PRs that this commit closes or is related to. It can also contain co-author references.
 
 ```txt
-Fixes #<issue number>
+Closes #<issue number>
 <BLANK LINE>
 Co-authored-by: <user.name> <<user.email>>
 ```
+
+Reference the issue in every commit that works towards it, not only in the last one. Use `Refs` while the issue stays open and `Closes` in the commit that completes it. That way the issue collects the whole history of the change instead of a single commit.
 
 ### Revert commits
 
