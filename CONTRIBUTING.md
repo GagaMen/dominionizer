@@ -39,12 +39,16 @@ There is a series of npm scripts you can use for essential development tasks:
 
 -   `start`: starts the app on a local development server
 -   `start:prod`: starts the app in production mode on a local development server (e.g. necessary for testing service worker features)
--   `test`: runs the tests
+-   `test`: runs the tests in watch mode
 -   `test:coverage`: runs the tests to generate a test coverage report
+-   `test:ci`: runs the tests once in a headless browser, which is what our CI uses
 -   `eslint`: runs `eslint` on _.ts_, _.js_, _.json_ and _.component.html_ files to generate a linting report
 -   `stylelint`: runs `stylelint` on _.scss_ files to generate a linting report
 -   `markdownlint`: runs `markdownlint` on _.md_ files to generate a linting report
--   `cm`: runs `cz` to make a commit that follows our conventions
+-   `prettier`: formats all supported files
+-   `prettier:check`: reports formatting issues without changing files
+
+The wiki bot in _tools/wiki-bot_ is a separate npm workspace with its own test suite. Run it with `npm run test:ci -w tools/wiki-bot`.
 
 If you use VS Code and our recommended extensions you shouldn't need to run linting tasks because it is executed by VS Code automatically.
 
@@ -57,7 +61,7 @@ To deliver a high quality product, we expect that every change is accompanied by
 We have very precise rules over how our Git commit messages must be formatted.
 This format leads to **easier to read commit history**.
 
-To support following these rules we added the VS Code extension _Visual Studio Code Commitizen Support_ and the command line tool _commitizen_ to our project that give you an interactive prompt for writing a proper commit message.
+To support following these rules we recommend the VS Code extension [Commit Message Editor](https://marketplace.visualstudio.com/items?itemName=adam-bender.commit-message-editor), which gives you a form for writing a proper commit message. It is part of our extension recommendations, so VS Code offers to install it when you open the project.
 
 Each commit message consists of a **header**, a **body**, and a **footer**.
 

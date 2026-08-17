@@ -11,8 +11,9 @@
 
 -   run tests
 -   run linters
+-   check commit messages
 -   create github release
--   deploy app on github pages
+-   deploy app on vercel
 -   update data with wiki bot
 -   check pull request
 
@@ -21,3 +22,6 @@
 -   check if latest commit on master is green
 -   set tag v\[number\]
 -   push tag
+
+Pushing the tag starts _deploy-release.yml_: it builds the app, attaches the bundle to a new GitHub
+release and rebases the _release_ branch onto the tag. Vercel deploys from that branch.
