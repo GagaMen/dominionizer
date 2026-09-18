@@ -1,0 +1,119 @@
+[
+    {
+        "id": "16",
+        "name": "Adega",
+        "description": "'''+1&nbsp;Ação'''<p>Descarte qualquer número de cartas. +1&nbsp;Carta por carta descartada."
+    },
+    { "id": "17", "name": "Capela", "description": "Jogue no Lixo até 4&nbsp;cartas de sua mão." },
+    {
+        "id": "18",
+        "name": "Fosso",
+        "description": "'''+2&nbsp;Cartas'''{{Divline}}Quando outro jogacior usar uma carta de Ataque, você pode revelar esta carta de sua mão. Se o fizer.você não é afetado por aquele Ataque."
+    },
+    {
+        "id": "19",
+        "name": "Chanceler",
+        "description": "{{Costplus|2}}<p>Você pode colocar imediatamente seu Deck na sua pilha de descarte."
+    },
+    { "id": "20", "name": "Aldeia", "description": "'''+1&nbsp;Carta'''<br>'''+2&nbsp;Ações'''" },
+    { "id": "24", "name": "Lenhador", "description": "'''+1&nbsp;Compra'''<br>{{Costplus|2}}" },
+    { "id": "25", "name": "Oficina", "description": "Ganhe uma carta que custe até {{Cost|4}}." },
+    {
+        "id": "36",
+        "name": "Burocrata",
+        "description": "Ganhe uma carta de Prata e a coloque no topo de seu Deck Cada outro jogador revela uma carta de Vitória de sua mão e a coloca no topo do Deck (ou revela uma mão sem cartas de Vitória)."
+    },
+    {
+        "id": "37",
+        "name": "Banquete",
+        "description": "Jogue esta carta no Lixo. Ganhe uma carta que custe até {{Cost|5}}."
+    },
+    {
+        "id": "38",
+        "name": "Jardins",
+        "description": "Vale {{VP|1}} para cada 10&nbsp;cartas em seu Deck (arredondado para baixo)."
+    },
+    {
+        "id": "39",
+        "name": "Milícia",
+        "description": "{{Costplus|2}}<p>Cada outro jogador descarta até restarem 3&nbsp;cartas em sua mão."
+    },
+    {
+        "id": "40",
+        "name": "Agiota",
+        "description": "Jogue no Lixo uma carta de Cobre de sua mão. Se você o fizer, {{Costplus|3}}."
+    },
+    {
+        "id": "41",
+        "name": "Remodelar",
+        "description": "Jogue no Lixo uma carta de sua mão. Ganhe uma carta que custe até {{Cost|2}} a mais do que a carta que você jogou no Lixo."
+    },
+    { "id": "42", "name": "Forja", "description": "'''+3&nbsp;Cartas'''" },
+    {
+        "id": "43",
+        "name": "Espião",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Ação'''<p>Cada jogador (incluindo você) revela a carta do topo de seu Deck, você escolhe descartá-las ou colocá-las de volta."
+    },
+    {
+        "id": "44",
+        "name": "Ladrão",
+        "description": "Cada outro jogador revela 2&nbsp;cartas de seu Deck. Se forem reveladas cartas de Tesouro, escolha uma de cada jogador e a jogue no Lixo. Você pode ganhar qualquer uma ou até todas as cartas jogadas no Lixo. As outras cartas reveladas são descartadas."
+    },
+    {
+        "id": "45",
+        "name": "Sala do Trono",
+        "description": "Escolha uma carta de Ação em sua mão. Jogue a duas vezes."
+    },
+    {
+        "id": "46",
+        "name": "Sala do Conselho",
+        "description": "'''+4&nbsp;Cartas'''<br>'''+1&nbsp;Compra'''<p>Cada outro jogador saca uma carta."
+    },
+    {
+        "id": "47",
+        "name": "Festival",
+        "description": "'''+2&nbsp;Ações'''<br>'''+1&nbsp;Compra'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laboratório",
+        "description": "'''+2&nbsp;Cartas'''<br>'''+1&nbsp;Ação'''"
+    },
+    {
+        "id": "49",
+        "name": "Biblioteca",
+        "description": "Saque até que você tenha 7&nbsp;cartas na mão. Você pode colocar de lado quantas cartas de Ação quiser assum que as sacar. Descarte as cartas colocadas de lacio depois que acabar de sacar."
+    },
+    {
+        "id": "50",
+        "name": "Mercado",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Ação'''<br>'''+1&nbsp;Compra'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "51",
+        "name": "Mina",
+        "description": "Jogue no Lixo uma carta de Tesouro de sua mão. Ganhe uma carta de Tesouro que custe até {{Cost|3}} a mais; coloque-a em sua mão."
+    },
+    {
+        "id": "52",
+        "name": "Bruxa",
+        "description": "'''+2&nbsp;Cartas'''<p>Cada outro jogador ganha uma carta de Maldição."
+    },
+    {
+        "id": "53",
+        "name": "Aventureiro",
+        "description": "Revele cartas de seu Deck até que 2 cartas de Tesouro sejam reveladas. Coloque as cartas de Tesouro em sua mão e descarte as outras cartas reveladas."
+    },
+    {
+        "id": "136",
+        "name": "Aldeia Fortificada",
+        "description": "'''+1&nbsp;Carta'''<br>'''+2&nbsp;Ações'''{{divline}}No começo da Fase de Descarte, se além da Aldeia Fortificada só tiver jogado mais uma carta de ação, pode colocar a Aldeia Fortificada no topo do seu baralho."
+    },
+    { "id": "212", "name": "Maldição", "description": "{{VP|-1|xl}}" },
+    { "id": "517", "name": "Cobre", "description": "{{Cost|1|xl}}" },
+    { "id": "525", "name": "Propriedade", "description": "{{VP|1|xl}}" },
+    { "id": "526", "name": "Prata", "description": "{{Cost|2|xl}}" },
+    { "id": "528", "name": "Ducado", "description": "{{VP|3|xl}}" },
+    { "id": "529", "name": "Ouro", "description": "{{Cost|3|xl}}" },
+    { "id": "530", "name": "Província", "description": "{{VP|6|xl}}" }
+]

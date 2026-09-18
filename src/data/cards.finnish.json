@@ -29,13 +29,13 @@
     {
         "id": "72",
         "name": "Apuri",
-        "description": "Valit se 2 (ei samaa):<br>{{Costplus|1}};<br>'''+1 toiminta''';<br>'''+1 osto'''; tai<br>'''+1 kortti'''."
+        "description": "Valit se 2 (ei samaa): {{Costplus|1}}; '''+1&nbsp;toiminta'''; '''+1&nbsp;osto'''; tai '''+1&nbsp;kortti'''."
     },
     { "id": "73", "name": "Salainen kammio", "description": "" },
     {
         "id": "74",
         "name": "Suuri sali",
-        "description": "'''+ 1 kortti'''<br>'''+ 1 toiminta'''{{divline}}{{VP|1|l}}"
+        "description": "'''+&nbsp;1&nbsp;kortti'''<br>'''+&nbsp;1&nbsp;toiminta'''{{divline}}{{VP|1|l}}"
     },
     { "id": "75", "name": "Naamiaiset", "description": "" },
     { "id": "76", "name": "Hökkelikylä", "description": "" },
@@ -63,14 +63,14 @@
     {
         "id": "99",
         "name": "Alkuasukaskylä",
-        "description": "'''+ 2 toimintaa'''<br>Valitse yksi: aseta pakkasi<br>päällimmäinen kortti kuva-<br>puolı alaspaın Alkuasukaskylä<br>pelialustallesi; tai nosta kaikki<br>pelilustalla olevat kortit käteesi.<br>Saat koska tahansa katsoa<br>pelialustalla olevia korttejasi. Palauta<br>kortit pakkaasi pelin päättyessä."
+        "description": "'''+&nbsp;2&nbsp;toimintaa'''<p>Valitse yksi: aseta pakkasi päällimmäinen kortti kuvapuolı alaspaın Alkuasukaskylä pelialustallesi; tai nosta kaikki pelilustalla olevat kortit käteesi. Saat koska tahansa katsoa pelialustalla olevia korttejasi. Palauta kortit pakkaasi pelin päättyessä."
     },
     { "id": "100", "name": "Helmenkalastaja", "description": "" },
     { "id": "101", "name": "Kalastajakylä", "description": "" },
     {
         "id": "102",
         "name": "Suurlähettiläs",
-        "description": "Paljasta kortti kädestäsi. Palauta<br>enintäan 2 kappaletta paljastettua<br>korttia kädestäsi Varastoon. Tämän<br>jälkeen kaikki muut pelaajat ottavat<br>yhden kappaleen palautettua korttia."
+        "description": "Paljasta kortti kädestäsi. Palauta enintäan 2 kappaletta paljastettua korttia kädestäsi Varastoon. Tämän jälkeen kaikki muut pelaajat ottavat yhden kappaleen palautettua korttia."
     },
     { "id": "103", "name": "Tähystäjä", "description": "" },
     { "id": "104", "name": "Salakuljettajat", "description": "" },
@@ -80,7 +80,7 @@
     {
         "id": "108",
         "name": "Saari",
-        "description": "Aseta tämä ja toinen kortti kädestäsi<br>sivuun. Palauta kortit pakkaasi pelin<br>päättyessa.{{divline}}{{VP|2|l}}"
+        "description": "Aseta tämä ja toinen kortti kädestäsi sivuun. Palauta kortit pakkaasi pelin päättyessa.{{divline}}{{VP|2|l}}"
     },
     { "id": "109", "name": "Luotsi", "description": "" },
     { "id": "110", "name": "Merirosvolaiva", "description": "" },
@@ -89,7 +89,7 @@
     {
         "id": "113",
         "name": "Aarrekartta",
-        "description": "Tuhoa tama kortti ja toinen<br>Aarrekarttakadestasi. Jos tuhoat nain<br>2 Aarekarttaa, ota 4 Kultaa ja aseta ne<br>pakkasi paalle."
+        "description": "Tuhoa tama kortti ja toinen Aarrekarttakadestasi. Jos tuhoat nain 2&nbsp;Aarekarttaa, ota 4&nbsp;Kultaa ja aseta ne pakkasi paalle."
     },
     { "id": "114", "name": "Tutkimusmatkailija", "description": "" },
     { "id": "115", "name": "Basaari", "description": "" },
@@ -99,13 +99,13 @@
     {
         "id": "119",
         "name": "Taktikko",
-        "description": "Poista kaikki käsikorttisi. Jos poistit<br>näin yhdenkin kortin, seuraavan<br>vuorosi alussa:<br>+5 korttia, +1 ostos ja +1 toiminta."
+        "description": "Poista kaikki käsikorttisi. Jos poistit näin yhdenkin kortin, seuraavan vuorosi alussa: +5&nbsp;korttia, +1&nbsp;ostos ja +1&nbsp;toiminta."
     },
     { "id": "120", "name": "Aarrekammio", "description": "" },
     {
         "id": "121",
         "name": "Laituri",
-        "description": "'''+ 2 korttia'''<br>'''+ 1 osto'''<br>Seuraavan vuorosi alussa:<br>'''+ 2 korttia'''<br>'''+ 1 osto'''"
+        "description": "'''+&nbsp;2&nbsp;korttia'''<br>'''+&nbsp;1&nbsp;osto'''<p>Seuraavan vuorosi alussa:<br>'''+&nbsp;2&nbsp;korttia'''<br>'''+&nbsp;1&nbsp;osto'''"
     },
     { "id": "122", "name": "Yrttikauppias", "description": "" },
     { "id": "123", "name": "Oppipoika", "description": "" },
@@ -115,13 +115,13 @@
     {
         "id": "127",
         "name": "Ennemalja",
-        "description": "'''+ 1 toiminta'''<br>Kaikki pelaajat (itses mukaan lukien)<br>paljasta vat pakkan sa päallimmäisen kortin<br>ja valintasi mukaan joko poistavat sen tai<br>asettavat takai sin pakan päälle. Tämän jälkeen,<br>paljasta pakkasi paälti kortteja, kunnes<br>paljastat kortin, joka ei ole Toimintakortti.<br>Ota kaikki paljastamasi kortit käteesi."
+        "description": "'''+&nbsp;1&nbsp;toiminta'''<p>Kaikki pelaajat (itses mukaan lukien) paljasta vat pakkan sa päallimmäisen kortin ja valintasi mukaan joko poistavat sen tai asettavat takai sin pakan päälle. Tämän jälkeen, paljasta pakkasi paälti kortteja, kunnes paljastat kortin, joka ei ole Toimintakortti. Ota kaikki paljastamasi kortit käteesi."
     },
     { "id": "128", "name": "Yliopisto", "description": "" },
     {
         "id": "129",
         "name": "Alkemisti",
-        "description": "'''+ 2 korttia'''<br>'''+ 1 toiminta'''{{Divline}}Jos sinulla on Rohto pelissä kun<br>poistat tämän kortin, saat asettaa<br>tämän kortin pakkasi päälle."
+        "description": "'''+&nbsp;2&nbsp;korttia'''<br>'''+&nbsp;1&nbsp;toiminta'''{{Divline}}Jos sinulla on Rohto pelissä kun poistat tämän kortin, saat asettaa<br>tämän kortin pakkasi päälle."
     },
     { "id": "130", "name": "Apuolento", "description": "" },
     { "id": "131", "name": "Viisasten kivi", "description": "" },
@@ -135,7 +135,7 @@
     {
         "id": "135",
         "name": "Lähettiläs",
-        "description": "Paljasta pakkasi 5 päällimmäistä korttia. Vasemmalla puolellasi istuva pelaaja valitsee paljastetuista korteista yhden, joka sinun tulee poistaa. Nosta loput kortit."
+        "description": "Paljasta pakkasi 5&nbsp;päällimmäistä korttia. Vasemmalla puolellasi istuva pelaaja valitsee paljastetuista korteista yhden, joka sinun tulee poistaa. Nosta loput kortit."
     },
     {
         "id": "136",
@@ -172,12 +172,12 @@
     {
         "id": "328",
         "name": "Hämärät varat",
-        "description": "{{Cost|3|l}}<br>'''+ 1 osto'''<br>Kun pelaat tämän kortin, vasemmalla<br>puolellasi istuva pelaaja nimeaa kortin.<br>Et voi ostaa nimettya korttia tälla<br>kierroksella."
+        "description": "{{Cost|3|l}}<br>'''+1&nbsp;osto'''<p>Kun pelaat tämän kortin, vasemmalla puolellasi istuva pelaaja nimeaa kortin. Et voi ostaa nimettya korttia tälla kierroksella."
     },
     {
         "id": "329",
         "name": "Tilitoimisto",
-        "description": "Katso poistopakkasi kaikki kortit ja<br>paljasta siita haluamasi määra<br>Kupareita. Ota paljastetut Kupant<br>Katees."
+        "description": "Katso poistopakkasi kaikki kortit ja paljasta siita haluamasi määra Kupareita. Ota paljastetut Kupant Katees."
     },
     { "id": "330", "name": "Rahapaja", "description": "" },
     { "id": "331", "name": "Petkuttaja", "description": "" },
@@ -253,7 +253,7 @@
     { "id": "517", "name": "Kupariraha", "description": "" },
     { "id": "525", "name": "Tila", "description": "" },
     { "id": "526", "name": "Hopearaha", "description": "" },
-    { "id": "527", "name": "Rohto", "description": "{{Cost" },
+    { "id": "527", "name": "Rohto", "description": "{{Cost||xl||P}}" },
     { "id": "528", "name": "Pitäjä", "description": "" },
     { "id": "529", "name": "Kultaraha", "description": "" },
     { "id": "530", "name": "Lääni", "description": "" },

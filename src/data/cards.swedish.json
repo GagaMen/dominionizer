@@ -1,0 +1,34 @@
+[
+    { "id": "16", "name": "KÄLLARE", "description": "" },
+    {
+        "id": "18",
+        "name": "VALLGRAV",
+        "description": "'''+2&nbsp;Kort'''{{Divline}}När en annan spelare spelar ut ett Attackkort kan du visa detta kortet från din hand. Attacken påverkar i så fall inte dig."
+    },
+    {
+        "id": "38",
+        "name": "TRÄDGÅRDAR",
+        "description": "Värt {{VP|1}} För varje 10-tal kort i din kortlek (avrundas nedåt)."
+    },
+    { "id": "39", "name": "MILIS", "description": "" },
+    { "id": "41", "name": "OMBYGGNAD", "description": "" },
+    { "id": "42", "name": "SMED", "description": "'''+3&nbsp;Kort'''" },
+    {
+        "id": "47",
+        "name": "Festival",
+        "description": "'''+2&nbsp;Actions'''<br>'''+1&nbsp;Köp'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "49",
+        "name": "BIBLIOTEK",
+        "description": "Dra kort tills du har 7 kort på hand. Om du får Actionkort, får du lägga dessa åt sidan medan du drar. När du har dragit färdigt, kastar du bort de kort du lade åt sidan"
+    },
+    {
+        "id": "50",
+        "name": "MARKNAD",
+        "description": "'''+1&nbsp;Kort'''<br>'''+1&nbsp;Actions'''<br>'''+1&nbsp;Köp'''<br>{{Costplus|1}}"
+    },
+    { "id": "51", "name": "GRUVA", "description": "" },
+    { "id": "212", "name": "FÖRBANNELSE", "description": "{{VP|-1|xl}}" },
+    { "id": "529", "name": "GULD", "description": "{{Cost|3|xl}}" }
+]

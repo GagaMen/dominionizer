@@ -83,7 +83,7 @@
     {
         "id": "127",
         "name": "Vidění",
-        "description": "'''+1 akce'''<br>Každý hráč (včetně tebe) ukáže vrchní kartu svého dobíracího balíčku a ty vybereš, zda ji odloží na odkládací balíček, nebo zda ji vrátí zpět. Poté ukazuj vrchní karty ze svého dobíracího balíčku, dokud neodkryješ kartu, která není akční.<br>Všechny své odkryté karty si přidej do ruky."
+        "description": "'''+1&nbsp;akce'''<p>Každý hráč (včetně tebe) ukáže vrchní kartu svého dobíracího balíčku a ty vybereš, zda ji odloží na odkládací balíček, nebo zda ji vrátí zpět. Poté ukazuj vrchní karty ze svého dobíracího balíčku, dokud neodkryješ kartu, která není akční. Všechny své odkryté karty si přidej do ruky."
     },
     { "id": "128", "name": "Univerzita", "description": "" },
     { "id": "129", "name": "Alchymista", "description": "" },
@@ -91,7 +91,7 @@
     {
         "id": "131",
         "name": "Kámen mudrců",
-        "description": "Když zahraješ tuto kartu, sečti dohromady karty ve svém dobíracím a odkládacím balíčku.<br>Získáš {{Cost|1}} za každých 5&nbsp;karet ve svých balíčcích (zaokrouhleno dolů)."
+        "description": "Když zahraješ tuto kartu, sečti dohromady karty ve svém dobíracím a odkládacím balíčku. Získáš {{Cost|1}} za každých 5&nbsp;karet ve svých balíčcích (zaokrouhleno dolů)."
     },
     { "id": "132", "name": "Golem", "description": "" },
     { "id": "133", "name": "Posedlost", "description": "" },
