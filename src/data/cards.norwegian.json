@@ -53,7 +53,7 @@
     {
         "id": "138",
         "name": "Skjult reserve",
-        "description": "{{Cost|2|l}}{{divline}}Når du stokker kan du plassere dette<br>kortet hvor som helst i bunken."
+        "description": "{{Cost|2|l}}{{Divline}}Når du stokker kan du plassere dette kortet hvor som helst i bunken."
     },
     { "id": "212", "name": "Forbannelse", "description": "" },
     { "id": "517", "name": "Kobber", "description": "" },

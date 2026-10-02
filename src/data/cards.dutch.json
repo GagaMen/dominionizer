@@ -5,7 +5,11 @@
         "name": "Kelder",
         "description": "'''+1&nbsp;Actie'''<p>Leg een aantal kaarten naar keuze af. '''+1&nbsp;Kaart''' per afgelegde kaart."
     },
-    { "id": "17", "name": "Kapel", "description": "Vernietig 4 of minder kaarten uit je hand." },
+    {
+        "id": "17",
+        "name": "Kapel",
+        "description": "Vernietig 4&nbsp;of minder kaarten uit je hand."
+    },
     {
         "id": "18",
         "name": "Slotgracht",
@@ -26,7 +30,7 @@
     {
         "id": "34",
         "name": "Binnenplaats",
-        "description": "'''+3 Kaarten'''<br>Leg een kaart naar keuze<br>uit je hand gedekt op je<br>trekstapel."
+        "description": "'''+3&nbsp;Kaarten'''<p>Leg een kaart naar keuze uit je hand gedekt op je trekstapel."
     },
     {
         "id": "36",
@@ -41,12 +45,12 @@
     {
         "id": "38",
         "name": "Tuinen",
-        "description": "Elke 10 kaarten in je stapel zijn aan het einde van het spel {{VP|'''1'''}} waard (naar beneden afronden)."
+        "description": "Elke 10&nbsp;kaarten in je stapel zijn aan het einde van het spel {{VP|'''1'''}} waard (naar beneden afronden)."
     },
     {
         "id": "39",
         "name": "Militie",
-        "description": "{{Costplus|2}}<p>Iedere andere speler legt naar zijn keuze kaarten af totdat hij er 3 op handen heeft."
+        "description": "{{Costplus|2}}<p>Iedere andere speler legt naar zijn keuze kaarten af totdat hij er 3&nbsp;op handen heeft."
     },
     {
         "id": "40",
@@ -67,7 +71,7 @@
     {
         "id": "44",
         "name": "Dief",
-        "description": "Iedere speler toont de bovenste 2 kaarten van zijn trekstapel. Als een speler geldkaarten toont, moet hij er één naar jouw keuze vernietigen. Je mag een of meer van deze vernietigde kaarten pakken en afleggen. De andere spelers leggen andere getoonde kaarten op hun aflegstapel."
+        "description": "Iedere speler toont de bovenste 2&nbsp;kaarten van zijn trekstapel. Als een speler geldkaarten toont, moet hij er één naar jouw keuze vernietigen. Je mag een of meer van deze vernietigde kaarten pakken en afleggen. De andere spelers leggen andere getoonde kaarten op hun aflegstapel."
     },
     {
         "id": "45",
@@ -92,7 +96,7 @@
     {
         "id": "49",
         "name": "Bibliotheek",
-        "description": "Vul je hand aan tot 7 kaarten.<br>Getrokken actiekaarten mag je houden of apart bewaren en vervangen door nieuwe kaarten. Als je hand is aangevuld leg je de apart bewaarde actiekaarten af."
+        "description": "Vul je hand aan tot 7&nbsp;kaarten. Getrokken actiekaarten mag je houden of apart bewaren en vervangen door nieuwe kaarten. Als je hand is aangevuld leg je de apart bewaarde actiekaarten af."
     },
     {
         "id": "50",
@@ -107,67 +111,67 @@
     {
         "id": "52",
         "name": "Heks",
-        "description": "'''+2&nbsp;Kaarten'''<p>Iedere andere speler pakt 1 vloekkaart."
+        "description": "'''+2&nbsp;Kaarten'''<p>Iedere andere speler pakt 1&nbsp;vloekkaart."
     },
     {
         "id": "53",
         "name": "Avonturier",
-        "description": "Draai achtereenvolgens de bovenste kaarten van je trekstapel om totdat je in totaal 2 geldkaarten hebt. Neem ze op handen. Leg de overige omgedraaide kaarten af op je aflegstapel."
+        "description": "Draai achtereenvolgens de bovenste kaarten van je trekstapel om totdat je in totaal 2&nbsp;geldkaarten hebt. Neem ze op handen. Leg de overige omgedraaide kaarten af op je aflegstapel."
     },
     {
         "id": "72",
         "name": "Pion",
-        "description": "Kies twee verschillende van<br>de volgende opties:<br>'''+1 Kaart''';<br>'''+1 Actie''';<br>'''+1 Aanschaf''';<br>{{Costplus|1}}."
+        "description": "Kies twee verschillende van de volgende opties: '''+1&nbsp;Kaart'''; '''+1&nbsp;Actie'''; '''+1&nbsp;Aanschaf'''; {{Costplus|1}}."
     },
     {
         "id": "73",
         "name": "Geheime Kamer",
-        "description": "Leg naar believen kaarten uit je hand af. +{{Coin|1}} per afgelegde kaart.{{divline}}Als een speler een aanvalskaart speelt mag je de Geheime Kamer tonen. In dat geval +2 Kaarten; leg daarna 2 kaarten naar keuze uit je hand gedekt op je trekstapel."
+        "description": "Leg naar believen kaarten uit je hand af. {{Costplus|1}} per afgelegde kaart.{{divline}}Als een speler een aanvalskaart speelt mag je de Geheime Kamer tonen. In dat geval +2&nbsp;Kaarten; leg daarna 2&nbsp;kaarten naar keuze uit je hand gedekt op je trekstapel."
     },
     {
         "id": "74",
         "name": "Grote Zaal",
-        "description": "'''+1 Kaart<br>+1 Actie'''{{divline}}{{VP|1|l}}"
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''{{divline}}{{VP|1|l}}"
     },
     {
         "id": "75",
         "name": "Maskerade",
-        "description": "'''+2 Kaarten'''<br>Iedere speler die ten minste<br>1 kaart in zijn handen heeft, moet<br>direct 1 kaart uit zijn hand naar<br>links doorgeven. Daarna mag jij<br>1 kaart uit je hand vernietigen."
+        "description": "'''+2&nbsp;Kaarten'''<p>Iedere speler die ten minste 1 kaart in zijn handen heeft, moet direct 1 kaart uit zijn hand naar links doorgeven. Daarna mag jij 1 kaart uit je hand vernietigen."
     },
     {
         "id": "76",
         "name": "Sloppenwijk",
-        "description": "'''+2 Acties'''<br>Toon je hand.<br>Als je geen actiekaarten in je<br>hand hebt: '''+2 Kaarten'''."
+        "description": "'''+2&nbsp;Acties'''<p>Toon je hand. Als je geen actiekaarten in je hand hebt: '''+2&nbsp;Kaarten'''."
     },
     {
         "id": "77",
         "name": "Lakei",
-        "description": "Kies één van de volgende<br>opties:<br>'''+2 Kaarten''';<br>Of {{Costplus|2}};<br>of vernietig<br>2 kaarten uit je hand"
+        "description": "Kies één van de volgende opties: '''+2&nbsp;Kaarten'''; Of {{Costplus|2}}; of vernietig 2&nbsp;kaarten uit je hand"
     },
     {
         "id": "78",
         "name": "Oplichter",
-        "description": "{{Costplus|2}}<br>Iedere andere speler vernietigt de<br>bovenste kaart van zijn trekstapel<br>en pakt een kaart met dezelfde<br>kosten als de vernietigde kaart<br>naar jouw keuze."
+        "description": "{{Costplus|2}}<p>Iedere andere speler vernietigt de bovenste kaart van zijn trekstapel en pakt een kaart met dezelfde kosten als de vernietigde kaart naar jouw keuze."
     },
     {
         "id": "79",
         "name": "Wensput",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Noem een kaart. Toon de<br>bovenste kaart van je trekstapel.<br>Als het de genoemde kaart is:<br>Neem de kaart in je hand."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Noem een kaart. Toon de bovenste kaart van je trekstapel. Als het de genoemde kaart is: Neem de kaart in je hand."
     },
     {
         "id": "80",
         "name": "Baron",
-        "description": "'''+1 Aanschaf'''<br>Je mag een landgoedkaart<br>afleggen.<br>Als je dat doet: {{Costplus|4}}.<br>Zo niet, pak dan een landgoedkaart."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Je mag een landgoedkaart afleggen. Als je dat doet: {{Costplus|4}}. Zo niet, pak dan een landgoedkaart."
     },
     {
         "id": "81",
         "name": "Brug",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|1}}<br>Alle kaarten (ook die in je hand)<br>kosten deze beurt {{Cost|1}} minder,<br>maar nooit minder dan {{Cost|0}}."
+        "description": "'''+1&nbsp;Aanschaf'''<br>{{Costplus|1}}<p>Alle kaarten (ook die in je hand) kosten deze beurt {{Cost|1}} minder, maar nooit minder dan {{Cost|0}}."
     },
     {
         "id": "82",
         "name": "Samenzweerder",
-        "description": "{{Costplus|2}}<br>Als je deze beurt 3 of<br>meer actien hebt gespeeld<br>(inclusied deze):<br>'''+1 Kaart, +1 Actie.'''"
+        "description": "{{Costplus|2}}<p>Als je deze beurt 3 of meer actien hebt gespeeld (inclusied deze): '''+1&nbsp;Kaart''', '''+1&nbsp;Actie.'''"
     },
     {
         "id": "83",
@@ -177,27 +181,27 @@
     {
         "id": "84",
         "name": "IJzergieterij",
-        "description": "Pak een kaart die ten hoogste {{Cost|4}}<br>kost. Is de gepakte kaart een...<br>actiekaart,  '''+1 actie'''<br>geldkaart, {{Costplus|1}}<br>overwinningskaart, '''+1 Kaart'''"
+        "description": "Pak een kaart die ten hoogste {{Cost|4}} kost. Is de gepakte kaart een&hellip;<p>actiekaart, '''+1&nbsp;actie'''<br>geldkaart, {{Costplus|1}}<br>overwinningskaart, '''+1&nbsp;Kaart'''"
     },
     {
         "id": "85",
         "name": "Mijndorp",
-        "description": "'''+1 Kaart<br>+2 Acties'''<br>Je mag deze kaart direct<br>vernietigen.<br>Als je dat doet: {{Costplus|2}}."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+2&nbsp;Acties'''<p>Je mag deze kaart direct vernietigen. Als je dat doet: {{Costplus|2}}."
     },
     {
         "id": "86",
         "name": "Verkenner",
-        "description": "'''+1 Actie'''<br>Toon de bovenste 4 kaarten van je trekstapel. Neem getoonde overwinningskaarten in je hand. Leg de overige kaarten in een volgorde naar keuze gedekt op je trekstapel."
+        "description": "'''+1&nbsp;Actie'''<p>Toon de bovenste 4&nbsp;kaarten van je trekstapel. Neem getoonde overwinningskaarten in je hand. Leg de overige kaarten in een volgorde naar keuze gedekt op je trekstapel."
     },
     {
         "id": "87",
         "name": "Hertog",
-        "description": "Is {{VP|'''1'''}} waard voor elke<br> hertogdomkaart die je hebt."
+        "description": "Is {{VP|'''1'''}} waard voor elke hertogdomkaart die je hebt."
     },
     {
         "id": "88",
         "name": "Dienaar",
-        "description": "'''+1 Actie'''<br>Kies één van de volgende opties:<br>{{Costplus|2}}; of leg alle kaarten uit je hand<br>af, '''+4 Kaarten''', en iedere andere<br>speler met ten minste 5 kaarten in<br>zijn hand moet al zijn haadkaarten<br>afleggen en 4 nieuwe kaarten trekkten."
+        "description": "'''+1&nbsp;Actie'''<p>Kies één van de volgende opties: {{Costplus|2}}; of leg alle kaarten uit je hand af, '''+4&nbsp;Kaarten''', en iedere andere speler met ten minste 5&nbsp;kaarten in zijn hand moet al zijn haadkaarten afleggen en 4 nieuwe kaarten trekkten."
     },
     {
         "id": "89",
@@ -207,55 +211,55 @@
     {
         "id": "90",
         "name": "Folteraar",
-        "description": "'''+3 Kaarten'''<br>Iedere andere speler kiest<br>één van de volgende opties:<br>hij legt 2 kaarten af;<br>of hij pakt een vloekkaart en<br>neemt deze in zijn hand."
+        "description": "'''+3&nbsp;Kaarten'''<p>Iedere andere speler kiest één van de volgende opties: hij legt 2&nbsp;kaarten af; of hij pakt een vloekkaart en neemt deze in zijn hand."
     },
     {
         "id": "91",
         "name": "Handelspost",
-        "description": "Vernietig 2 kaarten uit je hand.<br>Als je dit doet, pak dan een<br>zilverkaart en neem deze in<br>je hand."
+        "description": "Vernietig 2&nbsp;kaarten uit je hand. Als je dit doet, pak dan een zilverkaart en neem deze in je hand."
     },
     {
         "id": "92",
         "name": "Tolheffing",
-        "description": "Je linkerbuurman toont de bovenste 2 kaarten van zijn trekstapel en legt deze af. Voor elke getoonde kaart met een verschillende naam, krijg je voor een...<br>Actiekaart: +2 Acties<br>Geldkaart: {{Costplus|2}}<br>Overwinningskaart: +2 Kaarten."
+        "description": "Je linkerbuurman toont de bovenste 2&nbsp;kaarten van zijn trekstapel en legt deze af. Voor elke getoonde kaart met een verschillende naam, krijg je voor een&hellip;<br>Actiekaart: +2&nbsp;Acties<br>Geldkaart: {{Costplus|2}}<br>Overwinningskaart: +2&nbsp;Kaarten."
     },
     {
         "id": "93",
         "name": "Opwaardering",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Vernietig een kaart uit je<br>hand. Pak een kaart die<br>precies {{Cost|1}} meer waard is dan de<br>vernietigde kaart."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Vernietig een kaart uit je hand. Pak een kaart die precies {{Cost|1}} meer waard is dan de vernietigde kaart."
     },
     {
         "id": "95",
         "name": "Adel",
-        "description": "Kies één van de volgende opties: +3 Kaarten; of +2 Acties.{{divline}}{{VP|2|l}}"
+        "description": "Kies één van de volgende opties: +3&nbsp;Kaarten; of +2&nbsp;Acties.{{divline}}{{VP|2|l}}"
     },
     { "id": "96", "name": "Embargo", "description": "" },
     {
         "id": "97",
         "name": "Haven",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Leg een kaart uit je hand gedekt opzij (onder deze kaart). Aan het begin van je volgende beurt; doe de kaart in je hand."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Leg een kaart uit je hand gedekt opzij (onder deze kaart). Aan het begin van je volgende beurt; doe de kaart in je hand."
     },
     {
         "id": "98",
         "name": "Vuurtoren",
-        "description": "'''+1 Actie'''<br>{{Costplus|1}}<br>Aan het begin van je volgende beurt: {{Costplus|1}}. Tot dan: speelt een andere speler een aanvalskaart, dan heeft die op jou geen invloed."
+        "description": "'''+1&nbsp;Actie'''<br>{{Costplus|1}}<p>Aan het begin van je volgende beurt: {{Costplus|1}}. Tot dan: speelt een andere speler een aanvalskaart, dan heeft die op jou geen invloed."
     },
     {
         "id": "99",
         "name": "Inheems Dorp",
-        "description": "'''+2 Acties'''<br>Kies één van de volgende: Leg de bovenste kaart van je trekstapel gedekt op je inheems dorptableau (deze kaarten mag je op elk moment bekijken); of: Neem alle kaarten van je inheems dorptableau in je hand."
+        "description": "'''+2&nbsp;Acties'''<p>Kies één van de volgende: Leg de bovenste kaart van je trekstapel gedekt op je inheems dorptableau (deze kaarten mag je op elk moment bekijken); of: Neem alle kaarten van je inheems dorptableau in je hand."
     },
     { "id": "100", "name": "Parelduiker", "description": "" },
     {
         "id": "101",
         "name": "Vissersdorp",
-        "description": "'''+2 Acties'''<br>{{Costplus|1}}<br>Aan het begin van je volgende beurt: '''+1 Actie''' en {{Costplus|1}}."
+        "description": "'''+2&nbsp;Acties'''<br>{{Costplus|1}}<p>Aan het begin van je volgende beurt: '''+1&nbsp;Actie''' en {{Costplus|1}}."
     },
     { "id": "102", "name": "Boodschapper", "description": "" },
     {
         "id": "103",
         "name": "Uitkijk",
-        "description": "'''+1 Actie'''<br>Bekijk de bovenste 3 kaarten van je trekstapel. Vernietig er één van. Leg er één van af. Leg de overgebleven kaart gedekt terug op je trekstapel."
+        "description": "'''+1&nbsp;Actie'''<p>Bekijk de bovenste 3&nbsp;kaarten van je trekstapel. Vernietig er één van. Leg er één van af. Leg de overgebleven kaart gedekt terug op je trekstapel."
     },
     {
         "id": "104",
@@ -265,17 +269,17 @@
     {
         "id": "105",
         "name": "Pakhuis",
-        "description": "'''+3 Kaarten<br>+1 Actie'''<br>Leg 3 kaarten af."
+        "description": "'''+3&nbsp;Kaarten'''<br>'''+1&nbsp;Actie'''<p>Leg 3&nbsp;kaarten af."
     },
     {
         "id": "106",
         "name": "Karavaan",
-        "description": "'''+1 Kaart'''<br>'''+1 Actie'''<br>Aan het begin van je volgende beurt: '''+1 Kaart'''."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Aan het begin van je volgende beurt: '''+1&nbsp;Kaart'''."
     },
     {
         "id": "107",
         "name": "Beurzensnijder",
-        "description": "{{Costplus|2}}<br>Iedere andere speler legt een Koper af (of toont een hand zonder Koper)."
+        "description": "{{Costplus|2}}<p>Iedere andere speler legt een Koper af (of toont een hand zonder Koper)."
     },
     {
         "id": "108",
@@ -283,11 +287,15 @@
         "description": "Leg deze kaart en een kaart uit je hand op je eilandtableau.{{divline}}{{VP|2|l}}"
     },
     { "id": "109", "name": "Navigator", "description": "" },
-    { "id": "110", "name": "Piratenschip", "description": "" },
+    {
+        "id": "110",
+        "name": "Piratenschip",
+        "description": "Kies één van de volgende 2&nbsp;mogelijkheden: Iedere andere speler toont de 2&nbsp;bovenste kaarten van zijn trekstapel. Tonen de andere spelers één of meer geldkaarten, dan moet ieder van hen één geldkaart (naar jouw keuze) vernietigen. Als je op deze manier ten minste één geldkaart hebt vernietigd, leg je 1&nbsp;geldfiche op je piratenschiptableau. De spelers leggen alle overige getoonde kaarten af; of {{Costplus|1}} voor elk geldfiche op je piratenschiptableau."
+    },
     {
         "id": "111",
         "name": "Afvalverwerker",
-        "description": "'''+1 Aanschaf'''<br>Vernietig een kaart uit je hand. {{Costplus|1}} per {{Cost|1}} dat de kaart kost."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Vernietig een kaart uit je hand. {{Costplus|1}} per {{Cost|1}} dat de kaart kost."
     },
     { "id": "112", "name": "Zeeheks", "description": "" },
     {
@@ -299,7 +307,7 @@
     {
         "id": "115",
         "name": "Bazaar",
-        "description": "'''+1 Kaart<br>+2 Acties'''<br>{{Costplus|1}}"
+        "description": "'''+1&nbsp;Kaart'''<br>'''+2&nbsp;Acties'''<br>{{Costplus|1}}"
     },
     { "id": "116", "name": "De Vliegende Hollander", "description": "" },
     {
@@ -310,17 +318,17 @@
     {
         "id": "118",
         "name": "Voorpost",
-        "description": "Is dit de eerste keer dat je deze beurt een Voorpost speelt en de vorige beurt was niet de jouwe, voer dan na deze een extra beurt uit. Je trekt echter maar 3 kaarten voor je volgende hand."
+        "description": "Is dit de eerste keer dat je deze beurt een Voorpost speelt en de vorige beurt was niet de jouwe, voer dan na deze een extra beurt uit. Je trekt echter maar 3&nbsp;kaarten voor je volgende hand."
     },
     {
         "id": "119",
         "name": "Strateeg",
-        "description": "Heb je tenminste 1 kaart in je hand: leg je hand af en aan het begin van je volgende beurt: '''+5 Kaarten''', '''+1 Actie''' en '''+1 Aanschaf'''."
+        "description": "Heb je tenminste 1 kaart in je hand: leg je hand af en aan het begin van je volgende beurt: '''+5&nbsp;Kaarten''', '''+1&nbsp;Actie''' en '''+1&nbsp;Aanschaf'''."
     },
     {
         "id": "120",
         "name": "Schatkamer",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>{{Costplus|1}}<br>Aan het einde van je aanschaffase van deze beurt: heb je er geen overwinningskaart in gepakt, dan mag je deze kaart op je trekstapel leggen."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<br>{{Costplus|1}}<p>Aan het einde van je aanschaffase van deze beurt: heb je er geen overwinningskaart in gepakt, dan mag je deze kaart op je trekstapel leggen."
     },
     { "id": "121", "name": "Scheepswerf", "description": "" },
     { "id": "122", "name": "Kruidenexpert", "description": "" },
@@ -336,12 +344,16 @@
     { "id": "132", "name": "Golem", "description": "" },
     { "id": "133", "name": "Bezeten", "description": "" },
     { "id": "134", "name": "Zwarte markt", "description": "" },
-    { "id": "135", "name": "Gezant", "description": "" },
+    {
+        "id": "135",
+        "name": "Gezant",
+        "description": "Toon de bovenste 5&nbsp;kaarten van je deck. De speler links van je kiest een kaart, die je moet afleggen. Neem de rest in je hand."
+    },
     { "id": "137", "name": "Gouverneur", "description": "" },
     {
         "id": "138",
         "name": "Geldbuidel",
-        "description": "{{Cost|2|l}}{{divline}}Als je je aflegstapel schudt om er een nieuwe trekstapel van te maken, mag je direct daarna de Geldbuidel naar een positie naar keuze in je trekstapel verplaatsen."
+        "description": "{{Cost|2|l}}{{Divline}}Als je je aflegstapel schudt om er een nieuwe trekstapel van te maken, mag je direct daarna de Geldbuidel naar een positie naar keuze in je trekstapel verplaatsen."
     },
     {
         "id": "155",
@@ -357,12 +369,12 @@
     {
         "id": "242",
         "name": "Lening",
-        "description": "{{Cost|1|l}}<br>Als je deze kaart speelt, toon dan kaarten van je trekstapel totdat je een geldkaart toont. Leg deze af of vernietig deze. Leg de andere getoonde kaarten af."
+        "description": "{{Cost|1|l}}<p>Als je deze kaart speelt, toon dan kaarten van je trekstapel totdat je een geldkaart toont. Leg deze af of vernietig deze. Leg de andere getoonde kaarten af."
     },
     {
         "id": "245",
         "name": "Handelsroute",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|1}} per fiche op het handelsroutetableau. Vernietig 1 kaart uit je hand.{{divline}}Voorbereiding: leg 1 fiche op elke stapel overwinningskaarten. Wordt er een kaart van zo’n stapel gepakt, verplaats het fiche dan naar het handelsroutetableau."
+        "description": "'''+1&nbsp;Aanschaf'''<p>{{Costplus|1}} per fiche op het handelsroutetableau. Vernietig 1 kaart uit je hand.{{divline}}Voorbereiding: leg 1 fiche op elke stapel overwinningskaarten. Wordt er een kaart van zo’n stapel gepakt, verplaats het fiche dan naar het handelsroutetableau."
     },
     { "id": "246", "name": "Waarzegster", "description": "" },
     { "id": "247", "name": "Platina", "description": "{{Cost|5|l}}" },
@@ -389,13 +401,13 @@
     {
         "id": "322",
         "name": "Bisschop",
-        "description": "{{Costplus|1}}<br>{{VP|'''+1'''}}<br>Vernietig een kaart uit je hand.<br>{{VP|'''+1'''}} per {{Cost|2}} dat de kaart kost<br>(rond af naar beneden). Iedere<br>andere speler mag een kaart uit<br>zijn hand vernietigen."
+        "description": "{{Costplus|1}}<br>{{VP|'''+1'''}}<p>Vernietig een kaart uit je hand. {{VP|'''+1'''}} per {{Cost|2}} dat de kaart kost (rond af naar beneden). Iedere andere speler mag een kaart uit zijn hand vernietigen."
     },
     { "id": "323", "name": "Monument", "description": "{{Costplus|2}}<br>{{VP|'''+1'''}}" },
     {
         "id": "324",
         "name": "Steengroeve",
-        "description": "{{Cost|1|l}}<br>Deze beurt: actiekaarten<br>kosten {{Cost|2}} minder."
+        "description": "{{Cost|1|l}}<p>Deze beurt: actiekaarten kosten {{Cost|2}} minder."
     },
     {
         "id": "325",
@@ -405,17 +417,17 @@
     {
         "id": "326",
         "name": "Arbeidersdorp",
-        "description": "'''+1 Kaart<br>+2 Acties<br>+1 Aanschaf'''"
+        "description": "'''+1&nbsp;Kaart'''<br>'''+2&nbsp;Acties'''<br>'''+1&nbsp;Aanschaf'''"
     },
     {
         "id": "327",
         "name": "Stad",
-        "description": "'''+1 Kaart<br>+2 Acties'''<br>Zijn er 1 of meer lege voorraad-<br>stapels, dan '''+1 Kaart'''.<br>Zijn er 2 of meer, dan<br>'''+1 Aanschaf''' en {{Costplus|1}}."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+2&nbsp;Acties'''<p>Zijn er 1 of meer lege voorraadstapels, dan '''+1&nbsp;Kaart'''. Zijn er 2 of meer, dan '''+1&nbsp;Aanschaf''' en {{Costplus|1}}."
     },
     {
         "id": "328",
         "name": "Smokkelwaar",
-        "description": "{{Cost|3|l}}<br>'''+1 Aanschaf'''<br>Als je deze kaart speelt, noemt de speler links van je een kaart. Je mag deze kaart deze beurt niet kopen."
+        "description": "{{Cost|3|l}}<br>'''+1&nbsp;Aanschaf'''<p>Als je deze kaart speelt, noemt de speler links van je een kaart. Je mag deze kaart deze beurt niet kopen."
     },
     {
         "id": "329",
@@ -425,17 +437,17 @@
     {
         "id": "330",
         "name": "Aanmunten",
-        "description": "Je mag een geldkaart uit je<br>hand tonen. Pak er een<br>exemplaar van.{{Divline}}Pak je deze kaart, vernietig dan<br>alle niet-Duurzame geldkaarten<br>die je in het spel hebt."
+        "description": "Je mag een geldkaart uit je hand tonen. Pak er een exemplaar van.{{Divline}}Pak je deze kaart, vernietig dan alle niet-Duurzame geldkaarten die je in het spel hebt."
     },
     {
         "id": "331",
         "name": "Charlatan",
-        "description": "{{Costplus|2}}<br>Iedere andere speler mag een vloekkaart afleggen. Als hij dat niet doet, pakt hij een vloekkaart en een koperkaart."
+        "description": "{{Costplus|2}}<p>Iedere andere speler mag een vloekkaart afleggen. Als hij dat niet doet, pakt hij een vloekkaart en een koperkaart."
     },
     {
         "id": "332",
         "name": "Gespuis",
-        "description": "'''+3 Kaarten'''<br>Iedere andere speler toon de<br>bovenste 3 kaarten van zijn<br>trekstapel, legt de actie-<br>en geldkaarten erin af, en<br>legt de rest in een volgorde<br>naar keuze terug."
+        "description": "'''+3&nbsp;Kaarten'''<p>Iedere andere speler toon de bovenste 3 kaarten van zijn trekstapel, legt de actie- en geldkaarten erin af, en legt de rest in een volgorde naar keuze terug."
     },
     {
         "id": "333",
@@ -445,52 +457,52 @@
     {
         "id": "334",
         "name": "Schatkelder",
-        "description": "'''+2 Kaarten'''<br>Leg zoveel kaarten als je wilt<br>af voor {{Costplus|1}} per stuk.<br>Iedere andere speler mag<br>2 kaarten afleggen om<br>er 1 te trekken."
+        "description": "'''+2&nbsp;Kaarten'''<p>Leg zoveel kaarten als je wilt af voor {{Costplus|1}} per stuk. Iedere andere speler mag 2 kaarten afleggen om er 1 te trekken."
     },
     {
         "id": "335",
         "name": "Waagstuk",
-        "description": "{{Cost|1|l}}<br>Als je deze kaart speelt, toon dan kaarten van je trekstapel totdat je een geldkaart toont. Leg de andere getoonde kaarten af. Speel de geldkaart."
+        "description": "{{Cost|1|l}}<p>Als je deze kaart speelt, toon dan kaarten van je trekstapel totdat je een geldkaart toont. Leg de andere getoonde kaarten af. Speel de geldkaart."
     },
     {
         "id": "336",
         "name": "Domkoppen",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|2}}<br>Iedere andere speler legt naar zijn keuze kaarten af totdat hij er 3 op handen heeft.{{divline}}Als deze kaart in het spel is, {{VP|+1}} voor elke kaart die je koopt."
+        "description": "'''+1&nbsp;Aanschaf'''<br>{{Costplus|2}}<p>Iedere andere speler legt naar zijn keuze kaarten af totdat hij er 3 op handen heeft.{{divline}}Als deze kaart in het spel is, {{VP|+1}} voor elke kaart die je koopt."
     },
     {
         "id": "337",
         "name": "Grote markt",
-        "description": "'''+1 Kaart<br>+1 Actie<br>+1 Aanschaf'''<br>{{Costplus|2}}{{divline}}Je kunt deze kaart niet kopen<br>als je ten minste 1 Koper<br>in het spel hebt."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<br>'''+1&nbsp;Aanschaf'''<br>{{Costplus|2}}{{divline}}Je kunt deze kaart niet kopen als je ten minste 1 Koper in het spel hebt."
     },
     {
         "id": "338",
         "name": "Spaargeld",
-        "description": "{{Cost|2|l}}<br>Als je deze beurt een over-<br>winningskaart pakt: heb je die<br>gekocht, pak dan een Goud."
+        "description": "{{Cost|2|l}}<p>Als je deze beurt een overwinningskaart pakt: heb je die gekocht, pak dan een Goud."
     },
     {
         "id": "339",
         "name": "Bank",
-        "description": "{{Costplus|1}} per geldkaart die je in het<br>spel hebt (inclusief deze)."
+        "description": "{{Costplus|1}} per geldkaart die je in het spel hebt (inclusief deze)."
     },
     {
         "id": "340",
         "name": "Uitbreiden",
-        "description": "Vernietig een kaart uit je hand.<br>Pak een kaart die ten<br>hoogste {{Cost|3}} meer kost dan<br>de vernietigde kaart."
+        "description": "Vernietig een kaart uit je hand. Pak een kaart die ten hoogste {{Cost|3}} meer kost dan de vernietigde kaart."
     },
     {
         "id": "341",
         "name": "Vervalsen",
-        "description": "Vernietig zoveel kaarten uit je<br>hand als je wilt. Pak een kaart<br>die precies zoveel kost als<br>de totale kosten in {{Cost}} van de<br>vernietigde kaarten."
+        "description": "Vernietig zoveel kaarten uit je hand als je wilt. Pak een kaart die precies zoveel kost als de totale kosten in {{Cost}} van de vernietigde kaarten."
     },
     {
         "id": "342",
         "name": "Koningshof",
-        "description": "Je mag een actiekaart uit je<br>hand driemaal spelen."
+        "description": "Je mag een actiekaart uit je hand driemaal spelen."
     },
     {
         "id": "343",
         "name": "Venter",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>{{Costplus|1}}{{divline}}Deze kaart kost tijdens de<br>aanschaffase van een speler<br>{{Cost|2}} minder per actiekaart die hij<br>in het spel heeft."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<br>{{Costplus|1}}{{divline}}Deze kaart kost tijdens de aanschaffase van een speler {{Cost|2}} minder per actiekaart die hij in het spel heeft."
     },
     { "id": "353", "name": "Gehucht", "description": "" },
     { "id": "358", "name": "Menagerie", "description": "" },
@@ -634,7 +646,7 @@
     {
         "id": "414",
         "name": "Schurk",
-        "description": "{{Costplus|2}}<p>Als er ten minste 1 kaart die {{Cost|3}}, {{Cost|4}}, {{Cost|5}} of {{Cost|6}} kost in de stapel vernietigde kaarten is, pak er dan één van. Zo niet, dan toont iedere andere speler de bovenste 2 kaarten van zijn trekstapel. Hij vernietigt één van deze kaarten als deze {{Cost|3}}, {{Cost|4}}, {{Cost|5}} of {{Cost|6}} kost en legt de rest af."
+        "description": "{{Costplus|2}}<p>Als er ten minste 1&nbsp;kaart die {{Cost|3}}, {{Cost|4}}, {{Cost|5}} of {{Cost|6}} kost in de stapel vernietigde kaarten is, pak er dan één van. Zo niet, dan toont iedere andere speler de bovenste 2&nbsp;kaarten van zijn trekstapel.<p>Hij vernietigt één van deze kaarten als deze {{Cost|3}}, {{Cost|4}}, {{Cost|5}} of {{Cost|6}} kost en legt de rest af."
     },
     { "id": "415", "name": "Ingestorte Bibliotheek", "description": "'''+1&nbsp;Kaart'''" },
     { "id": "416", "name": "Verwoeste Markt", "description": "'''+1&nbsp;Aanschaf'''" },
@@ -667,7 +679,7 @@
     {
         "id": "423",
         "name": "Straatjongen",
-        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Iedere andere speler legt handkaarten af totdat hij er 4 overheeft.{{Divline}}Als deze kaart in het spel is en je speelt een andere aanvalskaart, dan mag je de Straatjongen vernietigen. Doe je dat, pak dan een Huurling van de huurlingenstapel."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Iedere andere speler legt handkaarten af totdat hij er 4&nbsp;overheeft.{{Divline}}Als deze kaart in het spel is en je speelt een andere aanvalskaart, dan mag je de Straatjongen vernietigen. Doe je dat, pak dan een Huurling van de huurlingenstapel."
     },
     {
         "id": "424",
@@ -683,7 +695,11 @@
     { "id": "427", "name": "Jachtgezelschap", "description": "" },
     { "id": "428", "name": "Nar", "description": "" },
     { "id": "429", "name": "Toernooi", "description": "" },
-    { "id": "430", "name": "Jonge heks", "description": "" },
+    {
+        "id": "430",
+        "name": "Jonge heks",
+        "description": "'''+2&nbsp;Kaarten'''<p>Leg 2 kaarten af. Iedere andere speler mag een Bankaart uit zjin hand tonen. Doet hij dit niet, dan pakt hij een vloekkaart.{{Divline}}Voorbereiding: voeg een extra koninkrijkkaart met een waarde van {{Cost|2}} of {{Cost|3}} aan de voorraad toe. Kaarten van deze stapel zijn Bankaarten."
+    },
     { "id": "432", "name": "Zak met goud", "description": "" },
     { "id": "433", "name": "Tiara", "description": "" },
     { "id": "434", "name": "Volgelingen", "description": "" },
@@ -783,99 +799,107 @@
     { "id": "1321", "name": "Slager", "description": "" },
     { "id": "1327", "name": "Heraut", "description": "" },
     { "id": "1330", "name": "Kandelaarmaker", "description": "" },
-    { "id": "1331", "name": "Steenhouwer", "description": "" },
+    {
+        "id": "1331",
+        "name": "Steenhouwer",
+        "description": "Vernietig een kaart uit je hand. Pak 2&nbsp;kaarten die elk minder waard zijn dan de vernietigde kaart.{{Divline}}Als je deze kaart koopt, mag je er voor overbetalen. Doe je dat, pak dan 2&nbsp;actiekaarten die elk zoveel waard zijn als het teveel betaalde bedrag."
+    },
     { "id": "1332", "name": "Meesterwerk", "description": "" },
     { "id": "1333", "name": "Adviseur", "description": "" },
     { "id": "1334", "name": "Plaza", "description": "" },
     { "id": "1335", "name": "Belastinginner", "description": "" },
     { "id": "1336", "name": "Koopmansgilde", "description": "" },
     { "id": "1337", "name": "Helderziende", "description": "" },
-    { "id": "1504", "name": "Prins", "description": "" },
+    {
+        "id": "1504",
+        "name": "Prins",
+        "description": "Leg de Prins apart en leg daar uit je hand een actiekaart op die maximaal {{Cost|4}} kost. Aan het begin van iedere volgende beurt moet je deze actie spelen (dit kost geen actie). In plaats van afleggen op de aflegstapel, gaat deze actiekaart aan het einde van je beurt terug naar de Prins, tenzij de actiekaart uit het spel is verwijderd tijdens je beurt."
+    },
     {
         "id": "2107",
         "name": "Held",
-        "description": "{{Costplus|2}}<br>Pak een geldkaart.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Kampioen ruilen.<br>''(Deze kaart bevindt zich niet in de voorraad)''."
+        "description": "{{Costplus|2}}<p>Pak een geldkaart.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Kampioen ruilen.<p>''(Deze kaart bevindt zich niet in de voorraad)''."
     },
     {
         "id": "2109",
         "name": "Ekster",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Toon de bovenste kaart van je<br>gedekte stapel. Is het een geld-<br>kaart, neem deze dan in je hand.<br>Is het een actie- of een overwin-<br>ningskaart, pak dan een Ekster."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Toon de bovenste kaart van je gedekte stapel. Is het een geldkaart, neem deze dan in je hand. Is het een actie- of een overwinningskaart, pak dan een Ekster."
     },
     {
         "id": "2112",
         "name": "Verloren stad",
-        "description": "'''+2 Kaarten<br>+2 Acties'''{{divline}}Als je deze kaart pakt, trekt iedere<br>andere speler 1 kaart."
+        "description": "'''+2&nbsp;Kaarten'''<br>'''+2&nbsp;Acties'''{{Divline}}Als je deze kaart pakt, trekt iedere andere speler 1&nbsp;kaart."
     },
     {
         "id": "2117",
         "name": "Verteller",
-        "description": "'''+1 Actie'''<br>{{Costplus|1}}<br>Speel maximaal 3 geldkaarten uit je<br>hand. Betaal al je {{Coin}}: +1 Kaart per<br>betaalde {{Coin}}."
+        "description": "'''+1&nbsp;Actie'''<br>{{Costplus|1}}<p>Speel maximaal 3&nbsp;geldkaarten uit je hand. Betaal al je {{Cost}}: +1&nbsp;Kaart per betaalde {{Cost}}."
     },
     {
         "id": "2119",
         "name": "Koninklijke munt",
-        "description": "{{Coin|1|l}}<br>Leg deze kaart op je Herbertableau.{{Divline}}Direct na het afhandelen van een actie mag je deze kaart oproepen, voor '''+2&nbsp;Acties'''."
+        "description": "{{Coin|1|l}}<p>Leg deze kaart op je Herbertableau.{{Divline}}Direct na het afhandelen van een actie mag je deze kaart oproepen, voor '''+2&nbsp;Acties'''."
     },
     {
         "id": "2121",
         "name": "Gids",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Leg deze kaart op je Herbegtableau.{{Divline}}Je mag deze kaart aan het begin van je<br>beurt oproepen om je hele hand af te<br>leggen en 5 kaarten te trekken."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Leg deze kaart op je Herbegtableau.{{Divline}}Je mag deze kaart aan het begin van je beurt oproepen om je hele hand af te leggen en 5&nbsp;kaarten te trekken."
     },
     {
         "id": "2123",
         "name": "Duplicaat",
-        "description": "Leg deze kaart op je Herbergtableau{{Divline}}Als je een kaart pakt die ten<br>hoogste {{Coin|6}} kost, mag je deze kaart<br>oproepen om nog een exemplaar van<br>de gepakte kaart te pakken."
+        "description": "Leg deze kaart op je Herbergtableau{{Divline}}Als je een kaart pakt die ten hoogste {{Coin|6}} kost, mag je deze kaart oproepen om nog een exemplaar van de gepakte kaart te pakken."
     },
     {
         "id": "2132",
         "name": "Metamorfose",
-        "description": "'''+1 Actie'''<br>Leg deze kaart op je Herbergtableau.{{Divline}}Je mag deze kaart aan het begin<br>van je beurt oproepen om 1 kaart<br>uit je hand te vernietigen, 1 kaart te<br>pakken die ten hoogste {{Cost|1}} meer<br>kost dan de vernietigde kaart en de<br>gepakte kaart in je hand te nemen."
+        "description": "'''+1&nbsp;Actie'''<p>Leg deze kaart op je Herbergtableau.{{Divline}}Je mag deze kaart aan het begin van je beurt oproepen om 1&nbsp;kaart uit je hand te vernietigen, 1&nbsp;kaart te pakken die ten hoogste {{Cost|1}} meer kost dan de vernietigde kaart en de gepakte kaart in je hand te nemen."
     },
     {
         "id": "2134",
         "name": "Spookbos",
-        "description": "<p>Tot jouw volgende beurt moet iedere andere speler die een kaart koopt zijn handkaarten in een volgorde naar keuze op zijn gedekte stapel leggen.</p>Aan het begin van je volgende beurt:<br>'''+3 Kaarten'''"
+        "description": "Tot jouw volgende beurt moet iedere andere speler die een kaart koopt zijn handkaarten in een volgorde naar keuze op zijn gedekte stapel leggen.<p>Aan het begin van je volgende beurt: '''+3&nbsp;Kaarten'''"
     },
     { "id": "2137", "name": "Huursoldaat", "description": "" },
     {
         "id": "2139",
         "name": "Heks uit het moeras",
-        "description": "<p>Tot jouw volgende beurt moet iedere andere speler die een kaart koopt 1&nbsp;Vloek pakken.</p>Aan het begin van je volgende beurt: {{Costplus|3}}"
+        "description": "Tot jouw volgende beurt moet iedere andere speler die een kaart koopt 1&nbsp;Vloek pakken.<p>Aan het begin van je volgende beurt: {{Costplus|3}}"
     },
     {
         "id": "2140",
         "name": "Amulet",
-        "description": "Kies nu en aan het begin van je<br>volgende beurt één van de<br>volgende: {{Costplus|1}}; of vernietig<br>1 kaart uit je hand; of pak 1 Zilver."
+        "description": "Kies nu en aan het begin van je volgende beurt één van de volgende: {{Costplus|1}}; of vernietig 1&nbsp;kaart uit je hand; of pak 1 Zilver."
     },
     {
         "id": "2146",
         "name": "Koerier",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|2}}<br>Je mag je gedekte stapel op je aflegstapel leggen.{{Divline}}Is dit de eerste aanschaf in je beurt, pad dan een kaart die ten hoogste {{Coin|4}} kost. Iedere andere speler krijgt ook 1 exemplaar van de gepakte kaart."
+        "description": "'''+1&nbsp;Aanschaf'''<br>{{Costplus|2}}<p>Je mag je gedekte stapel op je aflegstapel leggen.{{Divline}}Is dit de eerste aanschaf in je beurt, pad dan een kaart die ten hoogste {{Coin|4}} kost. Iedere andere speler krijgt ook 1 exemplaar van de gepakte kaart."
     },
     {
         "id": "2148",
         "name": "Expeditie",
-        "description": "Trek 2 kaarten extra voor je volgende hand."
+        "description": "Trek 2&nbsp;kaarten extra voor je volgende hand."
     },
     {
         "id": "2150",
         "name": "Missie",
-        "description": "Eenmaal per beurt: als de vorige beurt niet de jouwe was,<br>voer dan na deze beurt nog een beurt uit, waarin je geen<br>kaarten mag kopen."
+        "description": "Eenmaal per beurt: als de vorige beurt niet de jouwe was, voer dan na deze beurt nog een beurt uit, waarin je geen kaarten mag kopen."
     },
     {
         "id": "2152",
         "name": "Handel",
-        "description": "Vernietig ten hoogste 2 kaarten uit je hand.<br>Pak 1 Zilver voor elke kaart die je vernietigde."
+        "description": "Vernietig ten hoogste 2&nbsp;kaarten uit je hand. Pak 1&nbsp;Zilver voor elke kaart die je vernietigde."
     },
     {
         "id": "2158",
         "name": "Lenen",
-        "description": "'''+1 Aanschaf'''<br>Eenmaal per beurt: lig je -1 Kaart-fische niet op je gedekte<br>stapel, leg het er dan op {{Costplus|1}}."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Eenmaal per beurt: lig je -1 Kaart-fische niet op je gedekte stapel, leg het er dan op {{Costplus|1}}."
     },
     {
         "id": "2160",
         "name": "Verloren Kunst",
-        "description": "Verplaats je +1 Actie-fische naar een Actie-voorraadstapel (speel<br>je een kaart van die stapel, dan ontvang je eerst +1 Actie)."
+        "description": "Verplaats je +1&nbsp;Actie-fische naar een Actie-voorraadstapel (speel je een kaart van die stapel, dan ontvang je eerst +1&nbsp;Actie)."
     },
     {
         "id": "2162",
@@ -885,197 +909,197 @@
     {
         "id": "2164",
         "name": "Reus",
-        "description": "Draai je reisfische om (het start open).<br>Ligt het nu gedekt: {{Costplus|1}}. Ligt het nu<br>open: {{Costplus|5}} en iedere andere speler<br>toont de bovenste kaart van zijn gedekte<br>stapel. Kost deze kaart {{Coin|3}}, {{Coin|4}}, {{Coin|5}}<br>of{{Coin|6}}, dan moet hij deze vernietigen.<br>Anders legt hij de kaart af en pakt hij<br>een Vloek."
+        "description": "Draai je reisfische om (het start open). Ligt het nu gedekt: {{Costplus|1}}. Ligt het nu open: {{Costplus|5}} en iedere andere speler toont de bovenste kaart van zijn gedekte stapel. Kost deze kaart {{Coin|3}}, {{Coin|4}}, {{Coin|5}} of{{Coin|6}}, dan moet hij deze vernietigen. Anders legt hij de kaart af en pakt hij een Vloek."
     },
     {
         "id": "2183",
         "name": "Queeste",
-        "description": "Je mag een aanvalskaart, 2 Vloeken of 6 kaarten afleggen.<br>Doe je dat, pak dan een Goud."
+        "description": "Je mag een aanvalskaart, 2&nbsp;Vloeken of 6&nbsp;kaarten afleggen. Doe je dat, pak dan een Goud."
     },
     {
         "id": "2184",
         "name": "Verkennerseenheid",
-        "description": "'''+1 Aanschaf'''<br>Bekijk de 5 bovenste kaarten van je gedekte stapel. Leg er daavan 3 af<br>en doe de rest in een volgorde naar keuze terug op je gedekte stapel."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Bekijk de 5 bovenste kaarten van je gedekte stapel. Leg er daavan 3 af en doe de rest in een volgorde naar keuze terug op je gedekte stapel."
     },
     {
         "id": "2190",
         "name": "Aalmoes",
-        "description": "Eenmaal per beurt: heb je geen geldkaarten in het spel,<br>pak dan een kaart die ten hoogste {{Coin|4}} kost."
+        "description": "Eenmaal per beurt: heb je geen geldkaarten in het spel, pak dan een kaart die ten hoogste {{Coin|4}} kost."
     },
     {
         "id": "2191",
         "name": "Karavaanescorte",
-        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Aan het begin van je volgende beurt: {{Costplus|1}}{{Divline}}Als een andere spelen een aanvalskaart speelt, mag je deze kaart uit je hand spelen.<br>''(+1 Actie heeft geen effect als het niet jouw beurt is)''"
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Aan het begin van je volgende beurt: {{Costplus|1}}{{Divline}}Als een andere spelen een aanvalskaart speelt, mag je deze kaart uit je hand spelen. ''(+1&nbsp;Actie heeft geen effect als het niet jouw beurt is)''"
     },
     {
         "id": "2192",
         "name": "Rattenvanger",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Leg deze kaart op<br>je Herbergtableau{{Divline}}Aan het begin van je beurt mag je<br>deze kaart oproepen om 1 kaart uit<br>je hand te vernietigen."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Leg deze kaart op je Herbergtableau{{Divline}}Aan het begin van je beurt mag je deze kaart oproepen om 1&nbsp;kaart uit je hand te vernietigen."
     },
     {
         "id": "2193",
         "name": "Afbraak",
-        "description": "'''+1 Actie'''<br>Vernietig deze kaart of een kaart uit<br>je hand. Bekijk zoveel kaarten van je<br>gedekte stapel (trek steeds de bovenste}<br>als de kosten in {{Cost}} van de vernie-<br>tigde kaart. Neem er 1 in je hand en leg<br>de rest af."
+        "description": "'''+1&nbsp;Actie'''<p>Vernietig deze kaart of een kaart uit je hand. Bekijk zoveel kaarten van je gedekte stapel (trek steeds de bovenste} als de kosten in {{Cost}} van de vernietigde kaart. Neem er 1 in je hand en leg de rest af."
     },
     {
         "id": "2194",
         "name": "Kerker",
-        "description": "'''+1 Actie'''<br>Nu en aan het begin van je<br>volgende beurt: '''+2 Kaarten''',<br>leg daarna 2 kaarten af."
+        "description": "'''+1&nbsp;Actie'''<p>Nu en aan het begin van je volgende beurt: '''+2&nbsp;Kaarten''', leg daarna 2&nbsp;kaarten af."
     },
     {
         "id": "2195",
         "name": "Uitrusting",
-        "description": "'''+2 Kaarten'''<br>Leg ten hoogste 2 kaarten uit je<br>hand gedekt opzij. Neem deze aan<br>het begin van je volgende beurt in<br>je hand."
+        "description": "'''+2&nbsp;Kaarten'''<p>Leg ten hoogste 2&nbsp;kaarten uit je hand gedekt opzij. Neem deze aan het begin van je volgende beurt in je hand."
     },
     {
         "id": "2198",
         "name": "Vrek",
-        "description": "Kies één van de volgende: leg een<br>Koper uit je hand op je Herberg-<br>tableau; of {{Costplus|1}} per Koper op je<br>Herbergtableau."
+        "description": "Kies één van de volgende: leg een Koper uit je hand op je Herbergtableau; of {{Costplus|1}} per Koper op je Herbergtableau."
     },
     {
         "id": "2199",
         "name": "Zeehaven",
-        "description": "'''+1 Kaart<br>+1 Actie'''{{Divline}}Als je dez kaart koopt, pak dan nog een Zeehaven."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''{{Divline}}Als je dez kaart koopt, pak dan nog een Zeehaven."
     },
     {
         "id": "2200",
         "name": "Sparen",
-        "description": "'''+1 Aanschaf'''<br>Eenmaal per beurt: leg een kaart uit je hand opzij en neem deze aan het<br>einde van je beurt weer in je hand (na het trekken van je volgende beurt)."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Eenmaal per beurt: leg een kaart uit je hand opzij en neem deze aan het einde van je beurt weer in je hand (na het trekken van je volgende beurt)."
     },
     {
         "id": "2201",
         "name": "Woudloper",
-        "description": "'''+1 Aanschaf'''<br>Draai je reisfische om (het start<br>open). Ligt het nu open:<br>'''+ 5 Kaarten'''."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Draai je reisfische om (het start open). Ligt het nu open: '''+5&nbsp;Kaarten'''."
     },
     {
         "id": "2204",
         "name": "Kanonnengieter",
-        "description": "'''+1 Kaart'''<br>'''+1 Actie'''<br>{{Costplus|1}}<br>Leg zoveel kaarten af als je wilt. Je mag 1 kaart pakken die precies zoveel kost als het aantal afgelegde kaarten. Leg de gepakte kaart op je gedekte stapel."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<br>{{Costplus|1}}<p>Leg zoveel kaarten af als je wilt. Je mag 1&nbsp;kaart pakken die precies zoveel kost als het aantal afgelegde kaarten. Leg de gepakte kaart op je gedekte stapel."
     },
     {
         "id": "2205",
         "name": "Kermis",
-        "description": "'''+2 Aanschaf'''<br>Als je deze beurt een kaart pakt,<br>mag je deze op je gedekte stapel leggen."
+        "description": "'''+2&nbsp;Aanschaf'''<p>Als je deze beurt een kaart pakt, mag je deze op je gedekte stapel leggen."
     },
     {
         "id": "2207",
         "name": "Brugtrol",
-        "description": "Iedere andere speler neem zijn -{{Coin|1}}-fische.<br>Nu en aan het begin van je volgende beurt:<br>'''+1 Aanschaf'''{{Divline}}Zolang je deze kaart in het spel hebt, kosten kaarten je in jouw beurt {{Coin|1}} minder, maar nooit minder dan {{Coin|0}}."
+        "description": "Iedere andere speler neem zijn -{{Coin|1}}-fische. Nu en aan het begin van je volgende beurt: '''+1&nbsp;Aanschaf'''{{Divline}}Zolang je deze kaart in het spel hebt, kosten kaarten je in jouw beurt {{Coin|1}} minder, maar nooit minder dan {{Coin|0}}."
     },
     {
         "id": "2209",
         "name": "Verre landen",
-        "description": "Leg deze kaart op<br>je Herbergtableau.{{Divline}}Deze kaart is aan het einde van het<br>spel {{VP|'''4'''}} waard als hij op je<br>Herbergtableau ligt (anders {{VP|'''0'''}})."
+        "description": "Leg deze kaart op je Herbergtableau.{{Divline}}Deze kaart is aan het einde van het spel {{VP|'''4'''}} waard als hij op je Herbergtableau ligt (anders {{VP|'''0'''}})."
     },
     {
         "id": "2211",
         "name": "Vreugdevuur",
-        "description": "Vernietig ten hoogste 2 kaarten die je in het spel hebt."
+        "description": "Vernietig ten hoogste 2&nbsp;kaarten die je in het spel hebt."
     },
     {
         "id": "2212",
         "name": "Relikwie",
-        "description": "{{Coin|2|l}}<br>Iedere andere speler legt zijn<br>-1 Kaart-fische op zijn gedekte stapel."
+        "description": "{{Coin|2|l}}<p>Iedere andere speler legt zijn -1&nbsp;Kaart-fische op zijn gedekte stapel."
     },
     {
         "id": "2213",
         "name": "Koninklijke koets",
-        "description": "'''+1 Actie'''<br>Leg deze kaart op je Herbergtableau.{{Divline}}Je mag deze kaart direct na het spelen van een actie oproepen om die actie nogmaals te spelen (mits deze nog in het spel in)."
+        "description": "'''+1&nbsp;Actie'''<p>Leg deze kaart op je Herbergtableau.{{Divline}}Je mag deze kaart direct na het spelen van een actie oproepen om die actie nogmaals te spelen (mits deze nog in het spel in)."
     },
     {
         "id": "2214",
         "name": "Verborgen schat",
-        "description": "{{Cost|2|l}}<br>Pak een Goud en een Koper."
+        "description": "{{Cost|2|l}}<p>Pak een Goud en een Koper."
     },
     {
         "id": "2215",
         "name": "Wijnhandelaar",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|4}}<br>Leg deze kaart op je Herbergtableau.{{Divline}}Heb je aan het einde van je<br>aanschaffase ten minste {{Coin|2}} niet<br>besteed, dan mag je deze kaart vanaf<br>je herbergtableau afleggen."
+        "description": "'''+1&nbsp;Aanschaf'''<br>{{Costplus|4}}<p>Leg deze kaart op je Herbergtableau.{{Divline}}Heb je aan het einde van je<br>aanschaffase ten minste {{Coin|2}} niet besteed, dan mag je deze kaart vanaf je herbergtableau afleggen."
     },
     {
         "id": "2216",
         "name": "Wapenknecht",
-        "description": "'''+1 Kaart<br>+1 Actie'''{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Roofridder ruilen."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Roofridder ruilen."
     },
     {
         "id": "2217",
         "name": "Veerboot",
-        "description": "Verplaats je -{{Coin|2}} Kosten-fische naar een Actie-voorraadstapel<br>(kaarten van deze stapel kosten in jouw beurten {{Coin|2}} minder,<br>maar niet minder dan {{Coin|0}}."
+        "description": "Verplaats je -{{Coin|2}} Kosten-fische naar een Actie-voorraadstapel (kaarten van deze stapel kosten in jouw beurten {{Coin|2}} minder, maar niet minder dan {{Coin|0}}."
     },
     {
         "id": "2219",
         "name": "Boer",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|1}}{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Landknecht ruilen."
+        "description": "'''+1&nbsp;Aanschaf'''<br>{{Costplus|1}}{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Landknecht ruilen."
     },
     {
         "id": "2220",
         "name": "Plan",
-        "description": "Verplaats je vernietigingsfische naar een Actie-voorraadstapel<br>(speel je een kaart van die stapel,<br>dan mag je een kaart uit je hand vernietigen)."
+        "description": "Verplaats je vernietigingsfische naar een Actie-voorraadstapel (speel je een kaart van die stapel, dan mag je een kaart uit je hand vernietigen)."
     },
     {
         "id": "2222",
         "name": "Woudlopen",
-        "description": "Verplaats je +1 Kaart-fische naar een Actie-voorraadstapel<br>(speel je een kaart van die stapel,<br>dan ontvang je eerst '''+1 Kaart'''."
+        "description": "Verplaats je +1&nbsp;Kaart-fische naar een Actie-voorraadstapel (speel je een kaart van die stapel, dan ontvang je eerst '''+1&nbsp;Kaart'''."
     },
     {
         "id": "2223",
         "name": "Bedevaart",
-        "description": "Eenmaal per beurt: draai je reisfische om (het start open).<br>Ligt het nu open, kies dan 3 kaarten met een verschillende<br>titel die je in het spel hebt en pak van elk een exemplaar."
+        "description": "Eenmaal per beurt: draai je reisfische om (het start open). Ligt het nu open, kies dan 3&nbsp;kaarten met een verschillende titel die je in het spel hebt en pak van elk een exemplaar."
     },
     {
         "id": "2224",
         "name": "Training",
-        "description": "Verplaats je {{Costplus|1}}-fische naar een Actie-voorraadstapel (speel<br>je een kaart van die stapel, dan ontvang je eerst {{Costplus|1}})."
+        "description": "Verplaats je {{Costplus|1}}-fische naar een Actie-voorraadstapel (speel je een kaart van die stapel, dan ontvang je eerst {{Costplus|1}})."
     },
     {
         "id": "2226",
         "name": "Zeeroute",
-        "description": "Pak een actiekaart die ten hoogste {{Coin|4}} kost.<br>Verplaats je +1 Aanschaf-fische naar de betreffende stapel (speel<br>je een kaart van die stapel, dan ontvang je eerst '''+1 Aanschaf''')"
+        "description": "Pak een actiekaart die ten hoogste {{Coin|4}} kost. Verplaats je +1 Aanschaf-fische naar de betreffende stapel (speel je een kaart van die stapel, dan ontvang je eerst '''+1&nbsp;Aanschaf''')"
     },
     {
         "id": "2227",
         "name": "Overval",
-        "description": "Pak een Zilver voor elk Zilver dat je in het spel hebt.<br>Iedere andere speler legt zijn -1 Kaart-fische<br>op zijn gedekte stapel."
+        "description": "Pak een Zilver voor elk Zilver dat je in het spel hebt. Iedere andere speler legt zijn -1&nbsp;Kaart-fische op zijn gedekte stapel."
     },
     {
         "id": "2228",
         "name": "Bal",
-        "description": "Neem je -{{Coin|1}}-fische. Pak 2 kaarten die<br>elk ten hoogste {{Coin|4}} kosten."
+        "description": "Neem je -{{Coin|1}}-fische. Pak 2&nbsp;kaarten die elk ten hoogste {{Coin|4}} kosten."
     },
     {
         "id": "2257",
         "name": "Roofridder",
-        "description": "'''+1 Actie'''<br>{{Costplus|1}}<br>Pak 1 Zilver per kaart die de speler rechts van je in zijn laatste beurt heeft gepakt.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Krijger ruilen.<br>''(Deze kaart bevindt zich niet in de voorraad)''."
+        "description": "'''+1&nbsp;Actie'''<br>{{Costplus|1}}<p>Pak 1 Zilver per kaart die de speler rechts van je in zijn laatste beurt heeft gepakt.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Krijger ruilen.<p>''(Deze kaart bevindt zich niet in de voorraad)''."
     },
     {
         "id": "2258",
         "name": "Krijger",
-        "description": "'''+2 Kaarten'''<br>Voor iedere Reiziger die je in het spel hebt (met begrip van deze kaart), legt iedere andere speler de bovenste kaart van zijn gedekte stapel af en vernietigd deze als de waarde ervan {{Coin|3}} of {{Coin|4}} is.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Held ruilen.<br>''(Deze kaart bevindt zich niet in de voorraad)''."
+        "description": "'''+2&nbsp;Kaarten'''<p>Voor iedere Reiziger die je in het spel hebt (met begrip van deze kaart), legt iedere andere speler de bovenste kaart van zijn gedekte stapel af en vernietigd deze als de waarde ervan {{Coin|3}} of {{Coin|4}} is.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Held ruilen.<p>''(Deze kaart bevindt zich niet in de voorraad)''."
     },
     {
         "id": "2259",
         "name": "Kampioen",
-        "description": "'''+1 Actie'''<br>Je bent voor de rest van het spel<br>beschermd tegen aanvalskaarten<br>van andere spelers. Elke keer dat<br>je een actie speelt: '''+1 Actie'''<br>''(Deze kaart bevindt zich niet in de voorraad)''."
+        "description": "'''+1&nbsp;Actie'''<p>Je bent voor de rest van het spel beschermd tegen aanvalskaarten van andere spelers. Elke keer dat je een actie speelt: '''+1&nbsp;Actie'''<p>''(Deze kaart bevindt zich niet in de voorraad)''."
     },
     {
         "id": "2260",
         "name": "Landsknecht",
-        "description": "{{Costplus|2}}<br>{{Costplus|1}} per andere aanvalskaart die je in het spel hebt. Iedere andere speler met 4 of meer handkaarten legt er 1 af.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Vluchteling ruilen.<br>''(Deze kaart bevindt zich niet in de voorraad).''"
+        "description": "{{Costplus|2}}<p>{{Costplus|1}} per andere aanvalskaart die je in het spel hebt. Iedere andere speler met 4 of meer handkaarten legt er 1 af.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Vluchteling ruilen.<p>''(Deze kaart bevindt zich niet in de voorraad).''"
     },
     {
         "id": "2261",
         "name": "Vluchteling",
-        "description": "'''+2 Kaarten<br>+1 Actie'''<br>Leg 1 kaart af.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Leerknecht ruilen.<br>''(Deze kaart bevindt zich niet in de voorraad.)''"
+        "description": "'''+2&nbsp;Kaarten'''<br>'''+1&bsp;Actie'''<p>Leg 1&nbsp;kaart af.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Leerknecht ruilen.<p>''(Deze kaart bevindt zich niet in de voorraad.)''"
     },
     {
         "id": "2262",
         "name": "Leerknecht",
-        "description": "Je mag een actiekaart uit je hand tweemaal spelen. Pak er een exemplaar van.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Leermeester ruilen.<br>''(Deze kaart bevindt zich niet in de voorraad.)''"
+        "description": "Je mag een actiekaart uit je hand tweemaal spelen. Pak er een exemplaar van.{{Divline}}Als je deze kaart vanuit het spel aflegt, mag je deze tegen een Leermeester ruilen.<p>''(Deze kaart bevindt zich niet in de voorraad.)''"
     },
     {
         "id": "2263",
         "name": "Leermeester",
-        "description": "Leg deze kaart op je Herbegtableau{{Divline}}Je mag deze kaart aan het begin van je beurt oproepen om je +1&nbsp;Kaart-, +1&nbsp;Actie-, +1&nbsp;Aanschaf- of {{Costplus|1}}-fische naar een Actie-voorraadstapel te verplaatsen waar je nog geen fische hebt (speel je een kaart van die stapel, dan ontvang je eerst de bonus).<br>''(Deze kaart bevindt zich niet in de voorraad.)''"
+        "description": "Leg deze kaart op je Herbegtableau{{Divline}}Je mag deze kaart aan het begin van je beurt oproepen om je +1&nbsp;Kaart-, +1&nbsp;Actie-, +1&nbsp;Aanschaf- of {{Costplus|1}}-fische naar een Actie-voorraadstapel te verplaatsen waar je nog geen fische hebt (speel je een kaart van die stapel, dan ontvang je eerst de bonus).<p>''(Deze kaart bevindt zich niet in de voorraad.)''"
     },
     {
         "id": "3214",
@@ -1125,7 +1149,7 @@
     {
         "id": "3246",
         "name": "Gladiator",
-        "description": "{{Costplus|2}}<br>Toon een kaart uit je hand.<br>Je linkerbuurman mag een zelfde<br>exemplaar uit zijn hand tonen.<br>Doet hij dat niet, dan {{Costplus|2}} en<br>vernietig een Gladiator<br>uit de voorraad."
+        "description": "{{Costplus|2}}<p>Toon een kaart uit je hand. Je linkerbuurman mag een zelfde exemplaar uit zijn hand tonen. Doet hij dat niet, dan {{Costplus|2}} en vernietig een Gladiator uit de voorraad."
     },
     {
         "id": "3251",
@@ -1297,7 +1321,7 @@
     {
         "id": "3351",
         "name": "Triomfboog",
-        "description": "Bij de puntentelling: {{VP|'''3'''}} per exemplaar van een actiekaart waarvan<br>je er op de één na meeste hebt (tel bij een gelijke stand<br>alle betreffende kaarten)."
+        "description": "Bij de puntentelling: {{VP|'''3'''}} per exemplaar van een actiekaart waarvan je er de op één na meeste hebt (tel bij een gelijke stand alle betreffende kaarten)."
     },
     {
         "id": "3352",
@@ -1317,7 +1341,7 @@
     {
         "id": "3356",
         "name": "Boomgaard",
-        "description": "Bij de puntentelling: {{VP|'''4'''}} per kaart met een verschillende<br>naam waarvan je er 3 of meer hebt."
+        "description": "Bij de puntentelling: {{VP|'''4'''}} per kaart met een verschillende naam waarvan je er 3&nbsp;of meer hebt."
     },
     {
         "id": "3357",
@@ -1419,7 +1443,7 @@
     {
         "id": "3496",
         "name": "Voorbode",
-        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Kijk door je aflegstapel. Je mag 1 kaart daaruit op je trekstapel leggen."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Kijk door je aflegstapel. Je mag 1&nbsp;kaart daaruit op je trekstapel leggen."
     },
     {
         "id": "3497",
@@ -1454,32 +1478,32 @@
     {
         "id": "3503",
         "name": "Voyeur",
-        "description": "'''+1 Actie'''<br>Kies één van de volgende:<br>vernietig een actiekaart uit de<br>voorraad; of pak een actiekaart<br>uit de stapel \"Vernietigde<br>kaarten\"."
+        "description": "'''+1&nbsp;Actie'''<p>Kies één van de volgende: vernietig een actiekaart uit de voorraad; of pak een actiekaart uit de stapel \"Vernietigde kaarten\"."
     },
     {
         "id": "3504",
         "name": "Diplomaat",
-        "description": "'''+2Kaarten'''<br>Heb je 5 of minder handkaarten (na<br>het trekken), '''+2&nbsp;acties'''{{Divline}}Speelt een andere speler een<br>aanvalskaart, dan mag je deze kaart<br>tonen uit je hand van 5 of meer<br>kaarten om 2 kaarten te trekken en<br>er dan 3 af te leggen."
+        "description": "'''+2&nbsp;Kaarten'''<p>Heb je 5 of minder handkaarten (na het trekken), '''+2&nbsp;Acties'''{{Divline}}Speelt een andere speler een aanvalskaart, dan mag je deze kaart tonen uit je hand van 5 of meer kaarten om 2&nbsp;kaarten te trekken en er dan 3 af te leggen."
     },
     {
         "id": "3505",
         "name": "Molen",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Je mag 2 kaarten afleggen<br>om {{Costplus|2}} te krijgen.{{Divline}}{{VP|1|l}}"
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Je mag 2&nbsp;kaarten afleggen om {{Costplus|2}} te krijgen.{{Divline}}{{VP|1|l}}"
     },
     {
         "id": "3506",
         "name": "Geheime doorgang",
-        "description": "'''+2 Kaarten<br>+1 Actie'''<br>Kies een kaart uit je hand en<br>doe deze op een plek naar<br>keuze in je trekstapel."
+        "description": "'''+2&nbsp;Kaarten'''<br>'''+1&nbsp;Actie'''<p>Kies een kaart uit je hand en doe deze op een plek naar keuze in je trekstapel."
     },
     {
         "id": "3509",
         "name": "Makelaar",
-        "description": "Toon een kaart uit je hand. Voor<br>elke soort die de kaart heeft<br>(Actie, Aanval, enz.), kies één<br>van de volgende: '''+1 Actie'''; of<br>'''+1 aanschaf''';of {{Costplus|3}}; of pak<br>een Goud. De keuzes moeten<br>verschillend zijn."
+        "description": "Toon een kaart uit je hand. Voor elke soort die de kaart heeft (Actie, Aanval, enz.), kies één van de volgende: '''+1&nbsp;Actie'''; of '''+1&nbsp;aanschaf''';of {{Costplus|3}}; of pak een Goud. De keuzes moeten verschillend zijn."
     },
     {
         "id": "3510",
         "name": "Patrouille",
-        "description": "'''+3 Kaarten'''<br>Toon de bovenste 4 kaarten<br>van je trekstapel. Neem de<br>overinnigs- en vloekkaarten<br>in je hand. Leg de rest in een<br>volgorde naar keuze terug."
+        "description": "'''+3&nbsp;Kaarten'''<p>Toon de bovenste 4&nbsp;kaarten van je trekstapel. Neem de overinnigs- en vloekkaarten in je hand. Leg de rest in een volgorde naar keuze terug."
     },
     {
         "id": "3511",
@@ -1495,7 +1519,7 @@
     {
         "id": "5175",
         "name": "Ontmantelen",
-        "description": "Vernietig 1 kaart uit je hand. Kost deze {{Cost|1}} of meer, pak dan een goedkopere kaart en een Goud."
+        "description": "Vernietig 1&nbsp;kaart uit je hand. Kost deze {{Cost|1}} of meer, pak dan een goedkopere kaart en een Goud."
     },
     { "id": "5194", "name": "Kerkhof", "description": "" },
     { "id": "5195", "name": "Schaapsherder", "description": "" },
@@ -1817,73 +1841,73 @@
     {
         "id": "6747",
         "name": "Besneeuwd Dorp",
-        "description": "<p>'''+1 Kaart<br>+4 Acties<br>+1 Aanschaf'''</p>Negeer alle andere '''+Acties'''<br>die je hierna in deze beurt krijgt."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+4&nbsp;Acties'''<br>'''+1&nbsp;Aanschaf'''<p>Negeer alle andere '''+Acties''' die je hierna in deze beurt krijgt."
     },
     {
         "id": "6748",
         "name": "Herdershond",
-        "description": "'''+2 Kaarten'''{{Divline}}Als je een kaart pakt, mag je de<br>Hedershond uit je hand spelen."
+        "description": "'''+2&nbsp;Kaarten'''{{Divline}}Als je een kaart pakt, mag je de Hedershond uit je hand spelen."
     },
     {
         "id": "6751",
         "name": "Aak",
-        "description": "Nu of aan het begin van je<br>volgende beurt,<br>'''+3 kaarten''' en '''+1 Aanschaf'''."
+        "description": "Nu of aan het begin van je volgende beurt, '''+3&nbsp;kaarten''' en '''+1&nbsp;Aanschaf'''."
     },
     {
         "id": "6754",
         "name": "Oven",
-        "description": "{{Costplus|2}}<br>De volgende keer dat je deze<br>beurt een kaart speelt,<br>mag je er eerst een<br>exemplaar van pakken."
+        "description": "{{Costplus|2}}<p>De volgende keer dat je deze beurt een kaart speelt, mag je er eerst een exemplaar van pakken."
     },
     {
         "id": "6762",
         "name": "Dierenmarkt",
-        "description": "{{Costplus|4}}<br>'''+1 Aanschaf''' per lege<br>voorraadstapel{{Divline}}In plaats van de kosten voor<br>deze kaart te betalen, mag je een<br>atiekaart uit je hand vernietigen."
+        "description": "{{Costplus|4}}<p>'''+1&nbsp;Aanschaf''' per lege voorraadstapel{{Divline}}In plaats van de kosten voor deze kaart te betalen, mag je een atiekaart uit je hand vernietigen."
     },
     {
         "id": "6771",
         "name": "Paard",
-        "description": "'''+2 Kaarten<br>+1 Actie'''<br>Leg deze kaart terug op diens stapel.<br>''(Deze stapel is geen onderdeel<br>van de voorraad)''"
+        "description": "'''+2&nbsp;Kaarten'''<br>'''+1&nbsp;Actie'''<p>Leg deze kaart terug op diens stapel.<p>''(Deze stapel is geen onderdeel van de voorraad)''"
     },
     {
         "id": "6773",
         "name": "Voorraden",
-        "description": "{{Coin|1|l}}<br>Als je deze kaart speelt,<br>pak je een Paard en leg<br>je het op je trekstapel."
+        "description": "{{Coin|1|l}}<p>Als je deze kaart speelt, pak je een Paard en leg je het op je trekstapel."
     },
     {
         "id": "6778",
         "name": "Schroot",
-        "description": "Vernietig een kaart uit je hand.<br>Kies één verschillende optie<br>per {{Coin|1}} dat deze kost: '''+1 Kaart''';<br>'''+1 Actie''';'''+1 Aanschaf''';{{Costplus|1}};<br>pak een Zilver; pak een Paard."
+        "description": "Vernietig een kaart uit je hand. Kies één verschillende optie per {{Coin|1}} dat deze kost: '''+1&nbsp;Kaart'''; '''+1&nbsp;Actie'''; '''+1&nbsp;Aanschaf'''; {{Costplus|1}}; pak een Zilver; pak een Paard."
     },
     {
         "id": "6779",
         "name": "Paardenhouderij",
-        "description": "{{Costplus|3}}<br>Deze beurt: als je een kaart<br>pakt die {{Cost|4}} of meer kost,<br>pak je een paard."
+        "description": "{{Costplus|3}}<p>Deze beurt: als je een kaart pakt die {{Cost|4}} of meer kost, pak je een paard."
     },
     {
         "id": "6794",
         "name": "Heksenkring",
-        "description": "'''+1 Actie'''<br>{{Costplus|2}}<br>Iedere andere speler verband<br>een Vloek uit de voorraad.<br>Kan hij dat niet, dan legt hij al<br>zijn verbannen Vloeken af."
+        "description": "'''+1&nbsp;Actie'''<br>{{Costplus|2}}<p>Iedere andere speler verband een Vloek uit de voorraad. Kan hij dat niet, dan legt hij al zijn verbannen Vloeken af."
     },
     {
         "id": "6795",
         "name": "Reserve",
-        "description": "{{Coin|3|l}}<br>'''+1 Aanschaf'''<br>Als je deze kaart speelt,<br>verband je deze."
+        "description": "{{Coin|3|l}}<p>'''+1&nbsp;Aanschaf'''<p>Als je deze kaart speelt, verband je deze."
     },
     {
         "id": "6796",
         "name": "Premiejager",
-        "description": "'''+1 Actie'''<br>Verban een kaart uit je hand.<br>Had je er geen exemplaar van<br>op je verbanningstableau,<br>dan {{Costplus|3}}."
+        "description": "'''+1&nbsp;Actie'''<p>Verban een kaart uit je hand. Had je er geen exemplaar van op je verbanningstableau, dan {{Costplus|3}}."
     },
-    { "id": "6809", "name": "Spoor van de Os", "description": "'''+2 Acties'''" },
+    { "id": "6809", "name": "Spoor van de Os", "description": "'''+2&nbsp;Acties'''" },
     {
         "id": "6816",
         "name": "Spoor van de Mol",
-        "description": "'''+1 Actie'''<br>Leg je hand af. '''+3 Kaarten'''."
+        "description": "'''+1&nbsp;Actie'''<p>Leg je hand af. '''+3&nbsp;Kaarten'''."
     },
     {
         "id": "6827",
         "name": "Spoor van de Schildpad",
-        "description": "Leg deze kaart opzij. Deed je dat, speel de kaart<br>dan aan het begin van je volgende beurt."
+        "description": "Leg deze kaart opzij. Deed je dat, speel de kaart dan aan het begin van je volgende beurt."
     },
     {
         "id": "6832",
@@ -1893,184 +1917,188 @@
     {
         "id": "6833",
         "name": "Commercie",
-        "description": "Pak een Goud per kaart met een verschillende<br>naam die je deze beurt hebt gepakt."
+        "description": "Pak een Goud per kaart met een verschillende naam die je deze beurt hebt gepakt."
     },
     {
         "id": "6834",
         "name": "Gezwoeg",
-        "description": "'''+1 Aanschaf'''<br>Je mag een actiekaart uit je hand spelen."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Je mag een actiekaart uit je hand spelen."
     },
     {
         "id": "6838",
         "name": "Meesterbrein",
-        "description": "Aan het begin van je volgende<br>beurt mag je een actiekaart uit<br>je hand driemaal spelen."
+        "description": "Aan het begin van je volgende beurt mag je een actiekaart uit je hand driemaal spelen."
     },
     {
         "id": "6845",
         "name": "Zwarte Kat",
-        "description": "'''+2 Kaarten'''<br>Als het niet jouw beurt is, pakt<br>iedere andere speler een Vloek.{{Divline}}Als een andere speler een<br>overwinningskaart pakt, mag je<br>deze kaart uit je hand spelen."
+        "description": "'''+2&nbsp;Kaarten'''<p>Als het niet jouw beurt is, pakt iedere andere speler een Vloek.{{Divline}}Als een andere speler een overwinningskaart pakt, mag je deze kaart uit je hand spelen."
     },
     {
         "id": "6846",
         "name": "Voetreiziger",
-        "description": "'''+3 Kaarten'''<br>Je mag een Zilver pakken.{{Divline}}De Voetreiziger kost net zoveel<br>als de laatste andere kaart die<br>deze beurt is gepakt, indien<br>van toepassing."
+        "description": "'''+3&nbsp;Kaarten'''<p>Je mag een Zilver pakken.{{Divline}}De Voetreiziger kost net zoveel als de laatste andere kaart die deze beurt is gepakt, indien van toepassing."
     },
     {
         "id": "6848",
         "name": "Spoor van de Kameleon",
-        "description": "Volg de aanwijzingen van deze kaart op; elke<br>keer dat die je deze beurt '''+Kaarten''' zou geven,<br>krijg je in plaats daarvan {{Costplus}} en omgekeerd."
+        "description": "Volg de aanwijzingen van deze kaart op; elke keer dat die je deze beurt '''+Kaarten''' zou geven, krijg je in plaats daarvan {{Costplus}} en omgekeerd."
     },
     {
         "id": "6851",
         "name": "Spoor van de Rat",
-        "description": "Je mag een geldkaart afleggen om<br>een exemplaar van deze kaart te pakken."
+        "description": "Je mag een geldkaart afleggen om een exemplaar van deze kaart te pakken."
     },
     {
         "id": "6855",
         "name": "Dorpsweide",
-        "description": "Nu of aan het begin van je<br>volgende beurt,<br>'''+1 Kaart''' en '''+2 Acties'''.{{Divline}}Als je deze kaart op een<br>ander moment dan tijdens<br>de opschoonfase aflegt<br>mag je deze spelen."
+        "description": "Nu of aan het begin van je volgende beurt, '''+1&nbsp;Kaart''' en '''+2&nbsp;Acties'''.{{Divline}}Als je deze kaart op een ander moment dan tijdens de opschoonfase aflegt mag je deze spelen."
     },
     {
         "id": "6858",
         "name": "Bondgenootschap",
-        "description": "Pak een Provincie, een Hertogdom,<br>een Landgoed, een Goud, een Zilver en een Koper."
+        "description": "Pak een Provincie, een Hertogdom, een Landgoed, een Goud, een Zilver en een Koper."
     },
     {
         "id": "6862",
         "name": "Gokken",
-        "description": "'''+1 Aanschaf'''<br>Toon de bovenste kaart van je trekstapel. Is het een geld- of<br>actiekaart, dan mag je deze spelen. Leg de kaart anders af."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Toon de bovenste kaart van je trekstapel. Is het een geld- of actiekaart, dan mag je deze spelen. Leg de kaart anders af."
     },
     {
         "id": "6865",
         "name": "Kamelenkaravaan",
-        "description": "Verband een niet-<br>overwinningskaart uit<br>de voorraad.{{Divline}}Als je deze kaart pakt, verband<br>je een Goud uit de voorraad."
+        "description": "Verband een nietoverwinningskaart uit de voorraad.{{Divline}}Als je deze kaart pakt, verband je een Goud uit de voorraad."
     },
     {
         "id": "6867",
         "name": "Spoor van het Paard",
-        "description": "'''+2 Kaarten<br>+1 Actie'''<br>Leg deze kaart terug op diens stapel."
+        "description": "'''+2&nbsp;Kaarten'''<br>'''+1&nbsp;Actie'''<p>Leg deze kaart terug op diens stapel."
     },
-    { "id": "6870", "name": "Spoor van het Varken", "description": "'''+1 Kaart<br>+1 Actie'''" },
+    {
+        "id": "6870",
+        "name": "Spoor van het Varken",
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''"
+    },
     { "id": "6871", "name": "Spoor van het Schaap", "description": "{{Costplus|2}}" },
     {
         "id": "6874",
         "name": "Stormloop",
-        "description": "Heb je 5 of minder kaarten in het spel,<br>pak dan 5 paarden en leg die op je trekstapel."
+        "description": "Heb je 5 of minder kaarten in het spel, pak dan 5 paarden en leg die op je trekstapel."
     },
     {
         "id": "6877",
         "name": "Kardinaal",
-        "description": "{{Costplus|2}}<br>Iedere andere speler toont de<br>bovenste 2 kaarten van zijn<br>trekstapel, verbant er één die<br>{{Cost|3}},{{Cost|4}},{{Cost|5}} of {{Cost|6}} kost en<br>legt de rest af."
+        "description": "{{Costplus|2}}<p>Iedere andere speler toont de bovenste 2 kaarten van zijn trekstapel, verbant er één die {{Cost|3}},{{Cost|4}},{{Cost|5}} of {{Cost|6}} kost en legt de rest af."
     },
     {
         "id": "6884",
         "name": "Wanhoop",
-        "description": "Eén keer per beurt: je mag een Vloek pakken.<br>Doe je dat, dan '''+1 Aanschaf''' en {{Costplus|2}}."
+        "description": "Eén keer per beurt: je mag een Vloek pakken. Doe je dat, dan '''+1&nbsp;Aanschaf''' en {{Costplus|2}}."
     },
     {
         "id": "6886",
         "name": "Slede",
-        "description": "Pak 2 Paarden.{{Divline}}Als je een kaart pak, mag je deze Slede afleggen om die kaart in je hand te nemen of op je trekstapel te leggen."
+        "description": "Pak 2&nbsp;Paarden.{{Divline}}Als je een kaart pak, mag je deze Slede afleggen om die kaart in je hand te nemen of op je trekstapel te leggen."
     },
     {
         "id": "6887",
         "name": "Geitenhoeder",
-        "description": "<p>'''+1 Actie'''<br>Je mag een kaart uit<br>je hand vernietigen.</p>'''+1 Kaart''' per kaart die de<br>speler rechts van je in zijn<br>laatste beurt heeft vernietigd."
+        "description": "'''+1&nbsp;Actie'''<p>Je mag een kaart uit je hand vernietigen.<p>'''+1&nbsp;Kaart''' per kaart die de speler rechts van je in zijn laatste beurt heeft vernietigd."
     },
     {
         "id": "6890",
         "name": "Cavalerie",
-        "description": "Pak 2 Paarden.{{Divline}}Als je deze kaart pakt,<br>'''+2 Kaarten''', '''+1 Aanschaf''' en<br>als het jouw aanschaffase is,<br>ge terug naar je actiefase."
+        "description": "Pak 2 Paarden.{{Divline}}Als je deze kaart pakt, '''+2&nbsp;Kaarten''', '''+1&nbsp;Aanschaf''' en als het jouw aanschaffase is, ge terug naar je actiefase."
     },
     {
         "id": "6921",
         "name": "Krijgsros",
-        "description": "'''+2 Kaarten<br>+1 Actie'''{{Divline}}Tijdens jouw beurten kost deze<br>kaart {{Coin|1}} minder per kaart die je<br>deze beurt hebt gepakt."
+        "description": "'''+2&nbsp;Kaarten'''<br>'''+1&nbsp;Actie'''{{Divline}}Tijdens jouw beurten kost deze kaart {{Coin|1}} minder per kaart die je deze beurt hebt gepakt."
     },
     {
         "id": "6922",
         "name": "Pension",
-        "description": "'''+1 Kaart<br>+2 Actie'''{{Divline}}Als je deze kaart pakt, mag je<br>zoveel geldkaarten als je wilt<br>getoond afleggen om hetzelfde<br>aantal Paarden te pakken."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+2&nbsp;Actie'''{{Divline}}Als je deze kaart pakt, mag je zoveel geldkaarten als je wilt getoond afleggen om hetzelfde aantal Paarden te pakken."
     },
     {
         "id": "6923",
         "name": "Jachthuis",
-        "description": "'''+1 Kaart<br>+2 Acties'''<br>Je mag je hand afleggen<br>voor '''+5 Kaarten'''."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+2&nbsp;Acties'''<p>Je mag je hand afleggen voor '''+5&nbsp;Kaarten'''."
     },
     {
         "id": "6924",
         "name": "Rijknecht",
-        "description": "Pak een kaart die ten hoogste<br>{{Coin|4}} kost. Is deze een&hellip;<br>actiekaart, pak dan een Paard;<br>geldkaart, pak dan een Zilver;<br>overwinnigskaart,<br>dan '''+1 Kaart''' en '''+1 Actie'''."
+        "description": "Pak een kaart die ten hoogste {{Coin|4}} kost. Is deze een&hellip;<p>actiekaart, pak dan een Paard; geldkaart, pak dan een Zilver; overwinnigskaart, dan '''+1&nbsp;Kaart''' en '''+1&nbsp;Actie'''."
     },
     {
         "id": "6925",
         "name": "Visser",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>{{Costplus|1}}{{Divline}}Tijdens jouw beurten: is je<br>aflegstapel leeg, dan kost<br>deze kaart {{Coin|3}} minder."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<br>{{Costplus|1}}{{Divline}}Tijdens jouw beurten: is je aflegstapel leeg, dan kost deze kaart {{Coin|3}} minder."
     },
     {
         "id": "6926",
         "name": "Poortwachter",
-        "description": "Aan het begin van je volgende<br>beurt, {{Costplus|3}}. Tot dan:<br>Als een andere speler een<br>actie- of geldkaart pakt waar-<br>van hij geen exemplaar op<br>zijn verbanningstableau heeft,<br>verbant hij deze."
+        "description": "Aan het begin van je volgende beurt, {{Costplus|3}}. Tot dan: Als een andere speler een actie- of geldkaart pakt waarvan hij geen exemplaar op zijn verbanningstableau heeft, verbant hij deze."
     },
     {
         "id": "6927",
         "name": "Verplaatsing",
-        "description": "Verban een kaart uit je hand.<br>Pak een kaart met een andere<br>naam die ten hoogste {{Coin|2}}<br>meer kost."
+        "description": "Verban een kaart uit je hand. Pak een kaart met een andere naam die ten hoogste {{Coin|2}} meer kost."
     },
     {
         "id": "6930",
         "name": "Valkenier",
-        "description": "Pak een kaart die minder<br>kost dan deze kaart en<br>neem die in je hand.{{Divline}}Als een speler een kaart met<br>2 of meer soorten (Actie,<br>Aanval, enz.) pakt, mag je de<br>Valkenier uit je hand spelen."
+        "description": "Pak een kaart die minder kost dan deze kaart en neem die in je hand.{{Divline}}Als een speler een kaart met 2 of meer soorten (Actie, Aanval, enz.) pakt, mag je de Valkenier uit je hand spelen."
     },
     {
         "id": "6931",
         "name": "Gewijde Plek",
-        "description": "'''+1 Kaart<br>+1 Actie<br>+1 Aanschaf'''<br>Je mag een kaart uit<br>je hand verbannen."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<br>'''+1&nbsp;Aanschaf'''<p>Je mag een kaart uit je hand verbannen."
     },
     {
         "id": "6932",
         "name": "Omheind Veld",
-        "description": "<p>{{Costplus|2}}<br>Pak 2 paarden.</p>'''+1 Actie''' per<br>lege voorraadstapel."
+        "description": "{{Costplus|2}}<p>Pak 2&nbsp;paarden.<p>'''+1&nbsp;Actie''' per lege voorraadstapel."
     },
     {
         "id": "6972",
         "name": "Verbannen",
-        "description": "Verband zoveel kaarten met dezelfde<br>naam uit je hand als je wilt."
+        "description": "Verband zoveel kaarten met dezelfde naam uit je hand als je wilt."
     },
     {
         "id": "6973",
         "name": "Koopje",
-        "description": "Pak een niet-Overwinningskaart die ten<br>hooste {{Coin|5}} kost. Iedere andere speler pakt een Paard."
+        "description": "Pak een niet-Overwinningskaart die ten hooste {{Coin|5}} kost. Iedere andere speler pakt een Paard."
     },
     {
         "id": "6974",
         "name": "Vertraging",
-        "description": "Je mag een actiekaart uit je hand opzij leggen.<br>Speel deze aan het begin van je volgende beurt."
+        "description": "Je mag een actiekaart uit je hand opzij leggen. Speel deze aan het begin van je volgende beurt."
     },
     {
         "id": "6975",
         "name": "Vraag",
-        "description": "Pak een Paard en een kaart die ten<br>hoogste {{Coin|4}} kost en leg beide op je trekstapel."
+        "description": "Pak een Paard en een kaart die ten hoogste {{Coin|4}} kost en leg beide op je trekstapel."
     },
     {
         "id": "6976",
         "name": "Enclave",
-        "description": "Pak een Goud.<br>Verban een Hertogdom uit de voorraad."
+        "description": "Pak een Goud. Verban een Hertogdom uit de voorraad."
     },
     {
         "id": "6977",
         "name": "Verhoging",
-        "description": "Je mag een niet-Overwinningskaart uit je hand<br>vernietigen om een kaart te pakken die<br>ten hoogste 2 meer kost."
+        "description": "Je mag een niet-Overwinningskaart uit je hand vernietigen om een kaart te pakken die ten hoogste 2 meer kost."
     },
     {
         "id": "6978",
         "name": "Nastreven",
-        "description": "'''+1 Aanschaf'''<br>Noem een kaart. Toon de bovenste 4 kaarten van je trekstapel.<br>Leg de genoemde kaart(en) terug en leg de rest af."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Noem een kaart. Toon de bovenste 4&nbsp;kaarten van je trekstapel. Leg de genoemde kaart(en) terug en leg de rest af."
     },
     {
         "id": "6979",
         "name": "Investeren",
-        "description": "Verban een actiekaart uit de voorraad.<br>Zolang deze verbannen is: als een andere speler er een<br>exemplaar van pakt of erin investeerd, '''+2 Kaarten.'''"
+        "description": "Verban een actiekaart uit de voorraad. Zolang deze verbannen is: als een andere speler er een exemplaar van pakt of erin investeerd, '''+2&nbsp;Kaarten.'''"
     },
     {
         "id": "6980",
@@ -2081,7 +2109,7 @@
     {
         "id": "6982",
         "name": "Maaien",
-        "description": "Pak een Goud. Leg dat opzij. Doe je dat,<br>speel het dan aan het begin van je volgende beurt."
+        "description": "Pak een Goud. Leg dat opzij. Doe je dat, speel het dan aan het begin van je volgende beurt."
     },
     {
         "id": "6983",
@@ -2091,17 +2119,17 @@
     {
         "id": "6984",
         "name": "Transport",
-        "description": "Kies er één: verban een actiekaart uit de voorraad;<br>of leg een actiekaart die je op het verbanningstableau<br>hebt op je trekstapel."
+        "description": "Kies er één: verban een actiekaart uit de voorraad; of leg een actiekaart die je op het verbanningstableau hebt op je trekstapel."
     },
     {
         "id": "6985",
         "name": "Spoor van de Vlinder",
-        "description": "Je mag deze kaart op diens stapel leggen om een<br>kaart te pakken die precies {{Coin|1}} meer kost."
+        "description": "Je mag deze kaart op diens stapel leggen om een kaart te pakken die precies {{Coin|1}} meer kost."
     },
     {
         "id": "6986",
         "name": "Spoor van de Muis",
-        "description": "Speel de opzijgelegde kaart en laat die daar liggen.{{Divline}}Voorbereiding: leg een ongebruikte<br>actiekaart die {{Coin|2}} of {{Coin|3}} kost opzij."
+        "description": "Speel de opzijgelegde kaart en laat die daar liggen.{{Divline}}Voorbereiding: leg een ongebruikte actiekaart die {{Coin|2}} of {{Coin|3}} kost opzij."
     },
     {
         "id": "6987",
@@ -2111,12 +2139,12 @@
     {
         "id": "6988",
         "name": "Spoor van de Zeehond",
-        "description": "{{Costplus|1}}<br>Deze beurt mag je als je een kaart pakt<br>deze op je trekstapel leggen."
+        "description": "{{Costplus|1}}<p>Deze beurt mag je als je een kaart pakt deze op je trekstapel leggen."
     },
     {
         "id": "6989",
         "name": "Spoor van de Eekhoorn",
-        "description": "'''+2 Kaarten''' aan het einde van deze beurt."
+        "description": "'''+2&nbsp;Kaarten''' aan het einde van deze beurt."
     },
     {
         "id": "6990",
@@ -2126,7 +2154,7 @@
     {
         "id": "6991",
         "name": "Spoor van de Kikker",
-        "description": "'''+1 Actie'''<br>Leg je deze kaart deze beurt uit het spel af,<br>leg die dan op je trekstapel."
+        "description": "'''+1&nbsp;Actie'''<p>Leg je deze kaart deze beurt uit het spel af, leg die dan op je trekstapel."
     },
     {
         "id": "6992",
@@ -2136,14 +2164,14 @@
     {
         "id": "6993",
         "name": "Spoor van de Aap",
-        "description": "'''+1 Aanschaf'''<br>{{Costplus|1}}"
+        "description": "'''+1&nbsp;Aanschaf'''<br>{{Costplus|1}}"
     },
     {
         "id": "6994",
         "name": "Spoor van de Ezel",
-        "description": "'''+1 Actie'''<br>{{Costplus|1}}"
+        "description": "'''+1&nbsp;Actie'''<br>{{Costplus|1}}"
     },
-    { "id": "6995", "name": "Spoor van de Otter", "description": "'''+2 Kaarten'''" },
+    { "id": "6995", "name": "Spoor van de Otter", "description": "'''+2&nbsp;Kaarten'''" },
     {
         "id": "6996",
         "name": "Spoor van de Worm",
@@ -2387,7 +2415,7 @@
     {
         "id": "8378",
         "name": "Conflicten",
-        "description": "Deze stapel start het spel<br> met 4 exemplaren van Strijdplan,<br>Boogschutter, Krijgsheer, en<br>Gebied, in die volgorde. Alleen de<br>bovenste kaart kan gepakt of<br>gekocht worden."
+        "description": "Deze stapel start het spel met 4 exemplaren van Strijdplan, Boogschutter, Krijgsheer en Gebied, in die volgorde. Alleen de bovenste kaart kan worden gepakt of gekocht."
     },
     {
         "id": "8439",
@@ -2542,32 +2570,32 @@
     {
         "id": "8611",
         "name": "Sextant",
-        "description": "Nu en aan het begin van je volgende beurt:<br>{{Cost|1|l}}<br>'''+1 Aanschaf'''"
+        "description": "Nu en aan het begin van je volgende beurt:<br>{{Cost|1|l}}<br>'''+1&nbsp;Aanschaf'''"
     },
     {
         "id": "8612",
         "name": "Blokkade",
-        "description": "<p>Pak een kaart die ten hoogste {{Cost|4}} kost en leg die opzij.</p> Aan het begin van je volgende beurt: doe de kaart in je hand. Terwijl de kaart opzijgelegd is: Pakt een andere speler er in zijn beurt een exemplaar van, dan pakt hij een Vloek."
+        "description": "Pak een kaart die ten hoogste {{Cost|4}} kost en leg die opzij.<p>Aan het begin van je volgende beurt: doe de kaart in je hand. Terwijl de kaart opzijgelegd is: Pakt een andere speler er in zijn beurt een exemplaar van, dan pakt hij een Vloek."
     },
     {
         "id": "8613",
         "name": "Aap",
-        "description": "Tot je volgende beurt: Als de speler rechts van je een kaart pakt: '''+1 Kaart'''.<br>Aan het begin van je volgende beurt: '''+1 Kaart'''."
+        "description": "Tot je volgende beurt: Als de speler rechts van je een kaart pakt: '''+1&nbsp;Kaart'''.<p>Aan het begin van je volgende beurt: '''+1&nbsp;Kaart'''."
     },
     {
         "id": "8626",
         "name": "Zeekaart",
-        "description": "'''+1 Kaart<br>+1 Actie'''<br>Toon de bovenste kaart van je trekstapel. Heb je er een exemplaar van in het spel, dan neem je de getoonde kaart in je hand."
+        "description": "'''+1&nbsp;Kaart'''<br>'''+1&nbsp;Actie'''<p>Toon de bovenste kaart van je trekstapel. Heb je er een exemplaar van in het spel, dan neem je de getoonde kaart in je hand."
     },
     {
         "id": "8627",
         "name": "Getijdenpoelen",
-        "description": "'''+3 Kaarten'''<br>'''+1 Actie'''<br>Aan het begin van je volgende beurt: leg 2 kaarten af."
+        "description": "'''+3&nbsp;Kaarten'''<br>'''+1&nbsp;Actie'''<p>Aan het begin van je volgende beurt: leg 2&nbsp;kaarten af."
     },
     {
         "id": "8628",
         "name": "Zeekol",
-        "description": "'''+2 Kaarten'''<br>Iedere andere speler pakt een vloek.<br>Aan het begin van je volgende beurt: '''+2 Kaarten''', leg dan 2 kaarten af."
+        "description": "'''+2&nbsp;Kaarten'''<p>Iedere andere speler pakt een vloek.<p>Aan het begin van je volgende beurt: '''+2&nbsp;Kaarten''', leg dan 2&nbsp;kaarten af."
     },
     {
         "id": "8651",
@@ -2577,57 +2605,57 @@
     {
         "id": "8652",
         "name": "Zeerover",
-        "description": "{{Costplus|2}}<br>Aan het begin van je volgende beurt: '''+1 Kaart'''. Tot dan vernietigt iedere andere speler het eerste Zilver of Goud dat hij in zijn beurt speelt."
+        "description": "{{Costplus|2}}<p>Aan het begin van je volgende beurt: '''+1&nbsp;Kaart'''. Tot dan vernietigt iedere andere speler het eerste Zilver of Goud dat hij in zijn beurt speelt."
     },
     {
         "id": "8653",
         "name": "Matroos",
-        "description": "'''+1 Actie'''<br>Eenmaal in deze beurt: als je een duurzame kaart pakt, mag je die spelen.<br> Aan het begin van je volgende beurt: {{Costplus|2}} en je mag een kaart uit je hand vernietigen."
+        "description": "'''+1&nbsp;Actie'''<p>Eenmaal in deze beurt: als je een duurzame kaart pakt, mag je die spelen.<p>Aan het begin van je volgende beurt: {{Costplus|2}} en je mag een kaart uit je hand vernietigen."
     },
     {
         "id": "8696",
         "name": "Kwakzalver",
-        "description": "{{Costplus|3}}<br>Iedere andere speler pakt een<br>Vloek.{{Divline}}In spellen met deze kaart is<br>een Vloek ook een geldkaart met<br>waarde {{Cost|1}}."
+        "description": "{{Costplus|3}}<p>Iedere andere speler pakt een Vloek.{{Divline}}In spellen met deze kaart is een Vloek ook een geldkaart met waarde {{Cost|1}}."
     },
     {
         "id": "8697",
-        "name": "Magnat",
-        "description": "Dévoilez votre main<br>'''+1&nbsp;Cartre''' par Trésor dévoilé."
+        "name": "Magnaat",
+        "description": "Toon je hand. '''+1&nbsp;Kaart''' per geldkaart in je hand."
     },
     {
         "id": "8698",
         "name": "Krijgskas",
-        "description": "De speler links van je noemt<br>een kaart. Pak een kaart die<br>ten hoogste {{Cost|5}} kost die deze<br>beurt niet bij Krijgskassen<br>is genoemd."
+        "description": "De speler links van je noemt een kaart. Pak een kaart die ten hoogste {{Cost|5}} kost die deze beurt niet bij Krijgskassen is genoemd."
     },
     {
         "id": "8708",
         "name": "Kristallen bol",
-        "description": "{{Cost|1|l}}<br>Bekijke de bovenste kaart van<br>je trekstapel. Je mag deze<br>vernietigen, afleggen of, als het een<br>actie- of geldkaart is, spelen."
+        "description": "{{Cost|1|l}}<p>Bekijke de bovenste kaart van je trekstapel. Je mag deze vernietigen, afleggen of, als het een actie- of geldkaart is, spelen."
     },
     {
         "id": "8712",
-        "name": "Placement",
-        "description": "Écartez une carte de votre main. Choisissez : {{Costplus|1}}; ou écartez cette carte pour dévoiler votre main pour {{VP|'''+1'''}} par Trésor révélé de nom différent."
+        "name": "Investering",
+        "description": "Vernietig een kaart uit je hand. Kies er 1: {{Costplus|1}}; of vernietig deze kaart om je hand te tonen voor {{VP|'''+1'''}} per geldkaart met een verschillende naam in je hand."
     },
     {
         "id": "8713",
         "name": "Klerk",
-        "description": "{{Costplus|2}}<br>Iedere andere speler met 5 of<br>meer kaarten in zijn hand legt<br>er 1 van op zijn trekstapel.{{Divline}}Aan het begin van je beurt mag<br>je deze kaart uit je hand spelen."
+        "description": "{{Costplus|2}}<p>Iedere andere speler met 5 of meer kaarten in zijn hand legt er 1 van op zijn trekstapel.{{Divline}}Aan het begin van je beurt mag je deze kaart uit je hand spelen."
     },
     {
         "id": "8731",
         "name": "Hoofdtooi",
-        "description": "'''+1 Aanschaf'''<br>Deze beurt: als je een kaart<br>pakt, mag je die op je trekstapel leggen.<br><br>Je mag een geldkaart uit je<br>hand tweemaal spelen."
+        "description": "'''+1&nbsp;Aanschaf'''<p>Deze beurt: als je een kaart pakt, mag je die op je trekstapel leggen.<p>Je mag een geldkaart uit je hand tweemaal spelen."
     },
     {
         "id": "8732",
         "name": "Aambeeld",
-        "description": "{{Cost|1|l}}<br>Je mag een geldkaart afleggen<br>om een kaart te pakken die ten<br>hoogste {{Cost|4}} kost."
+        "description": "{{Cost|1|l}}<p>Je mag een geldkaart afleggen om een kaart te pakken die ten hoogste {{Cost|4}} kost."
     },
     {
         "id": "8739",
-        "name": "Collection",
-        "description": "{{Cost|2|l}}<br>'''+1 Achat'''<br>À ce tour, quand vous recevez une carte Action, {{VP|'''+1'''}}"
+        "name": "Collectie",
+        "description": "{{Cost|2|l}}<br>'''+1&nbsp;Aanschaf'''<p>Deze beurt: als je een actiekaart pakt: {{VP|'''+1'''}}."
     },
     {
         "id": "9213",
