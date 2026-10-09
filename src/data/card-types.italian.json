@@ -1,4 +1,9 @@
 [
     { "id": "212", "name": "Maledizione" },
-    { "id": "216", "name": "Azione" }
+    { "id": "216", "name": "Azione" },
+    { "id": "217", "name": "Reazione" },
+    { "id": "218", "name": "Vittoria" },
+    { "id": "219", "name": "Attacco" },
+    { "id": "220", "name": "Tesoro" },
+    { "id": "431", "name": "Premio" }
 ]

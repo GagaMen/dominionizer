@@ -2,79 +2,311 @@
     { "id": "3", "name": "Tunel", "description": "" },
     { "id": "16", "name": "Sklepení", "description": "" },
     { "id": "17", "name": "Kaple", "description": "" },
-    { "id": "18", "name": "Hradní příkop", "description": "" },
+    {
+        "id": "18",
+        "name": "Hradní příkop",
+        "description": "'''+&nbsp;2&nbsp;karty'''{{Divline}}Pokud rékterý z hráčů zahraje kartu útoku, müžete se bránit tak, že ukcäžete tuto kartu z ruky. Pokud tak učinite, útoku jste se ubránili."
+    },
     { "id": "19", "name": "Kancléř", "description": "" },
-    { "id": "20", "name": "Vesnice", "description": "" },
-    { "id": "24", "name": "Dřevorubec", "description": "" },
+    {
+        "id": "20",
+        "name": "Vesnice",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;2&nbsp;akce'''"
+    },
+    {
+        "id": "24",
+        "name": "Dřevorubec",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|2}}"
+    },
     { "id": "25", "name": "Dílna", "description": "" },
-    { "id": "34", "name": "Hradní nádvoří", "description": "" },
+    {
+        "id": "34",
+        "name": "Hradní nádvoří",
+        "description": "'''+&nbsp;3&nbsp;karty'''<p>Polož kartu ze své ruky nahoru na svůj dobírací balíček."
+    },
     { "id": "36", "name": "Úředník", "description": "" },
     { "id": "37", "name": "Hostina", "description": "" },
-    { "id": "38", "name": "Zahrady", "description": "" },
-    { "id": "39", "name": "Milice", "description": "" },
+    {
+        "id": "38",
+        "name": "Zahrady",
+        "description": "Karta má cenu {{VP|1}} za každých 10&nbsp;karet ve vašem baličku (zaokrouhleno dolú)."
+    },
+    {
+        "id": "39",
+        "name": "Milice",
+        "description": "{{Costplus|2}}<p>Všichni ostatní hráči odhodí karty tak, aby jim zbyly na ruce 3 karty."
+    },
     { "id": "40", "name": "Lichvář", "description": "" },
     { "id": "41", "name": "Přestavba", "description": "" },
-    { "id": "42", "name": "Kovárna", "description": "" },
+    { "id": "42", "name": "Kovárna", "description": "'''+&nbsp;3&nbsp;karty'''" },
     { "id": "43", "name": "Špion", "description": "" },
     { "id": "44", "name": "Zloděj", "description": "" },
     { "id": "45", "name": "Trůnní sál", "description": "" },
     { "id": "46", "name": "Zasedání rady", "description": "" },
-    { "id": "47", "name": "Jarmark", "description": "" },
-    { "id": "48", "name": "Laboratoř", "description": "" },
+    {
+        "id": "47",
+        "name": "Jarmark",
+        "description": "'''+&nbsp;2&nbsp;akce'''<br>'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laboratoř",
+        "description": "'''+&nbsp;2&nbsp;karty'''<br>'''+&nbsp;1&nbsp;akce'''"
+    },
     { "id": "49", "name": "Knihovna", "description": "" },
-    { "id": "50", "name": "Trh", "description": "" },
+    {
+        "id": "50",
+        "name": "Trh",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<br>'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|1}}"
+    },
     { "id": "51", "name": "Důl", "description": "" },
     { "id": "52", "name": "Čarodějnice", "description": "" },
     { "id": "53", "name": "Dobrodruh", "description": "" },
-    { "id": "72", "name": "Pěšák", "description": "" },
-    { "id": "73", "name": "Tajemná komnata", "description": "" },
-    { "id": "74", "name": "Velký sál", "description": "" },
-    { "id": "75", "name": "Maškary", "description": "" },
-    { "id": "76", "name": "Chudinská čtvrť", "description": "" },
-    { "id": "77", "name": "Správce", "description": "" },
-    { "id": "78", "name": "Podvodník", "description": "" },
-    { "id": "79", "name": "Studna přání", "description": "" },
-    { "id": "80", "name": "Baron", "description": "" },
-    { "id": "81", "name": "Most", "description": "" },
-    { "id": "82", "name": "Spiklenec", "description": "" },
-    { "id": "83", "name": "Měditepec", "description": "" },
-    { "id": "84", "name": "Hutě", "description": "" },
-    { "id": "85", "name": "Důlní osada", "description": "" },
-    { "id": "86", "name": "Zvěd", "description": "" },
-    { "id": "87", "name": "Vévoda", "description": "" },
-    { "id": "88", "name": "Služebník", "description": "" },
-    { "id": "89", "name": "Sabotér", "description": "" },
-    { "id": "90", "name": "Žalářník", "description": "" },
-    { "id": "91", "name": "Obchodní místo", "description": "" },
-    { "id": "92", "name": "Dar poddaných", "description": "" },
-    { "id": "93", "name": "Pokrok", "description": "" },
-    { "id": "95", "name": "Šlechtici", "description": "" },
-    { "id": "96", "name": "Embargo", "description": "" },
-    { "id": "97", "name": "Přístav", "description": "" },
-    { "id": "98", "name": "Maják", "description": "" },
-    { "id": "99", "name": "Domorodá vesnice", "description": "" },
-    { "id": "100", "name": "Lovec perel", "description": "" },
-    { "id": "101", "name": "Rybářská vesnice", "description": "" },
-    { "id": "102", "name": "Velvyslanec", "description": "" },
-    { "id": "103", "name": "Strážní koš", "description": "" },
-    { "id": "104", "name": "Pašeráci", "description": "" },
-    { "id": "105", "name": "Skladiště", "description": "" },
-    { "id": "106", "name": "Karavana", "description": "" },
-    { "id": "107", "name": "Kapsář", "description": "" },
-    { "id": "108", "name": "Ostrov", "description": "" },
-    { "id": "109", "name": "Navigátor", "description": "" },
-    { "id": "110", "name": "Pirátská loď", "description": "" },
-    { "id": "111", "name": "Zachránce", "description": "" },
-    { "id": "112", "name": "Mořská čarodějnice", "description": "" },
-    { "id": "113", "name": "Mapa pokladu", "description": "" },
-    { "id": "114", "name": "Objevitel", "description": "" },
-    { "id": "115", "name": "Bazar", "description": "" },
-    { "id": "116", "name": "Loď duchů", "description": "" },
-    { "id": "117", "name": "Obchodní loď", "description": "" },
-    { "id": "118", "name": "Strážnice", "description": "" },
-    { "id": "119", "name": "Taktik", "description": "" },
-    { "id": "120", "name": "Pokladnice", "description": "" },
-    { "id": "121", "name": "Loděnice", "description": "" },
+    {
+        "id": "72",
+        "name": "Pěšák",
+        "description": "Vyber dva pokyny:<br>'''+&nbsp;1&nbsp;karta;'''<br>'''+&nbsp;1&nbsp;akce;'''<br>'''+&nbsp;1&nbsp;nákup;'''<br>{{Costplus|1}}.<br>(Vybrané pokyny musi být rozdilné.)"
+    },
+    {
+        "id": "73",
+        "name": "Tajemná komnata",
+        "description": "Odlož na odkládací balíček jakýkoli počet karet. {{Costplus|1}} za každou odloženou kartu.{{Divline}}Když jiný hráč zahraje kartu útok, můžeš ze své ruky ukázat tuto kartu. Pokud to uděláš: '''+&nbsp;2&nbsp;karty,''' potom polož 2&nbsp;karty z ruky na dobirací balíček."
+    },
+    {
+        "id": "74",
+        "name": "Velký sál",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''{{Divline}}{{VP|1|l}}"
+    },
+    {
+        "id": "75",
+        "name": "Maškary",
+        "description": "'''+&nbsp;2&nbsp;karty'''<p>Každý hráč předá kartu ze své ruky hráči po levici. Pak můžeš zahodit na smetiště kartu ze své ruky."
+    },
+    {
+        "id": "76",
+        "name": "Chudinská čtvrť",
+        "description": "'''+&nbsp;2&nbsp;akce'''<p>Odkryj svou ruku. Pokud v ruce nemáš žádnou kartu akce: '''+&nbsp;2&nbsp;karty.'''"
+    },
+    {
+        "id": "77",
+        "name": "Správce",
+        "description": "Vyberte jeden pokyn:<br>+&nbsp;2&nbsp;karty;<br>nebo {{Costplus|2}};<br>nebo<br>zahoď 2&nbsp;karty z ruky."
+    },
+    {
+        "id": "78",
+        "name": "Podvodník",
+        "description": "{{Costplus|2}}<p>Všichni ostatní hráči zahodí na smetiště vrchní kartu ze svého dobíracího balíčku a vezmou si kartu stejné ceny dle tvého výběru."
+    },
+    {
+        "id": "79",
+        "name": "Studna přání",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<p>Jmenuj kartu. Odkryj horní kartu svého dobíracího balíčku. Pokud je to jmenovaná karta, vezmi si ji do ruky."
+    },
+    {
+        "id": "80",
+        "name": "Baron",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<p>Můžeš odložit na odkládací baliček kartu statek. Pokud to provedeš: {{Costplus|4}}. Jinak si vezmi kartu statek."
+    },
+    {
+        "id": "81",
+        "name": "Most",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|1}}<p>Všechny karty (včetně karet v rukou hráčů) stoji v tomto kole o {{Cost|1}} méne, ale ne méně než {{Cost|0}}."
+    },
+    {
+        "id": "82",
+        "name": "Spiklenec",
+        "description": "{{Costplus|2}}<p>Jestliže jsi v tomto kole zahrál 3 nebo vice akci (včetně této): '''+&nbsp;1&nbsp;karta, +&nbsp;1&nbsp;akce.'''"
+    },
+    {
+        "id": "83",
+        "name": "Měditepec",
+        "description": "Mẽďák v tomto kole přinese {{Cost|1}} navíc."
+    },
+    {
+        "id": "84",
+        "name": "Hutě",
+        "description": "Vezmi si kartu v ceně nanejvýš {{Cost|4}}.<p>Jestliže to je:<br>karta akce: '''+&nbsp;1&nbsp;akce'''<br>karta peněz: {{Costplus|1}}<br>karta bodů: '''+&nbsp;1&nbsp;karta'''"
+    },
+    {
+        "id": "85",
+        "name": "Důlní osada",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;2&nbsp;akce'''<p>Můžeš tuto kartu ihned zahodit na smetiště. Jestliže to uděláš: {{Costplus|2}}."
+    },
+    {
+        "id": "86",
+        "name": "Zvěd",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Odkryj vrchní 4&nbsp;karty svého dobíracího balíčku. Odkryté karty vitězných bodů si vezmi do ruky. Ostatní karty polož nahoru na svůj dobírací balíček v libovolném pořadi."
+    },
+    {
+        "id": "87",
+        "name": "Vévoda",
+        "description": "Má hodnotu {{VP|'''1'''}} za každé vévodství, které vlastníš."
+    },
+    {
+        "id": "88",
+        "name": "Služebník",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Vyber si jeden pokyn: {{Costplus|2}}; nebo odlož všechny karty z ruky na odkládací balíček: '''+&nbsp;4&nbsp;karty'''. Každý další hráč s alespoň 5&nbsp;kartami v ruce odloží své karty z ruky na odkládací balíček a dobere si 4&nbsp;karty."
+    },
+    {
+        "id": "89",
+        "name": "Sabotér",
+        "description": "Každý hráč (vyjma tebe) odkrývá postupně karty ze svého dobíracího balíčku, dokud neodkryje kartu stojici {{Cost|3}} nebo vice. Tuto kartu každý hráč zahodí na smetiště a může si vzit kartu, jejíž maximální cena je o {{Cost|2}} nižší než cena jeho zahozené karty. Ostatní odkryté karty jsou odloženy na odkládací balíček."
+    },
+    {
+        "id": "90",
+        "name": "Žalářník",
+        "description": "'''+&nbsp;3&nbsp;karty'''<p>Všichni ostatní hráči si vyberou jeden pokyn: odložit 2&nbsp;karty; nebo si vzit do ruky kartu kletby."
+    },
+    {
+        "id": "91",
+        "name": "Obchodní místo",
+        "description": "Zahoď na smetiště 2&nbsp;karty z ruky. Jestliže to uděláš, vezmi si do ruky stříbrňák ze společné zásoby."
+    },
+    {
+        "id": "92",
+        "name": "Dar poddaných",
+        "description": "Hráč po tvé levici odkryje a pak odloží horní 2 karty ze svého dobíracího balíčku. Za každou jinak pojmenovanou odkrytou kartu získáš:<br>karta akce: '''+&nbsp;2&nbsp;akce'''<br>karta peněz: {{Costplus|2}}<br>karta bodů: '''+&nbsp;2&nbsp;karty'''"
+    },
+    {
+        "id": "93",
+        "name": "Pokrok",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<p>Zahoď kartu z ruky na smetiště. Vezmi si kartu stojící přesně o {{Cost|1}} více než zahozená karta."
+    },
+    {
+        "id": "95",
+        "name": "Šlechtici",
+        "description": "Vyber jeden pokyn: '''+&nbsp;3&nbsp;karty;''' nebo '''+&nbsp;2&nbsp;akce.'''{{Divline}}{{VP|2|l}}"
+    },
+    {
+        "id": "96",
+        "name": "Embargo",
+        "description": "{{Costplus|2}}<p>Zahod tuto kartu na smetiště. Polož jeden žeton embarga na jeden baličck ve společné zásobè.{{divline}}Jakmile si nektery hrač kupuje kartu, dostane kartu kletby za každý žeton embarga na přislušném baličku."
+    },
+    {
+        "id": "97",
+        "name": "Přístav",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<p>Polož stranou kartu ze své ruky, licem dolu. Na začatku tveho přištiho tahu si vezmi odlożenou kartu do ruky."
+    },
+    {
+        "id": "98",
+        "name": "Maják",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Nyni a na začátku tvého přistiho tahu: {{Costplus|1}}.{{Divline}}Pokud je tato karta ve hře, jsi chranen před utokem, když protihrać zahraje ütočnou kartu."
+    },
+    {
+        "id": "99",
+        "name": "Domorodá vesnice",
+        "description": "'''+&nbsp;2&nbsp;akce'''<p>Vyber si jeden pokyn: Polož stranou vrchni kartu ze svého dobiraciho baličku, licem dolů na tabulku domorodé vesnice; nebo si vezmi všechny karty ze své tabulky do ruky.<p>Na karty na své tabulce se můžeš kdykoli podivat; karty ležici na tabulce vrat na konci hry mezi své karty."
+    },
+    {
+        "id": "100",
+        "name": "Lovec perel",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<p>Podivej se na spodní kartu svého dobiraciho baličku. Müžes ji položit nahoru na dobirací baliček."
+    },
+    {
+        "id": "101",
+        "name": "Rybářská vesnice",
+        "description": "'''+&nbsp;2&nbsp;akce'''<br>{{Costplus|1}}<p>Na začátku tvého příštího tahu:<br>'''+&nbsp;1&nbsp;akce'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "102",
+        "name": "Velvyslanec",
+        "description": "Ukaž kartu ze své ruky. Vrať ukázanou a nejvýše ještě jednu stejnou kartu ze své ruky do společné zasoby. Každý protihráč si vezme jednu tuto kartu."
+    },
+    {
+        "id": "103",
+        "name": "Strážní koš",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Podivej se na vrehni 3&nbsp;karty svého dobiraciho baličku. Jednu z nich zahod' na smetiště. Jednu z nich odloż na odkládaci balíček. Posledni polož na svůj dobirací baliček."
+    },
+    {
+        "id": "104",
+        "name": "Pašeráci",
+        "description": "Vezmi si kartu s cenou až {{Cost|6}}, kterou hráč po tvé pravici získal ve svém poslednim tahu."
+    },
+    {
+        "id": "105",
+        "name": "Skladiště",
+        "description": "'''+&nbsp;3&nbsp;karty'''<br>'''+&nbsp;1&nbsp;akce'''<p>Odlož 3&nbsp;karty."
+    },
+    {
+        "id": "106",
+        "name": "Karavana",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<p>Na zacatku tveho přistiho tahu: '''+&nbsp;1&nbsp;karta'''."
+    },
+    {
+        "id": "107",
+        "name": "Kapsář",
+        "description": "{{Costplus|2}}<p>Každý protivnik musi odložit jeden méd'ak (nebo ukázat všechny karty v ruce)."
+    },
+    {
+        "id": "108",
+        "name": "Ostrov",
+        "description": "Polož na tabulku ostrova tuto a jednu dalši kartu ze své ruky. Obě vrat' na konci hry mezi své karty.{{divline}}{{VP|2|l}}"
+    },
+    {
+        "id": "109",
+        "name": "Navigátor",
+        "description": "{{Costplus|2}}<p>Podivej se na vrchnich 5&nbsp;karet svého dobiraciho baličku. Buď všechny odlož, nebo je polož zpêt na svůj dobiraci baliček v libovolném pořadi."
+    },
+    {
+        "id": "110",
+        "name": "Pirátská loď",
+        "description": "Vyber si jeden pokyn:<p>Každý protihráč ukäže 2 vrchni karty svého dobiraciho baličku, z nich zahodi na smetiště jednu kartu peněz, kterou vybereš ty, zbyle karty odloži, a pokud kdokoli zahodil kartu peněz, tak si vezmi žeton mince; nebo {{Costplus|1}} za každý žeton mince, ktery jsi v této hře dosud ziskal diky piratské lodi."
+    },
+    {
+        "id": "111",
+        "name": "Zachránce",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<p>Zahoď na smetiště kartu ze své ruky.<p>{{Costplus}} rovnajici se jeji cenè."
+    },
+    {
+        "id": "112",
+        "name": "Mořská čarodějnice",
+        "description": "Každý protihrać odloži vrchni kartu svého dobiracího baličku, pak si vezme kartu kletby a položi ji nahoru na svüj dobiraci ballček."
+    },
+    {
+        "id": "113",
+        "name": "Mapa pokladu",
+        "description": "Zahoď na smetišté tuto a jeśté jednu kartu mapa pokladu ze své ruky. Pokud takto na smetište zahodis dvě mapy pokladu, tak si vezmi 4&nbsp;zlaťáky a polož je nahoru na svüj dobirací baliček."
+    },
+    {
+        "id": "114",
+        "name": "Objevitel",
+        "description": "Mužeś ukazat kartu provincie ze své ruky. Pokud to uděláš, vezmi si do ruky jeden zlat'ak. V opačném připadě si do ruky vezmi střibrňak."
+    },
+    {
+        "id": "115",
+        "name": "Bazar",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;2&nbsp;akce'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "116",
+        "name": "Loď duchů",
+        "description": "'''+&nbsp;2&nbsp;karty'''<p>Každý protihráč se 4 či vice kartami v ruce odklada karty z ruky na svuj dobiraci balicek tak dlouho, dokud nemá v ruce jen 3&nbsp;karty."
+    },
+    {
+        "id": "117",
+        "name": "Obchodní loď",
+        "description": "Nyni a na začátku tvého přistiho tahu: {{Costplus|2}}."
+    },
+    {
+        "id": "118",
+        "name": "Strážnice",
+        "description": "Ve fåzi üklid tohoto tahu si dober pouze 3&nbsp;karty (namisto&nbsp;5). Poté proved' jeden extra tah. Nemužes provádêt vice než dva po sobe jdouci tahy."
+    },
+    {
+        "id": "119",
+        "name": "Taktik",
+        "description": "Odlož všechny karty z tuky. Pokud takto odložiš alespoň 1&nbsp;kartu, ve fazi üklidu nedobirás 5&nbsp;karet a na začatu tvého přistiho tahu:<br>'''+&nbsp;5&nbsp;karet'''<br>'''+&nbsp;1&nbsp;nákup'''<br>'''+&nbsp;1&nbsp;akce'''"
+    },
+    {
+        "id": "120",
+        "name": "Pokladnice",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<br>{{Costplus|1}}{{Divline}}Pokud jsi v tomto tahu nekoupil žadnou kartu s vitěznými body, můžeš tuto kartu při odkladani karet ze hry položit nahoru na svüj dobírací baliček."
+    },
+    {
+        "id": "121",
+        "name": "Loděnice",
+        "description": "Nyni a na začátku tvého přistiho tahu:<p>'''+&nbsp;2&nbsp;karty'''<br>'''+&nbsp;1&nbsp;nákup'''"
+    },
     { "id": "122", "name": "Bylinkář", "description": "" },
     { "id": "123", "name": "Učedník", "description": "" },
     { "id": "124", "name": "Přeměna", "description": "" },
@@ -83,7 +315,7 @@
     {
         "id": "127",
         "name": "Vidění",
-        "description": "'''+1 akce'''<br>Každý hráč (včetně tebe) ukáže vrchní kartu svého dobíracího balíčku a ty vybereš, zda ji odloží na odkládací balíček, nebo zda ji vrátí zpět. Poté ukazuj vrchní karty ze svého dobíracího balíčku, dokud neodkryješ kartu, která není akční.<br>Všechny své odkryté karty si přidej do ruky."
+        "description": "'''+1&nbsp;akce'''<p>Každý hráč (včetně tebe) ukáže vrchní kartu svého dobíracího balíčku a ty vybereš, zda ji odloží na odkládací balíček, nebo zda ji vrátí zpět. Poté ukazuj vrchní karty ze svého dobíracího balíčku, dokud neodkryješ kartu, která není akční. Všechny své odkryté karty si přidej do ruky."
     },
     { "id": "128", "name": "Univerzita", "description": "" },
     { "id": "129", "name": "Alchymista", "description": "" },
@@ -91,17 +323,29 @@
     {
         "id": "131",
         "name": "Kámen mudrců",
-        "description": "Když zahraješ tuto kartu, sečti dohromady karty ve svém dobíracím a odkládacím balíčku.<br>Získáš {{Cost|1}} za každých 5&nbsp;karet ve svých balíčcích (zaokrouhleno dolů)."
+        "description": "Když zahraješ tuto kartu, sečti dohromady karty ve svém dobíracím a odkládacím balíčku. Získáš {{Cost|1}} za každých 5&nbsp;karet ve svých balíčcích (zaokrouhleno dolů)."
     },
     { "id": "132", "name": "Golem", "description": "" },
     { "id": "133", "name": "Posedlost", "description": "" },
-    { "id": "134", "name": "Černý trh", "description": "" },
-    { "id": "135", "name": "Posel", "description": "" },
-    { "id": "136", "name": "Hrazená vesnice", "description": "" },
+    {
+        "id": "134",
+        "name": "Černý trh",
+        "description": "{{Costplus|2}}<p>Ukazte vrchni 3 karty z baličku černého trhu. Jednu z nich můžete okamžitě koupit. Zbyle karty dejte v libovolnem poradi do spodu balíčku čerého trhu.<p>''(Před začätkem hry utvořte baliček černeho trhu z karet královstvi, které zrovna nejsou v zásobě. Od každeho druhu jeánu.)''"
+    },
+    {
+        "id": "135",
+        "name": "Posel",
+        "description": "Ukažte 5&nbsp;vrchnich karet vašeho balíčku. Hráč po levici z nich určí jednu &mdash; tu umístíte na svůj odkládací balíček. Zbylé 4&nbsp;karty si vezměte do ruky."
+    },
+    {
+        "id": "136",
+        "name": "Hrazená vesnice",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;2&nbsp;akce'''{{Divline}}Pokud nemáš na začátku úklidové fáze ve hře více jak dvě akční karty (včetně této), můžeš tuto kartu dát navrch tvého dobíracího balicku."
+    },
     {
         "id": "138",
         "name": "Tajná skrýš",
-        "description": "{{Cost|2|l}}{{divline}}Po zamíchání můžeš změnit pozici této karty ve svém balíčku."
+        "description": "{{Cost|2|l}}{{Divline}}Po zamíchání můžeš změnit pozici této karty ve svém balíčku."
     },
     {
         "id": "155",
@@ -113,11 +357,23 @@
         "name": "Kořist",
         "description": "{{Cost|3|l}}<p>Když tuto kartu zahraješ, vrať ji na jeji balíček.<p>''(Nepatři do společné zásoby.)''"
     },
-    { "id": "212", "name": "Kletba", "description": "" },
-    { "id": "242", "name": "Půjčka", "description": "" },
-    { "id": "245", "name": "Obchodní stezka", "description": "" },
-    { "id": "246", "name": "Věštkyně", "description": "" },
-    { "id": "247", "name": "Platina", "description": "" },
+    { "id": "212", "name": "Kletba", "description": "{{VP|-1|xl}}" },
+    {
+        "id": "242",
+        "name": "Půjčka",
+        "description": "{{Cost|1|l}}<p>Když vyložíš tuto kartu, ukazuj karty ze svého dobíracího balíčku, dokud neukážeš kartu peněz.<br>Tuto ukázanou kartu peněz odlož na odkládací balíček nebo zahoď na smetiště. Ostatní ukázané karty odlož na odkládací balíček."
+    },
+    {
+        "id": "245",
+        "name": "Obchodní stezka",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<p>{{Costplus|1}} za každý žeton na podložce obchodní cesty.<br>Zahoď na smetiště kartu ze své ruky.{{divline}}Příprava: Položte žeton na každý balíček bodovacích karet ve společné zásobě. Když je získána karta z takového balíčku, přemístěte tento žeton na podložku obchodní cesty."
+    },
+    {
+        "id": "246",
+        "name": "Věštkyně",
+        "description": "{{Costplus|2}}<p>Každý hráč kromě tebe bude ukazovat karty ze svého dobíracího balíčku, dokud neukáže kartu vítězných bodů nebo kartu kletby, kterou poté položí nahoru na dobírací balíček a ostatní ukázané karty odloží."
+    },
+    { "id": "247", "name": "Platina", "description": "{{Cost|5|xl}}" },
     {
         "id": "317",
         "name": "Oltář",
@@ -133,36 +389,152 @@
         "name": "Tábor banditů",
         "description": "'''+1&nbsp;karta'''<br>'''+2&nbsp;akce'''<p>Vezmi si Kořist z balíčku karet Kořisti."
     },
-    { "id": "321", "name": "Strážní věž", "description": "" },
-    { "id": "322", "name": "Biskup", "description": "" },
-    { "id": "323", "name": "Památník", "description": "" },
-    { "id": "324", "name": "Kamenolom", "description": "" },
-    { "id": "325", "name": "Talisman", "description": "" },
-    { "id": "326", "name": "Dělnická čtvrť", "description": "" },
-    { "id": "327", "name": "Město", "description": "" },
-    { "id": "328", "name": "Kontraband", "description": "" },
-    { "id": "329", "name": "Zastavárna", "description": "" },
-    { "id": "330", "name": "Mincovna", "description": "" },
-    { "id": "331", "name": "Mastičkář", "description": "" },
-    { "id": "332", "name": "Dav", "description": "" },
-    { "id": "333", "name": "Královská pečeť", "description": "" },
-    { "id": "334", "name": "Trezor", "description": "" },
-    { "id": "335", "name": "Odvážlivec", "description": "" },
-    { "id": "336", "name": "Hrdlořez", "description": "" },
-    { "id": "337", "name": "Velký trh", "description": "" },
-    { "id": "338", "name": "Bohatství", "description": "" },
-    { "id": "339", "name": "Banka", "description": "" },
-    { "id": "340", "name": "Růst", "description": "" },
-    { "id": "341", "name": "Kování", "description": "" },
-    { "id": "342", "name": "Královský dvůr", "description": "" },
-    { "id": "343", "name": "Podomní obchodník", "description": "" },
-    { "id": "353", "name": "Osada", "description": "" },
-    { "id": "358", "name": "Zvěřinec", "description": "" },
-    { "id": "359", "name": "Selský dvůr", "description": "" },
-    { "id": "360", "name": "Koňští handlíři", "description": "" },
-    { "id": "361", "name": "Nové provedení", "description": "" },
-    { "id": "362", "name": "Tržiště", "description": "" },
-    { "id": "385", "name": "Roh hojnosti", "description": "" },
+    {
+        "id": "321",
+        "name": "Strážní věž",
+        "description": "Dober si do ruky tolik karet, abys jich měl šest.{{divline}}Tuto kartu můžeš ukázat ze své ruky, když si nějakou kartu bereš či kupuješ. Pokud to uděláš, buď získanou kartu zahoď na smetiště, nebo ji polož nahoru na svůj dobírací balíček."
+    },
+    {
+        "id": "322",
+        "name": "Biskup",
+        "description": "{{Costplus|1}}<br>{{VP|'''+1'''}}<p>Zahoď kartu z ruky na smetiště. {{VP|+}} se rovná polovině její ceny v mincích, zaokrouhleno dolů. Všichni ostatní hráči mohou zahodit kartu z ruky na smetiště."
+    },
+    { "id": "323", "name": "Památník", "description": "{{Costplus|2}}<br>{{VP|'''+1'''}}" },
+    {
+        "id": "324",
+        "name": "Kamenolom",
+        "description": "{{Cost|1|l}}{{divline}}Když je tato karta ve hře, akční karty stojí o {{Cost|2}} méně, ale ne méně než {{Cost|0}}."
+    },
+    {
+        "id": "325",
+        "name": "Talisman",
+        "description": "{{Cost|1|l}}{{divline}}Pokud je tato karta ve hře, když si kupuješ kartu stojící {{Cost|4}} nebo méně a není to karta vítězných bodů, vezmi si její kopii."
+    },
+    {
+        "id": "326",
+        "name": "Dělnická čtvrť",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;2&nbsp;akce'''<br>'''+&nbsp;1&nbsp;nákup'''"
+    },
+    {
+        "id": "327",
+        "name": "Město",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;2&nbsp;akce'''<p>Je-li jeden nebo více balíčků ve společné zásobě prázdných, +1 karta. Jsou-li to dva nebo více balíčků, {{Costplus|1}} a +1 nákup."
+    },
+    {
+        "id": "328",
+        "name": "Kontraband",
+        "description": "{{Cost|3|l}}<br>'''+&nbsp;1&nbsp;nákup'''<p>Když vyložíš tuto kartu, hráč po tvé levici řekne název karty. V tomto tahu nemůžeš tuto jmenovanou kartu koupit."
+    },
+    {
+        "id": "329",
+        "name": "Zastavárna",
+        "description": "Prohlédni si svůj odkládací balíček, ukaž z něj libovolný počet měďáků a ty si vezmi do své ruky."
+    },
+    {
+        "id": "330",
+        "name": "Mincovna",
+        "description": "Můžeš ukázat jednu kartu peněz ze své ruky. Vezmi si kopii ukázané karty.{{Divline}}Při nákupu této karty zahoď na smetiště všechny karty peněz, které máš ve hře."
+    },
+    {
+        "id": "331",
+        "name": "Mastičkář",
+        "description": "{{Costplus|2}}<p>Všichni ostatní hráči mohou odložit kletbu. Kdo to neudělá, vezme si kletbu a měďák."
+    },
+    {
+        "id": "332",
+        "name": "Dav",
+        "description": "'''+&nbsp;3&nbsp;karty'''<p>Všichni ostatní hráči ukážou vrchní 3&nbsp;karty ze svého dobíracího balíčku, ukázané akční karty a karty peněz jsou odloženy a zbývající karty jsou položeny zpět nahoru na dobírací balíček v libovolném pořadí."
+    },
+    {
+        "id": "333",
+        "name": "Královská pečeť",
+        "description": "{{Cost|2|l}}{{divline}}Pokud je tato karta ve hře, když získáváš kartu, můžeš si získanou kartu položit nahoru na svůj dobírací balíček."
+    },
+    {
+        "id": "334",
+        "name": "Trezor",
+        "description": "'''+&nbsp;2&nbsp;karty'''<p>Odlož jakýkoliv počet karet. {{Costplus|1}} za každou odloženou kartu. Každý spoluhráč může odložit 2&nbsp;karty. Kdo to udělá, dobere si jednu kartu."
+    },
+    {
+        "id": "335",
+        "name": "Odvážlivec",
+        "description": "{{Cost|1|l}}<p>Když vyložíš tuto kartu, ukazuj karty ze svého dobíracího balíčku, dokud neukážeš kartu peněz. Tuto kartu peněz vylož. Ostatní ukázané karty odlož."
+    },
+    {
+        "id": "336",
+        "name": "Hrdlořez",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|2}}<p>Všichni ostatní hráči odloží karty tak, aby jim zbyly na ruce 3&nbsp;karty.{{divline}}Když je tato karta ve hře, tak při nákupu karty získáš {{VP|+1}}."
+    },
+    {
+        "id": "337",
+        "name": "Velký trh",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<br>'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|2}}{{divline}}Pokud máš ve hře nějaký měďák, nemůžeš tuto kartu koupit."
+    },
+    {
+        "id": "338",
+        "name": "Bohatství",
+        "description": "{{Cost|2|l}}<p>{{Divline}}Pokud koupíš nějakou kartu vítězných bodů, když je tato karta ve hře, vezmi si zlaťák."
+    },
+    {
+        "id": "339",
+        "name": "Banka",
+        "description": "Když vyložíš tuto kartu, má hodnotu {{Cost|1}} za každou kartu peněz, kterou máš ve hře (včetně této)."
+    },
+    {
+        "id": "340",
+        "name": "Růst",
+        "description": "Zahoď kartu ze své ruky na smetiště. Vezmi si kartu, která stojí až o {{Cost|3}} více než zahozená karta."
+    },
+    {
+        "id": "341",
+        "name": "Kování",
+        "description": "Zahoď libovolný počet karet ze své ruky na smetiště. Vezmi si kartu s přesně stejnou cenou, jaká je celková cena v mincích všech těchto zahozených karet."
+    },
+    {
+        "id": "342",
+        "name": "Královský dvůr",
+        "description": "Vyber si akční kartu z ruky. Tuto kartu zahraješ třikrát."
+    },
+    {
+        "id": "343",
+        "name": "Podomní obchodník",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<br>{{Costplus|1}}{{divline}}Během tvé fáze Nákup tě tato karta stojí o {{Cost|2}} méně za každou akční kartu, kterou máš ve hře, ale ne méně než {{Cost|0}}."
+    },
+    {
+        "id": "353",
+        "name": "Osada",
+        "description": "'''+&nbsp;1&nbsp;karta'''<br>'''+&nbsp;1&nbsp;akce'''<p>Můžeš odložit kartu.<br>Pokud tak učiníš +1&nbsp;akce.<br>Můžeš odložit kartu.<br>Pokud tak učiníš +1&nbsp;nákup."
+    },
+    {
+        "id": "358",
+        "name": "Zvěřinec",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Ukaž karty v ruce.<br>Pokud v ruce nemáš žádné dvě stejné karty: +3&nbsp;karty<br>V opačném případě: +1&nbsp;karta"
+    },
+    {
+        "id": "359",
+        "name": "Selský dvůr",
+        "description": "'''+&nbsp;2&nbsp;akce'''<p>Ukazuj karty ze svého dobíracího balíčku, dokud neukážeš nějakou akční kartu nebo kartu peněz. Vezmi si ji do ruky a ostatní ukázané karty odlož na odkládací balíček."
+    },
+    {
+        "id": "360",
+        "name": "Koňští handlíři",
+        "description": "'''+&nbsp;1&nbsp;nákup'''<br>{{Costplus|3}}<p>'''Odlož 2&nbsp;karty'''{{divline}}Když jiný hráč zahraje kartu útoku, můžeš tuto kartu ze své ruky položit stranou. Pokud to uděláš, pak na začátku svého dalšího tahu +1&nbsp;karta a vrať si tuto kartu do ruky."
+    },
+    {
+        "id": "361",
+        "name": "Nové provedení",
+        "description": "Proveď dvakrát: Zahoď kartu z ruky na smetiště. Vezmi si kartu o ceně přesně o {{cost|1}} větší než je cena zahozené karty."
+    },
+    {
+        "id": "362",
+        "name": "Tržiště",
+        "description": "Karta má hodnotu {{VP|2}} za každých 5 odlišně pojmenovaných karet ve tvém balíčku (zaokrouhleno dolů)."
+    },
+    {
+        "id": "385",
+        "name": "Roh hojnosti",
+        "description": "{{Cost|0|l}}<p>Při vyložení této karty si vezmi kartu s cenou až {{Cost|1}} za každou odlišně pojmenovanou kartu, kterou máš ve hře, včetně této. Pokud si vezmeš kartu vítězných bodů, zahoď tuto kartu na smetiště."
+    },
     {
         "id": "386",
         "name": "Procesí",
@@ -331,7 +703,7 @@
     {
         "id": "423",
         "name": "Darebák",
-        "description": "'''+1&nbsp;karta'''<br>'''+1&nbsp;akce'''<p>Všichni ostatní hráči odloží z ruky tolik karet, aby jím zústaly&nbsp;4.{{divline}}Jestliže zahraješ další kartu útoku, zatímco je Darebák ve hře,  můžeš ho zahodit na smetiště. Pokud tak učiníš, vezmi si Žoldnéře z baličku karet Žoldnéřů."
+        "description": "'''+1&nbsp;karta'''<br>'''+1&nbsp;akce'''<p>Všichni ostatní hráči odloží z ruky tolik karet, aby jím zústaly&nbsp;4.{{Divline}}Jestliže zahraješ další kartu útoku, zatímco je Darebák ve hře,  můžeš ho zahodit na smetiště. Pokud tak učiníš, vezmi si Žoldnéře z baličku karet Žoldnéřů."
     },
     {
         "id": "424",
@@ -343,24 +715,64 @@
         "name": "Bard",
         "description": "'''+1&nbsp;karta'''<br>'''+2&nbsp;akce'''<p>Ukáž vrchní  3&nbsp;karty svého dobíracího balíčku. Karty akcí vrať zpět v libovolném pořadi a ostatní karty odlož."
     },
-    { "id": "426", "name": "Sklizeň", "description": "" },
-    { "id": "427", "name": "Lovci", "description": "" },
-    { "id": "428", "name": "Šašek", "description": "" },
-    { "id": "429", "name": "Turnaj", "description": "" },
-    { "id": "430", "name": "Mladá čarodějka", "description": "" },
-    { "id": "432", "name": "Pytel zlata", "description": "" },
-    { "id": "433", "name": "Diadém", "description": "" },
-    { "id": "434", "name": "Stoupenci", "description": "" },
-    { "id": "435", "name": "Princezna", "description": "" },
-    { "id": "436", "name": "Věrný oř", "description": "" },
-    { "id": "517", "name": "Měďák", "description": "" },
-    { "id": "525", "name": "Statek", "description": "" },
-    { "id": "526", "name": "Stříbrňák", "description": "" },
-    { "id": "527", "name": "Elixír", "description": "" },
-    { "id": "528", "name": "Vévodství", "description": "" },
-    { "id": "529", "name": "Zlaťák", "description": "" },
-    { "id": "530", "name": "Provincie", "description": "" },
-    { "id": "531", "name": "Kolonie", "description": "" },
+    {
+        "id": "426",
+        "name": "Sklizeň",
+        "description": "Ukaž 4 vrchní karty svého dobíracího balíčku a odlož je. {{Costplus|1}} za každou odlišně pojmenovanou ukázanou kartu."
+    },
+    {
+        "id": "427",
+        "name": "Lovci",
+        "description": "'''+1&nbsp;karta'''<br>'''+1&nbsp;akce'''<p>Ukaž karty z ruky. Ukazuj karty ze svého dobíracího balíčku, dokud neukážeš kartu, která není stejná s žádnou kartou v tvé ruce. Poslední ukázanou kartu si dejte do ruky a zbytek ukázaných karet odložte."
+    },
+    {
+        "id": "428",
+        "name": "Šašek",
+        "description": "{{Costplus|2}}<p>Všichni ostatní hráči odloží horní kartu ze svého dobíracího balíčku. Pokud je to karta vítězných bodů, vezme si kletbu. V opačném případě si buď vezme kopii odložené karty, nebo si ji vezmeš ty, dle tvé volby."
+    },
+    {
+        "id": "429",
+        "name": "Turnaj",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Každý hráč může z ruky ukázat provincii. Pokud to uděláš, odlož ji a vezmi si odměnu (z balíčku karet odměn) nebo vévodství. Získanou kartu polož na dobírací balíček. Pokud provincii neukáže nikdo kromě tebe:<br>+1 karta, {{Costplus|1}}"
+    },
+    {
+        "id": "430",
+        "name": "Mladá čarodějka",
+        "description": "'''+&nbsp;2&nbsp;karty'''<p>Odhoď dvě karty. Všichni ostatní hráči mohou ukázat z ruky kartu prokletí. Pokud to neudělají, musí si vzít kartu kletby.{{Divline}}Příprava: Přidejte do zásoby sadu 10 stejných karet o ceně {{Cost|2}} - {{Cost|3}}. Karty z tohoto balíčku se stávájí prokletím."
+    },
+    {
+        "id": "432",
+        "name": "Pytel zlata",
+        "description": "'''+&nbsp;1&nbsp;akce'''<p>Vezmi si zlaťák a polož na svůj dobírací balíček.<p>''(Tato karta není součástí společné zásoby karet)''"
+    },
+    {
+        "id": "433",
+        "name": "Diadém",
+        "description": "{{Cost|2|l}}<p>Když hrajete tuto kartu, {{Costplus|1}} za každou nevyužitou akci, kterou máte. (Pozor, počítají se akce, ne akční karty.)<p>''(Tato karta není součástí společné zásoby karet)''"
+    },
+    {
+        "id": "434",
+        "name": "Stoupenci",
+        "description": "'''+&nbsp;2&nbsp;karty'''<p>Vezmi si statek. Všichni ostatní hráči musí odložit do tří karet v ruce.<p>''(Tato karta není součástí společné zásoby karet)''"
+    },
+    {
+        "id": "435",
+        "name": "Princezna",
+        "description": "'''+&nbsp;1&nbsp;nákup'''{{divline}}Když je tato karta ve hře, všechny karty stojí o {{Cost|2}} méně, ale ne méně než {{Cost|0}}.<p>''(Tato karta není součástí společné zásoby karet)''"
+    },
+    {
+        "id": "436",
+        "name": "Věrný oř",
+        "description": "Vyber dva pokyny:<br>+2&nbsp;karty<br>+2&nbsp;akce<br>{{Costplus|2}}<br>Vezmi si 4&nbsp;stříbrňáky a svůj dobírací balíček odlož na odkládací balíček.<p>''(Tato karta není součástí společné zásoby karet)''"
+    },
+    { "id": "517", "name": "Měďák", "description": "{{Cost|1|xl}}" },
+    { "id": "525", "name": "Statek", "description": "{{VP|1|xl}}" },
+    { "id": "526", "name": "Stříbrňák", "description": "{{Cost|2|xl}}" },
+    { "id": "527", "name": "Elixír", "description": "{{Cost||xl||P}}" },
+    { "id": "528", "name": "Vévodství", "description": "{{VP|3|xl}}" },
+    { "id": "529", "name": "Zlaťák", "description": "{{Cost|3|xl}}" },
+    { "id": "530", "name": "Provincie", "description": "{{VP|6|xl}}" },
+    { "id": "531", "name": "Kolonie", "description": "{{VP|10|xl}}" },
     {
         "id": "558",
         "name": "Lady Anna",
@@ -441,5 +853,10 @@
     { "id": "623", "name": "Stáje", "description": "" },
     { "id": "624", "name": "Pohraniční vesnice", "description": "" },
     { "id": "625", "name": "Úrodná země", "description": "" },
-    { "id": "10190", "name": "Harém", "description": "" }
+    {
+        "id": "1504",
+        "name": "Princ",
+        "description": "Tuto kartu můžeš položit stranou. Pokud to uděláš, polož stranou také akční kartu ze své ruky s cenou až {{Cost|4}}. Na začátku každého svého tahu tuto akční kartu zahraj a odlož ji znovu stranou, když ji budeš odstraňovat ze hry. (Přestaň ji zahrávat, pokud se ti ji nepodaří odložit stranou v tahu, kdy jsi ji zahrál.)"
+    },
+    { "id": "10190", "name": "Harém", "description": "{{Cost|2|l}}<p>{{VP|2|l}}" }
 ]

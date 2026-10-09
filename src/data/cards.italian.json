@@ -35,8 +35,16 @@
     { "id": "78", "name": "Truffatore", "description": "" },
     { "id": "79", "name": "Pozzo dei Desideri", "description": "" },
     { "id": "80", "name": "Barone", "description": "" },
-    { "id": "81", "name": "Ponte", "description": "" },
-    { "id": "82", "name": "Cospiratori", "description": "" },
+    {
+        "id": "81",
+        "name": "Ponte",
+        "description": "'''+1&nbsp;Acquisto'''<br>{{Costplus|1}}<p>In questo turno, tutte le carte (incluse quelle in mano ai giocatori) costano - {{Cost|1}} Il costo non può mai essere inferiore a {{Cost|0}}."
+    },
+    {
+        "id": "82",
+        "name": "Cospiratori",
+        "description": "{{Costplus|2}}<p>Se in questo turno hai giocato tre o più carte Azione (compresa questa), '''+1&nbsp;Carta''' e '''+1&nbsp;Azione'''."
+    },
     { "id": "83", "name": "Battirame", "description": "" },
     { "id": "84", "name": "Fonderia", "description": "" },
     { "id": "85", "name": "Villaggio Minerario", "description": "" },
@@ -44,11 +52,19 @@
     { "id": "87", "name": "Duca", "description": "" },
     { "id": "88", "name": "Tirapiedi", "description": "" },
     { "id": "89", "name": "Sabotatore", "description": "" },
-    { "id": "90", "name": "Carceriere", "description": "" },
+    {
+        "id": "90",
+        "name": "Carceriere",
+        "description": "'''+3&nbsp;Carte'''<p>Ogni altro giocatore sceglie: Scarta due carte '''oppure''' Ottiene una Carta Maledizione e la aggiunge alla propria mano. (è possibile scegliere un'opzione non realizzabile)."
+    },
     { "id": "91", "name": "Stazione Commerciale", "description": "" },
     { "id": "92", "name": "Tributo", "description": "" },
     { "id": "93", "name": "Potenziamento", "description": "" },
-    { "id": "95", "name": "Nobili", "description": "" },
+    {
+        "id": "95",
+        "name": "Nobili",
+        "description": "Scegli: '''+3&nbsp;Carte oppure +2&nbsp;Azioni'''.{{Divline}}{{VP|2|l}}"
+    },
     { "id": "96", "name": "Embargo", "description": "" },
     { "id": "97", "name": "Rada", "description": "" },
     { "id": "98", "name": "Faro", "description": "" },
@@ -87,7 +103,11 @@
     { "id": "131", "name": "Pietra Filosofale", "description": "" },
     { "id": "132", "name": "Golem", "description": "" },
     { "id": "133", "name": "Possessione", "description": "" },
-    { "id": "134", "name": "Mercato Nero", "description": "" },
+    {
+        "id": "134",
+        "name": "Mercato Nero",
+        "description": "{{Costplus|2}}<p>Rivela le prime tre carte del mazzetto Mercato Nero; puoi Acquistare immediatamente una di queste. Metti le carte non Acquistate sotto il mizzetto Mercato Nero nell'ordine che preferisci.<p>''(Il mazzetto Mercato Nero si forma, prima di iniziare a giocare, prendeno una carta Regno per ogra tipo che non si trova nella Riserva)"
+    },
     { "id": "135", "name": "Inviato", "description": "" },
     { "id": "138", "name": "Gruzzolo", "description": "" },
     { "id": "212", "name": "Maledizione", "description": "" },
@@ -138,7 +158,7 @@
     { "id": "517", "name": "Rame", "description": "" },
     { "id": "525", "name": "Tenuta", "description": "" },
     { "id": "526", "name": "Argento", "description": "" },
-    { "id": "527", "name": "Pozione", "description": "" },
+    { "id": "527", "name": "Pozione", "description": "{{Cost||xl||P}}" },
     { "id": "528", "name": "Ducato", "description": "" },
     { "id": "529", "name": "Oro", "description": "" },
     { "id": "530", "name": "Provincia", "description": "" },
@@ -168,5 +188,25 @@
     { "id": "623", "name": "Stalla", "description": "" },
     { "id": "624", "name": "Villaggio di Frontiera", "description": "" },
     { "id": "625", "name": "Terra Coltivata", "description": "" },
+    {
+        "id": "3505",
+        "name": "Mulino a Vento",
+        "description": "'''+1&nbsp;Carta'''<br>'''+1&nbsp;Azione'''<p>Puoi scartare 2 carte, per ottenere {{Costplus|2}}.{{Divline}}{{VP|1|l}}"
+    },
+    {
+        "id": "3506",
+        "name": "Passaggio Segreto",
+        "description": "'''+2&nbsp;Carte'''<br>'''+1&nbsp;Azione'''<p>Prendi una carta dalla mano e ponila dove desideri nel tuo mazzo."
+    },
+    {
+        "id": "3509",
+        "name": "Cortigiano",
+        "description": "Rivela una carta dalla mano. Per ogni tipologia che possiede (Azione, Attacco etc.) scegli uno tra: '''+1&nbsp;Azione'''; '''oppure''' '''+1&nbsp;Acquisto'''; '''oppure''' {{Costplus|3}}; '''oppure''' Ottieni una carta Oro. Le scelte devono essere differenti."
+    },
+    {
+        "id": "3511",
+        "name": "Sostituzione",
+        "description": "Elimina una carta dalla mano. Ottieni una carta che costi sino a {{Cost|2}} in più del costo della carta eliminata. Se la carta ottenuta è una carta Azione o Tesoro, mettila sulla cima del tuo mazzo; se è una carta Vittoria, tutti gli altri giocatori ottengono una Maledizione."
+    },
     { "id": "10190", "name": "Harem", "description": "" }
 ]

@@ -1,0 +1,249 @@
+[
+    {
+        "id": "16",
+        "name": "Podrum",
+        "description": "'''+1&nbsp;Akcija'''<p>Odbacite proizvoljan broj karata. '''+1&nbsp;Karta''' za svaku odbačenu kartu."
+    },
+    { "id": "17", "name": "Kapela", "description": "Eliminišite do 4&nbsp;karte iz ruke." },
+    {
+        "id": "18",
+        "name": "Šanac",
+        "description": "'''+2&nbsp;Karte'''{{Divline}}Kada protivnički igrač odigra kartu Napada, otkrivanjem karte Šanca iz ruke obustavljate Napad."
+    },
+    { "id": "20", "name": "Selo", "description": "'''+1&nbsp;Karta'''<br>'''+2&nbsp;Akcije'''" },
+    { "id": "25", "name": "Radionica", "description": "Uzmite kartu u vrednosti do {{Cost|4}}." },
+    {
+        "id": "34",
+        "name": "Dvorište",
+        "description": "'''+3&nbsp;Karte'''<p>Stavite jednu kartu iz ruke na svoj špil."
+    },
+    {
+        "id": "36",
+        "name": "Birokrata",
+        "description": "Uzmite Srebrnjak za svoj spil. Svi ostali igrači otkrivaju Pobedonosne karte iz ruke i odlažu ih na svoje špilove (ili otkrivaju da u rukama nemaju Pobedonosne karte)."
+    },
+    {
+        "id": "38",
+        "name": "Vrtovi",
+        "description": "Vredi {{VP|'''1'''}} za svakih 10&nbsp;karata koje ste sakupili (zaokružujte na nižu punu deseticu)."
+    },
+    {
+        "id": "39",
+        "name": "Vojska",
+        "description": "{{Costplus|2}}<p>Svi ostali igrači ostaju sa 3&nbsp;karte u ruci. Ostale karte se odbacuju na gomilu za odbacivanje."
+    },
+    {
+        "id": "40",
+        "name": "Zelenaš",
+        "description": "Eliminišite Bakrenjak iz ruke da biste dobili {{Costplus|3}}."
+    },
+    {
+        "id": "41",
+        "name": "Obnova",
+        "description": "Eliminišite kartu iz ruke. Uzmite kartu čija je cena do {{Cost|2}} više."
+    },
+    { "id": "42", "name": "Kovačnica", "description": "'''+3&nbsp;Karte'''" },
+    {
+        "id": "45",
+        "name": "Prestona dvorana",
+        "description": "Možete dvaput odigrati kartu Akcije iz ruke."
+    },
+    {
+        "id": "46",
+        "name": "Većnica",
+        "description": "'''+4&nbsp;Karte'''<br>'''+1&nbsp;Kupovina'''<p>Svi ostali igrači vuku kartu."
+    },
+    {
+        "id": "47",
+        "name": "Vašar",
+        "description": "'''+2&nbsp;Akcije'''<br>'''+1&nbsp;Kupovina'''<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laboratorija",
+        "description": "'''+2&nbsp;Karte'''<br>'''+1&nbsp;Akcija'''"
+    },
+    {
+        "id": "49",
+        "name": "Biblioteka",
+        "description": "Vucite dok ne prikupite 7&nbsp;karata u ruci. Ukoliko želite, možete preskočiti karte Akcija. Izdvote ih sa strane, pa ih naknadno odbacite."
+    },
+    {
+        "id": "50",
+        "name": "Pijaca",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<br>'''+1&nbsp;Kupovina'''<br>{{Costplus|1}}"
+    },
+    {
+        "id": "51",
+        "name": "Rudnik",
+        "description": "Možete eliminisati kartu Blaga iz ruke. Zauzvrat možete uzeti bilo koju kartu Blaga u ruku čija je vrednost do {{Cost|3}} više."
+    },
+    {
+        "id": "52",
+        "name": "Veštica",
+        "description": "'''+2&nbsp;Karte'''<p>Drugi igrači moraju uzeti kartu Kletve."
+    },
+    {
+        "id": "72",
+        "name": "Pešadija",
+        "description": "Izaberite dve: '''+1&nbsp;Karta'''; '''+1&nbsp;Akcija'''; '''+1&nbsp;Kupovina'''; {{Costplus|1}}. Izbori moraju biti različiti."
+    },
+    {
+        "id": "75",
+        "name": "Maskenbal",
+        "description": "'''+2&nbsp;Karte'''<p>Svaki igrač koji ima bar 1&nbsp;kartu u ruci prosleđuje jednu kartu igraču levo od sebe. To se radi simultano. Onda možete da eliminišete neku kartu iz ruke."
+    },
+    {
+        "id": "76",
+        "name": "Sumnjivi kvart",
+        "description": "'''+2&nbsp;Akcije'''<p>Pokažite karte koje imate u ruci. Ako u ruci nemate karte Akcije: '''+2&nbsp;Karte'''."
+    },
+    {
+        "id": "77",
+        "name": "Kućeupravitelj",
+        "description": "Izaberite: '''+2&nbsp;Karte'''; ili {{Costplus|2}}; ili eliminišite 2&nbsp;karte iz ruke."
+    },
+    {
+        "id": "78",
+        "name": "Varalica",
+        "description": "{{Costplus|2}}<p>Svi drugi igrači eliminišu gornju kartu sa svog špila i dobijaju kartu po vašem izboru, koja košta isto kao eliminisana."
+    },
+    {
+        "id": "79",
+        "name": "Bunar želja",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<p>Izgovorite ime karte, pa otkrijte gornju kartu u svom špilu. Ako ste pogodili, uzmite tu kartu u ruku."
+    },
+    {
+        "id": "80",
+        "name": "Baron",
+        "description": "'''+1&nbsp;Kupovina'''<p>Mozete da odbacite Imanje za {{Cost|4}}. Ako to ne učinite, dobijate jedno Imanje."
+    },
+    {
+        "id": "81",
+        "name": "Most",
+        "description": "'''+1&nbsp;Kupovina'''<br>{{Costplus|1}}<p>Karte (bilo gde) u ovom krugu koštaju {{Cost|1}} manje, ali ne manje od {{Cost|0}}."
+    },
+    {
+        "id": "82",
+        "name": "Zaverenik",
+        "description": "{{Costplus|2}}<p>Ako ste u ovom potezu odigrali 3&nbsp;Akcije ili više njih (računajući i ovu): '''+1&nbsp;Karta''' i '''+1&nbsp;Akcija'''."
+    },
+    {
+        "id": "84",
+        "name": "Livnica",
+        "description": "Uzmite kartu koja košta maksimalno {{Cost|4}}. Ukoliko je ona:<p>karta Akcije: '''+1&nbsp;Akcija'''.<br>karta Blaga: {{Costplus|1}}.<br>Pobedonosna karta: '''+1&nbsp;Karta'''."
+    },
+    {
+        "id": "85",
+        "name": "Rudarsko naselje",
+        "description": "'''+1&nbsp;Karta'''<br>'''+2&nbsp;Akcije'''<p>Možete da eliminišete ovu kartu za {{Costplus|2}}."
+    },
+    {
+        "id": "87",
+        "name": "Vojvoda",
+        "description": "Vredi {{VP|1}} za svako Vojvodstvo koje imate."
+    },
+    {
+        "id": "88",
+        "name": "Podanik",
+        "description": "'''+1&nbsp;Akcija'''<p>Izaberite: {{Costplus|2}}; ili odbacite sve karte iz ruke, '''+4&nbsp;Karte''' i svi ostali igrači sa najmanje 5&nbsp;karata u ruci odbacuju sve karte i vuku 4&nbsp;karte."
+    },
+    {
+        "id": "90",
+        "name": "Mučitelj",
+        "description": "'''+3&nbsp;Karte'''<p>Svi drugi igrači ili odbacuju 2&nbsp;karte, ili dobijaju Kletvu u ruku, po svom izboru (mogu izabrati opciju koju ne mogu da izvedu)."
+    },
+    {
+        "id": "91",
+        "name": "Trgovačka ispostava",
+        "description": "Eliminišite 2&nbsp;karte iz ruke. Ako ste to uradili, uzmite jedan Srebrnjak u ruku."
+    },
+    {
+        "id": "93",
+        "name": "Poboljšanje",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<p>Eliminišite kartu iz ruke. Uzmite kartu koja košta tačno {{Cost|1}} više od nje."
+    },
+    {
+        "id": "95",
+        "name": "Plemić",
+        "description": "Izaberite: '''+3&nbsp;Karte'''; ili '''+2&nbsp;Akcije'''.{{Divline}}{{VP|2|l}}"
+    },
+    { "id": "212", "name": "Kletva", "description": "{{VP|-1|l}}" },
+    { "id": "517", "name": "Bakrenjak", "description": "{{Cost|1|l}}" },
+    { "id": "525", "name": "Imanje", "description": "{{VP|1|l}}" },
+    { "id": "526", "name": "Srebrnjak", "description": "{{Cost|2|l}}" },
+    { "id": "528", "name": "Vojvodstvo", "description": "{{VP|3|l}}" },
+    { "id": "529", "name": "Zlatnik", "description": "{{Cost|3|l}}" },
+    { "id": "530", "name": "Provincija", "description": "{{VP|6|l}}" },
+    {
+        "id": "3496",
+        "name": "Glasnik",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<p>Pregledajte gomilu odbačenih karata. Možete odabrati jednu kartu i dodati je svom špilu."
+    },
+    {
+        "id": "3497",
+        "name": "Trgovac",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<p>Kada odlučite da iskoristite Srebrnjak prvi put, dobijate dodatnih {{Costplus|1}}."
+    },
+    {
+        "id": "3498",
+        "name": "Vazal",
+        "description": "{{Costplus|2}}<p>Odbacite kartu sa vrha svog špila. Ukoliko je to karta Akcije, možete je odigrati."
+    },
+    {
+        "id": "3499",
+        "name": "Lovokradica",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<br>{{Costplus|1}}<p>Odbacite onoliko karata koliko ima utrošenih špilova iz dostupne ponude."
+    },
+    {
+        "id": "3500",
+        "name": "Bandit",
+        "description": "Uzmite Zlatnik. Svi ostali igrači otkrivaju 2&nbsp;karte sa svojih špilova. Otkrivena karta Blaga se mora eliminisati, osim ako nije Bakrenjak. Ostalo se odlaže na gomilu odbačenih karata."
+    },
+    {
+        "id": "3501",
+        "name": "Straža",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<p>Pogledajte 2&nbsp;karte sa vrha svog špila. Eliminišite i/ili odbacite obe, jednu ili nijednu kartu. Vratite ostatak natrag bilo kojim redom."
+    },
+    {
+        "id": "3502",
+        "name": "Zanatlija",
+        "description": "Uzmite u ruku kartu u vrednosti do {{Cost|5}}.<p>Odložite kartu iz ruke na svoj špil karata."
+    },
+    {
+        "id": "3503",
+        "name": "Doušnik",
+        "description": "'''+1&nbsp;Akcija'''<p>Izaberite: Eliminišite jednu kartu Akcije iz dostupne ponude; ili uzmite jednu kartu Akcije sa podloge za eliminisane karte."
+    },
+    {
+        "id": "3504",
+        "name": "Diplomata",
+        "description": "'''+2&nbsp;Karte'''<p>Ako nakon izvlačenja karata imate u ruci 5 ili manje: '''+2&nbsp;Akcije'''.{{Divline}}Kada neki drugi igrač odigra kartu Napada, možete prvo da pokažete ovu kartu, ako u ruci imate 5 ili više karata, da biste vukli 2&nbsp;karte, pa odbacili 3."
+    },
+    {
+        "id": "3505",
+        "name": "Mlin",
+        "description": "'''+1&nbsp;Karta'''<br>'''+1&nbsp;Akcija'''<p>Možete da odbacite 2 karte. Ako to uradite: {{Costplus|2}}.{{divline}}{{VP|1|l}}"
+    },
+    {
+        "id": "3506",
+        "name": "Tajni prolaz",
+        "description": "'''+2&nbsp;Karte'''<br>'''+1&nbsp;Akcija'''<p>Uzmite kartu iz ruke i stavite je gde god želite u svoj špil."
+    },
+    {
+        "id": "3509",
+        "name": "Savetnik",
+        "description": "Otkrijte kartu iz ruke. Za svaku vrstu kojoj ona pripada (Akcija, Napad itd.), izaberite: '''+1&nbsp;Akcija''' ili '''+1&nbsp;Kupovina'''; ili {{Costplus|3}}, ili uzmite Zlatnik. Izbori moraju biti različiti."
+    },
+    {
+        "id": "3510",
+        "name": "Izvidnik",
+        "description": "'''+3&nbsp;Karte'''<p>Otkrijte gornje 4&nbsp;karte svog špila. Uzmite u ruku Pobedonosne karte i Kletve. Ostale vratite na špil, u redosledu po želji."
+    },
+    {
+        "id": "3511",
+        "name": "Zamena",
+        "description": "Eliminišite kartu iz ruke. Uzmite kartu koja košta maksimalno {{Cost|2}} više od te karte. Ako je uzeta karta Akcija ili Blago, stavite je na svoj špil; ako je Pobedonosna karta, svi drugi igrači dobijaju Kletvu."
+    },
+    { "id": "10190", "name": "Harem", "description": "{{Cost|2|l}}{{Divline}}{{VP|2|l}}" }
+]
