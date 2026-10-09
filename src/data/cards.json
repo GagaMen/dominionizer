@@ -506,7 +506,7 @@
     {
         "id": "87",
         "name": "Duke",
-        "description": "Worth {{VP|'''''1'''''}} per Duchy you have.",
+        "description": "Worth {{VP|'''1'''}} per Duchy you have.",
         "image": "DukeArt.jpg",
         "illustrator": "Christof Tisch",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Duke",
@@ -758,7 +758,7 @@
     {
         "id": "109",
         "name": "Navigator",
-        "description": "{{Costplus|2}}<p>Look at the top 5&nbsp;cards of your deck. Either discard them all, or put them back in any order.</p>",
+        "description": "{{Costplus|2}}<p>Look at the top 5&nbsp;cards of your deck. Either discard them all, or put them back in any order.",
         "image": "NavigatorArt.jpg",
         "illustrator": "Maura Kalusky",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Navigator",
@@ -1165,7 +1165,7 @@
     {
         "id": "242",
         "name": "Loan",
-        "description": "{{Cost|1|l}}<p>Reveal cards from your deck until you reveal a Treasure. Discard it or trash it. Discard the other cards.</p>",
+        "description": "{{Cost|1|l}}<p>Reveal cards from your deck until you reveal a Treasure. Discard it or trash it. Discard the other cards.",
         "image": "LoanArt.jpg",
         "illustrator": "Simon Jannerland",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Loan",
@@ -1454,7 +1454,7 @@
     {
         "id": "338",
         "name": "Hoard",
-        "description": "{{Cost|2|l}}<p>This turn, when you gain a Victory card, if you bought it, gain a Gold.</p>",
+        "description": "{{Cost|2|l}}<p>This turn, when you gain a Victory card, if you bought it, gain a Gold.",
         "image": "HoardArt.jpg",
         "illustrator": "Colin Throm",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Hoard",
@@ -2458,7 +2458,7 @@
     {
         "id": "602",
         "name": "Duchess",
-        "description": "{{Costplus|2}}<p>Each player (including you) looks at the top card of their deck and may discard it.</p>{{divline}}In games using this, when you gain a Duchy, you may gain a Duchess.",
+        "description": "{{Costplus|2}}<p>Each player (including you) looks at the top card of their deck and may discard it.{{divline}}In games using this, when you gain a Duchy, you may gain a Duchess.",
         "image": "DuchessArt.jpg",
         "illustrator": "Alayna Lemmer-Danner",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Duchess",
@@ -2494,7 +2494,7 @@
     {
         "id": "605",
         "name": "Oasis",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<br>{{Costplus|1}}<p>Discard a card.</p>",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<br>{{Costplus|1}}<p>Discard a card.",
         "image": "OasisArt.jpg",
         "illustrator": "Alayna Lemmer-Danner",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Oasis",
@@ -2518,7 +2518,7 @@
     {
         "id": "607",
         "name": "Scheme",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>This turn, you may put one of your Action cards onto your deck when you discard it from play.</p>",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>This turn, you may put one of your Action cards onto your deck when you discard it from play.",
         "image": "SchemeArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Scheme",
@@ -2542,7 +2542,7 @@
     {
         "id": "609",
         "name": "Noble Brigand",
-        "description": "{{Costplus|1}}<p>Each other player reveals the top 2&nbsp;cards of their deck, trashes a revealed Silver or Gold you choose, discards the rest, and gains a Copper if they didn't reveal a Treasure. You gain the trashed cards.</p>{{divline}}When you buy this, do its attack.",
+        "description": "{{Costplus|1}}<p>Each other player reveals the top 2&nbsp;cards of their deck, trashes a revealed Silver or Gold you choose, discards the rest, and gains a Copper if they didn't reveal a Treasure. You gain the trashed cards.{{divline}}When you buy this, do its attack.",
         "image": "Noble_BrigandArt.jpg",
         "illustrator": "Joshua Stewart",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Noble_Brigand",
@@ -2614,7 +2614,7 @@
     {
         "id": "615",
         "name": "Cartographer",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Look at the top 4&nbsp;cards of your deck. Discard any number of them, then put the rest back in any order.</p>",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Look at the top 4&nbsp;cards of your deck. Discard any number of them, then put the rest back in any order.",
         "image": "CartographerArt.jpg",
         "illustrator": "Mark Poole",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Cartographer",
@@ -2626,7 +2626,7 @@
     {
         "id": "616",
         "name": "Embassy",
-        "description": "'''+5&nbsp;Cards'''<p>Discard 3&nbsp;cards.</p>{{divline}}When you gain this, each other player gains a Silver.",
+        "description": "'''+5&nbsp;Cards'''<p>Discard 3&nbsp;cards.{{divline}}When you gain this, each other player gains a Silver.",
         "image": "EmbassyArt.jpg",
         "illustrator": "Marco Primo",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Embassy",
@@ -2638,7 +2638,7 @@
     {
         "id": "617",
         "name": "Haggler",
-        "description": "{{Costplus|2}}<p>This turn, when you gain a card, if you bought it, gain a cheaper non-Victory card.</p>",
+        "description": "{{Costplus|2}}<p>This turn, when you gain a card, if you bought it, gain a cheaper non-Victory card.",
         "image": "HagglerArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Haggler",
@@ -2650,7 +2650,7 @@
     {
         "id": "618",
         "name": "Highway",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>This turn, cards cost {{Cost|1}} less.</p>",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>This turn, cards cost {{Cost|1}} less.",
         "image": "HighwayArt.jpg",
         "illustrator": "Eric J Carter",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Highway",
@@ -2662,7 +2662,7 @@
     {
         "id": "619",
         "name": "Ill-Gotten Gains",
-        "description": "{{Cost|1|l}}<p>You may gain a Copper to your hand.</p>{{divline}}When you gain this, each other player gains a Curse.",
+        "description": "{{Cost|1|l}}<p>You may gain a Copper to your hand.{{divline}}When you gain this, each other player gains a Curse.",
         "image": "Ill-Gotten_GainsArt.jpg",
         "illustrator": "Jason Slavin",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Ill-Gotten_Gains",
@@ -2674,7 +2674,7 @@
     {
         "id": "620",
         "name": "Mandarin",
-        "description": "{{Costplus|3}}<p>Put a card from your hand onto your deck.</p>{{divline}}When you gain this, put all Treasures you have in play onto your deck in any order.",
+        "description": "{{Costplus|3}}<p>Put a card from your hand onto your deck.{{divline}}When you gain this, put all Treasures you have in play onto your deck in any order.",
         "image": "MandarinArt.jpg",
         "illustrator": "Lynell Ingram",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Mandarin",
@@ -2686,7 +2686,7 @@
     {
         "id": "621",
         "name": "Inn",
-        "description": "'''+2&nbsp;Cards<br>+2&nbsp;Actions'''<p>Discard 2&nbsp;cards.</p>{{divline}}When you gain this, reveal any number of Action cards from your discard pile and shuffle them into your deck.",
+        "description": "'''+2&nbsp;Cards<br>+2&nbsp;Actions'''<p>Discard 2&nbsp;cards.{{divline}}When you gain this, reveal any number of Action cards from your discard pile and shuffle them into your deck.",
         "image": "InnArt.jpg",
         "illustrator": "Marcel-André Casasola Merkle",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Inn",
@@ -2698,7 +2698,7 @@
     {
         "id": "622",
         "name": "Margrave",
-        "description": "'''+3&nbsp;Cards'''<br>'''+1&nbsp;Buy'''<p>Each other player draws a card, then discards down to 3&nbsp;cards in hand.</p>",
+        "description": "'''+3&nbsp;Cards'''<br>'''+1&nbsp;Buy'''<p>Each other player draws a card, then discards down to 3&nbsp;cards in hand.",
         "image": "MargraveArt.jpg",
         "illustrator": "Joshua Stewart",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Margrave",
@@ -2795,7 +2795,7 @@
     {
         "id": "1327",
         "name": "Herald",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Reveal the top card of your deck. If it's an Action, play it.</p>{{divline}}'''Overpay:''' Per {{Cost|1}} overpaid, put any card from your discard pile onto your deck.",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Reveal the top card of your deck. If it's an Action, play it.{{divline}}'''Overpay:''' Per {{Cost|1}} overpaid, put any card from your discard pile onto your deck.",
         "image": "HeraldArt.jpg",
         "illustrator": "Jessi J",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Herald",
@@ -2918,7 +2918,7 @@
     {
         "id": "2107",
         "name": "Hero",
-        "description": "{{Costplus|2}}<p>Gain a Treasure.",
+        "description": "{{Costplus|2}}<p>Gain a Treasure.{{divline}}When you discard this from play, you may exchange it for a Champion.<p>''(This is not in the Supply.)''",
         "image": "HeroArt.jpg",
         "illustrator": "Alayna Lemmer-Danner",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Hero",
@@ -3351,7 +3351,7 @@
     {
         "id": "2211",
         "name": "Bonfire",
-        "description": "Trash up to 2&nbsp;Coppers you have in play.",
+        "description": "Trash up to two Coppers you have in play.",
         "image": "BonfireArt.jpg",
         "illustrator": "Brian Brinlee",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Bonfire",
@@ -3387,7 +3387,7 @@
     {
         "id": "2214",
         "name": "Treasure Trove",
-        "description": "{{Cost|2|l}}<p>Gain a Gold and a Copper.</p>",
+        "description": "{{Cost|2|l}}<p>Gain a Gold and a Copper.",
         "image": "Treasure_TroveArt.jpg",
         "illustrator": "Marco Primo",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Treasure_Trove",
@@ -3609,7 +3609,7 @@
     {
         "id": "2263",
         "name": "Teacher",
-        "description": "Put this on your Tavern mat.{{divline}}At the start of your turn, you may call this, to move your +1&nbsp;Card, +1&nbsp;Action, +1&nbsp;Buy, or {{Costplus|1}} token to an Action Supply pile you have no tokens on. (When you play a card from that pile, you first get that bonus.)<p>''(This is not in the Supply.)''",
+        "description": "Put this on your Tavern mat.{{divline}}At the start of your turn, you may call this, to move your +1&nbsp;Card, +1&nbsp;Action, +1&nbsp;Buy, or {{Costplus|1}} token to an Action Supply pile you have no tokens on (when you play a card from that pile, you first get that bonus.)<p>''(This is not in the Supply.)''",
         "image": "TeacherArt.jpg",
         "illustrator": "Harald Lieske",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Teacher",
@@ -4687,7 +4687,7 @@
     {
         "id": "5088",
         "name": "Bard",
-        "description": "{{Costplus|2}}<p>Receive a Boon.</p>",
+        "description": "{{Costplus|2}}<p>Receive a Boon.",
         "image": "BardArt.jpg",
         "illustrator": "Elisa Cella",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Bard",
@@ -4699,7 +4699,7 @@
     {
         "id": "5163",
         "name": "Imp",
-        "description": "'''+2&nbsp;Cards'''<p>You may play an Action card from your hand that you don't have a copy of in play.</p>''(This is not in the Supply.)''",
+        "description": "'''+2&nbsp;Cards'''<p>You may play an Action card from your hand that you don't have a copy of in play.<p>''(This is not in the Supply.)''",
         "image": "ImpArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Imp",
@@ -4712,7 +4712,7 @@
     {
         "id": "5164",
         "name": "Raider",
-        "description": "<p>Each other player with 5&nbsp;or more cards in hand discards a copy of a card you have in play (or reveals they can't).</p>At the start of your next turn, {{Costplus|3}}.",
+        "description": "Each other player with 5&nbsp;or more cards in hand discards a copy of a card you have in play (or reveals they can't).<p>At the start of your next turn, {{Costplus|3}}.",
         "image": "RaiderArt.jpg",
         "illustrator": "Mark Poole",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Raider",
@@ -4724,7 +4724,7 @@
     {
         "id": "5166",
         "name": "Devil's Workshop",
-        "description": "<p>If the number of cards you've gained this turn is:</p>2+, gain an Imp;<br>1, gain a card costing up to {{Cost|4}};<br>0, gain a Gold.",
+        "description": "If the number of cards you've gained this turn is:<p>2+, gain an Imp;<br>1, gain a card costing up to {{Cost|4}};<br>0, gain a Gold.",
         "image": "Devil's_WorkshopArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Devil%27s_Workshop",
@@ -4772,7 +4772,7 @@
     {
         "id": "5194",
         "name": "Cemetery",
-        "description": "{{VP|2|l}}{{divline}}<p>When you gain this, trash up to 4&nbsp;cards from your hand.</p>''Heirloom: Haunted Mirror''",
+        "description": "{{VP|2|l}}{{divline}}When you gain this, trash up to 4&nbsp;cards from your hand.<p>''Heirloom: Haunted Mirror''",
         "image": "CemeteryArt.jpg",
         "illustrator": "Marcel-André Casasola Merkle",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Cemetery",
@@ -4784,7 +4784,7 @@
     {
         "id": "5195",
         "name": "Shepherd",
-        "description": "'''+1&nbsp;Action'''<p>Discard any number of Victory cards, revealing them. '''+2&nbsp;Cards''' per card discarded.</p>''Heirloom: Pasture''",
+        "description": "'''+1&nbsp;Action'''<p>Discard any number of Victory cards, revealing them. '''+2&nbsp;Cards''' per card discarded.<p>''Heirloom: Pasture''",
         "image": "ShepherdArt.jpg",
         "illustrator": "Matthias Catrein",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Shepherd",
@@ -4796,7 +4796,7 @@
     {
         "id": "5196",
         "name": "Pooka",
-        "description": "<p>You may trash a Treasure other than Cursed Gold from your hand, for '''+4&nbsp;Cards'''.</p>''Heirloom: Cursed Gold''",
+        "description": "<p>You may trash a Treasure other than Cursed Gold from your hand, for '''+4&nbsp;Cards'''.<p>''Heirloom: Cursed Gold''",
         "image": "PookaArt.jpg",
         "illustrator": "Harald Lieske",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Pooka",
@@ -4820,7 +4820,7 @@
     {
         "id": "5199",
         "name": "Ghost",
-        "description": "<p>Reveal cards from your deck until you reveal an Action. Discard the other cards and set aside the Action. At the start of your next turn, play it twice.</p>''(This is not in the Supply.)''",
+        "description": "Reveal cards from your deck until you reveal an Action. Discard the other cards and set aside the Action. At the start of your next turn, play it twice.<p>''(This is not in the Supply.)''",
         "image": "GhostArt.jpg",
         "illustrator": "Eric J Carter",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Ghost",
@@ -4833,7 +4833,7 @@
     {
         "id": "5201",
         "name": "Cursed Gold",
-        "description": "{{Cost|3|l}}<p>Gain a Curse.</p>",
+        "description": "{{Cost|3|l}}<p>Gain a Curse.",
         "image": "Cursed_GoldArt.jpg",
         "illustrator": "Harald Lieske",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Cursed_Gold",
@@ -4869,7 +4869,7 @@
     {
         "id": "5224",
         "name": "Idol",
-        "description": "{{Cost|2|l}}<p>If you have an odd number of Idols in play (counting this), receive a Boon; otherwise, each other player gains a Curse.</p>",
+        "description": "{{Cost|2|l}}<p>If you have an odd number of Idols in play (counting this), receive a Boon; otherwise, each other player gains a Curse.",
         "image": "IdolArt.jpg",
         "illustrator": "Ryan Laukat",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Idol",
@@ -4893,7 +4893,7 @@
     {
         "id": "5230",
         "name": "Druid",
-        "description": "'''+1&nbsp;Buy'''<p>Receive one of the set-aside Boons (leaving it there).</p>{{divline}}Setup: Set aside the top 3 Boons face up.",
+        "description": "'''+1&nbsp;Buy'''<p>Receive one of the set-aside Boons (leaving it there).{{divline}}Setup: Set aside the top 3 Boons face up.",
         "image": "DruidArt.jpg",
         "illustrator": "Grant Hansen",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Druid",
@@ -4917,7 +4917,7 @@
     {
         "id": "5232",
         "name": "Will-o'-Wisp",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Reveal the top card of your deck. If it costs {{Cost|2}} or less, put it into your hand.</p>''(This is not in the Supply.)''",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Reveal the top card of your deck. If it costs {{Cost|2}} or less, put it into your hand.<p>''(This is not in the Supply.)''",
         "image": "Will-o'-WispArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Will-o%27-Wisp",
@@ -4930,7 +4930,7 @@
     {
         "id": "5238",
         "name": "Fool",
-        "description": "<p>If you aren't the player with Lost in the Woods: take it, take 3&nbsp;Boons, and receive the Boons in any order.</p>''Heirloom: Lucky Coin''",
+        "description": "If you aren't the player with Lost in the Woods: take it, take 3&nbsp;Boons, and receive the Boons in any order.<p>''Heirloom: Lucky Coin''",
         "image": "FoolArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Fool",
@@ -4978,7 +4978,7 @@
     {
         "id": "5259",
         "name": "Lucky Coin",
-        "description": "{{Cost|1|l}}<p>Gain a Silver.</p>",
+        "description": "{{Cost|1|l}}<p>Gain a Silver.",
         "image": "Lucky_CoinArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Lucky_Coin",
@@ -5014,7 +5014,7 @@
     {
         "id": "5262",
         "name": "The River's Gift",
-        "description": "<p>'''+1&nbsp;Card''' at the end of this turn.</p>''(Keep this until Clean-up.)''",
+        "description": "'''+1&nbsp;Card''' at the end of this turn.<p>''(Keep this until Clean-up.)''",
         "image": "The_River's_GiftArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/The_River%27s_Gift",
@@ -5026,7 +5026,7 @@
     {
         "id": "5263",
         "name": "The Forest's Gift",
-        "description": "'''+1&nbsp;Buy'''<br>{{Costplus|1}}<p>''(Keep this until Clean-up.)''</p>",
+        "description": "'''+1&nbsp;Buy'''<br>{{Costplus|1}}<p>''(Keep this until Clean-up.)''",
         "image": "The_Forest's_GiftArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/The_Forest%27s_Gift",
@@ -5050,7 +5050,7 @@
     {
         "id": "5265",
         "name": "The Wind's Gift",
-        "description": "'''+2&nbsp;Cards'''<p>Discard 2&nbsp;cards.</p>",
+        "description": "'''+2&nbsp;Cards'''<p>Discard 2&nbsp;cards.",
         "image": "The_Wind's_GiftArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/The_Wind%27s_Gift",
@@ -5062,7 +5062,7 @@
     {
         "id": "5266",
         "name": "The Field's Gift",
-        "description": "'''+1&nbsp;Action'''<br>{{Costplus|1}}<p>''(Keep this until Clean-up.)''</p>",
+        "description": "'''+1&nbsp;Action'''<br>{{Costplus|1}}<p>''(Keep this until Clean-up.)''",
         "image": "The_Field's_GiftArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/The_Field%27s_Gift",
@@ -5290,7 +5290,7 @@
     {
         "id": "5318",
         "name": "Wish",
-        "description": "'''+1&nbsp;Action'''<p>Return this to its pile. If you did, gain a card to your hand costing up to {{Cost|6}}.</p>''(This is not in the Supply.)''",
+        "description": "'''+1&nbsp;Action'''<p>Return this to its pile. If you did, gain a card to your hand costing up to {{Cost|6}}.<p>''(This is not in the Supply.)''",
         "image": "WishArt.jpg",
         "illustrator": "Marcel-André Casasola Merkle",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Wish",
@@ -5303,7 +5303,7 @@
     {
         "id": "5320",
         "name": "Skulk",
-        "description": "'''+1&nbsp;Buy'''<p>Each other player receives the next Hex.</p>{{divline}}When you gain this, gain a Gold.",
+        "description": "'''+1&nbsp;Buy'''<p>Each other player receives the next Hex.{{divline}}When you gain this, gain a Gold.",
         "image": "SkulkArt.jpg",
         "illustrator": "Elisa Cella",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Skulk",
@@ -5315,7 +5315,7 @@
     {
         "id": "5321",
         "name": "Cursed Village",
-        "description": "'''+2&nbsp;Actions'''<p>Draw until you have 6&nbsp;cards in hand.</p>{{divline}}When you gain this, receive a Hex.",
+        "description": "'''+2&nbsp;Actions'''<p>Draw until you have 6&nbsp;cards in hand.{{divline}}When you gain this, receive a Hex.",
         "image": "Cursed_VillageArt.jpg",
         "illustrator": "Joshua Stewart",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Cursed_Village",
@@ -5339,7 +5339,7 @@
     {
         "id": "5334",
         "name": "Vampire",
-        "description": "Each other player receives the next Hex.<p> Gain a card costing up to {{Cost|5}} other than a Vampire.</p>Exchange this for a Bat.",
+        "description": "Each other player receives the next Hex.<p>Gain a card costing up to {{Cost|5}} other than a Vampire.<p>Exchange this for a Bat.",
         "image": "VampireArt.jpg",
         "illustrator": "Martin Hoffmann",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Vampire",
@@ -5351,7 +5351,7 @@
     {
         "id": "5335",
         "name": "Bat",
-        "description": "<p>Trash up to 2&nbsp;cards from your hand. If you trashed at least one, exchange this for a Vampire.</p>''(This is not in the Supply.)''",
+        "description": "Trash up to 2&nbsp;cards from your hand. If you trashed at least one, exchange this for a Vampire.<p>''(This is not in the Supply.)''",
         "image": "BatArt.jpg",
         "illustrator": "Martin Hoffmann",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Bat",
@@ -5376,7 +5376,7 @@
     {
         "id": "5337",
         "name": "Pixie",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Discard the top Boon. You may trash this to receive that Boon twice.</p>''Heirloom: Goat''",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Discard the top Boon. You may trash this to receive that Boon twice.<p>''Heirloom: Goat''",
         "image": "PixieArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Pixie",
@@ -5388,7 +5388,7 @@
     {
         "id": "5338",
         "name": "Goat",
-        "description": "{{Cost|1|l}}<p>You may trash a card from your hand.</p>",
+        "description": "{{Cost|1|l}}<p>You may trash a card from your hand.",
         "image": "GoatArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Goat",
@@ -5436,7 +5436,7 @@
     {
         "id": "5354",
         "name": "Zombie Spy",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Look at the top card of your deck. Discard it or put it back.</p>",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>Look at the top card of your deck. Discard it or put it back.",
         "image": "Zombie_SpyArt.jpg",
         "illustrator": "Marco Primo",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Zombie_Spy",
@@ -5448,7 +5448,7 @@
     {
         "id": "5413",
         "name": "Guardian",
-        "description": "At the start of your next turn, {{Costplus|1}}.<br> Until then, when another player plays an Attack card, it doesn't affect you.{{divline}}This is gained to your hand (instead of your discard pile).",
+        "description": "At the start of your next turn, {{Costplus|1}}. Until then, when another player plays an Attack card, it doesn't affect you.{{divline}}This is gained to your hand (instead of your discard pile).",
         "image": "GuardianArt.jpg",
         "illustrator": "Martin Hoffmann",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Guardian",
@@ -5508,7 +5508,7 @@
     {
         "id": "5431",
         "name": "Pouch",
-        "description": "{{Cost|1|l}}<p>'''+1&nbsp;Buy'''</p>",
+        "description": "{{Cost|1|l}}<p>'''+1&nbsp;Buy'''",
         "image": "PouchArt.jpg",
         "illustrator": "Martin Hoffmann",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Pouch",
@@ -5532,7 +5532,7 @@
     {
         "id": "5447",
         "name": "Secret Cave",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>You may discard 3&nbsp;cards. If you did, then at the start of your next turn, {{Costplus|3}}.</p>''Heirloom: Magic Lamp''",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>You may discard 3&nbsp;cards. If you did, then at the start of your next turn, {{Costplus|3}}.<p>''Heirloom: Magic Lamp''",
         "image": "Secret_CaveArt.jpg",
         "illustrator": "Ryan Laukat",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Secret_Cave",
@@ -5544,7 +5544,7 @@
     {
         "id": "5448",
         "name": "Magic Lamp",
-        "description": "{{Cost|1|l}}<p>If there are at least 6&nbsp;cards that you have exactly 1&nbsp;copy of in play (counting this), trash this. If you did, gain 3&nbsp;Wishes.</p>",
+        "description": "{{Cost|1|l}}<p>If there are at least 6&nbsp;cards that you have exactly 1&nbsp;copy of in play (counting this), trash this. If you did, gain 3&nbsp;Wishes.",
         "image": "Magic_LampArt.jpg",
         "illustrator": "Ryan Laukat",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Magic_Lamp",
@@ -5556,7 +5556,7 @@
     {
         "id": "5449",
         "name": "Sacred Grove",
-        "description": "'''+1&nbsp;Buy'''<br>{{Costplus|3}}<p>Receive a Boon. If it doesn't give {{Costplus|1}}, each other player may receive it.</p>",
+        "description": "'''+1&nbsp;Buy'''<br>{{Costplus|3}}<p>Receive a Boon. If it doesn't give {{Costplus|1}}, each other player may receive it.",
         "image": "Sacred_GroveArt.jpg",
         "illustrator": "Martin Hoffmann",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Sacred_Grove",
@@ -5568,7 +5568,7 @@
     {
         "id": "5450",
         "name": "Tormentor",
-        "description": "{{Costplus|2}}<p>If you have no other cards in play, gain an Imp. Otherwise, each other player receives the next Hex.</p>",
+        "description": "{{Costplus|2}}<p>If you have no other cards in play, gain an Imp. Otherwise, each other player receives the next Hex.",
         "image": "TormentorArt.jpg",
         "illustrator": "Claus Stephan",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Tormentor",
@@ -5580,7 +5580,7 @@
     {
         "id": "5451",
         "name": "Conclave",
-        "description": "{{Costplus|2}}<p>You may play an Action card from your hand that you don't have a copy of in play. If you do, '''+1&nbsp;Action'''.</p>",
+        "description": "{{Costplus|2}}<p>You may play an Action card from your hand that you don't have a copy of in play. If you do, '''+1&nbsp;Action'''.",
         "image": "ConclaveArt.jpg",
         "illustrator": "Joshua Stewart",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Conclave",
@@ -5604,7 +5604,7 @@
     {
         "id": "5453",
         "name": "Tragic Hero",
-        "description": "'''+3&nbsp;Cards'''<br>'''+1&nbsp;Buy'''<p>If you have 8&nbsp;or more cards in hand (after drawing), trash this and gain a Treasure.</p>",
+        "description": "'''+3&nbsp;Cards'''<br>'''+1&nbsp;Buy'''<p>If you have 8&nbsp;or more cards in hand (after drawing), trash this and gain a Treasure.",
         "image": "Tragic_HeroArt.jpg",
         "illustrator": "Brian Brinlee",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Tragic_Hero",
@@ -8105,7 +8105,7 @@
     {
         "id": "8628",
         "name": "Sea Witch",
-        "description": "'''+2&nbsp;Cards'''<p>Each other player gains a Curse.</p>At the start of your next turn, '''+2&nbsp;Cards''', then discard 2&nbsp;cards.",
+        "description": "'''+2&nbsp;Cards'''<p>Each other player gains a Curse.<p>At the start of your next turn, '''+2&nbsp;Cards''', then discard 2&nbsp;cards.",
         "image": "Sea_WitchArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Sea_Witch",
@@ -8273,7 +8273,7 @@
     {
         "id": "8809",
         "name": "Wheelwright",
-        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>You may discard a card to gain an Action card costing as much as it or less.</p>",
+        "description": "'''+1&nbsp;Card'''<br>'''+1&nbsp;Action'''<p>You may discard a card to gain an Action card costing as much as it or less.",
         "image": "WheelwrightArt.jpg",
         "illustrator": "Elisa Cella",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Wheelwright",
@@ -8285,7 +8285,7 @@
     {
         "id": "8810",
         "name": "Witch's Hut",
-        "description": "'''+4&nbsp;Cards'''<p>Discard 2&nbsp;cards, revealed. If they're both Actions, each other player gains a Curse.</p>",
+        "description": "'''+4&nbsp;Cards'''<p>Discard 2&nbsp;cards, revealed. If they're both Actions, each other player gains a Curse.",
         "image": "Witch's_HutArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Witch%27s_Hut",
@@ -8309,7 +8309,7 @@
     {
         "id": "8816",
         "name": "Souk",
-        "description": "'''+1&nbsp;Buy'''<br>{{Costplus|7}}<p>{{nowrap|–{{Cost|1}}}} per card in your hand (you can't go below {{Cost|0}}).</p>{{divline}}When you gain this, trash up to 2&nbsp;cards from your hand.",
+        "description": "'''+1&nbsp;Buy'''<br>{{Costplus|7}}<p>{{nowrap|–{{Cost|1}}}} per card in your hand (you can't go below {{Cost|0}}).{{divline}}When you gain this, trash up to 2&nbsp;cards from your hand.",
         "image": "SoukArt.jpg",
         "illustrator": "Garret DeChellis",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Souk",
@@ -8321,7 +8321,7 @@
     {
         "id": "8817",
         "name": "Guard Dog",
-        "description": "'''+2&nbsp;Cards'''<p>If you have 5&nbsp;or fewer cards in hand, '''+2&nbsp;Cards'''.</p>{{divline}}When another player plays an Attack, you may first play this from your hand.",
+        "description": "'''+2&nbsp;Cards'''<p>If you have 5&nbsp;or fewer cards in hand, '''+2&nbsp;Cards'''.{{divline}}When another player plays an Attack, you may first play this from your hand.",
         "image": "Guard_DogArt.jpg",
         "illustrator": "Julien Delval",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Guard_Dog",
@@ -8345,7 +8345,7 @@
     {
         "id": "8831",
         "name": "Cauldron",
-        "description": "{{Cost|2|l}}<br>'''+1&nbsp;Buy'''<p>The third time you gain an Action this turn, each other player gains a Curse.</p>",
+        "description": "{{Cost|2|l}}<br>'''+1&nbsp;Buy'''<p>The third time you gain an Action this turn, each other player gains a Curse.",
         "image": "CauldronArt.jpg",
         "illustrator": "Garret DeChellis",
         "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Cauldron",
@@ -9820,6 +9820,18 @@
         "types": ["1584"],
         "isKingdomCard": false,
         "cost": 3
+    },
+    {
+        "id": "11404",
+        "name": "Sickness",
+        "description": "At the start of your turn, choose one: Gain a Curse onto your deck; or discard 3&nbsp;cards.",
+        "image": "SicknessArt.jpg",
+        "illustrator": "Donald Crank",
+        "wikiUrl": "http://wiki.dominionstrategy.com/index.php/Sickness",
+        "editions": ["10428-1"],
+        "types": ["1370"],
+        "isKingdomCard": false,
+        "cost": 0
     },
     {
         "id": "11405",

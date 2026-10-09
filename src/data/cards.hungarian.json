@@ -1,9 +1,13 @@
 [
     { "id": "16", "name": "Pince", "description": "" },
     { "id": "17", "name": "Kápolna", "description": "" },
-    { "id": "18", "name": "Várárok", "description": "" },
+    {
+        "id": "18",
+        "name": "Várárok",
+        "description": "'''+2&nbsp;kártya'''{{Divline}}Amikor egy másik játékos támadáskártyát játszik ki, felfedheted először ezt a kezedből, hogy az ne hasson rád."
+    },
     { "id": "19", "name": "Kancellár", "description": "" },
-    { "id": "20", "name": "Falu", "description": "" },
+    { "id": "20", "name": "Falu", "description": "'''+1&nbsp;kártya'''<br>'''+2&nbsp;akció'''" },
     { "id": "24", "name": "Favágó", "description": "" },
     { "id": "25", "name": "Műhely", "description": "" },
     { "id": "34", "name": "Palotaudvar", "description": "" },
@@ -11,19 +15,43 @@
     { "id": "37", "name": "Lakoma", "description": "" },
     { "id": "38", "name": "Park", "description": "" },
     { "id": "39", "name": "Polgárőrség", "description": "" },
-    { "id": "40", "name": "Uzsorás", "description": "" },
+    {
+        "id": "40",
+        "name": "Uzsorás",
+        "description": "Kihajíthatsz egy ''Réz'' kártyát a kezedből {{Costplus|3}}-ért."
+    },
     { "id": "41", "name": "Átépítés", "description": "" },
     { "id": "42", "name": "Kovácsműhely", "description": "" },
     { "id": "43", "name": "Kém", "description": "" },
     { "id": "44", "name": "Tolvaj", "description": "" },
-    { "id": "45", "name": "Trónterem", "description": "" },
-    { "id": "46", "name": "Tanácsterem", "description": "" },
-    { "id": "47", "name": "Fesztivál", "description": "" },
+    {
+        "id": "45",
+        "name": "Trónterem",
+        "description": "Egy akciókártyát a kezedből duplán játszhatsz ki."
+    },
+    {
+        "id": "46",
+        "name": "Tanácsterem",
+        "description": "'''+4&nbsp;kártya'''<br>'''+1&nbsp;vásárlás'''<p>Minden másik játékos hüz egy kártyát."
+    },
+    {
+        "id": "47",
+        "name": "Fesztivál",
+        "description": "'''+2&nbsp;akció'''<br>'''+1&nbsp;vásárlás'''<br>{{Costplus|2}}"
+    },
     { "id": "48", "name": "Laboratórium", "description": "" },
-    { "id": "49", "name": "Könyvtár", "description": "" },
+    {
+        "id": "49",
+        "name": "Könyvtár",
+        "description": "Húzz, amig 7&nbsp;kártya nem lesz a kezedben, kihagyva minden olyan akciókártyát, amelyet úgy döntesz, hogy nem akarsz felhúzni; ezeket tedd félre, majd dobd el."
+    },
     { "id": "50", "name": "Piac", "description": "" },
     { "id": "51", "name": "Bánya", "description": "" },
-    { "id": "52", "name": "Boszorkány", "description": "" },
+    {
+        "id": "52",
+        "name": "Boszorkány",
+        "description": "'''+2&nbsp;kártya'''<p>Minden másik játékos szerez egy ''Átok'' kártyát."
+    },
     { "id": "53", "name": "Kalandor", "description": "" },
     { "id": "72", "name": "Csatlós", "description": "" },
     { "id": "73", "name": "Rejtekszoba", "description": "" },
@@ -48,12 +76,37 @@
     { "id": "92", "name": "Sarc", "description": "" },
     { "id": "93", "name": "Fejlesztés", "description": "" },
     { "id": "95", "name": "Nemesség", "description": "" },
-    { "id": "212", "name": "Átok", "description": "" },
-    { "id": "517", "name": "Réz", "description": "" },
-    { "id": "525", "name": "Birtok", "description": "" },
-    { "id": "526", "name": "Ezüst", "description": "" },
-    { "id": "528", "name": "Hercegség", "description": "" },
-    { "id": "529", "name": "Arany", "description": "" },
-    { "id": "530", "name": "Tartomány", "description": "" },
+    { "id": "212", "name": "Átok", "description": "{{VP|-1|l}}" },
+    { "id": "517", "name": "Réz", "description": "{{Cost|1|l}}" },
+    { "id": "525", "name": "Birtok", "description": "{{VP|1|l}}" },
+    { "id": "526", "name": "Ezüst", "description": "{{Cost|2|l}}" },
+    { "id": "528", "name": "Hercegség", "description": "{{VP|3|l}}" },
+    { "id": "529", "name": "Arany", "description": "{{Cost|3|l}}" },
+    { "id": "530", "name": "Tartomány", "description": "{{VP|6|l}}" },
+    {
+        "id": "3496",
+        "name": "Hírvivő",
+        "description": "'''+1&nbsp;kártya'''<br>'''+1&nbsp;akció'''<p>Nézd át a dobópaklid. Egy kártyát a paklidra rakhatsz belőle."
+    },
+    {
+        "id": "3497",
+        "name": "Kereskedő",
+        "description": "'''+1&nbsp;kártya'''<br>'''+1&nbsp;akció'''<p>Amikor ebben a körben először játszol ki ''Ezüst'' kártyát, {{Costplus|1}}."
+    },
+    {
+        "id": "3499",
+        "name": "Vadorzó",
+        "description": "'''+1&nbsp;kártya'''<br>'''+1&nbsp;akció'''<br>{{Costplus|1}}<p>Dobj el egy kártyát üres kínálatpaklinként."
+    },
+    {
+        "id": "3500",
+        "name": "Rabló",
+        "description": "Szerezz egy ''Arany'' kártyát. Minden másik játékos megmutatja a paklija felső 2&nbsp;kártyáját, ha felfedett, akkor kihajit egy nem ''Réz'' kincskártyát, majd eldobja a megmaradt(ak)at."
+    },
+    {
+        "id": "3502",
+        "name": "Kézműves",
+        "description": "Szerezz egy legfeljebb {{Cost|5}} értékű kártyát a kezedbe.<p>Rakj egy kártyát a kezedből a paklidra."
+    },
     { "id": "10190", "name": "Hárem", "description": "" }
 ]

@@ -14,7 +14,14 @@
     { "id": "2821", "name": "Krajobraz" },
     { "id": "3258", "name": "Gromadzenie" },
     { "id": "3304", "name": "Zamki" },
+    { "id": "4216", "name": "Noc" },
+    { "id": "4217", "name": "Pamiątka" },
+    { "id": "4218", "name": "Los" },
+    { "id": "4219", "name": "Fatum" },
     { "id": "4220", "name": "Łaska" },
     { "id": "4221", "name": "Urok" },
+    { "id": "5165", "name": "Duch" },
+    { "id": "5251", "name": "Stan" },
+    { "id": "5356", "name": "Zombie" },
     { "id": "6442", "name": "Rozkaz" }
 ]
