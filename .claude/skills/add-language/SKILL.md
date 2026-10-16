@@ -1,6 +1,6 @@
 ---
 name: add-language
-description: Checklist for adding a locale to the app - the places that have to change together, from the Language enum to all 19 redirect rules in vercel.json. Use when adding a language, wiring up a new locale, or changing the country redirects.
+description: Checklist for adding a locale to the app - the places that have to change together, from the Language enum to every redirect rule in vercel.json. Use when adding a language, wiring up a new locale, or changing the country redirects.
 ---
 
 # Adding a language
@@ -76,7 +76,7 @@ units, or take an existing `.xlf` as the template.
 
 Two edits, and the first one touches every rule in the file:
 
-1. Add `(?!<code>/)` to the negative lookahead in the `source` of **all 19 redirect rules**. They all
+1. Add `(?!<code>/)` to the negative lookahead in the `source` of **every redirect rule**. They all
    carry the identical alternation; a rule that misses the new code will redirect visitors away from
    the new locale.
 2. Add a redirect for the country, next to the others, before the English fallback:
