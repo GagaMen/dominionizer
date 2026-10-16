@@ -8,9 +8,13 @@
     },
     { "id": "19", "name": "Kancellár", "description": "" },
     { "id": "20", "name": "Falu", "description": "'''+1&nbsp;kártya'''<br>'''+2&nbsp;akció'''" },
-    { "id": "24", "name": "Favágó", "description": "" },
+    { "id": "24", "name": "Favágó", "description": "'''+1&nbsp;vásárlás'''<br>{{Costplus|2}}" },
     { "id": "25", "name": "Műhely", "description": "" },
-    { "id": "34", "name": "Palotaudvar", "description": "" },
+    {
+        "id": "34",
+        "name": "Palotaudvar",
+        "description": "'''+3&nbsp;lap'''<p>Tegyél a kezedből egy lapot a húzópaklid tetejére."
+    },
     { "id": "36", "name": "Hivatalnok", "description": "" },
     { "id": "37", "name": "Lakoma", "description": "" },
     { "id": "38", "name": "Park", "description": "" },
@@ -21,7 +25,7 @@
         "description": "Kihajíthatsz egy ''Réz'' kártyát a kezedből {{Costplus|3}}-ért."
     },
     { "id": "41", "name": "Átépítés", "description": "" },
-    { "id": "42", "name": "Kovácsműhely", "description": "" },
+    { "id": "42", "name": "Kovácsműhely", "description": "'''+3&nbsp;kártya'''" },
     { "id": "43", "name": "Kém", "description": "" },
     { "id": "44", "name": "Tolvaj", "description": "" },
     {
@@ -39,13 +43,21 @@
         "name": "Fesztivál",
         "description": "'''+2&nbsp;akció'''<br>'''+1&nbsp;vásárlás'''<br>{{Costplus|2}}"
     },
-    { "id": "48", "name": "Laboratórium", "description": "" },
+    {
+        "id": "48",
+        "name": "Laboratórium",
+        "description": "'''+2&nbsp;kártya'''<br>'''+1&nbsp;akció'''"
+    },
     {
         "id": "49",
         "name": "Könyvtár",
         "description": "Húzz, amig 7&nbsp;kártya nem lesz a kezedben, kihagyva minden olyan akciókártyát, amelyet úgy döntesz, hogy nem akarsz felhúzni; ezeket tedd félre, majd dobd el."
     },
-    { "id": "50", "name": "Piac", "description": "" },
+    {
+        "id": "50",
+        "name": "Piac",
+        "description": "'''+1&nbsp;kártya'''<br>'''+1&nbsp;akció'''<br>'''+1&nbsp;vásárlás'''<br>{{Costplus|1}}"
+    },
     { "id": "51", "name": "Bánya", "description": "" },
     {
         "id": "52",
@@ -53,29 +65,121 @@
         "description": "'''+2&nbsp;kártya'''<p>Minden másik játékos szerez egy ''Átok'' kártyát."
     },
     { "id": "53", "name": "Kalandor", "description": "" },
-    { "id": "72", "name": "Csatlós", "description": "" },
-    { "id": "73", "name": "Rejtekszoba", "description": "" },
-    { "id": "74", "name": "Nagyterem", "description": "" },
-    { "id": "75", "name": "Álarcosbál", "description": "" },
-    { "id": "76", "name": "Kunyhótelep", "description": "" },
-    { "id": "77", "name": "Intéző", "description": "" },
-    { "id": "78", "name": "Szélhámos", "description": "" },
-    { "id": "79", "name": "Kívánságok kútja", "description": "" },
-    { "id": "80", "name": "Báró", "description": "" },
-    { "id": "81", "name": "Híd", "description": "" },
-    { "id": "82", "name": "Összeesküvő", "description": "" },
-    { "id": "83", "name": "Rézműves", "description": "" },
-    { "id": "84", "name": "Kohó", "description": "" },
-    { "id": "85", "name": "Bányászfalu", "description": "" },
-    { "id": "86", "name": "Felderítő", "description": "" },
-    { "id": "87", "name": "Herceg", "description": "" },
-    { "id": "88", "name": "Udvaronc", "description": "" },
-    { "id": "89", "name": "Szabotőr", "description": "" },
-    { "id": "90", "name": "Kínvallató", "description": "" },
-    { "id": "91", "name": "Vándorpiac", "description": "" },
-    { "id": "92", "name": "Sarc", "description": "" },
-    { "id": "93", "name": "Fejlesztés", "description": "" },
-    { "id": "95", "name": "Nemesség", "description": "" },
+    {
+        "id": "72",
+        "name": "Csatlós",
+        "description": "Válassz kettő különbözőt ezek közül:<br>+1&nbsp;lap, +1&nbsp;akció,<br>+1&nbsp;vásárlás, {{Costplus|1}}"
+    },
+    {
+        "id": "73",
+        "name": "Rejtekszoba",
+        "description": "Dobj el tetszőleges számú lapot. {{Costplus|1}} mindegyikért.{{Divline}}Kijátszhatod ezt a lapot, amikor támadás ér. Ha ezt megteszed, +2&nbsp;lap, majd tegyél a húzópaklid tetejére a kezedből 2&nbsp;lapot."
+    },
+    {
+        "id": "74",
+        "name": "Nagyterem",
+        "description": "'''+1&nbsp;lap'''<br>'''+1&nbsp;akció'''{{Divline}}{{VP|1|l}}"
+    },
+    {
+        "id": "75",
+        "name": "Álarcosbál",
+        "description": "'''+2&nbsp;lap'''<p>Minden játékos egyszerre átad egy lapot a kezéből a bal oldali szomszédjának. Ezt követően kidobhatsz egy lapot a szemétbe."
+    },
+    {
+        "id": "76",
+        "name": "Kunyhótelep",
+        "description": "'''+2&nbsp;akció'''<p>Fedd fel a lapjaidat. Ha nincs közöttük akciókártya: +2 lap."
+    },
+    {
+        "id": "77",
+        "name": "Intéző",
+        "description": "Válassz egyet:<p>+2&nbsp;lap, vagy {{Costplus|2}} vagy a kezedből 2&nbsp;lapot a szemétre dobsz."
+    },
+    {
+        "id": "78",
+        "name": "Szélhámos",
+        "description": "{{Costplus|2}}<p>A többi játékos szemétbe dobja a húzópaklijának legfelső lapját, és kap helyette egy azzal azonos értékű, általad választott lapot."
+    },
+    {
+        "id": "79",
+        "name": "Kívánságok kútja",
+        "description": "'''+1&nbsp;lap'''<br>'''+1&nbsp;akció'''<p>Nevezz meg egy kártyafajtát. Fordítsd fel a húzópaklid legfelső lapját. Ha a megfordított lap azonos a megnevezettel, vedd a kezedbe."
+    },
+    {
+        "id": "80",
+        "name": "Báró",
+        "description": "'''+1&nbsp;vásárlás'''<p>Eldobhatsz egy birtokkártyát Ha eldobsz, {{Costplus|4}}. Ha nem dobsz el, húzz egy birtokkártyát."
+    },
+    {
+        "id": "81",
+        "name": "Híd",
+        "description": "'''+1&nbsp;vásárlás'''<br>{{Costplus|1}}<p>Ebben a körödben minden kártya (a kézben tartott lapoké is) {{Cost|1}}-gyel kevesebbe kerül, {{Cost|0}}-nál nem lehet kevesebb."
+    },
+    {
+        "id": "82",
+        "name": "Összeesküvő",
+        "description": "{{Costplus|2}}<p>Ha (ezt megelőzően) legalább 3&nbsp;akciót kijátszottál ebben a körben: +1&nbsp;kártya, +1&nbsp;akció."
+    },
+    {
+        "id": "83",
+        "name": "Rézműves",
+        "description": "Ebben a körben minden rézkártyád {{Costplus|1}}-et ér."
+    },
+    {
+        "id": "84",
+        "name": "Kohó",
+        "description": "Kapsz egy legfeljebb {{Cost|4}} érme értékű kártyát.<p>Ha a kártya…<br>akciókártya: +1&nbsp;akció<br>kincskártya: {{Costplus|1}}<br>győzelmipont-kártya: +1&nbsp;lap"
+    },
+    {
+        "id": "85",
+        "name": "Bányászfalu",
+        "description": "'''+1&nbsp;lap'''<br>'''+2&nbsp;akció'''<p>Kidobhatod ezt a lapot a szemétre. Ha megteszed, {{Costplus|2}}."
+    },
+    {
+        "id": "86",
+        "name": "Felderítő",
+        "description": "'''+1&nbsp;akció'''<p>Fedd fel húzópaklid felső 4&nbsp;lapját. A felfedett győzelmipont-kártyákat vedd a kezedbe, a többit tetszőleges sorrendben tedd vissza a húzópaklid tetejére."
+    },
+    {
+        "id": "87",
+        "name": "Herceg",
+        "description": "Hercegenként a paklid minden hercegségéért {{VP|'''1'''}}-t kapsz a játék végén."
+    },
+    {
+        "id": "88",
+        "name": "Udvaronc",
+        "description": "'''+1&nbsp;akció'''<p>Válassz: {{Costplus|2}}, vagy dobd el a paklidat, húzz 4&nbsp;lapot, majd minden olyan játékos, akinek legalább 5 lapja van a kezében, dobja el azokat, és húzzon 4&nbsp;lapot."
+    },
+    {
+        "id": "89",
+        "name": "Szabotőr",
+        "description": "Minden ellenfeled sorban felfedi húzópaklija lapjait addig, amíg nem húz egy legalább {{Cost|3}}-ba kerülő lapot. Azt a lapot ki kell dobnia a szemétbe, és választhat helyette egy legalább {{Cost|2}}-vel olcsóbbat a készletből. A többi felfedett lapját el kell dobnia."
+    },
+    {
+        "id": "90",
+        "name": "Kínvallató",
+        "description": "'''+3&nbsp;lap'''<p>Az összes többi játékosnak választania kell: eldob 2&nbsp;lapot, vagy húz egy átokkártyát, és azt a kezébe veszi."
+    },
+    {
+        "id": "91",
+        "name": "Vándorpiac",
+        "description": "Dobj 2&nbsp;lapot a szemétbe a kezedből. Kapsz értük egy ezüstöt – vedd a kezedbe."
+    },
+    {
+        "id": "92",
+        "name": "Sarc",
+        "description": "A balodon ülő játékos felfedi és eldobja a húzópaklija 2 felső lapját. Minden különböző nevű felfedett lapért, ha az egy…<br>akciókártya: +2&nbsp;akció<br>kincskártya: {{Costplus|2}}<br>győzelmipont-kártya: +2&nbsp;lap"
+    },
+    {
+        "id": "93",
+        "name": "Fejlesztés",
+        "description": "'''+1&nbsp;lap'''<br>'''+1&nbsp;akció'''<p>Dobj egy lapot a kezedből a szemétbe, és kaphatsz helyette egy pontosan {{Cost|1}}-gyel drágábbat."
+    },
+    {
+        "id": "95",
+        "name": "Nemesség",
+        "description": "Válassz egyet: +3&nbsp;lap vagy +2&nbsp;akció{{Divline}}{{VP|2|l}}"
+    },
     { "id": "212", "name": "Átok", "description": "{{VP|-1|l}}" },
     { "id": "517", "name": "Réz", "description": "{{Cost|1|l}}" },
     { "id": "525", "name": "Birtok", "description": "{{VP|1|l}}" },
@@ -108,5 +212,5 @@
         "name": "Kézműves",
         "description": "Szerezz egy legfeljebb {{Cost|5}} értékű kártyát a kezedbe.<p>Rakj egy kártyát a kezedből a paklidra."
     },
-    { "id": "10190", "name": "Hárem", "description": "" }
+    { "id": "10190", "name": "Hárem", "description": "{{Cost|2|l}}<p>{{VP|2|l}}" }
 ]

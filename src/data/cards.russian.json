@@ -629,7 +629,7 @@
     { "id": "3341", "name": "Легионер", "description": "" },
     { "id": "3343", "name": "Повелитель", "description": "" },
     { "id": "3345", "name": "Патриций", "description": "" },
-    { "id": "3347", "name": "Награбленное", "description": "" },
+    { "id": "3347", "name": "Награбленное", "description": "{{Cost|2|l}}<p>{{VP|'''+1'''}}" },
     { "id": "3348", "name": "Стена", "description": "" },
     { "id": "3350", "name": "Жертвоприношение", "description": "" },
     { "id": "3351", "name": "Триумфальная Арка", "description": "" },

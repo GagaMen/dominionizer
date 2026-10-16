@@ -1,1 +1,8 @@
-[{ "id": "212", "name": "Blestem" }]
+[
+    { "id": "212", "name": "Blestem" },
+    { "id": "216", "name": "Actiune" },
+    { "id": "217", "name": "Reactie" },
+    { "id": "218", "name": "Victorie" },
+    { "id": "219", "name": "Atac" },
+    { "id": "220", "name": "Tezaur" }
+]
