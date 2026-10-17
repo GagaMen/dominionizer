@@ -9,7 +9,7 @@
     {
         "id": "18",
         "name": "Foso",
-        "description": "'''+2&nbsp;Cartas'''{{divline}}Cuando otro jugador juegue una carta de Ataque, puedes enseñar esta carta de tu mano. Si lo haces, el Ataque no te afecta."
+        "description": "'''+2&nbsp;Cartas'''{{Divline}}Cuando otro jugador juegue una carta de Ataque, puedes enseñar esta carta de tu mano. Si lo haces, el Ataque no te afecta."
     },
     {
         "id": "19",
@@ -117,7 +117,7 @@
     {
         "id": "72",
         "name": "Peón",
-        "description": "Elige dos opciones distintas:<p>'''+1&nbsp;Carta;''' '''+1&nbsp;Acción;''' '''+1&nbsp;Compra;''' {{Costplus|1}}."
+        "description": "Elige dos opciones distintas:<p>'''+1&nbsp;Carta;'''<br>'''+1&nbsp;Acción;'''<br>'''+1&nbsp;Compra;'''<br>{{Costplus|1}}."
     },
     {
         "id": "73",
@@ -262,7 +262,7 @@
     {
         "id": "102",
         "name": "Embajador",
-        "description": "Revela una carta de tu mano. Devuelve hasta 2 copias de dicha carta, de tu mano al Suministro. Después, cada jugador (menos tú) gana una copia de esa misma carta."
+        "description": "Revela una carta de tu mano. Devuelve hasta 2&nbsp;copias de dicha carta, de tu mano al Suministro. Después, cada jugador (menos tú) gana una copia de esa misma carta."
     },
     {
         "id": "103",
