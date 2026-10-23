@@ -35,6 +35,9 @@
     { "id": "8378", "name": "Affrontements" },
     { "id": "9346", "name": "Trophée" },
     { "id": "10874", "name": "Récompense" },
-    { "id": "11050", "name": "Ombre" },
+    {
+        "id": "11050",
+        "name": "Lorsque vous mélangez cette carte, placez-la en dessous de votre deck."
+    },
     { "id": "11331", "name": "Signe" }
 ]

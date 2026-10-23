@@ -34,7 +34,7 @@
     {
         "id": "39",
         "name": "Milice",
-        "description": "{{Costplus|2}}<p>Všichni ostatní hráči odhodí karty tak, aby jim zbyly na ruce 3 karty."
+        "description": "{{Costplus|2}}<p>Všichni ostatní hráči odhodí karty tak, aby jim zbyly na ruce 3&nbsp;karty."
     },
     { "id": "40", "name": "Lichvář", "description": "" },
     { "id": "41", "name": "Přestavba", "description": "" },
@@ -180,7 +180,7 @@
     {
         "id": "96",
         "name": "Embargo",
-        "description": "{{Costplus|2}}<p>Zahod tuto kartu na smetiště. Polož jeden žeton embarga na jeden baličck ve společné zásobè.{{divline}}Jakmile si nektery hrač kupuje kartu, dostane kartu kletby za každý žeton embarga na přislušném baličku."
+        "description": "{{Costplus|2}}<p>Zahod tuto kartu na smetiště. Polož jeden žeton embarga na jeden baličck ve společné zásobè.{{Divline}}Jakmile si nektery hrač kupuje kartu, dostane kartu kletby za každý žeton embarga na přislušném baličku."
     },
     {
         "id": "97",
@@ -240,7 +240,7 @@
     {
         "id": "108",
         "name": "Ostrov",
-        "description": "Polož na tabulku ostrova tuto a jednu dalši kartu ze své ruky. Obě vrat' na konci hry mezi své karty.{{divline}}{{VP|2|l}}"
+        "description": "Polož na tabulku ostrova tuto a jednu dalši kartu ze své ruky. Obě vrat' na konci hry mezi své karty.{{Divline}}{{VP|2|l}}"
     },
     {
         "id": "109",
