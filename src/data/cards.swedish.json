@@ -1,26 +1,36 @@
 [
     { "id": "16", "name": "Källare", "description": "" },
+    { "id": "17", "name": "Kapell", "description": "" },
     {
         "id": "18",
         "name": "Vallgrav",
         "description": "'''+2&nbsp;Kort'''{{Divline}}När en annan spelare spelar ut ett Attackkort kan du visa detta kortet från din hand. Attacken påverkar i så fall inte dig."
     },
+    { "id": "19", "name": "Kansler", "description": "" },
     { "id": "20", "name": "By", "description": "'''+1&nbsp;Kort'''<br>'''+2&nbsp;Actions'''" },
     { "id": "24", "name": "Skogshuggare", "description": "'''+1&nbsp;Köp'''<br>{{Costplus|2}}" },
     { "id": "25", "name": "Verkstad", "description": "" },
+    { "id": "36", "name": "Byråkrat", "description": "" },
+    { "id": "37", "name": "Festmåltid", "description": "" },
     {
         "id": "38",
         "name": "Trädgårdar",
         "description": "Värt {{VP|1}} För varje 10-tal kort i din kortlek (avrundas nedåt)."
     },
     { "id": "39", "name": "Milis", "description": "" },
+    { "id": "40", "name": "Penningutlånare", "description": "" },
     { "id": "41", "name": "Ombyggnad", "description": "" },
     { "id": "42", "name": "Smed", "description": "'''+3&nbsp;Kort'''" },
+    { "id": "43", "name": "Spion", "description": "" },
+    { "id": "44", "name": "Tjuv", "description": "" },
+    { "id": "45", "name": "Tronsal", "description": "" },
+    { "id": "46", "name": "Rådsrum", "description": "" },
     {
         "id": "47",
         "name": "Festival",
         "description": "'''+2&nbsp;Actions'''<br>'''+1&nbsp;Köp'''<br>{{Costplus|2}}"
     },
+    { "id": "48", "name": "Laboratorium", "description": "" },
     {
         "id": "49",
         "name": "Bibliotek",
@@ -32,6 +42,13 @@
         "description": "'''+1&nbsp;Kort'''<br>'''+1&nbsp;Actions'''<br>'''+1&nbsp;Köp'''<br>{{Costplus|1}}"
     },
     { "id": "51", "name": "Gruva", "description": "" },
+    { "id": "52", "name": "Häxa", "description": "" },
+    { "id": "53", "name": "Äventyrare", "description": "" },
     { "id": "212", "name": "Förbannelse", "description": "{{VP|-1|xl}}" },
-    { "id": "529", "name": "Guld", "description": "{{Cost|3|xl}}" }
+    { "id": "517", "name": "Koppar", "description": "{{Cost|1|xl}}" },
+    { "id": "525", "name": "Gods", "description": "{{VP|1|xl}}" },
+    { "id": "526", "name": "Silver", "description": "{{Cost|2|xl}}" },
+    { "id": "528", "name": "Hertigdöme", "description": "{{VP|3|xl}}" },
+    { "id": "529", "name": "Guld", "description": "{{Cost|3|xl}}" },
+    { "id": "530", "name": "Provins", "description": "{{VP|6|xl}}" }
 ]

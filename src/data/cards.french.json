@@ -246,7 +246,7 @@
     {
         "id": "102",
         "name": "Ambassadeur",
-        "description": "Dévoilez une carte de votre main. Replacez, de votre main, à la réserve, jusqu'à 2 exemplaires de cette carte. Ensuite, tous vos adversaires reçoivent un exemplaire de cette carte."
+        "description": "Dévoilez une carte de votre main. Replacez, de votre main, à la réserve, jusqu'à 2&nbsp;exemplaires de cette carte. Ensuite, tous vos adversaires reçoivent un exemplaire de cette carte."
     },
     {
         "id": "103",
@@ -276,7 +276,7 @@
     {
         "id": "108",
         "name": "Île",
-        "description": "{{VP|2|l||}}{{divline}}Placez cette carte et une carte de votre main sur votre plateau Île."
+        "description": "{{VP|2|l||}}{{Divline}}Placez cette carte et une carte de votre main sur votre plateau Île."
     },
     {
         "id": "109",
@@ -301,7 +301,7 @@
     {
         "id": "113",
         "name": "Carte aux trésors",
-        "description": "Écartez ceci et une Carte aux trésors de votre main. Si vous avez écarté deuz Cartes aux trésors recevez 4 Ors sur votre pioche."
+        "description": "Écartez ceci et une Carte aux trésors de votre main. Si vous avez écarté deuz Cartes aux trésors recevez 4&nbsp;Ors sur votre pioche."
     },
     {
         "id": "114",
@@ -366,7 +366,7 @@
     {
         "id": "126",
         "name": "Apothicaire",
-        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Dévoilez les 4 premières cartes de votre deck. Placez les cartes ''Cuivre'' et ''Potion'' ainsi dévoilées dans votre main. Placez les autres cartes sur le dessus de votre deck dans l'ordre de votre choix."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Dévoilez les 4&nbsp;premières cartes de votre deck. Placez les cartes ''Cuivre'' et ''Potion'' ainsi dévoilées dans votre main. Placez les autres cartes sur le dessus de votre deck dans l'ordre de votre choix."
     },
     {
         "id": "127",
@@ -381,7 +381,7 @@
     {
         "id": "129",
         "name": "Alchimiste",
-        "description": "'''+2&nbsp;Cartes'''<br>'''+1&nbsp;Action'''{{divline}}Lorsque vous défaussez cette carte de votre zone de jeu, vous pouvez la placer sur le dessus de votre deck si vous avez une ''Potion'' en jeu."
+        "description": "'''+2&nbsp;Cartes'''<br>'''+1&nbsp;Action'''{{Divline}}Lorsque vous défaussez cette carte de votre zone de jeu, vous pouvez la placer sur le dessus de votre deck si vous avez une ''Potion'' en jeu."
     },
     {
         "id": "130",
@@ -1403,7 +1403,7 @@
     {
         "id": "3216",
         "name": "Forgeron royal",
-        "description": "<p> '''+5&nbsp;Cartes''' </p> Dévoilez votre main&nbsp;; défaussez les Cuivres."
+        "description": "'''+5&nbsp;Cartes'''<p>Dévoilez votre main&nbsp;; défaussez les Cuivres."
     },
     {
         "id": "3218",
@@ -1413,12 +1413,12 @@
     {
         "id": "3225",
         "name": "Villa",
-        "description": "'''+2 Actions<br>+1 Achat'''{{Divline}} {{Costplus|1}} <br> Quand vous recevez cette carte, prenez-la en main, '''+1&nbsp;Action''', et si c'est votre phase Achat, retournez à la phase Action."
+        "description": "'''+2&nbsp;Actions'''<br>'''+1&nbsp;Achat'''<br>{{Costplus|1}}{{Divline}}Quand vous recevez cette carte, prenez-la en main, '''+1&nbsp;Action''', et si c'est votre phase Achat, retournez à la phase Action."
     },
     {
         "id": "3235",
         "name": "Colons",
-        "description": "<p>'''+1&nbsp;Carte <br> +1&nbsp;Action''' </p> Vous pouvez dévoiler un Cuivre de votre défausse et le prendre en main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Vous pouvez dévoiler un Cuivre de votre défausse et le prendre en main."
     },
     {
         "id": "3237",
@@ -1433,7 +1433,7 @@
     {
         "id": "3241",
         "name": "Rocher",
-        "description": "{{Cost|1|l}} {{Divline}} Lorsque vous recevez ou écartez cette carte, recevez un Argent ; si c'est votre phase Achat, placez-le sur votre pioche, sinon prenez-le en main."
+        "description": "{{Cost|1|l}}{{Divline}}Lorsque vous recevez ou écartez cette carte, recevez un Argent ; si c'est votre phase Achat, placez-le sur votre pioche, sinon prenez-le en main."
     },
     {
         "id": "3244",
@@ -1458,7 +1458,7 @@
     {
         "id": "3254",
         "name": "Temple",
-        "description": "<p> {{VP|'''+1'''}} </p> Ecartez entre 1 et 3&nbsp;cartes de noms différents de vorte main. <br> Ajoutez {{VP|'''1'''}} à la pile des Temples. {{Divline}} Lorsque vous recevez cette carte prenez les {{VP}} de la pile des Temples."
+        "description": "{{VP|'''+1'''}}<p>Ecartez entre 1 et 3&nbsp;cartes de noms différents de vorte main. Ajoutez {{VP|'''1'''}} à la pile des Temples.{{Divline}}Lorsque vous recevez cette carte prenez les {{VP}} de la pile des Temples."
     },
     {
         "id": "3256",
@@ -1508,7 +1508,7 @@
     {
         "id": "3286",
         "name": "Manne",
-        "description": "Si votre pioche et votre défausse sont vides, recevez 3 Ors."
+        "description": "Si votre pioche et votre défausse sont vides, recevez 3&nbsp;Ors."
     },
     {
         "id": "3287",
@@ -1528,7 +1528,7 @@
     {
         "id": "3298",
         "name": "Petit château",
-        "description": "{{VP|2|l}}{{Divline}}Écartez cette carte ou un Château de votre main.<br>Dans ces cas, recevez un Château."
+        "description": "Écartez cette carte ou un Château de votre main. Dans ces cas, recevez un Château.{{Divline}}{{VP|2|l}}"
     },
     {
         "id": "3299",
@@ -1538,7 +1538,7 @@
     {
         "id": "3300",
         "name": "Somptueux château",
-        "description": "{{VP|3|l}} {{Divline}} Défaussez autant de cartes Victoire que souhaité, dévoilées.<br>{{Costplus|2}} par carte défaussée."
+        "description": "Défaussez autant de cartes Victoire que souhaité, dévoilées. {{Costplus|2}} par carte défaussée.{{Divline}}{{VP|3|l}}"
     },
     {
         "id": "3301",
@@ -1593,7 +1593,7 @@
     {
         "id": "3341",
         "name": "Légionnaire",
-        "description": "{{Costplus|3}}<br>Vous pouvez dévoiler un Or de votre main. Dans ce cas, tous vos adversaires défaussent jusqu'à avoir 2&nbsp;cartes en main, puis piochent une carte."
+        "description": "{{Costplus|3}}<p>Vous pouvez dévoiler un Or de votre main. Dans ce cas, tous vos adversaires défaussent jusqu'à avoir 2&nbsp;cartes en main, puis piochent une carte."
     },
     {
         "id": "3343",
@@ -1603,9 +1603,9 @@
     {
         "id": "3345",
         "name": "Patricien",
-        "description": "<p> '''+1&nbsp;Carte <br> +1&nbsp;Action''' </p> Dévoilez la carte du haut de voter pioche. Si elle coûte {{Cost|5}} ou plus, prenez-la en main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Dévoilez la carte du haut de voter pioche. Si elle coûte {{Cost|5}} ou plus, prenez-la en main."
     },
-    { "id": "3347", "name": "Saccage", "description": "{{VP|'''+1'''}} <p>{{Cost|2|l}}</p>" },
+    { "id": "3347", "name": "Saccage", "description": "{{VP|'''+1'''}}<p>{{Cost|2|l}}" },
     {
         "id": "3348",
         "name": "Remparts",
@@ -1614,7 +1614,7 @@
     {
         "id": "3350",
         "name": "Sacrifice",
-        "description": "Écartez une carte de votre main.<br>&emsp;&emsp;&emsp;Si c'est une carte&hellip;<br>Action, '''+2&nbsp;Cartes''',''' +2&nbsp;Actions'''<br>&ensp;Trésor, &emsp;&emsp;&emsp;{{Costplus|2}}<br>Victoire, &emsp;&emsp;&emsp;{{VP|'''+2'''}}"
+        "description": "Écartez une carte de votre main. Si c'est une carte&hellip;<br>Action, '''+2&nbsp;Cartes''',''' +2&nbsp;Actions'''<br>Trésor, {{Costplus|2}}<br>Victoire, {{VP|'''+2'''}}"
     },
     {
         "id": "3351",
@@ -1644,7 +1644,7 @@
     {
         "id": "3357",
         "name": "Obélisque",
-        "description": "Pour le décompte, {{VP|'''2'''}} par carte de la pile choisie que vous avez. {{Divline}} Mise en place&nbsp;: choisissez au hasard une pile de cartes Action de la réserve."
+        "description": "Pour le décompte, {{VP|'''2'''}} par carte de la pile choisie que vous avez.{{Divline}}Mise en place&nbsp;: choisissez au hasard une pile de cartes Action de la réserve."
     },
     {
         "id": "3358",
@@ -1725,7 +1725,7 @@
     {
         "id": "3401",
         "name": "Taxe",
-        "description": "Ajoutez {{Debt|2}} à une pile de la réserve. {{Divline}} Mise en place&nbsp;: ajoutez {{Debt|1}} à chaque pile de la réserve. Quand un joueur reçoit une carte pendant sa phase Achat, il prend les {{Debt}} de sa pile."
+        "description": "Ajoutez {{Debt|2}} à une pile de la réserve.{{Divline}}Mise en place&nbsp;: ajoutez {{Debt|1}} à chaque pile de la réserve. Quand un joueur reçoit une carte pendant sa phase Achat, il prend les {{Debt}} de sa pile."
     },
     {
         "id": "3403",
@@ -1735,9 +1735,9 @@
     {
         "id": "3405",
         "name": "Épandage de sel",
-        "description": "{{VP|'''+1'''}} <br> Écartez une carte Victoire de la réserve."
+        "description": "{{VP|'''+1'''}}<p>Écartez une carte Victoire de la réserve."
     },
-    { "id": "3406", "name": "Mariage", "description": "{{VP|'''+1'''}} Recevez un Or." },
+    { "id": "3406", "name": "Mariage", "description": "{{VP|'''+1'''}}<p>Recevez un Or." },
     {
         "id": "3486",
         "name": "Sauna",
@@ -3697,57 +3697,57 @@
     {
         "id": "11332",
         "name": "Sanctuaire de rivière",
-        "description": "{{Sunplus}}<br>Écartez jusqu'à 2 cartes de votre<br>main. Au début de la phase<br>Ajustement, si vous n'avez reçu<br>aucune carte lors de votre phase<br>Achat de ce tour, recevez une carte<br>coûtant jusqu'à {{Cost|4}}."
+        "description": "{{Sunplus}}<p>Écartez jusqu'à 2&nbsp;cartes de votre main. Au début de la phase Ajustement, si vous n'avez reçu aucune carte lors de votre phase Achat de ce tour, recevez une carte coûtant jusqu'à {{Cost|4}}."
     },
     {
         "id": "11334",
         "name": "Village rustique",
-        "description": "{{Sunplus}}<br>'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''<br>vous pouvez défausser 2 cartes<br>pour '''+1 carte'''."
+        "description": "{{Sunplus}}<br>'''+1&nbsp;Carte'''<br>'''+2&nbsp;Actions'''<p>vous pouvez défausser 2&nbsp;cartes pour '''+1&nbsp;carte'''."
     },
     {
         "id": "11335",
         "name": "Poétesse",
-        "description": "{{Sunplus}}<br>'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>Dévoilez la carte du sommet<br>de votre deck. <br>Si elle coûte {{Cost|3}} ou moins,<br>placez la dans votre main."
+        "description": "{{Sunplus}}<br>'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Dévoilez la carte du sommet de votre deck.  Si elle coûte {{Cost|3}} ou moins, placez la dans votre main."
     },
     {
         "id": "11338",
         "name": "Empereur bienveillant",
-        "description": "Au début de votre tour et lorsque vous retirez le dernier {{Sun}} :<br>Recevez une Action dans votre main."
+        "description": "Au début de votre tour et lorsque vous retirez le dernier {{Sun}} : Recevez une Action dans votre main."
     },
     {
         "id": "11351",
         "name": "Ninja",
-        "description": "'''+1&nbsp;Carte'''<br>Tous vos adversaires défaussent<br>des cartes jusqu'à n'en<br>avoir que 3 en main.{{divline}}Vous pouvez jouer cette carte<br>depuis votre deck comme si<br>elle était dans votre main."
+        "description": "'''+1&nbsp;Carte'''<p>Tous vos adversaires défaussent des cartes jusqu'à n'en avoir que 3&nbsp;en main.{{Divline}}Vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
     },
     {
         "id": "11352",
         "name": "Ruelle",
-        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>Défaussez une carte.{{divline}}Vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Défaussez une carte.{{Divline}}Vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
     },
     {
         "id": "11353",
         "name": "Poissonnière",
-        "description": "'''+1&nbsp;Achat'''<br>{{Costplus|1}}{{divline}}vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
+        "description": "'''+1&nbsp;Achat'''<br>{{Costplus|1}}{{Divline}}vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
     },
     {
         "id": "11354",
         "name": "Éveil Spirituel",
-        "description": "Les Trésors sont aussi des Actions. Lorsque vous jouez un<br>Trésor lors d'une phase Action, au lieu d'appliquer les effets<br>de la carte, appliquez ceux-ci : '''+1 Carte''' et '''+1 Action'''."
+        "description": "Les Trésors sont aussi des Actions. Lorsque vous jouez un Trésor lors d'une phase Action, au lieu d'appliquer les effets de la carte, appliquez ceux-ci : '''+1&nbsp;Carte''' et '''+1&nbsp;Action'''."
     },
     {
         "id": "11355",
         "name": "Commerce florissant",
-        "description": "Les cartes coûtent {{cost|1}} de moins. Vous pouvez utiliser<br>vos Actions disponibles comme des Achats."
+        "description": "Les cartes coûtent {{cost|1}} de moins. Vous pouvez utiliser vos Actions disponibles comme des Achats."
     },
     {
         "id": "11368",
-        "name": "Sanctuaire montagneux",
-        "description": "{{Sunplus}}<br>{{Costplus|2}}<p>Vous pouvez écarter une carte de votre main. Puis, s'il y a au moins une carte Action dans le Rebut, '''+2&nbsp;Cartes.'''"
+        "name": "Sanctuaire de montagne",
+        "description": "{{Sunplus}}<br>{{Costplus|2}}<p>Vous pouvez écarter une carte de votre main. Ensuite, s'il y a au moins une carte Action au rebut, '''+2&nbsp;Cartes.'''"
     },
     {
         "id": "11369",
         "name": "Daïmio",
-        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>La prochaine fois que vous jouez une carte Action non Commande ce tour-ci, rejouez-la après."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>La prochaine fois que vous jouez une carte Action qui n'est pas de type Ordre ce tour, rejouez-la après."
     },
     {
         "id": "11370",
@@ -3757,12 +3757,12 @@
     {
         "id": "11371",
         "name": "Continuation",
-        "description": "Une fois par tour : Recevez une carte action qui n'est pas<br>de type Attaque et qui coûte jusqu'à {{Cost|4}}.Revenez à votre<br>phase Action et jouez-la.'''+1&nbsp;Action''' et '''+1&nbsp;Achat.'''"
+        "description": "Une fois par tour : Recevez une carte action qui n'est pas de type Attaque et qui coûte jusqu'à {{Cost|4}}. Revenez à votre phase Action et jouez-la.'''+1&nbsp;Action''' et '''+1&nbsp;Achat.'''"
     },
     {
         "id": "11404",
         "name": "Épidémie",
-        "description": "Au début de votre tour, choisissez : recevez une Malédiction sur votre deck Ou défaussez 3 cartes."
+        "description": "Au début de votre tour, choisissez : recevez une Malédiction sur votre deck Ou défaussez 3&nbsp;cartes."
     },
     {
         "id": "11407",
@@ -3772,33 +3772,33 @@
     {
         "id": "11408",
         "name": "Taux de change",
-        "description": "Si vous avez un ou plusieurs<br>{{Debt}}, {{Costplus|3}}.Sinon écartez une<br>carte de votre main et recevez<br>une carte coûtant plus de {{Cost}}<br>{{Debtplus}} égal à la différence en {{Cost}}."
+        "description": "Si vous avez un ou plusieurs {{Debt}}, {{Costplus|3}}. Sinon écartez une carte de votre main et recevez une carte coûtant plus de {{Cost}} {{Debtplus}} égal à la différence en {{Cost}}"
     },
     {
         "id": "11409",
         "name": "Mine d'or",
-        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>'''+1&nbsp;Achat'''<br><br>Vous pouvez recevoir un {{card|Gold}}<br>et {{Debtplus|4}}."
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<br>'''+1&nbsp;Achat'''<p>Vous pouvez recevoir un Gold et {{Debtplus|4}}."
     },
     {
         "id": "11423",
         "name": "Kitsune",
-        "description": "{{Sunplus}}<br>Choisissez deux options<br>différentes :'''+2 Actions''' OU<br>{{Costplus|2}} OU tous vos adversaires<br> reçoivent une Malédiction OU<br>recevez un argent."
+        "description": "{{Sunplus}}<p>Choisissez deux options différentes :'''+2&nbsp;Actions''' OU {{Costplus|2}} OU tous vos adversaires reçoivent une Malédiction OU recevez un argent."
     },
     {
         "id": "11424",
         "name": "Riz",
-        "description": "'''+1&nbsp;Achat'''<br>{{Costplus|1}} par type de carte différent<br>que vous avez en jeu"
+        "description": "'''+1&nbsp;Achat'''<p>{{Costplus|1}} par type de carte différent que vous avez en jeu"
     },
-    { "id": "11425", "name": "Sampan", "description": "{{CardLangVersionImage|French|d=1}}" },
+    { "id": "11425", "name": "Sampan", "description": "" },
     {
         "id": "11427",
         "name": "Amas",
-        "description": "Si vous n'avez pas de cartes Action en jeu,<br>recevez une carte Action qui coûte jusqu'à {{cost|5}}."
+        "description": "Si vous n'avez pas de cartes Action en jeu, recevez une carte Action qui coûte jusqu'à {{cost|5}}."
     },
     {
         "id": "11436",
         "name": "Sorcière aux serpents",
-        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Si vous n'avez aucun doublon en main, vous pouvez dévoiler votre main et remettre la carte Sorcière aux serpents sur sa pile pour que tous vos adversaires<br>reçoivent une malédiction"
+        "description": "'''+1&nbsp;Carte'''<br>'''+1&nbsp;Action'''<p>Si vous n'avez aucun doublon en main, vous pouvez dévoiler votre main et remettre la carte Sorcière aux serpents sur sa pile pour que tous vos adversaires reçoivent une malédiction"
     },
     {
         "id": "11437",
@@ -3808,7 +3808,7 @@
     {
         "id": "11438",
         "name": "Artisan d'art",
-        "description": "{{Debtplus|2}}<br>Recevez une carte qui<br>coûte jusqu'à {{cost|5}}."
+        "description": "{{Debtplus|2}}<p>Recevez une carte qui coûte jusqu'à {{cost|5}}."
     },
     {
         "id": "11439",
@@ -3823,12 +3823,12 @@
     {
         "id": "11441",
         "name": "Courtier en riz",
-        "description": "'''+1&nbsp;Action'''<br><br>Écartez une carte<br>de votre main.<br>S'il s'agit d'une carte...<br>Trésor : '''+2 Cartes'''<br>Action : '''+5 Cartes'''"
+        "description": "'''+1&nbsp;Action'''<p>Écartez une carte de votre main. S'il s'agit d'une carte&hellip;<br>Trésor : '''+2&nbsp;Cartes'''<br>Action : '''+5&nbsp;Cartes'''"
     },
     {
         "id": "11442",
         "name": "Ronin",
-        "description": "Piochez jusquà avoir<br>7 cartes en main.{{divline}}Vous pouvez jouer cette carte<br>depuis votre deck comme si<br>elle était dans votre main."
+        "description": "Piochez jusquà avoir 7&nbsp;cartes en main.{{Divline}}Vous pouvez jouer cette carte depuis votre deck comme si elle était dans votre main."
     },
     {
         "id": "11443",
@@ -3843,21 +3843,21 @@
     {
         "id": "11445",
         "name": "Samouraï",
-        "description": "Tous vos adversaires défaussent<br>des cartes jusqu'à n'en avoir<br>que 3 en main (une fois).<br>Au début de chacun de vos<br>tours de cette partie, {{Costplus|1}}.<br>(Cette carte reste en jeu.)"
+        "description": "Tous vos adversaires défaussent des cartes jusqu'à n'en avoir que 3&nbsp;en main (une fois).<p>Au début de chacun de vos tours de cette partie, {{Costplus|1}}.<p>(Cette carte reste en jeu.)"
     },
     {
         "id": "11446",
         "name": "Armée en approche",
-        "description": "Après avoir joué une carte Attaque, {{Costplus|1}}.{{divline}}'''Mise en place''' : Ajoutez une pile de cartes Royaume Attaque<br>à la réserve."
+        "description": "Après avoir joué une carte Attaque, {{Costplus|1}}.{{Divline}}'''Mise en place''' : Ajoutez une pile de cartes Royaume Attaque à la réserve."
     },
     {
         "id": "11447",
         "name": "Moment Opportun",
-        "description": "Au début de votre phase Ajustement, mettez de côté<br>face cachée vos cartes en main. Au début de votre<br>prochain tour, remettez ces cartes dans votre main."
+        "description": "Au début de votre phase Ajustement, mettez de côté face cachée vos cartes en main. Au début de votre prochain tour, remettez ces cartes dans votre main."
     },
     {
         "id": "11450",
         "name": "Hiver rude",
-        "description": "Lorsque vous recevez une carte pendant votre tour,<br>s'il y a des pions {{Debt}} sur sa pile,<br>prenez-les, sinon placez {{Debt|2}} sur sa pile."
+        "description": "Lorsque vous recevez une carte pendant votre tour, s'il y a des pions {{Debt}} sur sa pile, prenez-les, sinon placez {{Debt|2}} sur sa pile"
     }
 ]
