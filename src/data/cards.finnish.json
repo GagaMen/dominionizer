@@ -4,8 +4,12 @@
     { "id": "17", "name": "Kappeli", "description": "" },
     { "id": "18", "name": "Vallihauta", "description": "" },
     { "id": "19", "name": "Kansleri", "description": "" },
-    { "id": "20", "name": "Kylä", "description": "" },
-    { "id": "24", "name": "Metsuri", "description": "" },
+    {
+        "id": "20",
+        "name": "Kylä",
+        "description": "'''+1&nbsp;kortti'''<br>'''+2&nbsp;toimintaa'''"
+    },
+    { "id": "24", "name": "Metsuri", "description": "'''+1&nbsp;osto'''<br>{{Costplus|2}}" },
     { "id": "25", "name": "Työpaja", "description": "" },
     { "id": "34", "name": "Sisäpiha", "description": "" },
     { "id": "36", "name": "Byrokraatti", "description": "" },
@@ -29,7 +33,7 @@
     {
         "id": "72",
         "name": "Apuri",
-        "description": "Valit se 2 (ei samaa): {{Costplus|1}}; '''+1&nbsp;toiminta'''; '''+1&nbsp;osto'''; tai '''+1&nbsp;kortti'''."
+        "description": "Valit se 2 (ei samaa):<br>{{Costplus|1}};<br>+1&nbsp;toiminta;<br>+1&nbsp;osto; tai<br>+1&nbsp;kortti."
     },
     { "id": "73", "name": "Salainen kammio", "description": "" },
     {
@@ -62,14 +66,14 @@
     {
         "id": "99",
         "name": "Alkuasukaskylä",
-        "description": "'''+&nbsp;2&nbsp;toimintaa'''<p>Valitse yksi: aseta pakkasi päällimmäinen kortti kuvapuolı alaspaın Alkuasukaskylä pelialustallesi; tai nosta kaikki pelilustalla olevat kortit käteesi. Saat koska tahansa katsoa pelialustalla olevia korttejasi. Palauta kortit pakkaasi pelin päättyessä."
+        "description": "'''+&nbsp;2&nbsp;toimintaa'''<p>Valitse yksi: aseta pakkasi päällimmäinen kortti kuvapuolı alaspaın Alkuasukaskylä pelialustallesi; tai nosta kaikki pelilustalla olevat kortit käteesi.<p>Saat koska tahansa katsoa pelialustalla olevia korttejasi. Palauta kortit pakkaasi pelin päättyessä."
     },
     { "id": "100", "name": "Helmenkalastaja", "description": "" },
     { "id": "101", "name": "Kalastajakylä", "description": "" },
     {
         "id": "102",
         "name": "Suurlähettiläs",
-        "description": "Paljasta kortti kädestäsi. Palauta enintäan 2 kappaletta paljastettua korttia kädestäsi Varastoon. Tämän jälkeen kaikki muut pelaajat ottavat yhden kappaleen palautettua korttia."
+        "description": "Paljasta kortti kädestäsi. Palauta enintäan 2&nbsp;kappaletta paljastettua korttia kädestäsi Varastoon. Tämän jälkeen kaikki muut pelaajat ottavat yhden kappaleen palautettua korttia."
     },
     { "id": "103", "name": "Tähystäjä", "description": "" },
     { "id": "104", "name": "Salakuljettajat", "description": "" },
@@ -79,7 +83,7 @@
     {
         "id": "108",
         "name": "Saari",
-        "description": "Aseta tämä ja toinen kortti kädestäsi sivuun. Palauta kortit pakkaasi pelin päättyessa.{{divline}}{{VP|2|l}}"
+        "description": "Aseta tämä ja toinen kortti kädestäsi sivuun. Palauta kortit pakkaasi pelin päättyessa.{{Divline}}{{VP|2|l}}"
     },
     { "id": "109", "name": "Luotsi", "description": "" },
     { "id": "110", "name": "Merirosvolaiva", "description": "" },
@@ -120,7 +124,7 @@
     {
         "id": "129",
         "name": "Alkemisti",
-        "description": "'''+&nbsp;2&nbsp;korttia'''<br>'''+&nbsp;1&nbsp;toiminta'''{{Divline}}Jos sinulla on Rohto pelissä kun poistat tämän kortin, saat asettaa<br>tämän kortin pakkasi päälle."
+        "description": "'''+&nbsp;2&nbsp;korttia'''<br>'''+&nbsp;1&nbsp;toiminta'''{{Divline}}Jos sinulla on Rohto pelissä kun poistat tämän kortin, saat asettaa tämän kortin pakkasi päälle."
     },
     { "id": "130", "name": "Apuolento", "description": "" },
     { "id": "131", "name": "Viisasten kivi", "description": "" },
@@ -255,7 +259,7 @@
     { "id": "527", "name": "Rohto", "description": "{{Cost||xl||P}}" },
     { "id": "528", "name": "Pitäjä", "description": "" },
     { "id": "529", "name": "Kultaraha", "description": "" },
-    { "id": "530", "name": "Lääni", "description": "" },
+    { "id": "530", "name": "Lääni", "description": "{{VP|6|xl}}" },
     { "id": "531", "name": "Siirtomaa", "description": "" },
     { "id": "558", "name": "Dame Anna", "description": "" },
     { "id": "560", "name": "Dame Louise", "description": "" },
@@ -451,5 +455,5 @@
         "name": "Purkutyö",
         "description": "Tuhoa kortti kädestäsi. Jos tuhottu kortti maksaa {{Cost|1}} tai enemmän, ota halvempi kortti ja Kulta."
     },
-    { "id": "10190", "name": "Haaremi", "description": "" }
+    { "id": "10190", "name": "Haaremi", "description": "{{Cost|2|l}}<p>{{VP|2|l}}" }
 ]
