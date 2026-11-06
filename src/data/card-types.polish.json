@@ -23,5 +23,7 @@
     { "id": "5165", "name": "Duch" },
     { "id": "5251", "name": "Stan" },
     { "id": "5356", "name": "Zombie" },
-    { "id": "6442", "name": "Rozkaz" }
+    { "id": "6442", "name": "Rozkaz" },
+    { "id": "9293", "name": "Cecha" },
+    { "id": "9346", "name": "Łup" }
 ]
