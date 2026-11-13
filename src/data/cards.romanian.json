@@ -1,34 +1,58 @@
 [
-    { "id": "16", "name": "Pivniţă", "description": "" },
+    {
+        "id": "16",
+        "name": "Pivniţă",
+        "description": "'''+1&nbsp;acţiune'''<p>Decarteazâ oricâte cărţi vrei. Tragi câte o carte pentru fiecare carte decartatâ."
+    },
     { "id": "17", "name": "Capela", "description": "" },
     { "id": "18", "name": "Șanț", "description": "" },
     { "id": "19", "name": "Cancelar", "description": "" },
-    { "id": "20", "name": "Sat", "description": "" },
-    { "id": "24", "name": "Tăietorul de Lemne", "description": "" },
+    { "id": "20", "name": "Sat", "description": "'''+1&nbsp;carte'''<br>'''+2&nbsp;acțiuni'''" },
+    {
+        "id": "24",
+        "name": "Tăietorul de Lemne",
+        "description": "'''+1&nbsp;achiziție'''<br>{{Costplus|2}}"
+    },
     { "id": "25", "name": "Atelier", "description": "" },
     { "id": "36", "name": "Birocrat", "description": "" },
     { "id": "37", "name": "Ospăţ", "description": "" },
-    { "id": "38", "name": "Grădini", "description": "" },
+    {
+        "id": "38",
+        "name": "Grădini",
+        "description": "Aceastǎ carte valoreazǎ câte {{VP|1}} pentru fiecare 10&nbsp;cărți din proprietatea se. Atenție, se rotunjeste in jou!"
+    },
     { "id": "39", "name": "Gardă", "description": "" },
     { "id": "40", "name": "Cămătar", "description": "" },
     { "id": "41", "name": "Remodelare", "description": "" },
-    { "id": "42", "name": "Fierar", "description": "" },
+    { "id": "42", "name": "Fierar", "description": "'''+3&nbsp;cǎrți'''" },
     { "id": "43", "name": "Spion", "description": "" },
     { "id": "44", "name": "Hoțul", "description": "" },
     { "id": "45", "name": "Sala tronului", "description": "" },
     { "id": "46", "name": "Sala de Consiliu", "description": "" },
-    { "id": "47", "name": "Festival", "description": "" },
-    { "id": "48", "name": "Laborator", "description": "" },
+    {
+        "id": "47",
+        "name": "Festival",
+        "description": "'''+2&nbsp;acțiuni'''<br>'''+1&nbsp;achiziție<br>{{Costplus|2}}"
+    },
+    {
+        "id": "48",
+        "name": "Laborator",
+        "description": "'''+2&nbsp;cǎrți'''<br>'''+1&nbsp;acțiune'''"
+    },
     { "id": "49", "name": "Bibliotecă", "description": "" },
-    { "id": "50", "name": "Piaţă", "description": "" },
+    {
+        "id": "50",
+        "name": "Piaţă",
+        "description": "'''+1&nbsp;carte'''<br>'''+1&nbsp;acțiune'''<br>'''+1&nbsp;achiziție'''<br>{{Costplus|1}}"
+    },
     { "id": "51", "name": "Mină", "description": "" },
     { "id": "52", "name": "Vrăjitoare", "description": "" },
     { "id": "53", "name": "Aventurier", "description": "" },
-    { "id": "212", "name": "Blestem", "description": "" },
-    { "id": "517", "name": "Aramă", "description": "" },
-    { "id": "525", "name": "Moşie", "description": "" },
-    { "id": "526", "name": "Argint", "description": "" },
-    { "id": "528", "name": "Ducat", "description": "" },
-    { "id": "529", "name": "Aur", "description": "" },
-    { "id": "530", "name": "Provincie", "description": "" }
+    { "id": "212", "name": "Blestem", "description": "{{VP|-1|xl}}" },
+    { "id": "517", "name": "Aramă", "description": "{{Cost|1|xl}}" },
+    { "id": "525", "name": "Moşie", "description": "{{VP|1|xl}}" },
+    { "id": "526", "name": "Argint", "description": "{{Cost|2|xl}}" },
+    { "id": "528", "name": "Ducat", "description": "{{VP|3|xl}}" },
+    { "id": "529", "name": "Aur", "description": "{{Cost|3|xl}}" },
+    { "id": "530", "name": "Provincie", "description": "{{VP|6|xl}}" }
 ]
