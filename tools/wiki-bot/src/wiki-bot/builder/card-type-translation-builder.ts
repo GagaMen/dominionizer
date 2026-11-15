@@ -35,10 +35,14 @@ export class CardTypeTranslationBuilder {
         return new Map<string, CardTypeTranslation>(
             languageCandidates.map((languageCandidate: WikiText) => {
                 const language = /^[^:]*/.exec(languageCandidate)?.[0];
+                // A language states its name behind the colon. Sub items normally add remarks
+                // to it, e.g. the text on the card back, so they only serve as the name when
+                // the language line itself has none.
+                const inlineName = /^[^:\n]*:([^\n]*)/.exec(languageCandidate)?.[1] ?? '';
                 let name: string | undefined =
-                    languageCandidate.split(/\n\*\*/)[1] ??
-                    /^[^:]*:(.*)/.exec(languageCandidate)?.[1] ??
-                    '';
+                    normalize(inlineName) !== ''
+                        ? inlineName
+                        : (languageCandidate.split(/\n\*\*/)[1] ?? '');
                 name = /[^(:]*/.exec(name)?.[0];
                 name = name?.replace(/(<br\s*\/?>|<hr[^>]*?>).*/, '');
 

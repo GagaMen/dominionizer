@@ -62,6 +62,75 @@ describe('CardTypeTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with sub item below a named language in list form should ignore the sub item', () => {
+            const cardTypePage: CardTypePage = {
+                pageid: 11050,
+                title: 'Shadow',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Shadow',
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `* French: Ombre\n` +
+                                    `** Lorsque vous mélangez cette carte, placez-la en dessous de votre deck.\n` +
+                                    `* German: Schatten\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCardType: CargoCardType = {
+                PageId: '11050',
+                Name: 'Shadow',
+                Scope: 'Single-expansion',
+            };
+            const expected = new Map<string, CardTypeTranslation>([
+                ['French', { id: '11050', name: 'Ombre' }],
+                ['German', { id: '11050', name: 'Schatten' }],
+            ]);
+
+            const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with name only in sub item in list form should return the name of the first sub item', () => {
+            const cardTypePage: CardTypePage = {
+                pageid: 11050,
+                title: 'Shadow',
+                fullurl: 'https://wiki.dominionstrategy.com/index.php/Shadow',
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `=== In other languages ===\n` +
+                                    `* French:\n` +
+                                    `** Ombre (2024)\n` +
+                                    `** Ombres (2025)\n` +
+                                    `* German: Schatten\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCardType: CargoCardType = {
+                PageId: '11050',
+                Name: 'Shadow',
+                Scope: 'Single-expansion',
+            };
+            const expected = new Map<string, CardTypeTranslation>([
+                ['French', { id: '11050', name: 'Ombre' }],
+                ['German', { id: '11050', name: 'Schatten' }],
+            ]);
+
+            const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with translations in template form should return correct translations', () => {
             const cardTypePage: CardTypePage = {
                 pageid: 577,
