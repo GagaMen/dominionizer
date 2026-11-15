@@ -30,8 +30,8 @@ and rejects requests without it. The two flags are independent of each other:
 - `--skip-images` skips image generation. Use it locally, the images are already committed, and it
   keeps the run and the diff short.
 
-The weekly refresh needs no human: `.github/workflows/run-wiki-bot.yml` runs the bot every Friday
-with `--update` and opens a pull request when `src/data` or `src/assets` changed.
+The monthly refresh needs no human: `.github/workflows/run-wiki-bot.yml` runs the bot on the first
+day of every month with `--update` and opens a pull request when `src/data` or `src/assets` changed.
 
 ## Tests
 

@@ -4,7 +4,7 @@
 
 -   development branch is buildable and runnable at all times
 -   continious deployment
--   weekly wiki bot updates are possible
+-   monthly wiki bot updates are possible
 -   pull requests are possible
 
 ## Overview

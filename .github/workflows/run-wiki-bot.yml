@@ -2,7 +2,8 @@ name: Run wiki bot
 
 on:
     schedule:
-        - cron: '0 12 * * 5'
+        # at 12:00 UTC on the first day of every month
+        - cron: '0 12 1 * *'
     workflow_dispatch:
 
 permissions:
