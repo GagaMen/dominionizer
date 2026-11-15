@@ -106,7 +106,7 @@
     {
         "id": "134",
         "name": "Mercato Nero",
-        "description": "{{Costplus|2}}<p>Rivela le prime tre carte del mazzetto Mercato Nero; puoi Acquistare immediatamente una di queste. Metti le carte non Acquistate sotto il mizzetto Mercato Nero nell'ordine che preferisci.<p>''(Il mazzetto Mercato Nero si forma, prima di iniziare a giocare, prendeno una carta Regno per ogra tipo che non si trova nella Riserva)"
+        "description": "{{Costplus|2}}<p>Rivela le prime tre carte del mazzetto Mercato Nero; puoi Acquistare immediatamente una di queste. Metti le carte non Acquistate sotto il mizzetto Mercato Nero nell'ordine che preferisci.<p>''(Il mazzetto Mercato Nero si forma, prima di iniziare a giocare, prendeno una carta Regno per ogra tipo che non si trova nella Riserva)''"
     },
     { "id": "135", "name": "Inviato", "description": "" },
     { "id": "138", "name": "Gruzzolo", "description": "" },
