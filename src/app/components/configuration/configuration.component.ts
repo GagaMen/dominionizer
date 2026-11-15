@@ -10,6 +10,7 @@ import { SpecialCardsAvailability } from 'src/app/models/special-cards-availabil
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 import { Edition } from 'src/app/models/edition';
 import { Card } from 'src/app/models/card';
+import { Configuration } from 'src/app/models/configuration';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { MatFabButton } from '@angular/material/button';
@@ -79,26 +80,21 @@ export class ConfigurationComponent implements OnInit {
     }
 
     private initEditionSelectViewData(): void {
-        this.editionSelectViewData$ = combineLatest([
-            this.editionService.editions$,
-            this.configurationService.configuration$,
-            this.cardService.cards$,
-        ]).pipe(
-            map(([editions, configuration, cards]) => {
-                // remove editions which do not have cards yet
-                const editionsWithCards = editions.filter((edition: Edition) =>
-                    Array.from(cards.values()).some((card: Card) =>
-                        card.editions.some((cardEdition: Edition) => cardEdition.id === edition.id),
-                    ),
-                );
+        const cards = Array.from(this.cardService.cards.values());
+        // remove editions which do not have cards yet
+        const editionsWithCards = this.editionService.editions.filter((edition: Edition) =>
+            cards.some((card: Card) =>
+                card.editions.some((cardEdition: Edition) => cardEdition.id === edition.id),
+            ),
+        );
 
-                const viewData: EditionSelectViewData = {
+        this.editionSelectViewData$ = this.configurationService.configuration$.pipe(
+            map(
+                (configuration: Configuration): EditionSelectViewData => ({
                     editions: editionsWithCards,
                     initialValue: configuration.editions,
-                };
-
-                return viewData;
-            }),
+                }),
+            ),
         );
     }
 

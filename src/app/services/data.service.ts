@@ -1,7 +1,6 @@
 import { CardTypeTranslation } from './../models/card-type';
 import { EditionTranslation } from './../models/edition';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Edition } from '../models/edition';
 import { CardDto } from '../dtos/card-dto';
 import { CardType } from '../models/card-type';
@@ -15,27 +14,27 @@ import { cardTranslations, cardTypeTranslations, editionTranslations } from 'src
     providedIn: 'root',
 })
 export class DataService {
-    fetchEditions(): Observable<Edition[]> {
-        return of(editions as Edition[]);
+    getEditions(): Edition[] {
+        return editions;
     }
 
-    fetchEditionTranslations(): Observable<EditionTranslation[]> {
-        return of(editionTranslations);
+    getEditionTranslations(): EditionTranslation[] {
+        return editionTranslations;
     }
 
-    fetchCardTypes(): Observable<CardType[]> {
-        return of(cardTypes as CardType[]);
+    getCardTypes(): CardType[] {
+        return cardTypes;
     }
 
-    fetchCardTypeTranslations(): Observable<CardTypeTranslation[]> {
-        return of(cardTypeTranslations);
+    getCardTypeTranslations(): CardTypeTranslation[] {
+        return cardTypeTranslations;
     }
 
-    fetchCards(): Observable<CardDto[]> {
-        return of(cards as CardDto[]);
+    getCards(): CardDto[] {
+        return cards;
     }
 
-    fetchCardTranslations(): Observable<CardTranslation[]> {
-        return of(cardTranslations);
+    getCardTranslations(): CardTranslation[] {
+        return cardTranslations;
     }
 }

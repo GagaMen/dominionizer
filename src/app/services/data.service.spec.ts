@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DataService } from './data.service';
-import { cold } from 'jasmine-marbles';
 import editions from '../../data/editions.json';
 import cardTypes from '../../data/card-types.json';
 import cards from '../../data/cards.json';
@@ -16,63 +15,63 @@ describe('DataService', () => {
         dataService = TestBed.inject(DataService);
     });
 
-    describe('fetchEditions', () => {
+    describe('getEditions', () => {
         it('should return all editions', () => {
-            const expected$ = cold('(a|)', { a: editions });
+            const expected = editions;
 
-            const actual$ = dataService.fetchEditions();
+            const actual = dataService.getEditions();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('fetchEditionTranslations', () => {
+    describe('getEditionTranslations', () => {
         it('should return all edition translations', () => {
-            const expected$ = cold('(a|)', { a: editionTranslations });
+            const expected = editionTranslations;
 
-            const actual$ = dataService.fetchEditionTranslations();
+            const actual = dataService.getEditionTranslations();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('fetchCardTypes', () => {
+    describe('getCardTypes', () => {
         it('should return all card types', () => {
-            const expected$ = cold('(a|)', { a: cardTypes });
+            const expected = cardTypes;
 
-            const actual$ = dataService.fetchCardTypes();
+            const actual = dataService.getCardTypes();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('fetchCardTypeTranslations', () => {
+    describe('getCardTypeTranslations', () => {
         it('should return all card type translations', () => {
-            const expected$ = cold('(a|)', { a: cardTypeTranslations });
+            const expected = cardTypeTranslations;
 
-            const actual$ = dataService.fetchCardTypeTranslations();
+            const actual = dataService.getCardTypeTranslations();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('fetchCards', () => {
+    describe('getCards', () => {
         it('should return all cards', () => {
-            const expected$ = cold('(a|)', { a: cards });
+            const expected = cards;
 
-            const actual$ = dataService.fetchCards();
+            const actual = dataService.getCards();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('fetchCardTranslations', () => {
+    describe('getCardTranslations', () => {
         it('should return all card translations', () => {
-            const expected$ = cold('(a|)', { a: cardTranslations });
+            const expected = cardTranslations;
 
-            const actual$ = dataService.fetchCardTranslations();
+            const actual = dataService.getCardTranslations();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 });

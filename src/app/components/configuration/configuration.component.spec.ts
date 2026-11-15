@@ -83,7 +83,7 @@ describe('ConfigurationComponent', () => {
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
         editionServiceSpy = TestBed.inject(EditionService);
-        editionServiceSpy.editions$ = of(dataFixture.createEditions());
+        editionServiceSpy.editions = dataFixture.createEditions();
 
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
@@ -92,8 +92,8 @@ describe('ConfigurationComponent', () => {
         configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(true));
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
-        cardServiceSpy.cards$ = of(
-            new Map<string, Card>(dataFixture.createCards().map((card: Card) => [card.id, card])),
+        cardServiceSpy.cards = new Map<string, Card>(
+            dataFixture.createCards().map((card: Card) => [card.id, card]),
         );
 
         fixture = TestBed.createComponent(ConfigurationComponent);
@@ -114,13 +114,11 @@ describe('ConfigurationComponent', () => {
                 editions: editions,
                 initialValue: configuration.editions,
             };
-            const editions$ = cold('   --a', { a: editions });
-            const configuration$ = cold('--b', { b: configuration });
-            const cards$ = cold('        --c', { c: cards });
-            const expected$ = cold('     --d', { d: expected });
-            editionServiceSpy.editions$ = editions$;
+            const configuration$ = cold('--a', { a: configuration });
+            const expected$ = cold('     --b', { b: expected });
+            editionServiceSpy.editions = editions;
             configurationServiceSpy.configuration$ = configuration$;
-            cardServiceSpy.cards$ = cards$;
+            cardServiceSpy.cards = cards;
             fixture.detectChanges();
 
             const actual$ = component.editionSelectViewData$;
@@ -141,13 +139,11 @@ describe('ConfigurationComponent', () => {
                 editions: [editionWithCards],
                 initialValue: configuration.editions,
             };
-            const editions$ = cold('   --a', { a: [editionWithCards, editionWithoutCards] });
-            const configuration$ = cold('--b', { b: configuration });
-            const cards$ = cold('        --c', { c: cards });
-            const expected$ = cold('     --d', { d: expected });
-            editionServiceSpy.editions$ = editions$;
+            const configuration$ = cold('--a', { a: configuration });
+            const expected$ = cold('     --b', { b: expected });
+            editionServiceSpy.editions = [editionWithCards, editionWithoutCards];
             configurationServiceSpy.configuration$ = configuration$;
-            cardServiceSpy.cards$ = cards$;
+            cardServiceSpy.cards = cards;
             fixture.detectChanges();
 
             const actual$ = component.editionSelectViewData$;

@@ -1,6 +1,6 @@
 import { SpecialCardsCount } from '../models/special-cards-count';
 import { Injectable, inject } from '@angular/core';
-import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Configuration } from '../models/configuration';
 import { Edition } from '../models/edition';
 import { map } from 'rxjs/operators';
@@ -47,8 +47,10 @@ export class ConfigurationService {
     }
 
     isCardTypeAvailable(type: CardTypeId): Observable<boolean> {
-        return combineLatest([this.cardService.findByCardType(type), this.enabledEditions$]).pipe(
-            map(([cardsOfType, enabledEditions]: [Card[], Edition[]]) => {
+        const cardsOfType = this.cardService.findByCardType(type);
+
+        return this.enabledEditions$.pipe(
+            map((enabledEditions: Edition[]) => {
                 const enabledEditionIds = enabledEditions.map((edition: Edition) => edition.id);
 
                 return cardsOfType.some((card: Card) =>

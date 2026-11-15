@@ -75,11 +75,10 @@ describe('ConfigurationService', () => {
             const enabledEditions = editions.slice(1);
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: editions, types: [cardType] });
-            const findByCardType$ = cold('a', { a: [card] });
-            const expected$ = cold('      a', { a: true });
+            const expected$ = cold('a', { a: true });
             cardServiceSpy.findByCardType
                 .withArgs(cardType.id as CardTypeId)
-                .and.returnValue(findByCardType$);
+                .and.returnValue([card]);
             configurationService.updateEditions(enabledEditions);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
@@ -91,11 +90,10 @@ describe('ConfigurationService', () => {
             const edition = dataFixture.createEdition();
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: [edition], types: [cardType] });
-            const findByCardType$ = cold('a', { a: [card] });
-            const expected$ = cold('      a', { a: true });
+            const expected$ = cold('a', { a: true });
             cardServiceSpy.findByCardType
                 .withArgs(cardType.id as CardTypeId)
-                .and.returnValue(findByCardType$);
+                .and.returnValue([card]);
             configurationService.updateEditions([{ ...edition }]);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
@@ -109,11 +107,10 @@ describe('ConfigurationService', () => {
             const cardEditions = editions.slice(1);
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: cardEditions, types: [cardType] });
-            const findByCardType$ = cold('a', { a: [card] });
-            const expected$ = cold('      a', { a: false });
+            const expected$ = cold('a', { a: false });
             cardServiceSpy.findByCardType
                 .withArgs(cardType.id as CardTypeId)
-                .and.returnValue(findByCardType$);
+                .and.returnValue([card]);
             configurationService.updateEditions(enabledEditions);
 
             const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);

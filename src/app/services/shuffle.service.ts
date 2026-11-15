@@ -4,7 +4,7 @@ import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
 import { Injectable, inject } from '@angular/core';
 import { Card } from '../models/card';
-import { forkJoin, Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { Edition } from '../models/edition';
 import { ChanceService } from './chance.service';
@@ -53,7 +53,7 @@ export class ShuffleService {
     private shuffleSetTriggerSubject = new Subject<void>();
     private shuffleSingleCardTriggerSubject = new Subject<Card>();
 
-    private randomizableCards$: Observable<RandomizableCards> = forkJoin({
+    private randomizableCards$: Observable<RandomizableCards> = of({
         kingdomCards: this.cardService.findRandomizableKingdomCards(),
         events: this.cardService.findByCardType(CardTypeId.Event),
         landmarks: this.cardService.findByCardType(CardTypeId.Landmark),

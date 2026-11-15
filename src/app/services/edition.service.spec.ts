@@ -1,8 +1,6 @@
-import { EditionTranslation } from './../models/edition';
 import { TestBed } from '@angular/core/testing';
 
 import { EditionService } from './edition.service';
-import { cold, getTestScheduler } from 'jasmine-marbles';
 import { DataService } from './data.service';
 import { SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
@@ -20,8 +18,8 @@ describe('EditionService', () => {
                 {
                     provide: DataService,
                     useValue: jasmine.createSpyObj<DataService>('DataService', [
-                        'fetchEditions',
-                        'fetchEditionTranslations',
+                        'getEditions',
+                        'getEditionTranslations',
                     ]),
                 },
             ],
@@ -31,56 +29,33 @@ describe('EditionService', () => {
         editions = dataFixture.createEditions();
 
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        dataServiceSpy.fetchEditions.and.returnValue(cold('--(a|)', { a: editions }));
-        dataServiceSpy.fetchEditionTranslations.and.returnValue(cold('(a|)', { a: [] }));
+        dataServiceSpy.getEditions.and.returnValue(editions);
+        dataServiceSpy.getEditionTranslations.and.returnValue([]);
     });
 
-    describe('editions$', () => {
-        it('with initialization is pending should return from server fetched data after initialization and complete', () => {
-            const expected$ = cold('       --(a|)', { a: editions });
+    describe('editions', () => {
+        it('without translations should return source locale data', () => {
+            const expected = editions;
             editionService = TestBed.inject(EditionService);
 
-            const actual$ = editionService.editions$;
+            const actual = editionService.editions;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('with initialization is completed should return cached data immediately and complete', () => {
-            const expected$ = cold('       (a|)  ', { a: editions });
-            editionService = TestBed.inject(EditionService);
-            getTestScheduler().flush();
-            getTestScheduler().frame = 0;
-
-            const actual$ = editionService.editions$;
-
-            expect(actual$).toBeObservable(expected$);
-        });
-
-        it('with translations should return correct translated data and complete', () => {
+        it('with translations should return correct translated data', () => {
             const editionTranslations = dataFixture.createEditionTranslations(2);
-            const editionTranslations$ = cold('---(a|)', { a: editionTranslations });
-            dataServiceSpy.fetchEditionTranslations.and.returnValue(editionTranslations$);
-            const expected = editions.map((edition: Edition) => {
-                const translation = editionTranslations.find(
-                    (editionTranslation: EditionTranslation) =>
-                        editionTranslation.id === edition.id,
-                );
-
-                if (translation === undefined) {
-                    return edition;
-                }
-
-                return {
-                    ...edition,
-                    ...translation,
-                };
-            });
-            const expected$ = cold('---(a|)', { a: expected });
+            dataServiceSpy.getEditionTranslations.and.returnValue(editionTranslations);
+            const expected = [
+                { ...editions[0], expansion: editionTranslations[0].expansion },
+                { ...editions[1], expansion: editionTranslations[1].expansion },
+                editions[2],
+            ];
             editionService = TestBed.inject(EditionService);
 
-            const actual$ = editionService.editions$;
+            const actual = editionService.editions;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
         it('with both editions of an expansion should translate each of them separately', () => {
@@ -88,24 +63,20 @@ describe('EditionService', () => {
                 dataFixture.createEdition({ id: '181-2', expansion: 'Hinterlands', edition: '2' }),
                 dataFixture.createEdition({ id: '181-1', expansion: 'Hinterlands', edition: '1' }),
             ];
-            dataServiceSpy.fetchEditions.and.returnValue(cold('---(a|)', { a: bothEditions }));
-            const editionTranslations = [
+            dataServiceSpy.getEditions.and.returnValue(bothEditions);
+            dataServiceSpy.getEditionTranslations.and.returnValue([
                 dataFixture.createEditionTranslation({ id: '181-2', expansion: 'Hinterland' }),
                 dataFixture.createEditionTranslation({ id: '181-1', expansion: 'Hinterland' }),
-            ];
-            dataServiceSpy.fetchEditionTranslations.and.returnValue(
-                cold('---(b|)', { b: editionTranslations }),
-            );
+            ]);
             const expected = [
                 { ...bothEditions[0], expansion: 'Hinterland' },
                 { ...bothEditions[1], expansion: 'Hinterland' },
             ];
-            const expected$ = cold('---(a|)', { a: expected });
             editionService = TestBed.inject(EditionService);
 
-            const actual$ = editionService.editions$;
+            const actual = editionService.editions;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 });

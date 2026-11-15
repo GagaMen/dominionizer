@@ -1,6 +1,4 @@
-import { CardTypeTranslation } from './../models/card-type';
 import { TestBed } from '@angular/core/testing';
-import { cold, getTestScheduler } from 'jasmine-marbles';
 import { DataFixture } from 'src/testing/data-fixture';
 import { SpyObj } from 'src/testing/spy-obj';
 import { CardType } from '../models/card-type';
@@ -20,8 +18,8 @@ describe('CardTypeService', () => {
                 {
                     provide: DataService,
                     useValue: jasmine.createSpyObj<DataService>('DataService', [
-                        'fetchCardTypes',
-                        'fetchCardTypeTranslations',
+                        'getCardTypes',
+                        'getCardTypeTranslations',
                     ]),
                 },
             ],
@@ -31,61 +29,33 @@ describe('CardTypeService', () => {
         cardTypes = dataFixture.createCardTypes();
 
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        dataServiceSpy.fetchCardTypeTranslations.and.returnValue(cold('(a|)', { a: [] }));
+        dataServiceSpy.getCardTypes.and.returnValue(cardTypes);
+        dataServiceSpy.getCardTypeTranslations.and.returnValue([]);
     });
 
-    describe('cardTypes$', () => {
-        it('with initialization is pending should return from server fetched data after initialization and complete', () => {
-            const fetchCardTypes$ = cold('--(a|)', { a: cardTypes });
-            const expected$ = cold('      --(a|)', { a: cardTypes });
-            dataServiceSpy.fetchCardTypes.and.returnValue(fetchCardTypes$);
+    describe('cardTypes', () => {
+        it('without translations should return source locale data', () => {
+            const expected = cardTypes;
             cardTypeService = TestBed.inject(CardTypeService);
 
-            const actual$ = cardTypeService.cardTypes$;
+            const actual = cardTypeService.cardTypes;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('with initialization is completed should return cached data immediately and complete', () => {
-            const fetchCardTypes$ = cold('--(a|)', { a: cardTypes });
-            const expected$ = cold('      (a|)  ', { a: cardTypes });
-            dataServiceSpy.fetchCardTypes.and.returnValue(fetchCardTypes$);
-            cardTypeService = TestBed.inject(CardTypeService);
-            getTestScheduler().flush();
-            getTestScheduler().frame = 0;
-
-            const actual$ = cardTypeService.cardTypes$;
-
-            expect(actual$).toBeObservable(expected$);
-        });
-
-        it('with translations should return correct translated data and complete', () => {
+        it('with translations should return correct translated data', () => {
             const cardTypeTranslations = dataFixture.createCardTypeTranslations(2);
-            const cardTypeTranslations$ = cold('---(a|)', { a: cardTypeTranslations });
-            dataServiceSpy.fetchCardTypeTranslations.and.returnValue(cardTypeTranslations$);
-            const fetchCardTypes$ = cold('--(a|)', { a: cardTypes });
-            dataServiceSpy.fetchCardTypes.and.returnValue(fetchCardTypes$);
-            const expected = cardTypes.map((cardType: CardType) => {
-                const translation = cardTypeTranslations.find(
-                    (cardTypeTranslation: CardTypeTranslation) =>
-                        cardTypeTranslation.id === cardType.id,
-                );
-
-                if (translation === undefined) {
-                    return cardType;
-                }
-
-                return {
-                    ...cardType,
-                    ...translation,
-                };
-            });
-            const expected$ = cold('---(a|)', { a: expected });
+            dataServiceSpy.getCardTypeTranslations.and.returnValue(cardTypeTranslations);
+            const expected = [
+                { ...cardTypes[0], name: cardTypeTranslations[0].name },
+                { ...cardTypes[1], name: cardTypeTranslations[1].name },
+                cardTypes[2],
+            ];
             cardTypeService = TestBed.inject(CardTypeService);
 
-            const actual$ = cardTypeService.cardTypes$;
+            const actual = cardTypeService.cardTypes;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 });

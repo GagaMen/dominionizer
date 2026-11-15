@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 
 import { CardService } from './card.service';
 import { DataService } from './data.service';
@@ -7,9 +6,10 @@ import { SpyObj } from 'src/testing/spy-obj';
 import { CardDto } from '../dtos/card-dto';
 import { EditionService } from './edition.service';
 import { DataFixture } from 'src/testing/data-fixture';
-import { CardTypeId } from '../models/card-type';
+import { CardType, CardTypeId } from '../models/card-type';
 import { CardTypeService } from './card-type.service';
 import { Card } from '../models/card';
+import { Edition } from '../models/edition';
 
 describe('CardService', () => {
     let cardService: CardService;
@@ -17,6 +17,8 @@ describe('CardService', () => {
     let editionServiceSpy: SpyObj<EditionService>;
     let cardTypeServiceSpy: SpyObj<CardTypeService>;
     let dataFixture: DataFixture;
+    let editions: Edition[];
+    let cardTypes: CardType[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -24,8 +26,8 @@ describe('CardService', () => {
                 {
                     provide: DataService,
                     useValue: jasmine.createSpyObj<DataService>('DataService', [
-                        'fetchCards',
-                        'fetchCardTranslations',
+                        'getCards',
+                        'getCardTranslations',
                     ]),
                 },
                 { provide: EditionService, useValue: {} },
@@ -34,24 +36,22 @@ describe('CardService', () => {
         });
 
         dataFixture = new DataFixture();
+        editions = dataFixture.createEditions();
+        cardTypes = dataFixture.createCardTypes();
 
         dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        dataServiceSpy.fetchCards.and.returnValue(
-            cold('(a|)', { a: dataFixture.createCardDtos() }),
-        );
-        dataServiceSpy.fetchCardTranslations.and.returnValue(cold('(a|)', { a: [] }));
+        dataServiceSpy.getCards.and.returnValue(dataFixture.createCardDtos());
+        dataServiceSpy.getCardTranslations.and.returnValue([]);
 
         editionServiceSpy = TestBed.inject(EditionService);
-        editionServiceSpy.editions$ = cold('(a|)', { a: dataFixture.createEditions() });
+        editionServiceSpy.editions = editions;
 
         cardTypeServiceSpy = TestBed.inject(CardTypeService);
-        cardTypeServiceSpy.cardTypes$ = cold('(a|)', { a: dataFixture.createCardTypes() });
+        cardTypeServiceSpy.cardTypes = cardTypes;
     });
 
-    describe('cards$', () => {
-        it('should map CardDto objects from server to their corresponding Card objects and complete', () => {
-            const editions = dataFixture.createEditions();
-            const cardTypes = dataFixture.createCardTypes();
+    describe('cards', () => {
+        it('should map CardDto objects to their corresponding Card objects', () => {
             const cardDtos = dataFixture.createCardDtos(3, {
                 editions: [editions[0].id, editions[2].id],
                 types: [cardTypes[0].id, cardTypes[2].id],
@@ -64,23 +64,15 @@ describe('CardService', () => {
                     types: [cardTypes[0], cardTypes[2]],
                 });
             });
-            const editions$ = cold('  -(a|)   ', { a: editions });
-            const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
-            const fetchCards$ = cold('----(c|)', { c: cardDtos });
-            const expected$ = cold('  ----(d|)', { d: expected });
-            editionServiceSpy.editions$ = editions$;
-            cardTypeServiceSpy.cardTypes$ = cardTypes$;
-            dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
+            dataServiceSpy.getCards.and.returnValue(cardDtos);
             cardService = TestBed.inject(CardService);
 
-            const actual$ = cardService.cards$;
+            const actual = cardService.cards;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('with translations should return correct translated data and complete', () => {
-            const editions = dataFixture.createEditions(2);
-            const cardTypes = dataFixture.createCardTypes(2);
+        it('with translations should return correct translated data', () => {
             const cardDto = dataFixture.createCardDto({
                 id: '1',
                 editions: [editions[0].id, editions[1].id],
@@ -95,25 +87,16 @@ describe('CardService', () => {
                 editions: [editions[0], editions[1]],
                 types: [cardTypes[0], cardTypes[1]],
             });
-            const editions$ = cold('  -(a|)   ', { a: editions });
-            const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
-            const fetchCards$ = cold('----(c|)', { c: [cardDto] });
-            const cardTranslations$ = cold('---(a|)', { a: [cardTranslation] });
-            const expected$ = cold('  ----(d|)', { d: expected });
-            editionServiceSpy.editions$ = editions$;
-            cardTypeServiceSpy.cardTypes$ = cardTypes$;
-            dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
-            dataServiceSpy.fetchCardTranslations.and.returnValue(cardTranslations$);
+            dataServiceSpy.getCards.and.returnValue([cardDto]);
+            dataServiceSpy.getCardTranslations.and.returnValue([cardTranslation]);
             cardService = TestBed.inject(CardService);
 
-            const actual$ = cardService.cards$;
+            const actual = cardService.cards;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('with translation contains empty name and empty description should return source locale data and complete', () => {
-            const editions = dataFixture.createEditions(2);
-            const cardTypes = dataFixture.createCardTypes(2);
+        it('with translation contains empty name and empty description should return source locale data', () => {
             const cardDto = dataFixture.createCardDto({
                 id: '1',
                 editions: [editions[0].id, editions[1].id],
@@ -130,88 +113,65 @@ describe('CardService', () => {
                 editions: [editions[0], editions[1]],
                 types: [cardTypes[0], cardTypes[1]],
             });
-            const editions$ = cold('  -(a|)   ', { a: editions });
-            const cardTypes$ = cold(' -(b|)   ', { b: cardTypes });
-            const fetchCards$ = cold('----(c|)', { c: [cardDto] });
-            const cardTranslations$ = cold('---(a|)', { a: [cardTranslation] });
-            const expected$ = cold('  ----(d|)', { d: expected });
-            editionServiceSpy.editions$ = editions$;
-            cardTypeServiceSpy.cardTypes$ = cardTypes$;
-            dataServiceSpy.fetchCards.and.returnValue(fetchCards$);
-            dataServiceSpy.fetchCardTranslations.and.returnValue(cardTranslations$);
+            dataServiceSpy.getCards.and.returnValue([cardDto]);
+            dataServiceSpy.getCardTranslations.and.returnValue([cardTranslation]);
             cardService = TestBed.inject(CardService);
 
-            const actual$ = cardService.cards$;
+            const actual = cardService.cards;
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
     describe('findRandomizableKingdomCards', () => {
         it('should contain only Kingdom cards', () => {
-            const nonKingdomCard = dataFixture.createCard({ id: '1', isKingdomCard: false });
-            const kingdomCard = dataFixture.createCard({ id: '2', isKingdomCard: true });
-            const cards$ = cold('   (a|)', {
-                a: new Map([
-                    ['1', nonKingdomCard],
-                    ['2', kingdomCard],
-                ]),
-            });
-            const expected$ = cold('(a|)', { a: [kingdomCard] });
+            const nonKingdomCardDto = dataFixture.createCardDto({ id: '1', isKingdomCard: false });
+            const kingdomCardDto = dataFixture.createCardDto({ id: '2', isKingdomCard: true });
+            dataServiceSpy.getCards.and.returnValue([nonKingdomCardDto, kingdomCardDto]);
             cardService = TestBed.inject(CardService);
-            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
+            const expected = [jasmine.objectContaining<Card>({ id: '2' })];
 
-            const actual$ = cardService.findRandomizableKingdomCards();
+            const actual = cardService.findRandomizableKingdomCards();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
         it('should contain the pile card of a split pile but not its halves', () => {
             // the cargo data marks only the pile itself as a kingdom pile
-            const pileCard = dataFixture.createCard({ id: '1', isKingdomCard: true });
-            const halfCard = dataFixture.createCard({ id: '2', isKingdomCard: false });
-            const cards$ = cold('   (a|)', {
-                a: new Map([
-                    ['1', pileCard],
-                    ['2', halfCard],
-                ]),
-            });
-            const expected$ = cold('(a|)', { a: [pileCard] });
+            const pileCardDto = dataFixture.createCardDto({ id: '1', isKingdomCard: true });
+            const halfCardDto = dataFixture.createCardDto({ id: '2', isKingdomCard: false });
+            dataServiceSpy.getCards.and.returnValue([pileCardDto, halfCardDto]);
             cardService = TestBed.inject(CardService);
-            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
+            const expected = [jasmine.objectContaining<Card>({ id: '1' })];
 
-            const actual$ = cardService.findRandomizableKingdomCards();
+            const actual = cardService.findRandomizableKingdomCards();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
     describe('findByCardType', () => {
-        it('should return only cards of given card type and complete', () => {
-            const nonActionCard = dataFixture.createCard({
+        it('should return only cards of given card type', () => {
+            cardTypeServiceSpy.cardTypes = [
+                dataFixture.createCardType({ id: CardTypeId.Attack }),
+                dataFixture.createCardType({ id: CardTypeId.Duration }),
+                dataFixture.createCardType({ id: CardTypeId.Action }),
+            ];
+            const nonActionCardDto = dataFixture.createCardDto({
                 id: '1',
-                types: [dataFixture.createCardType({ id: CardTypeId.Attack })],
+                types: [CardTypeId.Attack],
             });
-            const actionCard = dataFixture.createCard({
+            const actionCardDto = dataFixture.createCardDto({
                 id: '2',
-                types: [
-                    dataFixture.createCardType({ id: CardTypeId.Duration }),
-                    dataFixture.createCardType({ id: CardTypeId.Action }),
-                ],
+                types: [CardTypeId.Duration, CardTypeId.Action],
             });
-            const cards$ = cold('   (a|)', {
-                a: new Map([
-                    ['1', nonActionCard],
-                    ['2', actionCard],
-                ]),
-            });
-            const expected$ = cold('(a|)', { a: [actionCard] });
+            dataServiceSpy.getCards.and.returnValue([nonActionCardDto, actionCardDto]);
             cardService = TestBed.inject(CardService);
-            spyOnProperty(cardService, 'cards$').and.returnValue(cards$);
+            const expected = [jasmine.objectContaining<Card>({ id: '2' })];
 
-            const actual$ = cardService.findByCardType(CardTypeId.Action);
+            const actual = cardService.findByCardType(CardTypeId.Action);
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 });

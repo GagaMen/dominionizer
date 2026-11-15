@@ -129,30 +129,14 @@ describe('ShuffleService', () => {
         );
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
-        cardServiceSpy.findRandomizableKingdomCards.and.returnValue(
-            cold('(a|)', { a: kingdomCards }),
-        );
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Event)
-            .and.returnValue(cold('(a|)', { a: events }));
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Landmark)
-            .and.returnValue(cold('(a|)', { a: landmarks }));
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Project)
-            .and.returnValue(cold('(a|)', { a: projects }));
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Way)
-            .and.returnValue(cold('(a|)', { a: ways }));
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Trait)
-            .and.returnValue(cold('(a|)', { a: traits }));
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Ally)
-            .and.returnValue(cold('(a|)', { a: allies }));
-        cardServiceSpy.findByCardType
-            .withArgs(CardTypeId.Prophecy)
-            .and.returnValue(cold('(a|)', { a: prophecies }));
+        cardServiceSpy.findRandomizableKingdomCards.and.returnValue(kingdomCards);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Event).and.returnValue(events);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Landmark).and.returnValue(landmarks);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Project).and.returnValue(projects);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Way).and.returnValue(ways);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Trait).and.returnValue(traits);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Ally).and.returnValue(allies);
+        cardServiceSpy.findByCardType.withArgs(CardTypeId.Prophecy).and.returnValue(prophecies);
 
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
