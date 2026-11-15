@@ -65,14 +65,39 @@ export class CardTranslationBuilder {
     }
 
     // The printings of a language are listed from oldest to newest, so the last one wins. Entries
-    // added while migrating a page often carry no card text yet; in that case we fall back to the
-    // newest entry that has one, because the text of an older printing beats no text at all.
+    // carrying the 'd' argument are versions of a digital service, e.g. Shuffle iT. They are listed
+    // behind the printings, but word the cards differently than the printed ones players hold in
+    // their hands, so they only count when a language has no printed version. Entries added while
+    // migrating a page often carry no card text yet; in that case we fall back to the newest entry
+    // that has one, because the text of an older printing beats no text at all.
     private findLatestLangVersion(langVersions: TemplateArguments[]): TemplateArguments {
-        const langVersionsWithDescription = langVersions.filter(
-            (langVersion) => normalize(langVersion.positional[2]) !== '',
+        const printedLangVersions = langVersions.filter((langVersion) =>
+            this.isPrintedLangVersion(langVersion),
         );
+        const candidates = printedLangVersions.length > 0 ? printedLangVersions : langVersions;
+        const candidatesWithDescription = candidates.filter((langVersion) =>
+            this.hasDescription(langVersion),
+        );
+        const latestLangVersion =
+            candidatesWithDescription.at(-1) ?? candidates[candidates.length - 1];
 
-        return langVersionsWithDescription.at(-1) ?? langVersions[langVersions.length - 1];
+        if (this.hasDescription(latestLangVersion)) {
+            return latestLangVersion;
+        }
+
+        // no version of the preferred kind has a card text, but a digital one might
+        return (
+            langVersions.filter((langVersion) => this.hasDescription(langVersion)).at(-1) ??
+            latestLangVersion
+        );
+    }
+
+    private isPrintedLangVersion(langVersion: TemplateArguments): boolean {
+        return normalize(langVersion.named.get('d')) === '';
+    }
+
+    private hasDescription(langVersion: TemplateArguments): boolean {
+        return normalize(langVersion.positional[2]) !== '';
     }
 
     private buildFromTable(

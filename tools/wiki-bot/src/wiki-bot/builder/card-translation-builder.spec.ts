@@ -246,6 +246,120 @@ describe('CardTranslationBuilder', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('with digital version behind a printed one should return the printed one', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 322,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|German|r=0| Bischof | Entsorge eine deiner Handkarten. | [[ASS Altenburger]] | v=2021 }}\n` +
+                                    `{{CardLangVersion|d=s|German|r=0| Bishcof | Entsorge eine Karte aus deiner Hand. | v=2022 }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '322',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'German',
+                    {
+                        id: '322',
+                        name: 'Bischof',
+                        description: 'Entsorge eine deiner Handkarten.',
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with digital versions only should return the latest one', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 8627,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|d=g|German| Gezeitentümpel | Lege 2 Karten ab. | v=2020 }}\n` +
+                                    `{{CardLangVersion|d=s|German| Gezeitenbecken | Lege 2&nbsp;Karten ab. | v=2022 }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '8627',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'German',
+                    {
+                        id: '8627',
+                        name: 'Gezeitenbecken',
+                        description: 'Lege 2&nbsp;Karten ab.',
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('with printed version lacking a description should return the digital one having one', () => {
+            const cardPage: CardPage = {
+                ...nullCardPage,
+                pageid: 328,
+                revisions: [
+                    {
+                        slots: {
+                            main: {
+                                '*':
+                                    `{{StartCardLangVersions}}\n` +
+                                    `{{CardLangVersion|Russian| Контрабанда |  | v=2010 }}\n` +
+                                    `{{CardLangVersion|d=s|Russian| Контрабанда | Игрок слева называет карту. | v=2017 }}\n` +
+                                    `{{EndCardLangVersions}}\n`,
+                            },
+                        },
+                    },
+                ],
+            };
+            const cargoCard: CargoCard = {
+                ...nullCargoCard,
+                PageId: '328',
+            };
+            const expected = new Map<string, CardTranslation>([
+                [
+                    'Russian',
+                    {
+                        id: '328',
+                        name: 'Контрабанда',
+                        description: 'Игрок слева называет карту.',
+                    },
+                ],
+            ]);
+
+            const actual = cardTranslationBuilder.build(cardPage, cargoCard);
+
+            expect(actual).toEqual(expected);
+        });
+
         it('with template form entries lacking a description at all should return empty descriptions', () => {
             const cardPage: CardPage = {
                 ...nullCardPage,
