@@ -1,6 +1,6 @@
 import { CardService } from './../../services/card.service';
 import { AppBarService } from './../../services/app-bar.service';
-import { Component, OnInit, inject, viewChild } from '@angular/core';
+import { Component, OnInit, inject, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EditionService } from 'src/app/services/edition.service';
 import { combineLatest, Observable } from 'rxjs';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -43,6 +43,7 @@ export interface SpecialCardSelectViewData {
     ],
     providers: [{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }],
     templateUrl: './configuration.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./configuration.component.scss'],
 })
 export class ConfigurationComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { Edition } from 'src/app/models/edition';
 import { EditionSelectComponent } from 'src/app/components/edition-select/edition-select.component';
@@ -7,6 +7,7 @@ import { EditionSelectComponent } from 'src/app/components/edition-select/editio
     selector: 'app-edition-select',
     standalone: true,
     template: '',
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [{ provide: EditionSelectComponent, useExisting: EditionSelectStubComponent }],
 })
 export class EditionSelectStubComponent {

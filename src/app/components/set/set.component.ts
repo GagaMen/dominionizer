@@ -1,5 +1,5 @@
 import { AppBarService } from '../../services/app-bar.service';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ShuffleService } from '../../services/shuffle.service';
 import { SetService } from 'src/app/services/set.service';
 import { SetOrderingMenuComponent } from '../set-ordering-menu/set-ordering-menu.component';
@@ -24,6 +24,7 @@ import { AsyncPipe } from '@angular/common';
         AsyncPipe,
     ],
     templateUrl: './set.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./set.component.scss'],
 })
 export class SetComponent implements OnInit {

@@ -1,7 +1,9 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./",
+        "paths": {
+            "src/*": ["./src/*"]
+        },
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
@@ -19,7 +21,8 @@
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": false,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "types": ["jasmine", "node"]
     },
     "angularCompilerOptions": {
         "strictTemplates": true,

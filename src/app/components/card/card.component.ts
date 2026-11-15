@@ -1,7 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { Card, NullCard } from './../../models/card';
 import { Edition } from './../../models/edition';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
@@ -32,6 +32,7 @@ interface RGB {
         MatIcon,
     ],
     templateUrl: './card.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {

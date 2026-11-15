@@ -1,5 +1,5 @@
 import { ShuffleService } from 'src/app/services/shuffle.service';
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Card } from '../../models/card';
 import { CardComponent } from '../card/card.component';
 
@@ -7,6 +7,7 @@ import { CardComponent } from '../card/card.component';
     selector: 'app-card-list',
     imports: [CardComponent],
     templateUrl: './card-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./card-list.component.scss'],
 })
 export class CardListComponent {

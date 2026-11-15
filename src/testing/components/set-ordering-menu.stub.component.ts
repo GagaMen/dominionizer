@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 import { SetOrderingMenuComponent } from 'src/app/components/set-ordering-menu/set-ordering-menu.component';
 
@@ -11,6 +11,7 @@ import { SetOrderingMenuComponent } from 'src/app/components/set-ordering-menu/s
             useClass: SetOrderingMenuStubComponent,
         },
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: '',
 })
 export class SetOrderingMenuStubComponent {

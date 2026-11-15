@@ -1,4 +1,13 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    inject,
+    ChangeDetectionStrategy,
+} from '@angular/core';
 import {
     UntypedFormGroup,
     UntypedFormBuilder,
@@ -15,6 +24,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
     selector: 'app-edition-select',
     imports: [MatCheckbox, MatDivider, ReactiveFormsModule],
     templateUrl: './edition-select.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./edition-select.component.scss'],
 })
 export class EditionSelectComponent implements OnInit {

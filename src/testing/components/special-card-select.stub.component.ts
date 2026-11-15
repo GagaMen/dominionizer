@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
@@ -6,6 +6,7 @@ import { SpecialCardsCount } from 'src/app/models/special-cards-count';
 @Component({
     selector: 'app-special-card-select',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: '',
 })
 export class SpecialCardSelectStubComponent {
