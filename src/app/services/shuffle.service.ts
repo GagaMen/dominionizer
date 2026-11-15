@@ -71,11 +71,8 @@ export class ShuffleService {
 
     private initShuffleSet(): Observable<void> {
         return this.shuffleSetTriggerSubject.pipe(
-            withLatestFrom(
-                this.randomizableCards$,
-                this.configurationService.configuration$,
-                (_, randomizableCards: RandomizableCards, configuration: Configuration) =>
-                    this.pickRandomSet(randomizableCards, configuration),
+            withLatestFrom(this.randomizableCards$, (_, randomizableCards: RandomizableCards) =>
+                this.pickRandomSet(randomizableCards, this.configurationService.configuration()),
             ),
             map((set: Set) => this.setService.updateSet(set)),
         );
@@ -147,14 +144,9 @@ export class ShuffleService {
         return this.shuffleSingleCardTriggerSubject.pipe(
             withLatestFrom(
                 this.randomizableCards$,
-                this.configurationService.configuration$,
                 this.setService.set$,
-                (
-                    oldCard: Card,
-                    randomizableCards: RandomizableCards,
-                    configuration: Configuration,
-                    currentSet: Set,
-                ) => {
+                (oldCard: Card, randomizableCards: RandomizableCards, currentSet: Set) => {
+                    const configuration = this.configurationService.configuration();
                     const newCard = this.pickRandomCard(
                         oldCard,
                         randomizableCards,

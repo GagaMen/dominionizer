@@ -2,6 +2,7 @@ import { CardService } from './../../services/card.service';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarConfiguration } from './../../models/app-bar-configuration';
 import { AppBarService } from './../../services/app-bar.service';
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {
@@ -16,8 +17,7 @@ import { EditionService } from 'src/app/services/edition.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { DataFixture } from 'src/testing/data-fixture';
 import { CardTypeId } from 'src/app/models/card-type';
-import { cold } from 'jasmine-marbles';
-import { of } from 'rxjs';
+import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { By } from '@angular/platform-browser';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
@@ -88,8 +88,8 @@ describe('ConfigurationComponent', () => {
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
         ) as jasmine.SpyObj<ConfigurationService>;
-        configurationServiceSpy.configuration$ = of(dataFixture.createConfiguration());
-        configurationServiceSpy.isCardTypeAvailable.and.returnValue(of(true));
+        configurationServiceSpy.configuration = signal(dataFixture.createConfiguration());
+        configurationServiceSpy.isCardTypeAvailable.and.returnValue(true);
 
         cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
         cardServiceSpy.cards = new Map<string, Card>(
@@ -101,8 +101,8 @@ describe('ConfigurationComponent', () => {
         component = fixture.componentInstance;
     });
 
-    describe('editionSelectViewData$', () => {
-        it('should emit correct EditionSelectViewData', () => {
+    describe('editionSelectViewData', () => {
+        it('should return correct EditionSelectViewData', () => {
             const editions = dataFixture.createEditions();
             const configuration = dataFixture.createConfiguration();
             const cards = new Map<string, Card>(
@@ -114,19 +114,16 @@ describe('ConfigurationComponent', () => {
                 editions: editions,
                 initialValue: configuration.editions,
             };
-            const configuration$ = cold('--a', { a: configuration });
-            const expected$ = cold('     --b', { b: expected });
             editionServiceSpy.editions = editions;
-            configurationServiceSpy.configuration$ = configuration$;
+            configurationServiceSpy.configuration = signal(configuration);
             cardServiceSpy.cards = cards;
-            fixture.detectChanges();
 
-            const actual$ = component.editionSelectViewData$;
+            const actual = component.editionSelectViewData();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('with editions has no cards should emit correct EditionSelectViewData', () => {
+        it('with editions has no cards should return correct EditionSelectViewData', () => {
             const editionWithCards = dataFixture.createEdition({ id: '1' });
             const editionWithoutCards = dataFixture.createEdition({ id: '2' });
             const configuration = dataFixture.createConfiguration();
@@ -139,21 +136,18 @@ describe('ConfigurationComponent', () => {
                 editions: [editionWithCards],
                 initialValue: configuration.editions,
             };
-            const configuration$ = cold('--a', { a: configuration });
-            const expected$ = cold('     --b', { b: expected });
             editionServiceSpy.editions = [editionWithCards, editionWithoutCards];
-            configurationServiceSpy.configuration$ = configuration$;
+            configurationServiceSpy.configuration = signal(configuration);
             cardServiceSpy.cards = cards;
-            fixture.detectChanges();
 
-            const actual$ = component.editionSelectViewData$;
+            const actual = component.editionSelectViewData();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('specialCardSelectViewData$', () => {
-        it('with special cards are available should emit correct SpecialCardSelectViewData', () => {
+    describe('specialCardSelectViewData', () => {
+        it('with special cards are available should return correct SpecialCardSelectViewData', () => {
             const configuration = dataFixture.createConfiguration();
             const availability = dataFixture.createSpecialCardsAvailability({
                 events: true,
@@ -162,48 +156,34 @@ describe('ConfigurationComponent', () => {
                 initialValue: configuration.specialCardsCount,
                 availability: availability,
             };
-            const configuration$ = cold('        --a', { a: configuration });
-            const areEventsAvailable$ = cold('   --b', { b: availability.events });
-            const areLandmarksAvailable$ = cold('--c', { c: availability.landmarks });
-            const areProjectsAvailable$ = cold(' --d', { d: availability.projects });
-            const areWaysAvailable$ = cold('     --e', { e: availability.ways });
-            const areTraitsAvailable$ = cold('   --f', { f: availability.traits });
-            const expected$ = cold('             --g', { g: expected });
-            configurationServiceSpy.configuration$ = configuration$;
+            configurationServiceSpy.configuration = signal(configuration);
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Event)
-                .and.returnValue(areEventsAvailable$);
+                .and.returnValue(availability.events);
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Landmark)
-                .and.returnValue(areLandmarksAvailable$);
+                .and.returnValue(availability.landmarks);
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Project)
-                .and.returnValue(areProjectsAvailable$);
+                .and.returnValue(availability.projects);
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Way)
-                .and.returnValue(areWaysAvailable$);
+                .and.returnValue(availability.ways);
             configurationServiceSpy.isCardTypeAvailable
                 .withArgs(CardTypeId.Trait)
-                .and.returnValue(areTraitsAvailable$);
-            fixture.detectChanges();
+                .and.returnValue(availability.traits);
 
-            const actual$ = component.specialCardSelectViewData$;
+            const actual = component.specialCardSelectViewData();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('with no special cards are available should emit null', () => {
-            const configuration = dataFixture.createConfiguration();
-            const configuration$ = cold('      --a', { a: configuration });
-            const isCardTypeAvailable$ = cold('--b', { b: false });
-            const expected$ = cold('           --c', { c: null });
-            configurationServiceSpy.configuration$ = configuration$;
-            configurationServiceSpy.isCardTypeAvailable.and.returnValue(isCardTypeAvailable$);
-            fixture.detectChanges();
+        it('with no special cards are available should return null', () => {
+            configurationServiceSpy.isCardTypeAvailable.and.returnValue(false);
 
-            const actual$ = component.specialCardSelectViewData$;
+            const actual = component.specialCardSelectViewData();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toBeNull();
         });
     });
 
@@ -292,21 +272,24 @@ describe('ConfigurationComponent', () => {
         });
 
         it('should bind properties of EditionSelectComponent correctly', () => {
-            fixture.detectChanges();
             const editions = dataFixture.createEditions();
             const initialValue = editions.slice(0, 1);
-            const viewData: EditionSelectViewData = {
-                editions: editions,
-                initialValue: initialValue,
-            };
-            component.editionSelectViewData$ = of(viewData);
+            editionServiceSpy.editions = editions;
+            cardServiceSpy.cards = new Map<string, Card>(
+                dataFixture
+                    .createCards(3, { editions: editions })
+                    .map((card: Card) => [card.id, card]),
+            );
+            configurationServiceSpy.configuration = signal(
+                dataFixture.createConfiguration({ editions: initialValue }),
+            );
             fixture.detectChanges();
 
             const actual = fixture.debugElement
                 .query(By.directive(EditionSelectStubComponent))
                 .injector.get(EditionSelectStubComponent);
 
-            expect(actual.editions).withContext('editions').toBe(editions);
+            expect(actual.editions).withContext('editions').toEqual(editions);
             expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
         });
 
@@ -344,14 +327,21 @@ describe('ConfigurationComponent', () => {
         });
 
         it('should bind properties of SpecialCardSelectComponent correctly', () => {
-            fixture.detectChanges();
             const initialValue = dataFixture.createSpecialCardsCount();
-            const availability = dataFixture.createSpecialCardsAvailability();
-            const viewData: SpecialCardSelectViewData = {
-                initialValue: initialValue,
-                availability: availability,
+            const availability: SpecialCardsAvailability = {
+                events: true,
+                landmarks: false,
+                projects: false,
+                ways: false,
+                traits: false,
             };
-            component.specialCardSelectViewData$ = of(viewData);
+            configurationServiceSpy.configuration = signal(
+                dataFixture.createConfiguration({ specialCardsCount: initialValue }),
+            );
+            configurationServiceSpy.isCardTypeAvailable.and.returnValue(false);
+            configurationServiceSpy.isCardTypeAvailable
+                .withArgs(CardTypeId.Event)
+                .and.returnValue(true);
             fixture.detectChanges();
 
             const actual = fixture.debugElement
@@ -359,7 +349,7 @@ describe('ConfigurationComponent', () => {
                 .injector.get(SpecialCardSelectStubComponent);
 
             expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
-            expect(actual.availability).withContext('availability').toBe(availability);
+            expect(actual.availability).withContext('availability').toEqual(availability);
         });
 
         it('should bind valueChange event of SpecialCardSelectComponent correctly', () => {

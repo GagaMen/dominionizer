@@ -4,7 +4,6 @@ import { ConfigurationService } from './configuration.service';
 import { CardService } from './card.service';
 import { Configuration } from '../models/configuration';
 import { CardTypeId } from '../models/card-type';
-import { cold } from 'jasmine-marbles';
 import { SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 
@@ -29,27 +28,28 @@ describe('ConfigurationService', () => {
         configurationService = TestBed.inject(ConfigurationService);
     });
 
-    describe('configuration$', () => {
-        it('with service just initialized should emit default configuration', () => {
-            const expected$ = cold('a', { a: ConfigurationService.defaultConfiguration });
+    describe('configuration', () => {
+        it('with service just initialized should return default configuration', () => {
+            const expected = ConfigurationService.defaultConfiguration;
 
-            const actual$ = configurationService.configuration$;
+            const actual = configurationService.configuration();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
     describe('updateEditions', () => {
         it('should update configuration.editions', () => {
             const editions = dataFixture.createEditions();
-            const expected$ = cold('a', {
-                a: { ...ConfigurationService.defaultConfiguration, editions: editions },
-            });
+            const expected: Configuration = {
+                ...ConfigurationService.defaultConfiguration,
+                editions: editions,
+            };
 
             configurationService.updateEditions(editions);
-            const actual$ = configurationService.configuration$;
+            const actual = configurationService.configuration();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
@@ -60,12 +60,11 @@ describe('ConfigurationService', () => {
                 ...ConfigurationService.defaultConfiguration,
                 specialCardsCount: count,
             };
-            const expected$ = cold('a', { a: expected });
 
             configurationService.updateSpecialCardsCount(count);
-            const actual$ = configurationService.configuration$;
+            const actual = configurationService.configuration();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
@@ -75,30 +74,28 @@ describe('ConfigurationService', () => {
             const enabledEditions = editions.slice(1);
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: editions, types: [cardType] });
-            const expected$ = cold('a', { a: true });
             cardServiceSpy.findByCardType
                 .withArgs(cardType.id as CardTypeId)
                 .and.returnValue([card]);
             configurationService.updateEditions(enabledEditions);
 
-            const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
+            const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toBeTrue();
         });
 
         it('with enabled edition is a different instance of the same edition should return true', () => {
             const edition = dataFixture.createEdition();
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: [edition], types: [cardType] });
-            const expected$ = cold('a', { a: true });
             cardServiceSpy.findByCardType
                 .withArgs(cardType.id as CardTypeId)
                 .and.returnValue([card]);
             configurationService.updateEditions([{ ...edition }]);
 
-            const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
+            const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toBeTrue();
         });
 
         it('with enabled edition has no card with given card type should return false', () => {
@@ -107,15 +104,14 @@ describe('ConfigurationService', () => {
             const cardEditions = editions.slice(1);
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: cardEditions, types: [cardType] });
-            const expected$ = cold('a', { a: false });
             cardServiceSpy.findByCardType
                 .withArgs(cardType.id as CardTypeId)
                 .and.returnValue([card]);
             configurationService.updateEditions(enabledEditions);
 
-            const actual$ = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
+            const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toBeFalse();
         });
     });
 });

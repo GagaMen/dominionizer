@@ -1,9 +1,7 @@
 import { SpecialCardsCount } from '../models/special-cards-count';
-import { Injectable, inject } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable, inject, signal } from '@angular/core';
 import { Configuration } from '../models/configuration';
 import { Edition } from '../models/edition';
-import { map } from 'rxjs/operators';
 import { CardTypeId } from '../models/card-type';
 import { CardService } from './card.service';
 import { Card } from '../models/card';
@@ -25,40 +23,35 @@ export class ConfigurationService {
         },
     };
 
-    private configurationSubject = new BehaviorSubject<Configuration>({
+    private readonly configurationState = signal<Configuration>({
         ...ConfigurationService.defaultConfiguration,
     });
 
-    readonly configuration$: Observable<Configuration> = this.configurationSubject.asObservable();
-
-    private readonly enabledEditions$: Observable<Edition[]> = this.configuration$.pipe(
-        map((configuration: Configuration) => configuration.editions),
-    );
+    readonly configuration = this.configurationState.asReadonly();
 
     updateEditions(editions: Edition[]): void {
-        this.configurationSubject.next({ ...this.configurationSubject.value, editions });
+        this.configurationState.update((configuration: Configuration) => ({
+            ...configuration,
+            editions,
+        }));
     }
 
     updateSpecialCardsCount(count: SpecialCardsCount): void {
-        this.configurationSubject.next({
-            ...this.configurationSubject.value,
+        this.configurationState.update((configuration: Configuration) => ({
+            ...configuration,
             specialCardsCount: count,
-        });
+        }));
     }
 
-    isCardTypeAvailable(type: CardTypeId): Observable<boolean> {
-        const cardsOfType = this.cardService.findByCardType(type);
-
-        return this.enabledEditions$.pipe(
-            map((enabledEditions: Edition[]) => {
-                const enabledEditionIds = enabledEditions.map((edition: Edition) => edition.id);
-
-                return cardsOfType.some((card: Card) =>
-                    card.editions.some((edition: Edition) =>
-                        enabledEditionIds.includes(edition.id),
-                    ),
-                );
-            }),
+    isCardTypeAvailable(type: CardTypeId): boolean {
+        const enabledEditionIds = this.configuration().editions.map(
+            (edition: Edition) => edition.id,
         );
+
+        return this.cardService
+            .findByCardType(type)
+            .some((card: Card) =>
+                card.editions.some((edition: Edition) => enabledEditionIds.includes(edition.id)),
+            );
     }
 }

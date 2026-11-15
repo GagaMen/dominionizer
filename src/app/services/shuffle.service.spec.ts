@@ -1,3 +1,4 @@
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { ConfigurationService } from './configuration.service';
@@ -141,7 +142,7 @@ describe('ShuffleService', () => {
         configurationServiceSpy = TestBed.inject(
             ConfigurationService,
         ) as jasmine.SpyObj<ConfigurationService>;
-        configurationServiceSpy.configuration$ = cold('a', { a: configuration });
+        configurationServiceSpy.configuration = signal(configuration);
 
         chanceServiceSpy = TestBed.inject(ChanceService) as jasmine.SpyObj<ChanceService>;
         chanceServiceSpy.pickCards.and.returnValue([]);
