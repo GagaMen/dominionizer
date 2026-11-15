@@ -5,13 +5,12 @@ import { ValidationResult } from './validation-result';
 describe('TranslationPresenceValidator', () => {
     const validator = new TranslationPresenceValidator();
 
-    const cardPage = (title: string, wikiText: string): CardPage =>
-        ({
-            pageid: 20,
-            title,
-            fullurl: '',
-            revisions: [{ slots: { main: { '*': wikiText } } }],
-        }) as CardPage;
+    const cardPage = (title: string, wikiText: string): CardPage => ({
+        pageid: 20,
+        title,
+        fullurl: '',
+        revisions: [{ slots: { main: { '*': wikiText } } }],
+    });
 
     describe('validate', () => {
         it('with translations extracted from a template block should return Success', () => {

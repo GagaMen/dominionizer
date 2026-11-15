@@ -120,7 +120,7 @@ describe('CardDtoBuilder', () => {
                 Art: '',
                 Edition: '1',
                 Types: '',
-            } as CargoCard;
+            };
             const expected: CardDto = {
                 ...nullCardDto,
                 id: '4823',
@@ -140,7 +140,7 @@ describe('CardDtoBuilder', () => {
                 Art: '',
                 Edition: '1&2',
                 Types: '',
-            } as CargoCard;
+            };
             const expected: CardDto = {
                 ...nullCardDto,
                 id: '4818',
@@ -182,7 +182,7 @@ describe('CardDtoBuilder', () => {
             const cargoCard = {
                 ...nullCargoCard,
                 Purpose: 'Landscape',
-            } as CargoCard;
+            };
             const expected: CardDto = {
                 ...nullCardDto,
                 isKingdomCard: false,
@@ -197,7 +197,7 @@ describe('CardDtoBuilder', () => {
             const cargoCard = {
                 ...nullCargoCard,
                 CostExtra: '*',
-            } as CargoCard;
+            };
             const expected: CardDto = {
                 ...nullCardDto,
                 costModifier: '*',
@@ -212,7 +212,7 @@ describe('CardDtoBuilder', () => {
             const cargoCard = {
                 ...nullCargoCard,
                 CostDebt: '4',
-            } as CargoCard;
+            };
             const expected: CardDto = {
                 ...nullCardDto,
                 debt: 4,
@@ -227,7 +227,7 @@ describe('CardDtoBuilder', () => {
             const cargoCard = {
                 ...nullCargoCard,
                 CostPotion: '1',
-            } as CargoCard;
+            };
             const expected: CardDto = {
                 ...nullCardDto,
                 costModifier: 'P',

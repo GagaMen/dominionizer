@@ -2,7 +2,7 @@
 import { EncodedImage, ImageBuilder } from './image-builder';
 import { ImagePage } from '../wiki-client/api-models';
 import { WikiClient } from '../wiki-client/wiki-client';
-import { Metadata, Sharp } from 'sharp';
+import { Sharp } from 'sharp';
 import { SharpFactory } from './sharp-factory';
 
 describe('ImageBuilder', () => {
@@ -24,7 +24,7 @@ describe('ImageBuilder', () => {
             'toBuffer',
         ]);
         sharpSpy.jpeg.and.returnValue(sharpSpy);
-        sharpSpy.metadata.and.resolveTo({ width: 100, height: 100 } as Metadata);
+        sharpSpy.metadata.and.resolveTo({ width: 100, height: 100 });
         sharpSpy.png.and.returnValue(sharpSpy);
         sharpSpy.resize.and.returnValue(sharpSpy);
         sharpSpy.timeout.and.returnValue(sharpSpy);
@@ -117,7 +117,7 @@ describe('ImageBuilder', () => {
                 ],
             };
             sharpFactorySpy.create.and.returnValue(sharpSpy);
-            sharpSpy.metadata.and.resolveTo({ width: 354, height: 246 } as Metadata);
+            sharpSpy.metadata.and.resolveTo({ width: 354, height: 246 });
 
             await imageBuilder.build(imagePage);
 
@@ -136,7 +136,7 @@ describe('ImageBuilder', () => {
                 ],
             };
             sharpFactorySpy.create.and.returnValue(sharpSpy);
-            sharpSpy.metadata.and.resolveTo({ width: 452, height: 177 } as Metadata);
+            sharpSpy.metadata.and.resolveTo({ width: 452, height: 177 });
 
             await imageBuilder.build(imagePage);
 
@@ -155,7 +155,7 @@ describe('ImageBuilder', () => {
                 ],
             };
             sharpFactorySpy.create.and.returnValue(sharpSpy);
-            sharpSpy.metadata.and.resolveTo({ width: 287, height: 374 } as Metadata);
+            sharpSpy.metadata.and.resolveTo({ width: 287, height: 374 });
 
             await imageBuilder.build(imagePage);
 

@@ -82,7 +82,7 @@ describe('ConfigurationComponent', () => {
 
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
-        editionServiceSpy = TestBed.inject(EditionService) as jasmine.SpyObj<EditionService>;
+        editionServiceSpy = TestBed.inject(EditionService);
         editionServiceSpy.editions$ = of(dataFixture.createEditions());
 
         configurationServiceSpy = TestBed.inject(
