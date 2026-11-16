@@ -6,6 +6,7 @@ import {
     ChangeDetectionStrategy,
     input,
     output,
+    signal,
 } from '@angular/core';
 import {
     UntypedFormGroup,
@@ -45,6 +46,9 @@ export class EditionSelectComponent implements OnInit {
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
+    private readonly validationErrorState = signal(false);
+    readonly hasValidationError = this.validationErrorState.asReadonly();
+
     private static validateMinSelect(control: AbstractControl): ValidationErrors | null {
         const controlValues: boolean[] = Object.values(control.value as Record<string, boolean>);
         const result = controlValues.reduce(
@@ -74,10 +78,11 @@ export class EditionSelectComponent implements OnInit {
             );
             this.change.emit(selectedEditions);
         });
-    }
 
-    hasValidationError(): boolean {
-        return this.formGroup.invalid && this.formGroup.touched;
+        // the form state is no signal, a change from outside would not reach the template otherwise
+        this.formGroup.events.subscribe(() =>
+            this.validationErrorState.set(this.formGroup.invalid && this.formGroup.touched),
+        );
     }
 
     showValidationError(): void {

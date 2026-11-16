@@ -342,8 +342,6 @@ describe('EditionSelectComponent', () => {
 
         it('without validation error should not render error message', () => {
             fixture.detectChanges();
-            vi.spyOn(component, 'hasValidationError').mockReturnValue(false);
-            fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.error-message'));
 
@@ -352,7 +350,7 @@ describe('EditionSelectComponent', () => {
 
         it('with validation error should render error message', () => {
             fixture.detectChanges();
-            vi.spyOn(component, 'hasValidationError').mockReturnValue(true);
+            component.formGroup.markAllAsTouched();
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.error-message'));
@@ -364,8 +362,6 @@ describe('EditionSelectComponent', () => {
 
         it('without validation error should not mark form as invalid', () => {
             fixture.detectChanges();
-            vi.spyOn(component, 'hasValidationError').mockReturnValue(false);
-            fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('form.invalid'));
 
@@ -374,7 +370,7 @@ describe('EditionSelectComponent', () => {
 
         it('with validation error should mark form as invalid', () => {
             fixture.detectChanges();
-            vi.spyOn(component, 'hasValidationError').mockReturnValue(true);
+            component.formGroup.markAllAsTouched();
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('form.invalid'));
