@@ -1,14 +1,7 @@
 import { InstallService } from './services/install.service';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import {
-    Component,
-    LOCALE_ID,
-    OnInit,
-    inject,
-    ChangeDetectionStrategy,
-    computed,
-} from '@angular/core';
+import { Component, LOCALE_ID, OnInit, inject, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
 import { FooterComponent } from './components/footer/footer.component';
@@ -18,7 +11,6 @@ import { AppBarComponent } from './components/app-bar/app-bar.component';
     selector: 'app-root',
     imports: [AppBarComponent, FooterComponent, RouterOutlet],
     templateUrl: './app.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {

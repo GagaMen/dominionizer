@@ -52,10 +52,6 @@ export default defineConfig(
                 },
             ],
 
-            // the v22 migration marked every component as Eager to keep the previous behavior,
-            // switching to OnPush is part of the zoneless migration (#56)
-            '@angular-eslint/prefer-on-push-component-change-detection': 'off',
-
             '@typescript-eslint/unbound-method': [
                 'error',
                 {

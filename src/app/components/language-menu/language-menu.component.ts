@@ -1,5 +1,5 @@
 import { Language } from './../../models/language';
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatMenu, MatMenuTrigger, MatMenuItem } from '@angular/material/menu';
 
 import { MatIcon } from '@angular/material/icon';
@@ -8,7 +8,6 @@ import { MatIcon } from '@angular/material/icon';
     selector: 'app-language-menu',
     imports: [MatMenu, MatMenuItem, MatMenuTrigger, MatIcon],
     templateUrl: './language-menu.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./language-menu.component.scss'],
 })
 export class LanguageMenuComponent {

@@ -1,5 +1,5 @@
 import { LanguageMenuComponent } from './../../app/components/language-menu/language-menu.component';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 
 @Component({
@@ -11,7 +11,6 @@ import { MatMenu } from '@angular/material/menu';
             useClass: LanguageMenuStubComponent,
         },
     ],
-    changeDetection: ChangeDetectionStrategy.Eager,
     template: '',
 })
 export class LanguageMenuStubComponent {

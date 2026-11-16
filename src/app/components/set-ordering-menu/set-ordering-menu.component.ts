@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { MatMenu, MatMenuItem } from '@angular/material/menu';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 import { MatDivider } from '@angular/material/divider';
@@ -8,7 +8,6 @@ import { MatIcon } from '@angular/material/icon';
     selector: 'app-set-ordering-menu',
     imports: [MatMenu, MatMenuItem, MatIcon, MatDivider],
     templateUrl: './set-ordering-menu.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./set-ordering-menu.component.scss'],
 })
 export class SetOrderingMenuComponent {

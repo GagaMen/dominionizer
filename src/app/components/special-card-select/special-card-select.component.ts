@@ -1,6 +1,6 @@
 import { SpecialCardsCount } from '../../models/special-cards-count';
 import { SpecialCardsAvailability } from '../../models/special-cards-availability';
-import { Component, OnInit, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, OnInit, inject, input, output } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatSlider, MatSliderThumb } from '@angular/material/slider';
 
@@ -8,7 +8,6 @@ import { MatSlider, MatSliderThumb } from '@angular/material/slider';
     selector: 'app-special-card-select',
     imports: [MatSlider, MatSliderThumb, ReactiveFormsModule],
     templateUrl: './special-card-select.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./special-card-select.component.scss'],
 })
 export class SpecialCardSelectComponent implements OnInit {

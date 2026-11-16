@@ -308,24 +308,31 @@ describe('EditionSelectComponent', () => {
 
         it('should bind "checked" input property of "all" checkbox correctly', async () => {
             fixture.detectChanges();
-            const expected = true;
-            vi.spyOn(component, 'areAllSelected').mockReturnValue(expected);
+            const editionCheckboxes = await harnessLoader.getAllHarnesses(
+                MatCheckboxHarness.with({ ancestor: 'li' }),
+            );
+            for (const editionCheckbox of editionCheckboxes) {
+                await editionCheckbox.check();
+            }
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
             const actual = await matCheckbox.isChecked();
 
-            expect(actual).toBe(expected);
+            expect(actual).toBe(true);
         });
 
         it('should bind "indeterminate" input property of "all" checkbox correctly', async () => {
+            fixture.componentRef.setInput('editions', dataFixture.createEditions(2));
             fixture.detectChanges();
-            const expected = true;
-            vi.spyOn(component, 'areSomeButNotAllSelected').mockReturnValue(expected);
+            const editionCheckbox = await harnessLoader.getHarness(
+                MatCheckboxHarness.with({ ancestor: 'li' }),
+            );
+            await editionCheckbox.check();
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
             const actual = await matCheckbox.isIndeterminate();
 
-            expect(actual).toBe(expected);
+            expect(actual).toBe(true);
         });
 
         it('should bind "change" output property of "all" checkbox correctly', async () => {
