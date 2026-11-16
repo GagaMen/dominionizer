@@ -1,6 +1,6 @@
 ---
 name: writing-tests
-description: Test conventions of this repo - AAA layout, the `should` title schema, DataFixture, component stubs and marble assertions. Use when writing or changing a spec file, in the app or in tools/wiki-bot.
+description: Test conventions of this repo - AAA layout, the `should` title schema, DataFixture, component stubs and signal assertions. Use when writing or changing a spec file, in the app or in tools/wiki-bot.
 ---
 
 # Writing tests
@@ -89,21 +89,36 @@ its children with the stubs from `src/testing/components/` via `overrideComponen
 ```
 
 Assertions against rendered DOM live in `describe('template')` and query through
-`By.directive(...)`. When the template renders an observable, `detectChangesAndFlush`
-(`src/testing/utilities.ts`) advances the marble scheduler between two change detection runs.
+`By.directive(...)`.
 
-## Observables
-
-Assert with `jasmine-marbles`: build the expectation with `cold()` and compare with
-`toBeObservable`.
+Set an input through the component ref and read the input of a stub by calling it:
 
 ```ts
-const expected$ = cold('a', { a: SetService.defaultSet });
+fixture.componentRef.setInput('cardList', cards);
 
-const actual$ = setService.set$;
-
-expect(actual$).toBeObservable(expected$);
+expect(cardListStub.cardList()).toBe(cards);
 ```
+
+## Signals
+
+Read a signal in the act step and assert on the value:
+
+```ts
+const expected = SetService.defaultSet;
+
+const actual = setService.set();
+
+expect(actual).toEqual(expected);
+```
+
+A spied service keeps its signals as signals. Assign a real one instead of spying on it:
+
+```ts
+configurationServiceSpy.configuration = signal(dataFixture.createConfiguration());
+```
+
+Only `InstallService` still returns observables. Stub their source with `of(...)` and subscribe in
+the act step.
 
 ## Several cases of the same shape
 
