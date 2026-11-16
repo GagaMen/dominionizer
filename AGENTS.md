@@ -54,6 +54,9 @@ next bot run overwrites a hand edit and hides the cause. See `tools/wiki-bot/AGE
 
 ## Gotchas
 
+- The app runs without zone.js and every component uses on push change detection. A template only
+  updates when a signal it reads changes or one of its own events fires, so state that changes any
+  other way - a method called by the parent, a subscription - has to be a signal.
 - The husky `pre-push` hook runs the app test suite.
 - An `eslint` run killed with SIGKILL ran out of memory. Lint a subset of the files instead.
 - The wiki blocks ordinary requests behind a bot protection. Reaching `api.php` or `/images/...`

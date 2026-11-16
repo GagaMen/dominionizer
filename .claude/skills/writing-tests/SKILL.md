@@ -119,6 +119,18 @@ fixture.componentRef.setInput('cardList', cards);
 expect(cardListStub.cardList()).toBe(cards);
 ```
 
+The components use on push change detection, so `fixture.detectChanges()` only re-renders a
+component that was marked dirty. A spy installed on a component method after the first render is
+therefore never read. Bring the component into the state instead - set an input, change a signal or
+act through a harness - and call `fixture.detectChanges()` afterwards:
+
+```ts
+component.formGroup.markAllAsTouched();
+fixture.detectChanges();
+
+const actual = fixture.debugElement.query(By.css('.error-message'));
+```
+
 ## Signals
 
 Read a signal in the act step and assert on the value:
