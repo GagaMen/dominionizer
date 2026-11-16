@@ -19,7 +19,7 @@
         "tslib": "file:../../node_modules/tslib",
         "tsx": "4.21.0",
         "typescript": "file:../../node_modules/typescript",
-        "vitest": "file:../../node_modules/vitest",
-        "vitest-when": "file:../../node_modules/vitest-when"
+        "vitest": "5.1.0",
+        "vitest-when": "1.0.0"
     }
 }
