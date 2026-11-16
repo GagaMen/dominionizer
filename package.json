@@ -41,8 +41,7 @@
         "chance": "1.1.13",
         "material-design-icons": "3.0.1",
         "rxjs": "7.8.2",
-        "tslib": "2.8.1",
-        "zone.js": "0.16.0"
+        "tslib": "2.8.1"
     },
     "devDependencies": {
         "@angular-devkit/architect": "0.2202.7",

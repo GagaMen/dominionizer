@@ -43,7 +43,7 @@
                         "outputPath": "dist",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
-                        "polyfills": ["zone.js", "@angular/localize/init"],
+                        "polyfills": ["@angular/localize/init"],
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
                             "src/favicon.ico",
@@ -323,7 +323,7 @@
                             "optimization": false,
                             "extractLicenses": false,
                             "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],
-                            "polyfills": ["zone.js", "zone.js/testing", "@angular/localize/init"]
+                            "polyfills": ["@angular/localize/init"]
                         }
                     },
                     "defaultConfiguration": "production"
