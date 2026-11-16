@@ -1,12 +1,11 @@
 import { environment } from 'src/environments/environment';
-import { cold, getTestScheduler } from 'jasmine-marbles';
 import { SpyObj } from 'src/testing/spy-obj';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { InstallService } from './install.service';
 import { ServiceWorkerData } from '../models/service-worker-data';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 
 describe('InstallService', () => {
     let installService: InstallService;
@@ -66,14 +65,12 @@ describe('InstallService', () => {
                     },
                 ],
             };
-            const serviceWorkerData$ = cold('--(a|)', { a: serviceWorkerData });
             httpClientSpy.get
                 .withArgs(`${environment.entryPoint}/ngsw.json`)
-                .and.returnValue(serviceWorkerData$);
+                .and.returnValue(of(serviceWorkerData));
             httpClientSpy.get.and.returnValue(EMPTY);
 
             installService.loadImages().subscribe();
-            getTestScheduler().flush();
 
             expect(httpClientSpy.get as jasmine.Spy).toHaveBeenCalledWith(
                 '/de/assets/card_art/Abandoned_MineArt.jpg',

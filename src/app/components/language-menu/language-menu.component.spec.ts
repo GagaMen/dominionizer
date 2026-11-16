@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LanguageMenuComponent } from './language-menu.component';
 import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { getTestScheduler } from 'jasmine-marbles';
 import { LanguageMenuHostComponent } from 'src/testing/components/language-menu.host.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -36,7 +35,6 @@ describe('LanguageMenuComponent', () => {
             const harnessLoader = TestbedHarnessEnvironment.loader(fixture);
             matMenu = await harnessLoader.getHarness(MatMenuHarness);
             await matMenu.open();
-            getTestScheduler().flush();
         }
 
         for (const [languageName, redirectionTarget] of Object.entries(Language)) {

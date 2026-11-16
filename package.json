@@ -80,7 +80,6 @@
         "husky": "9.1.7",
         "istanbul-lib-instrument": "6.0.3",
         "jasmine-core": "5.13.0",
-        "jasmine-marbles": "0.9.2",
         "jasmine-spec-reporter": "7.0.0",
         "karma": "6.4.4",
         "karma-chrome-launcher": "3.2.0",
