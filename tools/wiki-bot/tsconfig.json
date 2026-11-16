@@ -3,7 +3,8 @@
     "compilerOptions": {
         "rootDir": "../..",
         "outDir": "./out-tsc",
-        "noEmit": true
+        "noEmit": true,
+        "types": ["jasmine", "node"]
     },
     "include": ["src/**/*.ts"]
 }

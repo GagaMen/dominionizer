@@ -1,7 +1,7 @@
 import { SetService } from '../../services/set.service';
 import { ShuffleService } from '../../services/shuffle.service';
 import { AppBarConfiguration } from '../../models/app-bar-configuration';
-import { SpyObj } from '../../../testing/spy-obj';
+import { injectSpy, SpyObj } from '../../../testing/spy-obj';
 import { AppBarService } from '../../services/app-bar.service';
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -35,9 +35,9 @@ describe('SetComponent', () => {
             providers: [
                 {
                     provide: ShuffleService,
-                    useValue: jasmine.createSpyObj<ShuffleService>('ShuffleService', [
-                        'shuffleSet',
-                    ]),
+                    useValue: {
+                        shuffleSet: vi.fn(),
+                    },
                 },
                 {
                     provide: SetService,
@@ -45,9 +45,9 @@ describe('SetComponent', () => {
                 },
                 {
                     provide: AppBarService,
-                    useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
-                        'updateConfiguration',
-                    ]),
+                    useValue: {
+                        updateConfiguration: vi.fn(),
+                    },
                 },
             ],
         }).overrideComponent(SetComponent, {
@@ -57,10 +57,10 @@ describe('SetComponent', () => {
 
         dataFixture = new DataFixture();
 
-        shuffleServiceSpy = TestBed.inject(ShuffleService) as jasmine.SpyObj<ShuffleService>;
-        setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
+        shuffleServiceSpy = injectSpy(ShuffleService);
+        setServiceSpy = injectSpy(SetService);
         setServiceSpy.set = signal(dataFixture.createSet());
-        appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
+        appBarServiceSpy = injectSpy(AppBarService);
 
         fixture = TestBed.createComponent(SetComponent);
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
@@ -75,7 +75,7 @@ describe('SetComponent', () => {
 
     describe('ngOnInit', () => {
         it('should shuffle', () => {
-            const shuffleSpy = spyOn(component, 'shuffle').and.stub();
+            const shuffleSpy = vi.spyOn(component, 'shuffle').mockReturnValue(undefined);
 
             fixture.detectChanges();
 
@@ -86,7 +86,7 @@ describe('SetComponent', () => {
             const stubMatMenu: MatMenu = {} as MatMenu;
 
             component.setOrderingMenu!.matMenu = stubMatMenu;
-            const configuration = jasmine.objectContaining<AppBarConfiguration>({
+            const configuration = expect.objectContaining<AppBarConfiguration>({
                 navigationAction: 'back',
                 actions: [
                     {
@@ -95,14 +95,14 @@ describe('SetComponent', () => {
                     },
                     {
                         icon: 'casino',
-                        onClick: jasmine.any(Function),
+                        onClick: expect.any(Function),
                     },
                 ],
             });
-            const shuffleSpy = spyOn(component, 'shuffle').and.stub();
+            const shuffleSpy = vi.spyOn(component, 'shuffle').mockReturnValue(undefined);
 
             fixture.detectChanges();
-            appBarServiceSpy.updateConfiguration.calls.first().args[0].actions[1].onClick?.();
+            appBarServiceSpy.updateConfiguration.mock.calls[0][0].actions[1].onClick?.();
 
             expect(appBarServiceSpy.updateConfiguration).toHaveBeenCalledWith(configuration);
             expect(shuffleSpy).toHaveBeenCalled();
@@ -139,12 +139,8 @@ describe('SetComponent', () => {
             const actual = (await matAccordion.getExpansionPanels())[0];
 
             expect(actual).toBeDefined();
-            expect(await actual.isExpanded())
-                .withContext('expanded')
-                .toBe(true);
-            expect(await actual.getTitle())
-                .withContext('title')
-                .toBe('Kingdom Cards');
+            expect(await actual.isExpanded(), 'expanded').toBe(true);
+            expect(await actual.getTitle(), 'title').toBe('Kingdom Cards');
         });
 
         it('should render CardList for kingdom cards inside MatExpansionPanel correctly', () => {
@@ -159,7 +155,7 @@ describe('SetComponent', () => {
                 .injector.get(CardListStubComponent);
 
             expect(actual).toBeDefined();
-            expect(actual.cardList()).withContext('cardList').toBe(expectedCardList);
+            expect(actual.cardList(), 'cardList').toBe(expectedCardList);
         });
 
         it('should render MatExpansionPanel for special cards inside MatAccordion correctly', async () => {
@@ -168,12 +164,8 @@ describe('SetComponent', () => {
             const actual = (await matAccordion.getExpansionPanels())[1];
 
             expect(actual).toBeDefined();
-            expect(await actual.isExpanded())
-                .withContext('expanded')
-                .toBe(true);
-            expect(await actual.getTitle())
-                .withContext('title')
-                .toBe('Special Cards');
+            expect(await actual.isExpanded(), 'expanded').toBe(true);
+            expect(await actual.getTitle(), 'title').toBe('Special Cards');
         });
 
         it('should render CardList for special cards inside MatExpansionPanel correctly', () => {
@@ -188,7 +180,7 @@ describe('SetComponent', () => {
                 .injector.get(CardListStubComponent);
 
             expect(actual).toBeDefined();
-            expect(actual.cardList()).withContext('cardList').toBe(expectedCardList);
+            expect(actual.cardList(), 'cardList').toBe(expectedCardList);
         });
 
         it('with no special cards should render MatExpansionPanel only for kingdom cards', async () => {

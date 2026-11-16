@@ -1,5 +1,7 @@
+import { when } from 'vitest-when';
+import type { Mock } from 'vitest';
 import { environment } from 'src/environments/environment';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
@@ -16,18 +18,20 @@ describe('InstallService', () => {
             providers: [
                 {
                     provide: HttpClient,
-                    useValue: jasmine.createSpyObj<HttpClient>('HttpClient', ['get']),
+                    useValue: {
+                        get: vi.fn(),
+                    },
                 },
             ],
         });
 
-        httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
+        httpClientSpy = injectSpy(HttpClient);
         installService = TestBed.inject(InstallService);
     });
 
     describe('activate', () => {
         it('with "appinstalled" event is triggered should load images', () => {
-            const loadImagesSpy = spyOn(installService, 'loadImages').and.returnValue(EMPTY);
+            const loadImagesSpy = vi.spyOn(installService, 'loadImages').mockReturnValue(EMPTY);
 
             const subscription = installService.activate().subscribe();
             window.dispatchEvent(new Event('appinstalled'));
@@ -37,7 +41,7 @@ describe('InstallService', () => {
         });
 
         it('with "appinstalled" event is not triggered should not load images', () => {
-            const loadImagesSpy = spyOn(installService, 'loadImages').and.returnValue(EMPTY);
+            const loadImagesSpy = vi.spyOn(installService, 'loadImages').mockReturnValue(EMPTY);
 
             const subscription = installService.activate().subscribe();
             subscription.unsubscribe();
@@ -65,26 +69,26 @@ describe('InstallService', () => {
                     },
                 ],
             };
-            httpClientSpy.get
-                .withArgs(`${environment.entryPoint}/ngsw.json`)
-                .and.returnValue(of(serviceWorkerData));
-            httpClientSpy.get.and.returnValue(EMPTY);
+            httpClientSpy.get.mockReturnValue(EMPTY);
+            when(httpClientSpy.get)
+                .calledWith(`${environment.entryPoint}/ngsw.json`)
+                .thenReturn(of(serviceWorkerData));
 
             installService.loadImages().subscribe();
 
-            expect(httpClientSpy.get as jasmine.Spy).toHaveBeenCalledWith(
+            expect(httpClientSpy.get as Mock).toHaveBeenCalledWith(
                 '/de/assets/card_art/Abandoned_MineArt.jpg',
                 { responseType: 'blob' },
             );
-            expect(httpClientSpy.get as jasmine.Spy).toHaveBeenCalledWith(
+            expect(httpClientSpy.get as Mock).toHaveBeenCalledWith(
                 '/de/assets/card_art/AcademyArt.jpg',
                 { responseType: 'blob' },
             );
-            expect(httpClientSpy.get as jasmine.Spy).toHaveBeenCalledWith(
+            expect(httpClientSpy.get as Mock).toHaveBeenCalledWith(
                 '/de/assets/card_art/Acting_TroupeArt.jpg',
                 { responseType: 'blob' },
             );
-            expect(httpClientSpy.get as jasmine.Spy).not.toHaveBeenCalledWith('/favicon.ico', {
+            expect(httpClientSpy.get as Mock).not.toHaveBeenCalledWith('/favicon.ico', {
                 responseType: 'blob',
             });
         });

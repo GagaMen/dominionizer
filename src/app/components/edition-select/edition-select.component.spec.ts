@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditionSelectComponent } from './edition-select.component';
@@ -75,9 +76,7 @@ describe('EditionSelectComponent', () => {
 
         it('should have FormControl per edition inside the "editions"-FormArray', () => {
             fixture.detectChanges();
-            const expected = jasmine.arrayWithExactContents(
-                editions.map(() => jasmine.any(UntypedFormControl)),
-            );
+            const expected = editions.map((): unknown => expect.any(UntypedFormControl));
 
             const actual = (component.formGroup.get('editions') as UntypedFormArray).controls;
 
@@ -139,7 +138,7 @@ describe('EditionSelectComponent', () => {
             const selectedEditions = component.editions().slice(0, 1);
             const editionsPatch: boolean[] = component.editions().map(() => false);
             editionsPatch[0] = true;
-            const emitSpy = spyOn(component.change, 'emit');
+            const emitSpy = vi.spyOn(component.change, 'emit').mockReturnValue(undefined);
 
             component.formGroup.patchValue({ editions: editionsPatch });
 
@@ -259,6 +258,14 @@ describe('EditionSelectComponent', () => {
     });
 
     describe('showValidationError', () => {
+        let scrollIntoViewSpy: Mock;
+
+        beforeEach(() => {
+            // jsdom does not implement scrollIntoView
+            scrollIntoViewSpy = vi.fn();
+            (fixture.nativeElement as HTMLElement).scrollIntoView = scrollIntoViewSpy;
+        });
+
         it('should mark formGroup as touched', () => {
             fixture.detectChanges();
 
@@ -269,7 +276,6 @@ describe('EditionSelectComponent', () => {
 
         it('should scroll host element into view', () => {
             fixture.detectChanges();
-            const scrollIntoViewSpy = spyOn(fixture.nativeElement as HTMLElement, 'scrollIntoView');
 
             component.showValidationError();
 
@@ -303,7 +309,7 @@ describe('EditionSelectComponent', () => {
         it('should bind "checked" input property of "all" checkbox correctly', async () => {
             fixture.detectChanges();
             const expected = true;
-            spyOn(component, 'areAllSelected').and.returnValue(expected);
+            vi.spyOn(component, 'areAllSelected').mockReturnValue(expected);
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
             const actual = await matCheckbox.isChecked();
@@ -314,7 +320,7 @@ describe('EditionSelectComponent', () => {
         it('should bind "indeterminate" input property of "all" checkbox correctly', async () => {
             fixture.detectChanges();
             const expected = true;
-            spyOn(component, 'areSomeButNotAllSelected').and.returnValue(expected);
+            vi.spyOn(component, 'areSomeButNotAllSelected').mockReturnValue(expected);
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
             const actual = await matCheckbox.isIndeterminate();
@@ -324,7 +330,9 @@ describe('EditionSelectComponent', () => {
 
         it('should bind "change" output property of "all" checkbox correctly', async () => {
             fixture.detectChanges();
-            const selectOrDeselectAllSpy = spyOn(component, 'selectOrDeselectAll');
+            const selectOrDeselectAllSpy = vi
+                .spyOn(component, 'selectOrDeselectAll')
+                .mockReturnValue(undefined);
             const matCheckbox = await harnessLoader.getHarness(MatCheckboxHarness);
 
             await matCheckbox.check();
@@ -334,7 +342,7 @@ describe('EditionSelectComponent', () => {
 
         it('without validation error should not render error message', () => {
             fixture.detectChanges();
-            spyOn(component, 'hasValidationError').and.returnValue(false);
+            vi.spyOn(component, 'hasValidationError').mockReturnValue(false);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.error-message'));
@@ -344,7 +352,7 @@ describe('EditionSelectComponent', () => {
 
         it('with validation error should render error message', () => {
             fixture.detectChanges();
-            spyOn(component, 'hasValidationError').and.returnValue(true);
+            vi.spyOn(component, 'hasValidationError').mockReturnValue(true);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.error-message'));
@@ -356,7 +364,7 @@ describe('EditionSelectComponent', () => {
 
         it('without validation error should not mark form as invalid', () => {
             fixture.detectChanges();
-            spyOn(component, 'hasValidationError').and.returnValue(false);
+            vi.spyOn(component, 'hasValidationError').mockReturnValue(false);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('form.invalid'));
@@ -366,7 +374,7 @@ describe('EditionSelectComponent', () => {
 
         it('with validation error should mark form as invalid', () => {
             fixture.detectChanges();
-            spyOn(component, 'hasValidationError').and.returnValue(true);
+            vi.spyOn(component, 'hasValidationError').mockReturnValue(true);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('form.invalid'));
@@ -394,7 +402,7 @@ describe('EditionSelectComponent', () => {
                 MatCheckboxHarness.with({ ancestor: 'li' }),
             );
 
-            expect(actual).toHaveSize(3);
+            expect(actual).toHaveLength(3);
             expect(await actual[0].getLabelText()).toBe('Dominion (1. Edition)');
             expect(await actual[1].getLabelText()).toBe('Dominion (2. Edition)');
             expect(await actual[2].getLabelText()).toBe('Seaside');
@@ -409,7 +417,7 @@ describe('EditionSelectComponent', () => {
                     element.query(By.directive(MatCheckbox)).injector.get(FormControlName),
                 );
 
-            expect(actual).toHaveSize(editions.length);
+            expect(actual).toHaveLength(editions.length);
             for (let index = 0; index < actual.length; index++) {
                 expect(actual[index].name).toBe(index);
             }

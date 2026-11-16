@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DataFixture } from 'src/testing/data-fixture';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { CardType } from '../models/card-type';
 
 import { CardTypeService } from './card-type.service';
@@ -17,10 +17,10 @@ describe('CardTypeService', () => {
             providers: [
                 {
                     provide: DataService,
-                    useValue: jasmine.createSpyObj<DataService>('DataService', [
-                        'getCardTypes',
-                        'getCardTypeTranslations',
-                    ]),
+                    useValue: {
+                        getCardTypes: vi.fn(),
+                        getCardTypeTranslations: vi.fn(),
+                    },
                 },
             ],
         });
@@ -28,9 +28,9 @@ describe('CardTypeService', () => {
         dataFixture = new DataFixture();
         cardTypes = dataFixture.createCardTypes();
 
-        dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        dataServiceSpy.getCardTypes.and.returnValue(cardTypes);
-        dataServiceSpy.getCardTypeTranslations.and.returnValue([]);
+        dataServiceSpy = injectSpy(DataService);
+        dataServiceSpy.getCardTypes.mockReturnValue(cardTypes);
+        dataServiceSpy.getCardTypeTranslations.mockReturnValue([]);
     });
 
     describe('cardTypes', () => {
@@ -45,7 +45,7 @@ describe('CardTypeService', () => {
 
         it('with translations should return correct translated data', () => {
             const cardTypeTranslations = dataFixture.createCardTypeTranslations(2);
-            dataServiceSpy.getCardTypeTranslations.and.returnValue(cardTypeTranslations);
+            dataServiceSpy.getCardTypeTranslations.mockReturnValue(cardTypeTranslations);
             const expected = [
                 { ...cardTypes[0], name: cardTypeTranslations[0].name },
                 { ...cardTypes[1], name: cardTypeTranslations[1].name },

@@ -2,7 +2,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testing';
 import { MatIconHarness } from '@angular/material/icon/testing';
 
@@ -21,15 +21,15 @@ describe('SetOrderingMenuComponent', () => {
             providers: [
                 {
                     provide: SetService,
-                    useValue: jasmine.createSpyObj<SetService>('SetService', [
-                        'updateGroupingOption',
-                        'updateSortingOption',
-                    ]),
+                    useValue: {
+                        updateGroupingOption: vi.fn(),
+                        updateSortingOption: vi.fn(),
+                    },
                 },
             ],
         });
 
-        setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
+        setServiceSpy = injectSpy(SetService);
         setServiceSpy.groupingOption = signal(SetService.defaultGroupingOption);
         setServiceSpy.sortingOption = signal(SetService.defaultSortingOption);
 
@@ -92,7 +92,7 @@ describe('SetOrderingMenuComponent', () => {
 
         it('should render "Without" menu item which calls onGroup() correctly on click', async () => {
             await initMenu();
-            const onGroupSpy = spyOn(component, 'onGroup');
+            const onGroupSpy = vi.spyOn(component, 'onGroup').mockReturnValue(undefined);
 
             const matMenuItem = await matMenu.getHarness(
                 MatMenuItemHarness.with({ text: /Without$/ }),
@@ -138,7 +138,7 @@ describe('SetOrderingMenuComponent', () => {
 
         it('should render "By Expansion" menu item which calls onGroup() correctly on click', async () => {
             await initMenu();
-            const onGroupSpy = spyOn(component, 'onGroup');
+            const onGroupSpy = vi.spyOn(component, 'onGroup').mockReturnValue(undefined);
 
             const matMenuItem = await matMenu.getHarness(
                 MatMenuItemHarness.with({ text: /By Expansion$/ }),
@@ -182,7 +182,7 @@ describe('SetOrderingMenuComponent', () => {
 
         it('should render "By Name" menu item which calls onSort() correctly on click', async () => {
             await initMenu();
-            const onSortSpy = spyOn(component, 'onSort');
+            const onSortSpy = vi.spyOn(component, 'onSort').mockReturnValue(undefined);
 
             const matMenuItem = await matMenu.getHarness(
                 MatMenuItemHarness.with({ text: /By Name$/ }),
@@ -226,7 +226,7 @@ describe('SetOrderingMenuComponent', () => {
 
         it('should render "By Cost" menu item which calls onSort() correctly on click', async () => {
             await initMenu();
-            const onSortSpy = spyOn(component, 'onSort');
+            const onSortSpy = vi.spyOn(component, 'onSort').mockReturnValue(undefined);
 
             const matMenuItem = await matMenu.getHarness(
                 MatMenuItemHarness.with({ text: /By Cost$/ }),

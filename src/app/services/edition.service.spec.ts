@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { EditionService } from './edition.service';
 import { DataService } from './data.service';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 import { Edition } from '../models/edition';
 
@@ -17,10 +17,10 @@ describe('EditionService', () => {
             providers: [
                 {
                     provide: DataService,
-                    useValue: jasmine.createSpyObj<DataService>('DataService', [
-                        'getEditions',
-                        'getEditionTranslations',
-                    ]),
+                    useValue: {
+                        getEditions: vi.fn(),
+                        getEditionTranslations: vi.fn(),
+                    },
                 },
             ],
         });
@@ -28,9 +28,9 @@ describe('EditionService', () => {
         dataFixture = new DataFixture();
         editions = dataFixture.createEditions();
 
-        dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        dataServiceSpy.getEditions.and.returnValue(editions);
-        dataServiceSpy.getEditionTranslations.and.returnValue([]);
+        dataServiceSpy = injectSpy(DataService);
+        dataServiceSpy.getEditions.mockReturnValue(editions);
+        dataServiceSpy.getEditionTranslations.mockReturnValue([]);
     });
 
     describe('editions', () => {
@@ -45,7 +45,7 @@ describe('EditionService', () => {
 
         it('with translations should return correct translated data', () => {
             const editionTranslations = dataFixture.createEditionTranslations(2);
-            dataServiceSpy.getEditionTranslations.and.returnValue(editionTranslations);
+            dataServiceSpy.getEditionTranslations.mockReturnValue(editionTranslations);
             const expected = [
                 { ...editions[0], expansion: editionTranslations[0].expansion },
                 { ...editions[1], expansion: editionTranslations[1].expansion },
@@ -63,8 +63,8 @@ describe('EditionService', () => {
                 dataFixture.createEdition({ id: '181-2', expansion: 'Hinterlands', edition: '2' }),
                 dataFixture.createEdition({ id: '181-1', expansion: 'Hinterlands', edition: '1' }),
             ];
-            dataServiceSpy.getEditions.and.returnValue(bothEditions);
-            dataServiceSpy.getEditionTranslations.and.returnValue([
+            dataServiceSpy.getEditions.mockReturnValue(bothEditions);
+            dataServiceSpy.getEditionTranslations.mockReturnValue([
                 dataFixture.createEditionTranslation({ id: '181-2', expansion: 'Hinterland' }),
                 dataFixture.createEditionTranslation({ id: '181-1', expansion: 'Hinterland' }),
             ]);

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardListComponent } from './card-list.component';
 import { ShuffleService } from 'src/app/services/shuffle.service';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 import { By } from '@angular/platform-browser';
 import { CardComponent } from '../card/card.component';
@@ -22,9 +22,9 @@ describe('CardListComponent', () => {
             providers: [
                 {
                     provide: ShuffleService,
-                    useValue: jasmine.createSpyObj<ShuffleService>('ShuffleService', [
-                        'shuffleSingleCard',
-                    ]),
+                    useValue: {
+                        shuffleSingleCard: vi.fn(),
+                    },
                 },
             ],
         }).overrideComponent(CardComponent, {
@@ -34,7 +34,7 @@ describe('CardListComponent', () => {
 
         dataFixture = new DataFixture();
 
-        shuffleServiceSpy = TestBed.inject(ShuffleService) as jasmine.SpyObj<ShuffleService>;
+        shuffleServiceSpy = injectSpy(ShuffleService);
 
         fixture = TestBed.createComponent(CardListComponent);
         component = fixture.componentInstance;
@@ -98,7 +98,7 @@ describe('CardListComponent', () => {
             const cardComponent: CardComponent = fixture.debugElement.query(
                 By.directive(CardComponent),
             ).componentInstance;
-            const onReshuffleSpy = spyOn(component, 'onReshuffle');
+            const onReshuffleSpy = vi.spyOn(component, 'onReshuffle').mockReturnValue(undefined);
 
             cardComponent.reshuffle.emit();
 

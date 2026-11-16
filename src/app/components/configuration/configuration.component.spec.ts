@@ -1,5 +1,7 @@
+import { when } from 'vitest-when';
+import type { Mock } from 'vitest';
 import { CardService } from './../../services/card.service';
-import { SpyObj } from './../../../testing/spy-obj';
+import { injectSpy, SpyObj } from './../../../testing/spy-obj';
 import { AppBarConfiguration } from './../../models/app-bar-configuration';
 import { AppBarService } from './../../services/app-bar.service';
 import { signal } from '@angular/core';
@@ -52,9 +54,9 @@ describe('ConfigurationComponent', () => {
                 provideRouter([]),
                 {
                     provide: AppBarService,
-                    useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [
-                        'updateConfiguration',
-                    ]),
+                    useValue: {
+                        updateConfiguration: vi.fn(),
+                    },
                 },
                 {
                     provide: EditionService,
@@ -62,11 +64,11 @@ describe('ConfigurationComponent', () => {
                 },
                 {
                     provide: ConfigurationService,
-                    useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
-                        'isCardTypeAvailable',
-                        'updateEditions',
-                        'updateSpecialCardsCount',
-                    ]),
+                    useValue: {
+                        isCardTypeAvailable: vi.fn(),
+                        updateEditions: vi.fn(),
+                        updateSpecialCardsCount: vi.fn(),
+                    },
                 },
                 {
                     provide: CardService,
@@ -80,18 +82,16 @@ describe('ConfigurationComponent', () => {
 
         dataFixture = new DataFixture();
 
-        appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
+        appBarServiceSpy = injectSpy(AppBarService);
 
         editionServiceSpy = TestBed.inject(EditionService);
         editionServiceSpy.editions = dataFixture.createEditions();
 
-        configurationServiceSpy = TestBed.inject(
-            ConfigurationService,
-        ) as jasmine.SpyObj<ConfigurationService>;
+        configurationServiceSpy = injectSpy(ConfigurationService);
         configurationServiceSpy.configuration = signal(dataFixture.createConfiguration());
-        configurationServiceSpy.isCardTypeAvailable.and.returnValue(true);
+        configurationServiceSpy.isCardTypeAvailable.mockReturnValue(true);
 
-        cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
+        cardServiceSpy = injectSpy(CardService);
         cardServiceSpy.cards = new Map<string, Card>(
             dataFixture.createCards().map((card: Card) => [card.id, card]),
         );
@@ -157,21 +157,21 @@ describe('ConfigurationComponent', () => {
                 availability: availability,
             };
             configurationServiceSpy.configuration = signal(configuration);
-            configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardTypeId.Event)
-                .and.returnValue(availability.events);
-            configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardTypeId.Landmark)
-                .and.returnValue(availability.landmarks);
-            configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardTypeId.Project)
-                .and.returnValue(availability.projects);
-            configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardTypeId.Way)
-                .and.returnValue(availability.ways);
-            configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardTypeId.Trait)
-                .and.returnValue(availability.traits);
+            when(configurationServiceSpy.isCardTypeAvailable)
+                .calledWith(CardTypeId.Event)
+                .thenReturn(availability.events);
+            when(configurationServiceSpy.isCardTypeAvailable)
+                .calledWith(CardTypeId.Landmark)
+                .thenReturn(availability.landmarks);
+            when(configurationServiceSpy.isCardTypeAvailable)
+                .calledWith(CardTypeId.Project)
+                .thenReturn(availability.projects);
+            when(configurationServiceSpy.isCardTypeAvailable)
+                .calledWith(CardTypeId.Way)
+                .thenReturn(availability.ways);
+            when(configurationServiceSpy.isCardTypeAvailable)
+                .calledWith(CardTypeId.Trait)
+                .thenReturn(availability.traits);
 
             const actual = component.specialCardSelectViewData();
 
@@ -179,7 +179,7 @@ describe('ConfigurationComponent', () => {
         });
 
         it('with no special cards are available should return null', () => {
-            configurationServiceSpy.isCardTypeAvailable.and.returnValue(false);
+            configurationServiceSpy.isCardTypeAvailable.mockReturnValue(false);
 
             const actual = component.specialCardSelectViewData();
 
@@ -201,11 +201,11 @@ describe('ConfigurationComponent', () => {
     });
 
     describe('navigateToSet', () => {
-        let routerSpy: jasmine.Spy;
+        let routerSpy: Mock;
         let editionSelect: EditionSelectStubComponent;
 
         beforeEach(() => {
-            routerSpy = spyOn(TestBed.inject(Router), 'navigate');
+            routerSpy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
             fixture.detectChanges();
             editionSelect = fixture.debugElement
                 .query(By.directive(EditionSelectStubComponent))
@@ -230,7 +230,9 @@ describe('ConfigurationComponent', () => {
 
         it('with invalid form group of EditionSelectComponent should show validation error', () => {
             editionSelect.formGroup = new UntypedFormGroup({}, () => ({ minSelect: true }));
-            const showValidationErrorSpy = spyOn(editionSelect, 'showValidationError');
+            const showValidationErrorSpy = vi
+                .spyOn(editionSelect, 'showValidationError')
+                .mockReturnValue(undefined);
 
             component.navigateToSet();
 
@@ -265,10 +267,8 @@ describe('ConfigurationComponent', () => {
                 .query(By.directive(MatStepper))
                 .injector.get(MatStepper).steps.first;
 
-            expect(actual.stepControl).withContext('stepControl').toBe(editionSelect.formGroup);
-            expect(actual.errorMessage)
-                .withContext('errorMessage')
-                .toBe('Choose at least one expansion');
+            expect(actual.stepControl, 'stepControl').toBe(editionSelect.formGroup);
+            expect(actual.errorMessage, 'errorMessage').toBe('Choose at least one expansion');
         });
 
         it('should bind properties of EditionSelectComponent correctly', () => {
@@ -289,8 +289,8 @@ describe('ConfigurationComponent', () => {
                 .query(By.directive(EditionSelectStubComponent))
                 .injector.get(EditionSelectStubComponent);
 
-            expect(actual.editions()).withContext('editions').toEqual(editions);
-            expect(actual.initialValue()).withContext('initialValue').toBe(initialValue);
+            expect(actual.editions(), 'editions').toEqual(editions);
+            expect(actual.initialValue(), 'initialValue').toBe(initialValue);
         });
 
         it('should bind change event of EditionSelectComponent correctly', () => {
@@ -323,7 +323,7 @@ describe('ConfigurationComponent', () => {
                 .query(By.directive(MatStepper))
                 .injector.get(MatStepper).steps.last;
 
-            expect(actual.stepControl).withContext('stepControl').toBe(specialCardSelect.formGroup);
+            expect(actual.stepControl, 'stepControl').toBe(specialCardSelect.formGroup);
         });
 
         it('should bind properties of SpecialCardSelectComponent correctly', () => {
@@ -338,18 +338,18 @@ describe('ConfigurationComponent', () => {
             configurationServiceSpy.configuration = signal(
                 dataFixture.createConfiguration({ specialCardsCount: initialValue }),
             );
-            configurationServiceSpy.isCardTypeAvailable.and.returnValue(false);
-            configurationServiceSpy.isCardTypeAvailable
-                .withArgs(CardTypeId.Event)
-                .and.returnValue(true);
+            configurationServiceSpy.isCardTypeAvailable.mockReturnValue(false);
+            when(configurationServiceSpy.isCardTypeAvailable)
+                .calledWith(CardTypeId.Event)
+                .thenReturn(true);
             fixture.detectChanges();
 
             const actual = fixture.debugElement
                 .query(By.directive(SpecialCardSelectStubComponent))
                 .injector.get(SpecialCardSelectStubComponent);
 
-            expect(actual.initialValue()).withContext('initialValue').toBe(initialValue);
-            expect(actual.availability()).withContext('availability').toEqual(availability);
+            expect(actual.initialValue(), 'initialValue').toBe(initialValue);
+            expect(actual.availability(), 'availability').toEqual(availability);
         });
 
         it('should bind valueChange event of SpecialCardSelectComponent correctly', () => {
@@ -378,7 +378,9 @@ describe('ConfigurationComponent', () => {
         });
 
         it('should bind click event of shuffle button correctly', async () => {
-            const navigateToSetSpy = spyOn(component, 'navigateToSet');
+            const navigateToSetSpy = vi
+                .spyOn(component, 'navigateToSet')
+                .mockReturnValue(undefined);
             fixture.detectChanges();
             const button = await harnessLoader.getHarness(
                 MatButtonHarness.with({ variant: 'fab' }),

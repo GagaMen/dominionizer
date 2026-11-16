@@ -1,8 +1,9 @@
+import { when } from 'vitest-when';
 import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { ConfigurationService } from './configuration.service';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { ChanceService } from './chance.service';
 import { CardService } from './card.service';
 import { DataFixture } from 'src/testing/data-fixture';
@@ -59,10 +60,10 @@ describe('ShuffleService', () => {
             providers: [
                 {
                     provide: CardService,
-                    useValue: jasmine.createSpyObj<CardService>('CardService', [
-                        'findRandomizableKingdomCards',
-                        'findByCardType',
-                    ]),
+                    useValue: {
+                        findRandomizableKingdomCards: vi.fn(),
+                        findByCardType: vi.fn(),
+                    },
                 },
                 {
                     provide: ConfigurationService,
@@ -70,11 +71,15 @@ describe('ShuffleService', () => {
                 },
                 {
                     provide: ChanceService,
-                    useValue: jasmine.createSpyObj<ChanceService>('ChanceService', ['pickCards']),
+                    useValue: {
+                        pickCards: vi.fn(),
+                    },
                 },
                 {
                     provide: SetService,
-                    useValue: jasmine.createSpyObj<SetService>('SetService', ['updateSet']),
+                    useValue: {
+                        updateSet: vi.fn(),
+                    },
                 },
             ],
         });
@@ -128,25 +133,23 @@ describe('ShuffleService', () => {
             singleSpecialCardsCountOfConfiguredExpansions,
         );
 
-        cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
-        cardServiceSpy.findRandomizableKingdomCards.and.returnValue(kingdomCards);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Event).and.returnValue(events);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Landmark).and.returnValue(landmarks);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Project).and.returnValue(projects);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Way).and.returnValue(ways);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Trait).and.returnValue(traits);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Ally).and.returnValue(allies);
-        cardServiceSpy.findByCardType.withArgs(CardTypeId.Prophecy).and.returnValue(prophecies);
+        cardServiceSpy = injectSpy(CardService);
+        cardServiceSpy.findRandomizableKingdomCards.mockReturnValue(kingdomCards);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Event).thenReturn(events);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Landmark).thenReturn(landmarks);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Project).thenReturn(projects);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Way).thenReturn(ways);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Trait).thenReturn(traits);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Ally).thenReturn(allies);
+        when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Prophecy).thenReturn(prophecies);
 
-        configurationServiceSpy = TestBed.inject(
-            ConfigurationService,
-        ) as jasmine.SpyObj<ConfigurationService>;
+        configurationServiceSpy = injectSpy(ConfigurationService);
         configurationServiceSpy.configuration = signal(configuration);
 
-        chanceServiceSpy = TestBed.inject(ChanceService) as jasmine.SpyObj<ChanceService>;
-        chanceServiceSpy.pickCards.and.returnValue([]);
+        chanceServiceSpy = injectSpy(ChanceService);
+        chanceServiceSpy.pickCards.mockReturnValue([]);
 
-        setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
+        setServiceSpy = injectSpy(SetService);
         setServiceSpy.set = signal(dataFixture.createSet());
     });
 
@@ -165,13 +168,13 @@ describe('ShuffleService', () => {
                 kingdomCardsCountOfConfiguredExpansions,
             );
             const expected = kingdomCards.slice(0, 10);
-            chanceServiceSpy.pickCards
-                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
-                .and.returnValue(expected);
+            when(chanceServiceSpy.pickCards)
+                .calledWith(kingdomCardsOfConfiguredExpansions, 10)
+                .thenReturn(expected);
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSet();
-            const set = setServiceSpy.updateSet.calls.first().args[0];
+            const set = setServiceSpy.updateSet.mock.calls[0][0];
 
             expect(set.kingdomCards).toEqual(expected);
         });
@@ -193,13 +196,13 @@ describe('ShuffleService', () => {
                     singleSpecialCardsCountOfConfiguredExpansions,
                 );
                 const expected = specialCardsOfConfiguredExpansions.slice(0, singleCount);
-                chanceServiceSpy.pickCards
-                    .withArgs(specialCardsOfConfiguredExpansions, singleCount)
-                    .and.returnValue(expected);
+                when(chanceServiceSpy.pickCards)
+                    .calledWith(specialCardsOfConfiguredExpansions, singleCount)
+                    .thenReturn(expected);
                 shuffleService = TestBed.inject(ShuffleService);
 
                 shuffleService.shuffleSet();
-                const set = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                const set = setServiceSpy.updateSet.mock.lastCall![0];
 
                 expect(set.specialCards).toEqual(expected);
             });
@@ -210,14 +213,17 @@ describe('ShuffleService', () => {
                 for (let i = 0; i < singleSpecialCardsCountOfConfiguredExpansions; i++) {
                     getSpecialCards().shift();
                 }
-                chanceServiceSpy.pickCards.withArgs([], singleCount).and.returnValue([]);
-                chanceServiceSpy.pickCards
-                    .withArgs(jasmine.notEmpty(), jasmine.anything())
-                    .and.returnValue(dataFixture.createCards());
+                when(chanceServiceSpy.pickCards).calledWith([], singleCount).thenReturn([]);
+                when(chanceServiceSpy.pickCards)
+                    .calledWith(
+                        expect.arrayContaining([expect.anything()]) as Card[],
+                        expect.anything() as number,
+                    )
+                    .thenReturn(dataFixture.createCards());
                 shuffleService = TestBed.inject(ShuffleService);
 
                 shuffleService.shuffleSet();
-                const set = setServiceSpy.updateSet.calls.mostRecent()?.args[0];
+                const set = setServiceSpy.updateSet.mock.lastCall![0];
 
                 expect(set?.specialCards).toEqual([]);
             });
@@ -232,21 +238,21 @@ describe('ShuffleService', () => {
                 types: [dataFixture.createCardType({ id: CardTypeId.Liaison })],
                 isKingdomCard: true,
             });
-            chanceServiceSpy.pickCards
-                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
-                .and.returnValue(liaisonCards);
+            when(chanceServiceSpy.pickCards)
+                .calledWith(kingdomCardsOfConfiguredExpansions, 10)
+                .thenReturn(liaisonCards);
             const allyCardsOfConfiguredExpansions = allies.slice(
                 0,
                 singleSpecialCardsCountOfConfiguredExpansions,
             );
             const expected = allies.slice(0, 1);
-            chanceServiceSpy.pickCards
-                .withArgs(allyCardsOfConfiguredExpansions, 1)
-                .and.returnValue(expected);
+            when(chanceServiceSpy.pickCards)
+                .calledWith(allyCardsOfConfiguredExpansions, 1)
+                .thenReturn(expected);
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSet();
-            const set = setServiceSpy.updateSet.calls.first().args[0];
+            const set = setServiceSpy.updateSet.mock.calls[0][0];
 
             expect(set.specialCards).toEqual(expected);
         });
@@ -260,21 +266,21 @@ describe('ShuffleService', () => {
                 types: [dataFixture.createCardType({ id: CardTypeId.Omen })],
                 isKingdomCard: true,
             });
-            chanceServiceSpy.pickCards
-                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
-                .and.returnValue(omenCards);
+            when(chanceServiceSpy.pickCards)
+                .calledWith(kingdomCardsOfConfiguredExpansions, 10)
+                .thenReturn(omenCards);
             const prophecyCardsOfConfiguredExpansions = prophecies.slice(
                 0,
                 singleSpecialCardsCountOfConfiguredExpansions,
             );
             const expected = prophecies.slice(0, 1);
-            chanceServiceSpy.pickCards
-                .withArgs(prophecyCardsOfConfiguredExpansions, 1)
-                .and.returnValue(expected);
+            when(chanceServiceSpy.pickCards)
+                .calledWith(prophecyCardsOfConfiguredExpansions, 1)
+                .thenReturn(expected);
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSet();
-            const set = setServiceSpy.updateSet.calls.first().args[0];
+            const set = setServiceSpy.updateSet.mock.calls[0][0];
 
             expect(set.specialCards).toEqual(expected);
         });
@@ -292,27 +298,27 @@ describe('ShuffleService', () => {
                 types: [dataFixture.createCardType({ id: CardTypeId.Omen })],
                 isKingdomCard: true,
             });
-            chanceServiceSpy.pickCards
-                .withArgs(kingdomCardsOfConfiguredExpansions, 10)
-                .and.returnValue([...liaisonCards, omenCard]);
+            when(chanceServiceSpy.pickCards)
+                .calledWith(kingdomCardsOfConfiguredExpansions, 10)
+                .thenReturn([...liaisonCards, omenCard]);
             const allyCardsOfConfiguredExpansions = allies.slice(
                 0,
                 singleSpecialCardsCountOfConfiguredExpansions,
             );
-            chanceServiceSpy.pickCards
-                .withArgs(allyCardsOfConfiguredExpansions, 1)
-                .and.returnValue(allies.slice(0, 1));
+            when(chanceServiceSpy.pickCards)
+                .calledWith(allyCardsOfConfiguredExpansions, 1)
+                .thenReturn(allies.slice(0, 1));
             const prophecyCardsOfConfiguredExpansions = prophecies.slice(
                 0,
                 singleSpecialCardsCountOfConfiguredExpansions,
             );
-            chanceServiceSpy.pickCards
-                .withArgs(prophecyCardsOfConfiguredExpansions, 1)
-                .and.returnValue(prophecies.slice(0, 1));
+            when(chanceServiceSpy.pickCards)
+                .calledWith(prophecyCardsOfConfiguredExpansions, 1)
+                .thenReturn(prophecies.slice(0, 1));
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSet();
-            const set = setServiceSpy.updateSet.calls.first().args[0];
+            const set = setServiceSpy.updateSet.mock.calls[0][0];
 
             expect(set.specialCards).toEqual([...allies.slice(0, 1), ...prophecies.slice(0, 1)]);
         });
@@ -333,11 +339,11 @@ describe('ShuffleService', () => {
                 specialCards: [],
             });
             setServiceSpy.set = signal(currentSet);
-            chanceServiceSpy.pickCards.and.returnValues([liaisonCard], []);
+            chanceServiceSpy.pickCards.mockReturnValueOnce([liaisonCard]).mockReturnValueOnce([]);
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSingleCard(nonLiaisonCard);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+            const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
             expect(actual.specialCards).toEqual([]);
         });
@@ -351,14 +357,14 @@ describe('ShuffleService', () => {
             });
             const expected = [...currentSet.kingdomCards];
             setServiceSpy.set = signal(currentSet);
-            chanceServiceSpy.pickCards.and.returnValues([newCard], []);
+            chanceServiceSpy.pickCards.mockReturnValueOnce([newCard]).mockReturnValueOnce([]);
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSingleCard(oldCard);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+            const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
-            expect(actual).withContext('new set').not.toBe(currentSet);
-            expect(currentSet.kingdomCards).withContext('current set').toEqual(expected);
+            expect(actual, 'new set').not.toBe(currentSet);
+            expect(currentSet.kingdomCards, 'current set').toEqual(expected);
         });
 
         it('with card is kingdom card should pick different random kingdom card from configured editions', () => {
@@ -376,14 +382,14 @@ describe('ShuffleService', () => {
             const oldCard = currentSet.kingdomCards[0];
             const newCard = candidates[0];
             setServiceSpy.set = signal(currentSet);
-            chanceServiceSpy.pickCards.withArgs(candidates, 1).and.returnValue([newCard]);
+            when(chanceServiceSpy.pickCards).calledWith(candidates, 1).thenReturn([newCard]);
             shuffleService = TestBed.inject(ShuffleService);
 
             shuffleService.shuffleSingleCard(oldCard);
-            const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+            const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
-            expect(actual.kingdomCards).withContext('oldCard').not.toContain(oldCard);
-            expect(actual.kingdomCards).withContext('newCard').toContain(newCard);
+            expect(actual.kingdomCards, 'oldCard').not.toContain(oldCard);
+            expect(actual.kingdomCards, 'newCard').toContain(newCard);
         });
 
         (
@@ -412,14 +418,14 @@ describe('ShuffleService', () => {
                 const oldCard = currentSet.specialCards[0];
                 const newCard = candidates[0];
                 setServiceSpy.set = signal(currentSet);
-                chanceServiceSpy.pickCards.withArgs(candidates, 1).and.returnValue([newCard]);
+                when(chanceServiceSpy.pickCards).calledWith(candidates, 1).thenReturn([newCard]);
                 shuffleService = TestBed.inject(ShuffleService);
 
                 shuffleService.shuffleSingleCard(oldCard);
-                const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
-                expect(actual.specialCards).withContext('oldCard').not.toContain(oldCard);
-                expect(actual.specialCards).withContext('newCard').toContain(newCard);
+                expect(actual.specialCards, 'oldCard').not.toContain(oldCard);
+                expect(actual.specialCards, 'newCard').toContain(newCard);
             });
         });
 
@@ -466,11 +472,13 @@ describe('ShuffleService', () => {
                     const oldCard = currentSet.specialCards[0];
                     const expected = candidates[0];
                     setServiceSpy.set = signal(currentSet);
-                    chanceServiceSpy.pickCards.withArgs(candidates, 1).and.returnValue([expected]);
+                    when(chanceServiceSpy.pickCards)
+                        .calledWith(candidates, 1)
+                        .thenReturn([expected]);
                     shuffleService = TestBed.inject(ShuffleService);
 
                     shuffleService.shuffleSingleCard(oldCard);
-                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
                     expect(actual.specialCards).toEqual([expected]);
                 });
@@ -493,11 +501,11 @@ describe('ShuffleService', () => {
                         specialCards: [expected],
                     });
                     setServiceSpy.set = signal(currentSet);
-                    chanceServiceSpy.pickCards.and.returnValue([newTriggeringCard]);
+                    chanceServiceSpy.pickCards.mockReturnValue([newTriggeringCard]);
                     shuffleService = TestBed.inject(ShuffleService);
 
                     shuffleService.shuffleSingleCard(oldTriggeringCard);
-                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
                     expect(actual.specialCards).toEqual([expected]);
                 });
@@ -520,11 +528,11 @@ describe('ShuffleService', () => {
                         specialCards: [dependentCardOfSet],
                     });
                     setServiceSpy.set = signal(currentSet);
-                    chanceServiceSpy.pickCards.and.returnValue([nonTriggeringCard]);
+                    chanceServiceSpy.pickCards.mockReturnValue([nonTriggeringCard]);
                     shuffleService = TestBed.inject(ShuffleService);
 
                     shuffleService.shuffleSingleCard(triggeringCardOfSet);
-                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
                     expect(actual.specialCards).toEqual([]);
                 });
@@ -547,11 +555,11 @@ describe('ShuffleService', () => {
                         specialCards: [expected],
                     });
                     setServiceSpy.set = signal(currentSet);
-                    chanceServiceSpy.pickCards.and.returnValue([nonTriggeringCard]);
+                    chanceServiceSpy.pickCards.mockReturnValue([nonTriggeringCard]);
                     shuffleService = TestBed.inject(ShuffleService);
 
                     shuffleService.shuffleSingleCard(triggeringCardsOfSet[0]);
-                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
                     expect(actual.specialCards).toEqual([expected]);
                 });
@@ -574,11 +582,13 @@ describe('ShuffleService', () => {
                         specialCards: [],
                     });
                     setServiceSpy.set = signal(currentSet);
-                    chanceServiceSpy.pickCards.and.returnValues([newTriggeringCard], [expected]);
+                    chanceServiceSpy.pickCards
+                        .mockReturnValueOnce([newTriggeringCard])
+                        .mockReturnValueOnce([expected]);
                     shuffleService = TestBed.inject(ShuffleService);
 
                     shuffleService.shuffleSingleCard(nonTriggeringCard);
-                    const actual = setServiceSpy.updateSet.calls.mostRecent().args[0];
+                    const actual = setServiceSpy.updateSet.mock.lastCall![0];
 
                     expect(actual.specialCards).toEqual([expected]);
                 });

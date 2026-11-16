@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CardService } from './card.service';
 import { DataService } from './data.service';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { CardDto } from '../dtos/card-dto';
 import { EditionService } from './edition.service';
 import { DataFixture } from 'src/testing/data-fixture';
@@ -25,10 +25,10 @@ describe('CardService', () => {
             providers: [
                 {
                     provide: DataService,
-                    useValue: jasmine.createSpyObj<DataService>('DataService', [
-                        'getCards',
-                        'getCardTranslations',
-                    ]),
+                    useValue: {
+                        getCards: vi.fn(),
+                        getCardTranslations: vi.fn(),
+                    },
                 },
                 { provide: EditionService, useValue: {} },
                 { provide: CardTypeService, useValue: {} },
@@ -39,9 +39,9 @@ describe('CardService', () => {
         editions = dataFixture.createEditions();
         cardTypes = dataFixture.createCardTypes();
 
-        dataServiceSpy = TestBed.inject(DataService) as jasmine.SpyObj<DataService>;
-        dataServiceSpy.getCards.and.returnValue(dataFixture.createCardDtos());
-        dataServiceSpy.getCardTranslations.and.returnValue([]);
+        dataServiceSpy = injectSpy(DataService);
+        dataServiceSpy.getCards.mockReturnValue(dataFixture.createCardDtos());
+        dataServiceSpy.getCardTranslations.mockReturnValue([]);
 
         editionServiceSpy = TestBed.inject(EditionService);
         editionServiceSpy.editions = editions;
@@ -64,7 +64,7 @@ describe('CardService', () => {
                     types: [cardTypes[0], cardTypes[2]],
                 });
             });
-            dataServiceSpy.getCards.and.returnValue(cardDtos);
+            dataServiceSpy.getCards.mockReturnValue(cardDtos);
             cardService = TestBed.inject(CardService);
 
             const actual = cardService.cards;
@@ -87,8 +87,8 @@ describe('CardService', () => {
                 editions: [editions[0], editions[1]],
                 types: [cardTypes[0], cardTypes[1]],
             });
-            dataServiceSpy.getCards.and.returnValue([cardDto]);
-            dataServiceSpy.getCardTranslations.and.returnValue([cardTranslation]);
+            dataServiceSpy.getCards.mockReturnValue([cardDto]);
+            dataServiceSpy.getCardTranslations.mockReturnValue([cardTranslation]);
             cardService = TestBed.inject(CardService);
 
             const actual = cardService.cards;
@@ -113,8 +113,8 @@ describe('CardService', () => {
                 editions: [editions[0], editions[1]],
                 types: [cardTypes[0], cardTypes[1]],
             });
-            dataServiceSpy.getCards.and.returnValue([cardDto]);
-            dataServiceSpy.getCardTranslations.and.returnValue([cardTranslation]);
+            dataServiceSpy.getCards.mockReturnValue([cardDto]);
+            dataServiceSpy.getCardTranslations.mockReturnValue([cardTranslation]);
             cardService = TestBed.inject(CardService);
 
             const actual = cardService.cards;
@@ -127,9 +127,9 @@ describe('CardService', () => {
         it('should contain only Kingdom cards', () => {
             const nonKingdomCardDto = dataFixture.createCardDto({ id: '1', isKingdomCard: false });
             const kingdomCardDto = dataFixture.createCardDto({ id: '2', isKingdomCard: true });
-            dataServiceSpy.getCards.and.returnValue([nonKingdomCardDto, kingdomCardDto]);
+            dataServiceSpy.getCards.mockReturnValue([nonKingdomCardDto, kingdomCardDto]);
             cardService = TestBed.inject(CardService);
-            const expected = [jasmine.objectContaining<Card>({ id: '2' })];
+            const expected = [expect.objectContaining({ id: '2' })];
 
             const actual = cardService.findRandomizableKingdomCards();
 
@@ -140,9 +140,9 @@ describe('CardService', () => {
             // the cargo data marks only the pile itself as a kingdom pile
             const pileCardDto = dataFixture.createCardDto({ id: '1', isKingdomCard: true });
             const halfCardDto = dataFixture.createCardDto({ id: '2', isKingdomCard: false });
-            dataServiceSpy.getCards.and.returnValue([pileCardDto, halfCardDto]);
+            dataServiceSpy.getCards.mockReturnValue([pileCardDto, halfCardDto]);
             cardService = TestBed.inject(CardService);
-            const expected = [jasmine.objectContaining<Card>({ id: '1' })];
+            const expected = [expect.objectContaining({ id: '1' })];
 
             const actual = cardService.findRandomizableKingdomCards();
 
@@ -165,9 +165,9 @@ describe('CardService', () => {
                 id: '2',
                 types: [CardTypeId.Duration, CardTypeId.Action],
             });
-            dataServiceSpy.getCards.and.returnValue([nonActionCardDto, actionCardDto]);
+            dataServiceSpy.getCards.mockReturnValue([nonActionCardDto, actionCardDto]);
             cardService = TestBed.inject(CardService);
-            const expected = [jasmine.objectContaining<Card>({ id: '2' })];
+            const expected = [expect.objectContaining({ id: '2' })];
 
             const actual = cardService.findByCardType(CardTypeId.Action);
 

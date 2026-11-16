@@ -1,10 +1,11 @@
+import { when } from 'vitest-when';
 import { TestBed } from '@angular/core/testing';
 
 import { ConfigurationService } from './configuration.service';
 import { CardService } from './card.service';
 import { Configuration } from '../models/configuration';
 import { CardTypeId } from '../models/card-type';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ConfigurationService', () => {
@@ -18,13 +19,15 @@ describe('ConfigurationService', () => {
                 ConfigurationService,
                 {
                     provide: CardService,
-                    useValue: jasmine.createSpyObj<CardService>('CardService', ['findByCardType']),
+                    useValue: {
+                        findByCardType: vi.fn(),
+                    },
                 },
             ],
         });
 
         dataFixture = new DataFixture();
-        cardServiceSpy = TestBed.inject(CardService) as jasmine.SpyObj<CardService>;
+        cardServiceSpy = injectSpy(CardService);
         configurationService = TestBed.inject(ConfigurationService);
     });
 
@@ -74,9 +77,9 @@ describe('ConfigurationService', () => {
             const enabledEditions = editions.slice(1);
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: editions, types: [cardType] });
-            cardServiceSpy.findByCardType
-                .withArgs(cardType.id as CardTypeId)
-                .and.returnValue([card]);
+            when(cardServiceSpy.findByCardType)
+                .calledWith(cardType.id as CardTypeId)
+                .thenReturn([card]);
             configurationService.updateEditions(enabledEditions);
 
             const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
@@ -88,9 +91,9 @@ describe('ConfigurationService', () => {
             const edition = dataFixture.createEdition();
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: [edition], types: [cardType] });
-            cardServiceSpy.findByCardType
-                .withArgs(cardType.id as CardTypeId)
-                .and.returnValue([card]);
+            when(cardServiceSpy.findByCardType)
+                .calledWith(cardType.id as CardTypeId)
+                .thenReturn([card]);
             configurationService.updateEditions([{ ...edition }]);
 
             const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
@@ -104,9 +107,9 @@ describe('ConfigurationService', () => {
             const cardEditions = editions.slice(1);
             const cardType = dataFixture.createCardType();
             const card = dataFixture.createCard({ editions: cardEditions, types: [cardType] });
-            cardServiceSpy.findByCardType
-                .withArgs(cardType.id as CardTypeId)
-                .and.returnValue([card]);
+            when(cardServiceSpy.findByCardType)
+                .calledWith(cardType.id as CardTypeId)
+                .thenReturn([card]);
             configurationService.updateEditions(enabledEditions);
 
             const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);

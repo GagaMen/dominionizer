@@ -2,7 +2,7 @@ import { signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconAnchor, MatIconButton } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
-import { SpyObj } from './../../../testing/spy-obj';
+import { injectSpy, SpyObj } from './../../../testing/spy-obj';
 import { AppBarService } from './../../services/app-bar.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppBarComponent } from './app-bar.component';
@@ -15,8 +15,10 @@ describe('AppBarComponent', () => {
     let dataFixture: DataFixture;
 
     beforeEach(() => {
-        const spy = jasmine.createSpyObj<AppBarService>('AppBarService', ['updateConfiguration']);
-        (spy as AppBarService).configuration = signal(AppBarService.defaultConfiguration);
+        const spy = {
+            updateConfiguration: vi.fn(),
+            configuration: signal(AppBarService.defaultConfiguration),
+        };
 
         TestBed.configureTestingModule({
             imports: [AppBarComponent],
@@ -30,7 +32,7 @@ describe('AppBarComponent', () => {
         });
 
         dataFixture = new DataFixture();
-        appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
+        appBarServiceSpy = injectSpy(AppBarService);
 
         fixture = TestBed.createComponent(AppBarComponent);
     });

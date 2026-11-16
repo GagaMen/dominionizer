@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 
 import { ChanceService } from './chance.service';
@@ -5,7 +6,7 @@ import { DataFixture } from 'src/testing/data-fixture';
 
 describe('ChanceService', () => {
     let chanceService: ChanceService;
-    let mathRandomSpy: jasmine.Spy<() => number>;
+    let mathRandomSpy: MockInstance<() => number>;
     let dataFixture: DataFixture;
 
     beforeEach(() => {
@@ -15,8 +16,7 @@ describe('ChanceService', () => {
 
         dataFixture = new DataFixture();
 
-        mathRandomSpy = spyOn(Math, 'random');
-        mathRandomSpy.and.callThrough();
+        mathRandomSpy = vi.spyOn(Math, 'random');
 
         chanceService = TestBed.inject(ChanceService);
     });
@@ -45,7 +45,7 @@ describe('ChanceService', () => {
         it('with amount is 1 and candidates size is greater should return one random card', () => {
             const amount = 1;
             const candidates = dataFixture.createCards(10);
-            mathRandomSpy.and.returnValue(0.15);
+            mathRandomSpy.mockReturnValue(0.15);
             const expected = candidates.slice(1, 2);
 
             const actual = chanceService.pickCards(candidates, amount);

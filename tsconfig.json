@@ -22,7 +22,7 @@
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": false,
         "resolveJsonModule": true,
-        "types": ["jasmine", "node"]
+        "types": ["vitest/globals", "node"]
     },
     "angularCompilerOptions": {
         "strictTemplates": true,

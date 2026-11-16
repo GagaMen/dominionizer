@@ -22,9 +22,9 @@ describe('SpecialCardSelectComponent', () => {
             providers: [
                 {
                     provide: ConfigurationService,
-                    useValue: jasmine.createSpyObj<ConfigurationService>('ConfigurationService', [
-                        'updateSpecialCardsCount',
-                    ]),
+                    useValue: {
+                        updateSpecialCardsCount: vi.fn(),
+                    },
                 },
                 UntypedFormBuilder,
             ],
@@ -43,11 +43,11 @@ describe('SpecialCardSelectComponent', () => {
 
             const actual = component.formGroup;
 
-            expect(actual.contains('events')).withContext('events').toBe(true);
-            expect(actual.contains('landmarks')).withContext('landmarks').toBe(true);
-            expect(actual.contains('projects')).withContext('projects').toBe(true);
-            expect(actual.contains('ways')).withContext('ways').toBe(true);
-            expect(actual.contains('traits')).withContext('traits').toBe(true);
+            expect(actual.contains('events'), 'events').toBe(true);
+            expect(actual.contains('landmarks'), 'landmarks').toBe(true);
+            expect(actual.contains('projects'), 'projects').toBe(true);
+            expect(actual.contains('ways'), 'ways').toBe(true);
+            expect(actual.contains('traits'), 'traits').toBe(true);
         });
 
         it('should have correct initial value', () => {
@@ -70,7 +70,7 @@ describe('SpecialCardSelectComponent', () => {
                 traits: true,
             });
             const expected = dataFixture.createSpecialCardsCount();
-            const emitSpy = spyOn(component.valueChange, 'emit');
+            const emitSpy = vi.spyOn(component.valueChange, 'emit').mockReturnValue(undefined);
 
             component.formGroup.setValue(expected);
 
@@ -112,18 +112,13 @@ describe('SpecialCardSelectComponent', () => {
                 const matSlider = await harnessLoader.getHarness(MatSliderHarness);
                 const matSliderThumb = await harnessLoader.getHarness(MatSliderThumbHarness);
 
-                expect(await matSlider.getMinValue())
-                    .withContext('minValue')
-                    .toBe(0);
-                expect(await matSlider.getMaxValue())
-                    .withContext('maxValue')
-                    .toBe(5);
-                expect(await matSlider.getStep())
-                    .withContext('step')
-                    .toBe(1);
-                expect(await (await matSliderThumb.host()).getAttribute('formControlName'))
-                    .withContext('formControlName')
-                    .toBe(specialCards);
+                expect(await matSlider.getMinValue(), 'minValue').toBe(0);
+                expect(await matSlider.getMaxValue(), 'maxValue').toBe(5);
+                expect(await matSlider.getStep(), 'step').toBe(1);
+                expect(
+                    await (await matSliderThumb.host()).getAttribute('formControlName'),
+                    'formControlName',
+                ).toBe(specialCards);
             });
 
             it(`with ${specialCards} are available should render corresponding label correctly`, () => {
@@ -140,8 +135,10 @@ describe('SpecialCardSelectComponent', () => {
                     specialCards.substring(0, 1).toUpperCase() + specialCards.substring(1);
                 fixture.detectChanges();
 
-                const actual = fixture.debugElement.query(By.css('.special-cards-label label'))
-                    .properties['innerText'];
+                const actual = (
+                    fixture.debugElement.query(By.css('.special-cards-label label'))
+                        .nativeElement as HTMLElement
+                ).textContent;
 
                 expect(actual).toBe(expected);
             });
@@ -160,9 +157,10 @@ describe('SpecialCardSelectComponent', () => {
                 await (await harnessLoader.getHarness(MatSliderThumbHarness)).setValue(expected);
 
                 const actual = Number.parseInt(
-                    fixture.debugElement.query(By.css('.special-cards-label span')).properties[
-                        'innerText'
-                    ] as string,
+                    (
+                        fixture.debugElement.query(By.css('.special-cards-label span'))
+                            .nativeElement as HTMLElement
+                    ).textContent,
                 );
 
                 expect(actual).toBe(expected);

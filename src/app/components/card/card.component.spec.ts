@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
@@ -190,7 +191,10 @@ describe('CardComponent', () => {
 
             return '';
         };
-        const cardTypeCompinations: { typeIds: CardTypeId[]; expected: string }[] = [
+        const cardTypeCompinations: {
+            typeIds: CardTypeId[];
+            expected: string;
+        }[] = [
             { typeIds: [CardTypeId.Action], expected: calculateBackground(CardTypeId.Action) },
             { typeIds: [CardTypeId.Duration], expected: calculateBackground(CardTypeId.Duration) },
             { typeIds: [CardTypeId.Event], expected: calculateBackground(CardTypeId.Event) },
@@ -297,9 +301,9 @@ describe('CardComponent', () => {
 
                 const actual = component.background;
 
-                expect(actual)
-                    .withContext(`for types [${typeIds.map(cardTypeName).join(', ')}]`)
-                    .toBe(expected);
+                expect(actual, `for types [${typeIds.map(cardTypeName).join(', ')}]`).toBe(
+                    expected,
+                );
             });
         });
     });
@@ -409,20 +413,20 @@ describe('CardComponent', () => {
     });
 
     describe('template', () => {
-        let editionIconUrlSpy: jasmine.Spy;
-        let costIconUrlsSpy: jasmine.Spy;
+        let editionIconUrlSpy: Mock;
+        let costIconUrlsSpy: Mock;
 
         beforeEach(() => {
-            editionIconUrlSpy = spyOnProperty(component, 'editionIconUrl');
-            editionIconUrlSpy.and.returnValue(editionIconUrl);
-            costIconUrlsSpy = spyOnProperty(component, 'costIconUrls');
-            costIconUrlsSpy.and.returnValue([]);
+            editionIconUrlSpy = vi
+                .spyOn(component, 'editionIconUrl', 'get')
+                .mockReturnValue(editionIconUrl);
+            costIconUrlsSpy = vi.spyOn(component, 'costIconUrls', 'get').mockReturnValue([]);
         });
 
         it('should bind "background" style of MatCard correctly', () => {
             const background = '#999';
             const expected = 'rgb(153, 153, 153)';
-            spyOnProperty(component, 'background').and.returnValue(background);
+            vi.spyOn(component, 'background', 'get').mockReturnValue(background);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.directive(MatCard)).styles['background'];
@@ -433,7 +437,7 @@ describe('CardComponent', () => {
         it('should bind "color" style of MatCardTitle correctly', () => {
             const titleColor = 'rgba(255, 255, 255, 0.87)';
             const expected = 'rgba(255, 255, 255, 0.87)';
-            spyOnProperty(component, 'titleColor').and.returnValue(titleColor);
+            vi.spyOn(component, 'titleColor', 'get').mockReturnValue(titleColor);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.directive(MatCardTitle)).styles['color'];
@@ -444,7 +448,7 @@ describe('CardComponent', () => {
         it('should bind "color" style of MatIconButton correctly', () => {
             const titleColor = 'rgba(255, 255, 255, 0.87)';
             const expected = 'rgba(255, 255, 255, 0.87)';
-            spyOnProperty(component, 'titleColor').and.returnValue(titleColor);
+            vi.spyOn(component, 'titleColor', 'get').mockReturnValue(titleColor);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.directive(MatIconButton)).styles['color'];
@@ -455,7 +459,7 @@ describe('CardComponent', () => {
         it('should bind "color" style of MatCardSubtitle correctly', () => {
             const subtitleColor = 'rgba(255, 255, 255, 0.54)';
             const expected = 'rgba(255, 255, 255, 0.54)';
-            spyOnProperty(component, 'subtitleColor').and.returnValue(subtitleColor);
+            vi.spyOn(component, 'subtitleColor', 'get').mockReturnValue(subtitleColor);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.directive(MatCardSubtitle)).styles[
@@ -466,7 +470,7 @@ describe('CardComponent', () => {
         });
 
         it('with editionIconUrl is null should not display edition icon', () => {
-            editionIconUrlSpy.and.returnValue(null);
+            editionIconUrlSpy.mockReturnValue(null);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.edition-icon'));
@@ -475,7 +479,7 @@ describe('CardComponent', () => {
         });
 
         it('with editionIconUrl is not null should display edition icon', () => {
-            editionIconUrlSpy.and.returnValue(editionIconUrl);
+            editionIconUrlSpy.mockReturnValue(editionIconUrl);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.edition-icon'));
@@ -485,7 +489,7 @@ describe('CardComponent', () => {
 
         it('with editionIconUrl is not null should bind src of edition icon correctly', () => {
             const expected = editionIconUrl;
-            editionIconUrlSpy.and.returnValue(expected);
+            editionIconUrlSpy.mockReturnValue(expected);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.css('.edition-icon')).properties['src'];
@@ -495,7 +499,7 @@ describe('CardComponent', () => {
 
         it('should display cost icons correctly', () => {
             const expected = ['/assets/card_symbols/Coin1.png', '/assets/card_symbols/Potion.png'];
-            costIconUrlsSpy.and.returnValue(expected);
+            costIconUrlsSpy.mockReturnValue(expected);
             fixture.detectChanges();
 
             const actual = fixture.debugElement
@@ -510,9 +514,9 @@ describe('CardComponent', () => {
             fixture.componentRef.setInput('card', card);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardTitle)).properties[
-                'innerText'
-            ];
+            const actual = (
+                fixture.debugElement.query(By.directive(MatCardTitle)).nativeElement as HTMLElement
+            ).textContent;
 
             expect(actual).toBe(card.name);
         });
@@ -521,18 +525,21 @@ describe('CardComponent', () => {
             const card = dataFixture.createCard();
             fixture.componentRef.setInput('card', card);
             const expected = 'Action - Attack';
-            spyOnProperty(component, 'typesLabel').and.returnValue(expected);
+            vi.spyOn(component, 'typesLabel', 'get').mockReturnValue(expected);
             fixture.detectChanges();
 
-            const actual = fixture.debugElement.query(By.directive(MatCardSubtitle)).properties[
-                'innerText'
-            ];
+            const actual = (
+                fixture.debugElement.query(By.directive(MatCardSubtitle))
+                    .nativeElement as HTMLElement
+            ).textContent;
 
             expect(actual).toBe(expected);
         });
 
         it('should bind click event of MatIconButton correctly', () => {
-            const reshuffleEmitSpy = spyOn(component.reshuffle, 'emit');
+            const reshuffleEmitSpy = vi
+                .spyOn(component.reshuffle, 'emit')
+                .mockReturnValue(undefined);
             fixture.detectChanges();
 
             fixture.debugElement.query(By.css('[mat-icon-button]')).nativeElement.click();

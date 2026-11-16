@@ -10,7 +10,7 @@ import {
     UrlTree,
 } from '@angular/router';
 import { ConfigurationService } from '../services/configuration.service';
-import { SpyObj } from 'src/testing/spy-obj';
+import { injectSpy, SpyObj } from 'src/testing/spy-obj';
 import { DataFixture } from 'src/testing/data-fixture';
 
 describe('configurationGuard', () => {
@@ -27,7 +27,9 @@ describe('configurationGuard', () => {
             providers: [
                 {
                     provide: Router,
-                    useValue: jasmine.createSpyObj<Router>('Router', ['createUrlTree']),
+                    useValue: {
+                        createUrlTree: vi.fn(),
+                    },
                 },
                 { provide: ConfigurationService, useValue: {} },
             ],
@@ -35,11 +37,9 @@ describe('configurationGuard', () => {
 
         dataFixture = new DataFixture();
         urlTree = new UrlTree();
-        routerSpy = TestBed.inject(Router) as unknown as SpyObj<Router>;
-        routerSpy.createUrlTree.and.returnValue(urlTree);
-        configurationServiceSpy = TestBed.inject(
-            ConfigurationService,
-        ) as unknown as SpyObj<ConfigurationService>;
+        routerSpy = injectSpy(Router);
+        routerSpy.createUrlTree.mockReturnValue(urlTree);
+        configurationServiceSpy = injectSpy(ConfigurationService);
     });
 
     it('with current configuration has any expansions activated should return true', () => {
@@ -48,10 +48,7 @@ describe('configurationGuard', () => {
         });
         configurationServiceSpy.configuration = signal(configuration);
 
-        const actual = executeGuard(
-            jasmine.anything() as unknown as ActivatedRouteSnapshot,
-            jasmine.anything() as unknown as RouterStateSnapshot,
-        );
+        const actual = executeGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
         expect(actual).toBe(true);
     });
@@ -62,10 +59,7 @@ describe('configurationGuard', () => {
         });
         configurationServiceSpy.configuration = signal(configuration);
 
-        const actual = executeGuard(
-            jasmine.anything() as unknown as ActivatedRouteSnapshot,
-            jasmine.anything() as unknown as RouterStateSnapshot,
-        );
+        const actual = executeGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
         expect(actual).toBe(urlTree);
         expect(routerSpy.createUrlTree).toHaveBeenCalledWith(['/configuration']);

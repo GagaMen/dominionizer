@@ -29,7 +29,8 @@ export default defineConfig(
         languageOptions: {
             parserOptions: {
                 tsconfigRootDir: modulePath,
-                project: ['tsconfig.json', './tools/*/tsconfig.json'],
+                // every file is checked with the closest tsconfig.json
+                projectService: true,
             },
         },
         rules: {

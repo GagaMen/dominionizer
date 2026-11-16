@@ -317,6 +317,13 @@
                             "sourceMap": true,
                             "namedChunks": true,
                             "localize": ["en"]
+                        },
+                        "testing": {
+                            "aot": false,
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],
+                            "polyfills": ["zone.js", "zone.js/testing", "@angular/localize/init"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -342,15 +349,13 @@
                     }
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:unit-test",
                     "options": {
-                        "polyfills": ["zone.js", "zone.js/testing", "@angular/localize/init"],
                         "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.cjs",
-                        "styles": ["src/scss/styles.scss"],
-                        "scripts": [],
-                        "assets": ["src/assets", "src/favicon.ico", "src/manifest.webmanifest"],
-                        "codeCoverageExclude": ["src/testing/**/*"]
+                        "coverageExclude": ["src/testing/**/*"],
+                        "coverageReporters": ["html", "lcovonly", "text-summary"],
+                        "buildTarget": ":build:testing",
+                        "runnerConfig": true
                     }
                 },
                 "lint": {

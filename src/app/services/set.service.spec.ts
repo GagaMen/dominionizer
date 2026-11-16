@@ -193,9 +193,7 @@ describe('SetService', () => {
             setService.updateGroupingOption(groupingOption);
             const actual = setService.groupingOption();
 
-            expect(groupingOption)
-                .withContext('test value')
-                .not.toBe(SetService.defaultGroupingOption);
+            expect(groupingOption, 'test value').not.toBe(SetService.defaultGroupingOption);
             expect(actual).toEqual(expected);
         });
     });
@@ -208,9 +206,7 @@ describe('SetService', () => {
             setService.updateSortingOption(sortingOption);
             const actual = setService.sortingOption();
 
-            expect(sortingOption)
-                .withContext('test value')
-                .not.toBe(SetService.defaultSortingOption);
+            expect(sortingOption, 'test value').not.toBe(SetService.defaultSortingOption);
             expect(actual).toEqual(expected);
         });
     });
