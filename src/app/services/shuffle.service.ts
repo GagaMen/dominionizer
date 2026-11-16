@@ -4,8 +4,6 @@ import { ConfigurationService } from './configuration.service';
 import { Configuration } from './../models/configuration';
 import { Injectable, inject } from '@angular/core';
 import { Card } from '../models/card';
-import { Observable, of, Subject } from 'rxjs';
-import { map, withLatestFrom } from 'rxjs/operators';
 import { Edition } from '../models/edition';
 import { ChanceService } from './chance.service';
 import { CardService } from './card.service';
@@ -50,10 +48,7 @@ export class ShuffleService {
     private chanceService = inject(ChanceService);
     private setService = inject(SetService);
 
-    private shuffleSetTriggerSubject = new Subject<void>();
-    private shuffleSingleCardTriggerSubject = new Subject<Card>();
-
-    private randomizableCards$: Observable<RandomizableCards> = of({
+    private readonly randomizableCards: RandomizableCards = {
         kingdomCards: this.cardService.findRandomizableKingdomCards(),
         events: this.cardService.findByCardType(CardTypeId.Event),
         landmarks: this.cardService.findByCardType(CardTypeId.Landmark),
@@ -62,21 +57,7 @@ export class ShuffleService {
         traits: this.cardService.findByCardType(CardTypeId.Trait),
         allies: this.cardService.findByCardType(CardTypeId.Ally),
         prophecies: this.cardService.findByCardType(CardTypeId.Prophecy),
-    });
-
-    constructor() {
-        this.initShuffleSet().subscribe();
-        this.initShuffleSingleCard().subscribe();
-    }
-
-    private initShuffleSet(): Observable<void> {
-        return this.shuffleSetTriggerSubject.pipe(
-            withLatestFrom(this.randomizableCards$, (_, randomizableCards: RandomizableCards) =>
-                this.pickRandomSet(randomizableCards, this.configurationService.configuration()),
-            ),
-            map((set: Set) => this.setService.updateSet(set)),
-        );
-    }
+    };
 
     private pickRandomSet(randomizableCards: RandomizableCards, configuration: Configuration): Set {
         const kingdomCards = this.pickRandomCards(
@@ -137,29 +118,6 @@ export class ShuffleService {
                       [],
                   )
                 : [],
-        );
-    }
-
-    private initShuffleSingleCard(): Observable<void> {
-        return this.shuffleSingleCardTriggerSubject.pipe(
-            withLatestFrom(
-                this.randomizableCards$,
-                this.setService.set$,
-                (oldCard: Card, randomizableCards: RandomizableCards, currentSet: Set) => {
-                    const configuration = this.configurationService.configuration();
-                    const newCard = this.pickRandomCard(
-                        oldCard,
-                        randomizableCards,
-                        configuration,
-                        currentSet,
-                    );
-                    this.updateSingleCard(currentSet, oldCard, newCard);
-                    this.updateDependentSpecialCards(currentSet, randomizableCards, configuration);
-
-                    return currentSet;
-                },
-            ),
-            map((set: Set) => this.setService.updateSet(set)),
         );
     }
 
@@ -284,10 +242,32 @@ export class ShuffleService {
     }
 
     shuffleSet(): void {
-        this.shuffleSetTriggerSubject.next();
+        const set = this.pickRandomSet(
+            this.randomizableCards,
+            this.configurationService.configuration(),
+        );
+
+        this.setService.updateSet(set);
     }
 
-    shuffleSingleCard(card: Card): void {
-        this.shuffleSingleCardTriggerSubject.next(card);
+    shuffleSingleCard(oldCard: Card): void {
+        const configuration = this.configurationService.configuration();
+        const currentSet = this.setService.set();
+        // change a copy, the set service only notifies about a new set
+        const newSet: Set = {
+            kingdomCards: [...currentSet.kingdomCards],
+            specialCards: [...currentSet.specialCards],
+        };
+
+        const newCard = this.pickRandomCard(
+            oldCard,
+            this.randomizableCards,
+            configuration,
+            currentSet,
+        );
+        this.updateSingleCard(newSet, oldCard, newCard);
+        this.updateDependentSpecialCards(newSet, this.randomizableCards, configuration);
+
+        this.setService.updateSet(newSet);
     }
 }

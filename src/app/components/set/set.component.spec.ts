@@ -3,11 +3,11 @@ import { ShuffleService } from '../../services/shuffle.service';
 import { AppBarConfiguration } from '../../models/app-bar-configuration';
 import { SpyObj } from '../../../testing/spy-obj';
 import { AppBarService } from '../../services/app-bar.service';
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetComponent } from './set.component';
 import { MatMenu } from '@angular/material/menu';
-import { cold } from 'jasmine-marbles';
 import { DataFixture } from 'src/testing/data-fixture';
 import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 import { By } from '@angular/platform-browser';
@@ -15,7 +15,6 @@ import { CardListStubComponent } from 'src/testing/components/card-list.stub.com
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatAccordionHarness } from '@angular/material/expansion/testing';
-import { detectChangesAndFlush } from 'src/testing/utilities';
 import { CardListComponent } from '../card-list/card-list.component';
 import { SetOrderingMenuStubComponent } from 'src/testing/components/set-ordering-menu.stub.component';
 import { SetOrderingMenuComponent } from '../set-ordering-menu/set-ordering-menu.component';
@@ -60,7 +59,7 @@ describe('SetComponent', () => {
 
         shuffleServiceSpy = TestBed.inject(ShuffleService) as jasmine.SpyObj<ShuffleService>;
         setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
-        setServiceSpy.set$ = cold('--a', { a: dataFixture.createSet() });
+        setServiceSpy.set = signal(dataFixture.createSet());
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
         fixture = TestBed.createComponent(SetComponent);
@@ -119,26 +118,15 @@ describe('SetComponent', () => {
     });
 
     describe('template', () => {
-        it('with SetService never emits set should not render MatAccordion', () => {
-            setServiceSpy.set$ = cold('---');
-
-            detectChangesAndFlush(fixture);
-            const actual = fixture.debugElement.query(By.directive(MatAccordion));
-
-            expect(actual).toBeNull();
-        });
-
-        it('with SetService emits set should render MatAccordion', () => {
-            setServiceSpy.set$ = cold('--a', { a: dataFixture.createSet() });
-
-            detectChangesAndFlush(fixture);
+        it('should render MatAccordion', () => {
+            fixture.detectChanges();
             const actual = fixture.debugElement.query(By.directive(MatAccordion));
 
             expect(actual).not.toBeNull();
         });
 
         it('should render MatAccordion that allows multiple expanded accordian items simultaneously', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
             const actual = await matAccordion.isMulti();
 
@@ -146,7 +134,7 @@ describe('SetComponent', () => {
         });
 
         it('should render MatExpansionPanel for kingdom cards inside MatAccordion correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
             const actual = (await matAccordion.getExpansionPanels())[0];
 
@@ -161,10 +149,10 @@ describe('SetComponent', () => {
 
         it('should render CardList for kingdom cards inside MatExpansionPanel correctly', () => {
             const set = dataFixture.createSet();
-            setServiceSpy.set$ = cold('--a', { a: set });
+            setServiceSpy.set = signal(set);
             const expectedCardList = set.kingdomCards;
 
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const actual = fixture.debugElement
                 .query(By.directive(MatExpansionPanel))
                 .query(By.directive(CardListStubComponent))
@@ -175,7 +163,7 @@ describe('SetComponent', () => {
         });
 
         it('should render MatExpansionPanel for special cards inside MatAccordion correctly', async () => {
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
             const actual = (await matAccordion.getExpansionPanels())[1];
 
@@ -190,10 +178,10 @@ describe('SetComponent', () => {
 
         it('should render CardList for special cards inside MatExpansionPanel correctly', () => {
             const set = dataFixture.createSet();
-            setServiceSpy.set$ = cold('--a', { a: set });
+            setServiceSpy.set = signal(set);
             const expectedCardList = set.specialCards;
 
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const actual = fixture.debugElement
                 .queryAll(By.directive(MatExpansionPanel))[1]
                 .query(By.directive(CardListStubComponent))
@@ -205,9 +193,9 @@ describe('SetComponent', () => {
 
         it('with no special cards should render MatExpansionPanel only for kingdom cards', async () => {
             const set = dataFixture.createSet({ specialCards: [] });
-            setServiceSpy.set$ = cold('--a', { a: set });
+            setServiceSpy.set = signal(set);
 
-            detectChangesAndFlush(fixture);
+            fixture.detectChanges();
             const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
             const actual = await matAccordion.getExpansionPanels();
 

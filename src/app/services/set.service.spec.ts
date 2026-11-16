@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { cold } from 'jasmine-marbles';
 import { DataFixture } from 'src/testing/data-fixture';
 import { Card } from '../models/card';
 import { Set } from '../models/set';
@@ -17,36 +16,35 @@ describe('SetService', () => {
         setService = TestBed.inject(SetService);
     });
 
-    describe('set$', () => {
-        it('with service just initialized should emit default set', () => {
-            const expected$ = cold('a', { a: SetService.defaultSet });
+    describe('set', () => {
+        it('with service just initialized should return default set', () => {
+            const expected = SetService.defaultSet;
 
-            const actual$ = setService.set$;
+            const actual = setService.set();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('should emit set with correctly ordered kingdom cards', () => {
+        it('should return set with correctly ordered kingdom cards', () => {
             const set = dataFixture.createSet({ specialCards: [] });
             const groupingOption = dataFixture.createGroupingOption();
             const sortingOption = dataFixture.createSortingOption();
             setService.updateSet(set);
             setService.updateGroupingOption(groupingOption);
             setService.updateSortingOption(sortingOption);
-            const expectedSet: Set = {
+            const expected: Set = {
                 ...set,
                 kingdomCards: [...set.kingdomCards].sort((a: Card, b: Card) =>
                     SetService.orderCards(a, b, groupingOption, sortingOption),
                 ),
             };
-            const expected$ = cold('a', { a: expectedSet });
 
-            const actual$ = setService.set$;
+            const actual = setService.set();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
 
-        it('should emit set with correctly ordered special cards', () => {
+        it('should return set with correctly ordered special cards', () => {
             const set = dataFixture.createSet({
                 kingdomCards: [],
                 specialCards: dataFixture.createCards(10),
@@ -56,37 +54,49 @@ describe('SetService', () => {
             setService.updateSet(set);
             setService.updateGroupingOption(groupingOption);
             setService.updateSortingOption(sortingOption);
-            const expectedSet: Set = {
+            const expected: Set = {
                 ...set,
                 specialCards: [...set.specialCards].sort((a: Card, b: Card) =>
                     SetService.orderCards(a, b, groupingOption, sortingOption),
                 ),
             };
-            const expected$ = cold('a', { a: expectedSet });
 
-            const actual$ = setService.set$;
+            const actual = setService.set();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
+        });
+        it('should leave the cards of the given set in their order', () => {
+            const firstCard = dataFixture.createCard({ name: 'b' });
+            const secondCard = dataFixture.createCard({ name: 'a' });
+            const set = dataFixture.createSet({ kingdomCards: [firstCard, secondCard] });
+            const expected = [firstCard, secondCard];
+            setService.updateSet(set);
+            setService.updateSortingOption('byName');
+
+            setService.set();
+            const actual = set.kingdomCards;
+
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('groupingOption$', () => {
-        it('with service just initialized should emit default grouping option', () => {
-            const expected$ = cold('a', { a: SetService.defaultGroupingOption });
+    describe('groupingOption', () => {
+        it('with service just initialized should return default grouping option', () => {
+            const expected = SetService.defaultGroupingOption;
 
-            const actual$ = setService.groupingOption$;
+            const actual = setService.groupingOption();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
-    describe('sortingOption$', () => {
-        it('with service just initialized should emit default sorting option', () => {
-            const expected$ = cold('a', { a: SetService.defaultSortingOption });
+    describe('sortingOption', () => {
+        it('with service just initialized should return default sorting option', () => {
+            const expected = SetService.defaultSortingOption;
 
-            const actual$ = setService.sortingOption$;
+            const actual = setService.sortingOption();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
@@ -166,42 +176,42 @@ describe('SetService', () => {
                 kingdomCards: dataFixture.createCards(1),
                 specialCards: [],
             });
-            const expected$ = cold('a', { a: set });
+            const expected = set;
 
             setService.updateSet(set);
-            const actual$ = setService.set$;
+            const actual = setService.set();
 
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
     describe('updateGroupingOption', () => {
         it('should update grouping option', () => {
             const groupingOption: GroupingOption = 'byExpansion';
-            const expected$ = cold('a', { a: groupingOption });
+            const expected = groupingOption;
 
             setService.updateGroupingOption(groupingOption);
-            const actual$ = setService.groupingOption$;
+            const actual = setService.groupingOption();
 
             expect(groupingOption)
                 .withContext('test value')
                 .not.toBe(SetService.defaultGroupingOption);
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 
     describe('updateSortingOption', () => {
         it('should update sorting option', () => {
             const sortingOption: SortingOption = 'byCost';
-            const expected$ = cold('a', { a: sortingOption });
+            const expected = sortingOption;
 
             setService.updateSortingOption(sortingOption);
-            const actual$ = setService.sortingOption$;
+            const actual = setService.sortingOption();
 
             expect(sortingOption)
                 .withContext('test value')
                 .not.toBe(SetService.defaultSortingOption);
-            expect(actual$).toBeObservable(expected$);
+            expect(actual).toEqual(expected);
         });
     });
 });

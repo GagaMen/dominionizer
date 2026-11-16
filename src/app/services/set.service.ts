@@ -1,8 +1,6 @@
-import { map } from 'rxjs/operators';
 import { Card } from './../models/card';
 import { Set } from './../models/set';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 
 export type GroupingOption = 'without' | 'byExpansion';
 export type SortingOption = 'byName' | 'byCost';
@@ -18,33 +16,25 @@ export class SetService {
     static readonly defaultGroupingOption: GroupingOption = 'without';
     static readonly defaultSortingOption: SortingOption = 'byName';
 
-    private setSubject = new BehaviorSubject<Set>(SetService.defaultSet);
-    private groupingOptionSubject = new BehaviorSubject<GroupingOption>(
-        SetService.defaultGroupingOption,
-    );
-    private sortingOptionSubject = new BehaviorSubject<SortingOption>(
-        SetService.defaultSortingOption,
-    );
+    private readonly unorderedSet = signal<Set>(SetService.defaultSet);
+    private readonly groupingOptionState = signal<GroupingOption>(SetService.defaultGroupingOption);
+    private readonly sortingOptionState = signal<SortingOption>(SetService.defaultSortingOption);
 
-    readonly set$: Observable<Set> = combineLatest([
-        this.setSubject,
-        this.groupingOptionSubject,
-        this.sortingOptionSubject,
-    ]).pipe(
-        map(([set, groupingOption, sortingOption]: [Set, GroupingOption, SortingOption]) => {
-            set.kingdomCards.sort((firstCard: Card, secondCard: Card) =>
-                SetService.orderCards(firstCard, secondCard, groupingOption, sortingOption),
-            );
-            set.specialCards.sort((firstCard: Card, secondCard: Card) =>
-                SetService.orderCards(firstCard, secondCard, groupingOption, sortingOption),
-            );
+    readonly groupingOption = this.groupingOptionState.asReadonly();
+    readonly sortingOption = this.sortingOptionState.asReadonly();
+    readonly set = computed<Set>(() => {
+        const set = this.unorderedSet();
+        const groupingOption = this.groupingOption();
+        const sortingOption = this.sortingOption();
+        const orderCards = (firstCard: Card, secondCard: Card) =>
+            SetService.orderCards(firstCard, secondCard, groupingOption, sortingOption);
 
-            return set;
-        }),
-    );
-    readonly groupingOption$: Observable<GroupingOption> =
-        this.groupingOptionSubject.asObservable();
-    readonly sortingOption$: Observable<SortingOption> = this.sortingOptionSubject.asObservable();
+        // order copies, a signal does not notify about changes inside of its value
+        return {
+            kingdomCards: [...set.kingdomCards].sort(orderCards),
+            specialCards: [...set.specialCards].sort(orderCards),
+        };
+    });
 
     static orderCards(
         firstCard: Card,
@@ -71,14 +61,14 @@ export class SetService {
     }
 
     updateSet(set: Set): void {
-        this.setSubject.next(set);
+        this.unorderedSet.set(set);
     }
 
     updateGroupingOption(groupingOption: GroupingOption): void {
-        this.groupingOptionSubject.next(groupingOption);
+        this.groupingOptionState.set(groupingOption);
     }
 
     updateSortingOption(sortingOption: SortingOption): void {
-        this.sortingOptionSubject.next(sortingOption);
+        this.sortingOptionState.set(sortingOption);
     }
 }

@@ -2,12 +2,11 @@ import { Component, ViewChild, inject, ChangeDetectionStrategy } from '@angular/
 import { MatMenu, MatMenuItem } from '@angular/material/menu';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 import { MatDivider } from '@angular/material/divider';
-import { AsyncPipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-set-ordering-menu',
-    imports: [MatMenu, MatMenuItem, MatIcon, MatDivider, AsyncPipe],
+    imports: [MatMenu, MatMenuItem, MatIcon, MatDivider],
     templateUrl: './set-ordering-menu.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./set-ordering-menu.component.scss'],

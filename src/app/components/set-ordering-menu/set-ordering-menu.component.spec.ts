@@ -1,4 +1,5 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GroupingOption, SetService, SortingOption } from 'src/app/services/set.service';
 import { SpyObj } from 'src/testing/spy-obj';
@@ -6,7 +7,6 @@ import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testi
 import { MatIconHarness } from '@angular/material/icon/testing';
 
 import { SetOrderingMenuComponent } from './set-ordering-menu.component';
-import { cold, getTestScheduler } from 'jasmine-marbles';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SetOrderingMenuHostComponent } from 'src/testing/components/set-ordering-menu.host.component';
 
@@ -30,6 +30,8 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         setServiceSpy = TestBed.inject(SetService) as jasmine.SpyObj<SetService>;
+        setServiceSpy.groupingOption = signal(SetService.defaultGroupingOption);
+        setServiceSpy.sortingOption = signal(SetService.defaultSortingOption);
 
         fixture = TestBed.createComponent(SetOrderingMenuComponent);
         component = fixture.componentInstance;
@@ -70,7 +72,6 @@ describe('SetOrderingMenuComponent', () => {
             const harnessLoader = TestbedHarnessEnvironment.loader(fixture);
             matMenu = await harnessLoader.getHarness(MatMenuHarness);
             await matMenu.open();
-            getTestScheduler().flush();
         }
 
         it('should render menu with xPosition is "before"', async () => {
@@ -102,7 +103,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with grouping option is "without" should render "Without" menu item with "check" icon', async () => {
-            setServiceSpy.groupingOption$ = cold('a', { a: 'without' });
+            setServiceSpy.groupingOption = signal('without');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -114,7 +115,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with grouping option is "byExpansion" should render "Without" menu item with empty icon', async () => {
-            setServiceSpy.groupingOption$ = cold('a', { a: 'byExpansion' });
+            setServiceSpy.groupingOption = signal('byExpansion');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -148,7 +149,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with grouping option is "byExpansion" should render "By Expansion" menu item with "check" icon', async () => {
-            setServiceSpy.groupingOption$ = cold('a', { a: 'byExpansion' });
+            setServiceSpy.groupingOption = signal('byExpansion');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -160,7 +161,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with grouping option is "without" should render "By Expansion" menu item with empty icon', async () => {
-            setServiceSpy.groupingOption$ = cold('a', { a: 'without' });
+            setServiceSpy.groupingOption = signal('without');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -192,7 +193,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with sorting option is "byName" should render "By Name" menu item with "check" icon', async () => {
-            setServiceSpy.sortingOption$ = cold('a', { a: 'byName' });
+            setServiceSpy.sortingOption = signal('byName');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -204,7 +205,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with sorting option is "byCost" should render "By Name" menu item with empty icon', async () => {
-            setServiceSpy.sortingOption$ = cold('a', { a: 'byCost' });
+            setServiceSpy.sortingOption = signal('byCost');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -236,7 +237,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with sorting option is "byCost" should render "By Cost" menu item with "check" icon', async () => {
-            setServiceSpy.sortingOption$ = cold('a', { a: 'byCost' });
+            setServiceSpy.sortingOption = signal('byCost');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(
@@ -248,7 +249,7 @@ describe('SetOrderingMenuComponent', () => {
         });
 
         it('with sorting option is "byName" should render "By Cost" menu item with empty icon', async () => {
-            setServiceSpy.sortingOption$ = cold('a', { a: 'byName' });
+            setServiceSpy.sortingOption = signal('byName');
             await initMenu();
 
             const matMenuItem = await matMenu.getHarness(

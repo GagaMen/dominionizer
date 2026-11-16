@@ -10,7 +10,6 @@ import {
     MatExpansionPanelHeader,
     MatExpansionPanelTitle,
 } from '@angular/material/expansion';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-set',
@@ -21,7 +20,6 @@ import { AsyncPipe } from '@angular/common';
         MatExpansionPanel,
         MatExpansionPanelHeader,
         MatExpansionPanelTitle,
-        AsyncPipe,
     ],
     templateUrl: './set.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,

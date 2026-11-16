@@ -2,7 +2,7 @@
     <div class="menu-headline" i18n>Grouping</div>
     <button mat-menu-item (click)="onGroup('without')">
         <mat-icon>
-            @if ((setService.groupingOption$ | async) === 'without') {
+            @if (setService.groupingOption() === 'without') {
                 check
             }
         </mat-icon>
@@ -10,7 +10,7 @@
     </button>
     <button mat-menu-item (click)="onGroup('byExpansion')">
         <mat-icon>
-            @if ((setService.groupingOption$ | async) === 'byExpansion') {
+            @if (setService.groupingOption() === 'byExpansion') {
                 check
             }
         </mat-icon>
@@ -20,7 +20,7 @@
     <div class="menu-headline" i18n>Sorting</div>
     <button mat-menu-item (click)="onSort('byName')">
         <mat-icon>
-            @if ((setService.sortingOption$ | async) === 'byName') {
+            @if (setService.sortingOption() === 'byName') {
                 check
             }
         </mat-icon>
@@ -28,7 +28,7 @@
     </button>
     <button mat-menu-item (click)="onSort('byCost')">
         <mat-icon>
-            @if ((setService.sortingOption$ | async) === 'byCost') {
+            @if (setService.sortingOption() === 'byCost') {
                 check
             }
         </mat-icon>
