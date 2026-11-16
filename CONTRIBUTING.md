@@ -41,7 +41,7 @@ There is a series of npm scripts you can use for essential development tasks:
 -   `start:prod`: starts the app in production mode on a local development server (e.g. necessary for testing service worker features)
 -   `test`: runs the tests in watch mode
 -   `test:coverage`: runs the tests to generate a test coverage report
--   `test:ci`: runs the tests once in a headless browser, which is what our CI uses
+-   `test:ci`: runs the tests once with a coverage report, which is what our CI uses
 -   `eslint`: runs `eslint` on _.ts_, _.js_, _.json_ and _.component.html_ files to generate a linting report
 -   `stylelint`: runs `stylelint` on _.scss_ files to generate a linting report
 -   `markdownlint`: runs `markdownlint` on _.md_ files to generate a linting report

@@ -35,7 +35,7 @@ day of every month with `--update` and opens a pull request when `src/data` or `
 
 ## Tests
 
-This workspace runs plain jasmine through `tsx`, not karma:
+This workspace runs vitest with its own `vitest.config.ts`, not through the Angular builder:
 
 ```bash
 npm run test:ci -w tools/wiki-bot

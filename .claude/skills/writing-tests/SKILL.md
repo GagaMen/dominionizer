@@ -67,13 +67,29 @@ spec.
 
 ## Doubles
 
-Declare spies as `SpyObj<T>` from `src/testing/spy-obj` and create them with
-`jasmine.createSpyObj<T>`, provided through the TestBed:
+Vitest is the runner in both workspaces, its API is global: `describe`, `it`, `expect` and `vi` need
+no import.
+
+In the app, provide an object of `vi.fn()` mocks through the TestBed and read it back with
+`injectSpy` from `src/testing/spy-obj`, which types it as `SpyObj<T>`:
 
 ```ts
 let shuffleServiceSpy: SpyObj<ShuffleService>;
 // in configureTestingModule
-{ provide: ShuffleService, useValue: jasmine.createSpyObj<ShuffleService>('ShuffleService', ['shuffleSingleCard']) }
+{ provide: ShuffleService, useValue: { shuffleSingleCard: vi.fn() } }
+// after it
+shuffleServiceSpy = injectSpy(ShuffleService);
+shuffleServiceSpy.shuffleSingleCard.mockReturnValue(undefined);
+```
+
+`vi.spyOn(object, 'method')` calls the original unless it gets a return value. Spies are restored
+after every test.
+
+A stub that answers depending on its arguments uses `vitest-when`. Set a fallback with
+`mockReturnValue` before it, not after:
+
+```ts
+when(cardServiceSpy.findByCardType).calledWith(CardTypeId.Event).thenReturn(events);
 ```
 
 ## Component tests
@@ -90,6 +106,10 @@ its children with the stubs from `src/testing/components/` via `overrideComponen
 
 Assertions against rendered DOM live in `describe('template')` and query through
 `By.directive(...)`.
+
+The specs run in jsdom, not in a browser. It has no layout: read `textContent` instead of
+`innerText`, and assign a `vi.fn()` to methods such as `scrollIntoView` before the code under test
+calls them.
 
 Set an input through the component ref and read the input of a stub by calling it:
 
@@ -134,9 +154,15 @@ Duplication in tests is cheaper than indirection the reader has to resolve.
 
 ## Runners
 
-The app runs karma and needs a headless browser: `npm run test:ci`. The plain `npm test` script
-watches and never returns.
+The app runs vitest through the Angular `unit-test` builder: `npm run test:ci`. The plain `npm test`
+script watches and never returns.
 
-The wiki bot is a separate workspace on plain jasmine: `npm run test:ci -w tools/wiki-bot`. It has
-no TestBed and no `DataFixture` - build the cargo fixtures as literals in the spec. Everything else
-above applies unchanged.
+The wiki bot is a separate workspace with its own vitest config: `npm run test:ci -w tools/wiki-bot`.
+It has no TestBed and no `DataFixture` - build the cargo fixtures as literals in the spec, and create
+doubles with `createSpyObj` from `tools/wiki-bot/src/testing/spy-obj`:
+
+```ts
+wikiClientSpy = createSpyObj<WikiClient>({ fetchImage: vi.fn() });
+```
+
+Everything else above applies unchanged.

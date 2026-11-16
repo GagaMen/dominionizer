@@ -54,7 +54,7 @@ next bot run overwrites a hand edit and hides the cause. See `tools/wiki-bot/AGE
 
 ## Gotchas
 
-- The husky `pre-push` hook runs the whole test suite, so pushing takes a while.
+- The husky `pre-push` hook runs the app test suite.
 - An `eslint` run killed with SIGKILL ran out of memory. Lint a subset of the files instead.
 - The wiki blocks ordinary requests behind a bot protection. Reaching `api.php` or `/images/...`
   needs the header `Dominion-Wiki-Client` with the token from `tools/wiki-bot/.env`.
