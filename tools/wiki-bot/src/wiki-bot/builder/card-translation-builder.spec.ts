@@ -562,7 +562,7 @@ describe('CardTranslationBuilder', () => {
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         name: 'Burggraben',
                         description: `'''+2 Karten'''`,
                     }),
@@ -597,7 +597,7 @@ describe('CardTranslationBuilder', () => {
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         name: 'Geldversteck',
                         description: `{{Cost|2|l}}...`,
                     }),
@@ -632,7 +632,7 @@ describe('CardTranslationBuilder', () => {
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         description: '',
                     }),
                 ],
@@ -666,7 +666,7 @@ describe('CardTranslationBuilder', () => {
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         description: `'''+1 Karte'''<br>Ignoriere...`,
                     }),
                 ],
@@ -702,13 +702,13 @@ describe('CardTranslationBuilder', () => {
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         description: `'''+1 Karte'''{{divline}}Ignoriere...`,
                     }),
                 ],
                 [
                     'French',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         description: `{{Cost|6|l}}{{divline}}Lorsque vous...`,
                     }),
                 ],
@@ -742,7 +742,7 @@ describe('CardTranslationBuilder', () => {
             const expected = new Map([
                 [
                     'German',
-                    jasmine.objectContaining<CardTranslation>({
+                    expect.objectContaining({
                         name: 'Wache',
                         description: `+{{Cost|2}}...`,
                     }),
@@ -775,9 +775,7 @@ describe('CardTranslationBuilder', () => {
                 ],
             };
             const cargoCard: CargoCard = { ...nullCargoCard, PageId: '16' };
-            const expected = new Map([
-                ['German', jasmine.objectContaining<CardTranslation>({ description: '' })],
-            ]);
+            const expected = new Map([['German', expect.objectContaining({ description: '' })]]);
 
             const actual = cardTranslationBuilder.build(cardPage, cargoCard);
 
@@ -859,7 +857,7 @@ describe('CardTranslationBuilder', () => {
             };
             const cargoCard: CargoCard = { ...nullCargoCard, PageId: '18' };
             const expected = new Map([
-                ['German', { id: '18', name: 'Große Halle', description: jasmine.anything() }],
+                ['German', { id: '18', name: 'Große Halle', description: expect.anything() }],
             ]);
 
             const actual = cardTranslationBuilder.build(cardPage, cargoCard);

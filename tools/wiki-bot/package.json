@@ -4,8 +4,8 @@
     "scripts": {
         "start": "node --env-file-if-exists=.env ../../node_modules/.bin/tsx ./src/main.ts",
         "prettier": "prettier --write --log-level warn ../../src/data ./last-generation.json",
-        "test": "tsx watch ../../node_modules/jasmine/bin/jasmine --config=jasmine.json",
-        "test:ci": "tsx ../../node_modules/jasmine/bin/jasmine --config=jasmine.json"
+        "test": "vitest",
+        "test:ci": "vitest run"
     },
     "dependencies": {
         "commander": "^13.1.0",
@@ -13,13 +13,13 @@
         "sharp": "0.33.5"
     },
     "devDependencies": {
-        "@types/jasmine": "file:../../node_modules/@types/jasmine",
         "@types/node": "file:../../node_modules/@types/node",
         "chance": "file:../../node_modules/chance",
-        "jasmine": "^5.6.0",
         "prettier": "file:../../node_modules/prettier",
         "tslib": "file:../../node_modules/tslib",
         "tsx": "4.21.0",
-        "typescript": "file:../../node_modules/typescript"
+        "typescript": "file:../../node_modules/typescript",
+        "vitest": "file:../../node_modules/vitest",
+        "vitest-when": "file:../../node_modules/vitest-when"
     }
 }

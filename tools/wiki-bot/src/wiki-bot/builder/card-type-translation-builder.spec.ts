@@ -1,3 +1,5 @@
+import { createSpyObj, SpyObj } from '../../testing/spy-obj';
+import { when } from 'vitest-when';
 import { CardTranslation } from './../../../../../src/app/models/card';
 import { CardTypeTranslation } from './../../../../../src/app/models/card-type';
 import { CardTypePage, CargoCardType } from './../wiki-client/api-models';
@@ -6,13 +8,12 @@ import { CardTypeTranslationBuilder } from './card-type-translation-builder';
 
 describe('CardTypeTranslationBuilder', () => {
     let cardTypeTranslationBuilder: CardTypeTranslationBuilder;
-    let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
+    let cardTranslationBuilderSpy: SpyObj<CardTranslationBuilder>;
 
     beforeEach(() => {
-        cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
-            'CardTranslationBuilder',
-            ['build'],
-        );
+        cardTranslationBuilderSpy = createSpyObj<CardTranslationBuilder>({
+            build: vi.fn(),
+        });
 
         cardTypeTranslationBuilder = new CardTypeTranslationBuilder(cardTranslationBuilderSpy);
     });
@@ -171,9 +172,9 @@ describe('CardTypeTranslationBuilder', () => {
                 ['French', { id: '577', name: 'Chevalier' }],
                 ['German', { id: '577', name: 'Ritter' }],
             ]);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardTypePage, cargoCardType)
-                .and.returnValue(cardTranslations);
+            when(cardTranslationBuilderSpy.build)
+                .calledWith(cardTypePage, cargoCardType)
+                .thenReturn(cardTranslations);
 
             const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
 
@@ -212,9 +213,9 @@ describe('CardTypeTranslationBuilder', () => {
                 ['Dutch', { id: '6107', name: 'Project' }],
                 ['German', { id: '6107', name: 'Projekt' }],
             ]);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardTypePage, cargoCardType)
-                .and.returnValue(cardTranslations);
+            when(cardTranslationBuilderSpy.build)
+                .calledWith(cardTypePage, cargoCardType)
+                .thenReturn(cardTranslations);
 
             const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
 
@@ -254,9 +255,9 @@ describe('CardTypeTranslationBuilder', () => {
                 ['French', { id: '577', name: 'Chevalier' }],
                 ['German', { id: '577', name: 'Ritter' }],
             ]);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardTypePage, cargoCardType)
-                .and.returnValue(cardTranslations);
+            when(cardTranslationBuilderSpy.build)
+                .calledWith(cardTypePage, cargoCardType)
+                .thenReturn(cardTranslations);
 
             const actual = cardTypeTranslationBuilder.build(cardTypePage, cargoCardType);
 

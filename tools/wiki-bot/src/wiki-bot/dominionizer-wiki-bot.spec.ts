@@ -1,3 +1,6 @@
+import { createSpyObj, SpyObj } from '../testing/spy-obj';
+import { when } from 'vitest-when';
+import type { Mock } from 'vitest';
 import { CardTranslationValidator } from './validation/card-translation-validators';
 import { ImagesValidator } from './validation/image-validators';
 import { CardTypeTranslationValidator } from './validation/card-type-translation-validators';
@@ -38,27 +41,27 @@ describe('DominionizerWikiBot', () => {
     let lastGenerationTime: Date;
     let currentGenerationTime: Date;
     let targetPath: string;
-    let wikiClientSpy: jasmine.SpyObj<WikiClient>;
-    let editionBuilderSpy: jasmine.SpyObj<EditionBuilder>;
-    let editionTranslationBuilderSpy: jasmine.SpyObj<EditionTranslationBuilder>;
-    let cardTypeBuilderSpy: jasmine.SpyObj<CardTypeBuilder>;
-    let cardTypeTranslationBuilderSpy: jasmine.SpyObj<CardTypeTranslationBuilder>;
-    let cardDtoBuilderSpy: jasmine.SpyObj<CardDtoBuilder>;
-    let cardTranslationBuilderSpy: jasmine.SpyObj<CardTranslationBuilder>;
-    let imageBuilderSpy: jasmine.SpyObj<ImageBuilder>;
-    let editionValidatorSpy: jasmine.SpyObj<EditionValidator>;
-    let editionTranslationValidatorSpy: jasmine.SpyObj<EditionTranslationValidator>;
-    let cardTypeValidatorSpy: jasmine.SpyObj<CardTypeValidator>;
-    let cardTypesValidatorSpy: jasmine.SpyObj<CardTypesValidator>;
-    let cardTypeTranslationValidatorSpy: jasmine.SpyObj<CardTypeTranslationValidator>;
-    let cardDtoValidatorSpy: jasmine.SpyObj<CardDtoValidator>;
-    let cardDtosValidatorSpy: jasmine.SpyObj<CardDtosValidator>;
-    let cardTranslationValidatorSpy: jasmine.SpyObj<CardTranslationValidator>;
-    let imagesValidatorSpy: jasmine.SpyObj<ImagesValidator>;
-    let cargoIdUniquenessValidatorSpy: jasmine.SpyObj<CargoIdUniquenessValidator>;
-    let translationPresenceValidatorSpy: jasmine.SpyObj<TranslationPresenceValidator>;
-    let writeFileSpy: jasmine.Spy;
-    let readFileSpy: jasmine.Spy;
+    let wikiClientSpy: SpyObj<WikiClient>;
+    let editionBuilderSpy: SpyObj<EditionBuilder>;
+    let editionTranslationBuilderSpy: SpyObj<EditionTranslationBuilder>;
+    let cardTypeBuilderSpy: SpyObj<CardTypeBuilder>;
+    let cardTypeTranslationBuilderSpy: SpyObj<CardTypeTranslationBuilder>;
+    let cardDtoBuilderSpy: SpyObj<CardDtoBuilder>;
+    let cardTranslationBuilderSpy: SpyObj<CardTranslationBuilder>;
+    let imageBuilderSpy: SpyObj<ImageBuilder>;
+    let editionValidatorSpy: SpyObj<EditionValidator>;
+    let editionTranslationValidatorSpy: SpyObj<EditionTranslationValidator>;
+    let cardTypeValidatorSpy: SpyObj<CardTypeValidator>;
+    let cardTypesValidatorSpy: SpyObj<CardTypesValidator>;
+    let cardTypeTranslationValidatorSpy: SpyObj<CardTypeTranslationValidator>;
+    let cardDtoValidatorSpy: SpyObj<CardDtoValidator>;
+    let cardDtosValidatorSpy: SpyObj<CardDtosValidator>;
+    let cardTranslationValidatorSpy: SpyObj<CardTranslationValidator>;
+    let imagesValidatorSpy: SpyObj<ImagesValidator>;
+    let cargoIdUniquenessValidatorSpy: SpyObj<CargoIdUniquenessValidator>;
+    let translationPresenceValidatorSpy: SpyObj<TranslationPresenceValidator>;
+    let writeFileSpy: Mock;
+    let readFileSpy: Mock;
 
     beforeEach(() => {
         lastGenerationTime = new Date('2022-09-03T09:18:53.321Z');
@@ -66,124 +69,126 @@ describe('DominionizerWikiBot', () => {
 
         targetPath = '.';
 
-        wikiClientSpy = jasmine.createSpyObj<WikiClient>('WikiClient', [
-            'fetchAllEditions',
-            'fetchAllCardTypes',
-            'fetchAllCards',
-            'fetchAllExpansionPages',
-            'fetchAllCardTypePages',
-            'fetchAllCardPages',
-            'fetchAllCardSymbolPages',
-            'fetchAllCardArtPages',
-            'fetchRecentImageChanges',
-        ]);
-        wikiClientSpy.fetchAllEditions.and.resolveTo([]);
-        wikiClientSpy.fetchAllCardTypes.and.resolveTo([]);
-        wikiClientSpy.fetchAllCards.and.resolveTo([]);
-        wikiClientSpy.fetchAllExpansionPages.and.resolveTo([]);
-        wikiClientSpy.fetchAllCardTypePages.and.resolveTo([]);
-        wikiClientSpy.fetchAllCardPages.and.resolveTo([]);
-        wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo([]);
-        wikiClientSpy.fetchAllCardArtPages.and.resolveTo([]);
-        wikiClientSpy.fetchRecentImageChanges.and.resolveTo([]);
+        wikiClientSpy = createSpyObj<WikiClient>({
+            fetchAllEditions: vi.fn(),
+            fetchAllCardTypes: vi.fn(),
+            fetchAllCards: vi.fn(),
+            fetchAllExpansionPages: vi.fn(),
+            fetchAllCardTypePages: vi.fn(),
+            fetchAllCardPages: vi.fn(),
+            fetchAllCardSymbolPages: vi.fn(),
+            fetchAllCardArtPages: vi.fn(),
+            fetchRecentImageChanges: vi.fn(),
+        });
+        wikiClientSpy.fetchAllEditions.mockResolvedValue([]);
+        wikiClientSpy.fetchAllCardTypes.mockResolvedValue([]);
+        wikiClientSpy.fetchAllCards.mockResolvedValue([]);
+        wikiClientSpy.fetchAllExpansionPages.mockResolvedValue([]);
+        wikiClientSpy.fetchAllCardTypePages.mockResolvedValue([]);
+        wikiClientSpy.fetchAllCardPages.mockResolvedValue([]);
+        wikiClientSpy.fetchAllCardSymbolPages.mockResolvedValue([]);
+        wikiClientSpy.fetchAllCardArtPages.mockResolvedValue([]);
+        wikiClientSpy.fetchRecentImageChanges.mockResolvedValue([]);
 
-        editionBuilderSpy = jasmine.createSpyObj<EditionBuilder>('EditionBuilder', ['build']);
-        editionBuilderSpy.build.and.returnValue({ id: '' } as unknown as Edition);
+        editionBuilderSpy = createSpyObj<EditionBuilder>({
+            build: vi.fn(),
+        });
+        editionBuilderSpy.build.mockReturnValue({ id: '' } as unknown as Edition);
 
-        editionTranslationBuilderSpy = jasmine.createSpyObj<EditionTranslationBuilder>(
-            'EditionTranslationBuilder',
-            ['build'],
-        );
-        editionTranslationBuilderSpy.build.and.returnValue(new Map());
+        editionTranslationBuilderSpy = createSpyObj<EditionTranslationBuilder>({
+            build: vi.fn(),
+        });
+        editionTranslationBuilderSpy.build.mockReturnValue(new Map());
 
-        cardTypeBuilderSpy = jasmine.createSpyObj<CardTypeBuilder>('CardTypeBuilder', ['build']);
-        cardTypeBuilderSpy.build.and.returnValue({ id: '' } as unknown as CardType);
+        cardTypeBuilderSpy = createSpyObj<CardTypeBuilder>({
+            build: vi.fn(),
+        });
+        cardTypeBuilderSpy.build.mockReturnValue({ id: '' } as unknown as CardType);
 
-        cardTypeTranslationBuilderSpy = jasmine.createSpyObj<CardTypeTranslationBuilder>(
-            'CardTypeTranslationBuilder',
-            ['build'],
-        );
-        cardTypeTranslationBuilderSpy.build.and.returnValue(new Map());
+        cardTypeTranslationBuilderSpy = createSpyObj<CardTypeTranslationBuilder>({
+            build: vi.fn(),
+        });
+        cardTypeTranslationBuilderSpy.build.mockReturnValue(new Map());
 
-        cardDtoBuilderSpy = jasmine.createSpyObj<CardDtoBuilder>('CardDtoBuilder', ['build']);
-        cardDtoBuilderSpy.build.and.returnValue({ id: '' } as unknown as CardDto);
+        cardDtoBuilderSpy = createSpyObj<CardDtoBuilder>({
+            build: vi.fn(),
+        });
+        cardDtoBuilderSpy.build.mockReturnValue({ id: '' } as unknown as CardDto);
 
-        cardTranslationBuilderSpy = jasmine.createSpyObj<CardTranslationBuilder>(
-            'CardTranslationBuilder',
-            ['build'],
-        );
-        cardTranslationBuilderSpy.build.and.returnValue(new Map());
+        cardTranslationBuilderSpy = createSpyObj<CardTranslationBuilder>({
+            build: vi.fn(),
+        });
+        cardTranslationBuilderSpy.build.mockReturnValue(new Map());
 
-        imageBuilderSpy = jasmine.createSpyObj<ImageBuilder>('ImageBuilder', ['build']);
+        imageBuilderSpy = createSpyObj<ImageBuilder>({
+            build: vi.fn(),
+        });
 
-        editionValidatorSpy = jasmine.createSpyObj<EditionValidator>('EditionValidator', [
-            'validate',
-        ]);
-        editionValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        editionValidatorSpy = createSpyObj<EditionValidator>({
+            validate: vi.fn(),
+        });
+        editionValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        editionTranslationValidatorSpy = jasmine.createSpyObj<EditionTranslationValidator>(
-            'EditionTranslationValidator',
-            ['validate'],
-        );
-        editionTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        editionTranslationValidatorSpy = createSpyObj<EditionTranslationValidator>({
+            validate: vi.fn(),
+        });
+        editionTranslationValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cardTypeValidatorSpy = jasmine.createSpyObj<CardTypeValidator>('CardTypeValidator', [
-            'validate',
-        ]);
-        cardTypeValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypeValidatorSpy = createSpyObj<CardTypeValidator>({
+            validate: vi.fn(),
+        });
+        cardTypeValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cardTypesValidatorSpy = jasmine.createSpyObj<CardTypesValidator>('CardTypesValidator', [
-            'validate',
-        ]);
-        cardTypesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypesValidatorSpy = createSpyObj<CardTypesValidator>({
+            validate: vi.fn(),
+        });
+        cardTypesValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cardTypeTranslationValidatorSpy = jasmine.createSpyObj<CardTypeTranslationValidator>(
-            'CardTypeTranslationValidator',
-            ['validate'],
-        );
-        cardTypeTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTypeTranslationValidatorSpy = createSpyObj<CardTypeTranslationValidator>({
+            validate: vi.fn(),
+        });
+        cardTypeTranslationValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cardDtoValidatorSpy = jasmine.createSpyObj<CardDtoValidator>('CardDtoValidator', [
-            'validate',
-        ]);
-        cardDtoValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardDtoValidatorSpy = createSpyObj<CardDtoValidator>({
+            validate: vi.fn(),
+        });
+        cardDtoValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cardDtosValidatorSpy = jasmine.createSpyObj<CardDtosValidator>('CardDtosValidator', [
-            'validate',
-        ]);
-        cardDtosValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardDtosValidatorSpy = createSpyObj<CardDtosValidator>({
+            validate: vi.fn(),
+        });
+        cardDtosValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cardTranslationValidatorSpy = jasmine.createSpyObj<CardTranslationValidator>(
-            'CardTranslationValidator',
-            ['validate'],
-        );
-        cardTranslationValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cardTranslationValidatorSpy = createSpyObj<CardTranslationValidator>({
+            validate: vi.fn(),
+        });
+        cardTranslationValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        imagesValidatorSpy = jasmine.createSpyObj<ImagesValidator>('ImagesValidator', ['validate']);
-        imagesValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        imagesValidatorSpy = createSpyObj<ImagesValidator>({
+            validate: vi.fn(),
+        });
+        imagesValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        cargoIdUniquenessValidatorSpy = jasmine.createSpyObj<CargoIdUniquenessValidator>(
-            'CargoIdUniquenessValidator',
-            ['validate'],
-        );
-        cargoIdUniquenessValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        cargoIdUniquenessValidatorSpy = createSpyObj<CargoIdUniquenessValidator>({
+            validate: vi.fn(),
+        });
+        cargoIdUniquenessValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        translationPresenceValidatorSpy = jasmine.createSpyObj<TranslationPresenceValidator>(
-            'TranslationPresenceValidator',
-            ['validate'],
-        );
-        translationPresenceValidatorSpy.validate.and.returnValue(ValidationResult.Success);
+        translationPresenceValidatorSpy = createSpyObj<TranslationPresenceValidator>({
+            validate: vi.fn(),
+        });
+        translationPresenceValidatorSpy.validate.mockReturnValue(ValidationResult.Success);
 
-        writeFileSpy = spyOn(fs.promises, 'writeFile');
+        writeFileSpy = vi.spyOn(fs.promises, 'writeFile').mockResolvedValue(undefined);
 
-        readFileSpy = spyOn(fs.promises, 'readFile');
-        readFileSpy
-            .withArgs('./last-generation.json', 'utf8')
-            .and.resolveTo(JSON.stringify(lastGenerationTime));
+        readFileSpy = vi.spyOn(fs.promises, 'readFile').mockResolvedValue('');
+        when(readFileSpy)
+            .calledWith('./last-generation.json', 'utf8')
+            .thenResolve(JSON.stringify(lastGenerationTime));
 
-        spyOn(console, 'log').and.stub();
-        spyOn(console, 'warn').and.stub();
-        spyOn(console, 'error').and.stub();
+        vi.spyOn(console, 'log').mockReturnValue(undefined);
+        vi.spyOn(console, 'warn').mockReturnValue(undefined);
+        vi.spyOn(console, 'error').mockReturnValue(undefined);
 
         dominionizerWikiBot = new DominionizerWikiBot(
             currentGenerationTime,
@@ -239,9 +244,9 @@ describe('DominionizerWikiBot', () => {
                 { id: 'base-1e', expansion: 'Dominion', edition: '1', icon: 'dom1e.png' },
                 { id: 'base-2e', expansion: 'Dominion', edition: '2', icon: 'dom2e.png' },
             ];
-            wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
-            editionBuilderSpy.build.withArgs(cargoEditions[0]).and.returnValue(editions[1]);
-            editionBuilderSpy.build.withArgs(cargoEditions[1]).and.returnValue(editions[0]);
+            wikiClientSpy.fetchAllEditions.mockResolvedValue(cargoEditions);
+            when(editionBuilderSpy.build).calledWith(cargoEditions[0]).thenReturn(editions[1]);
+            when(editionBuilderSpy.build).calledWith(cargoEditions[1]).thenReturn(editions[0]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -249,10 +254,9 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/editions.json`,
                 JSON.stringify(editions),
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(editionValidatorSpy.validate).toHaveBeenCalledWith(editions[0]);
             expect(editionValidatorSpy.validate).toHaveBeenCalledWith(editions[1]);
-            /* eslint-enable */
         });
 
         it('should generate edition translations', async () => {
@@ -290,14 +294,14 @@ describe('DominionizerWikiBot', () => {
                 { id: '1-1', expansion: 'Dominion' },
                 { id: '2-1', expansion: "L'Intrigue" },
             ];
-            wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
-            wikiClientSpy.fetchAllExpansionPages.and.resolveTo(expansionPages);
-            editionTranslationBuilderSpy.build
-                .withArgs(expansionPages[0], [cargoEditions[0]])
-                .and.returnValue(dominionTranslations);
-            editionTranslationBuilderSpy.build
-                .withArgs(expansionPages[1], [cargoEditions[1]])
-                .and.returnValue(intrigueTranslations);
+            wikiClientSpy.fetchAllEditions.mockResolvedValue(cargoEditions);
+            wikiClientSpy.fetchAllExpansionPages.mockResolvedValue(expansionPages);
+            when(editionTranslationBuilderSpy.build)
+                .calledWith(expansionPages[0], [cargoEditions[0]])
+                .thenReturn(dominionTranslations);
+            when(editionTranslationBuilderSpy.build)
+                .calledWith(expansionPages[1], [cargoEditions[1]])
+                .thenReturn(intrigueTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -309,7 +313,7 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/editions.french.json`,
                 JSON.stringify(frenchTranslations),
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(editionTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
@@ -330,7 +334,6 @@ describe('DominionizerWikiBot', () => {
                 'French',
                 cargoEditions[1],
             );
-            /* eslint-enable */
         });
 
         it('should generate card types', async () => {
@@ -342,9 +345,9 @@ describe('DominionizerWikiBot', () => {
                 { id: 'action', name: 'Action', scope: 'Basic' },
                 { id: 'treasure', name: 'Treasure', scope: 'Basic' },
             ];
-            wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
-            cardTypeBuilderSpy.build.withArgs(cargoCardTypes[0]).and.returnValue(cardTypes[1]);
-            cardTypeBuilderSpy.build.withArgs(cargoCardTypes[1]).and.returnValue(cardTypes[0]);
+            wikiClientSpy.fetchAllCardTypes.mockResolvedValue(cargoCardTypes);
+            when(cardTypeBuilderSpy.build).calledWith(cargoCardTypes[0]).thenReturn(cardTypes[1]);
+            when(cardTypeBuilderSpy.build).calledWith(cargoCardTypes[1]).thenReturn(cardTypes[0]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -352,11 +355,10 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/card-types.json`,
                 JSON.stringify(cardTypes),
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(cardTypes[0]);
             expect(cardTypeValidatorSpy.validate).toHaveBeenCalledWith(cardTypes[1]);
             expect(cardTypesValidatorSpy.validate).toHaveBeenCalledWith(cardTypes, cargoCardTypes);
-            /* eslint-enable */
         });
 
         it('should generate card type translations', async () => {
@@ -384,14 +386,14 @@ describe('DominionizerWikiBot', () => {
                 { id: 'action', name: 'Action' },
                 { id: 'treasure', name: 'Trésor' },
             ];
-            wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
-            wikiClientSpy.fetchAllCardTypePages.and.resolveTo(cardTypePages);
-            cardTypeTranslationBuilderSpy.build
-                .withArgs(cardTypePages[0], cargoCardTypes[0])
-                .and.returnValue(actionTranslations);
-            cardTypeTranslationBuilderSpy.build
-                .withArgs(cardTypePages[1], cargoCardTypes[1])
-                .and.returnValue(treasureTranslations);
+            wikiClientSpy.fetchAllCardTypes.mockResolvedValue(cargoCardTypes);
+            wikiClientSpy.fetchAllCardTypePages.mockResolvedValue(cardTypePages);
+            when(cardTypeTranslationBuilderSpy.build)
+                .calledWith(cardTypePages[0], cargoCardTypes[0])
+                .thenReturn(actionTranslations);
+            when(cardTypeTranslationBuilderSpy.build)
+                .calledWith(cardTypePages[1], cargoCardTypes[1])
+                .thenReturn(treasureTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -403,7 +405,7 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/card-types.french.json`,
                 JSON.stringify(frenchTranslations),
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(cardTypeTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
@@ -424,7 +426,6 @@ describe('DominionizerWikiBot', () => {
                 'French',
                 cargoCardTypes[1],
             );
-            /* eslint-enable */
         });
 
         it('should generate card symbols', async () => {
@@ -442,9 +443,13 @@ describe('DominionizerWikiBot', () => {
                 fileName: 'Second.png',
                 data: new Uint8Array([3, 4]),
             };
-            wikiClientSpy.fetchAllCardSymbolPages.and.resolveTo(cardSymbolPages);
-            imageBuilderSpy.build.withArgs(cardSymbolPages[0]).and.resolveTo(firstEncodedImage);
-            imageBuilderSpy.build.withArgs(cardSymbolPages[1]).and.resolveTo(secondEncodedImage);
+            wikiClientSpy.fetchAllCardSymbolPages.mockResolvedValue(cardSymbolPages);
+            when(imageBuilderSpy.build)
+                .calledWith(cardSymbolPages[0])
+                .thenResolve(firstEncodedImage);
+            when(imageBuilderSpy.build)
+                .calledWith(cardSymbolPages[1])
+                .thenResolve(secondEncodedImage);
 
             await dominionizerWikiBot.generateAll();
 
@@ -456,12 +461,11 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/assets/card_symbols/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
                 [firstEncodedImage, secondEncodedImage],
                 cardSymbolPages,
             );
-            /* eslint-enable */
         });
 
         it('should generate card art', async () => {
@@ -479,9 +483,9 @@ describe('DominionizerWikiBot', () => {
                 fileName: 'Second.jpg',
                 data: new Uint8Array([3, 4]),
             };
-            wikiClientSpy.fetchAllCardArtPages.and.resolveTo(cardArtPages);
-            imageBuilderSpy.build.withArgs(cardArtPages[0]).and.resolveTo(firstEncodedImage);
-            imageBuilderSpy.build.withArgs(cardArtPages[1]).and.resolveTo(secondEncodedImage);
+            wikiClientSpy.fetchAllCardArtPages.mockResolvedValue(cardArtPages);
+            when(imageBuilderSpy.build).calledWith(cardArtPages[0]).thenResolve(firstEncodedImage);
+            when(imageBuilderSpy.build).calledWith(cardArtPages[1]).thenResolve(secondEncodedImage);
 
             await dominionizerWikiBot.generateAll();
 
@@ -493,22 +497,19 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/assets/card_art/${secondEncodedImage.fileName}`,
                 secondEncodedImage.data,
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
                 [firstEncodedImage, secondEncodedImage],
                 cardArtPages,
             );
-            /* eslint-enable */
         });
 
         it('with skipImages is true should not generate images', async () => {
             await dominionizerWikiBot.generateAll(true);
 
-            /* eslint-disable @typescript-eslint/unbound-method */
             expect(wikiClientSpy.fetchAllCardSymbolPages).not.toHaveBeenCalled();
             expect(wikiClientSpy.fetchAllCardArtPages).not.toHaveBeenCalled();
             expect(imageBuilderSpy.build).not.toHaveBeenCalled();
-            /* eslint-enable */
         });
 
         it('should generate cards', async () => {
@@ -539,18 +540,18 @@ describe('DominionizerWikiBot', () => {
                 { id: 'cellar', name: 'Cellar' } as CardDto,
                 { id: 'village', name: 'Village' } as CardDto,
             ];
-            wikiClientSpy.fetchAllEditions.and.resolveTo(cargoEditions);
-            wikiClientSpy.fetchAllCardTypes.and.resolveTo(cargoCardTypes);
-            wikiClientSpy.fetchAllCards.and.resolveTo(cargoCards);
-            wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
-            editionBuilderSpy.build.withArgs(cargoEditions[0]).and.returnValue(editions[0]);
-            cardTypeBuilderSpy.build.withArgs(cargoCardTypes[0]).and.returnValue(cardTypes[0]);
-            cardDtoBuilderSpy.build
-                .withArgs(cargoCards[0], cardPages[1], editions, cardTypes)
-                .and.returnValue(cards[1]);
-            cardDtoBuilderSpy.build
-                .withArgs(cargoCards[1], cardPages[0], editions, cardTypes)
-                .and.returnValue(cards[0]);
+            wikiClientSpy.fetchAllEditions.mockResolvedValue(cargoEditions);
+            wikiClientSpy.fetchAllCardTypes.mockResolvedValue(cargoCardTypes);
+            wikiClientSpy.fetchAllCards.mockResolvedValue(cargoCards);
+            wikiClientSpy.fetchAllCardPages.mockResolvedValue(cardPages);
+            when(editionBuilderSpy.build).calledWith(cargoEditions[0]).thenReturn(editions[0]);
+            when(cardTypeBuilderSpy.build).calledWith(cargoCardTypes[0]).thenReturn(cardTypes[0]);
+            when(cardDtoBuilderSpy.build)
+                .calledWith(cargoCards[0], cardPages[1], editions, cardTypes)
+                .thenReturn(cards[1]);
+            when(cardDtoBuilderSpy.build)
+                .calledWith(cargoCards[1], cardPages[0], editions, cardTypes)
+                .thenReturn(cards[0]);
 
             await dominionizerWikiBot.generateAll();
 
@@ -558,17 +559,22 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/cards.json`,
                 JSON.stringify(cards),
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[0]);
             expect(cardDtoValidatorSpy.validate).toHaveBeenCalledWith(cards[1]);
             expect(cardDtosValidatorSpy.validate).toHaveBeenCalledWith(cards, cargoCards);
-            expect(wikiClientSpy.fetchAllCardSymbolPages).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validate,
+            expect(
+                Math.min(
+                    ...vi.mocked(wikiClientSpy.fetchAllCardSymbolPages).mock.invocationCallOrder,
+                ),
+            ).toBeLessThan(
+                Math.min(...vi.mocked(cardDtoValidatorSpy.validate).mock.invocationCallOrder),
             );
-            expect(wikiClientSpy.fetchAllCardArtPages).toHaveBeenCalledBefore(
-                cardDtoValidatorSpy.validate,
+            expect(
+                Math.min(...vi.mocked(wikiClientSpy.fetchAllCardArtPages).mock.invocationCallOrder),
+            ).toBeLessThan(
+                Math.min(...vi.mocked(cardDtoValidatorSpy.validate).mock.invocationCallOrder),
             );
-            /* eslint-enable */
         });
 
         it('should generate card translations', async () => {
@@ -596,14 +602,14 @@ describe('DominionizerWikiBot', () => {
                 { id: 'cellar', name: 'Cave', description: '' },
                 { id: 'village', name: 'Village', description: '' },
             ];
-            wikiClientSpy.fetchAllCards.and.resolveTo(cargoCards);
-            wikiClientSpy.fetchAllCardPages.and.resolveTo(cardPages);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardPages[1], cargoCards[1])
-                .and.returnValue(cellarTranslations);
-            cardTranslationBuilderSpy.build
-                .withArgs(cardPages[0], cargoCards[0])
-                .and.returnValue(villageTranslations);
+            wikiClientSpy.fetchAllCards.mockResolvedValue(cargoCards);
+            wikiClientSpy.fetchAllCardPages.mockResolvedValue(cardPages);
+            when(cardTranslationBuilderSpy.build)
+                .calledWith(cardPages[1], cargoCards[1])
+                .thenReturn(cellarTranslations);
+            when(cardTranslationBuilderSpy.build)
+                .calledWith(cardPages[0], cargoCards[0])
+                .thenReturn(villageTranslations);
 
             await dominionizerWikiBot.generateAll();
 
@@ -615,7 +621,7 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/data/cards.french.json`,
                 JSON.stringify(frenchTranslations),
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(cardTranslationValidatorSpy.validate).toHaveBeenCalledWith(
                 germanTranslations[0],
                 'German',
@@ -636,14 +642,13 @@ describe('DominionizerWikiBot', () => {
                 'French',
                 cargoCards[0],
             );
-            /* eslint-enable */
         });
 
         it('with validation failure should return false', async () => {
-            editionValidatorSpy.validate.and.returnValue(
+            editionValidatorSpy.validate.mockReturnValue(
                 ValidationResult.Failure('Edition validation failed'),
             );
-            wikiClientSpy.fetchAllEditions.and.resolveTo([
+            wikiClientSpy.fetchAllEditions.mockResolvedValue([
                 {
                     PageId: '1',
                     Expansion: 'Dominion',
@@ -651,7 +656,7 @@ describe('DominionizerWikiBot', () => {
                     Icon: 'dom1e.png',
                 },
             ]);
-            editionBuilderSpy.build.and.returnValue({
+            editionBuilderSpy.build.mockReturnValue({
                 id: 'base-1e',
                 expansion: 'Dominion',
                 edition: '1',
@@ -670,7 +675,7 @@ describe('DominionizerWikiBot', () => {
         });
 
         it('with warning level validation failure should return true and report it', async () => {
-            cardDtosValidatorSpy.validate.and.returnValue(
+            cardDtosValidatorSpy.validate.mockReturnValue(
                 ValidationResult.Failure('For following cargo cards no card was generated:\nReap'),
             );
 
@@ -685,7 +690,7 @@ describe('DominionizerWikiBot', () => {
         });
 
         it('with error level validation failure should return false and report it', async () => {
-            cardTypesValidatorSpy.validate.and.returnValue(
+            cardTypesValidatorSpy.validate.mockReturnValue(
                 ValidationResult.Failure('Card types validation failed'),
             );
 
@@ -742,11 +747,15 @@ describe('DominionizerWikiBot', () => {
                 fileName: 'CardArt.jpg',
                 data: new Uint8Array([3, 4]),
             };
-            wikiClientSpy.fetchRecentImageChanges
-                .withArgs(lastGenerationTime)
-                .and.resolveTo(changedImagePages);
-            imageBuilderSpy.build.withArgs(changedImagePages[0]).and.resolveTo(encodedCardSymbol);
-            imageBuilderSpy.build.withArgs(changedImagePages[1]).and.resolveTo(encodedCardArt);
+            when(wikiClientSpy.fetchRecentImageChanges)
+                .calledWith(lastGenerationTime)
+                .thenResolve(changedImagePages);
+            when(imageBuilderSpy.build)
+                .calledWith(changedImagePages[0])
+                .thenResolve(encodedCardSymbol);
+            when(imageBuilderSpy.build)
+                .calledWith(changedImagePages[1])
+                .thenResolve(encodedCardArt);
 
             await dominionizerWikiBot.generateUpdate();
 
@@ -758,7 +767,7 @@ describe('DominionizerWikiBot', () => {
                 `${targetPath}/assets/card_art/${encodedCardArt.fileName}`,
                 encodedCardArt.data,
             );
-            /* eslint-disable @typescript-eslint/unbound-method */
+
             expect(imagesValidatorSpy.validate).toHaveBeenCalledWith(
                 [encodedCardSymbol],
                 [changedImagePages[0]],
@@ -767,28 +776,32 @@ describe('DominionizerWikiBot', () => {
                 [encodedCardArt],
                 [changedImagePages[1]],
             );
-            /* eslint-enable */
         });
 
         it('with skipImages is true should not generate images', async () => {
             await dominionizerWikiBot.generateUpdate(true);
 
-            /* eslint-disable @typescript-eslint/unbound-method */
             expect(wikiClientSpy.fetchRecentImageChanges).not.toHaveBeenCalled();
             expect(imageBuilderSpy.build).not.toHaveBeenCalled();
-            /* eslint-enable */
         });
 
         it('should generate all without images', async () => {
-            const generateAllSpy = spyOn(dominionizerWikiBot, 'generateAll');
+            const generateAllSpy = vi
+                .spyOn(dominionizerWikiBot, 'generateAll')
+                .mockResolvedValue(true);
 
             await dominionizerWikiBot.generateUpdate();
 
             expect(generateAllSpy).toHaveBeenCalledWith(true);
-            /* eslint-disable @typescript-eslint/unbound-method */
-            expect(wikiClientSpy.fetchRecentImageChanges).toHaveBeenCalledBefore(generateAllSpy);
-            expect(imagesValidatorSpy.validate).toHaveBeenCalledBefore(generateAllSpy);
-            /* eslint-enable */
+
+            expect(
+                Math.min(
+                    ...vi.mocked(wikiClientSpy.fetchRecentImageChanges).mock.invocationCallOrder,
+                ),
+            ).toBeLessThan(Math.min(...vi.mocked(generateAllSpy).mock.invocationCallOrder));
+            expect(
+                Math.min(...vi.mocked(imagesValidatorSpy.validate).mock.invocationCallOrder),
+            ).toBeLessThan(Math.min(...vi.mocked(generateAllSpy).mock.invocationCallOrder));
         });
     });
 });

@@ -109,7 +109,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, cardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard is in one edition of a multi edition expansion should return correct card', () => {
@@ -129,7 +129,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard is in all editions of a multi edition expansion should return correct card', () => {
@@ -149,7 +149,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cardPage contains <br/> in text1 or text2 should return correct card', () => {
@@ -175,7 +175,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(nullCargoCard, cardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard of non-kingdom card should return correct card', () => {
@@ -190,7 +190,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard contains cost extra should return correct card', () => {
@@ -205,7 +205,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard contains cost debt should return correct card', () => {
@@ -220,7 +220,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard contains cost potion should return correct card', () => {
@@ -235,7 +235,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, nullCardPage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
 
         it('with cargoCard of card type should return correct card', () => {
@@ -288,7 +288,7 @@ describe('CardDtoBuilder', () => {
 
             const actual = cardDtoBuilder.build(cargoCard, cardTypePage, editions, cardTypes);
 
-            expect(actual).toEqual(jasmine.objectContaining(expected));
+            expect(actual).toEqual(expect.objectContaining(expected));
         });
     });
 });

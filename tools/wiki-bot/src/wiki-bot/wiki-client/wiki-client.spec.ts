@@ -1,3 +1,5 @@
+import { when } from 'vitest-when';
+import type { Mock } from 'vitest';
 import { WikiClient } from './wiki-client';
 import {
     QueryResult,
@@ -10,7 +12,7 @@ import {
 
 describe('WikiClient', () => {
     let wikiClient: WikiClient;
-    let fetchSpy: jasmine.Spy<typeof fetch>;
+    let fetchSpy: Mock;
     const edition: CargoEdition = {
         PageId: '42',
         Edition: '1',
@@ -62,14 +64,14 @@ describe('WikiClient', () => {
     let pageLimit: number;
 
     beforeEach(() => {
-        fetchSpy = spyOn(globalThis, 'fetch').and.resolveTo({
+        fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
             json: () =>
                 Promise.resolve({
                     cargoquery: [],
                 }),
         } as Response);
 
-        spyOn(console, 'log').and.stub();
+        vi.spyOn(console, 'log').mockReturnValue(undefined);
 
         const baseUrl = 'https://dominion.wiki/api.php';
         url = new URL(baseUrl);
@@ -102,12 +104,12 @@ describe('WikiClient', () => {
         });
 
         it('should return all editions', async () => {
-            fetchSpy.and.resolveTo({
+            fetchSpy.mockResolvedValue({
                 json: () =>
                     Promise.resolve({
                         cargoquery: [{ title: edition }],
                     }),
-            } as Response);
+            });
             const expected = [edition];
 
             const actual = await wikiClient.fetchAllEditions();
@@ -142,12 +144,12 @@ describe('WikiClient', () => {
         });
 
         it('with query result is not paged should return all cards', async () => {
-            fetchSpy.and.resolveTo({
+            fetchSpy.mockResolvedValue({
                 json: () =>
                     Promise.resolve({
                         cargoquery: [{ title: card }],
                     }),
-            } as Response);
+            });
             const expected = [card];
 
             const actual = await wikiClient.fetchAllCards();
@@ -156,20 +158,23 @@ describe('WikiClient', () => {
         });
 
         it('with query result is paged return all cards', async () => {
-            fetchSpy.and.returnValues(
-                Promise.resolve({
-                    json: () =>
-                        Promise.resolve({
-                            cargoquery: [{ title: card }, { title: card }],
-                        }),
-                } as Response),
-                Promise.resolve({
-                    json: () =>
-                        Promise.resolve({
-                            cargoquery: [{ title: card }],
-                        }),
-                } as Response),
-            );
+            fetchSpy
+                .mockReturnValueOnce(
+                    Promise.resolve({
+                        json: () =>
+                            Promise.resolve({
+                                cargoquery: [{ title: card }, { title: card }],
+                            }),
+                    } as Response),
+                )
+                .mockReturnValueOnce(
+                    Promise.resolve({
+                        json: () =>
+                            Promise.resolve({
+                                cargoquery: [{ title: card }],
+                            }),
+                    } as Response),
+                );
             const expected = [card, card, card];
 
             const actual = await wikiClient.fetchAllCards();
@@ -197,32 +202,32 @@ describe('WikiClient', () => {
             secondUrl.searchParams.append('limit', String(pageLimit));
             secondUrl.searchParams.append('offset', String(pageLimit));
 
-            fetchSpy
-                .withArgs(firstUrl, {
+            when(fetchSpy)
+                .calledWith(firstUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({
+                .thenResolve({
                     json: () =>
                         Promise.resolve({
                             cargoquery: [{ title: card }, { title: card }],
                         }),
-                } as Response);
-            fetchSpy
-                .withArgs(secondUrl, {
+                });
+            when(fetchSpy)
+                .calledWith(secondUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({
+                .thenResolve({
                     json: () =>
                         Promise.resolve({
                             cargoquery: [{ title: card }],
                         }),
-                } as Response);
+                });
 
             const actual = await wikiClient.fetchAllCards();
 
             expect(actual).toEqual([card, card, card]);
-            expect(fetchSpy).toHaveBeenCalledWith(firstUrl, jasmine.any(Object));
-            expect(fetchSpy).toHaveBeenCalledWith(secondUrl, jasmine.any(Object));
+            expect(fetchSpy).toHaveBeenCalledWith(firstUrl, expect.any(Object));
+            expect(fetchSpy).toHaveBeenCalledWith(secondUrl, expect.any(Object));
         });
     });
 
@@ -247,12 +252,12 @@ describe('WikiClient', () => {
         });
 
         it('should return all card types', async () => {
-            fetchSpy.and.resolveTo({
+            fetchSpy.mockResolvedValue({
                 json: () =>
                     Promise.resolve({
                         cargoquery: [{ title: cardType }],
                     }),
-            } as Response);
+            });
             const expected = [cardType];
 
             const actual = await wikiClient.fetchAllCardTypes();
@@ -293,7 +298,7 @@ describe('WikiClient', () => {
                     },
                 },
             };
-            fetchSpy.and.resolveTo({ json: () => Promise.resolve(queryResult) } as Response);
+            fetchSpy.mockResolvedValue({ json: () => Promise.resolve(queryResult) });
             const expected = [imagePage, imagePage];
 
             const actual = await wikiClient.fetchAllCardArtPages();
@@ -322,16 +327,16 @@ describe('WikiClient', () => {
                     },
                 },
             };
-            fetchSpy
-                .withArgs(firstUrl, {
+            when(fetchSpy)
+                .calledWith(firstUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({ json: () => Promise.resolve(firstQueryResult) } as Response);
-            fetchSpy
-                .withArgs(secondUrl, {
+                .thenResolve({ json: () => Promise.resolve(firstQueryResult) });
+            when(fetchSpy)
+                .calledWith(secondUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({ json: () => Promise.resolve(secondQueryResult) } as Response);
+                .thenResolve({ json: () => Promise.resolve(secondQueryResult) });
             const expected = [imagePage, imagePage];
 
             const actual = await wikiClient.fetchAllCardArtPages();
@@ -370,7 +375,7 @@ describe('WikiClient', () => {
                     },
                 },
             };
-            fetchSpy.and.resolveTo({ json: () => Promise.resolve(queryResult) } as Response);
+            fetchSpy.mockResolvedValue({ json: () => Promise.resolve(queryResult) });
             const expected = [imagePage, imagePage];
 
             const actual = await wikiClient.fetchAllCardSymbolPages();
@@ -399,16 +404,16 @@ describe('WikiClient', () => {
                     },
                 },
             };
-            fetchSpy
-                .withArgs(firstUrl, {
+            when(fetchSpy)
+                .calledWith(firstUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({ json: () => Promise.resolve(firstQueryResult) } as Response);
-            fetchSpy
-                .withArgs(secondUrl, {
+                .thenResolve({ json: () => Promise.resolve(firstQueryResult) });
+            when(fetchSpy)
+                .calledWith(secondUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({ json: () => Promise.resolve(secondQueryResult) } as Response);
+                .thenResolve({ json: () => Promise.resolve(secondQueryResult) });
             const expected = [imagePage, imagePage];
 
             const actual = await wikiClient.fetchAllCardSymbolPages();
@@ -450,7 +455,7 @@ describe('WikiClient', () => {
                     },
                 },
             };
-            fetchSpy.and.resolveTo({ json: () => Promise.resolve(queryResult) } as Response);
+            fetchSpy.mockResolvedValue({ json: () => Promise.resolve(queryResult) });
             const expected = [changedImagePage, changedImagePage];
 
             const actual = await wikiClient.fetchRecentImageChanges(since);
@@ -479,16 +484,16 @@ describe('WikiClient', () => {
                     },
                 },
             };
-            fetchSpy
-                .withArgs(firstUrl, {
+            when(fetchSpy)
+                .calledWith(firstUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({ json: () => Promise.resolve(firstQueryResult) } as Response);
-            fetchSpy
-                .withArgs(secondUrl, {
+                .thenResolve({ json: () => Promise.resolve(firstQueryResult) });
+            when(fetchSpy)
+                .calledWith(secondUrl, {
                     headers: { 'Dominion-Wiki-Client': authenticationHeaderValue },
                 })
-                .and.resolveTo({ json: () => Promise.resolve(secondQueryResult) } as Response);
+                .thenResolve({ json: () => Promise.resolve(secondQueryResult) });
             const expected = [changedImagePage, changedImagePage];
 
             const actual = await wikiClient.fetchRecentImageChanges(since);
@@ -502,9 +507,11 @@ describe('WikiClient', () => {
             const url = 'https://wiki.dominionstrategy.com/images/5/5e/Adventures_icon.png';
             const imageArrayBuffer: ArrayBuffer = new ArrayBuffer(1);
             const imageBuffer: Buffer = Buffer.from(imageArrayBuffer);
-            fetchSpy.withArgs(url, { headers: { responseType: 'arraybuffer' } }).and.resolveTo({
-                arrayBuffer: () => Promise.resolve(imageArrayBuffer),
-            } as Response);
+            when(fetchSpy)
+                .calledWith(url, { headers: { responseType: 'arraybuffer' } })
+                .thenResolve({
+                    arrayBuffer: () => Promise.resolve(imageArrayBuffer),
+                });
 
             const actual = await wikiClient.fetchImage(url);
 

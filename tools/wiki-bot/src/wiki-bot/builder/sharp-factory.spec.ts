@@ -20,7 +20,7 @@ describe('SharpFactory', () => {
 
             const actual = sharpFactory.create(input);
 
-            await expectAsync(actual.toBuffer()).toBeResolvedTo(input);
+            await expect(actual.toBuffer()).resolves.toEqual(input);
         });
     });
 });
