@@ -1,5 +1,8 @@
+@use '@angular/material' as mat;
+
 mat-stepper {
-    border-radius: 4px;
+    border-radius: var(--mat-sys-corner-medium);
+    box-shadow: var(--mat-sys-level1);
     padding-bottom: 88px;
 }
 
@@ -13,6 +16,14 @@ mat-stepper {
 }
 
 .mat-mdc-extended-fab {
+    @include mat.fab-overrides(
+        (
+            container-color: var(--mat-sys-primary),
+            foreground-color: var(--mat-sys-on-primary),
+            state-layer-color: var(--mat-sys-on-primary),
+        )
+    );
+
     bottom: 16px;
     inset-inline: 16px;
     margin: 0 auto;

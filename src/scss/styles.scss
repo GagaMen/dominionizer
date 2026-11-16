@@ -1,11 +1,25 @@
 @use '@angular/material' as mat;
+@use './theme-colors';
 @use './variables';
-@use './material-theme';
 @use 'material-design-icons/iconfont/material-icons';
 
+html {
+    @include mat.theme(
+        (
+            color: (
+                theme-type: light,
+                primary: theme-colors.$primary-palette,
+                tertiary: theme-colors.$tertiary-palette,
+            ),
+            typography: Roboto,
+            density: 0,
+        )
+    );
+}
+
 ::selection {
-    background-color: mat.m2-get-color-from-palette(variables.$primary, 'default');
-    color: mat.m2-get-color-from-palette(variables.$primary, 'default-contrast');
+    background-color: variables.$brand-ochre;
+    color: var(--mat-sys-on-surface);
 }
 
 * {
@@ -18,6 +32,8 @@ body {
 }
 
 body {
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
     font-family: Roboto, 'Helvetica Neue', sans-serif;
     font-size: 16px;
     margin: 0;

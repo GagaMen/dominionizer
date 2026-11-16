@@ -1,4 +1,13 @@
+@use '@angular/material' as mat;
+@use '../../../scss/variables';
+
 mat-toolbar {
+    @include mat.toolbar-overrides(
+        (
+            container-background-color: variables.$brand-ochre,
+        )
+    );
+
     padding: 0;
 }
 

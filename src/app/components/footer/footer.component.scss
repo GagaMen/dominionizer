@@ -1,8 +1,7 @@
-@use '@angular/material' as mat;
 @use '../../../scss/variables';
 
 footer {
-    background: mat.m2-get-color-from-palette(variables.$primary);
+    background: variables.$brand-ochre;
     flex-shrink: 0;
     padding: 32px 0;
     text-align: center;
@@ -33,7 +32,7 @@ a {
     text-decoration: none;
 
     &:visited {
-        color: rgb(0 0 0 / 87%);
+        color: var(--mat-sys-on-surface);
     }
 
     &:hover {

@@ -1,7 +1,6 @@
-@use '@angular/material' as mat;
 @use '../../../scss/variables';
 
-$warn-color: mat.m2-get-color-from-palette(variables.$warn);
+$warn-color: var(--mat-sys-error);
 
 // checkbox including its state layer (40px) plus the padding of its label (4px), so that
 // text lines up with the checkbox labels
@@ -34,9 +33,8 @@ ul {
 }
 
 .error-message {
-    @include mat.m2-typography-level(variables.$typography, caption);
-
     color: $warn-color;
+    font: var(--mat-sys-body-small);
     margin: 0.5rem 0 0;
     padding-inline-start: $label-offset;
 }

@@ -1,19 +1,4 @@
-@use '@angular/material' as mat;
-@use './palette';
-
-$primary: mat.m2-define-palette(palette.$md-ochre);
-$accent: mat.m2-define-palette(palette.$md-blue);
-$warn: mat.m2-define-palette(mat.$m2-red-palette);
-$typography: mat.m2-define-typography-config();
-$theme: mat.m2-define-light-theme(
-    (
-        color: (
-            primary: $primary,
-            accent: $accent,
-            warn: $warn,
-        ),
-        typography: $typography,
-    )
-);
+// brand color of the app bar and the footer, also used as theme color in index.html and the manifest
+$brand-ochre: #dad9bd;
 $app-bar-height: 56px;
 $app-bar-height-large: 64px;

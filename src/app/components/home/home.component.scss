@@ -1,17 +1,22 @@
-@use '@angular/material' as mat;
-@use '../../../scss/variables';
+@use 'sass:map';
+@use '../../../scss/theme-colors';
 
 header {
     background: linear-gradient(
         180deg,
-        mat.m2-get-color-from-palette(variables.$primary, 900),
-        mat.m2-get-color-from-palette(variables.$primary, 300)
+        map.get(theme-colors.$tertiary-palette, 80),
+        map.get(theme-colors.$tertiary-palette, 90)
     );
     padding-bottom: 30px;
     position: relative;
 
     @media (width >= 800px) {
         padding-bottom: 50px;
+    }
+
+    .triangle-left,
+    .triangle-right {
+        fill: var(--mat-sys-surface);
     }
 
     .triangle-left {
@@ -63,7 +68,8 @@ header {
     }
 }
 
-.mat-h1 {
+.claim {
+    font: var(--mat-sys-headline-small);
     margin-bottom: 2rem;
     text-align: center;
 
@@ -97,8 +103,9 @@ section {
         order: unset;
     }
 
-    .mat-h2 {
-        color: mat.m2-get-color-from-palette(variables.$accent);
+    h3 {
+        color: var(--mat-sys-primary);
+        font: var(--mat-sys-title-large);
         flex-basis: 100%;
         margin-bottom: 0.5rem;
     }
@@ -124,6 +131,10 @@ section {
 
     img {
         width: 100%;
+    }
+
+    figcaption {
+        font: var(--mat-sys-body-small);
     }
 }
 
