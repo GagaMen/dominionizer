@@ -81,7 +81,7 @@ describe('ConfigurationService', () => {
 
             const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
 
         it('with enabled edition is a different instance of the same edition should return true', () => {
@@ -95,7 +95,7 @@ describe('ConfigurationService', () => {
 
             const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
 
         it('with enabled edition has no card with given card type should return false', () => {
@@ -111,7 +111,7 @@ describe('ConfigurationService', () => {
 
             const actual = configurationService.isCardTypeAvailable(cardType.id as CardTypeId);
 
-            expect(actual).toBeFalse();
+            expect(actual).toBe(false);
         });
     });
 });

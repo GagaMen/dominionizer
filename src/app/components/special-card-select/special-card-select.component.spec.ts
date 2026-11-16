@@ -43,11 +43,11 @@ describe('SpecialCardSelectComponent', () => {
 
             const actual = component.formGroup;
 
-            expect(actual.contains('events')).withContext('events').toBeTrue();
-            expect(actual.contains('landmarks')).withContext('landmarks').toBeTrue();
-            expect(actual.contains('projects')).withContext('projects').toBeTrue();
-            expect(actual.contains('ways')).withContext('ways').toBeTrue();
-            expect(actual.contains('traits')).withContext('traits').toBeTrue();
+            expect(actual.contains('events')).withContext('events').toBe(true);
+            expect(actual.contains('landmarks')).withContext('landmarks').toBe(true);
+            expect(actual.contains('projects')).withContext('projects').toBe(true);
+            expect(actual.contains('ways')).withContext('ways').toBe(true);
+            expect(actual.contains('traits')).withContext('traits').toBe(true);
         });
 
         it('should have correct initial value', () => {

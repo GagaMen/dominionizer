@@ -130,7 +130,7 @@ describe('SetComponent', () => {
             const matAccordion = await harnessLoader.getHarness(MatAccordionHarness);
             const actual = await matAccordion.isMulti();
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
 
         it('should render MatExpansionPanel for kingdom cards inside MatAccordion correctly', async () => {
@@ -141,7 +141,7 @@ describe('SetComponent', () => {
             expect(actual).toBeDefined();
             expect(await actual.isExpanded())
                 .withContext('expanded')
-                .toBeTrue();
+                .toBe(true);
             expect(await actual.getTitle())
                 .withContext('title')
                 .toBe('Kingdom Cards');
@@ -170,7 +170,7 @@ describe('SetComponent', () => {
             expect(actual).toBeDefined();
             expect(await actual.isExpanded())
                 .withContext('expanded')
-                .toBeTrue();
+                .toBe(true);
             expect(await actual.getTitle())
                 .withContext('title')
                 .toBe('Special Cards');

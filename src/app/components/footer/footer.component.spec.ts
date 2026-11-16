@@ -1,13 +1,13 @@
 import { LanguageMenuStubComponent } from './../../../testing/components/language-menu.stub.component';
 import { FooterComponent } from './footer.component';
-import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LanguageMenuComponent } from '../language-menu/language-menu.component';
 
 describe('FooterComponent', () => {
     let fixture: ComponentFixture<FooterComponent>;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [FooterComponent],
         }).overrideComponent(FooterComponent, {
@@ -16,7 +16,7 @@ describe('FooterComponent', () => {
         });
 
         fixture = TestBed.createComponent(FooterComponent);
-    }));
+    });
 
     describe('languageMenu', () => {
         it('should be resolved before change detection runs', () => {

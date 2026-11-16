@@ -32,8 +32,7 @@ import { MatIconHarness } from '@angular/material/icon/testing';
 import { EditionSelectComponent } from '../edition-select/edition-select.component';
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { UntypedFormGroup } from '@angular/forms';
 
 describe('ConfigurationComponent', () => {
@@ -48,8 +47,9 @@ describe('ConfigurationComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ConfigurationComponent, RouterTestingModule, NoopAnimationsModule],
+            imports: [ConfigurationComponent, NoopAnimationsModule],
             providers: [
+                provideRouter([]),
                 {
                     provide: AppBarService,
                     useValue: jasmine.createSpyObj<AppBarService>('AppBarService', [

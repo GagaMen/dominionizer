@@ -4,23 +4,24 @@ import { MatIconAnchor, MatIconButton } from '@angular/material/button';
 import { DataFixture } from './../../../testing/data-fixture';
 import { SpyObj } from './../../../testing/spy-obj';
 import { AppBarService } from './../../services/app-bar.service';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppBarComponent } from './app-bar.component';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 describe('AppBarComponent', () => {
     let fixture: ComponentFixture<AppBarComponent>;
     let appBarServiceSpy: SpyObj<AppBarService>;
     let dataFixture: DataFixture;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         const spy = jasmine.createSpyObj<AppBarService>('AppBarService', ['updateConfiguration']);
         (spy as AppBarService).configuration = signal(AppBarService.defaultConfiguration);
 
         TestBed.configureTestingModule({
-            imports: [AppBarComponent, RouterTestingModule],
+            imports: [AppBarComponent],
             providers: [
+                provideRouter([]),
                 {
                     provide: AppBarService,
                     useValue: spy,
@@ -32,7 +33,7 @@ describe('AppBarComponent', () => {
         appBarServiceSpy = TestBed.inject(AppBarService) as jasmine.SpyObj<AppBarService>;
 
         fixture = TestBed.createComponent(AppBarComponent);
-    }));
+    });
 
     describe('template', () => {
         it('with configuration.navigationAction is "none" should display no action container', () => {

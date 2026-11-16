@@ -130,7 +130,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.formGroup.invalid;
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
 
         it('with selected editions change should emit change event correctly', () => {
@@ -156,7 +156,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.areSomeButNotAllSelected();
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
 
         it('with no edition is selected should return false', () => {
@@ -166,7 +166,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.areSomeButNotAllSelected();
 
-            expect(actual).toBeFalse();
+            expect(actual).toBe(false);
         });
 
         it('with all edition are selected should return false', () => {
@@ -176,7 +176,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.areSomeButNotAllSelected();
 
-            expect(actual).toBeFalse();
+            expect(actual).toBe(false);
         });
     });
 
@@ -188,7 +188,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.areAllSelected();
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
 
         it('with not all editions are selected should return false', () => {
@@ -199,7 +199,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.areAllSelected();
 
-            expect(actual).toBeFalse();
+            expect(actual).toBe(false);
         });
     });
 
@@ -233,7 +233,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.hasValidationError();
 
-            expect(actual).toBeFalse();
+            expect(actual).toBe(false);
         });
 
         it('with valid formGroup should return false', () => {
@@ -245,7 +245,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.hasValidationError();
 
-            expect(actual).toBeFalse();
+            expect(actual).toBe(false);
         });
 
         it('with invalid and touched formGroup should return true', () => {
@@ -254,7 +254,7 @@ describe('EditionSelectComponent', () => {
 
             const actual = component.hasValidationError();
 
-            expect(actual).toBeTrue();
+            expect(actual).toBe(true);
         });
     });
 
@@ -264,7 +264,7 @@ describe('EditionSelectComponent', () => {
 
             component.showValidationError();
 
-            expect(component.formGroup.touched).toBeTrue();
+            expect(component.formGroup.touched).toBe(true);
         });
 
         it('should scroll host element into view', () => {

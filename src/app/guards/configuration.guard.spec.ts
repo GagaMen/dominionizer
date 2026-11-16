@@ -53,7 +53,7 @@ describe('configurationGuard', () => {
             jasmine.anything() as unknown as RouterStateSnapshot,
         );
 
-        expect(actual).toBeTrue();
+        expect(actual).toBe(true);
     });
 
     it('with current configuration has no expansions activated should return url tree of configuration page', () => {
