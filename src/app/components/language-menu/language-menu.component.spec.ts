@@ -5,7 +5,6 @@ import { LanguageMenuComponent } from './language-menu.component';
 import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { LanguageMenuHostComponent } from 'src/testing/components/language-menu.host.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LanguageMenuComponent', () => {
     let component: LanguageMenuComponent;
@@ -13,7 +12,7 @@ describe('LanguageMenuComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [LanguageMenuComponent, LanguageMenuHostComponent, NoopAnimationsModule],
+            imports: [LanguageMenuComponent, LanguageMenuHostComponent],
         });
 
         fixture = TestBed.createComponent(LanguageMenuComponent);

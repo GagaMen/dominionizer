@@ -33,7 +33,6 @@ import { Card } from 'src/app/models/card';
 import { MatIconHarness } from '@angular/material/icon/testing';
 import { EditionSelectComponent } from '../edition-select/edition-select.component';
 import { SpecialCardSelectComponent } from '../special-card-select/special-card-select.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { UntypedFormGroup } from '@angular/forms';
 
@@ -49,7 +48,7 @@ describe('ConfigurationComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ConfigurationComponent, NoopAnimationsModule],
+            imports: [ConfigurationComponent],
             providers: [
                 provideRouter([]),
                 {

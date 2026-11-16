@@ -7,7 +7,6 @@ import { MatMenuHarness, MatMenuItemHarness } from '@angular/material/menu/testi
 import { MatIconHarness } from '@angular/material/icon/testing';
 
 import { SetOrderingMenuComponent } from './set-ordering-menu.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SetOrderingMenuHostComponent } from 'src/testing/components/set-ordering-menu.host.component';
 
 describe('SetOrderingMenuComponent', () => {
@@ -17,7 +16,7 @@ describe('SetOrderingMenuComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SetOrderingMenuComponent, SetOrderingMenuHostComponent, NoopAnimationsModule],
+            imports: [SetOrderingMenuComponent, SetOrderingMenuHostComponent],
             providers: [
                 {
                     provide: SetService,

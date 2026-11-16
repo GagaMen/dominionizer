@@ -27,7 +27,6 @@
         "markdownlint": "markdownlint \"**/*.md\" --ignore-path .gitignore"
     },
     "dependencies": {
-        "@angular/animations": "22.2.6",
         "@angular/cdk": "22.2.7",
         "@angular/common": "22.2.6",
         "@angular/compiler": "22.2.6",

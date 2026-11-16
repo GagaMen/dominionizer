@@ -18,7 +18,6 @@ import { MatAccordionHarness } from '@angular/material/expansion/testing';
 import { CardListComponent } from '../card-list/card-list.component';
 import { SetOrderingMenuStubComponent } from 'src/testing/components/set-ordering-menu.stub.component';
 import { SetOrderingMenuComponent } from '../set-ordering-menu/set-ordering-menu.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SetComponent', () => {
     let component: SetComponent;
@@ -31,7 +30,7 @@ describe('SetComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SetComponent, NoopAnimationsModule],
+            imports: [SetComponent],
             providers: [
                 {
                     provide: ShuffleService,
