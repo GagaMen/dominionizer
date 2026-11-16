@@ -38,7 +38,7 @@ describe('EditionSelectComponent', () => {
         harnessLoader = TestbedHarnessEnvironment.loader(fixture);
         component = fixture.componentInstance;
 
-        component.editions = editions;
+        fixture.componentRef.setInput('editions', editions);
     });
 
     describe('editions', () => {
@@ -48,9 +48,9 @@ describe('EditionSelectComponent', () => {
             const thirdEdition = dataFixture.createEdition({ expansion: 'b', edition: '1' });
             const input = [thirdEdition, secondEdition, firstEdition];
             const expected = [firstEdition, secondEdition, thirdEdition];
-            component.editions = input;
+            fixture.componentRef.setInput('editions', input);
 
-            const actual = component.editions;
+            const actual = component.editions();
 
             expect(actual).toEqual(expected);
         });
@@ -86,14 +86,14 @@ describe('EditionSelectComponent', () => {
 
         it('with initialValue contains not all editions should have correct initial value', () => {
             const selectedEditions = chance.pickset(
-                component.editions,
-                chance.integer({ min: 0, max: component.editions.length - 1 }),
+                component.editions(),
+                chance.integer({ min: 0, max: component.editions().length - 1 }),
             );
-            const editionsState = component.editions.map((edition: Edition) =>
-                selectedEditions.includes(edition),
-            );
+            const editionsState = component
+                .editions()
+                .map((edition: Edition) => selectedEditions.includes(edition));
             const expected = { all: false, editions: editionsState };
-            component.initialValue = selectedEditions;
+            fixture.componentRef.setInput('initialValue', selectedEditions);
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -102,9 +102,9 @@ describe('EditionSelectComponent', () => {
         });
 
         it('with initialValue contains all editions should have correct initial value', () => {
-            const editionState = component.editions.map(() => true);
+            const editionState = component.editions().map(() => true);
             const expected = { all: true, editions: editionState };
-            component.initialValue = component.editions;
+            fixture.componentRef.setInput('initialValue', component.editions());
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -113,8 +113,11 @@ describe('EditionSelectComponent', () => {
         });
 
         it('with initialValue contains different instances of the same editions should have correct initial value', () => {
-            const expected = { all: true, editions: component.editions.map(() => true) };
-            component.initialValue = component.editions.map((edition: Edition) => ({ ...edition }));
+            const expected = { all: true, editions: component.editions().map(() => true) };
+            fixture.componentRef.setInput(
+                'initialValue',
+                component.editions().map((edition: Edition) => ({ ...edition })),
+            );
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -133,8 +136,8 @@ describe('EditionSelectComponent', () => {
         it('with selected editions change should emit change event correctly', () => {
             fixture.detectChanges();
             // the component sorts its editions, so the order differs from the input
-            const selectedEditions = component.editions.slice(0, 1);
-            const editionsPatch: boolean[] = component.editions.map(() => false);
+            const selectedEditions = component.editions().slice(0, 1);
+            const editionsPatch: boolean[] = component.editions().map(() => false);
             editionsPatch[0] = true;
             const emitSpy = spyOn(component.change, 'emit');
 
@@ -235,7 +238,7 @@ describe('EditionSelectComponent', () => {
 
         it('with valid formGroup should return false', () => {
             fixture.detectChanges();
-            const editionsPatch: boolean[] = component.editions.map(() => false);
+            const editionsPatch: boolean[] = component.editions().map(() => false);
             editionsPatch[0] = true;
             component.formGroup.patchValue({ editions: editionsPatch });
             component.formGroup.markAllAsTouched();
@@ -380,11 +383,11 @@ describe('EditionSelectComponent', () => {
         });
 
         it('should render checkbox inside li element for each edition correctly', async () => {
-            component.editions = [
+            fixture.componentRef.setInput('editions', [
                 dataFixture.createEdition({ expansion: 'Dominion', edition: '1' }),
                 dataFixture.createEdition({ expansion: 'Dominion', edition: '2' }),
                 dataFixture.createEdition({ expansion: 'Seaside', edition: '1' }),
-            ];
+            ]);
             fixture.detectChanges();
 
             const actual = await harnessLoader.getAllHarnesses(

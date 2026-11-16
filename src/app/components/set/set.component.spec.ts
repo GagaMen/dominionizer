@@ -159,7 +159,7 @@ describe('SetComponent', () => {
                 .injector.get(CardListStubComponent);
 
             expect(actual).toBeDefined();
-            expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
+            expect(actual.cardList()).withContext('cardList').toBe(expectedCardList);
         });
 
         it('should render MatExpansionPanel for special cards inside MatAccordion correctly', async () => {
@@ -188,7 +188,7 @@ describe('SetComponent', () => {
                 .injector.get(CardListStubComponent);
 
             expect(actual).toBeDefined();
-            expect(actual.cardList).withContext('cardList').toBe(expectedCardList);
+            expect(actual.cardList()).withContext('cardList').toBe(expectedCardList);
         });
 
         it('with no special cards should render MatExpansionPanel only for kingdom cards', async () => {

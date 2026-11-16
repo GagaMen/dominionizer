@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { SpecialCardsAvailability } from 'src/app/models/special-cards-availability';
 import { SpecialCardsCount } from 'src/app/models/special-cards-count';
@@ -10,24 +10,23 @@ import { SpecialCardsCount } from 'src/app/models/special-cards-count';
     template: '',
 })
 export class SpecialCardSelectStubComponent {
-    @Input() availability: SpecialCardsAvailability = {
+    readonly availability = input<SpecialCardsAvailability>({
         events: false,
         landmarks: false,
         projects: false,
         ways: false,
         traits: false,
-    };
+    });
 
-    @Input() initialValue: SpecialCardsCount = {
+    readonly initialValue = input<SpecialCardsCount>({
         events: 0,
         landmarks: 0,
         projects: 0,
         ways: 0,
         traits: 0,
-    };
+    });
 
-    @Output()
-    readonly valueChange: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
+    readonly valueChange = output<SpecialCardsCount>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 }

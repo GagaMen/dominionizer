@@ -1,12 +1,11 @@
 import {
     Component,
     ElementRef,
-    EventEmitter,
-    Input,
     OnInit,
-    Output,
     inject,
     ChangeDetectionStrategy,
+    input,
+    output,
 } from '@angular/core';
 import {
     UntypedFormGroup,
@@ -31,21 +30,18 @@ export class EditionSelectComponent implements OnInit {
     private formBuilder = inject(UntypedFormBuilder);
     private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
-    private _editions: Edition[] = [];
-    get editions(): Edition[] {
-        return this._editions;
-    }
-    @Input() set editions(value: Edition[]) {
-        this._editions = [...value].sort(
-            (a: Edition, b: Edition) =>
-                a.expansion.localeCompare(b.expansion) || a.edition.localeCompare(b.edition),
-        );
-    }
+    readonly editions = input<Edition[], Edition[]>([], {
+        transform: (editions: Edition[]) =>
+            [...editions].sort(
+                (a: Edition, b: Edition) =>
+                    a.expansion.localeCompare(b.expansion) || a.edition.localeCompare(b.edition),
+            ),
+    });
 
-    @Input() initialValue: Edition[] = [];
+    readonly initialValue = input<Edition[]>([]);
 
     // eslint-disable-next-line @angular-eslint/no-output-native
-    @Output() readonly change: EventEmitter<Edition[]> = new EventEmitter<Edition[]>();
+    readonly change = output<Edition[]>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
@@ -59,13 +55,13 @@ export class EditionSelectComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const initialValueIds = this.initialValue.map((edition: Edition) => edition.id);
-        const editionFormControls = this.editions.map((edition: Edition) => {
+        const initialValueIds = this.initialValue().map((edition: Edition) => edition.id);
+        const editionFormControls = this.editions().map((edition: Edition) => {
             const isEditionSelected = initialValueIds.includes(edition.id);
             return this.formBuilder.control(isEditionSelected);
         });
         this.formGroup = this.formBuilder.group({
-            all: this.initialValue.length === this.editions.length,
+            all: this.initialValue().length === this.editions().length,
             editions: this.formBuilder.array(
                 editionFormControls,
                 EditionSelectComponent.validateMinSelect,
@@ -73,7 +69,7 @@ export class EditionSelectComponent implements OnInit {
         });
 
         this.formGroup.get('editions')?.valueChanges.subscribe((editionsState: boolean[]) => {
-            const selectedEditions = this.editions.filter(
+            const selectedEditions = this.editions().filter(
                 (_, index: number) => editionsState[index] === true,
             );
             this.change.emit(selectedEditions);
@@ -91,8 +87,8 @@ export class EditionSelectComponent implements OnInit {
 
     label(edition: Edition): string {
         const hasMultipleEditions =
-            this.editions.filter((other: Edition) => other.expansion === edition.expansion).length >
-            1;
+            this.editions().filter((other: Edition) => other.expansion === edition.expansion)
+                .length > 1;
 
         return hasMultipleEditions
             ? `${edition.expansion} (${edition.edition}. Edition)`
@@ -106,7 +102,7 @@ export class EditionSelectComponent implements OnInit {
                 (editionSelected) => editionSelected,
             ).length;
 
-        return selectedEditionCount > 0 && selectedEditionCount < this.editions.length;
+        return selectedEditionCount > 0 && selectedEditionCount < this.editions().length;
     }
 
     areAllSelected(): boolean {
@@ -117,7 +113,7 @@ export class EditionSelectComponent implements OnInit {
     }
 
     selectOrDeselectAll(checked: boolean): void {
-        const editionsPatch: boolean[] = this.editions.map(() => checked);
+        const editionsPatch: boolean[] = this.editions().map(() => checked);
         this.formGroup.patchValue({ editions: editionsPatch });
     }
 }

@@ -1,5 +1,5 @@
 import { ShuffleService } from 'src/app/services/shuffle.service';
-import { Component, Input, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, input } from '@angular/core';
 import { Card } from '../../models/card';
 import { CardComponent } from '../card/card.component';
 
@@ -13,7 +13,7 @@ import { CardComponent } from '../card/card.component';
 export class CardListComponent {
     private shuffleService = inject(ShuffleService);
 
-    @Input() cardList: Card[] = [];
+    readonly cardList = input<Card[]>([]);
 
     onReshuffle(card: Card): void {
         this.shuffleService.shuffleSingleCard(card);

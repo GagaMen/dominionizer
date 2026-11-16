@@ -52,7 +52,7 @@ describe('SpecialCardSelectComponent', () => {
 
         it('should have correct initial value', () => {
             const expected = dataFixture.createSpecialCardsCount();
-            component.initialValue = expected;
+            fixture.componentRef.setInput('initialValue', expected);
             fixture.detectChanges();
 
             const actual = component.formGroup.value;
@@ -62,13 +62,13 @@ describe('SpecialCardSelectComponent', () => {
 
         it('with value changes should emit valueChange event correctly', () => {
             fixture.detectChanges();
-            component.availability = {
+            fixture.componentRef.setInput('availability', {
                 events: true,
                 landmarks: true,
                 projects: true,
                 ways: true,
                 traits: true,
-            };
+            });
             const expected = dataFixture.createSpecialCardsCount();
             const emitSpy = spyOn(component.valueChange, 'emit');
 
@@ -107,7 +107,7 @@ describe('SpecialCardSelectComponent', () => {
                     traits: false,
                 };
                 availability[specialCards] = true;
-                component.availability = availability;
+                fixture.componentRef.setInput('availability', availability);
 
                 const matSlider = await harnessLoader.getHarness(MatSliderHarness);
                 const matSliderThumb = await harnessLoader.getHarness(MatSliderThumbHarness);
@@ -135,7 +135,7 @@ describe('SpecialCardSelectComponent', () => {
                     traits: false,
                 };
                 availability[specialCards] = true;
-                component.availability = availability;
+                fixture.componentRef.setInput('availability', availability);
                 const expected =
                     specialCards.substring(0, 1).toUpperCase() + specialCards.substring(1);
                 fixture.detectChanges();
@@ -155,7 +155,7 @@ describe('SpecialCardSelectComponent', () => {
                     traits: false,
                 };
                 availability[specialCards] = true;
-                component.availability = availability;
+                fixture.componentRef.setInput('availability', availability);
                 const expected = 1;
                 await (await harnessLoader.getHarness(MatSliderThumbHarness)).setValue(expected);
 

@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup">
-    @if (availability.events) {
+    @if (availability().events) {
         <div>
             <div class="special-cards-label">
                 <label for="event-slider" i18n>Events</label>
@@ -11,7 +11,7 @@
         </div>
     }
 
-    @if (availability.landmarks) {
+    @if (availability().landmarks) {
         <div>
             <div class="special-cards-label">
                 <label for="landmark-slider" i18n>Landmarks</label>
@@ -23,7 +23,7 @@
         </div>
     }
 
-    @if (availability.projects) {
+    @if (availability().projects) {
         <div>
             <div class="special-cards-label">
                 <label for="project-slider" i18n>Projects</label>
@@ -35,7 +35,7 @@
         </div>
     }
 
-    @if (availability.ways) {
+    @if (availability().ways) {
         <div>
             <div class="special-cards-label">
                 <label for="way-slider" i18n>Ways</label>
@@ -47,7 +47,7 @@
         </div>
     }
 
-    @if (availability.traits) {
+    @if (availability().traits) {
         <div>
             <div class="special-cards-label">
                 <label for="trait-slider" i18n>Traits</label>

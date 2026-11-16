@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { Edition } from 'src/app/models/edition';
 import { EditionSelectComponent } from 'src/app/components/edition-select/edition-select.component';
@@ -11,12 +11,12 @@ import { EditionSelectComponent } from 'src/app/components/edition-select/editio
     providers: [{ provide: EditionSelectComponent, useExisting: EditionSelectStubComponent }],
 })
 export class EditionSelectStubComponent {
-    @Input() editions: Edition[] = [];
+    readonly editions = input<Edition[]>([]);
 
-    @Input() initialValue: Edition[] = [];
+    readonly initialValue = input<Edition[]>([]);
 
     // eslint-disable-next-line @angular-eslint/no-output-native
-    @Output() readonly change: EventEmitter<Edition[]> = new EventEmitter<Edition[]>();
+    readonly change = output<Edition[]>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 

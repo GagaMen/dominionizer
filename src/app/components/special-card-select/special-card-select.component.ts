@@ -1,14 +1,6 @@
 import { SpecialCardsCount } from '../../models/special-cards-count';
 import { SpecialCardsAvailability } from '../../models/special-cards-availability';
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    inject,
-    ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatSlider, MatSliderThumb } from '@angular/material/slider';
 
@@ -22,34 +14,33 @@ import { MatSlider, MatSliderThumb } from '@angular/material/slider';
 export class SpecialCardSelectComponent implements OnInit {
     private formBuilder = inject(UntypedFormBuilder);
 
-    @Input() availability: SpecialCardsAvailability = {
+    readonly availability = input<SpecialCardsAvailability>({
         events: false,
         landmarks: false,
         projects: false,
         ways: false,
         traits: false,
-    };
+    });
 
-    @Input() initialValue: SpecialCardsCount = {
+    readonly initialValue = input<SpecialCardsCount>({
         events: 0,
         landmarks: 0,
         projects: 0,
         ways: 0,
         traits: 0,
-    };
+    });
 
-    @Output()
-    readonly valueChange: EventEmitter<SpecialCardsCount> = new EventEmitter<SpecialCardsCount>();
+    readonly valueChange = output<SpecialCardsCount>();
 
     formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
     ngOnInit(): void {
         this.formGroup = this.formBuilder.group({
-            events: [this.initialValue.events],
-            landmarks: [this.initialValue.landmarks],
-            projects: [this.initialValue.projects],
-            ways: [this.initialValue.ways],
-            traits: [this.initialValue.traits],
+            events: [this.initialValue().events],
+            landmarks: [this.initialValue().landmarks],
+            projects: [this.initialValue().projects],
+            ways: [this.initialValue().ways],
+            traits: [this.initialValue().traits],
         });
 
         this.formGroup.valueChanges.subscribe((specialCardsCount: SpecialCardsCount) =>

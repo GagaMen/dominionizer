@@ -1,7 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { Card, NullCard } from './../../models/card';
 import { Edition } from './../../models/edition';
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { CardType, CardTypeId } from 'src/app/models/card-type';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
@@ -74,12 +74,12 @@ export class CardComponent {
         [CardTypeId.Prophecy, '#36a4bd'],
     ]);
 
-    @Input() card: Card = NullCard;
-    @Output() reshuffle: EventEmitter<undefined> = new EventEmitter<undefined>();
+    readonly card = input<Card>(NullCard);
+    readonly reshuffle = output<void>();
 
     get editionIconUrl(): string | null {
         // pick the latest edition explicitly instead of relying on the array order
-        const icon = this.card.editions.reduce(
+        const icon = this.card().editions.reduce(
             (latest: Edition | undefined, edition: Edition) =>
                 latest === undefined || Number(edition.edition) > Number(latest.edition)
                     ? edition
@@ -94,38 +94,38 @@ export class CardComponent {
         const urls: string[] = [];
 
         if (this.shouldDisplayBasicCostIcon()) {
-            urls.push(`${baseUrl}/Coin${this.card.cost}.png`);
+            urls.push(`${baseUrl}/Coin${this.card().cost}.png`);
         }
 
-        switch (this.card.costModifier) {
+        switch (this.card().costModifier) {
             case 'P':
                 urls.push(`${baseUrl}/Potion.png`);
                 break;
             case '*':
-                urls.push(`${baseUrl}/Coin${this.card.cost}star.png`);
+                urls.push(`${baseUrl}/Coin${this.card().cost}star.png`);
                 break;
             case '+':
-                urls.push(`${baseUrl}/Coin${this.card.cost}plus.png`);
+                urls.push(`${baseUrl}/Coin${this.card().cost}plus.png`);
                 break;
         }
 
-        if (this.card.debt) {
-            urls.push(`${baseUrl}/Debt${this.card.debt}.png`);
+        if (this.card().debt) {
+            urls.push(`${baseUrl}/Debt${this.card().debt}.png`);
         }
 
         return urls;
     }
 
     private shouldDisplayBasicCostIcon() {
-        if (this.card.costModifier === 'P' && this.card.cost === 0) {
+        if (this.card().costModifier === 'P' && this.card().cost === 0) {
             return false;
         }
 
-        if (this.card.costModifier && this.card.costModifier !== 'P') {
+        if (this.card().costModifier && this.card().costModifier !== 'P') {
             return false;
         }
 
-        if (this.card.debt && this.card.cost === 0) {
+        if (this.card().debt && this.card().cost === 0) {
             return false;
         }
 
@@ -133,15 +133,17 @@ export class CardComponent {
     }
 
     get typesLabel(): string {
-        return this.card.types.map<string>((type: CardType) => type.name).join(' - ');
+        return this.card()
+            .types.map<string>((type: CardType) => type.name)
+            .join(' - ');
     }
 
     get background(): string {
         const primaryCardTypes = this.orderedPrimaryCardTypes.filter((typeId: string) =>
-            this.card.types.some((type: CardType) => type.id === typeId),
+            this.card().types.some((type: CardType) => type.id === typeId),
         );
         const secondaryCardTypes = this.orderedSecondaryCardTypes.filter((typeId: string) =>
-            this.card.types.some((type: CardType) => type.id === typeId),
+            this.card().types.some((type: CardType) => type.id === typeId),
         );
 
         // exception rules
@@ -194,10 +196,10 @@ export class CardComponent {
     }
 
     private calculateBaseColor(): RGB {
-        const containsTypeNight = this.card.types.some(
+        const containsTypeNight = this.card().types.some(
             (cardType: CardType) => cardType.id === CardTypeId.Night,
         );
-        const containsPrimaryType = this.card.types.some(
+        const containsPrimaryType = this.card().types.some(
             (cardType: CardType) =>
                 this.orderedPrimaryCardTypes.includes(cardType.id) ||
                 cardType.id === CardTypeId.Action,

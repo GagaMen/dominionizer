@@ -289,8 +289,8 @@ describe('ConfigurationComponent', () => {
                 .query(By.directive(EditionSelectStubComponent))
                 .injector.get(EditionSelectStubComponent);
 
-            expect(actual.editions).withContext('editions').toEqual(editions);
-            expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
+            expect(actual.editions()).withContext('editions').toEqual(editions);
+            expect(actual.initialValue()).withContext('initialValue').toBe(initialValue);
         });
 
         it('should bind change event of EditionSelectComponent correctly', () => {
@@ -348,8 +348,8 @@ describe('ConfigurationComponent', () => {
                 .query(By.directive(SpecialCardSelectStubComponent))
                 .injector.get(SpecialCardSelectStubComponent);
 
-            expect(actual.initialValue).withContext('initialValue').toBe(initialValue);
-            expect(actual.availability).withContext('availability').toEqual(availability);
+            expect(actual.initialValue()).withContext('initialValue').toBe(initialValue);
+            expect(actual.availability()).withContext('availability').toEqual(availability);
         });
 
         it('should bind valueChange event of SpecialCardSelectComponent correctly', () => {

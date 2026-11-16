@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { Card, NullCard } from 'src/app/models/card';
 
 @Component({
@@ -8,6 +8,6 @@ import { Card, NullCard } from 'src/app/models/card';
     template: '',
 })
 export class CardStubComponent {
-    @Input() card: Card = NullCard;
-    @Output() reshuffle: EventEmitter<undefined> = new EventEmitter<undefined>();
+    readonly card = input<Card>(NullCard);
+    readonly reshuffle = output<void>();
 }

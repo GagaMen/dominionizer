@@ -11,7 +11,7 @@
             </div>
         </div>
         <mat-card-title-group>
-            <mat-card-title [style.color]="titleColor">{{ card.name }}</mat-card-title>
+            <mat-card-title [style.color]="titleColor">{{ card().name }}</mat-card-title>
             <mat-card-subtitle [style.color]="subtitleColor">{{ typesLabel }}</mat-card-subtitle>
         </mat-card-title-group>
         <button mat-icon-button (click)="reshuffle.emit()" [style.color]="titleColor">

@@ -30,7 +30,7 @@ describe('CardComponent', () => {
 
     describe('editionIconUrl', () => {
         it('with card belongs to no edition should return null', () => {
-            component.card = dataFixture.createCard({ editions: [] });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ editions: [] }));
 
             const actual = component.editionIconUrl;
 
@@ -39,7 +39,7 @@ describe('CardComponent', () => {
 
         it('with edition of card has no icon should return null', () => {
             const edition = dataFixture.createEdition({ icon: '' });
-            component.card = dataFixture.createCard({ editions: [edition] });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ editions: [edition] }));
 
             const actual = component.editionIconUrl;
 
@@ -48,7 +48,7 @@ describe('CardComponent', () => {
 
         it('with single edition of card has icon should return correct icon url', () => {
             const edition = dataFixture.createEdition({ icon: 'edition.png' });
-            component.card = dataFixture.createCard({ editions: [edition] });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ editions: [edition] }));
             const expected = `${environment.entryPoint}/assets/card_symbols/edition.png`;
 
             const actual = component.editionIconUrl;
@@ -69,9 +69,12 @@ describe('CardComponent', () => {
                 edition: '1',
                 icon: 'old_edition.png',
             });
-            component.card = dataFixture.createCard({
-                editions: [secondEdition, firstEdition],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    editions: [secondEdition, firstEdition],
+                }),
+            );
             const expected = `${environment.entryPoint}/assets/card_symbols/edition.png`;
 
             const actual = component.editionIconUrl;
@@ -82,7 +85,7 @@ describe('CardComponent', () => {
 
     describe('costIconUrls', () => {
         it('with card has cost should return correct icon urls', () => {
-            component.card = dataFixture.createCard({ cost: 2 });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ cost: 2 }));
             const expected = [`${environment.entryPoint}/assets/card_symbols/Coin2.png`];
 
             const actual = component.costIconUrls;
@@ -97,7 +100,10 @@ describe('CardComponent', () => {
         ];
         for (const [costModifier, image] of costModifiers) {
             it(`with card has '${costModifier}' cost modifier should return correct icon urls`, () => {
-                component.card = dataFixture.createCard({ cost: 0, costModifier });
+                fixture.componentRef.setInput(
+                    'card',
+                    dataFixture.createCard({ cost: 0, costModifier }),
+                );
                 const expected = [`${environment.entryPoint}/assets/card_symbols/${image}`];
 
                 const actual = component.costIconUrls;
@@ -107,7 +113,10 @@ describe('CardComponent', () => {
         }
 
         it(`with card has cost and 'P' cost modifier should return correct icon urls`, () => {
-            component.card = dataFixture.createCard({ cost: 3, costModifier: 'P' });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({ cost: 3, costModifier: 'P' }),
+            );
             const expected = [
                 `${environment.entryPoint}/assets/card_symbols/Coin3.png`,
                 `${environment.entryPoint}/assets/card_symbols/Potion.png`,
@@ -119,7 +128,7 @@ describe('CardComponent', () => {
         });
 
         it('with card has cost equals zero and debt greater than zero should return correct icon urls', () => {
-            component.card = dataFixture.createCard({ cost: 0, debt: 8 });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ cost: 0, debt: 8 }));
             const expected = [`${environment.entryPoint}/assets/card_symbols/Debt8.png`];
 
             const actual = component.costIconUrls;
@@ -128,7 +137,7 @@ describe('CardComponent', () => {
         });
 
         it('with card has cost and debt greater than zero should return correct icon urls', () => {
-            component.card = dataFixture.createCard({ cost: 4, debt: 4 });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ cost: 4, debt: 4 }));
             const expected = [
                 `${environment.entryPoint}/assets/card_symbols/Coin4.png`,
                 `${environment.entryPoint}/assets/card_symbols/Debt4.png`,
@@ -143,7 +152,7 @@ describe('CardComponent', () => {
     describe('typesLabel', () => {
         it('with card has one type should return correct label', () => {
             const type = dataFixture.createCardType();
-            component.card = dataFixture.createCard({ types: [type] });
+            fixture.componentRef.setInput('card', dataFixture.createCard({ types: [type] }));
 
             const actual = component.typesLabel;
 
@@ -153,7 +162,10 @@ describe('CardComponent', () => {
         it('with card has multiple types should return correct label', () => {
             const firstType = dataFixture.createCardType();
             const secondType = dataFixture.createCardType();
-            component.card = dataFixture.createCard({ types: [firstType, secondType] });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({ types: [firstType, secondType] }),
+            );
             const expected = `${firstType.name} - ${secondType.name}`;
 
             const actual = component.typesLabel;
@@ -281,7 +293,7 @@ describe('CardComponent', () => {
                 const types = typeIds.map((typeId: CardTypeId) =>
                     dataFixture.createCardType({ id: typeId }),
                 );
-                component.card = dataFixture.createCard({ types });
+                fixture.componentRef.setInput('card', dataFixture.createCard({ types }));
 
                 const actual = component.background;
 
@@ -294,9 +306,12 @@ describe('CardComponent', () => {
 
     describe('titleColor', () => {
         it('with card of type Night should return correct titleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Night })],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [dataFixture.createCardType({ id: CardTypeId.Night })],
+                }),
+            );
 
             const actual = component.titleColor;
 
@@ -304,9 +319,12 @@ describe('CardComponent', () => {
         });
 
         it('with card not of type Night should return correct titleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Action })],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [dataFixture.createCardType({ id: CardTypeId.Action })],
+                }),
+            );
 
             const actual = component.titleColor;
 
@@ -314,12 +332,15 @@ describe('CardComponent', () => {
         });
 
         it('with card of type Night and one primary card type should return correct titleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [
-                    dataFixture.createCardType({ id: CardTypeId.Duration }),
-                    dataFixture.createCardType({ id: CardTypeId.Night }),
-                ],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [
+                        dataFixture.createCardType({ id: CardTypeId.Duration }),
+                        dataFixture.createCardType({ id: CardTypeId.Night }),
+                    ],
+                }),
+            );
 
             const actual = component.titleColor;
 
@@ -327,12 +348,15 @@ describe('CardComponent', () => {
         });
 
         it('with card of type Night and Action should return correct titleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [
-                    dataFixture.createCardType({ id: CardTypeId.Action }),
-                    dataFixture.createCardType({ id: CardTypeId.Night }),
-                ],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [
+                        dataFixture.createCardType({ id: CardTypeId.Action }),
+                        dataFixture.createCardType({ id: CardTypeId.Night }),
+                    ],
+                }),
+            );
 
             const actual = component.titleColor;
 
@@ -342,9 +366,12 @@ describe('CardComponent', () => {
 
     describe('subtitleColor', () => {
         it('with card of type Night should return correct subtitleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Night })],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [dataFixture.createCardType({ id: CardTypeId.Night })],
+                }),
+            );
 
             const actual = component.subtitleColor;
 
@@ -352,9 +379,12 @@ describe('CardComponent', () => {
         });
 
         it('with card not of type Night should return correct subtitleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [dataFixture.createCardType({ id: CardTypeId.Action })],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [dataFixture.createCardType({ id: CardTypeId.Action })],
+                }),
+            );
 
             const actual = component.subtitleColor;
 
@@ -362,12 +392,15 @@ describe('CardComponent', () => {
         });
 
         it('with card of type Night and one primary card type should return correct subtitleColor', () => {
-            component.card = dataFixture.createCard({
-                types: [
-                    dataFixture.createCardType({ id: CardTypeId.Duration }),
-                    dataFixture.createCardType({ id: CardTypeId.Night }),
-                ],
-            });
+            fixture.componentRef.setInput(
+                'card',
+                dataFixture.createCard({
+                    types: [
+                        dataFixture.createCardType({ id: CardTypeId.Duration }),
+                        dataFixture.createCardType({ id: CardTypeId.Night }),
+                    ],
+                }),
+            );
 
             const actual = component.subtitleColor;
 
@@ -474,7 +507,7 @@ describe('CardComponent', () => {
 
         it('should bind content of MatCardTitle correctly', () => {
             const card = dataFixture.createCard();
-            component.card = card;
+            fixture.componentRef.setInput('card', card);
             fixture.detectChanges();
 
             const actual = fixture.debugElement.query(By.directive(MatCardTitle)).properties[
@@ -486,7 +519,7 @@ describe('CardComponent', () => {
 
         it('should bind content of MatCardSubtitle correctly', () => {
             const card = dataFixture.createCard();
-            component.card = card;
+            fixture.componentRef.setInput('card', card);
             const expected = 'Action - Attack';
             spyOnProperty(component, 'typesLabel').and.returnValue(expected);
             fixture.detectChanges();

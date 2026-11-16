@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { Card } from 'src/app/models/card';
 
 @Component({
@@ -8,5 +8,5 @@ import { Card } from 'src/app/models/card';
     template: '',
 })
 export class CardListStubComponent {
-    @Input() cardList: Card[] = [];
+    readonly cardList = input<Card[]>([]);
 }
